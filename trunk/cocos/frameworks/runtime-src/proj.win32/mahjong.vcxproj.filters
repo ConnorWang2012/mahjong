@@ -79,6 +79,27 @@
     <Filter Include="classes\cpp\logic\util">
       <UniqueIdentifier>{a1654209-c786-40ce-876d-9e9bd8434c24}</UniqueIdentifier>
     </Filter>
+    <Filter Include="classes\lua\view\base">
+      <UniqueIdentifier>{153c2ca7-ff72-459a-a560-98287cef9831}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="classes\lua\view\login">
+      <UniqueIdentifier>{52277cb4-fcb3-4b07-9005-faf016b0ab36}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="classes\lua\logic\manager">
+      <UniqueIdentifier>{3af6571c-bd7a-4ca3-ac7a-c8befa500a9a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="classes\lua\logic\base">
+      <UniqueIdentifier>{4d9f3ecc-abe0-4095-b8ae-56f35bcaff5e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="classes\lua\logic\constant">
+      <UniqueIdentifier>{e10e6cc7-56be-4b42-ade1-0dcbb152a856}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="classes\lua\view\constant">
+      <UniqueIdentifier>{8a40ec16-8174-41c8-a1b0-bfaeb8966d71}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="classes\lua\view\manager">
+      <UniqueIdentifier>{3742686c-c35e-43cd-be5c-a7390aa241e3}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\Classes\AppDelegate.h">
@@ -202,5 +223,49 @@
   </ItemGroup>
   <ItemGroup>
     <Image Include="res\game.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="..\..\..\..\customer\src\lua\view\login\login_layer.lua">
+      <Filter>classes\lua\view\login</Filter>
+    </None>
+    <None Include="..\..\..\..\customer\src\lua\view\base\layer_base.lua">
+      <Filter>classes\lua\view\base</Filter>
+    </None>
+    <None Include="..\..\..\..\customer\src\lua\view\base\node_base.lua">
+      <Filter>classes\lua\view\base</Filter>
+    </None>
+    <None Include="..\..\..\..\customer\src\lua\view\constant\layer_constants.lua">
+      <Filter>classes\lua\view\constant</Filter>
+    </None>
+    <None Include="..\..\..\..\customer\src\lua\view\constant\scene_constants.lua">
+      <Filter>classes\lua\view\constant</Filter>
+    </None>
+    <None Include="..\..\..\..\customer\src\lua\view\login\login_scene.lua">
+      <Filter>classes\lua\view\login</Filter>
+    </None>
+    <None Include="..\..\..\..\customer\src\lua\data\init_data.lua">
+      <Filter>classes\lua\data</Filter>
+    </None>
+    <None Include="..\..\..\..\customer\src\lua\logic\init_logic.lua">
+      <Filter>classes\lua\logic</Filter>
+    </None>
+    <None Include="..\..\..\..\customer\src\lua\network\init_network.lua">
+      <Filter>classes\lua\network</Filter>
+    </None>
+    <None Include="..\..\..\..\customer\src\lua\view\init_view.lua">
+      <Filter>classes\lua\view</Filter>
+    </None>
+    <None Include="..\..\..\src\main.lua">
+      <Filter>classes\lua\logic</Filter>
+    </None>
+    <None Include="..\..\..\..\customer\src\lua\logic\init_modules.lua">
+      <Filter>classes\lua\logic</Filter>
+    </None>
+    <None Include="..\..\..\..\customer\src\lua\logic\manager\layer_manager.lua">
+      <Filter>classes\lua\logic\manager</Filter>
+    </None>
+    <None Include="..\..\..\..\customer\src\lua\logic\manager\scene_manager.lua">
+      <Filter>classes\lua\logic\manager</Filter>
+    </None>
   </ItemGroup>
 </Project>
