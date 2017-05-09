@@ -12,8 +12,6 @@ author:
 modification:
 --]]
 
-local LayerConstants = require "view.layer_constants"
-local SceneManager   = require "logic.scene_manager"
 local LayerManager = {}
 
 LayerManager.layer_ids = {}
@@ -24,15 +22,15 @@ function LayerManager.createLayer(layer_id)
 		return
 	end
 
-	local layerCfg = LayerConstants.LayersCfg[layer_id]
-	if not layerCfg or not layerCfg.layer_file then
+	local layer_cfg = gamer.LayerConstants.LayersCfg[layer_id]
+	if not layer_cfg or not layer_cfg.layer_file then
 		print("[LayerManager.createLayer] create layer failed, layer cfg error")
 		return
 	end
 	
-	local layer = require(layerCfg.layer_file):create()
-	if layerCfg.view_file then
-		layer:addViewNode(layerCfg.view_file)
+	local layer = require(layer_cfg.layer_file):create()
+	if layer_cfg.view_file then
+		layer:addViewNode(layer_cfg.view_file)
 	end
 
 	return layer
@@ -50,7 +48,7 @@ function LayerManager.addLayer(layer_id)
 	end
 	
 	local layer = LayerManager.createLayer(layer_id)
-	local scene = SceneManager:getRunningScene()
+	local scene = gamer.SceneManager:getRunningScene()
 	if scene then
 		scene:addChild(layer) -- TODO : deal with z order
 		LayerManager.layer_ids[layer_id] = layer_id
@@ -63,5 +61,4 @@ function LayerManager.removeLayer(layer_id)
 	
 end
 
-gamer.LayerManager = LayerManager
 return LayerManager

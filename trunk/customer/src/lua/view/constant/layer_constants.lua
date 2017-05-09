@@ -26,7 +26,7 @@ LayerConstants.LayerFiles =
 
 LayerConstants.LayerViewFiles =
 {
-	LOGIN_VIEW_FILE			= nil
+	LOGIN_LAYER_VIEW_FILE	= nil
 }
 
 LayerConstants.LayersCfg =
@@ -34,7 +34,7 @@ LayerConstants.LayersCfg =
 	[LayerConstants.LayerIDs.LOGIN_LAYER]		   = 
 		{ 
 			layer_file = LayerConstants.LayerFiles.LOGIN_LAYER_FILE,
-			view_file  = LayerConstants.LayerViewFiles.LOGIN_VIEW_FILE,  
+			view_file  = LayerConstants.LayerViewFiles.LOGIN_LAYER_VIEW_FILE 
 		}
 }
 

@@ -13,7 +13,7 @@
   <PropertyGroup Label="Globals">
     <ProjectGuid>{4E6A7A0E-DDD8-4BAA-8B22-C964069364ED}</ProjectGuid>
     <ProjectName>mahjong</ProjectName>
-    <WindowsTargetPlatformVersion>8.1</WindowsTargetPlatformVersion>
+    <WindowsTargetPlatformVersion>10.0.14393.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
@@ -130,7 +130,8 @@
       <Command>if not exist "$(LocalDebuggerWorkingDirectory)" mkdir "$(LocalDebuggerWorkingDirectory)"
 xcopy /Y /Q "$(OutDir)*.dll" "$(LocalDebuggerWorkingDirectory)"
 xcopy "$(ProjectDir)..\..\..\res" "$(LocalDebuggerWorkingDirectory)\res" /D /E /I /F /Y
-xcopy "$(ProjectDir)..\..\..\src" "$(LocalDebuggerWorkingDirectory)\src" /D /E /I /F /Y</Command>
+xcopy "$(ProjectDir)..\..\..\src" "$(LocalDebuggerWorkingDirectory)\src" /D /E /I /F /Y
+xcopy "$(ProjectDir)..\..\..\..\customer\src\lua" "$(LocalDebuggerWorkingDirectory)\src\customer\src\lua" /D /E /I /F /Y</Command>
       <Outputs>$(TargetName).cab</Outputs>
       <Inputs>$(TargetFileName)</Inputs>
     </CustomBuildStep>
@@ -251,6 +252,22 @@ xcopy "$(ProjectDir)..\..\..\src" "$(LocalDebuggerWorkingDirectory)\src" /D /E /
     <ProjectReference Include="..\..\cocos2d-x\tools\simulator\libsimulator\proj.win32\libsimulator.vcxproj">
       <Project>{001b324a-bb91-4e83-875c-c92f75c40857}</Project>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="..\..\..\..\customer\src\lua\data\init_data.lua" />
+    <None Include="..\..\..\..\customer\src\lua\logic\init_logic.lua" />
+    <None Include="..\..\..\..\customer\src\lua\logic\init_modules.lua" />
+    <None Include="..\..\..\..\customer\src\lua\logic\manager\layer_manager.lua" />
+    <None Include="..\..\..\..\customer\src\lua\logic\manager\scene_manager.lua" />
+    <None Include="..\..\..\..\customer\src\lua\network\init_network.lua" />
+    <None Include="..\..\..\..\customer\src\lua\view\base\layer_base.lua" />
+    <None Include="..\..\..\..\customer\src\lua\view\base\node_base.lua" />
+    <None Include="..\..\..\..\customer\src\lua\view\constant\layer_constants.lua" />
+    <None Include="..\..\..\..\customer\src\lua\view\constant\scene_constants.lua" />
+    <None Include="..\..\..\..\customer\src\lua\view\init_view.lua" />
+    <None Include="..\..\..\..\customer\src\lua\view\login\login_layer.lua" />
+    <None Include="..\..\..\..\customer\src\lua\view\login\login_scene.lua" />
+    <None Include="..\..\..\src\main.lua" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
