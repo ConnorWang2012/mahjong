@@ -3,6 +3,8 @@
 #include "cocos2d.h"
 #include "scripting/lua-bindings/manual/lua_module_register.h"
 
+#include "network_manager.h"
+
 // #define USE_AUDIO_ENGINE 1
 // #define USE_SIMPLE_AUDIO_ENGINE 1
 
@@ -82,11 +84,16 @@ bool AppDelegate::applicationDidFinishLaunching()
 #endif
     FileUtils::getInstance()->addSearchPath("src");
     FileUtils::getInstance()->addSearchPath("res");
-	FileUtils::getInstance()->addSearchPath("../customer/src/lua");
+
+    engine->addSearchPath("src/customer/src/lua");
+    engine->addSearchPath("../res");
+
     if (engine->executeScriptFile("main.lua"))
     {
         return false;
     }
+
+    gamer::NetworkManager::getInstance()->connect();
 
     return true;
 }

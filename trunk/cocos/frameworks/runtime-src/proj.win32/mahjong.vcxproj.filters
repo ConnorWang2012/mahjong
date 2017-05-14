@@ -52,12 +52,6 @@
     <Filter Include="classes\cpp\logic\3rd_party\pay">
       <UniqueIdentifier>{1e00a3a3-0a02-447e-be33-a182b6cd9a34}</UniqueIdentifier>
     </Filter>
-    <Filter Include="classes\cpp\logic\base">
-      <UniqueIdentifier>{cafd385e-d75a-42e6-a8b8-6972805bf1b7}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="classes\cpp\logic\manager">
-      <UniqueIdentifier>{2b78a3d9-6b03-48fe-81f4-80d77760aedb}</UniqueIdentifier>
-    </Filter>
     <Filter Include="classes\cpp\logic\constant">
       <UniqueIdentifier>{2368edf9-b284-48fc-8bd1-48d8f526a254}</UniqueIdentifier>
     </Filter>
@@ -100,6 +94,45 @@
     <Filter Include="classes\lua\view\manager">
       <UniqueIdentifier>{3742686c-c35e-43cd-be5c-a7390aa241e3}</UniqueIdentifier>
     </Filter>
+    <Filter Include="classes\cpp\network\libevent">
+      <UniqueIdentifier>{6a68a36b-cbde-48c5-ad85-f8f8417a1539}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="classes\cpp\network\libevent\compat">
+      <UniqueIdentifier>{eee83a76-316b-4619-abb6-eba127a72774}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="classes\cpp\network\libevent\include">
+      <UniqueIdentifier>{cd8cdc45-bb24-47c7-b7fa-3feb6bb58a52}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="classes\cpp\network\libevent\include\event2">
+      <UniqueIdentifier>{c365ecda-6be2-4158-8d0c-e5b36182203a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="classes\cpp\network\libevent\win32">
+      <UniqueIdentifier>{78964a36-d626-4a2e-938a-a0c749dbfcd1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="classes\cpp\network\libevent\include\openssl">
+      <UniqueIdentifier>{a8177c4d-c777-41fe-8d1b-3e2360b5e9b8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="classes\cpp\logic\base">
+      <UniqueIdentifier>{add990c4-56ec-40f4-a55c-086b54c3ea89}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="classes\cpp\logic\manager">
+      <UniqueIdentifier>{b98201f7-6799-433e-9422-347d21624102}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="classes\cpp\network\protobuf">
+      <UniqueIdentifier>{fb7152af-fccc-454a-9b64-6937ffd9ad4d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="classes\cpp\network\protobuf\io">
+      <UniqueIdentifier>{9549fb0e-f81c-41a0-9c39-0e6749ee10ca}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="classes\cpp\network\protobuf\stubs">
+      <UniqueIdentifier>{9320dab6-8b6e-48fb-b6c5-ed33add26459}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="classes\cpp\network\msg">
+      <UniqueIdentifier>{1028321f-79d8-4851-b909-202641efbf2e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="classes\cpp\network\msg\msg_protocol">
+      <UniqueIdentifier>{9e843670-0690-45d5-a4a5-408fdd88f4e2}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\Classes\AppDelegate.h">
@@ -116,44 +149,14 @@
     <ClInclude Include="targetver.h">
       <Filter>win32</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\..\customer\src\cpp\logic\base\common.h">
-      <Filter>classes\cpp\logic\base</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\..\customer\src\cpp\logic\base\macros.h">
-      <Filter>classes\cpp\logic\base</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\..\..\customer\src\cpp\logic\3rd_party\login\login_helper.h">
       <Filter>classes\cpp\logic\3rd_party\login</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\..\customer\src\cpp\logic\base\listener.h">
-      <Filter>classes\cpp\logic\base</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\..\customer\src\cpp\logic\base\command.h">
-      <Filter>classes\cpp\logic\base</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\..\customer\src\cpp\logic\base\command_listener.h">
-      <Filter>classes\cpp\logic\base</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\..\customer\src\cpp\logic\base\event.h">
-      <Filter>classes\cpp\logic\base</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\..\customer\src\cpp\logic\base\event_listener.h">
-      <Filter>classes\cpp\logic\base</Filter>
     </ClInclude>
     <ClInclude Include="..\..\..\..\customer\src\cpp\logic\constant\event_constants.h">
       <Filter>classes\cpp\logic\constant</Filter>
     </ClInclude>
     <ClInclude Include="..\..\..\..\customer\src\cpp\logic\constant\command_constants.h">
       <Filter>classes\cpp\logic\constant</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\..\customer\src\cpp\logic\manager\command_manager.h">
-      <Filter>classes\cpp\logic\manager</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\..\customer\src\cpp\logic\manager\event_manager.h">
-      <Filter>classes\cpp\logic\manager</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\..\customer\src\cpp\logic\manager\lua_bind_helper.h">
-      <Filter>classes\cpp\logic\manager</Filter>
     </ClInclude>
     <ClInclude Include="..\..\..\..\customer\src\cpp\logic\lua_include\lauxlib.h">
       <Filter>classes\cpp\logic\lua_include</Filter>
@@ -170,11 +173,623 @@
     <ClInclude Include="..\..\..\..\customer\src\cpp\logic\provider\id_provider.h">
       <Filter>classes\cpp\logic\provider</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\..\..\customer\src\cpp\network\network_manager.h">
+      <Filter>classes\cpp\network</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\customer\src\cpp\network\libevent\src\compat\sys\queue.h">
+      <Filter>classes\cpp\network\libevent\compat</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\customer\src\cpp\network\libevent\src\bufferevent-internal.h">
+      <Filter>classes\cpp\network\libevent</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\customer\src\cpp\network\libevent\src\changelist-internal.h">
+      <Filter>classes\cpp\network\libevent</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\customer\src\cpp\network\libevent\src\defer-internal.h">
+      <Filter>classes\cpp\network\libevent</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\customer\src\cpp\network\libevent\src\epolltable-internal.h">
+      <Filter>classes\cpp\network\libevent</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\customer\src\cpp\network\libevent\src\evbuffer-internal.h">
+      <Filter>classes\cpp\network\libevent</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\customer\src\cpp\network\libevent\src\evconfig-private.h">
+      <Filter>classes\cpp\network\libevent</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\customer\src\cpp\network\libevent\src\event-internal.h">
+      <Filter>classes\cpp\network\libevent</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\customer\src\cpp\network\libevent\src\evmap-internal.h">
+      <Filter>classes\cpp\network\libevent</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\customer\src\cpp\network\libevent\src\evrpc-internal.h">
+      <Filter>classes\cpp\network\libevent</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\customer\src\cpp\network\libevent\src\evsignal-internal.h">
+      <Filter>classes\cpp\network\libevent</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\customer\src\cpp\network\libevent\src\evthread-internal.h">
+      <Filter>classes\cpp\network\libevent</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\customer\src\cpp\network\libevent\src\ht-internal.h">
+      <Filter>classes\cpp\network\libevent</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\customer\src\cpp\network\libevent\src\http-internal.h">
+      <Filter>classes\cpp\network\libevent</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\customer\src\cpp\network\libevent\src\iocp-internal.h">
+      <Filter>classes\cpp\network\libevent</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\customer\src\cpp\network\libevent\src\ipv6-internal.h">
+      <Filter>classes\cpp\network\libevent</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\customer\src\cpp\network\libevent\src\kqueue-internal.h">
+      <Filter>classes\cpp\network\libevent</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\customer\src\cpp\network\libevent\src\log-internal.h">
+      <Filter>classes\cpp\network\libevent</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\customer\src\cpp\network\libevent\src\minheap-internal.h">
+      <Filter>classes\cpp\network\libevent</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\customer\src\cpp\network\libevent\src\mm-internal.h">
+      <Filter>classes\cpp\network\libevent</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\customer\src\cpp\network\libevent\src\openssl-compat.h">
+      <Filter>classes\cpp\network\libevent</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\customer\src\cpp\network\libevent\src\ratelim-internal.h">
+      <Filter>classes\cpp\network\libevent</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\customer\src\cpp\network\libevent\src\strlcpy-internal.h">
+      <Filter>classes\cpp\network\libevent</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\customer\src\cpp\network\libevent\src\time-internal.h">
+      <Filter>classes\cpp\network\libevent</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\customer\src\cpp\network\libevent\src\util-internal.h">
+      <Filter>classes\cpp\network\libevent</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\customer\src\cpp\network\libevent\src\include\evrpc.h">
+      <Filter>classes\cpp\network\libevent\include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\customer\src\cpp\network\libevent\src\include\evutil.h">
+      <Filter>classes\cpp\network\libevent\include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\customer\src\cpp\network\libevent\src\include\evdns.h">
+      <Filter>classes\cpp\network\libevent\include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\customer\src\cpp\network\libevent\src\include\event.h">
+      <Filter>classes\cpp\network\libevent\include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\customer\src\cpp\network\libevent\src\include\evhttp.h">
+      <Filter>classes\cpp\network\libevent\include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\customer\src\cpp\network\libevent\src\include\event2\buffer.h">
+      <Filter>classes\cpp\network\libevent\include\event2</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\customer\src\cpp\network\libevent\src\include\event2\bufferevent.h">
+      <Filter>classes\cpp\network\libevent\include\event2</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\customer\src\cpp\network\libevent\src\include\event2\bufferevent_compat.h">
+      <Filter>classes\cpp\network\libevent\include\event2</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\customer\src\cpp\network\libevent\src\include\event2\bufferevent_ssl.h">
+      <Filter>classes\cpp\network\libevent\include\event2</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\customer\src\cpp\network\libevent\src\include\event2\bufferevent_struct.h">
+      <Filter>classes\cpp\network\libevent\include\event2</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\customer\src\cpp\network\libevent\src\include\event2\buffer_compat.h">
+      <Filter>classes\cpp\network\libevent\include\event2</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\customer\src\cpp\network\libevent\src\include\event2\dns.h">
+      <Filter>classes\cpp\network\libevent\include\event2</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\customer\src\cpp\network\libevent\src\include\event2\dns_compat.h">
+      <Filter>classes\cpp\network\libevent\include\event2</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\customer\src\cpp\network\libevent\src\include\event2\dns_struct.h">
+      <Filter>classes\cpp\network\libevent\include\event2</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\customer\src\cpp\network\libevent\src\include\event2\event.h">
+      <Filter>classes\cpp\network\libevent\include\event2</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\customer\src\cpp\network\libevent\src\include\event2\event_compat.h">
+      <Filter>classes\cpp\network\libevent\include\event2</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\customer\src\cpp\network\libevent\src\include\event2\event_struct.h">
+      <Filter>classes\cpp\network\libevent\include\event2</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\customer\src\cpp\network\libevent\src\include\event2\http.h">
+      <Filter>classes\cpp\network\libevent\include\event2</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\customer\src\cpp\network\libevent\src\include\event2\http_compat.h">
+      <Filter>classes\cpp\network\libevent\include\event2</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\customer\src\cpp\network\libevent\src\include\event2\http_struct.h">
+      <Filter>classes\cpp\network\libevent\include\event2</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\customer\src\cpp\network\libevent\src\include\event2\keyvalq_struct.h">
+      <Filter>classes\cpp\network\libevent\include\event2</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\customer\src\cpp\network\libevent\src\include\event2\listener.h">
+      <Filter>classes\cpp\network\libevent\include\event2</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\customer\src\cpp\network\libevent\src\include\event2\rpc.h">
+      <Filter>classes\cpp\network\libevent\include\event2</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\customer\src\cpp\network\libevent\src\include\event2\rpc_compat.h">
+      <Filter>classes\cpp\network\libevent\include\event2</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\customer\src\cpp\network\libevent\src\include\event2\rpc_struct.h">
+      <Filter>classes\cpp\network\libevent\include\event2</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\customer\src\cpp\network\libevent\src\include\event2\tag.h">
+      <Filter>classes\cpp\network\libevent\include\event2</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\customer\src\cpp\network\libevent\src\include\event2\tag_compat.h">
+      <Filter>classes\cpp\network\libevent\include\event2</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\customer\src\cpp\network\libevent\src\include\event2\thread.h">
+      <Filter>classes\cpp\network\libevent\include\event2</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\customer\src\cpp\network\libevent\src\include\event2\util.h">
+      <Filter>classes\cpp\network\libevent\include\event2</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\customer\src\cpp\network\libevent\src\include\event2\visibility.h">
+      <Filter>classes\cpp\network\libevent\include\event2</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\customer\src\cpp\network\libevent\src\WIN32-Code\tree.h">
+      <Filter>classes\cpp\network\libevent\win32</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\customer\src\cpp\network\libevent\src\WIN32-Code\nmake\evconfig-private.h">
+      <Filter>classes\cpp\network\libevent\win32</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\customer\src\cpp\network\libevent\src\WIN32-Code\nmake\event2\event-config.h">
+      <Filter>classes\cpp\network\libevent\win32</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\..\..\..\tcp_client\libevent\src\include\openssl\aes.h">
+      <Filter>classes\cpp\network\libevent\include\openssl</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\..\..\..\tcp_client\libevent\src\include\openssl\asn1.h">
+      <Filter>classes\cpp\network\libevent\include\openssl</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\..\..\..\tcp_client\libevent\src\include\openssl\asn1t.h">
+      <Filter>classes\cpp\network\libevent\include\openssl</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\..\..\..\tcp_client\libevent\src\include\openssl\asn1_mac.h">
+      <Filter>classes\cpp\network\libevent\include\openssl</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\..\..\..\tcp_client\libevent\src\include\openssl\async.h">
+      <Filter>classes\cpp\network\libevent\include\openssl</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\..\..\..\tcp_client\libevent\src\include\openssl\bio.h">
+      <Filter>classes\cpp\network\libevent\include\openssl</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\..\..\..\tcp_client\libevent\src\include\openssl\blowfish.h">
+      <Filter>classes\cpp\network\libevent\include\openssl</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\..\..\..\tcp_client\libevent\src\include\openssl\bn.h">
+      <Filter>classes\cpp\network\libevent\include\openssl</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\..\..\..\tcp_client\libevent\src\include\openssl\buffer.h">
+      <Filter>classes\cpp\network\libevent\include\openssl</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\..\..\..\tcp_client\libevent\src\include\openssl\camellia.h">
+      <Filter>classes\cpp\network\libevent\include\openssl</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\..\..\..\tcp_client\libevent\src\include\openssl\cast.h">
+      <Filter>classes\cpp\network\libevent\include\openssl</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\..\..\..\tcp_client\libevent\src\include\openssl\cmac.h">
+      <Filter>classes\cpp\network\libevent\include\openssl</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\..\..\..\tcp_client\libevent\src\include\openssl\cms.h">
+      <Filter>classes\cpp\network\libevent\include\openssl</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\..\..\..\tcp_client\libevent\src\include\openssl\comp.h">
+      <Filter>classes\cpp\network\libevent\include\openssl</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\..\..\..\tcp_client\libevent\src\include\openssl\conf.h">
+      <Filter>classes\cpp\network\libevent\include\openssl</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\..\..\..\tcp_client\libevent\src\include\openssl\conf_api.h">
+      <Filter>classes\cpp\network\libevent\include\openssl</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\..\..\..\tcp_client\libevent\src\include\openssl\crypto.h">
+      <Filter>classes\cpp\network\libevent\include\openssl</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\..\..\..\tcp_client\libevent\src\include\openssl\ct.h">
+      <Filter>classes\cpp\network\libevent\include\openssl</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\..\..\..\tcp_client\libevent\src\include\openssl\des.h">
+      <Filter>classes\cpp\network\libevent\include\openssl</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\..\..\..\tcp_client\libevent\src\include\openssl\dh.h">
+      <Filter>classes\cpp\network\libevent\include\openssl</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\..\..\..\tcp_client\libevent\src\include\openssl\dsa.h">
+      <Filter>classes\cpp\network\libevent\include\openssl</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\..\..\..\tcp_client\libevent\src\include\openssl\dtls1.h">
+      <Filter>classes\cpp\network\libevent\include\openssl</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\..\..\..\tcp_client\libevent\src\include\openssl\ebcdic.h">
+      <Filter>classes\cpp\network\libevent\include\openssl</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\..\..\..\tcp_client\libevent\src\include\openssl\ec.h">
+      <Filter>classes\cpp\network\libevent\include\openssl</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\..\..\..\tcp_client\libevent\src\include\openssl\ecdh.h">
+      <Filter>classes\cpp\network\libevent\include\openssl</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\..\..\..\tcp_client\libevent\src\include\openssl\ecdsa.h">
+      <Filter>classes\cpp\network\libevent\include\openssl</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\..\..\..\tcp_client\libevent\src\include\openssl\engine.h">
+      <Filter>classes\cpp\network\libevent\include\openssl</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\..\..\..\tcp_client\libevent\src\include\openssl\err.h">
+      <Filter>classes\cpp\network\libevent\include\openssl</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\..\..\..\tcp_client\libevent\src\include\openssl\evp.h">
+      <Filter>classes\cpp\network\libevent\include\openssl</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\..\..\..\tcp_client\libevent\src\include\openssl\e_os2.h">
+      <Filter>classes\cpp\network\libevent\include\openssl</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\..\..\..\tcp_client\libevent\src\include\openssl\hmac.h">
+      <Filter>classes\cpp\network\libevent\include\openssl</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\..\..\..\tcp_client\libevent\src\include\openssl\idea.h">
+      <Filter>classes\cpp\network\libevent\include\openssl</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\..\..\..\tcp_client\libevent\src\include\openssl\kdf.h">
+      <Filter>classes\cpp\network\libevent\include\openssl</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\..\..\..\tcp_client\libevent\src\include\openssl\lhash.h">
+      <Filter>classes\cpp\network\libevent\include\openssl</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\..\..\..\tcp_client\libevent\src\include\openssl\md2.h">
+      <Filter>classes\cpp\network\libevent\include\openssl</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\..\..\..\tcp_client\libevent\src\include\openssl\md4.h">
+      <Filter>classes\cpp\network\libevent\include\openssl</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\..\..\..\tcp_client\libevent\src\include\openssl\md5.h">
+      <Filter>classes\cpp\network\libevent\include\openssl</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\..\..\..\tcp_client\libevent\src\include\openssl\mdc2.h">
+      <Filter>classes\cpp\network\libevent\include\openssl</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\..\..\..\tcp_client\libevent\src\include\openssl\modes.h">
+      <Filter>classes\cpp\network\libevent\include\openssl</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\..\..\..\tcp_client\libevent\src\include\openssl\objects.h">
+      <Filter>classes\cpp\network\libevent\include\openssl</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\..\..\..\tcp_client\libevent\src\include\openssl\obj_mac.h">
+      <Filter>classes\cpp\network\libevent\include\openssl</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\..\..\..\tcp_client\libevent\src\include\openssl\ocsp.h">
+      <Filter>classes\cpp\network\libevent\include\openssl</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\..\..\..\tcp_client\libevent\src\include\openssl\opensslconf.h">
+      <Filter>classes\cpp\network\libevent\include\openssl</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\..\..\..\tcp_client\libevent\src\include\openssl\opensslv.h">
+      <Filter>classes\cpp\network\libevent\include\openssl</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\..\..\..\tcp_client\libevent\src\include\openssl\ossl_typ.h">
+      <Filter>classes\cpp\network\libevent\include\openssl</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\..\..\..\tcp_client\libevent\src\include\openssl\pem.h">
+      <Filter>classes\cpp\network\libevent\include\openssl</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\..\..\..\tcp_client\libevent\src\include\openssl\pem2.h">
+      <Filter>classes\cpp\network\libevent\include\openssl</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\..\..\..\tcp_client\libevent\src\include\openssl\pkcs12.h">
+      <Filter>classes\cpp\network\libevent\include\openssl</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\..\..\..\tcp_client\libevent\src\include\openssl\pkcs7.h">
+      <Filter>classes\cpp\network\libevent\include\openssl</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\..\..\..\tcp_client\libevent\src\include\openssl\rand.h">
+      <Filter>classes\cpp\network\libevent\include\openssl</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\..\..\..\tcp_client\libevent\src\include\openssl\rc2.h">
+      <Filter>classes\cpp\network\libevent\include\openssl</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\..\..\..\tcp_client\libevent\src\include\openssl\rc4.h">
+      <Filter>classes\cpp\network\libevent\include\openssl</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\..\..\..\tcp_client\libevent\src\include\openssl\rc5.h">
+      <Filter>classes\cpp\network\libevent\include\openssl</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\..\..\..\tcp_client\libevent\src\include\openssl\ripemd.h">
+      <Filter>classes\cpp\network\libevent\include\openssl</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\..\..\..\tcp_client\libevent\src\include\openssl\rsa.h">
+      <Filter>classes\cpp\network\libevent\include\openssl</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\..\..\..\tcp_client\libevent\src\include\openssl\safestack.h">
+      <Filter>classes\cpp\network\libevent\include\openssl</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\..\..\..\tcp_client\libevent\src\include\openssl\seed.h">
+      <Filter>classes\cpp\network\libevent\include\openssl</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\..\..\..\tcp_client\libevent\src\include\openssl\sha.h">
+      <Filter>classes\cpp\network\libevent\include\openssl</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\..\..\..\tcp_client\libevent\src\include\openssl\srp.h">
+      <Filter>classes\cpp\network\libevent\include\openssl</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\..\..\..\tcp_client\libevent\src\include\openssl\srtp.h">
+      <Filter>classes\cpp\network\libevent\include\openssl</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\..\..\..\tcp_client\libevent\src\include\openssl\ssl.h">
+      <Filter>classes\cpp\network\libevent\include\openssl</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\..\..\..\tcp_client\libevent\src\include\openssl\ssl2.h">
+      <Filter>classes\cpp\network\libevent\include\openssl</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\..\..\..\tcp_client\libevent\src\include\openssl\ssl3.h">
+      <Filter>classes\cpp\network\libevent\include\openssl</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\..\..\..\tcp_client\libevent\src\include\openssl\stack.h">
+      <Filter>classes\cpp\network\libevent\include\openssl</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\..\..\..\tcp_client\libevent\src\include\openssl\symhacks.h">
+      <Filter>classes\cpp\network\libevent\include\openssl</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\..\..\..\tcp_client\libevent\src\include\openssl\tls1.h">
+      <Filter>classes\cpp\network\libevent\include\openssl</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\..\..\..\tcp_client\libevent\src\include\openssl\ts.h">
+      <Filter>classes\cpp\network\libevent\include\openssl</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\..\..\..\tcp_client\libevent\src\include\openssl\txt_db.h">
+      <Filter>classes\cpp\network\libevent\include\openssl</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\..\..\..\tcp_client\libevent\src\include\openssl\ui.h">
+      <Filter>classes\cpp\network\libevent\include\openssl</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\..\..\..\tcp_client\libevent\src\include\openssl\whrlpool.h">
+      <Filter>classes\cpp\network\libevent\include\openssl</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\..\..\..\tcp_client\libevent\src\include\openssl\x509.h">
+      <Filter>classes\cpp\network\libevent\include\openssl</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\..\..\..\tcp_client\libevent\src\include\openssl\x509v3.h">
+      <Filter>classes\cpp\network\libevent\include\openssl</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\..\..\..\tcp_client\libevent\src\include\openssl\x509_vfy.h">
+      <Filter>classes\cpp\network\libevent\include\openssl</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\..\..\..\tcp_client\libevent\src\include\openssl\__DECC_INCLUDE_EPILOGUE.H">
+      <Filter>classes\cpp\network\libevent\include\openssl</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\..\..\..\tcp_client\libevent\src\include\openssl\__DECC_INCLUDE_PROLOGUE.H">
+      <Filter>classes\cpp\network\libevent\include\openssl</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\customer\src\cpp\logic\base\common.h">
+      <Filter>classes\cpp\logic\base</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\customer\src\cpp\logic\base\macros.h">
+      <Filter>classes\cpp\logic\base</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\customer\src\cpp\logic\base\command.h">
+      <Filter>classes\cpp\logic\base</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\customer\src\cpp\logic\base\myevent.h">
+      <Filter>classes\cpp\logic\base</Filter>
+    </ClInclude>
     <ClInclude Include="..\..\..\..\customer\src\cpp\logic\base\event_headers.h">
+      <Filter>classes\cpp\logic\base</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\customer\src\cpp\logic\base\event_listener.h">
+      <Filter>classes\cpp\logic\base</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\customer\src\cpp\logic\base\listener.h">
       <Filter>classes\cpp\logic\base</Filter>
     </ClInclude>
     <ClInclude Include="..\..\..\..\customer\src\cpp\logic\base\command_headers.h">
       <Filter>classes\cpp\logic\base</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\customer\src\cpp\logic\base\command_listener.h">
+      <Filter>classes\cpp\logic\base</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\customer\src\cpp\logic\manager\command_manager.h">
+      <Filter>classes\cpp\logic\manager</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\customer\src\cpp\logic\manager\event_manager.h">
+      <Filter>classes\cpp\logic\manager</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\customer\src\cpp\logic\manager\lua_bind_helper.h">
+      <Filter>classes\cpp\logic\manager</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\customer\src\cpp\network\google\protobuf\io\coded_stream.h">
+      <Filter>classes\cpp\network\protobuf\io</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\customer\src\cpp\network\google\protobuf\io\coded_stream_inl.h">
+      <Filter>classes\cpp\network\protobuf\io</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\customer\src\cpp\network\google\protobuf\io\gzip_stream.h">
+      <Filter>classes\cpp\network\protobuf\io</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\customer\src\cpp\network\google\protobuf\io\package_info.h">
+      <Filter>classes\cpp\network\protobuf\io</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\customer\src\cpp\network\google\protobuf\io\printer.h">
+      <Filter>classes\cpp\network\protobuf\io</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\customer\src\cpp\network\google\protobuf\io\strtod.h">
+      <Filter>classes\cpp\network\protobuf\io</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\customer\src\cpp\network\google\protobuf\io\tokenizer.h">
+      <Filter>classes\cpp\network\protobuf\io</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\customer\src\cpp\network\google\protobuf\io\zero_copy_stream.h">
+      <Filter>classes\cpp\network\protobuf\io</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\customer\src\cpp\network\google\protobuf\io\zero_copy_stream_impl.h">
+      <Filter>classes\cpp\network\protobuf\io</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\customer\src\cpp\network\google\protobuf\io\zero_copy_stream_impl_lite.h">
+      <Filter>classes\cpp\network\protobuf\io</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\customer\src\cpp\network\google\protobuf\stubs\atomicops.h">
+      <Filter>classes\cpp\network\protobuf\stubs</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\customer\src\cpp\network\google\protobuf\stubs\atomicops_internals_arm64_gcc.h">
+      <Filter>classes\cpp\network\protobuf\stubs</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\customer\src\cpp\network\google\protobuf\stubs\atomicops_internals_arm_gcc.h">
+      <Filter>classes\cpp\network\protobuf\stubs</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\customer\src\cpp\network\google\protobuf\stubs\atomicops_internals_arm_qnx.h">
+      <Filter>classes\cpp\network\protobuf\stubs</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\customer\src\cpp\network\google\protobuf\stubs\atomicops_internals_atomicword_compat.h">
+      <Filter>classes\cpp\network\protobuf\stubs</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\customer\src\cpp\network\google\protobuf\stubs\atomicops_internals_generic_gcc.h">
+      <Filter>classes\cpp\network\protobuf\stubs</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\customer\src\cpp\network\google\protobuf\stubs\atomicops_internals_macosx.h">
+      <Filter>classes\cpp\network\protobuf\stubs</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\customer\src\cpp\network\google\protobuf\stubs\atomicops_internals_mips_gcc.h">
+      <Filter>classes\cpp\network\protobuf\stubs</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\customer\src\cpp\network\google\protobuf\stubs\atomicops_internals_pnacl.h">
+      <Filter>classes\cpp\network\protobuf\stubs</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\customer\src\cpp\network\google\protobuf\stubs\atomicops_internals_solaris.h">
+      <Filter>classes\cpp\network\protobuf\stubs</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\customer\src\cpp\network\google\protobuf\stubs\atomicops_internals_tsan.h">
+      <Filter>classes\cpp\network\protobuf\stubs</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\customer\src\cpp\network\google\protobuf\stubs\atomicops_internals_x86_gcc.h">
+      <Filter>classes\cpp\network\protobuf\stubs</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\customer\src\cpp\network\google\protobuf\stubs\atomicops_internals_x86_msvc.h">
+      <Filter>classes\cpp\network\protobuf\stubs</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\customer\src\cpp\network\google\protobuf\stubs\common.h">
+      <Filter>classes\cpp\network\protobuf\stubs</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\customer\src\cpp\network\google\protobuf\stubs\hash.h">
+      <Filter>classes\cpp\network\protobuf\stubs</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\customer\src\cpp\network\google\protobuf\stubs\map_util.h">
+      <Filter>classes\cpp\network\protobuf\stubs</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\customer\src\cpp\network\google\protobuf\stubs\once.h">
+      <Filter>classes\cpp\network\protobuf\stubs</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\customer\src\cpp\network\google\protobuf\stubs\platform_macros.h">
+      <Filter>classes\cpp\network\protobuf\stubs</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\customer\src\cpp\network\google\protobuf\stubs\shared_ptr.h">
+      <Filter>classes\cpp\network\protobuf\stubs</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\customer\src\cpp\network\google\protobuf\stubs\stl_util.h">
+      <Filter>classes\cpp\network\protobuf\stubs</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\customer\src\cpp\network\google\protobuf\stubs\stringprintf.h">
+      <Filter>classes\cpp\network\protobuf\stubs</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\customer\src\cpp\network\google\protobuf\stubs\strutil.h">
+      <Filter>classes\cpp\network\protobuf\stubs</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\customer\src\cpp\network\google\protobuf\stubs\substitute.h">
+      <Filter>classes\cpp\network\protobuf\stubs</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\customer\src\cpp\network\google\protobuf\stubs\template_util.h">
+      <Filter>classes\cpp\network\protobuf\stubs</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\customer\src\cpp\network\google\protobuf\stubs\type_traits.h">
+      <Filter>classes\cpp\network\protobuf\stubs</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\customer\src\cpp\network\google\protobuf\service.h">
+      <Filter>classes\cpp\network\protobuf</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\customer\src\cpp\network\google\protobuf\text_format.h">
+      <Filter>classes\cpp\network\protobuf</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\customer\src\cpp\network\google\protobuf\unknown_field_set.h">
+      <Filter>classes\cpp\network\protobuf</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\customer\src\cpp\network\google\protobuf\wire_format.h">
+      <Filter>classes\cpp\network\protobuf</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\customer\src\cpp\network\google\protobuf\wire_format_lite.h">
+      <Filter>classes\cpp\network\protobuf</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\customer\src\cpp\network\google\protobuf\wire_format_lite_inl.h">
+      <Filter>classes\cpp\network\protobuf</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\customer\src\cpp\network\google\protobuf\config.h">
+      <Filter>classes\cpp\network\protobuf</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\customer\src\cpp\network\google\protobuf\descriptor.h">
+      <Filter>classes\cpp\network\protobuf</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\customer\src\cpp\network\google\protobuf\descriptor.pb.h">
+      <Filter>classes\cpp\network\protobuf</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\customer\src\cpp\network\google\protobuf\descriptor_database.h">
+      <Filter>classes\cpp\network\protobuf</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\customer\src\cpp\network\google\protobuf\dynamic_message.h">
+      <Filter>classes\cpp\network\protobuf</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\customer\src\cpp\network\google\protobuf\extension_set.h">
+      <Filter>classes\cpp\network\protobuf</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\customer\src\cpp\network\google\protobuf\generated_enum_reflection.h">
+      <Filter>classes\cpp\network\protobuf</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\customer\src\cpp\network\google\protobuf\generated_message_reflection.h">
+      <Filter>classes\cpp\network\protobuf</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\customer\src\cpp\network\google\protobuf\generated_message_util.h">
+      <Filter>classes\cpp\network\protobuf</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\customer\src\cpp\network\google\protobuf\message.h">
+      <Filter>classes\cpp\network\protobuf</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\customer\src\cpp\network\google\protobuf\message_lite.h">
+      <Filter>classes\cpp\network\protobuf</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\customer\src\cpp\network\google\protobuf\package_info.h">
+      <Filter>classes\cpp\network\protobuf</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\customer\src\cpp\network\google\protobuf\reflection_ops.h">
+      <Filter>classes\cpp\network\protobuf</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\customer\src\cpp\network\google\protobuf\repeated_field.h">
+      <Filter>classes\cpp\network\protobuf</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\customer\src\cpp\network\msg\msg_id.h">
+      <Filter>classes\cpp\network\msg</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\customer\src\cpp\network\msg\msg_manager.h">
+      <Filter>classes\cpp\network\msg</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\customer\src\cpp\network\msg\msg.h">
+      <Filter>classes\cpp\network\msg</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\customer\src\cpp\network\msg\msg_type.h">
+      <Filter>classes\cpp\network\msg</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\customer\src\cpp\network\msg\msg_protocol\my_login_msg_protocol.pb.h">
+      <Filter>classes\cpp\network\msg\msg_protocol</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -191,19 +806,115 @@
     <ClCompile Include="..\..\..\..\customer\src\cpp\logic\3rd_party\login\login_helper.cc">
       <Filter>classes\cpp\logic\3rd_party\login</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\..\..\customer\src\cpp\network\network_manager.cc">
+      <Filter>classes\cpp\network</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\customer\src\cpp\network\libevent\src\buffer.c">
+      <Filter>classes\cpp\network\libevent</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\customer\src\cpp\network\libevent\src\buffer_iocp.c">
+      <Filter>classes\cpp\network\libevent</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\customer\src\cpp\network\libevent\src\bufferevent.c">
+      <Filter>classes\cpp\network\libevent</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\customer\src\cpp\network\libevent\src\bufferevent_async.c">
+      <Filter>classes\cpp\network\libevent</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\customer\src\cpp\network\libevent\src\bufferevent_filter.c">
+      <Filter>classes\cpp\network\libevent</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\customer\src\cpp\network\libevent\src\bufferevent_openssl.c">
+      <Filter>classes\cpp\network\libevent</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\customer\src\cpp\network\libevent\src\bufferevent_pair.c">
+      <Filter>classes\cpp\network\libevent</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\customer\src\cpp\network\libevent\src\bufferevent_ratelim.c">
+      <Filter>classes\cpp\network\libevent</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\customer\src\cpp\network\libevent\src\bufferevent_sock.c">
+      <Filter>classes\cpp\network\libevent</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\customer\src\cpp\network\libevent\src\devpoll.c">
+      <Filter>classes\cpp\network\libevent</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\customer\src\cpp\network\libevent\src\epoll.c">
+      <Filter>classes\cpp\network\libevent</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\customer\src\cpp\network\libevent\src\evdns.c">
+      <Filter>classes\cpp\network\libevent</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\customer\src\cpp\network\libevent\src\event.c">
+      <Filter>classes\cpp\network\libevent</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\customer\src\cpp\network\libevent\src\event_iocp.c">
+      <Filter>classes\cpp\network\libevent</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\customer\src\cpp\network\libevent\src\event_tagging.c">
+      <Filter>classes\cpp\network\libevent</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\customer\src\cpp\network\libevent\src\evmap.c">
+      <Filter>classes\cpp\network\libevent</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\customer\src\cpp\network\libevent\src\evport.c">
+      <Filter>classes\cpp\network\libevent</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\customer\src\cpp\network\libevent\src\evrpc.c">
+      <Filter>classes\cpp\network\libevent</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\customer\src\cpp\network\libevent\src\evthread.c">
+      <Filter>classes\cpp\network\libevent</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\customer\src\cpp\network\libevent\src\evthread_win32.c">
+      <Filter>classes\cpp\network\libevent</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\customer\src\cpp\network\libevent\src\evutil.c">
+      <Filter>classes\cpp\network\libevent</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\customer\src\cpp\network\libevent\src\evutil_rand.c">
+      <Filter>classes\cpp\network\libevent</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\customer\src\cpp\network\libevent\src\evutil_time.c">
+      <Filter>classes\cpp\network\libevent</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\customer\src\cpp\network\libevent\src\http.c">
+      <Filter>classes\cpp\network\libevent</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\customer\src\cpp\network\libevent\src\kqueue.c">
+      <Filter>classes\cpp\network\libevent</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\customer\src\cpp\network\libevent\src\listener.c">
+      <Filter>classes\cpp\network\libevent</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\customer\src\cpp\network\libevent\src\log.c">
+      <Filter>classes\cpp\network\libevent</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\customer\src\cpp\network\libevent\src\poll.c">
+      <Filter>classes\cpp\network\libevent</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\customer\src\cpp\network\libevent\src\select.c">
+      <Filter>classes\cpp\network\libevent</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\customer\src\cpp\network\libevent\src\signal.c">
+      <Filter>classes\cpp\network\libevent</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\customer\src\cpp\network\libevent\src\strlcpy.c">
+      <Filter>classes\cpp\network\libevent</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\customer\src\cpp\network\libevent\src\win32select.c">
+      <Filter>classes\cpp\network\libevent</Filter>
+    </ClCompile>
     <ClCompile Include="..\..\..\..\customer\src\cpp\logic\base\command.cc">
       <Filter>classes\cpp\logic\base</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\..\..\customer\src\cpp\logic\base\command_listener.cc">
-      <Filter>classes\cpp\logic\base</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\..\..\customer\src\cpp\logic\base\event.cc">
+    <ClCompile Include="..\..\..\..\customer\src\cpp\logic\base\myevent.cc">
       <Filter>classes\cpp\logic\base</Filter>
     </ClCompile>
     <ClCompile Include="..\..\..\..\customer\src\cpp\logic\base\event_listener.cc">
       <Filter>classes\cpp\logic\base</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\..\..\customer\src\cpp\logic\base\listener.cc">
+    <ClCompile Include="..\..\..\..\customer\src\cpp\logic\base\command_listener.cc">
       <Filter>classes\cpp\logic\base</Filter>
     </ClCompile>
     <ClCompile Include="..\..\..\..\customer\src\cpp\logic\manager\command_manager.cc">
@@ -214,6 +925,111 @@
     </ClCompile>
     <ClCompile Include="..\..\..\..\customer\src\cpp\logic\manager\lua_bind_helper.cc">
       <Filter>classes\cpp\logic\manager</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\customer\src\cpp\network\google\protobuf\io\coded_stream.cc">
+      <Filter>classes\cpp\network\protobuf\io</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\customer\src\cpp\network\google\protobuf\io\gzip_stream.cc">
+      <Filter>classes\cpp\network\protobuf\io</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\customer\src\cpp\network\google\protobuf\io\printer.cc">
+      <Filter>classes\cpp\network\protobuf\io</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\customer\src\cpp\network\google\protobuf\io\strtod.cc">
+      <Filter>classes\cpp\network\protobuf\io</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\customer\src\cpp\network\google\protobuf\io\tokenizer.cc">
+      <Filter>classes\cpp\network\protobuf\io</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\customer\src\cpp\network\google\protobuf\io\zero_copy_stream.cc">
+      <Filter>classes\cpp\network\protobuf\io</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\customer\src\cpp\network\google\protobuf\io\zero_copy_stream_impl.cc">
+      <Filter>classes\cpp\network\protobuf\io</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\customer\src\cpp\network\google\protobuf\io\zero_copy_stream_impl_lite.cc">
+      <Filter>classes\cpp\network\protobuf\io</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\customer\src\cpp\network\google\protobuf\stubs\atomicops_internals_x86_gcc.cc">
+      <Filter>classes\cpp\network\protobuf\stubs</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\customer\src\cpp\network\google\protobuf\stubs\atomicops_internals_x86_msvc.cc">
+      <Filter>classes\cpp\network\protobuf\stubs</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\customer\src\cpp\network\google\protobuf\stubs\common.cc">
+      <Filter>classes\cpp\network\protobuf\stubs</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\customer\src\cpp\network\google\protobuf\stubs\once.cc">
+      <Filter>classes\cpp\network\protobuf\stubs</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\customer\src\cpp\network\google\protobuf\stubs\stringprintf.cc">
+      <Filter>classes\cpp\network\protobuf\stubs</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\customer\src\cpp\network\google\protobuf\stubs\structurally_valid.cc">
+      <Filter>classes\cpp\network\protobuf\stubs</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\customer\src\cpp\network\google\protobuf\stubs\strutil.cc">
+      <Filter>classes\cpp\network\protobuf\stubs</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\customer\src\cpp\network\google\protobuf\stubs\substitute.cc">
+      <Filter>classes\cpp\network\protobuf\stubs</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\customer\src\cpp\network\google\protobuf\text_format.cc">
+      <Filter>classes\cpp\network\protobuf</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\customer\src\cpp\network\google\protobuf\unknown_field_set.cc">
+      <Filter>classes\cpp\network\protobuf</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\customer\src\cpp\network\google\protobuf\wire_format.cc">
+      <Filter>classes\cpp\network\protobuf</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\customer\src\cpp\network\google\protobuf\wire_format_lite.cc">
+      <Filter>classes\cpp\network\protobuf</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\customer\src\cpp\network\google\protobuf\descriptor.cc">
+      <Filter>classes\cpp\network\protobuf</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\customer\src\cpp\network\google\protobuf\descriptor.pb.cc">
+      <Filter>classes\cpp\network\protobuf</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\customer\src\cpp\network\google\protobuf\descriptor_database.cc">
+      <Filter>classes\cpp\network\protobuf</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\customer\src\cpp\network\google\protobuf\dynamic_message.cc">
+      <Filter>classes\cpp\network\protobuf</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\customer\src\cpp\network\google\protobuf\extension_set.cc">
+      <Filter>classes\cpp\network\protobuf</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\customer\src\cpp\network\google\protobuf\extension_set_heavy.cc">
+      <Filter>classes\cpp\network\protobuf</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\customer\src\cpp\network\google\protobuf\generated_message_reflection.cc">
+      <Filter>classes\cpp\network\protobuf</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\customer\src\cpp\network\google\protobuf\generated_message_util.cc">
+      <Filter>classes\cpp\network\protobuf</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\customer\src\cpp\network\google\protobuf\message.cc">
+      <Filter>classes\cpp\network\protobuf</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\customer\src\cpp\network\google\protobuf\message_lite.cc">
+      <Filter>classes\cpp\network\protobuf</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\customer\src\cpp\network\google\protobuf\reflection_ops.cc">
+      <Filter>classes\cpp\network\protobuf</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\customer\src\cpp\network\google\protobuf\repeated_field.cc">
+      <Filter>classes\cpp\network\protobuf</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\customer\src\cpp\network\google\protobuf\service.cc">
+      <Filter>classes\cpp\network\protobuf</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\customer\src\cpp\network\msg\msg_manager.cc">
+      <Filter>classes\cpp\network\msg</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\customer\src\cpp\network\msg\msg_protocol\my_login_msg_protocol.pb.cc">
+      <Filter>classes\cpp\network\msg\msg_protocol</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

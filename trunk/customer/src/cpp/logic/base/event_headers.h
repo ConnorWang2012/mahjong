@@ -15,9 +15,9 @@ modification:
 #ifndef CONNOR_GAME_SRC_EVENT_HEADERS_H_
 #define CONNOR_GAME_SRC_EVENT_HEADERS_H_
 
-#include "event.h"
 #include "event_constants.h"
 #include "event_listener.h"
 #include "event_manager.h"
+#include "myevent.h"
 
 #endif // CONNOR_GAME_SRC_EVENT_HEADERS_H_

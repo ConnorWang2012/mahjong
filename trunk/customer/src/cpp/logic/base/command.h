@@ -16,7 +16,7 @@
 #ifndef CONNOR_GAME_SRC_COMMAND_H_
 #define CONNOR_GAME_SRC_COMMAND_H_
 
-#include "Event.h"
+#include "myevent.h"
 
 namespace gamer 
 {

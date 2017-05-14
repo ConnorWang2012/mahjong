@@ -19,9 +19,9 @@
 #include <stdint.h>
 
 #include "command.h"
-#include "event.h"
 #include "event_listener.h"
 #include "lua_bind_helper.h"
+#include "myevent.h"
 #include "macros.h"
 
 namespace 
@@ -332,7 +332,7 @@ void EventManager::removeEventListenerImpl(const std::string& listener_name,
             listeners_to_add_.end());
         auto iter = std::find_if(listeners_to_add_.begin(), 
             listeners_to_add_.end(), 
-            [=](const EventListener* l)
+            [&](const EventListener* l)
             {
                 return (l->listener_name() == listener_name);
             });
