@@ -17,6 +17,7 @@ modification:
 
 #include <functional>
 #include <string>
+#include <thread>
 
 #include "msg/msg.h"
 
@@ -50,7 +51,7 @@ public:
 	void disconnect();
 
     bool send(void* ctx, size_t ctxlen);
-
+    
 private:
 	NetworkManager();
 
@@ -59,6 +60,8 @@ private:
 	void initIPAndPort();
 
     static void parseBuffer(char* buf, gamer::Msg& msg);
+
+    void onNetworkUpdate();
 
 	static void onBufferEventReceived(struct bufferevent* bev, short event, void* ctx);
 
@@ -73,6 +76,8 @@ private:
 	int port_;
 
     static const int MAX_BUFFER_LEN = 4096;
+
+    std::thread network_thread_;
 };
 
 } // namespace gamer

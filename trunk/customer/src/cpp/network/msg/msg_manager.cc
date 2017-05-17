@@ -14,15 +14,19 @@ modification:
 
 #include "msg_manager.h"
 
-#include "msg_type.h"
-#include "network_manager.h"
+#include "event_headers.h"
+#include "macros.h"
+#include "msg/msg_type.h"
+#include "msg/msg_id.h"
+#include "msg/protocol/my_login_msg_protocol.pb.h"
+#include "network/network_manager.h"
 
 namespace gamer
 {
 
 MsgManager::MsgManager()
 {
-
+    this->init();
 }
 
 MsgManager* MsgManager::getInstance()
@@ -31,42 +35,100 @@ MsgManager* MsgManager::getInstance()
 	return &s_msg_mgr;
 }
 
+void MsgManager::init()
+{
+    auto l = EventListener::create((int)EventIDs::EVENT_ID_SOCKET_CONNECTED,
+        CALLBACK_SELECTOR_1(MsgManager::onSocketConnected, this),
+        "MsgManager::onSocketConnected",
+        (int)Listener::ListenerPriorities::SENIOR);
+    EventManager::getInstance()->addEventListener(l);
+}
+
 bool MsgManager::sendMsg(const Msg& msg, const MsgResponseCallback& response_cb)
 {
     char buf[MsgManager::MAX_MSG_LEN] = { 0 };
-    auto len_total = sizeof(unsigned int) * 3;
+    msg_header_t len = 0;
+    this->packMsg(msg, buf, len);
+
+    char key[sizeof(msg_header_t) * 2];
+    snprintf(key, sizeof(key), "%d%d", msg.type, msg.id);
+    msg_response_callbacks_.insert(std::make_pair(key, response_cb));
+
+    return NetworkManager::getInstance()->send(buf, len);
+}
+
+void MsgManager::packMsg(const Msg& msg, char* buf, msg_header_t& len)
+{
+    auto len_total = gamer::msg_header_len();
     auto len_data = 0;
-    //snprintf(buf, sizeof(buf), "%d%d%d%s", msg.type, msg.id, msg.context);    
-    if (msg.context)
+    if (msg.context) 
     {
         len_data = strlen((char*)msg.context);
         len_total += len_data;
     }
-    
-    memcpy(buf, &len_total, sizeof(unsigned int));
-    memcpy(buf + sizeof(unsigned int), &msg.type, sizeof(unsigned int));
-    memcpy(buf + sizeof(unsigned int) * 2, &msg.id, sizeof(unsigned int));
-    if (len_data > 0)
+
+    len = len_total;
+
+    memcpy(buf, &len_total, sizeof(msg_header_t));
+    memcpy(buf + sizeof(msg_header_t), &msg.type, sizeof(msg_header_t));
+    memcpy(buf + sizeof(msg_header_t) * 2, &msg.id, sizeof(msg_header_t));
+    if (len_data > 0) 
     {
-        memcpy(buf + sizeof(unsigned int) * 3, msg.context, len_data);
+        memcpy(buf + gamer::msg_header_len(), msg.context, len_data);
     }
+}
 
-    char tmp[8]; // ugly TODO : use c++11 constexpress
-    snprintf(tmp, sizeof(tmp), "%d%d", msg.type, msg.id);
-    msg_response_callbacks_.insert(std::make_pair(tmp, response_cb));
-
-    return NetworkManager::getInstance()->send(buf, len_total);
+std::string MsgManager::getMsgCallbackKey(const Msg& msg)
+{
+    char buf[sizeof(msg_header_t) * 2];
+    snprintf(buf, sizeof(buf), "%d%d", msg.type, msg.id);
+    return buf;
 }
 
 void MsgManager::dealWithLoginMsg(const Msg& msg)
 {
-    char tmp[8]; // ugly TODO : use c++11 constexpress
-    snprintf(tmp, sizeof(tmp), "%d%d", msg.type, msg.id);
-    auto it = msg_response_callbacks_.find(tmp);
-    if (it != msg_response_callbacks_.end())
+    printf("[MsgManager::DealWithLoginMsg] msg_type : %d, msg_id : %d", msg.type, msg.id);
+    switch ((MsgIDs)msg.id) 
     {
-        it->second(msg.type, msg.id, nullptr);
+    case MsgIDs::MSG_ID_LOGIN_MY: 
+        {
+            if (msg.context)
+            {
+                char buf[MsgManager::MAX_MSG_LEN] = { 0 };
+                auto len = msg.total_len - gamer::msg_header_len();
+                protocol::MyLoginMsgProtocol proto;
+                proto.ParseFromArray(msg.context, len);
+
+                auto key = this->getMsgCallbackKey(msg);
+                auto itr = msg_response_callbacks_.find(key);
+                if (itr != msg_response_callbacks_.end())
+                {
+                    itr->second(proto.code(), msg.type, msg.id, &proto);
+                }
+            }
+        }
+        break;
+    default:
+        break;
     }
+}
+
+void MsgManager::onSocketConnected(gamer::Event* event)
+{
+    char buf[MsgManager::MAX_MSG_LEN] = { 0 };
+    protocol::MyLoginMsgProtocol proto;
+    proto.set_account("2017");
+    proto.set_password(2018);
+    proto.SerializeToArray(buf, proto.ByteSize());
+
+    auto len_total = gamer::msg_header_len() + proto.ByteSize();
+    gamer::Msg msg = { len_total, 0, 1, buf };
+
+    auto func = [&](int code, msg_header_t msg_type, msg_header_t msg_id, void* ctx) {
+        printf("msg callback code : %d, msg_type : %d, msg_id : %d\n", code, msg_type, msg_id);
+    };
+
+    this->sendMsg(msg, func);
 }
 
 void MsgManager::onMsgReceived(const Msg& msg)

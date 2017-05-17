@@ -23,6 +23,13 @@ namespace gamer
 class Listener 
 {
 public:
+    enum class ListenerPriorities
+    {
+        SENIOR,
+        JUNIOR,
+        NORMAL
+    };
+
     typedef int LuaFunction;
 
     //Listener();

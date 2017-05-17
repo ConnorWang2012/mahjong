@@ -130,7 +130,7 @@
     <Filter Include="classes\cpp\network\msg">
       <UniqueIdentifier>{1028321f-79d8-4851-b909-202641efbf2e}</UniqueIdentifier>
     </Filter>
-    <Filter Include="classes\cpp\network\msg\msg_protocol">
+    <Filter Include="classes\cpp\network\msg\protocol">
       <UniqueIdentifier>{9e843670-0690-45d5-a4a5-408fdd88f4e2}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
@@ -788,8 +788,8 @@
     <ClInclude Include="..\..\..\..\customer\src\cpp\network\msg\msg_type.h">
       <Filter>classes\cpp\network\msg</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\..\customer\src\cpp\network\msg\msg_protocol\my_login_msg_protocol.pb.h">
-      <Filter>classes\cpp\network\msg\msg_protocol</Filter>
+    <ClInclude Include="..\..\..\..\customer\src\cpp\network\msg\protocol\my_login_msg_protocol.pb.h">
+      <Filter>classes\cpp\network\msg\protocol</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -1028,8 +1028,8 @@
     <ClCompile Include="..\..\..\..\customer\src\cpp\network\msg\msg_manager.cc">
       <Filter>classes\cpp\network\msg</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\..\..\customer\src\cpp\network\msg\msg_protocol\my_login_msg_protocol.pb.cc">
-      <Filter>classes\cpp\network\msg\msg_protocol</Filter>
+    <ClCompile Include="..\..\..\..\customer\src\cpp\network\msg\protocol\my_login_msg_protocol.pb.cc">
+      <Filter>classes\cpp\network\msg\protocol</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

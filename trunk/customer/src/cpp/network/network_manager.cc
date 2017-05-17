@@ -23,10 +23,15 @@ modification:
 #elif defined(__APPLE__)
 #endif
 
+#include <chrono>
+
 #include "event2/buffer.h"
 #include "event2/bufferevent.h"
 #include "event2/event.h"
+#include "event2/thread.h"
 
+#include "event_headers.h"
+#include "macros.h"
 #include "msg/msg_manager.h"
 
 namespace gamer
@@ -86,6 +91,10 @@ void NetworkManager::connect()
 #ifdef _WIN32
 	WSADATA wsa_data;
 	WSAStartup(0x0201, &wsa_data);
+
+    evthread_use_windows_threads();
+#else
+    evthread_use_pthreads();
 #endif
 
 	if (nullptr == evbase_)
@@ -124,7 +133,8 @@ void NetworkManager::connect()
 		&gamer::NetworkManager::onBufferEventReceived,
 		NULL);
 
-	bufferevent_enable(static_cast<bufferevent*>(bev_), EV_READ | EV_WRITE | EV_PERSIST);
+	bufferevent_enable(static_cast<bufferevent*>(bev_), 
+        EV_READ | EV_WRITE | EV_PERSIST | EV_FEATURE_EARLY_CLOSE | EV_TIMEOUT);
 
 	if (-1 == bufferevent_socket_connect(bev_, (struct sockaddr*)&sin, sizeof(sin)))
 	{
@@ -134,7 +144,10 @@ void NetworkManager::connect()
 	}
 
 	//event_base_dispatch(evbase_);
-	event_base_loop(evbase_, EVLOOP_NONBLOCK | EVLOOP_NO_EXIT_ON_EMPTY);
+    event_base_loop(evbase_, EVLOOP_NONBLOCK | EVLOOP_NO_EXIT_ON_EMPTY);
+
+    network_thread_ = std::thread(CALLBACK_SELECTOR_0(NetworkManager::onNetworkUpdate, this));
+    network_thread_.detach();
 }
 
 void NetworkManager::disconnect()
@@ -180,13 +193,41 @@ void NetworkManager::initIPAndPort()
 
 void NetworkManager::parseBuffer(char* buf, gamer::Msg& msg)
 {
-    memcpy(&msg.total_len, buf, sizeof(unsigned int));
-    memcpy(&msg.type, buf + sizeof(unsigned int), sizeof(unsigned int));
-    memcpy(&msg.id, buf + sizeof(unsigned int) * 2, sizeof(unsigned int));
-    auto msg_header_len = sizeof(unsigned int) * 3;
-    if (msg.total_len > msg_header_len)
+    //auto len_total = gamer::msg_header_len();
+    //auto type = 0;
+    //auto id = 0;
+    //memcpy(&len_total, buf, sizeof(msg_header_t));
+    //memcpy(&type, buf + sizeof(msg_header_t), sizeof(msg_header_t));
+    //memcpy(&id, buf + sizeof(msg_header_t) * 2, sizeof(msg_header_t));
+
+    //msg.total_len = len_total;
+    //msg.type = type;
+    //msg.id = id;
+
+    //if (msg.total_len > gamer::msg_header_len())
+    //{
+    //    //char buf[NetworkManager::MAX_BUFFER_LEN] = { 0 };
+    //    //memcpy(&msg.context, 
+    //    //       buf + gamer::msg_header_len(), 
+    //    //       msg.total_len - gamer::msg_header_len());
+    //    msg.context = buf + gamer::msg_header_len();
+    //}
+    memcpy(&msg.total_len, buf, sizeof(msg_header_t));
+    memcpy(&msg.type, buf + sizeof(msg_header_t), sizeof(msg_header_t));
+    memcpy(&msg.id, buf + sizeof(msg_header_t) * 2, sizeof(msg_header_t));
+    if (msg.total_len > gamer::msg_header_len()) 
     {
-        memcpy(&msg.context, buf + msg_header_len, msg.total_len - msg_header_len);
+        msg.context = buf + gamer::msg_header_len();
+    }
+}
+
+void NetworkManager::onNetworkUpdate()
+{
+    printf("[NetworkManager::onNetworkUpdate]");
+    while (true)
+    {
+        event_base_loop(evbase_, EVLOOP_NONBLOCK | EVLOOP_NO_EXIT_ON_EMPTY);
+        std::this_thread::sleep_for(std::chrono::milliseconds(50));
     }
 }
 
@@ -208,35 +249,8 @@ void NetworkManager::onBufferEventReceived(struct bufferevent* bev, short event,
 	if (event & BEV_EVENT_CONNECTED) 
 	{
 		printf("client connected\n");
-		// TODO : dispatch client connected success event
-
-		//write_cb(bev, NULL);
-		//char msg[] = "client connected";
-		//bufferevent_write(bev, msg, sizeof(msg));
-
-		//auto input = bufferevent_get_input(bev);
-		//auto output = bufferevent_get_output(bev);
-		//evbuffer_add_printf(output, "client msg : %s", "client connected 2");
-
-        //char buf1[256] = { 0 };
-        //char buf2[128] = { 0 };
-        //int msgid = 7;
-        //int msgtype = 8;
-        //memcpy(buf1, &msgid, sizeof(int));
-        //memcpy(buf1 + sizeof(int), &msgtype, sizeof(int));
-        //gamer::protocol::Msg msg;
-        //msg.set_msg_id(1000);
-        //msg.set_msg_type(2000);
-        //msg.SerializeToArray(buf2, msg.ByteSize());
-        //memcpy(buf1 + sizeof(int) * 2, buf2, msg.ByteSize());
-        //auto size = sizeof(buf1);
-        //auto total_size = sizeof(int) * 2 + msg.ByteSize();
-        //gamer::NetworkManager::getInstance()->send(buf1, total_size, [](short, void*) {});
-        gamer::Msg msg = { 12, 0, 2, nullptr };
-        auto func = [&](unsigned int msg_type, unsigned int msg_id, void* tx) {
-            printf("msg callback msg_type : %d, msg_id : %d", msg_type, msg_id);
-        };
-        MsgManager::getInstance()->sendMsg(msg, func);
+        MsgManager::getInstance(); // TODO : init this in some ohter place
+        EventManager::getInstance()->dispatchEvent((int)EventIDs::EVENT_ID_SOCKET_CONNECTED);
 	} 
 	else if (event & BEV_EVENT_TIMEOUT) 
 	{

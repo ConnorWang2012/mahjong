@@ -23,6 +23,8 @@ modification:
 namespace gamer
 {
 
+class Event;
+
 class MsgManager
 {
 public:
@@ -41,7 +43,15 @@ private:
 
     MsgManager();
 
+    void init();
+
+    void packMsg(const Msg& msg, char* buf, msg_header_t& len);
+
+    std::string getMsgCallbackKey(const Msg& msg);
+
     void dealWithLoginMsg(const Msg& msg);
+
+    void onSocketConnected(gamer::Event* event);
 
     void onMsgReceived(const Msg& msg);
 

@@ -25,7 +25,7 @@ enum class MsgTypes
     C2S_MSG_TYPE_USER_INFO,
 
     // server to client
-    S2C_MSG_TYPE_LOGIN
+    S2C_MSG_TYPE_LOGIN = C2S_MSG_TYPE_LOGIN
 };
 
 }
