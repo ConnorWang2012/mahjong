@@ -45,6 +45,7 @@ NetworkManager::NetworkManager()
 NetworkManager::NetworkManager(const std::string& ip, int port)
 	:ip_(ip)
 	,port_(port)
+    ,is_connected_(false)
 {
 
 }
@@ -55,28 +56,11 @@ NetworkManager* NetworkManager::getInstance()
 	return &s_network_mgr;
 }
 
-void NetworkManager::set_ip(const std::string& ip)
-{
-	ip_ = ip;
-}
-
-const std::string& NetworkManager::ip() const
-{
-	return ip_;
-}
-
-void NetworkManager::set_port(int port)
-{
-	port_ = port;
-}
-
-int NetworkManager::port() const
-{
-	return port_;
-}
-
 void NetworkManager::connect()
 {
+    if (this->is_connected())
+        return;
+
 	this->initIPAndPort();
 
 	if (evbase_ && bev_)
@@ -154,7 +138,8 @@ void NetworkManager::disconnect()
 {
 	if (evbase_)
 	{
-		auto ret = event_base_loopexit(evbase_, NULL);
+		auto ret = event_base_loopexit(evbase_, NULL); // TODO : this is wrong way
+        this->set_connected(false);
 		printf("[NetworkManager::disconnect] ret : %d", ret);
 	}
 }
@@ -191,33 +176,18 @@ void NetworkManager::initIPAndPort()
     port_ = 4994;
 }
 
-void NetworkManager::parseBuffer(char* buf, gamer::Msg& msg)
+void NetworkManager::parseBuffer(char* buf, gamer::ServerMsg& msg)
 {
-    //auto len_total = gamer::msg_header_len();
-    //auto type = 0;
-    //auto id = 0;
-    //memcpy(&len_total, buf, sizeof(msg_header_t));
-    //memcpy(&type, buf + sizeof(msg_header_t), sizeof(msg_header_t));
-    //memcpy(&id, buf + sizeof(msg_header_t) * 2, sizeof(msg_header_t));
-
-    //msg.total_len = len_total;
-    //msg.type = type;
-    //msg.id = id;
-
-    //if (msg.total_len > gamer::msg_header_len())
-    //{
-    //    //char buf[NetworkManager::MAX_BUFFER_LEN] = { 0 };
-    //    //memcpy(&msg.context, 
-    //    //       buf + gamer::msg_header_len(), 
-    //    //       msg.total_len - gamer::msg_header_len());
-    //    msg.context = buf + gamer::msg_header_len();
-    //}
     memcpy(&msg.total_len, buf, sizeof(msg_header_t));
     memcpy(&msg.type, buf + sizeof(msg_header_t), sizeof(msg_header_t));
     memcpy(&msg.id, buf + sizeof(msg_header_t) * 2, sizeof(msg_header_t));
-    if (msg.total_len > gamer::msg_header_len()) 
+    memcpy(&msg.code, buf + sizeof(msg_header_t) * 3, sizeof(msg_header_t));
+    if (msg.code == (msg_header_t)MsgResponseCodes::MSG_RESPONSE_CODE_SUCCESS)
     {
-        msg.context = buf + gamer::msg_header_len();
+        if (msg.total_len > gamer::server_msg_header_len())
+        {
+            msg.context = buf + gamer::server_msg_header_len();
+        }
     }
 }
 
@@ -249,6 +219,8 @@ void NetworkManager::onBufferEventReceived(struct bufferevent* bev, short event,
 	if (event & BEV_EVENT_CONNECTED) 
 	{
 		printf("client connected\n");
+        NetworkManager::getInstance()->set_connected(true);
+
         MsgManager::getInstance(); // TODO : init this in some ohter place
         EventManager::getInstance()->dispatchEvent((int)EventIDs::EVENT_ID_SOCKET_CONNECTED);
 	} 
@@ -278,7 +250,7 @@ void NetworkManager::onBufferRead(struct bufferevent* bev, void* ctx)
         return;
     }
 
-    gamer::Msg msg = { 0, 0, 0, nullptr };
+    gamer::ServerMsg msg = { 0, 0, 0, 0, nullptr };
     NetworkManager::parseBuffer(buf, msg);
 
     MsgManager::getInstance()->onMsgReceived(msg);

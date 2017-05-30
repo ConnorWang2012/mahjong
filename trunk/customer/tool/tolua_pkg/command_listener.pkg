@@ -1,0 +1,65 @@
+$#include "command_listener.h"
+$#include <functional>
+$#include <string>
+$#include "event_listener.h"
+
+namespace gamer {
+
+class CommandListener {
+  public:
+    typedef std::function<void(Event*)> CommandCallback;
+
+    virtual ~CommandListener();
+
+    // use for lua only.
+    static CommandListener* create(int command_id, 
+                                   gamer::Listener::LuaFunction command_callback, 
+                                   const std::string& listener_name,
+                                   int priority);
+
+    inline int command_id() const { 
+        return event_listener_->event_id(); 
+    };
+
+    inline const std::string& listener_name() const { 
+        return event_listener_->listener_name(); 
+    };
+
+    inline int priority() const { 
+        return event_listener_->priority(); 
+    };
+
+    inline bool is_lua_function() const {
+        return event_listener_->is_lua_function();
+    }
+
+    inline gamer::Listener::LuaFunction lua_function() const {
+        return event_listener_->lua_function();
+    };
+
+    inline void set_lua_function_id(const std::string& function_id) {
+        event_listener_->set_lua_function_id(function_id);
+    };
+
+    inline const std::string& lua_function_id() const {
+        return event_listener_->lua_function_id();
+    };
+
+    inline void set_enabled(bool enabled) { 
+        event_listener_->set_enabled(enabled); 
+    };
+
+    inline bool is_enabled() const { 
+        return event_listener_->is_enabled(); 
+    };
+
+    inline bool checkValidity() const { 
+        return event_listener_->checkValidity();
+    };
+
+    inline bool is_registered() const { 
+        return event_listener_->is_registered(); 
+    };
+};
+
+} // namespace gamer 

@@ -133,6 +133,12 @@
     <Filter Include="classes\cpp\network\msg\protocol">
       <UniqueIdentifier>{9e843670-0690-45d5-a4a5-408fdd88f4e2}</UniqueIdentifier>
     </Filter>
+    <Filter Include="classes\lua\logic\test">
+      <UniqueIdentifier>{051c018b-f1c8-4b4d-a97e-1b902f149f68}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="classes\cpp\logic\lua_bind\auto">
+      <UniqueIdentifier>{4f5992fe-4365-488a-9c53-08a42db47045}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\Classes\AppDelegate.h">
@@ -608,9 +614,6 @@
     <ClInclude Include="..\..\..\..\customer\src\cpp\logic\manager\event_manager.h">
       <Filter>classes\cpp\logic\manager</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\..\customer\src\cpp\logic\manager\lua_bind_helper.h">
-      <Filter>classes\cpp\logic\manager</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\..\..\customer\src\cpp\network\google\protobuf\io\coded_stream.h">
       <Filter>classes\cpp\network\protobuf\io</Filter>
     </ClInclude>
@@ -791,6 +794,12 @@
     <ClInclude Include="..\..\..\..\customer\src\cpp\network\msg\protocol\my_login_msg_protocol.pb.h">
       <Filter>classes\cpp\network\msg\protocol</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\..\..\customer\src\cpp\logic\lua_bind\lua_bind_register.h">
+      <Filter>classes\cpp\logic\lua_bind</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\customer\src\cpp\logic\lua_bind\lua_bind_helper.h">
+      <Filter>classes\cpp\logic\lua_bind</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\Classes\AppDelegate.cpp">
@@ -923,9 +932,6 @@
     <ClCompile Include="..\..\..\..\customer\src\cpp\logic\manager\event_manager.cc">
       <Filter>classes\cpp\logic\manager</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\..\..\customer\src\cpp\logic\manager\lua_bind_helper.cc">
-      <Filter>classes\cpp\logic\manager</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\..\..\customer\src\cpp\network\google\protobuf\io\coded_stream.cc">
       <Filter>classes\cpp\network\protobuf\io</Filter>
     </ClCompile>
@@ -1031,6 +1037,33 @@
     <ClCompile Include="..\..\..\..\customer\src\cpp\network\msg\protocol\my_login_msg_protocol.pb.cc">
       <Filter>classes\cpp\network\msg\protocol</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\..\..\customer\src\cpp\logic\lua_bind\lua_bind_register.cc">
+      <Filter>classes\cpp\logic\lua_bind</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\customer\src\cpp\logic\lua_bind\lua_bind_helper.cc">
+      <Filter>classes\cpp\logic\lua_bind</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\customer\src\cpp\logic\lua_bind\auto\lua_bind_command_listener.cc">
+      <Filter>classes\cpp\logic\lua_bind\auto</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\customer\src\cpp\logic\lua_bind\auto\lua_bind_command_manager.cc">
+      <Filter>classes\cpp\logic\lua_bind\auto</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\customer\src\cpp\logic\lua_bind\auto\lua_bind_event_listener.cc">
+      <Filter>classes\cpp\logic\lua_bind\auto</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\customer\src\cpp\logic\lua_bind\auto\lua_bind_event_manager.cc">
+      <Filter>classes\cpp\logic\lua_bind\auto</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\customer\src\cpp\logic\lua_bind\auto\lua_bind_msg_manager.cc">
+      <Filter>classes\cpp\logic\lua_bind\auto</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\customer\src\cpp\logic\lua_bind\auto\lua_bind_network_manager.cc">
+      <Filter>classes\cpp\logic\lua_bind\auto</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\customer\src\cpp\logic\lua_bind\auto\lua_bind_my_login_msg_protocol.cc">
+      <Filter>classes\cpp\logic\lua_bind\auto</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="game.rc">
@@ -1082,6 +1115,9 @@
     </None>
     <None Include="..\..\..\..\customer\src\lua\logic\manager\scene_manager.lua">
       <Filter>classes\lua\logic\manager</Filter>
+    </None>
+    <None Include="..\..\..\..\customer\src\lua\logic\test\test_lua_bind_event_listener.lua">
+      <Filter>classes\lua\logic\test</Filter>
     </None>
   </ItemGroup>
 </Project>

@@ -45,6 +45,7 @@ namespace gamer
 #define LOGGREEN(format, ...)   gamer::log::printfgreen(format, ##__VA_ARGS__)
 #endif
 
+typedef int LuaFunction;
 } // namespace gamer
 
 #endif // CONNOR_GAME_SRC_BASE_MACROS_H_

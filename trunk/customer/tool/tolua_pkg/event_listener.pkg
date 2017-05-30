@@ -1,0 +1,107 @@
+$#include "event_listener.h"
+$#include <functional>
+$#include <string>
+$#include "listener.h"
+
+namespace gamer {
+
+class Listener {
+  public:
+    typedef int LuaFunction;
+
+    //Listener();
+
+    virtual ~Listener() {};
+
+    //virtual void execute_callback() = 0;
+
+    virtual bool checkValidity() const = 0 ;
+
+    //// the target id may be a event id, a command id, or other id that the listener listen.
+    //inline int target_id() const { 
+    //    return target_id_; 
+    //};
+
+    inline void set_listener_name(const std::string& listener_name) { 
+        listener_name_ = listener_name; 
+    };
+
+    inline const std::string& listener_name() const { 
+        return listener_name_; 
+    };
+
+    inline void set_priority(int priority) { 
+        priority_ = priority; 
+    };
+
+    inline int priority() const { 
+        return priority_; 
+    };
+
+    inline bool is_lua_function() const {
+        return is_lua_function_;
+    }
+
+    inline void set_lua_function(int lua_function) {
+        lua_function_ = lua_function;
+    };
+
+    inline LuaFunction lua_function() const {
+        return lua_function_;
+    };
+
+    inline void set_lua_function_id(const std::string& func_id) {
+        lua_function_id_ = func_id;
+    };
+
+    inline const std::string& lua_function_id() const {
+        return lua_function_id_;
+    };
+
+    inline void set_enabled(bool enabled) { 
+        is_enabled_ = enabled; 
+    };
+
+    inline bool is_enabled() const { 
+        return is_enabled_; 
+    };
+
+    inline bool is_registered() const { 
+        return is_registered_; 
+    };
+};
+
+class EventListener : public gamer::Listener {
+  public:
+    typedef std::function<void(gamer::Event*)> EventCallback;
+
+	virtual	~EventListener();
+
+    // use for lua only.
+    static EventListener* create(int event_id, 
+                                 gamer::Listener::LuaFunction event_callback, 
+                                 const std::string& listener_name,
+                                 int priority);
+
+    virtual void executeCallback(gamer::Event* event);
+
+    virtual bool checkValidity() const;
+
+	inline int event_id() const { 
+        return target_id(); 
+    };
+
+    inline void set_event_callback(const EventCallback& event_callback) { 
+        event_callback_ = event_callback; 
+    };
+
+	inline const EventCallback& event_callback() { 
+        return event_callback_; 
+    };
+  
+    inline bool is_registered() const { 
+        return is_registered_; 
+    };
+};
+
+} // namespace gamer

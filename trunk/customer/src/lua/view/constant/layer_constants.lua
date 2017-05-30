@@ -26,7 +26,7 @@ LayerConstants.LayerFiles =
 
 LayerConstants.LayerViewFiles =
 {
-	LOGIN_LAYER_VIEW_FILE	= nil
+	LOGIN_LAYER_VIEW_FILE	= "ui/login/login_layer_view.lua"
 }
 
 LayerConstants.LayersCfg =

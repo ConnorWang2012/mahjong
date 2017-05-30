@@ -1,0 +1,52 @@
+$#include "event_manager.h"
+
+$#include <map>
+$#include <vector>
+
+namespace gamer {
+
+//class Event;
+//class EventListener;
+
+class EventManager {
+  public:
+	virtual ~EventManager();
+
+	static EventManager* getInstance();
+
+	static void destoryInstance();
+
+	void addEventListener(gamer::EventListener* listener);
+
+    // remove the event listener from the instance of event manager but do not delete it.
+	void removeEventListener(gamer::EventListener* listener);
+
+    // remove the event listener from the instance of event manager and delete it.
+    void removeEventListenerWithCleanup(gamer::EventListener* listener);
+
+    // remove the event listener from the instance of event manager but do not delete it.
+	void removeEventListener(const std::string& listener_name);
+
+    // remove the event listener from the instance of event manager and delete it.
+    void removeEventListenerWithCleanup(const std::string& listener_name);
+
+    // remove all event listeners from the instance of event manager but do not delete any.
+	void removeAllEventListeners();
+
+    // remove all event listeners from the instance of event manager and delete all.
+    void removeAllEventListenersWithCleanup();
+
+	void dispatchEvent(gamer::Event* event);
+
+	void dispatchEvent(int event_id, void* optional_user_data = nullptr);
+
+	void setPriority(gamer::EventListener* listener, int priority);
+
+    inline void set_enabled(bool enabled) {
+        is_enabled_ = enabled;
+    }
+
+    inline bool is_enabled() const { return is_enabled_; }
+};
+
+} // namespace gamer

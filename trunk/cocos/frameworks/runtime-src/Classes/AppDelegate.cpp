@@ -3,6 +3,7 @@
 #include "cocos2d.h"
 #include "scripting/lua-bindings/manual/lua_module_register.h"
 
+#include "lua_bind_helper.h"
 #include "network_manager.h"
 
 // #define USE_AUDIO_ENGINE 1
@@ -78,7 +79,10 @@ bool AppDelegate::applicationDidFinishLaunching()
     //register custom function
     //LuaStack* stack = engine->getLuaStack();
     //register_custom_function(stack->getLuaState());
- 
+
+    gamer::LuaBindHelper::getInstance()->set_lua_state(L);
+    gamer::LuaBindHelper::getInstance()->register_lua_bind_modules();
+
 #if CC_64BITS
     FileUtils::getInstance()->addSearchPath("src/64bit");
 #endif
@@ -92,7 +96,7 @@ bool AppDelegate::applicationDidFinishLaunching()
     {
         return false;
     }
-
+    
     gamer::NetworkManager::getInstance()->connect();
 
     return true;

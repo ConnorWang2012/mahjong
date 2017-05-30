@@ -34,9 +34,8 @@ namespace gamer
 
 #define msg_header_t		unsigned int
 
-typedef std::function<void(int, msg_header_t, msg_header_t, void*)> MsgResponseCallback;
-
-struct Msg
+// msg  for client to server
+struct ClientMsg
 {
     msg_header_t total_len;
     msg_header_t type;
@@ -44,7 +43,25 @@ struct Msg
     void* context;
 };
 
-constexpr msg_header_t msg_header_len() { return sizeof(msg_header_t) * 3; }
+// msg for server to client
+struct ServerMsg
+{
+    msg_header_t total_len;
+    msg_header_t type;
+    msg_header_t id;
+    msg_header_t code; // msg response result code
+    void* context;
+};
+
+enum class MsgResponseCodes 
+{
+    MSG_RESPONSE_CODE_SUCCESS,
+    MSG_RESPONSE_CODE_FAILED
+};
+
+constexpr msg_header_t client_msg_header_len() { return sizeof(msg_header_t) * 3; }
+
+constexpr msg_header_t server_msg_header_len() { return sizeof(msg_header_t) * 4; }
 
 } // namespace gamer
 

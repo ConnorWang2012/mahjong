@@ -38,20 +38,22 @@ public:
 	
 	static NetworkManager* getInstance();
 
-	void set_ip(const std::string& ip);
+    void connect();
 
-	const std::string& ip() const;
-
-	void set_port(int port);
-
-	int port() const;
-
-	void connect();
-
-	void disconnect();
+    void disconnect();
 
     bool send(void* ctx, size_t ctxlen);
+
+    inline void set_ip(const std::string& ip) { ip_ = ip; }
+
+    inline const std::string& ip() const { return ip_; }
+
+    inline void set_port(int port) { port_ = port; }
+
+    inline int port() const { return port_; }
     
+    inline bool is_connected() const { return is_connected_; }
+
 private:
 	NetworkManager();
 
@@ -59,7 +61,9 @@ private:
 	
 	void initIPAndPort();
 
-    static void parseBuffer(char* buf, gamer::Msg& msg);
+    static void parseBuffer(char* buf, gamer::ServerMsg& msg);
+
+    inline void set_connected(bool connected) { is_connected_ = connected; }
 
     void onNetworkUpdate();
 
@@ -74,6 +78,8 @@ private:
 
 	std::string ip_;
 	int port_;
+
+    bool is_connected_;
 
     static const int MAX_BUFFER_LEN = 4096;
 

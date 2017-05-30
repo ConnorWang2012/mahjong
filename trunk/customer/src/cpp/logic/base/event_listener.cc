@@ -25,7 +25,7 @@ namespace gamer {
 
 EventListener::EventListener()
 {
-    init();
+    this->init();
 }
 
 EventListener::~EventListener()
@@ -76,9 +76,9 @@ void EventListener::executeCallback(Event* event)
 bool EventListener::checkValidity() const
 {
     int event_id = this->event_id();
-    if (is_lua_function()) 
+    if (this->is_lua_function()) 
     {
-        return 0 < event_id && "" != lua_function_id();
+        return 0 < event_id && 0 <= this->lua_function();
     }
     return 0 < event_id && (nullptr != event_callback_ || nullptr != cmd_callback_); 
 }
@@ -99,6 +99,7 @@ EventListener* EventListener::createCmdListener(int event_id,
 
 void EventListener::init()
 {
+    // ugly, TODO : in ctor init
     target_id_        = 0;
     listener_name_    = "";
     priority_         = UINT32_MAX;
@@ -116,10 +117,10 @@ bool EventListener::init(int event_id,
 {
     assert(nullptr != event_callback);
 
-    set_target_id(event_id);
-	event_callback_ = event_callback;
-    set_listener_name(listener_name);
-    set_priority(priority);
+    this->set_target_id(event_id);
+	this->event_callback_ = event_callback;
+    this->set_listener_name(listener_name);
+    this->set_priority(priority);
 
 	return true;
 }
@@ -131,9 +132,12 @@ bool EventListener::init(int event_id,
 {
     assert(0 < event_id);
 
-    set_target_id(event_id);
-    set_listener_name(listener_name);
-    set_priority(priority);
+    LuaBindHelper::getInstance()->storeLuaFunction(3);
+
+    this->set_lua_function(event_callback);
+    this->set_target_id(event_id);
+    this->set_listener_name(listener_name);
+    this->set_priority(priority);
 
     return true;
 }
@@ -145,10 +149,10 @@ bool EventListener::init(int event_id,
 {
     assert(nullptr != cmd_callback);
 
-    set_target_id(event_id);
+    this->set_target_id(event_id);
     cmd_callback_ = cmd_callback;
-    set_listener_name(listener_name);
-    set_priority(priority);
+    this->set_listener_name(listener_name);
+    this->set_priority(priority);
 
     return true;
 }

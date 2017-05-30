@@ -1,0 +1,42 @@
+$#include "msg/msg_manager.h"
+
+$#include <string>
+$#include <unordered_map>
+
+$#include "myevent.h"
+$#include "macros.h"
+$#include "msg/msg.h"
+
+namespace gamer
+{
+
+//class Event;
+
+class MsgManager
+{
+public:
+    typedef std::function<void(int, msg_header_t, msg_header_t, void*)> MsgResponseCallback;
+    typedef int LuaFunction;
+    typedef unsigned int msg_header_t;
+    
+    //MsgManager& operator=(const MsgManager&) = delete;
+
+    //MsgManager(const MsgManager&) = delete;
+
+    //void *operator new(std::size_t) = delete;
+	
+    static MsgManager* getInstance();
+
+    // use for c++ only
+    //bool sendMsg(msg_header_t msg_type, 
+    //             msg_header_t msg_id, 
+    //             const MsgResponseCallback& response_cb);
+
+    // use for c++ only
+    //bool sendMsg(const ClientMsg& msg, const MsgResponseCallback& response_cb);
+
+    // use for lua only
+    bool sendMsg(int msg_type, int msg_id, LuaFunction response_cb);
+};
+
+} // namespace gamer

@@ -1,0 +1,40 @@
+$#include "command_manager.h"
+$#include "command_listener.h"
+$#include <vector>
+$#include <string>
+
+namespace gamer {
+
+//class EventManager;
+//class CommandListener;
+
+class CommandManager {
+  public:    
+    virtual ~CommandManager();
+
+    static CommandManager* getInstance();
+
+    static void destoryInstance();
+
+    void addCmdListener(gamer::CommandListener* listener);
+
+    // remove the cmd listener from the instance of cmd manager but do not delete it.
+    void removeCmdListener(gamer::CommandListener* listener);
+
+    // remove the cmd listener from the instance of cmd manager and delete it.
+    void removeCmdListenerWithCleanup(gamer::CommandListener* listener);
+
+    // remove all cmd listeners from the instance of cmd manager but do not delete any.
+    void removeAllCmdListeners();
+
+    // remove all cmd listeners from the instance of cmd manager and delete all.
+    void removeAllCmdListenersWithcleanup();
+
+    //void removeCmdListener(const std::string& listener_name);
+
+    void sendCmd(int command_id);
+
+    //void sendCmd(const std::string& command_id);
+};
+
+} // namespace gamer

@@ -1,0 +1,32 @@
+<Solution>
+  <PropertyGroup Name="res.proj" Version="3.10.0.0" Type="CocosStudio" />
+  <SolutionFolder>
+    <Group ctype="ResourceGroup">
+      <RootFolder Name=".">
+        <Folder Name="animation" />
+        <Folder Name="assets">
+          <Folder Name="common">
+            <Image Name="btn_common_purple.png" />
+          </Folder>
+          <Folder Name="hall" />
+          <Folder Name="login">
+            <Image Name="logic_bg.jpg" />
+          </Folder>
+          <Folder Name="room" />
+        </Folder>
+        <Folder Name="scene">
+          <Folder Name="hall" />
+          <Folder Name="login">
+            <Project Name="login_scene_layout.csd" Type="Scene" />
+          </Folder>
+          <Folder Name="room" />
+        </Folder>
+        <Folder Name="ui">
+          <Folder Name="hall" />
+          <Folder Name="login" />
+          <Folder Name="room" />
+        </Folder>
+      </RootFolder>
+    </Group>
+  </SolutionFolder>
+</Solution>
