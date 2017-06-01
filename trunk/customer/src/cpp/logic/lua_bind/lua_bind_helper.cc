@@ -71,9 +71,7 @@ void LuaBindHelper::callLuaFunction(LuaFunction lua_func, void* userdata)
     
     lua_rawget(lua_state_, LUA_REGISTRYINDEX);
 
-    auto proto = static_cast<gamer::protocol::MyLoginMsgProtocol*>(userdata);
-    //tolua_pushuserdata(lua_state_, userdata);
-    tolua_pushusertype(lua_state_, (void*)proto, "gamer::protocol::MyLoginMsgProtocol");
+    tolua_pushuserdata(lua_state_, userdata);
 
     //lua_newtable(lua_state_);
     //lua_pushstring(lua_state_, "mydata");
@@ -81,6 +79,34 @@ void LuaBindHelper::callLuaFunction(LuaFunction lua_func, void* userdata)
     //lua_settable(lua_state_, -3);
 
     lua_pcall(lua_state_, 1, 0, 0);
+}
+
+void LuaBindHelper::dispatchMsg(LuaFunction lua_func,
+                                int code,
+                                msg_header_t msg_type, 
+                                msg_header_t msg_id, 
+                                const google::protobuf::Message* msg,
+                                const std::string& msg_class)
+{
+    auto itr = lua_functions_.find(lua_func);
+    if (itr == lua_functions_.end())
+    {
+        printf("[LuaBindHelper::callLuaFunction] lua function : %d  not found.\n", lua_func);
+        return;
+    }
+
+    char buf[10] = { 0 };
+    snprintf(buf, sizeof(buf), "%d", *itr);
+    tolua_pushstring(lua_state_, buf);
+
+    lua_rawget(lua_state_, LUA_REGISTRYINDEX);
+
+    tolua_pushnumber(lua_state_, code);
+    tolua_pushnumber(lua_state_, msg_type);
+    tolua_pushnumber(lua_state_, msg_id);
+    tolua_pushusertype(lua_state_, (void*)msg, msg_class.c_str());
+
+    lua_pcall(lua_state_, 4, 0, 0);
 }
 
 void LuaBindHelper::register_lua_bind_modules()

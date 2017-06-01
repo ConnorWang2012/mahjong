@@ -25,13 +25,26 @@ extern "C"
     #include "lauxlib.h"
 }
 
-#include "macros.h"
+#include <google/protobuf/message.h>
 
-namespace gamer {
+#include "macros.h"
+#include "msg/msg.h"
+
+//namespace gamer
+//{
+//    namespace protobuf
+//    {
+//        class Message;
+//    }
+//}
+
+namespace gamer 
+{
 
 class Event;
 
-class LuaBindHelper {
+class LuaBindHelper 
+{
   public:
     virtual ~LuaBindHelper();
 
@@ -40,6 +53,13 @@ class LuaBindHelper {
     void storeLuaFunction(int idx);
 
     void callLuaFunction(LuaFunction lua_func, void* userdata);
+
+    void dispatchMsg(LuaFunction lua_func, 
+                     int code,
+                     msg_header_t msg_type,
+                     msg_header_t msg_id, 
+                     const google::protobuf::Message* msg,
+                     const std::string& msg_class);
 
     void set_lua_state(lua_State* L) { lua_state_ = L; }
 

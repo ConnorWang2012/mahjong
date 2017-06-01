@@ -163,7 +163,8 @@ void MsgManager::dealWithMgLoginMsg(const ServerMsg& msg)
         auto itr2 = msg_response_lua_callbacks_.find(key);
         if (itr2 != msg_response_lua_callbacks_.end())
         {
-            LuaBindHelper::getInstance()->callLuaFunction(itr2->second, &proto);
+            LuaBindHelper::getInstance()->dispatchMsg(itr2->second, 
+                msg.code, msg.type, msg.id, &proto, "gamer::protocol::MyLoginMsgProtocol");
         }
     }
 }
