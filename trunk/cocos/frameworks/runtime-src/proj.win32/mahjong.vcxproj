@@ -535,8 +535,8 @@ xcopy "$(ProjectDir)..\..\..\..\customer\src\lua" "$(LocalDebuggerWorkingDirecto
     <None Include="..\..\..\..\customer\src\lua\view\base\node_base.lua" />
     <None Include="..\..\..\..\customer\src\lua\view\constant\layer_constants.lua" />
     <None Include="..\..\..\..\customer\src\lua\view\constant\scene_constants.lua" />
+    <None Include="..\..\..\..\customer\src\lua\view\hall\hall_scene.lua" />
     <None Include="..\..\..\..\customer\src\lua\view\init_view.lua" />
-    <None Include="..\..\..\..\customer\src\lua\view\login\login_layer.lua" />
     <None Include="..\..\..\..\customer\src\lua\view\login\login_scene.lua" />
     <None Include="..\..\..\src\main.lua" />
   </ItemGroup>

@@ -3,28 +3,82 @@
   <SolutionFolder>
     <Group ctype="ResourceGroup">
       <RootFolder Name=".">
-        <Folder Name="animation" />
+        <Folder Name="animations" />
         <Folder Name="assets">
           <Folder Name="common">
             <Image Name="btn_common_purple.png" />
           </Folder>
-          <Folder Name="hall" />
+          <Folder Name="hall">
+            <Folder Name="hall_bottom">
+              <Image Name="hall_activity.png" />
+              <Image Name="hall_bottom_bg.png" />
+              <Image Name="hall_rank.png" />
+              <Image Name="hall_shop.png" />
+              <Image Name="hall_task.png" />
+            </Folder>
+            <Folder Name="hall_middle">
+              <Image Name="hall_room_normal.png" />
+              <Image Name="hall_room_personal.png" />
+            </Folder>
+            <Folder Name="hall_top">
+              <Image Name="hall_firstcharge.png" />
+              <Image Name="hall_friend.png" />
+              <Image Name="hall_msg.png" />
+              <Image Name="hall_role.png" />
+              <Image Name="hall_set.png" />
+              <Image Name="hall_sign.png" />
+              <Image Name="hall_title_bg.png" />
+              <Image Name="hall_title_name.png" />
+            </Folder>
+            <Folder Name="plist">
+              <PlistImageFolder Image="hall_bottom.png" PListFile="hall_bottom.plist" Name=".hall_bottom_PList.Dir">
+                <PlistImageFile Name="hall_activity.png" Key="hall_activity.png" />
+                <PlistImageFile Name="hall_bottom_bg.png" Key="hall_bottom_bg.png" />
+                <PlistImageFile Name="hall_rank.png" Key="hall_rank.png" />
+                <PlistImageFile Name="hall_shop.png" Key="hall_shop.png" />
+                <PlistImageFile Name="hall_task.png" Key="hall_task.png" />
+              </PlistImageFolder>
+              <PlistImageFolder Image="hall_middle.png" PListFile="hall_middle.plist" Name=".hall_middle_PList.Dir">
+                <PlistImageFile Name="hall_room_normal.png" Key="hall_room_normal.png" />
+                <PlistImageFile Name="hall_room_personal.png" Key="hall_room_personal.png" />
+              </PlistImageFolder>
+              <PlistImageFolder Image="hall_top.png" PListFile="hall_top.plist" Name=".hall_top_PList.Dir">
+                <PlistImageFile Name="hall_firstcharge.png" Key="hall_firstcharge.png" />
+                <PlistImageFile Name="hall_friend.png" Key="hall_friend.png" />
+                <PlistImageFile Name="hall_msg.png" Key="hall_msg.png" />
+                <PlistImageFile Name="hall_role.png" Key="hall_role.png" />
+                <PlistImageFile Name="hall_set.png" Key="hall_set.png" />
+                <PlistImageFile Name="hall_sign.png" Key="hall_sign.png" />
+                <PlistImageFile Name="hall_title_bg.png" Key="hall_title_bg.png" />
+                <PlistImageFile Name="hall_title_name.png" Key="hall_title_name.png" />
+              </PlistImageFolder>
+            </Folder>
+            <Image Name="hall_bg.jpg" />
+          </Folder>
           <Folder Name="login">
-            <Image Name="logic_bg.jpg" />
+            <Image Name="login_bg.jpg" />
           </Folder>
           <Folder Name="room" />
         </Folder>
-        <Folder Name="scene">
-          <Folder Name="hall" />
-          <Folder Name="login">
-            <Project Name="login_scene_layout.csd" Type="Scene" />
+        <Folder Name="layouts">
+          <Folder Name="scene">
+            <Folder Name="hall">
+              <Project Name="hall_scene_layout.csd" Type="Scene" />
+            </Folder>
+            <Folder Name="login">
+              <Project Name="login_scene_layout.csd" Type="Scene" />
+            </Folder>
+            <Folder Name="room" />
           </Folder>
-          <Folder Name="room" />
-        </Folder>
-        <Folder Name="ui">
-          <Folder Name="hall" />
-          <Folder Name="login" />
-          <Folder Name="room" />
+          <Folder Name="ui">
+            <Folder Name="hall">
+              <Project Name="hall_bottom_node_layout.csd" Type="Node" />
+              <Project Name="hall_middle_node_layout.csd" Type="Node" />
+              <Project Name="hall_top_node_layout.csd" Type="Node" />
+            </Folder>
+            <Folder Name="login" />
+            <Folder Name="room" />
+          </Folder>
         </Folder>
       </RootFolder>
     </Group>

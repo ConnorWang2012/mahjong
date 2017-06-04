@@ -31,10 +31,6 @@ function SceneManager.runScene(scene_id)
         return
     end
 
---    if scene_cfg.view_file then
---		scene:addViewNodeFromLua(scene_cfg.view_file)
---	end
-
     local director = cc.Director:getInstance()
     local s = cc.Scene:create()
     s:addChild(scene)

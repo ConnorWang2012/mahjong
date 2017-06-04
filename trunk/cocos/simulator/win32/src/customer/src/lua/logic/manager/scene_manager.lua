@@ -31,16 +31,12 @@ function SceneManager.runScene(scene_id)
         return
     end
 
-    if scene_cfg.view_file then
-		scene:addViewNode(scene_cfg.view_file)
-	end
-
     local director = cc.Director:getInstance()
+    local s = cc.Scene:create()
+    s:addChild(scene)
     if director:getRunningScene() then
-        director:replaceScene(scene)
+        director:replaceScene(s)
     else
-        local s = cc.Scene:create()
-        s:addChild(scene)
         director:runWithScene(s)
     end
 
@@ -54,11 +50,11 @@ function SceneManager.createScene(scene_id)
         return
     end
 
-    return require(scene_cfg.scene_file):create(), scene_cfg
+    return require(scene_cfg.scene_file):create(scene_cfg.view_file)
 end
 
 function SceneManager.getRunningScene()
-	return SceneManager.running_scene
+	return cc.Director:getInstance():getRunningScene() or SceneManager.running_scene
 end
 
 return SceneManager

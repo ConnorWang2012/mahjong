@@ -21,6 +21,14 @@ modification:
 #include "macros.h"
 #include "msg/msg.h"
 
+namespace google
+{
+    namespace protobuf
+    {
+        class Message;
+    }
+}
+
 namespace gamer
 {
 
@@ -29,7 +37,10 @@ class Event;
 class MsgManager
 {
 public:
-    typedef std::function<void(int, msg_header_t, msg_header_t, void*)> MsgResponseCallback;
+    typedef std::function<void(int, 
+                               msg_header_t, 
+                               msg_header_t, 
+                               const google::protobuf::Message* msg)> MsgResponseCallback;
 
 	MsgManager& operator=(const MsgManager&) = delete;
 
@@ -64,6 +75,18 @@ private:
     bool packMsg(const ClientMsg& msg, char* buf, msg_header_t& len);
 
     std::string getMsgCallbackKey(msg_header_t msg_type, msg_header_t msg_id);
+
+    void getMsgCallbacks(const std::string& key, 
+                         MsgResponseCallback& cpp_cb, 
+                         gamer::LuaFunction& lua_cb);
+
+    // use main thread£¨UI thread£©to dispatch msg£¨can not dispatch msg in network thread, 
+    // because in network thread use UI will be crash, and usually, customer use UI in msg callback£©.
+    void dispatchMsg(int msg_code, 
+                     msg_header_t msg_type, 
+                     msg_header_t msg_id, 
+                     const google::protobuf::Message* msg,
+                     const std::string& class_name);
 
     void dealWithLoginMsg(const ServerMsg& msg);
 

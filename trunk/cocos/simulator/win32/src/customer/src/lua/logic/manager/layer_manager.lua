@@ -28,10 +28,10 @@ function LayerManager.createLayer(layer_id)
 		return
 	end
 	
-	local layer = require(layer_cfg.layer_file):create()
-	if layer_cfg.view_file then
-		layer:addViewNode(layer_cfg.view_file)
-	end
+	local layer = require(layer_cfg.layer_file):create(layer_cfg.view_file)
+--	if layer_cfg.view_file then
+--		layer:addViewNodeFromLua(layer_cfg.view_file)
+--	end
 
 	return layer
 end
@@ -58,7 +58,10 @@ function LayerManager.addLayer(layer_id)
 end
 
 function LayerManager.removeLayer(layer_id)
-	
+	if LayerManager.layer_ids[layer_id] then
+        LayerManager.layer_ids[layer_id]:removeFromParent()
+        LayerManager.layer_ids[layer_id] = nil
+    end
 end
 
 return LayerManager

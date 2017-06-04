@@ -6,7 +6,6 @@ require "cocos.init"
 require "logic.init_modules"
 
 local function main()
-    --require("app.MyApp"):create():run()
     gamer.initEngine()
     gamer.initModules()
     gamer.SceneManager.runScene(gamer.SceneConstants.SceneIDs.LOGIN_SCENE)

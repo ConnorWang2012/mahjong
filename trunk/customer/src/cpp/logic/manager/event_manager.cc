@@ -432,7 +432,6 @@ void EventManager::dispatchEvent(std::vector<EventListener*> listeners,
         {
             if (l->is_lua_function())
             {
-                //LuaBindHelper::getInstance()->callLuaFunction(l->lua_function_id(), event);
                 LuaBindHelper::getInstance()->callLuaFunction(l->lua_function(), event);
             }
             else

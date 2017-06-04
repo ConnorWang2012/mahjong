@@ -1,13 +1,5 @@
 <UserData Version="3.10.0.0">
   <Properties>
-    <Item Key="TabsParamsKey">
-      <Value ctype="TabsInfo">
-        <OpenedDocuments>
-          <FilePathData Path="scene/login/login_scene_layout.csd" />
-        </OpenedDocuments>
-        <ActiveDocument Path="scene/login/login_scene_layout.csd" />
-      </Value>
-    </Item>
     <Item Key="CocosRecentOperation">
       <Value ctype="CocosRecentOperation">
         <LastPublishType Value="Resource" />
@@ -34,6 +26,15 @@
         <KeystoreAliasPassword Value="" />
         <EnableSourceMap Value="False" />
         <EnableHTML5Advanced Value="False" />
+      </Value>
+    </Item>
+    <Item Key="TabsParamsKey">
+      <Value ctype="TabsInfo">
+        <OpenedDocuments>
+          <FilePathData Path="layouts/scene/hall/hall_scene_layout.csd" />
+          <FilePathData Path="layouts/scene/login/login_scene_layout.csd" />
+        </OpenedDocuments>
+        <ActiveDocument Path="layouts/scene/login/login_scene_layout.csd" />
       </Value>
     </Item>
   </Properties>

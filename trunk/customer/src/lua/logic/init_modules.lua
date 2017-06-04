@@ -21,6 +21,9 @@ require "logic.init_logic"
 require "network.init_network"
 require "view.init_view"
 
+gamer.ResWidth = 1920
+gamer.ResHeight = 1080
+
 gamer.LayerManager = require "logic.manager.layer_manager"
 gamer.SceneManager = require "logic.manager.scene_manager"
 
@@ -30,6 +33,11 @@ gamer.initEngine = function()
     end
 end
 
+gamer.initDesignResolution = function()
+    cc.Director:getInstance():setContentScaleFactor(gamer.ResHeight / CC_DESIGN_RESOLUTION.height) -- FIXED_HEIGHT
+    --cc.Director:getInstance():setContentScaleFactor(gamer.ResWidth / CC_DESIGN_RESOLUTION.width) -- FIXED_WIDTH
+end
+
 gamer.initModules = function()
-    
+    gamer.initDesignResolution()
 end

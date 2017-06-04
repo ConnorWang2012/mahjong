@@ -90,13 +90,14 @@ bool AppDelegate::applicationDidFinishLaunching()
     FileUtils::getInstance()->addSearchPath("res");
 
     engine->addSearchPath("src/customer/src/lua");
-    engine->addSearchPath("../res");
+    engine->addSearchPath("src/customer/src/lua/view/layouts");
+    //engine->addSearchPath("../res");
 
     if (engine->executeScriptFile("main.lua"))
     {
         return false;
     }
-    
+
     gamer::NetworkManager::getInstance()->connect();
 
     return true;

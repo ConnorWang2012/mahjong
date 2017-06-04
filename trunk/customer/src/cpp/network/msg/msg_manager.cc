@@ -21,6 +21,8 @@ modification:
 #include "msg/protocol/my_login_msg_protocol.pb.h"
 #include "network/network_manager.h"
 
+#include "cocos2d.h"
+
 namespace gamer
 {
 
@@ -132,6 +134,76 @@ std::string MsgManager::getMsgCallbackKey(msg_header_t msg_type, msg_header_t ms
     return buf;
 }
 
+void MsgManager::getMsgCallbacks(const std::string& key,
+                                 MsgResponseCallback& cpp_cb,
+                                 gamer::LuaFunction& lua_cb)
+{
+    // C++ callback
+    auto itr1 = msg_response_callbacks_.find(key);
+    if (itr1 != msg_response_callbacks_.end())
+    {
+        cpp_cb = itr1->second;
+    }
+    else
+    {
+        cpp_cb = nullptr;
+    }
+
+    // Lua callback
+    auto itr2 = msg_response_lua_callbacks_.find(key);
+    gamer::LuaFunction lua_callback = -1;
+    if (itr2 != msg_response_lua_callbacks_.end())
+    {
+        lua_cb = itr2->second;
+    }
+    else
+    {
+        lua_cb = -1;
+    }
+}
+
+void MsgManager::dispatchMsg(int msg_code, 
+                             msg_header_t msg_type,
+                             msg_header_t msg_id,
+                             const google::protobuf::Message* msg,
+                             const std::string& class_name)
+{
+    MsgResponseCallback cppcb = nullptr;
+    auto luacb                = -1;
+    auto msgcode              = msg_code;
+    auto msgtype              = msg_type;
+    auto msgid                = msg_id;
+    auto msgtmp               = msg;
+    auto classname            = class_name;
+
+    auto key = this->getMsgCallbackKey(msg_type, msg_id);
+    this->getMsgCallbacks(key, cppcb, luacb);
+
+    auto callback = [=](float) {
+        cocos2d::Director::getInstance()->getScheduler()->unschedule("dispatch_msg", this);
+        
+        // C++
+        if (nullptr != cppcb)
+        {
+            cppcb(msgcode, msgtype, msgid, msgtmp);
+        }
+
+        // Lua
+        if (-1 != luacb)
+        {
+            LuaBindHelper::getInstance()->dispatchMsg(luacb,
+                                                      msgcode,
+                                                      msgtype,
+                                                      msgid,
+                                                      msgtmp,
+                                                      classname);
+        }
+    };
+
+    auto scheduler = cocos2d::Director::getInstance()->getScheduler();
+    scheduler->schedule(callback, this, 0, false, "dispatch_msg");
+}
+
 void MsgManager::dealWithLoginMsg(const ServerMsg& msg)
 {
     printf("[MsgManager::DealWithLoginMsg] msg_type : %d, msg_id : %d", msg.type, msg.id);
@@ -150,22 +222,12 @@ void MsgManager::dealWithMgLoginMsg(const ServerMsg& msg)
         auto len = msg.total_len - gamer::server_msg_header_len();
         protocol::MyLoginMsgProtocol proto;
         proto.ParseFromArray(msg.context, len);
-        // TODO : do it in common func
-        auto key = this->getMsgCallbackKey(msg.type, msg.id);        
-        // C++ callback
-        auto itr = msg_response_callbacks_.find(key);
-        if (itr != msg_response_callbacks_.end()) 
-        {
-            itr->second(msg.code, msg.type, msg.id, &proto); 
-        }
 
-        // Lua callback
-        auto itr2 = msg_response_lua_callbacks_.find(key);
-        if (itr2 != msg_response_lua_callbacks_.end())
-        {
-            LuaBindHelper::getInstance()->dispatchMsg(itr2->second, 
-                msg.code, msg.type, msg.id, &proto, "gamer::protocol::MyLoginMsgProtocol");
-        }
+        this->dispatchMsg(msg.code, 
+                          msg.type, 
+                          msg.id, 
+                          &proto, 
+                          "gamer::protocol::MyLoginMsgProtocol");
     }
 }
 

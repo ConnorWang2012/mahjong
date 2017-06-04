@@ -91,9 +91,6 @@
     <Filter Include="classes\lua\view\constant">
       <UniqueIdentifier>{8a40ec16-8174-41c8-a1b0-bfaeb8966d71}</UniqueIdentifier>
     </Filter>
-    <Filter Include="classes\lua\view\manager">
-      <UniqueIdentifier>{3742686c-c35e-43cd-be5c-a7390aa241e3}</UniqueIdentifier>
-    </Filter>
     <Filter Include="classes\cpp\network\libevent">
       <UniqueIdentifier>{6a68a36b-cbde-48c5-ad85-f8f8417a1539}</UniqueIdentifier>
     </Filter>
@@ -138,6 +135,36 @@
     </Filter>
     <Filter Include="classes\cpp\logic\lua_bind\auto">
       <UniqueIdentifier>{4f5992fe-4365-488a-9c53-08a42db47045}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="classes\lua\view\hall">
+      <UniqueIdentifier>{089934a4-7b15-4a62-ba32-99646b155677}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="classes\lua\view\layouts">
+      <UniqueIdentifier>{cd5cb23c-0a86-4f85-8c45-328636f80bb5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="classes\lua\view\layouts\scene">
+      <UniqueIdentifier>{51b4b265-bd66-4489-91c5-7ddefb9ce6e3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="classes\lua\view\layouts\scene\hall">
+      <UniqueIdentifier>{db2d269e-c004-4811-a8d3-4880fca043d0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="classes\lua\view\layouts\scene\login">
+      <UniqueIdentifier>{d5a1141a-a302-4c89-a70f-d9941eab5aef}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="classes\lua\view\layouts\scene\room">
+      <UniqueIdentifier>{d14cbbba-705c-48c8-89fc-6b827e92572a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="classes\lua\view\layouts\ui">
+      <UniqueIdentifier>{98dd128f-5c19-47f4-bcf1-b5c8964ef3c5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="classes\lua\view\layouts\ui\login">
+      <UniqueIdentifier>{59a5a4d1-891f-467d-afd5-8dbe988f8354}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="classes\lua\view\layouts\ui\hall">
+      <UniqueIdentifier>{8a0eb3d5-34d0-49f5-ab08-c7733a155361}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="classes\lua\view\layouts\ui\room">
+      <UniqueIdentifier>{ed770fbe-5dde-4107-aa71-2fe52aa5461e}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -1074,9 +1101,6 @@
     <Image Include="res\game.ico" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="..\..\..\..\customer\src\lua\view\login\login_layer.lua">
-      <Filter>classes\lua\view\login</Filter>
-    </None>
     <None Include="..\..\..\..\customer\src\lua\view\base\layer_base.lua">
       <Filter>classes\lua\view\base</Filter>
     </None>
@@ -1118,6 +1142,9 @@
     </None>
     <None Include="..\..\..\..\customer\src\lua\logic\test\test_lua_bind_event_listener.lua">
       <Filter>classes\lua\logic\test</Filter>
+    </None>
+    <None Include="..\..\..\..\customer\src\lua\view\hall\hall_scene.lua">
+      <Filter>classes\lua\view\hall</Filter>
     </None>
   </ItemGroup>
 </Project>

@@ -27,12 +27,13 @@ function LoginScene:onBtnLoginTouch(sender)
     gamer.MsgManager:getInstance():sendMsg(0, 1, handler(self, self.onLoginResponse))
 end
 
-function LoginScene:onLoginResponse(data)
-    print("[LoginScene:onLoginResponse] data : ", tostring(data))
-    --print("[LoginScene:onLoginResponse] account : ", tostring(data:account()))
-    --local a = tolua.cast(data, "gamer::protocol::MyLoginMsgProtocol")
-    --print("[LoginScene:onLoginResponse] account : ", tostring(a:account()))
-    --data:password()
+function LoginScene:onLoginResponse(code, msg_type, msg_id, msg)
+--    print("[LoginScene:onLoginResponse] msg : ", tostring(msg))
+    print("[LoginScene:onLoginResponse] code : ", code)
+--    print("[LoginScene:onLoginResponse] msg_type : ", msg_type)
+--    print("[LoginScene:onLoginResponse] msg_id : ", msg_id)
+--    print("[LoginScene:onLoginResponse] account : ", tostring(msg:account()))
+    gamer.SceneManager.runScene(gamer.SceneConstants.SceneIDs.HALL_SCENE)
 end
 
 function LoginScene:onEnter()
