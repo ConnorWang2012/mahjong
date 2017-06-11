@@ -288,6 +288,15 @@ xcopy "$(ProjectDir)..\..\..\..\customer\src\lua" "$(LocalDebuggerWorkingDirecto
     <ClInclude Include="..\..\..\..\customer\src\cpp\logic\lua_include\lualib.h" />
     <ClInclude Include="..\..\..\..\customer\src\cpp\logic\manager\command_manager.h" />
     <ClInclude Include="..\..\..\..\customer\src\cpp\logic\manager\event_manager.h" />
+    <ClInclude Include="..\..\..\..\customer\src\cpp\logic\msg\msg.h" />
+    <ClInclude Include="..\..\..\..\customer\src\cpp\logic\msg\msg_code.h" />
+    <ClInclude Include="..\..\..\..\customer\src\cpp\logic\msg\msg_id.h" />
+    <ClInclude Include="..\..\..\..\customer\src\cpp\logic\msg\msg_manager.h" />
+    <ClInclude Include="..\..\..\..\customer\src\cpp\logic\msg\msg_type.h" />
+    <ClInclude Include="..\..\..\..\customer\src\cpp\logic\msg\protocol\create_room_msg_protocol.pb.h" />
+    <ClInclude Include="..\..\..\..\customer\src\cpp\logic\msg\protocol\game_start_msg_protocol.pb.h" />
+    <ClInclude Include="..\..\..\..\customer\src\cpp\logic\msg\protocol\my_login_msg_protocol.pb.h" />
+    <ClInclude Include="..\..\..\..\customer\src\cpp\logic\msg\protocol\personal_info_msg_protocol.pb.h" />
     <ClInclude Include="..\..\..\..\customer\src\cpp\logic\provider\id_provider.h" />
     <ClInclude Include="..\..\..\..\customer\src\cpp\network\google\protobuf\config.h" />
     <ClInclude Include="..\..\..\..\customer\src\cpp\network\google\protobuf\descriptor.h" />
@@ -402,11 +411,6 @@ xcopy "$(ProjectDir)..\..\..\..\customer\src\lua" "$(LocalDebuggerWorkingDirecto
     <ClInclude Include="..\..\..\..\customer\src\cpp\network\libevent\src\WIN32-Code\nmake\evconfig-private.h" />
     <ClInclude Include="..\..\..\..\customer\src\cpp\network\libevent\src\WIN32-Code\nmake\event2\event-config.h" />
     <ClInclude Include="..\..\..\..\customer\src\cpp\network\libevent\src\WIN32-Code\tree.h" />
-    <ClInclude Include="..\..\..\..\customer\src\cpp\network\msg\msg_id.h" />
-    <ClInclude Include="..\..\..\..\customer\src\cpp\network\msg\msg_manager.h" />
-    <ClInclude Include="..\..\..\..\customer\src\cpp\network\msg\msg.h" />
-    <ClInclude Include="..\..\..\..\customer\src\cpp\network\msg\msg_type.h" />
-    <ClInclude Include="..\..\..\..\customer\src\cpp\network\msg\protocol\my_login_msg_protocol.pb.h" />
     <ClInclude Include="..\..\..\..\customer\src\cpp\network\network_manager.h" />
     <ClInclude Include="..\Classes\AppDelegate.h" />
     <ClInclude Include="main.h" />
@@ -423,8 +427,10 @@ xcopy "$(ProjectDir)..\..\..\..\customer\src\lua" "$(LocalDebuggerWorkingDirecto
     <ClCompile Include="..\..\..\..\customer\src\cpp\logic\base\myevent.cc" />
     <ClCompile Include="..\..\..\..\customer\src\cpp\logic\lua_bind\auto\lua_bind_command_listener.cc" />
     <ClCompile Include="..\..\..\..\customer\src\cpp\logic\lua_bind\auto\lua_bind_command_manager.cc" />
+    <ClCompile Include="..\..\..\..\customer\src\cpp\logic\lua_bind\auto\lua_bind_create_room_msg_protocol.cc" />
     <ClCompile Include="..\..\..\..\customer\src\cpp\logic\lua_bind\auto\lua_bind_event_listener.cc" />
     <ClCompile Include="..\..\..\..\customer\src\cpp\logic\lua_bind\auto\lua_bind_event_manager.cc" />
+    <ClCompile Include="..\..\..\..\customer\src\cpp\logic\lua_bind\auto\lua_bind_msg.cc" />
     <ClCompile Include="..\..\..\..\customer\src\cpp\logic\lua_bind\auto\lua_bind_msg_manager.cc" />
     <ClCompile Include="..\..\..\..\customer\src\cpp\logic\lua_bind\auto\lua_bind_my_login_msg_protocol.cc" />
     <ClCompile Include="..\..\..\..\customer\src\cpp\logic\lua_bind\auto\lua_bind_network_manager.cc" />
@@ -432,6 +438,11 @@ xcopy "$(ProjectDir)..\..\..\..\customer\src\lua" "$(LocalDebuggerWorkingDirecto
     <ClCompile Include="..\..\..\..\customer\src\cpp\logic\lua_bind\lua_bind_register.cc" />
     <ClCompile Include="..\..\..\..\customer\src\cpp\logic\manager\command_manager.cc" />
     <ClCompile Include="..\..\..\..\customer\src\cpp\logic\manager\event_manager.cc" />
+    <ClCompile Include="..\..\..\..\customer\src\cpp\logic\msg\msg_manager.cc" />
+    <ClCompile Include="..\..\..\..\customer\src\cpp\logic\msg\protocol\create_room_msg_protocol.pb.cc" />
+    <ClCompile Include="..\..\..\..\customer\src\cpp\logic\msg\protocol\game_start_msg_protocol.pb.cc" />
+    <ClCompile Include="..\..\..\..\customer\src\cpp\logic\msg\protocol\my_login_msg_protocol.pb.cc" />
+    <ClCompile Include="..\..\..\..\customer\src\cpp\logic\msg\protocol\personal_info_msg_protocol.pb.cc" />
     <ClCompile Include="..\..\..\..\customer\src\cpp\network\google\protobuf\descriptor.cc" />
     <ClCompile Include="..\..\..\..\customer\src\cpp\network\google\protobuf\descriptor.pb.cc" />
     <ClCompile Include="..\..\..\..\customer\src\cpp\network\google\protobuf\descriptor_database.cc" />
@@ -497,8 +508,6 @@ xcopy "$(ProjectDir)..\..\..\..\customer\src\lua" "$(LocalDebuggerWorkingDirecto
     <ClCompile Include="..\..\..\..\customer\src\cpp\network\libevent\src\signal.c" />
     <ClCompile Include="..\..\..\..\customer\src\cpp\network\libevent\src\strlcpy.c" />
     <ClCompile Include="..\..\..\..\customer\src\cpp\network\libevent\src\win32select.c" />
-    <ClCompile Include="..\..\..\..\customer\src\cpp\network\msg\msg_manager.cc" />
-    <ClCompile Include="..\..\..\..\customer\src\cpp\network\msg\protocol\my_login_msg_protocol.pb.cc" />
     <ClCompile Include="..\..\..\..\customer\src\cpp\network\network_manager.cc" />
     <ClCompile Include="..\Classes\AppDelegate.cpp" />
     <ClCompile Include="main.cpp" />
@@ -525,6 +534,9 @@ xcopy "$(ProjectDir)..\..\..\..\customer\src\lua" "$(LocalDebuggerWorkingDirecto
   </ItemGroup>
   <ItemGroup>
     <None Include="..\..\..\..\customer\src\lua\data\init_data.lua" />
+    <None Include="..\..\..\..\customer\src\lua\logic\constant\msg_id.lua" />
+    <None Include="..\..\..\..\customer\src\lua\logic\constant\msg_code.lua" />
+    <None Include="..\..\..\..\customer\src\lua\logic\constant\msg_type.lua" />
     <None Include="..\..\..\..\customer\src\lua\logic\init_logic.lua" />
     <None Include="..\..\..\..\customer\src\lua\logic\init_modules.lua" />
     <None Include="..\..\..\..\customer\src\lua\logic\manager\layer_manager.lua" />
@@ -537,7 +549,14 @@ xcopy "$(ProjectDir)..\..\..\..\customer\src\lua" "$(LocalDebuggerWorkingDirecto
     <None Include="..\..\..\..\customer\src\lua\view\constant\scene_constants.lua" />
     <None Include="..\..\..\..\customer\src\lua\view\hall\hall_scene.lua" />
     <None Include="..\..\..\..\customer\src\lua\view\init_view.lua" />
+    <None Include="..\..\..\..\customer\src\lua\view\layouts\scene\hall\hall_scene_layout.lua" />
+    <None Include="..\..\..\..\customer\src\lua\view\layouts\scene\login\login_scene_layout.lua" />
+    <None Include="..\..\..\..\customer\src\lua\view\layouts\scene\room\room_scene_layout.lua" />
+    <None Include="..\..\..\..\customer\src\lua\view\layouts\ui\hall\hall_bottom_node_layout.lua" />
+    <None Include="..\..\..\..\customer\src\lua\view\layouts\ui\hall\hall_middle_node_layout.lua" />
+    <None Include="..\..\..\..\customer\src\lua\view\layouts\ui\hall\hall_top_node_layout.lua" />
     <None Include="..\..\..\..\customer\src\lua\view\login\login_scene.lua" />
+    <None Include="..\..\..\..\customer\src\lua\view\room\room_scene.lua" />
     <None Include="..\..\..\src\main.lua" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

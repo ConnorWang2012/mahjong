@@ -14,14 +14,18 @@ modification:
 
 #include "msg_manager.h"
 
+#include "cocos/base/CCDirector.h"
+#include "cocos/base/CCScheduler.h"
+
 #include "event_headers.h"
 #include "lua_bind_helper.h"
 #include "msg/msg_type.h"
 #include "msg/msg_id.h"
+#include "msg/msg_code.h"
 #include "msg/protocol/my_login_msg_protocol.pb.h"
+#include "msg/protocol/create_room_msg_protocol.pb.h"
+#include "msg/protocol/game_start_msg_protocol.pb.h"
 #include "network/network_manager.h"
-
-#include "cocos2d.h"
 
 namespace gamer
 {
@@ -37,43 +41,26 @@ MsgManager* MsgManager::getInstance()
 	return &s_msg_mgr;
 }
 
-bool MsgManager::sendMsg(msg_header_t msg_type,
-                         msg_header_t msg_id,
-                         const MsgResponseCallback& response_cb)
-{
-    return this->sendMsg({ gamer::client_msg_header_len(), msg_type, msg_id, nullptr },
-        response_cb);
-}
-
 bool MsgManager::sendMsg(const ClientMsg& msg, const MsgResponseCallback& response_cb)
 {
-    char buf[MsgManager::MAX_MSG_LEN] = { 0 };
-    msg_header_t len = 0;
-    if (this->packMsg(msg, buf, len))
-    {
-        auto key = this->getMsgCallbackKey(msg.type, msg.id);
-        msg_response_callbacks_.insert(std::make_pair(key, response_cb));
-
-        return NetworkManager::getInstance()->send(buf, len);
-    }
-    return false;
+    auto m = static_cast<google::protobuf::Message*>(msg.context);
+    return this->sendMsg(msg.type, msg.id, *m, false, -1, response_cb);
 }
 
-bool MsgManager::sendMsg(msg_header_t msg_type, msg_header_t msg_id, LuaFunction response_cb)
+bool MsgManager::sendMsg(msg_header_t msg_type,
+                         msg_header_t msg_id,
+                         const google::protobuf::Message& msg,
+                         const MsgResponseCallback& response_cb)
 {
-    LuaBindHelper::getInstance()->storeLuaFunction(4);
+    return this->sendMsg(msg_type, msg_id, msg, false, -1, response_cb);
+}
 
-    char buf[MsgManager::MAX_MSG_LEN] = { 0 };
-    msg_header_t len = 0;
-    gamer::ClientMsg msg = { gamer::client_msg_header_len(), msg_type, msg_id, nullptr };
-    if (this->packMsg(msg, buf, len))
-    {
-        auto key = this->getMsgCallbackKey(msg_type, msg_id);
-        msg_response_lua_callbacks_.insert(std::make_pair(key, response_cb));
-
-        return NetworkManager::getInstance()->send(buf, len);
-    }
-    return false;
+bool MsgManager::sendMsg(msg_header_t msg_type, 
+                         msg_header_t msg_id, 
+                         const google::protobuf::Message& msg, 
+                         gamer::LuaFunction response_cb)
+{
+    return this->sendMsg(msg_type, msg_id, msg, true, response_cb, nullptr);
 }
 
 void MsgManager::init()
@@ -90,15 +77,29 @@ void MsgManager::init()
 
 void MsgManager::addMsgDispatchHandlers()
 {
-    msg_dispatch_handlers_.insert(std::make_pair((int)MsgTypes::S2C_MSG_TYPE_LOGIN, 
+    // login
+    msg_dispatchers_.insert(std::make_pair((int)MsgTypes::S2C_MSG_TYPE_LOGIN, 
         CALLBACK_SELECTOR_1(MsgManager::dealWithLoginMsg, this)));
     
+    // room
+    msg_dispatchers_.insert(std::make_pair((int)MsgTypes::C2S_MSG_TYPE_ROOM,
+        CALLBACK_SELECTOR_1(MsgManager::dealWithRoomMsg, this)));
 }
 
 void MsgManager::addMsgHandlers()
 {
+    // login
     msg_handlers_.insert(std::make_pair((int)MsgIDs::MSG_ID_LOGIN_MY,
         CALLBACK_SELECTOR_1(MsgManager::dealWithMgLoginMsg, this)));
+
+    // room
+    // create room
+    msg_handlers_.insert(std::make_pair((int)MsgIDs::MSG_ID_ROOM_CREATE,
+        CALLBACK_SELECTOR_1(MsgManager::dealWithCreateRoomMsg, this)));
+
+    // start game
+    msg_handlers_.insert(std::make_pair((int)MsgIDs::MSG_ID_ROOM_START_GAME,
+        CALLBACK_SELECTOR_1(MsgManager::dealWithStartGameMsg, this)));
 }
 
 bool MsgManager::packMsg(const ClientMsg& msg, char* buf, msg_header_t& len)
@@ -127,6 +128,54 @@ bool MsgManager::packMsg(const ClientMsg& msg, char* buf, msg_header_t& len)
     return true;
 }
 
+bool MsgManager::packMsg(msg_header_t msg_type, 
+                         msg_header_t msg_id, 
+                         const google::protobuf::Message& msg, 
+                         char* buf, 
+                         msg_header_t& len)
+{
+    auto len_total = gamer::client_msg_header_len() + msg.ByteSize();
+    if (len_total > MsgManager::MAX_MSG_LEN) // TODO : log
+        return false;
+
+    len = len_total;
+
+    memcpy(buf, &len_total, sizeof(msg_header_t));
+    memcpy(buf + sizeof(msg_header_t), &msg_type, sizeof(msg_header_t));
+    memcpy(buf + sizeof(msg_header_t) * 2, &msg_id, sizeof(msg_header_t));
+
+    return msg.SerializeToArray(buf + gamer::client_msg_header_len(), msg.ByteSize());
+}
+
+bool MsgManager::sendMsg(msg_header_t msg_type,
+                         msg_header_t msg_id,
+                         const google::protobuf::Message& msg,
+                         bool is_lua,
+                         gamer::LuaFunction lua_cb,
+                         const MsgResponseCallback& cpp_cb)
+{
+    char buf[MsgManager::MAX_MSG_LEN] = { 0 };
+    msg_header_t len_total = 0;
+    auto ok = this->packMsg(msg_type, msg_id, msg, buf, len_total);
+    if (ok)
+    {
+        auto key = this->getMsgCallbackKey(msg_type, msg_id);
+        if (is_lua)
+        {
+            LuaBindHelper::getInstance()->storeLuaFunction(5);
+            msg_response_lua_callbacks_.insert(std::make_pair(key, lua_cb));
+        }
+        else
+        {
+            msg_response_cpp_callbacks_.insert(std::make_pair(key, cpp_cb));
+        }
+
+        return NetworkManager::getInstance()->send(buf, len_total);
+    }
+
+    return false;
+}
+
 std::string MsgManager::getMsgCallbackKey(msg_header_t msg_type, msg_header_t msg_id)
 {
     char buf[gamer::client_msg_header_len()];
@@ -139,8 +188,8 @@ void MsgManager::getMsgCallbacks(const std::string& key,
                                  gamer::LuaFunction& lua_cb)
 {
     // C++ callback
-    auto itr1 = msg_response_callbacks_.find(key);
-    if (itr1 != msg_response_callbacks_.end())
+    auto itr1 = msg_response_cpp_callbacks_.find(key);
+    if (itr1 != msg_response_cpp_callbacks_.end())
     {
         cpp_cb = itr1->second;
     }
@@ -231,29 +280,53 @@ void MsgManager::dealWithMgLoginMsg(const ServerMsg& msg)
     }
 }
 
+void MsgManager::dealWithRoomMsg(const ServerMsg& msg)
+{
+    auto itr = msg_handlers_.find((int)msg.id);
+    if (itr != msg_handlers_.end())
+    {
+        itr->second(msg);
+    }
+}
+
+void MsgManager::dealWithCreateRoomMsg(const ServerMsg& msg)
+{
+    if (MsgCodes::MSG_RESPONSE_CODE_SUCCESS == (MsgCodes)msg.code && nullptr != msg.context)
+    {
+        char buf[MsgManager::MAX_MSG_LEN] = { 0 };
+        auto len = msg.total_len - gamer::server_msg_header_len();
+        protocol::CreateRoomMsgProtocol proto;
+        proto.ParseFromArray(msg.context, len);
+
+        this->dispatchMsg(msg.code,
+                          msg.type,
+                          msg.id,
+                          &proto,
+                          "gamer::protocol::CreateRoomMsgProtocol");
+    }
+    else
+    {
+        this->dispatchMsg(msg.code, msg.type, msg.id, nullptr, "");
+    }
+}
+
+void MsgManager::dealWithStartGameMsg(const ServerMsg& msg)
+{
+    if (msg.context)
+    {
+
+    }
+}
+
 void MsgManager::onSocketConnected(gamer::Event* event)
 {
- /*   char buf[MsgManager::MAX_MSG_LEN] = { 0 };
-    protocol::MyLoginMsgProtocol proto;
-    proto.set_account("2017");
-    proto.set_password(2018);
-    proto.SerializeToArray(buf, proto.ByteSize());
 
-    auto len_total = gamer::client_msg_header_len() + proto.ByteSize();
-    gamer::ClientMsg msg = { len_total, 0, 1, buf };
-
-    auto func = [&](int code, msg_header_t msg_type, msg_header_t msg_id, void* ctx) {
-        printf("msg callback code : %d, msg_type : %d, msg_id : %d\n", code, msg_type, msg_id);
-    };
-
-    this->sendMsg(msg, func);
-    */
 }
 
 void MsgManager::onMsgReceived(const ServerMsg& msg)
 {
-    auto itr = msg_dispatch_handlers_.find((int)msg.type);
-    if (itr != msg_dispatch_handlers_.end())
+    auto itr = msg_dispatchers_.find((int)msg.type);
+    if (itr != msg_dispatchers_.end())
     {
         itr->second(msg);
     }

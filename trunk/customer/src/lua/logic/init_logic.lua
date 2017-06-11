@@ -12,3 +12,6 @@ author:
 modification:
 --]]
 
+require "logic.constant.msg_id.lua"
+require "logic.constant.msg_type.lua"
+require "logic.constant.msg_code.lua"

@@ -20,8 +20,10 @@ namespace gamer
 
 enum class MsgIDs
 {
-    MSG_ID_LOGIN_3RD_PARTY,
-    MSG_ID_LOGIN_MY
+    MSG_ID_LOGIN_3RD_PARTY          = 1,
+    MSG_ID_LOGIN_MY                 = 2,
+    MSG_ID_ROOM_CREATE              = 3,
+    MSG_ID_ROOM_START_GAME          = 4,
 };
 
 }

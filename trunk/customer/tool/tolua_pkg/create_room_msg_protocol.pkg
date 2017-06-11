@@ -1,0 +1,34 @@
+$#include "msg/protocol/create_room_msg_protocol.pb.h"
+
+$#include <string>
+$#include <google/protobuf/stubs/common.h>
+
+$#include <google/protobuf/generated_message_util.h>
+$#include <google/protobuf/message.h>
+$#include <google/protobuf/repeated_field.h>
+$#include <google/protobuf/extension_set.h>
+$#include <google/protobuf/unknown_field_set.h>
+
+namespace gamer {
+
+namespace protocol {
+
+class CreateRoomMsgProtocol : public google::protobuf::Message {
+public:
+	CreateRoomMsgProtocol();
+
+	int ByteSize() const;
+
+	inline void set_rounds_num(int value);
+    inline google::protobuf::int32 rounds_num() const;
+
+	inline void set_players_num(int value);
+    inline google::protobuf::int32 players_num() const;
+
+    inline void set_room_cards_num(int value);
+    inline google::protobuf::int32 room_cards_num() const;
+};
+
+} // namespace protocol
+
+} // namespace gamer

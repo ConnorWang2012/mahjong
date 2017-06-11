@@ -33,10 +33,15 @@ public:
     //             const MsgResponseCallback& response_cb);
 
     // use for c++ only
-    //bool sendMsg(const ClientMsg& msg, const MsgResponseCallback& response_cb);
+    //bool sendMsg(const gamer::ClientMsg& msg, const MsgResponseCallback& response_cb);
 
     // use for lua only
-    bool sendMsg(int msg_type, int msg_id, LuaFunction response_cb);
+    //bool sendMsg(const gamer::ClientMsg& msg, gamer::LuaFunction response_cb);
+
+    bool sendMsg(msg_header_t msg_type, 
+                 msg_header_t msg_id, 
+                 const google::protobuf::Message& msg, 
+                 gamer::LuaFunction response_cb);
 };
 
 } // namespace gamer

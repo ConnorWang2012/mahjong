@@ -33,8 +33,12 @@
         <OpenedDocuments>
           <FilePathData Path="layouts/scene/hall/hall_scene_layout.csd" />
           <FilePathData Path="layouts/scene/login/login_scene_layout.csd" />
+          <FilePathData Path="layouts/ui/hall/hall_bottom_node_layout.csd" />
+          <FilePathData Path="layouts/ui/hall/hall_top_node_layout.csd" />
+          <FilePathData Path="layouts/ui/hall/hall_middle_node_layout.csd" />
+          <FilePathData Path="layouts/scene/room/room_scene_layout.csd" />
         </OpenedDocuments>
-        <ActiveDocument Path="layouts/scene/login/login_scene_layout.csd" />
+        <ActiveDocument Path="layouts/scene/room/room_scene_layout.csd" />
       </Value>
     </Item>
   </Properties>

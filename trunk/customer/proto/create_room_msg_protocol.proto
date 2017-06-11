@@ -1,0 +1,7 @@
+package gamer.protocol;
+
+message CreateRoomMsgProtocol {
+  required int32 rounds_num  		= 1;
+  required int32 players_num  		= 2;
+  optional int32 room_cards_num 	= 3[default = 0];
+}

@@ -124,12 +124,6 @@
     <Filter Include="classes\cpp\network\protobuf\stubs">
       <UniqueIdentifier>{9320dab6-8b6e-48fb-b6c5-ed33add26459}</UniqueIdentifier>
     </Filter>
-    <Filter Include="classes\cpp\network\msg">
-      <UniqueIdentifier>{1028321f-79d8-4851-b909-202641efbf2e}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="classes\cpp\network\msg\protocol">
-      <UniqueIdentifier>{9e843670-0690-45d5-a4a5-408fdd88f4e2}</UniqueIdentifier>
-    </Filter>
     <Filter Include="classes\lua\logic\test">
       <UniqueIdentifier>{051c018b-f1c8-4b4d-a97e-1b902f149f68}</UniqueIdentifier>
     </Filter>
@@ -165,6 +159,15 @@
     </Filter>
     <Filter Include="classes\lua\view\layouts\ui\room">
       <UniqueIdentifier>{ed770fbe-5dde-4107-aa71-2fe52aa5461e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="classes\lua\view\room">
+      <UniqueIdentifier>{c1eaf557-8ed0-4a19-9d47-9447b859eb6c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="classes\cpp\logic\msg">
+      <UniqueIdentifier>{02dd7504-a83a-4bea-9627-71b854f2e761}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="classes\cpp\logic\msg\protocol">
+      <UniqueIdentifier>{8348630d-0045-4f71-8799-e505091abff4}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -806,26 +809,38 @@
     <ClInclude Include="..\..\..\..\customer\src\cpp\network\google\protobuf\repeated_field.h">
       <Filter>classes\cpp\network\protobuf</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\..\customer\src\cpp\network\msg\msg_id.h">
-      <Filter>classes\cpp\network\msg</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\..\customer\src\cpp\network\msg\msg_manager.h">
-      <Filter>classes\cpp\network\msg</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\..\customer\src\cpp\network\msg\msg.h">
-      <Filter>classes\cpp\network\msg</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\..\customer\src\cpp\network\msg\msg_type.h">
-      <Filter>classes\cpp\network\msg</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\..\customer\src\cpp\network\msg\protocol\my_login_msg_protocol.pb.h">
-      <Filter>classes\cpp\network\msg\protocol</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\..\..\customer\src\cpp\logic\lua_bind\lua_bind_register.h">
       <Filter>classes\cpp\logic\lua_bind</Filter>
     </ClInclude>
     <ClInclude Include="..\..\..\..\customer\src\cpp\logic\lua_bind\lua_bind_helper.h">
       <Filter>classes\cpp\logic\lua_bind</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\customer\src\cpp\logic\msg\msg.h">
+      <Filter>classes\cpp\logic\msg</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\customer\src\cpp\logic\msg\msg_id.h">
+      <Filter>classes\cpp\logic\msg</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\customer\src\cpp\logic\msg\msg_manager.h">
+      <Filter>classes\cpp\logic\msg</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\customer\src\cpp\logic\msg\msg_type.h">
+      <Filter>classes\cpp\logic\msg</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\customer\src\cpp\logic\msg\protocol\game_start_msg_protocol.pb.h">
+      <Filter>classes\cpp\logic\msg\protocol</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\customer\src\cpp\logic\msg\protocol\my_login_msg_protocol.pb.h">
+      <Filter>classes\cpp\logic\msg\protocol</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\customer\src\cpp\logic\msg\protocol\personal_info_msg_protocol.pb.h">
+      <Filter>classes\cpp\logic\msg\protocol</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\customer\src\cpp\logic\msg\protocol\create_room_msg_protocol.pb.h">
+      <Filter>classes\cpp\logic\msg\protocol</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\customer\src\cpp\logic\msg\msg_code.h">
+      <Filter>classes\cpp\logic\msg</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -1058,12 +1073,6 @@
     <ClCompile Include="..\..\..\..\customer\src\cpp\network\google\protobuf\service.cc">
       <Filter>classes\cpp\network\protobuf</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\..\..\customer\src\cpp\network\msg\msg_manager.cc">
-      <Filter>classes\cpp\network\msg</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\..\..\customer\src\cpp\network\msg\protocol\my_login_msg_protocol.pb.cc">
-      <Filter>classes\cpp\network\msg\protocol</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\..\..\customer\src\cpp\logic\lua_bind\lua_bind_register.cc">
       <Filter>classes\cpp\logic\lua_bind</Filter>
     </ClCompile>
@@ -1089,6 +1098,27 @@
       <Filter>classes\cpp\logic\lua_bind\auto</Filter>
     </ClCompile>
     <ClCompile Include="..\..\..\..\customer\src\cpp\logic\lua_bind\auto\lua_bind_my_login_msg_protocol.cc">
+      <Filter>classes\cpp\logic\lua_bind\auto</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\customer\src\cpp\logic\msg\msg_manager.cc">
+      <Filter>classes\cpp\logic\msg</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\customer\src\cpp\logic\msg\protocol\game_start_msg_protocol.pb.cc">
+      <Filter>classes\cpp\logic\msg\protocol</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\customer\src\cpp\logic\msg\protocol\my_login_msg_protocol.pb.cc">
+      <Filter>classes\cpp\logic\msg\protocol</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\customer\src\cpp\logic\msg\protocol\personal_info_msg_protocol.pb.cc">
+      <Filter>classes\cpp\logic\msg\protocol</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\customer\src\cpp\logic\lua_bind\auto\lua_bind_msg.cc">
+      <Filter>classes\cpp\logic\lua_bind\auto</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\customer\src\cpp\logic\msg\protocol\create_room_msg_protocol.pb.cc">
+      <Filter>classes\cpp\logic\msg\protocol</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\customer\src\cpp\logic\lua_bind\auto\lua_bind_create_room_msg_protocol.cc">
       <Filter>classes\cpp\logic\lua_bind\auto</Filter>
     </ClCompile>
   </ItemGroup>
@@ -1145,6 +1175,36 @@
     </None>
     <None Include="..\..\..\..\customer\src\lua\view\hall\hall_scene.lua">
       <Filter>classes\lua\view\hall</Filter>
+    </None>
+    <None Include="..\..\..\..\customer\src\lua\view\layouts\ui\hall\hall_middle_node_layout.lua">
+      <Filter>classes\lua\view\layouts\ui\hall</Filter>
+    </None>
+    <None Include="..\..\..\..\customer\src\lua\view\layouts\ui\hall\hall_top_node_layout.lua">
+      <Filter>classes\lua\view\layouts\ui\hall</Filter>
+    </None>
+    <None Include="..\..\..\..\customer\src\lua\view\layouts\ui\hall\hall_bottom_node_layout.lua">
+      <Filter>classes\lua\view\layouts\ui\hall</Filter>
+    </None>
+    <None Include="..\..\..\..\customer\src\lua\view\room\room_scene.lua">
+      <Filter>classes\lua\view\room</Filter>
+    </None>
+    <None Include="..\..\..\..\customer\src\lua\view\layouts\scene\room\room_scene_layout.lua">
+      <Filter>classes\lua\view\layouts\scene\room</Filter>
+    </None>
+    <None Include="..\..\..\..\customer\src\lua\view\layouts\scene\login\login_scene_layout.lua">
+      <Filter>classes\lua\view\layouts\scene\login</Filter>
+    </None>
+    <None Include="..\..\..\..\customer\src\lua\view\layouts\scene\hall\hall_scene_layout.lua">
+      <Filter>classes\lua\view\layouts\scene\hall</Filter>
+    </None>
+    <None Include="..\..\..\..\customer\src\lua\logic\constant\msg_id.lua">
+      <Filter>classes\lua\logic\constant</Filter>
+    </None>
+    <None Include="..\..\..\..\customer\src\lua\logic\constant\msg_type.lua">
+      <Filter>classes\lua\logic\constant</Filter>
+    </None>
+    <None Include="..\..\..\..\customer\src\lua\logic\constant\msg_code.lua">
+      <Filter>classes\lua\logic\constant</Filter>
     </None>
   </ItemGroup>
 </Project>

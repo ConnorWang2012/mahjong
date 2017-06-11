@@ -1,0 +1,37 @@
+$#include "msg/msg.h"
+
+$#include <functional>
+
+$#include "macros.h"
+
+namespace gamer
+{
+
+typedef unsigned int msg_header_t;
+
+// msg  for client to server
+struct ClientMsg
+{
+    ClientMsg();
+    msg_header_t total_len;
+    msg_header_t type;
+    msg_header_t id;
+    void* context;
+};
+
+// msg for server to client
+struct ServerMsg
+{
+    ServerMsg();
+    msg_header_t total_len;
+    msg_header_t type;
+    msg_header_t id;
+    msg_header_t code; // msg response result code
+    void* context;
+};
+
+constexpr msg_header_t client_msg_header_len() { return sizeof(msg_header_t) * 3; }
+
+constexpr msg_header_t server_msg_header_len() { return sizeof(msg_header_t) * 4; }
+
+} // namespace gamer

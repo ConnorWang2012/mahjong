@@ -15,6 +15,15 @@ namespace protocol {
 
 class MyLoginMsgProtocol : public google::protobuf::Message {
 public:
+	MyLoginMsgProtocol();
+
+	bool SerializeToArray(void* data, int size) const;
+
+	int ByteSize() const;
+
+	inline void set_account(const char* value);
+	inline void set_password(int value);
+
     inline const std::string& account() const {  return *account_; }
     inline google::protobuf::int32 password() const { return password_; }
 };

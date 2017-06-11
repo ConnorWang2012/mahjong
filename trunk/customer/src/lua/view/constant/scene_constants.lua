@@ -17,19 +17,22 @@ local SceneConstants = {}
 SceneConstants.SceneIDs =
 {
     LOGIN_SCENE                 = 1,
-    HALL_SCENE                  = 2
+    HALL_SCENE                  = 2,
+    ROOM_SCENE                  = 3
 }
 
 SceneConstants.SceneFiles =
 {
 	LOGIN_SCENE_FILE		    = "view.login.login_scene.lua",
-    HALL_SCENE_FILE		        = "view.hall.hall_scene.lua"
+    HALL_SCENE_FILE		        = "view.hall.hall_scene.lua",
+    ROOM_SCENE_FILE		        = "view.room.room_scene.lua"
 }
 
 SceneConstants.SceneLayoutFiles =
 {
 	LOGIN_SCENE_LAYOUT_FILE	    = "view.layouts.scene.login.login_scene_layout.lua",
-    HALL_SCENE_LAYOUT_FILE	    = "view.layouts.scene.hall.hall_scene_layout.lua"
+    HALL_SCENE_LAYOUT_FILE	    = "view.layouts.scene.hall.hall_scene_layout.lua",
+    ROOM_SCENE_LAYOUT_FILE	    = "view.layouts.scene.room.room_scene_layout.lua"
 }
 
 SceneConstants.ScenesCfg =
@@ -44,6 +47,11 @@ SceneConstants.ScenesCfg =
 			scene_file = SceneConstants.SceneFiles.HALL_SCENE_FILE,
 			view_file  = SceneConstants.SceneLayoutFiles.HALL_SCENE_LAYOUT_FILE
 		},
+    [SceneConstants.SceneIDs.ROOM_SCENE]		   = 
+		{ 
+			scene_file = SceneConstants.SceneFiles.ROOM_SCENE_FILE,
+			view_file  = SceneConstants.SceneLayoutFiles.ROOM_SCENE_LAYOUT_FILE
+		}
 }
 
 return SceneConstants

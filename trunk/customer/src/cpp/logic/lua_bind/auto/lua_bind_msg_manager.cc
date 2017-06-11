@@ -1,6 +1,6 @@
 /*
 ** Lua binding: msg_manager
-** Generated automatically by tolua++-1.0.92 on 05/23/17 00:34:23.
+** Generated automatically by tolua++-1.0.92 on 06/10/17 02:24:30.
 */
 
 #ifndef __cplusplus
@@ -24,6 +24,8 @@ TOLUA_API int  tolua_msg_manager_open (lua_State* tolua_S);
 static void tolua_reg_types (lua_State* tolua_S)
 {
  tolua_usertype(tolua_S,"gamer::MsgManager");
+ tolua_usertype(tolua_S,"gamer::LuaFunction");
+ tolua_usertype(tolua_S,"google::protobuf::Message");
 }
 
 /* method: getInstance of class  gamer::MsgManager */
@@ -64,22 +66,25 @@ static int tolua_msg_manager_gamer_MsgManager_sendMsg00(lua_State* tolua_S)
      !tolua_isusertype(tolua_S,1,"gamer::MsgManager",0,&tolua_err) ||
      !tolua_isnumber(tolua_S,2,0,&tolua_err) ||
      !tolua_isnumber(tolua_S,3,0,&tolua_err) ||
-     //!tolua_isnumber(tolua_S,4,0,&tolua_err) ||
-     !tolua_isnoobj(tolua_S,5,&tolua_err)
+     (tolua_isvaluenil(tolua_S,4,&tolua_err) || !tolua_isusertype(tolua_S,4,"const google::protobuf::Message",0,&tolua_err)) ||
+     //(tolua_isvaluenil(tolua_S,5,&tolua_err) || !tolua_isusertype(tolua_S,5,"gamer::LuaFunction",0,&tolua_err)) ||
+     !lua_isfunction(tolua_S, 5) ||
+     !tolua_isnoobj(tolua_S,6,&tolua_err)
  )
   goto tolua_lerror;
  else
 #endif
  {
   gamer::MsgManager* self = (gamer::MsgManager*)  tolua_tousertype(tolua_S,1,0);
-  int msg_type = ((int)  tolua_tonumber(tolua_S,2,0));
-  int msg_id = ((int)  tolua_tonumber(tolua_S,3,0));
-   int response_cb = ((  int)  tolua_tonumber(tolua_S,4,0));
+  unsigned int msg_type = (( unsigned int)  tolua_tonumber(tolua_S,2,0));
+  unsigned int msg_id = (( unsigned int)  tolua_tonumber(tolua_S,3,0));
+  const google::protobuf::Message* msg = ((const google::protobuf::Message*)  tolua_tousertype(tolua_S,4,0));
+  int response_cb = ((int) tolua_tonumber(tolua_S,5,0));
 #ifndef TOLUA_RELEASE
   if (!self) tolua_error(tolua_S,"invalid 'self' in function 'sendMsg'", NULL);
 #endif
   {
-   bool tolua_ret = (bool)  self->sendMsg(msg_type,msg_id,response_cb);
+   bool tolua_ret = (bool)  self->sendMsg(msg_type,msg_id,*msg,response_cb);
    tolua_pushboolean(tolua_S,(bool)tolua_ret);
   }
  }

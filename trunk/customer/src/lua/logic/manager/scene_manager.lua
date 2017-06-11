@@ -16,6 +16,7 @@ local SceneManager = {}
 
 function SceneManager.runScene(scene_id)
     if not scene_id then
+        print("[SceneManager.runScene] scene id nil")
         return
     end
 

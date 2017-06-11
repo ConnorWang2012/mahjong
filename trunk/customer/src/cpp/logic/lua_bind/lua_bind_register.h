@@ -24,9 +24,11 @@ extern "C"
 TOLUA_API int tolua_event_listener_open(lua_State*);
 TOLUA_API int tolua_event_manager_open(lua_State*);
 TOLUA_API int tolua_command_manager_open(lua_State*);
+TOLUA_API int tolua_msg_open(lua_State*);
 TOLUA_API int tolua_msg_manager_open(lua_State*);
 TOLUA_API int tolua_network_manager_open(lua_State*);
 TOLUA_API int tolua_my_login_msg_protocol_open(lua_State*);
+TOLUA_API int tolua_create_room_msg_protocol_open(lua_State*);
 
 namespace gamer
 {

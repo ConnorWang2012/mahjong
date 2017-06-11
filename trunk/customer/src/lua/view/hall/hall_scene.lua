@@ -12,10 +12,61 @@ author:
 modification:
 --]]
 
-local HallScene = class("HallScene", require "view.base.layer_base")
+local HallScene         = class("HallScene", require "view.base.layer_base")
+local HallTopLayout     = require "view.layouts.ui.hall.hall_top_node_layout"
+local HallMiddleLayout  = require "view.layouts.ui.hall.hall_middle_node_layout"
+local HallBottomLayout  = require "view.layouts.ui.hall.hall_bottom_node_layout"
 
 function HallScene:ctor(view_file)
     self.super.ctor(self, view_file)
+
+    self:initLayout()
+end
+
+function HallScene:initLayout()
+    self.hall_top_layout = HallTopLayout:create().root    
+    self:addChild(self.hall_top_layout)
+    self.hall_top_layout:setPosition(display.top_center)
+
+    self.hall_middle_layout = HallMiddleLayout:create().root    
+    self:addChild(self.hall_middle_layout)
+    self.hall_middle_layout:setPosition(display.center)
+
+    self.hall_bottom_layout = HallBottomLayout:create().root    
+    self:addChild(self.hall_bottom_layout)
+    self.hall_bottom_layout:setPosition(display.top_bottom)
+
+    local node_middle = self.hall_middle_layout:getChildByName("node_middle")
+    local img_normal_room = node_middle:getChildByName("img_middle")
+    img_normal_room:setTouchEnabled(true)
+    img_normal_room:addClickEventListener(handler(self, self.onImgNormalRoomTouch))
+end
+
+function HallScene:onImgNormalRoomTouch(sender)
+    print("[HallScene:onImgNormalRoomTouch]")
+    local proto = gamer.protocol.CreateRoomMsgProtocol()
+    proto:set_rounds_num(10)
+    proto:set_players_num(4)
+    proto:set_room_cards_num(1)
+
+    gamer.MsgManager:getInstance():sendMsg(gamer.MsgTypes.C2S_MSG_TYPE_ROOM, 
+        gamer.MsgIDs.MSG_ID_ROOM_CREATE, 
+        proto,
+        handler(self, self.onCreateRoomMsgReceived))
+end
+
+function HallScene:onCreateRoomMsgReceived(code, msg_type, msg_id, msg)
+    print("[HallScene:onCreateRoomMsgReceived] code : ", code)
+    if code == gamer.MsgCodes.SUCCEED then
+        gamer.SceneManager.runScene(gamer.SceneConstants.SceneIDs.ROOM_SCENE)
+    end
+end
+
+function HallScene:onStartGameMsgReceived(code, msg_type, msg_id, msg)
+    print("[HallScene:onStartGameMsgReceived] code : ", code)
+    if code == gamer.MsgCodes.SUCCEED then
+        gamer.SceneManager.runScene(gamer.SceneConstants.SceneIDs.ROOM_SCENE)
+    end
 end
 
 function HallScene:onEnter()

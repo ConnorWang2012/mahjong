@@ -18,7 +18,7 @@ modification:
 #include <string>
 #include <unordered_map>
 
-#include "macros.h"
+#include "base/macros.h"
 #include "msg/msg.h"
 
 namespace google
@@ -51,15 +51,19 @@ public:
 	static MsgManager* getInstance();
 
     // use for c++ only
-    bool sendMsg(msg_header_t msg_type, 
-                 msg_header_t msg_id, 
-                 const MsgResponseCallback& response_cb);
-
-    // use for c++ only
     bool sendMsg(const ClientMsg& msg, const MsgResponseCallback& response_cb);
 
+    // use for c++ only
+    bool sendMsg(msg_header_t msg_type,
+                 msg_header_t msg_id,
+                 const google::protobuf::Message& msg,
+                 const MsgResponseCallback& response_cb);
+
     // use for lua only
-    bool sendMsg(msg_header_t msg_type, msg_header_t msg_id, gamer::LuaFunction response_cb);
+    bool sendMsg(msg_header_t msg_type, 
+                 msg_header_t msg_id, 
+                 const google::protobuf::Message& msg, 
+                 gamer::LuaFunction response_cb);
 
 private:
     typedef std::function<void(const ServerMsg&)> MsgHandler;
@@ -73,6 +77,19 @@ private:
     void addMsgHandlers();
 
     bool packMsg(const ClientMsg& msg, char* buf, msg_header_t& len);
+
+    bool packMsg(msg_header_t msg_type,
+                 msg_header_t msg_id,
+                 const google::protobuf::Message& msg, 
+                 char* buf, 
+                 msg_header_t& len);
+
+    bool sendMsg(msg_header_t msg_type,
+                 msg_header_t msg_id,
+                 const google::protobuf::Message& msg,
+                 bool is_lua, 
+                 gamer::LuaFunction lua_cb, 
+                 const MsgResponseCallback& cpp_cb);
 
     std::string getMsgCallbackKey(msg_header_t msg_type, msg_header_t msg_id);
 
@@ -92,17 +109,23 @@ private:
 
     void dealWithMgLoginMsg(const ServerMsg& msg);
 
+    void dealWithRoomMsg(const ServerMsg& msg);
+
+    void dealWithCreateRoomMsg(const ServerMsg& msg);
+
+    void dealWithStartGameMsg(const ServerMsg& msg);
+
     void onSocketConnected(gamer::Event* event);
 
     void onMsgReceived(const ServerMsg& msg);
 
     friend class NetworkManager;
 
-    std::unordered_map<std::string, MsgResponseCallback> msg_response_callbacks_;
+    std::unordered_map<std::string, MsgResponseCallback> msg_response_cpp_callbacks_;
     std::unordered_map<std::string, LuaFunction> msg_response_lua_callbacks_;
 
-    std::unordered_map<int, MsgHandler> msg_handlers_;          // key is MsgIDs
-    std::unordered_map<int, MsgHandler> msg_dispatch_handlers_; // key is MsgTypes
+    std::unordered_map<int, MsgHandler> msg_handlers_;    // key is MsgIDs
+    std::unordered_map<int, MsgHandler> msg_dispatchers_; // key is MsgTypes
 
     static const int MAX_MSG_LEN = 4096;
 };

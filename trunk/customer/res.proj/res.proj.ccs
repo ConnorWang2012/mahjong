@@ -9,27 +9,6 @@
             <Image Name="btn_common_purple.png" />
           </Folder>
           <Folder Name="hall">
-            <Folder Name="hall_bottom">
-              <Image Name="hall_activity.png" />
-              <Image Name="hall_bottom_bg.png" />
-              <Image Name="hall_rank.png" />
-              <Image Name="hall_shop.png" />
-              <Image Name="hall_task.png" />
-            </Folder>
-            <Folder Name="hall_middle">
-              <Image Name="hall_room_normal.png" />
-              <Image Name="hall_room_personal.png" />
-            </Folder>
-            <Folder Name="hall_top">
-              <Image Name="hall_firstcharge.png" />
-              <Image Name="hall_friend.png" />
-              <Image Name="hall_msg.png" />
-              <Image Name="hall_role.png" />
-              <Image Name="hall_set.png" />
-              <Image Name="hall_sign.png" />
-              <Image Name="hall_title_bg.png" />
-              <Image Name="hall_title_name.png" />
-            </Folder>
             <Folder Name="plist">
               <PlistImageFolder Image="hall_bottom.png" PListFile="hall_bottom.plist" Name=".hall_bottom_PList.Dir">
                 <PlistImageFile Name="hall_activity.png" Key="hall_activity.png" />
@@ -58,7 +37,9 @@
           <Folder Name="login">
             <Image Name="login_bg.jpg" />
           </Folder>
-          <Folder Name="room" />
+          <Folder Name="room">
+            <Image Name="normal_room_bg.jpg" />
+          </Folder>
         </Folder>
         <Folder Name="layouts">
           <Folder Name="scene">
@@ -68,7 +49,9 @@
             <Folder Name="login">
               <Project Name="login_scene_layout.csd" Type="Scene" />
             </Folder>
-            <Folder Name="room" />
+            <Folder Name="room">
+              <Project Name="room_scene_layout.csd" Type="Scene" />
+            </Folder>
           </Folder>
           <Folder Name="ui">
             <Folder Name="hall">

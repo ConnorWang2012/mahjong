@@ -1,1 +1,1 @@
-protoc -I=./ --cpp_out=./ ./my_login_msg_protocol.proto
+protoc -I=./ --cpp_out=./ ./room_msg_protocol.proto
