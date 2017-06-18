@@ -1,9 +1,0 @@
-package gamer.protocol;
-
-message PersonalInfoMsgProtocol {
-  required int32 id  			= 1;
-  required string nick_name     = 2;
-  required int32 game_currency  = 3;
-  required int32 level  		= 4;
-  required string level_name  	= 5;
-}

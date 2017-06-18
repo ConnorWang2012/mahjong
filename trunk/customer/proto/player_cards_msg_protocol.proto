@@ -1,0 +1,10 @@
+package gamer.protocol;
+
+message PlayerCardsMsgProtocol {
+  optional int32 player_id  	      	= 1[default = 0];
+  repeated int32 visible_hand_cards	    = 2; // not including flower cards and season cards
+  repeated int32 invisible_hand_cards	= 3; // not including flower cards and season cards
+  repeated int32 flower_cards	   		= 4;
+  repeated int32 season_cards	   		= 5;
+  repeated int32 waiting_cards	   		= 6;
+}

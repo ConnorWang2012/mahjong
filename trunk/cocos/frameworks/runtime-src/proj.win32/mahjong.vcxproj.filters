@@ -833,14 +833,26 @@
     <ClInclude Include="..\..\..\..\customer\src\cpp\logic\msg\protocol\my_login_msg_protocol.pb.h">
       <Filter>classes\cpp\logic\msg\protocol</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\..\customer\src\cpp\logic\msg\protocol\personal_info_msg_protocol.pb.h">
-      <Filter>classes\cpp\logic\msg\protocol</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\..\..\customer\src\cpp\logic\msg\protocol\create_room_msg_protocol.pb.h">
       <Filter>classes\cpp\logic\msg\protocol</Filter>
     </ClInclude>
     <ClInclude Include="..\..\..\..\customer\src\cpp\logic\msg\msg_code.h">
       <Filter>classes\cpp\logic\msg</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\customer\src\cpp\logic\msg\protocol\player_cards_msg_protocol.pb.h">
+      <Filter>classes\cpp\logic\msg\protocol</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\customer\src\cpp\logic\msg\protocol\player_msg_protocol.pb.h">
+      <Filter>classes\cpp\logic\msg\protocol</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\customer\src\cpp\data\data_manager.h">
+      <Filter>classes\cpp\data</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\customer\src\cpp\logic\base\basic_manager.h">
+      <Filter>classes\cpp\logic\base</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\customer\src\cpp\data\data_constants.h">
+      <Filter>classes\cpp\data</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -1109,9 +1121,6 @@
     <ClCompile Include="..\..\..\..\customer\src\cpp\logic\msg\protocol\my_login_msg_protocol.pb.cc">
       <Filter>classes\cpp\logic\msg\protocol</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\..\..\customer\src\cpp\logic\msg\protocol\personal_info_msg_protocol.pb.cc">
-      <Filter>classes\cpp\logic\msg\protocol</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\..\..\customer\src\cpp\logic\lua_bind\auto\lua_bind_msg.cc">
       <Filter>classes\cpp\logic\lua_bind\auto</Filter>
     </ClCompile>
@@ -1120,6 +1129,21 @@
     </ClCompile>
     <ClCompile Include="..\..\..\..\customer\src\cpp\logic\lua_bind\auto\lua_bind_create_room_msg_protocol.cc">
       <Filter>classes\cpp\logic\lua_bind\auto</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\customer\src\cpp\logic\lua_bind\auto\lua_bind_game_start_msg_protocol.cc">
+      <Filter>classes\cpp\logic\lua_bind\auto</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\customer\src\cpp\logic\msg\protocol\player_cards_msg_protocol.pb.cc">
+      <Filter>classes\cpp\logic\msg\protocol</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\customer\src\cpp\logic\msg\protocol\player_msg_protocol.pb.cc">
+      <Filter>classes\cpp\logic\msg\protocol</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\customer\src\cpp\logic\lua_bind\auto\lua_bind_player_cards_msg_protocol.cc">
+      <Filter>classes\cpp\logic\lua_bind\auto</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\customer\src\cpp\data\data_manager.cc">
+      <Filter>classes\cpp\data</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -1188,9 +1212,6 @@
     <None Include="..\..\..\..\customer\src\lua\view\room\room_scene.lua">
       <Filter>classes\lua\view\room</Filter>
     </None>
-    <None Include="..\..\..\..\customer\src\lua\view\layouts\scene\room\room_scene_layout.lua">
-      <Filter>classes\lua\view\layouts\scene\room</Filter>
-    </None>
     <None Include="..\..\..\..\customer\src\lua\view\layouts\scene\login\login_scene_layout.lua">
       <Filter>classes\lua\view\layouts\scene\login</Filter>
     </None>
@@ -1205,6 +1226,12 @@
     </None>
     <None Include="..\..\..\..\customer\src\lua\logic\constant\msg_code.lua">
       <Filter>classes\lua\logic\constant</Filter>
+    </None>
+    <None Include="..\..\..\..\customer\src\lua\view\room\normal_room_scene.lua">
+      <Filter>classes\lua\view\room</Filter>
+    </None>
+    <None Include="..\..\..\..\customer\src\lua\view\layouts\scene\room\normal_room_scene_layout.lua">
+      <Filter>classes\lua\view\layouts\scene\room</Filter>
     </None>
   </ItemGroup>
 </Project>

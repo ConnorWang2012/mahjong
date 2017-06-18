@@ -17,6 +17,8 @@ modification:
 #include "cocos/base/CCDirector.h"
 #include "cocos/base/CCScheduler.h"
 
+#include "data/data_constants.h"
+#include "data/data_manager.h"
 #include "event_headers.h"
 #include "lua_bind_helper.h"
 #include "msg/msg_type.h"
@@ -253,6 +255,28 @@ void MsgManager::dispatchMsg(int msg_code,
     scheduler->schedule(callback, this, 0, false, "dispatch_msg");
 }
 
+void MsgManager::dealWithDispatchMsg(const ServerMsg& server_msg,
+                                     google::protobuf::Message* msg, 
+                                     const std::string& class_name)
+{
+    if (nullptr == msg)
+        return; // TODO : log
+
+    if (MsgCodes::MSG_RESPONSE_CODE_SUCCESS == (MsgCodes)server_msg.code && 
+        nullptr != server_msg.context)
+    {
+        char buf[MsgManager::MAX_MSG_LEN] = { 0 };
+        int len = server_msg.total_len - gamer::server_msg_header_len();
+        msg->ParseFromArray(server_msg.context, len);
+
+        this->dispatchMsg(server_msg.code, server_msg.type, server_msg.id, msg, class_name);
+    }
+    else
+    {
+        this->dispatchMsg(server_msg.code, server_msg.type, server_msg.id, nullptr, "");
+    }
+}
+
 void MsgManager::dealWithLoginMsg(const ServerMsg& msg)
 {
     printf("[MsgManager::DealWithLoginMsg] msg_type : %d, msg_id : %d", msg.type, msg.id);
@@ -265,19 +289,11 @@ void MsgManager::dealWithLoginMsg(const ServerMsg& msg)
 
 void MsgManager::dealWithMgLoginMsg(const ServerMsg& msg)
 {
-    if (msg.context)
-    {
-        char buf[MsgManager::MAX_MSG_LEN] = { 0 };
-        auto len = msg.total_len - gamer::server_msg_header_len();
-        protocol::MyLoginMsgProtocol proto;
-        proto.ParseFromArray(msg.context, len);
+    auto data_mgr = DataManager::getInstance();
+    auto key = (int)DataIDs::DATA_ID_MY_LOGIN_MSG_PROTOCOL;
+    auto proto = data_mgr->cacheData<protocol::MyLoginMsgProtocol>(key);
 
-        this->dispatchMsg(msg.code, 
-                          msg.type, 
-                          msg.id, 
-                          &proto, 
-                          "gamer::protocol::MyLoginMsgProtocol");
-    }
+    this->dealWithDispatchMsg(msg, proto, "gamer::protocol::MyLoginMsgProtocol");
 }
 
 void MsgManager::dealWithRoomMsg(const ServerMsg& msg)
@@ -291,31 +307,14 @@ void MsgManager::dealWithRoomMsg(const ServerMsg& msg)
 
 void MsgManager::dealWithCreateRoomMsg(const ServerMsg& msg)
 {
-    if (MsgCodes::MSG_RESPONSE_CODE_SUCCESS == (MsgCodes)msg.code && nullptr != msg.context)
-    {
-        char buf[MsgManager::MAX_MSG_LEN] = { 0 };
-        auto len = msg.total_len - gamer::server_msg_header_len();
-        protocol::CreateRoomMsgProtocol proto;
-        proto.ParseFromArray(msg.context, len);
-
-        this->dispatchMsg(msg.code,
-                          msg.type,
-                          msg.id,
-                          &proto,
-                          "gamer::protocol::CreateRoomMsgProtocol");
-    }
-    else
-    {
-        this->dispatchMsg(msg.code, msg.type, msg.id, nullptr, "");
-    }
+    protocol::CreateRoomMsgProtocol proto;
+    this->dealWithDispatchMsg(msg, &proto, "gamer::protocol::CreateRoomMsgProtocol");
 }
 
 void MsgManager::dealWithStartGameMsg(const ServerMsg& msg)
 {
-    if (msg.context)
-    {
-
-    }
+    protocol::GameStartMsgProtocol proto;
+    this->dealWithDispatchMsg(msg, &proto, "gamer::protocol::GameStartMsgProtocol");
 }
 
 void MsgManager::onSocketConnected(gamer::Event* event)

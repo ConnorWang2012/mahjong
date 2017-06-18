@@ -11,11 +11,11 @@
 author:
 modification:
 --]]
-
+--[[
 if not cc.exports.gamer then
 	cc.exports.gamer = {}
 end
-
+]]
 require "data.init_data"
 require "logic.init_logic"
 require "network.init_network"

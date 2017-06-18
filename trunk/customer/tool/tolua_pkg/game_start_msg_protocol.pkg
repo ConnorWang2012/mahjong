@@ -1,0 +1,54 @@
+$#include "msg/protocol/game_start_msg_protocol.pb.h"
+$#include "msg/protocol/player_cards_msg_protocol.pb.h"
+
+$#include <string>
+$#include <google/protobuf/stubs/common.h>
+
+$#include <google/protobuf/generated_message_util.h>
+$#include <google/protobuf/message.h>
+$#include <google/protobuf/repeated_field.h>
+$#include <google/protobuf/extension_set.h>
+$#include <google/protobuf/unknown_field_set.h>
+
+namespace gamer {
+
+namespace protocol {
+
+class GameStartMsgProtocol : public google::protobuf::Message {
+public:
+	GameStartMsgProtocol();
+
+	int ByteSize() const;
+
+	// room common
+	inline void set_room_id(int value);
+	inline int room_id() const;
+
+	inline void set_room_owner_id(int value);
+	inline int room_owner_id() const;
+
+	inline int players_num() const;
+
+	inline int cur_round() const;
+
+	inline int total_round() const;
+
+	inline int remain_cards_num() const;
+
+	inline int cur_acting_player_id() const;
+
+	inline int cur_action_id() const;
+
+	inline int banker_id() const;
+
+	inline int banker_is_same_time() const;
+
+	// room player
+	inline int player_cards_size() const;
+
+	inline const gamer::protocol::PlayerCardsMsgProtocol& player_cards(int index) const;
+};
+
+} // namespace protocol
+
+} // namespace gamer

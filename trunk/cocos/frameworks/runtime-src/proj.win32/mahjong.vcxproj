@@ -24,7 +24,7 @@
     <PlatformToolset Condition="'$(VisualStudioVersion)' == '12.0' and exists('$(MSBuildProgramFiles32)\Microsoft SDKs\Windows\v7.1A')">v120_xp</PlatformToolset>
     <PlatformToolset Condition="'$(VisualStudioVersion)' == '14.0'">v140</PlatformToolset>
     <PlatformToolset Condition="'$(VisualStudioVersion)' == '14.0' and exists('$(MSBuildProgramFiles32)\Microsoft SDKs\Windows\v7.1A')">v140_xp</PlatformToolset>
-    <PlatformToolset>v140</PlatformToolset>
+    <PlatformToolset>v141</PlatformToolset>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
@@ -268,7 +268,10 @@ xcopy "$(ProjectDir)..\..\..\..\customer\src\lua" "$(LocalDebuggerWorkingDirecto
     <ClInclude Include="..\..\..\..\..\..\..\..\tcp_client\libevent\src\include\openssl\x509_vfy.h" />
     <ClInclude Include="..\..\..\..\..\..\..\..\tcp_client\libevent\src\include\openssl\__DECC_INCLUDE_EPILOGUE.H" />
     <ClInclude Include="..\..\..\..\..\..\..\..\tcp_client\libevent\src\include\openssl\__DECC_INCLUDE_PROLOGUE.H" />
+    <ClInclude Include="..\..\..\..\customer\src\cpp\data\data_constants.h" />
+    <ClInclude Include="..\..\..\..\customer\src\cpp\data\data_manager.h" />
     <ClInclude Include="..\..\..\..\customer\src\cpp\logic\3rd_party\login\login_helper.h" />
+    <ClInclude Include="..\..\..\..\customer\src\cpp\logic\base\basic_manager.h" />
     <ClInclude Include="..\..\..\..\customer\src\cpp\logic\base\command.h" />
     <ClInclude Include="..\..\..\..\customer\src\cpp\logic\base\command_headers.h" />
     <ClInclude Include="..\..\..\..\customer\src\cpp\logic\base\command_listener.h" />
@@ -296,7 +299,8 @@ xcopy "$(ProjectDir)..\..\..\..\customer\src\lua" "$(LocalDebuggerWorkingDirecto
     <ClInclude Include="..\..\..\..\customer\src\cpp\logic\msg\protocol\create_room_msg_protocol.pb.h" />
     <ClInclude Include="..\..\..\..\customer\src\cpp\logic\msg\protocol\game_start_msg_protocol.pb.h" />
     <ClInclude Include="..\..\..\..\customer\src\cpp\logic\msg\protocol\my_login_msg_protocol.pb.h" />
-    <ClInclude Include="..\..\..\..\customer\src\cpp\logic\msg\protocol\personal_info_msg_protocol.pb.h" />
+    <ClInclude Include="..\..\..\..\customer\src\cpp\logic\msg\protocol\player_cards_msg_protocol.pb.h" />
+    <ClInclude Include="..\..\..\..\customer\src\cpp\logic\msg\protocol\player_msg_protocol.pb.h" />
     <ClInclude Include="..\..\..\..\customer\src\cpp\logic\provider\id_provider.h" />
     <ClInclude Include="..\..\..\..\customer\src\cpp\network\google\protobuf\config.h" />
     <ClInclude Include="..\..\..\..\customer\src\cpp\network\google\protobuf\descriptor.h" />
@@ -420,6 +424,7 @@ xcopy "$(ProjectDir)..\..\..\..\customer\src\lua" "$(LocalDebuggerWorkingDirecto
     <ClInclude Include="targetver.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="..\..\..\..\customer\src\cpp\data\data_manager.cc" />
     <ClCompile Include="..\..\..\..\customer\src\cpp\logic\3rd_party\login\login_helper.cc" />
     <ClCompile Include="..\..\..\..\customer\src\cpp\logic\base\command.cc" />
     <ClCompile Include="..\..\..\..\customer\src\cpp\logic\base\command_listener.cc" />
@@ -430,10 +435,12 @@ xcopy "$(ProjectDir)..\..\..\..\customer\src\lua" "$(LocalDebuggerWorkingDirecto
     <ClCompile Include="..\..\..\..\customer\src\cpp\logic\lua_bind\auto\lua_bind_create_room_msg_protocol.cc" />
     <ClCompile Include="..\..\..\..\customer\src\cpp\logic\lua_bind\auto\lua_bind_event_listener.cc" />
     <ClCompile Include="..\..\..\..\customer\src\cpp\logic\lua_bind\auto\lua_bind_event_manager.cc" />
+    <ClCompile Include="..\..\..\..\customer\src\cpp\logic\lua_bind\auto\lua_bind_game_start_msg_protocol.cc" />
     <ClCompile Include="..\..\..\..\customer\src\cpp\logic\lua_bind\auto\lua_bind_msg.cc" />
     <ClCompile Include="..\..\..\..\customer\src\cpp\logic\lua_bind\auto\lua_bind_msg_manager.cc" />
     <ClCompile Include="..\..\..\..\customer\src\cpp\logic\lua_bind\auto\lua_bind_my_login_msg_protocol.cc" />
     <ClCompile Include="..\..\..\..\customer\src\cpp\logic\lua_bind\auto\lua_bind_network_manager.cc" />
+    <ClCompile Include="..\..\..\..\customer\src\cpp\logic\lua_bind\auto\lua_bind_player_cards_msg_protocol.cc" />
     <ClCompile Include="..\..\..\..\customer\src\cpp\logic\lua_bind\lua_bind_helper.cc" />
     <ClCompile Include="..\..\..\..\customer\src\cpp\logic\lua_bind\lua_bind_register.cc" />
     <ClCompile Include="..\..\..\..\customer\src\cpp\logic\manager\command_manager.cc" />
@@ -442,7 +449,8 @@ xcopy "$(ProjectDir)..\..\..\..\customer\src\lua" "$(LocalDebuggerWorkingDirecto
     <ClCompile Include="..\..\..\..\customer\src\cpp\logic\msg\protocol\create_room_msg_protocol.pb.cc" />
     <ClCompile Include="..\..\..\..\customer\src\cpp\logic\msg\protocol\game_start_msg_protocol.pb.cc" />
     <ClCompile Include="..\..\..\..\customer\src\cpp\logic\msg\protocol\my_login_msg_protocol.pb.cc" />
-    <ClCompile Include="..\..\..\..\customer\src\cpp\logic\msg\protocol\personal_info_msg_protocol.pb.cc" />
+    <ClCompile Include="..\..\..\..\customer\src\cpp\logic\msg\protocol\player_cards_msg_protocol.pb.cc" />
+    <ClCompile Include="..\..\..\..\customer\src\cpp\logic\msg\protocol\player_msg_protocol.pb.cc" />
     <ClCompile Include="..\..\..\..\customer\src\cpp\network\google\protobuf\descriptor.cc" />
     <ClCompile Include="..\..\..\..\customer\src\cpp\network\google\protobuf\descriptor.pb.cc" />
     <ClCompile Include="..\..\..\..\customer\src\cpp\network\google\protobuf\descriptor_database.cc" />
@@ -551,11 +559,12 @@ xcopy "$(ProjectDir)..\..\..\..\customer\src\lua" "$(LocalDebuggerWorkingDirecto
     <None Include="..\..\..\..\customer\src\lua\view\init_view.lua" />
     <None Include="..\..\..\..\customer\src\lua\view\layouts\scene\hall\hall_scene_layout.lua" />
     <None Include="..\..\..\..\customer\src\lua\view\layouts\scene\login\login_scene_layout.lua" />
-    <None Include="..\..\..\..\customer\src\lua\view\layouts\scene\room\room_scene_layout.lua" />
+    <None Include="..\..\..\..\customer\src\lua\view\layouts\scene\room\normal_room_scene_layout.lua" />
     <None Include="..\..\..\..\customer\src\lua\view\layouts\ui\hall\hall_bottom_node_layout.lua" />
     <None Include="..\..\..\..\customer\src\lua\view\layouts\ui\hall\hall_middle_node_layout.lua" />
     <None Include="..\..\..\..\customer\src\lua\view\layouts\ui\hall\hall_top_node_layout.lua" />
     <None Include="..\..\..\..\customer\src\lua\view\login\login_scene.lua" />
+    <None Include="..\..\..\..\customer\src\lua\view\room\normal_room_scene.lua" />
     <None Include="..\..\..\..\customer\src\lua\view\room\room_scene.lua" />
     <None Include="..\..\..\src\main.lua" />
   </ItemGroup>

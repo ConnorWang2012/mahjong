@@ -19,14 +19,19 @@ public:
 
 	int ByteSize() const;
 
+	inline void set_room_owner_id(int value);
+    inline int room_owner_id() const;
+
 	inline void set_rounds_num(int value);
-    inline google::protobuf::int32 rounds_num() const;
+    inline int rounds_num() const;
 
 	inline void set_players_num(int value);
-    inline google::protobuf::int32 players_num() const;
+    inline int players_num() const;
 
     inline void set_room_cards_num(int value);
-    inline google::protobuf::int32 room_cards_num() const;
+    inline int room_cards_num() const;
+
+    inline int room_id() const;
 };
 
 } // namespace protocol

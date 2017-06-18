@@ -355,97 +355,6 @@
                 <key>sourceSize</key>
                 <string>{102,124}</string>
             </dict>
-            <key>dragon_green.png</key>
-            <dict>
-                <key>frame</key>
-                <string>{{831,182},{84,88}}</string>
-                <key>offset</key>
-                <string>{0,0}</string>
-                <key>rotated</key>
-                <true/>
-                <key>sourceColorRect</key>
-                <string>{{9,18},{84,88}}</string>
-                <key>sourceSize</key>
-                <string>{102,124}</string>
-            </dict>
-            <key>dragon_red.png</key>
-            <dict>
-                <key>frame</key>
-                <string>{{915,288},{80,94}}</string>
-                <key>offset</key>
-                <string>{0,0}</string>
-                <key>rotated</key>
-                <true/>
-                <key>sourceColorRect</key>
-                <string>{{11,15},{80,94}}</string>
-                <key>sourceSize</key>
-                <string>{102,124}</string>
-            </dict>
-            <key>dragon_white.png</key>
-            <dict>
-                <key>frame</key>
-                <string>{{831,419},{80,98}}</string>
-                <key>offset</key>
-                <string>{0,0}</string>
-                <key>rotated</key>
-                <true/>
-                <key>sourceColorRect</key>
-                <string>{{11,13},{80,98}}</string>
-                <key>sourceSize</key>
-                <string>{102,124}</string>
-            </dict>
-            <key>flower_bamboo.png</key>
-            <dict>
-                <key>frame</key>
-                <string>{{186,331},{92,122}}</string>
-                <key>offset</key>
-                <string>{0,0}</string>
-                <key>rotated</key>
-                <false/>
-                <key>sourceColorRect</key>
-                <string>{{5,1},{92,122}}</string>
-                <key>sourceSize</key>
-                <string>{102,124}</string>
-            </dict>
-            <key>flower_chrysanthemum.png</key>
-            <dict>
-                <key>frame</key>
-                <string>{{594,306},{84,112}}</string>
-                <key>offset</key>
-                <string>{-1,0}</string>
-                <key>rotated</key>
-                <false/>
-                <key>sourceColorRect</key>
-                <string>{{8,6},{84,112}}</string>
-                <key>sourceSize</key>
-                <string>{102,124}</string>
-            </dict>
-            <key>flower_orchid.png</key>
-            <dict>
-                <key>frame</key>
-                <string>{{650,2},{84,112}}</string>
-                <key>offset</key>
-                <string>{-1,0}</string>
-                <key>rotated</key>
-                <false/>
-                <key>sourceColorRect</key>
-                <string>{{8,6},{84,112}}</string>
-                <key>sourceSize</key>
-                <string>{102,124}</string>
-            </dict>
-            <key>flower_plum.png</key>
-            <dict>
-                <key>frame</key>
-                <string>{{468,2},{90,116}}</string>
-                <key>offset</key>
-                <string>{-1,0}</string>
-                <key>rotated</key>
-                <false/>
-                <key>sourceColorRect</key>
-                <string>{{5,4},{90,116}}</string>
-                <key>sourceSize</key>
-                <string>{102,124}</string>
-            </dict>
             <key>mj_left_angang.png</key>
             <dict>
                 <key>frame</key>
@@ -602,20 +511,7 @@
                 <key>sourceSize</key>
                 <string>{53,73}</string>
             </dict>
-            <key>season_autumn.png</key>
-            <dict>
-                <key>frame</key>
-                <string>{{721,420},{86,108}}</string>
-                <key>offset</key>
-                <string>{6,0}</string>
-                <key>rotated</key>
-                <true/>
-                <key>sourceColorRect</key>
-                <string>{{14,8},{86,108}}</string>
-                <key>sourceSize</key>
-                <string>{102,124}</string>
-            </dict>
-            <key>season_spring.png</key>
+            <key>season_or_flower_1.png</key>
             <dict>
                 <key>frame</key>
                 <string>{{560,2},{88,112}}</string>
@@ -628,7 +524,7 @@
                 <key>sourceSize</key>
                 <string>{102,124}</string>
             </dict>
-            <key>season_summer.png</key>
+            <key>season_or_flower_2.png</key>
             <dict>
                 <key>frame</key>
                 <string>{{609,420},{86,110}}</string>
@@ -641,7 +537,20 @@
                 <key>sourceSize</key>
                 <string>{102,124}</string>
             </dict>
-            <key>season_winter.png</key>
+            <key>season_or_flower_3.png</key>
+            <dict>
+                <key>frame</key>
+                <string>{{721,420},{86,108}}</string>
+                <key>offset</key>
+                <string>{6,0}</string>
+                <key>rotated</key>
+                <true/>
+                <key>sourceColorRect</key>
+                <string>{{14,8},{86,108}}</string>
+                <key>sourceSize</key>
+                <string>{102,124}</string>
+            </dict>
+            <key>season_or_flower_4.png</key>
             <dict>
                 <key>frame</key>
                 <string>{{594,192},{86,112}}</string>
@@ -654,7 +563,59 @@
                 <key>sourceSize</key>
                 <string>{102,124}</string>
             </dict>
-            <key>wind_east.png</key>
+            <key>season_or_flower_5.png</key>
+            <dict>
+                <key>frame</key>
+                <string>{{468,2},{90,116}}</string>
+                <key>offset</key>
+                <string>{-1,0}</string>
+                <key>rotated</key>
+                <false/>
+                <key>sourceColorRect</key>
+                <string>{{5,4},{90,116}}</string>
+                <key>sourceSize</key>
+                <string>{102,124}</string>
+            </dict>
+            <key>season_or_flower_6.png</key>
+            <dict>
+                <key>frame</key>
+                <string>{{594,306},{84,112}}</string>
+                <key>offset</key>
+                <string>{-1,0}</string>
+                <key>rotated</key>
+                <false/>
+                <key>sourceColorRect</key>
+                <string>{{8,6},{84,112}}</string>
+                <key>sourceSize</key>
+                <string>{102,124}</string>
+            </dict>
+            <key>season_or_flower_7.png</key>
+            <dict>
+                <key>frame</key>
+                <string>{{650,2},{84,112}}</string>
+                <key>offset</key>
+                <string>{-1,0}</string>
+                <key>rotated</key>
+                <false/>
+                <key>sourceColorRect</key>
+                <string>{{8,6},{84,112}}</string>
+                <key>sourceSize</key>
+                <string>{102,124}</string>
+            </dict>
+            <key>season_or_flower_8.png</key>
+            <dict>
+                <key>frame</key>
+                <string>{{186,331},{92,122}}</string>
+                <key>offset</key>
+                <string>{0,0}</string>
+                <key>rotated</key>
+                <false/>
+                <key>sourceColorRect</key>
+                <string>{{5,1},{92,122}}</string>
+                <key>sourceSize</key>
+                <string>{102,124}</string>
+            </dict>
+            <key>wind_or_dragon_1.png</key>
             <dict>
                 <key>frame</key>
                 <string>{{921,112},{88,92}}</string>
@@ -667,20 +628,7 @@
                 <key>sourceSize</key>
                 <string>{102,124}</string>
             </dict>
-            <key>wind_north.png</key>
-            <dict>
-                <key>frame</key>
-                <string>{{921,206},{88,80}}</string>
-                <key>offset</key>
-                <string>{0,0}</string>
-                <key>rotated</key>
-                <false/>
-                <key>sourceColorRect</key>
-                <string>{{7,22},{88,80}}</string>
-                <key>sourceSize</key>
-                <string>{102,124}</string>
-            </dict>
-            <key>wind_south.png</key>
+            <key>wind_or_dragon_2.png</key>
             <dict>
                 <key>frame</key>
                 <string>{{764,327},{80,90}}</string>
@@ -693,7 +641,7 @@
                 <key>sourceSize</key>
                 <string>{102,124}</string>
             </dict>
-            <key>wind_west.png</key>
+            <key>wind_or_dragon_3.png</key>
             <dict>
                 <key>frame</key>
                 <string>{{148,124},{84,78}}</string>
@@ -703,6 +651,58 @@
                 <false/>
                 <key>sourceColorRect</key>
                 <string>{{9,23},{84,78}}</string>
+                <key>sourceSize</key>
+                <string>{102,124}</string>
+            </dict>
+            <key>wind_or_dragon_4.png</key>
+            <dict>
+                <key>frame</key>
+                <string>{{921,206},{88,80}}</string>
+                <key>offset</key>
+                <string>{0,0}</string>
+                <key>rotated</key>
+                <false/>
+                <key>sourceColorRect</key>
+                <string>{{7,22},{88,80}}</string>
+                <key>sourceSize</key>
+                <string>{102,124}</string>
+            </dict>
+            <key>wind_or_dragon_5.png</key>
+            <dict>
+                <key>frame</key>
+                <string>{{831,182},{84,88}}</string>
+                <key>offset</key>
+                <string>{0,0}</string>
+                <key>rotated</key>
+                <true/>
+                <key>sourceColorRect</key>
+                <string>{{9,18},{84,88}}</string>
+                <key>sourceSize</key>
+                <string>{102,124}</string>
+            </dict>
+            <key>wind_or_dragon_6.png</key>
+            <dict>
+                <key>frame</key>
+                <string>{{915,288},{80,94}}</string>
+                <key>offset</key>
+                <string>{0,0}</string>
+                <key>rotated</key>
+                <true/>
+                <key>sourceColorRect</key>
+                <string>{{11,15},{80,94}}</string>
+                <key>sourceSize</key>
+                <string>{102,124}</string>
+            </dict>
+            <key>wind_or_dragon_7.png</key>
+            <dict>
+                <key>frame</key>
+                <string>{{831,419},{80,98}}</string>
+                <key>offset</key>
+                <string>{0,0}</string>
+                <key>rotated</key>
+                <true/>
+                <key>sourceColorRect</key>
+                <string>{{11,13},{80,98}}</string>
                 <key>sourceSize</key>
                 <string>{102,124}</string>
             </dict>
@@ -716,7 +716,7 @@
             <key>size</key>
             <string>{1012,508}</string>
             <key>smartupdate</key>
-            <string>$TexturePacker:SmartUpdate:11fe5159c88d9a6ba2b208d34b031ffe:1/1$</string>
+            <string>$TexturePacker:SmartUpdate:e7f747af716133e1b3343e2ba699a1b4:1/1$</string>
             <key>textureFileName</key>
             <string>cards.png</string>
         </dict>

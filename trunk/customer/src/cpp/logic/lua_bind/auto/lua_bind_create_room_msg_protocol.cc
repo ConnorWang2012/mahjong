@@ -1,6 +1,6 @@
 /*
 ** Lua binding: create_room_msg_protocol
-** Generated automatically by tolua++-1.0.92 on 06/11/17 16:08:10.
+** Generated automatically by tolua++-1.0.92 on 06/16/17 21:12:38.
 */
 
 #ifndef __cplusplus
@@ -25,13 +25,6 @@ TOLUA_API int  tolua_create_room_msg_protocol_open (lua_State* tolua_S);
 /* function to release collected object via destructor */
 #ifdef __cplusplus
 
-static int tolua_collect_google__protobuf__int32 (lua_State* tolua_S)
-{
- google::protobuf::int32* self = (google::protobuf::int32*) tolua_tousertype(tolua_S,1,0);
-	Mtolua_delete(self);
-	return 0;
-}
-
 static int tolua_collect_gamer__protocol__CreateRoomMsgProtocol (lua_State* tolua_S)
 {
  gamer::protocol::CreateRoomMsgProtocol* self = (gamer::protocol::CreateRoomMsgProtocol*) tolua_tousertype(tolua_S,1,0);
@@ -45,7 +38,6 @@ static int tolua_collect_gamer__protocol__CreateRoomMsgProtocol (lua_State* tolu
 static void tolua_reg_types (lua_State* tolua_S)
 {
  tolua_usertype(tolua_S,"google::protobuf::Message");
- tolua_usertype(tolua_S,"google::protobuf::int32");
  tolua_usertype(tolua_S,"gamer::protocol::CreateRoomMsgProtocol");
 }
 
@@ -138,6 +130,71 @@ static int tolua_create_room_msg_protocol_gamer_protocol_CreateRoomMsgProtocol_B
 }
 #endif //#ifndef TOLUA_DISABLE
 
+/* method: set_room_owner_id of class  gamer::protocol::CreateRoomMsgProtocol */
+#ifndef TOLUA_DISABLE_tolua_create_room_msg_protocol_gamer_protocol_CreateRoomMsgProtocol_set_room_owner_id00
+static int tolua_create_room_msg_protocol_gamer_protocol_CreateRoomMsgProtocol_set_room_owner_id00(lua_State* tolua_S)
+{
+#ifndef TOLUA_RELEASE
+ tolua_Error tolua_err;
+ if (
+     !tolua_isusertype(tolua_S,1,"gamer::protocol::CreateRoomMsgProtocol",0,&tolua_err) ||
+     !tolua_isnumber(tolua_S,2,0,&tolua_err) ||
+     !tolua_isnoobj(tolua_S,3,&tolua_err)
+ )
+  goto tolua_lerror;
+ else
+#endif
+ {
+  gamer::protocol::CreateRoomMsgProtocol* self = (gamer::protocol::CreateRoomMsgProtocol*)  tolua_tousertype(tolua_S,1,0);
+  int value = ((int)  tolua_tonumber(tolua_S,2,0));
+#ifndef TOLUA_RELEASE
+  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'set_room_owner_id'", NULL);
+#endif
+  {
+   self->set_room_owner_id(value);
+  }
+ }
+ return 0;
+#ifndef TOLUA_RELEASE
+ tolua_lerror:
+ tolua_error(tolua_S,"#ferror in function 'set_room_owner_id'.",&tolua_err);
+ return 0;
+#endif
+}
+#endif //#ifndef TOLUA_DISABLE
+
+/* method: room_owner_id of class  gamer::protocol::CreateRoomMsgProtocol */
+#ifndef TOLUA_DISABLE_tolua_create_room_msg_protocol_gamer_protocol_CreateRoomMsgProtocol_room_owner_id00
+static int tolua_create_room_msg_protocol_gamer_protocol_CreateRoomMsgProtocol_room_owner_id00(lua_State* tolua_S)
+{
+#ifndef TOLUA_RELEASE
+ tolua_Error tolua_err;
+ if (
+     !tolua_isusertype(tolua_S,1,"const gamer::protocol::CreateRoomMsgProtocol",0,&tolua_err) ||
+     !tolua_isnoobj(tolua_S,2,&tolua_err)
+ )
+  goto tolua_lerror;
+ else
+#endif
+ {
+  const gamer::protocol::CreateRoomMsgProtocol* self = (const gamer::protocol::CreateRoomMsgProtocol*)  tolua_tousertype(tolua_S,1,0);
+#ifndef TOLUA_RELEASE
+  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'room_owner_id'", NULL);
+#endif
+  {
+   int tolua_ret = (int)  self->room_owner_id();
+   tolua_pushnumber(tolua_S,(lua_Number)tolua_ret);
+  }
+ }
+ return 1;
+#ifndef TOLUA_RELEASE
+ tolua_lerror:
+ tolua_error(tolua_S,"#ferror in function 'room_owner_id'.",&tolua_err);
+ return 0;
+#endif
+}
+#endif //#ifndef TOLUA_DISABLE
+
 /* method: set_rounds_num of class  gamer::protocol::CreateRoomMsgProtocol */
 #ifndef TOLUA_DISABLE_tolua_create_room_msg_protocol_gamer_protocol_CreateRoomMsgProtocol_set_rounds_num00
 static int tolua_create_room_msg_protocol_gamer_protocol_CreateRoomMsgProtocol_set_rounds_num00(lua_State* tolua_S)
@@ -190,18 +247,8 @@ static int tolua_create_room_msg_protocol_gamer_protocol_CreateRoomMsgProtocol_r
   if (!self) tolua_error(tolua_S,"invalid 'self' in function 'rounds_num'", NULL);
 #endif
   {
-   google::protobuf::int32 tolua_ret = (google::protobuf::int32)  self->rounds_num();
-   {
-#ifdef __cplusplus
-    void* tolua_obj = Mtolua_new((google::protobuf::int32)(tolua_ret));
-     tolua_pushusertype(tolua_S,tolua_obj,"google::protobuf::int32");
-    tolua_register_gc(tolua_S,lua_gettop(tolua_S));
-#else
-    void* tolua_obj = tolua_copy(tolua_S,(void*)&tolua_ret,sizeof(google::protobuf::int32));
-     tolua_pushusertype(tolua_S,tolua_obj,"google::protobuf::int32");
-    tolua_register_gc(tolua_S,lua_gettop(tolua_S));
-#endif
-   }
+   int tolua_ret = (int)  self->rounds_num();
+   tolua_pushnumber(tolua_S,(lua_Number)tolua_ret);
   }
  }
  return 1;
@@ -265,18 +312,8 @@ static int tolua_create_room_msg_protocol_gamer_protocol_CreateRoomMsgProtocol_p
   if (!self) tolua_error(tolua_S,"invalid 'self' in function 'players_num'", NULL);
 #endif
   {
-   google::protobuf::int32 tolua_ret = (google::protobuf::int32)  self->players_num();
-   {
-#ifdef __cplusplus
-    void* tolua_obj = Mtolua_new((google::protobuf::int32)(tolua_ret));
-     tolua_pushusertype(tolua_S,tolua_obj,"google::protobuf::int32");
-    tolua_register_gc(tolua_S,lua_gettop(tolua_S));
-#else
-    void* tolua_obj = tolua_copy(tolua_S,(void*)&tolua_ret,sizeof(google::protobuf::int32));
-     tolua_pushusertype(tolua_S,tolua_obj,"google::protobuf::int32");
-    tolua_register_gc(tolua_S,lua_gettop(tolua_S));
-#endif
-   }
+   int tolua_ret = (int)  self->players_num();
+   tolua_pushnumber(tolua_S,(lua_Number)tolua_ret);
   }
  }
  return 1;
@@ -340,18 +377,8 @@ static int tolua_create_room_msg_protocol_gamer_protocol_CreateRoomMsgProtocol_r
   if (!self) tolua_error(tolua_S,"invalid 'self' in function 'room_cards_num'", NULL);
 #endif
   {
-   google::protobuf::int32 tolua_ret = (google::protobuf::int32)  self->room_cards_num();
-   {
-#ifdef __cplusplus
-    void* tolua_obj = Mtolua_new((google::protobuf::int32)(tolua_ret));
-     tolua_pushusertype(tolua_S,tolua_obj,"google::protobuf::int32");
-    tolua_register_gc(tolua_S,lua_gettop(tolua_S));
-#else
-    void* tolua_obj = tolua_copy(tolua_S,(void*)&tolua_ret,sizeof(google::protobuf::int32));
-     tolua_pushusertype(tolua_S,tolua_obj,"google::protobuf::int32");
-    tolua_register_gc(tolua_S,lua_gettop(tolua_S));
-#endif
-   }
+   int tolua_ret = (int)  self->room_cards_num();
+   tolua_pushnumber(tolua_S,(lua_Number)tolua_ret);
   }
  }
  return 1;
@@ -360,6 +387,65 @@ static int tolua_create_room_msg_protocol_gamer_protocol_CreateRoomMsgProtocol_r
  tolua_error(tolua_S,"#ferror in function 'room_cards_num'.",&tolua_err);
  return 0;
 #endif
+}
+#endif //#ifndef TOLUA_DISABLE
+
+/* method: room_id of class  gamer::protocol::CreateRoomMsgProtocol */
+#ifndef TOLUA_DISABLE_tolua_create_room_msg_protocol_gamer_protocol_CreateRoomMsgProtocol_room_id00
+static int tolua_create_room_msg_protocol_gamer_protocol_CreateRoomMsgProtocol_room_id00(lua_State* tolua_S)
+{
+#ifndef TOLUA_RELEASE
+ tolua_Error tolua_err;
+ if (
+     !tolua_isusertype(tolua_S,1,"const gamer::protocol::CreateRoomMsgProtocol",0,&tolua_err) ||
+     !tolua_isnoobj(tolua_S,2,&tolua_err)
+ )
+  goto tolua_lerror;
+ else
+#endif
+ {
+  const gamer::protocol::CreateRoomMsgProtocol* self = (const gamer::protocol::CreateRoomMsgProtocol*)  tolua_tousertype(tolua_S,1,0);
+#ifndef TOLUA_RELEASE
+  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'room_id'", NULL);
+#endif
+  {
+   int tolua_ret = (int)  self->room_id();
+   tolua_pushnumber(tolua_S,(lua_Number)tolua_ret);
+  }
+ }
+ return 1;
+#ifndef TOLUA_RELEASE
+ tolua_lerror:
+ tolua_error(tolua_S,"#ferror in function 'room_id'.",&tolua_err);
+ return 0;
+#endif
+}
+#endif //#ifndef TOLUA_DISABLE
+
+/* method: room_owner_id of class  gamer::protocol::CreateRoomMsgProtocol */
+#ifndef TOLUA_DISABLE_tolua_create_room_msg_protocol_gamer_protocol_CreateRoomMsgProtocol_room_owner_id01
+static int tolua_create_room_msg_protocol_gamer_protocol_CreateRoomMsgProtocol_room_owner_id01(lua_State* tolua_S)
+{
+ tolua_Error tolua_err;
+ if (
+     !tolua_isusertype(tolua_S,1,"const gamer::protocol::CreateRoomMsgProtocol",0,&tolua_err) ||
+     !tolua_isnoobj(tolua_S,2,&tolua_err)
+ )
+  goto tolua_lerror;
+ else
+ {
+  const gamer::protocol::CreateRoomMsgProtocol* self = (const gamer::protocol::CreateRoomMsgProtocol*)  tolua_tousertype(tolua_S,1,0);
+#ifndef TOLUA_RELEASE
+  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'room_owner_id'", NULL);
+#endif
+  {
+   int tolua_ret = (int)  self->room_owner_id();
+   tolua_pushnumber(tolua_S,(lua_Number)tolua_ret);
+  }
+ }
+ return 1;
+tolua_lerror:
+ return tolua_create_room_msg_protocol_gamer_protocol_CreateRoomMsgProtocol_room_owner_id00(tolua_S);
 }
 #endif //#ifndef TOLUA_DISABLE
 
@@ -384,12 +470,16 @@ TOLUA_API int tolua_create_room_msg_protocol_open (lua_State* tolua_S)
      tolua_function(tolua_S,"new_local",tolua_create_room_msg_protocol_gamer_protocol_CreateRoomMsgProtocol_new00_local);
      tolua_function(tolua_S,".call",tolua_create_room_msg_protocol_gamer_protocol_CreateRoomMsgProtocol_new00_local);
      tolua_function(tolua_S,"ByteSize",tolua_create_room_msg_protocol_gamer_protocol_CreateRoomMsgProtocol_ByteSize00);
+     tolua_function(tolua_S,"set_room_owner_id",tolua_create_room_msg_protocol_gamer_protocol_CreateRoomMsgProtocol_set_room_owner_id00);
+     tolua_function(tolua_S,"room_owner_id",tolua_create_room_msg_protocol_gamer_protocol_CreateRoomMsgProtocol_room_owner_id00);
      tolua_function(tolua_S,"set_rounds_num",tolua_create_room_msg_protocol_gamer_protocol_CreateRoomMsgProtocol_set_rounds_num00);
      tolua_function(tolua_S,"rounds_num",tolua_create_room_msg_protocol_gamer_protocol_CreateRoomMsgProtocol_rounds_num00);
      tolua_function(tolua_S,"set_players_num",tolua_create_room_msg_protocol_gamer_protocol_CreateRoomMsgProtocol_set_players_num00);
      tolua_function(tolua_S,"players_num",tolua_create_room_msg_protocol_gamer_protocol_CreateRoomMsgProtocol_players_num00);
      tolua_function(tolua_S,"set_room_cards_num",tolua_create_room_msg_protocol_gamer_protocol_CreateRoomMsgProtocol_set_room_cards_num00);
      tolua_function(tolua_S,"room_cards_num",tolua_create_room_msg_protocol_gamer_protocol_CreateRoomMsgProtocol_room_cards_num00);
+     tolua_function(tolua_S,"room_id",tolua_create_room_msg_protocol_gamer_protocol_CreateRoomMsgProtocol_room_id00);
+     tolua_function(tolua_S,"room_owner_id",tolua_create_room_msg_protocol_gamer_protocol_CreateRoomMsgProtocol_room_owner_id01);
     tolua_endmodule(tolua_S);
    tolua_endmodule(tolua_S);
   tolua_endmodule(tolua_S);

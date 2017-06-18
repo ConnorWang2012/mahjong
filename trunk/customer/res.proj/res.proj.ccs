@@ -50,7 +50,7 @@
               <Project Name="login_scene_layout.csd" Type="Scene" />
             </Folder>
             <Folder Name="room">
-              <Project Name="room_scene_layout.csd" Type="Scene" />
+              <Project Name="normal_room_scene_layout.csd" Type="Scene" />
             </Folder>
           </Folder>
           <Folder Name="ui">

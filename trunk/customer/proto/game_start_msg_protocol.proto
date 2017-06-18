@@ -1,45 +1,18 @@
 package gamer.protocol;
-import "personal_info_msg_protocol.proto";
+import "player_cards_msg_protocol.proto";
 
 message GameStartMsgProtocol {
-  required int32 room_id			   = 1;  
-  required int32 players_num  		   = 2;
-  required int32 cur_round			   = 3;
-  required int32 total_round	       = 4;
-  required int32 remain_cards_num	   = 5;
+  required int32 room_id			                = 1;
+  required int32 room_owner_id		                = 2; 
+  optional int32 players_num  		                = 3;
+  optional int32 cur_round			                = 4;
+  optional int32 total_round	                    = 5;
+  optional int32 remain_cards_num	                = 6;
+  optional int32 banker_id  		                = 7;
+  optional int32 banker_is_same_time                = 8;
 
-  required int32 cur_acting_player_id  = 6;
-  required int32 cur_action_id 		   = 7;
+  optional int32 cur_acting_player_id               = 9;
+  optional int32 cur_action_id 		                = 10;
 
-  required int32 my_id	   								= 8;
-  repeated int32 my_visible_hand_cards	   				= 9;
-  repeated int32 my_invisible_hand_cards	   			= 10;
-  repeated int32 my_discards	   						= 11;
-  repeated int32 my_flower_cards	   					= 12;
-  repeated int32 my_season_cards	   					= 13;
-  repeated int32 my_waiting_cards	   					= 14;
-
-  required int32 left_player_my_id	   					= 15;
-  repeated int32 left_player_visible_hand_cards	   		= 16;
-  required int32 left_player_remain_hand_cards_num  	= 17;
-  repeated int32 left_player_discards	   				= 18;
-  required int32 left_player_flower_cards  				= 19;
-  required int32 left_player_season_cards  				= 20;
-  required bool left_player_is_waiting	   				= 21;
-
-  required int32 right_player_my_id	   					= 22;
-  repeated int32 right_player_visible_hand_cards		= 23;
-  required int32 right_player_remain_hand_cards_num 	= 24;
-  repeated int32 right_player_discards	   				= 25;
-  required int32 right_player_flower_cards  			= 26;
-  required int32 right_player_season_cards  			= 27;
-  required bool right_player_is_waiting	   				= 28;
-
-  required int32 opposite_player_my_id	   				= 29;
-  repeated int32 opposite_player_visible_hand_cards		= 30;
-  required int32 opposite_player_remain_hand_cards_num 	= 31;
-  repeated int32 opposite_player_discards	   			= 32;
-  required int32 opposite_player_flower_cards  			= 33;
-  required int32 opposite_player_season_cards  			= 34;
-  required bool opposite_player_is_waiting	   			= 35;
+  repeated PlayerCardsMsgProtocol player_cards		= 11;
 }

@@ -105,6 +105,10 @@ private:
                      const google::protobuf::Message* msg,
                      const std::string& class_name);
 
+    void dealWithDispatchMsg(const ServerMsg& server_msg,
+                             google::protobuf::Message* msg, 
+                             const std::string& class_name);
+
     void dealWithLoginMsg(const ServerMsg& msg);
 
     void dealWithMgLoginMsg(const ServerMsg& msg);
