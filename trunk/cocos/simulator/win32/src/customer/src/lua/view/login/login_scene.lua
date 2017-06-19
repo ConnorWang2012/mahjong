@@ -24,29 +24,22 @@ function LoginScene:onBtnLoginTouch(sender)
     print("[LoginScene:onBtnLoginTouch]")
     local connected = gamer.NetworkManager:getInstance():is_connected()
     print("[LoginScene:onBtnLoginTouch] connected : ", tostring(connected))
-    gamer.MsgManager:getInstance():sendMsg(0, 1, handler(self, self.onLoginResponse))
-    --gamer.SceneManager.runScene(gamer.SceneConstants.SceneIDs.HALL_SCENE)
+
+    local proto = gamer.protocol.MyLoginMsgProtocol()
+    proto:set_account(2017)
+    proto:set_password(2018)
+
+    gamer.MsgManager:getInstance():sendMsg(gamer.MsgTypes.C2S_MSG_TYPE_LOGIN, 
+        gamer.MsgIDs.MSG_ID_LOGIN_MY, 
+        proto, 
+        handler(self, self.onLoginResponse))
 end
 
 function LoginScene:onLoginResponse(code, msg_type, msg_id, msg)
---    print("[LoginScene:onLoginResponse] msg : ", tostring(msg))
     print("[LoginScene:onLoginResponse] code : ", code)
---    print("[LoginScene:onLoginResponse] msg_type : ", msg_type)
---    print("[LoginScene:onLoginResponse] msg_id : ", msg_id)
---    print("[LoginScene:onLoginResponse] account : ", tostring(msg:account()))
-    gamer.SceneManager.runScene(gamer.SceneConstants.SceneIDs.HALL_SCENE)
-    --self:setVisible(false)
-
-    --local director = cc.Director:getInstance()
-    --local hallscene = (require "view.hall.hall_scene.lua"):create()
-    --local l = (require "view.layouts.scene.hall.hall_scene_layout.lua"):create()
-    --hallscene:addChild(l)
-    --self:addChild(hallscene)
-
---    self.schedulerID = cc.Director:getInstance():getScheduler():scheduleScriptFunc(function()  
---        cc.Director:getInstance():getScheduler():unscheduleScriptEntry(self.schedulerID)
---        gamer.SceneManager.runScene(gamer.SceneConstants.SceneIDs.HALL_SCENE)
---    end, 1, false)
+    if code == gamer.MsgCodes.SUCCEED then
+        gamer.SceneManager.runScene(gamer.SceneConstants.SceneIDs.HALL_SCENE)
+    end
 end
 
 function LoginScene:onEnter()
@@ -57,6 +50,7 @@ end
 
 function LoginScene:onExit()
 	-- TODO : dispatch layer exit event to all listeners
+    print("[LoginScene:onExit]")
 end
 
 return LoginScene

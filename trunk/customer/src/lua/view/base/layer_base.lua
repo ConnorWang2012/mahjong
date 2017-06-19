@@ -15,6 +15,7 @@ modification:
 local LayerBase = class("LayerBase", cc.Layer)
 
 function LayerBase:ctor(view_file)
+	print("[LayerBase:ctor]")
     self:registerScriptHandler(function(event)
         if event == "enter" then
             self:onEnter()

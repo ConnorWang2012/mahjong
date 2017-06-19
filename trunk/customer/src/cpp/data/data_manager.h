@@ -41,7 +41,9 @@ public:
 
     void setData(int key, google::protobuf::Message* data);
 
-    google::protobuf::Message* const getData(int key) const;
+    //const google::protobuf::Message& getData(int key) const;
+
+    google::protobuf::Message* getMutableData(int key);
 
 private:
     std::unordered_map<int, google::protobuf::Message*> data_map_;
@@ -56,7 +58,7 @@ inline DataType* DataManager::createData()
 template<typename DataType>
 DataType* DataManager::cacheData(int key)
 {
-    auto data = this->getData(key);
+    auto data = this->getMutableData(key);
     if (nullptr == data)
     {
         data = new DataType();

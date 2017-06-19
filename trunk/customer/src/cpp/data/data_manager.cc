@@ -30,7 +30,7 @@ void DataManager::setData(int key, google::protobuf::Message* data)
     }
 }
 
-google::protobuf::Message* const DataManager::getData(int key) const
+google::protobuf::Message* DataManager::getMutableData(int key)
 {
     auto itr = data_map_.find(key);
     if ( itr != data_map_.end())
