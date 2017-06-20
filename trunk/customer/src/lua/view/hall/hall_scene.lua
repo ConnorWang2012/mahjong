@@ -47,7 +47,7 @@ function HallScene:onImgNormalRoomTouch(sender)
     local proto = gamer.protocol.CreateRoomMsgProtocol()
     proto:set_room_owner_id(2017)
     proto:set_rounds_num(10)
-    proto:set_players_num(4)
+    proto:set_players_num(1)
     proto:set_room_cards_num(1)
 
     gamer.MsgManager:getInstance():sendMsg(gamer.MsgTypes.C2S_MSG_TYPE_ROOM, 

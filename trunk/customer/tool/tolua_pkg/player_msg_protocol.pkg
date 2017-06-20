@@ -1,4 +1,4 @@
-$#include "msg/protocol/my_login_msg_protocol.pb.h"
+$#include "msg/protocol/player_msg_protocol.pb.h"
 
 $#include <string>
 $#include <google/protobuf/stubs/common.h>
@@ -13,19 +13,21 @@ namespace gamer {
 
 namespace protocol {
 
-class MyLoginMsgProtocol : public google::protobuf::Message {
+class PlayerMsgProtocol : public google::protobuf::Message {
 public:
-	MyLoginMsgProtocol();
+	PlayerMsgProtocol();
 
 	int ByteSize() const;
 
-	inline void set_account(const char* value);
-	inline const std::string& account() const;
+	inline int player_id() const;
 
-	inline void set_password(int value);    
-    inline int password() const;
+	inline const std::string& nick_name() const;
 
-    inline const gamer::protocol::PlayerMsgProtocol& player() const;
+	inline int game_currency() const;
+
+	inline int level() const;
+
+	inline const std::string& level_name() const;
 };
 
 } // namespace protocol

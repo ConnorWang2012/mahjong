@@ -1,0 +1,19 @@
+$#include "data_manager.h"
+
+$#include <unordered_map>
+
+$#include "base/basic_manager.h"
+
+
+namespace gamer
+{
+
+class DataManager : public BasicManager<DataManager>
+{
+public:
+    static DataManager* getInstance();
+
+    google::protobuf::Message* getMutableData(int key);
+};
+
+} // namespace gamer

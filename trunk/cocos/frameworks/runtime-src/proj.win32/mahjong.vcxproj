@@ -442,6 +442,7 @@ xcopy "$(ProjectDir)..\..\..\..\customer\src\lua" "$(LocalDebuggerWorkingDirecto
     <ClCompile Include="..\..\..\..\customer\src\cpp\logic\lua_bind\auto\lua_bind_my_login_msg_protocol.cc" />
     <ClCompile Include="..\..\..\..\customer\src\cpp\logic\lua_bind\auto\lua_bind_network_manager.cc" />
     <ClCompile Include="..\..\..\..\customer\src\cpp\logic\lua_bind\auto\lua_bind_player_cards_msg_protocol.cc" />
+    <ClCompile Include="..\..\..\..\customer\src\cpp\logic\lua_bind\auto\lua_bind_player_msg_protocol.cc" />
     <ClCompile Include="..\..\..\..\customer\src\cpp\logic\lua_bind\lua_bind_helper.cc" />
     <ClCompile Include="..\..\..\..\customer\src\cpp\logic\lua_bind\lua_bind_register.cc" />
     <ClCompile Include="..\..\..\..\customer\src\cpp\logic\manager\command_manager.cc" />
