@@ -36,35 +36,26 @@ public:
     template<typename DataType>
     DataType* createData();
 
-    template<typename DataType>
-    DataType* cacheData(int key);
-
-    void setData(int key, google::protobuf::Message* data);
+    void cacheData(int key, google::protobuf::Message* data);
 
     //const google::protobuf::Message& getData(int key) const;
+
+	const google::protobuf::Message* const getData(int key) const;
 
     google::protobuf::Message* getMutableData(int key);
 
 private:
+	void setData(int key, google::protobuf::Message* data);
+
+	void releaseData(int key, google::protobuf::Message* data);
+
     std::unordered_map<int, google::protobuf::Message*> data_map_;
 };
 
 template<typename DataType>
 inline DataType* DataManager::createData()
 {
-    return new DataType();
-}
-
-template<typename DataType>
-DataType* DataManager::cacheData(int key)
-{
-    auto data = this->getMutableData(key);
-    if (nullptr == data)
-    {
-        data = new DataType();
-        this->setData(key, data);
-    }
-    return static_cast<DataType*>(data);
+    return new DataType;
 }
 
 } // namespace gamer

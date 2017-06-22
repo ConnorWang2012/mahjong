@@ -104,9 +104,15 @@ void LuaBindHelper::dispatchMsg(LuaFunction lua_func,
     tolua_pushnumber(lua_state_, code);
     tolua_pushnumber(lua_state_, msg_type);
     tolua_pushnumber(lua_state_, msg_id);
-    tolua_pushusertype(lua_state_, (void*)msg, msg_class.c_str());
-
-    lua_pcall(lua_state_, 4, 0, 0);
+	if (nullptr != msg && msg_class.length() > 0)
+	{
+		tolua_pushusertype(lua_state_, (void*)msg, msg_class.c_str());
+		lua_pcall(lua_state_, 4, 0, 0);
+	}
+	else
+	{
+		lua_pcall(lua_state_, 3, 0, 0);
+	}
 }
 
 void LuaBindHelper::register_lua_bind_modules()

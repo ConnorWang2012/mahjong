@@ -267,9 +267,14 @@ void MsgManager::dealWithDispatchMsg(const ServerMsg& server_msg,
     {
         char buf[MsgManager::MAX_MSG_LEN] = { 0 };
         int len = server_msg.total_len - gamer::server_msg_header_len();
-        msg->ParseFromArray(server_msg.context, len);
-
-        this->dispatchMsg(server_msg.code, server_msg.type, server_msg.id, msg, class_name);
+		if (msg->ParseFromArray(server_msg.context, len))
+		{
+			this->dispatchMsg(server_msg.code, server_msg.type, server_msg.id, msg, class_name);
+		}
+		else
+		{
+			// TODO : log
+		}
     }
     else
     {
@@ -289,9 +294,9 @@ void MsgManager::dealWithLoginMsg(const ServerMsg& msg)
 
 void MsgManager::dealWithMgLoginMsg(const ServerMsg& msg)
 {
-    auto data_mgr = DataManager::getInstance();
     auto key = (int)DataIDs::DATA_ID_MY_LOGIN_MSG_PROTOCOL;
-    auto proto = data_mgr->cacheData<protocol::MyLoginMsgProtocol>(key);
+	auto proto = DataManager::getInstance()->createData<protocol::MyLoginMsgProtocol>();
+	DataManager::getInstance()->cacheData(key, proto);
 
     this->dealWithDispatchMsg(msg, proto, "gamer::protocol::MyLoginMsgProtocol");
 }
