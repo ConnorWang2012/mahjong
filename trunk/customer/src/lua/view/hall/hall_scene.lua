@@ -45,7 +45,7 @@ end
 function HallScene:onImgNormalRoomTouch(sender)
     print("[HallScene:onImgNormalRoomTouch]")
     local proto = gamer.protocol.CreateRoomMsgProtocol()
-    proto:set_room_owner_id(2017)
+    proto:set_room_owner_id(10000001)
     proto:set_rounds_num(10)
     proto:set_players_num(1)
     proto:set_room_cards_num(1)
@@ -59,6 +59,7 @@ end
 function HallScene:onCreateRoomMsgReceived(code, msg_type, msg_id, msg)
     print("[HallScene:onCreateRoomMsgReceived] code : ", code)
     print("[HallScene:onCreateRoomMsgReceived] room_id : ", msg:room_id())
+	print("[HallScene:onCreateRoomMsgReceived] room_owner_id : ", msg:room_owner_id())
     if code == gamer.MsgCodes.SUCCEED then
         local proto = gamer.protocol.GameStartMsgProtocol()
         proto:set_room_id(msg:room_id())

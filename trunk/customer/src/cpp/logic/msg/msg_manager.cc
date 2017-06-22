@@ -320,6 +320,13 @@ void MsgManager::dealWithStartGameMsg(const ServerMsg& msg)
 {
     protocol::GameStartMsgProtocol proto;
     this->dealWithDispatchMsg(msg, &proto, "gamer::protocol::GameStartMsgProtocol");
+
+    auto card_size = proto.player_cards_size();
+    auto cards = proto.player_cards(0);
+    for (auto i = 0; i < cards.invisible_hand_cards_size(); i++)
+    {
+        printf("card %d\n", cards.invisible_hand_cards(i));
+    }
 }
 
 void MsgManager::onSocketConnected(gamer::Event* event)
