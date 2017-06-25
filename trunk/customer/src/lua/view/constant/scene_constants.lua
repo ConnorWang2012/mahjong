@@ -25,7 +25,7 @@ SceneConstants.SceneFiles =
 {
 	LOGIN_SCENE_FILE		    = "view.login.login_scene.lua",
     HALL_SCENE_FILE		        = "view.hall.hall_scene.lua",
-    NORMAL_ROOM_SCENE_FILE		= "view.room.normal_room_scene.lua"
+    NORMAL_ROOM_SCENE_FILE		= "view.room.scene.normal_room_scene.lua"
 }
 
 SceneConstants.SceneLayoutFiles =

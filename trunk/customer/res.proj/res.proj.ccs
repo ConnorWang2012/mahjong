@@ -38,6 +38,64 @@
             <Image Name="login_bg.jpg" />
           </Folder>
           <Folder Name="room">
+            <Folder Name="plist">
+              <PlistImageFolder Image="cards.png" PListFile="cards.plist" Name=".cards_PList.Dir">
+                <PlistImageFile Name="bamboo_1.png" Key="bamboo_1.png" />
+                <PlistImageFile Name="bamboo_2.png" Key="bamboo_2.png" />
+                <PlistImageFile Name="bamboo_3.png" Key="bamboo_3.png" />
+                <PlistImageFile Name="bamboo_4.png" Key="bamboo_4.png" />
+                <PlistImageFile Name="bamboo_5.png" Key="bamboo_5.png" />
+                <PlistImageFile Name="bamboo_6.png" Key="bamboo_6.png" />
+                <PlistImageFile Name="bamboo_7.png" Key="bamboo_7.png" />
+                <PlistImageFile Name="bamboo_8.png" Key="bamboo_8.png" />
+                <PlistImageFile Name="bamboo_9.png" Key="bamboo_9.png" />
+                <PlistImageFile Name="character_1.png" Key="character_1.png" />
+                <PlistImageFile Name="character_2.png" Key="character_2.png" />
+                <PlistImageFile Name="character_3.png" Key="character_3.png" />
+                <PlistImageFile Name="character_4.png" Key="character_4.png" />
+                <PlistImageFile Name="character_5.png" Key="character_5.png" />
+                <PlistImageFile Name="character_6.png" Key="character_6.png" />
+                <PlistImageFile Name="character_7.png" Key="character_7.png" />
+                <PlistImageFile Name="character_8.png" Key="character_8.png" />
+                <PlistImageFile Name="character_9.png" Key="character_9.png" />
+                <PlistImageFile Name="dot_1.png" Key="dot_1.png" />
+                <PlistImageFile Name="dot_2.png" Key="dot_2.png" />
+                <PlistImageFile Name="dot_3.png" Key="dot_3.png" />
+                <PlistImageFile Name="dot_4.png" Key="dot_4.png" />
+                <PlistImageFile Name="dot_5.png" Key="dot_5.png" />
+                <PlistImageFile Name="dot_6.png" Key="dot_6.png" />
+                <PlistImageFile Name="dot_7.png" Key="dot_7.png" />
+                <PlistImageFile Name="dot_8.png" Key="dot_8.png" />
+                <PlistImageFile Name="dot_9.png" Key="dot_9.png" />
+                <PlistImageFile Name="mj_left_angang.png" Key="mj_left_angang.png" />
+                <PlistImageFile Name="mj_left_gang.png" Key="mj_left_gang.png" />
+                <PlistImageFile Name="mj_left_invisible.png" Key="mj_left_invisible.png" />
+                <PlistImageFile Name="mj_left_visible.png" Key="mj_left_visible.png" />
+                <PlistImageFile Name="mj_my_an_gang.png" Key="mj_my_an_gang.png" />
+                <PlistImageFile Name="mj_my_discard.png" Key="mj_my_discard.png" />
+                <PlistImageFile Name="mj_my_invisible.png" Key="mj_my_invisible.png" />
+                <PlistImageFile Name="mj_my_visible.png" Key="mj_my_visible.png" />
+                <PlistImageFile Name="mj_opposite_angang.png" Key="mj_opposite_angang.png" />
+                <PlistImageFile Name="mj_opposite_gang.png" Key="mj_opposite_gang.png" />
+                <PlistImageFile Name="mj_opposite_invisible.png" Key="mj_opposite_invisible.png" />
+                <PlistImageFile Name="mj_opposite_visible.png" Key="mj_opposite_visible.png" />
+                <PlistImageFile Name="season_or_flower_1.png" Key="season_or_flower_1.png" />
+                <PlistImageFile Name="season_or_flower_2.png" Key="season_or_flower_2.png" />
+                <PlistImageFile Name="season_or_flower_3.png" Key="season_or_flower_3.png" />
+                <PlistImageFile Name="season_or_flower_4.png" Key="season_or_flower_4.png" />
+                <PlistImageFile Name="season_or_flower_5.png" Key="season_or_flower_5.png" />
+                <PlistImageFile Name="season_or_flower_6.png" Key="season_or_flower_6.png" />
+                <PlistImageFile Name="season_or_flower_7.png" Key="season_or_flower_7.png" />
+                <PlistImageFile Name="season_or_flower_8.png" Key="season_or_flower_8.png" />
+                <PlistImageFile Name="wind_or_dragon_1.png" Key="wind_or_dragon_1.png" />
+                <PlistImageFile Name="wind_or_dragon_2.png" Key="wind_or_dragon_2.png" />
+                <PlistImageFile Name="wind_or_dragon_3.png" Key="wind_or_dragon_3.png" />
+                <PlistImageFile Name="wind_or_dragon_4.png" Key="wind_or_dragon_4.png" />
+                <PlistImageFile Name="wind_or_dragon_5.png" Key="wind_or_dragon_5.png" />
+                <PlistImageFile Name="wind_or_dragon_6.png" Key="wind_or_dragon_6.png" />
+                <PlistImageFile Name="wind_or_dragon_7.png" Key="wind_or_dragon_7.png" />
+              </PlistImageFolder>
+            </Folder>
             <Image Name="normal_room_bg.jpg" />
           </Folder>
         </Folder>
@@ -60,7 +118,30 @@
               <Project Name="hall_top_node_layout.csd" Type="Node" />
             </Folder>
             <Folder Name="login" />
-            <Folder Name="room" />
+            <Folder Name="room">
+              <Folder Name="mahjong">
+                <Project Name="left_invisible_1_mj_node_layout.csd" Type="Node" />
+                <Project Name="left_invisible_2_mj_node_layout.csd" Type="Node" />
+                <Project Name="left_invisible_mj_node_layout.csd" Type="Node" />
+                <Project Name="left_visible_1_mj_node_layout.csd" Type="Node" />
+                <Project Name="left_visible_2_mj_node_layout.csd" Type="Node" />
+                <Project Name="my_invisible_1_mj_node_layout.csd" Type="Node" />
+                <Project Name="my_invisible_2_mj_node_layout.csd" Type="Node" />
+                <Project Name="my_invisible_mj_node_layout.csd" Type="Node" />
+                <Project Name="my_visible_1_mj_node_layout.csd" Type="Node" />
+                <Project Name="my_visible_2_mj_node_layout.csd" Type="Node" />
+                <Project Name="opposite_invisible_1_mj_node_layout.csd" Type="Node" />
+                <Project Name="opposite_invisible_2_mj_node_layout.csd" Type="Node" />
+                <Project Name="opposite_invisible_mj_node_layout.csd" Type="Node" />
+                <Project Name="opposite_visible_1_mj_node_layout.csd" Type="Node" />
+                <Project Name="opposite_visible_2_mj_node_layout.csd" Type="Node" />
+                <Project Name="right_invisible_1_mj_node_layout.csd" Type="Node" />
+                <Project Name="right_invisible_2_mj_node_layout.csd" Type="Node" />
+                <Project Name="right_invisible_mj_node_layout.csd" Type="Node" />
+                <Project Name="right_visible_1_mj_node_layout.csd" Type="Node" />
+                <Project Name="right_visible_2_mj_node_layout.csd" Type="Node" />
+              </Folder>
+            </Folder>
           </Folder>
         </Folder>
       </RootFolder>

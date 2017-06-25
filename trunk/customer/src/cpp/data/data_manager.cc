@@ -72,20 +72,21 @@ void DataManager::releaseData(int key, google::protobuf::Message* data)
 	{
 	case (int)gamer::DataIDs::DATA_ID_MY_LOGIN_MSG_PROTOCOL:
 		{
-			auto datatmp = static_cast<protocol::MyLoginMsgProtocol*>(data);
-			SAFE_DELETE(datatmp);
+			auto proto = dynamic_cast<protocol::MyLoginMsgProtocol*>(data);
+			SAFE_DELETE(proto);
 		}
 		break;
 	case (int)gamer::DataIDs::DATA_ID_CREATE_ROOM_MSG_PROTOCOL:
 		{
-			auto datatmp = static_cast<protocol::CreateRoomMsgProtocol*>(data);
-			SAFE_DELETE(datatmp);
+			auto proto = dynamic_cast<protocol::CreateRoomMsgProtocol*>(data);
+			SAFE_DELETE(proto);
 		}
 		break;
 	case (int)gamer::DataIDs::DATA_ID_GAME_START_MSG_PROTOCOL:
 		{
-			auto datatmp = static_cast<protocol::GameStartMsgProtocol*>(data);
-			SAFE_DELETE(datatmp);
+			auto proto = dynamic_cast<protocol::GameStartMsgProtocol*>(data);
+            proto->mutable_player_cards()->DeleteSubrange(0, proto->player_cards_size());
+            SAFE_DELETE(proto);
 		}
 		break;
 	default:

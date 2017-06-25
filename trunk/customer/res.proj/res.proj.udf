@@ -31,11 +31,10 @@
     <Item Key="TabsParamsKey">
       <Value ctype="TabsInfo">
         <OpenedDocuments>
-          <FilePathData Path="layouts/scene/hall/hall_scene_layout.csd" />
-          <FilePathData Path="layouts/scene/login/login_scene_layout.csd" />
-          <FilePathData Path="layouts/ui/hall/hall_bottom_node_layout.csd" />
-          <FilePathData Path="layouts/ui/hall/hall_top_node_layout.csd" />
-          <FilePathData Path="layouts/ui/hall/hall_middle_node_layout.csd" />
+          <FilePathData Path="layouts/ui/room/mahjong/my_invisible_mj_node_layout.csd" />
+          <FilePathData Path="layouts/ui/room/mahjong/my_visible_1_mj_node_layout.csd" />
+          <FilePathData Path="layouts/ui/room/mahjong/my_visible_2_mj_node_layout.csd" />
+          <FilePathData Path="layouts/ui/room/mahjong/left_visible_2_mj_node_layout.csd" />
           <FilePathData Path="layouts/scene/room/normal_room_scene_layout.csd" />
         </OpenedDocuments>
         <ActiveDocument Path="layouts/scene/room/normal_room_scene_layout.csd" />

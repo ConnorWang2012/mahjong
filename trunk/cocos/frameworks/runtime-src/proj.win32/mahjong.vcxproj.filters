@@ -169,6 +169,15 @@
     <Filter Include="classes\cpp\logic\msg\protocol">
       <UniqueIdentifier>{8348630d-0045-4f71-8799-e505091abff4}</UniqueIdentifier>
     </Filter>
+    <Filter Include="classes\lua\view\room\scene">
+      <UniqueIdentifier>{08179b87-8893-4389-838e-92b36aaa50f7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="classes\lua\view\layouts\ui\room\mahjong">
+      <UniqueIdentifier>{d033e8eb-c849-42de-b8f6-1376a197100b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="classes\lua\view\room\mahjong">
+      <UniqueIdentifier>{5d2c50ca-0aa0-4b71-afd8-42469efe9eee}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\Classes\AppDelegate.h">
@@ -1215,9 +1224,6 @@
     <None Include="..\..\..\..\customer\src\lua\view\layouts\ui\hall\hall_bottom_node_layout.lua">
       <Filter>classes\lua\view\layouts\ui\hall</Filter>
     </None>
-    <None Include="..\..\..\..\customer\src\lua\view\room\room_scene.lua">
-      <Filter>classes\lua\view\room</Filter>
-    </None>
     <None Include="..\..\..\..\customer\src\lua\view\layouts\scene\login\login_scene_layout.lua">
       <Filter>classes\lua\view\layouts\scene\login</Filter>
     </None>
@@ -1233,11 +1239,83 @@
     <None Include="..\..\..\..\customer\src\lua\logic\constant\msg_code.lua">
       <Filter>classes\lua\logic\constant</Filter>
     </None>
-    <None Include="..\..\..\..\customer\src\lua\view\room\normal_room_scene.lua">
-      <Filter>classes\lua\view\room</Filter>
-    </None>
     <None Include="..\..\..\..\customer\src\lua\view\layouts\scene\room\normal_room_scene_layout.lua">
       <Filter>classes\lua\view\layouts\scene\room</Filter>
+    </None>
+    <None Include="..\..\..\..\customer\src\lua\data\data_constants.lua">
+      <Filter>classes\lua\data</Filter>
+    </None>
+    <None Include="..\..\..\..\customer\src\lua\view\room\scene\normal_room_scene.lua">
+      <Filter>classes\lua\view\room\scene</Filter>
+    </None>
+    <None Include="..\..\..\..\customer\src\lua\view\room\scene\room_scene.lua">
+      <Filter>classes\lua\view\room\scene</Filter>
+    </None>
+    <None Include="..\..\..\..\customer\src\lua\view\constant\mahjong_constants.lua">
+      <Filter>classes\lua\view\constant</Filter>
+    </None>
+    <None Include="..\..\..\..\customer\src\lua\view\layouts\ui\room\mahjong\left_invisible_1_mj_node_layout.lua">
+      <Filter>classes\lua\view\layouts\ui\room\mahjong</Filter>
+    </None>
+    <None Include="..\..\..\..\customer\src\lua\view\layouts\ui\room\mahjong\left_invisible_2_mj_node_layout.lua">
+      <Filter>classes\lua\view\layouts\ui\room\mahjong</Filter>
+    </None>
+    <None Include="..\..\..\..\customer\src\lua\view\layouts\ui\room\mahjong\left_invisible_mj_node_layout.lua">
+      <Filter>classes\lua\view\layouts\ui\room\mahjong</Filter>
+    </None>
+    <None Include="..\..\..\..\customer\src\lua\view\layouts\ui\room\mahjong\left_visible_1_mj_node_layout.lua">
+      <Filter>classes\lua\view\layouts\ui\room\mahjong</Filter>
+    </None>
+    <None Include="..\..\..\..\customer\src\lua\view\layouts\ui\room\mahjong\left_visible_2_mj_node_layout.lua">
+      <Filter>classes\lua\view\layouts\ui\room\mahjong</Filter>
+    </None>
+    <None Include="..\..\..\..\customer\src\lua\view\layouts\ui\room\mahjong\my_invisible_1_mj_node_layout.lua">
+      <Filter>classes\lua\view\layouts\ui\room\mahjong</Filter>
+    </None>
+    <None Include="..\..\..\..\customer\src\lua\view\layouts\ui\room\mahjong\my_invisible_2_mj_node_layout.lua">
+      <Filter>classes\lua\view\layouts\ui\room\mahjong</Filter>
+    </None>
+    <None Include="..\..\..\..\customer\src\lua\view\layouts\ui\room\mahjong\my_invisible_mj_node_layout.lua">
+      <Filter>classes\lua\view\layouts\ui\room\mahjong</Filter>
+    </None>
+    <None Include="..\..\..\..\customer\src\lua\view\layouts\ui\room\mahjong\my_visible_1_mj_node_layout.lua">
+      <Filter>classes\lua\view\layouts\ui\room\mahjong</Filter>
+    </None>
+    <None Include="..\..\..\..\customer\src\lua\view\layouts\ui\room\mahjong\my_visible_2_mj_node_layout.lua">
+      <Filter>classes\lua\view\layouts\ui\room\mahjong</Filter>
+    </None>
+    <None Include="..\..\..\..\customer\src\lua\view\layouts\ui\room\mahjong\opposite_invisible_1_mj_node_layout.lua">
+      <Filter>classes\lua\view\layouts\ui\room\mahjong</Filter>
+    </None>
+    <None Include="..\..\..\..\customer\src\lua\view\layouts\ui\room\mahjong\opposite_invisible_2_mj_node_layout.lua">
+      <Filter>classes\lua\view\layouts\ui\room\mahjong</Filter>
+    </None>
+    <None Include="..\..\..\..\customer\src\lua\view\layouts\ui\room\mahjong\opposite_invisible_mj_node_layout.lua">
+      <Filter>classes\lua\view\layouts\ui\room\mahjong</Filter>
+    </None>
+    <None Include="..\..\..\..\customer\src\lua\view\layouts\ui\room\mahjong\opposite_visible_1_mj_node_layout.lua">
+      <Filter>classes\lua\view\layouts\ui\room\mahjong</Filter>
+    </None>
+    <None Include="..\..\..\..\customer\src\lua\view\layouts\ui\room\mahjong\opposite_visible_2_mj_node_layout.lua">
+      <Filter>classes\lua\view\layouts\ui\room\mahjong</Filter>
+    </None>
+    <None Include="..\..\..\..\customer\src\lua\view\layouts\ui\room\mahjong\right_invisible_1_mj_node_layout.lua">
+      <Filter>classes\lua\view\layouts\ui\room\mahjong</Filter>
+    </None>
+    <None Include="..\..\..\..\customer\src\lua\view\layouts\ui\room\mahjong\right_invisible_2_mj_node_layout.lua">
+      <Filter>classes\lua\view\layouts\ui\room\mahjong</Filter>
+    </None>
+    <None Include="..\..\..\..\customer\src\lua\view\layouts\ui\room\mahjong\right_invisible_mj_node_layout.lua">
+      <Filter>classes\lua\view\layouts\ui\room\mahjong</Filter>
+    </None>
+    <None Include="..\..\..\..\customer\src\lua\view\layouts\ui\room\mahjong\right_visible_1_mj_node_layout.lua">
+      <Filter>classes\lua\view\layouts\ui\room\mahjong</Filter>
+    </None>
+    <None Include="..\..\..\..\customer\src\lua\view\layouts\ui\room\mahjong\right_visible_2_mj_node_layout.lua">
+      <Filter>classes\lua\view\layouts\ui\room\mahjong</Filter>
+    </None>
+    <None Include="..\..\..\..\customer\src\lua\view\room\mahjong\mahjong_creator.lua">
+      <Filter>classes\lua\view\room\mahjong</Filter>
     </None>
   </ItemGroup>
 </Project>

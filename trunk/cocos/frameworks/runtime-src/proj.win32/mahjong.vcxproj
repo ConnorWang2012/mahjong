@@ -543,6 +543,7 @@ xcopy "$(ProjectDir)..\..\..\..\customer\src\lua" "$(LocalDebuggerWorkingDirecto
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <None Include="..\..\..\..\customer\src\lua\data\data_constants.lua" />
     <None Include="..\..\..\..\customer\src\lua\data\init_data.lua" />
     <None Include="..\..\..\..\customer\src\lua\logic\constant\msg_id.lua" />
     <None Include="..\..\..\..\customer\src\lua\logic\constant\msg_code.lua" />
@@ -556,6 +557,7 @@ xcopy "$(ProjectDir)..\..\..\..\customer\src\lua" "$(LocalDebuggerWorkingDirecto
     <None Include="..\..\..\..\customer\src\lua\view\base\layer_base.lua" />
     <None Include="..\..\..\..\customer\src\lua\view\base\node_base.lua" />
     <None Include="..\..\..\..\customer\src\lua\view\constant\layer_constants.lua" />
+    <None Include="..\..\..\..\customer\src\lua\view\constant\mahjong_constants.lua" />
     <None Include="..\..\..\..\customer\src\lua\view\constant\scene_constants.lua" />
     <None Include="..\..\..\..\customer\src\lua\view\hall\hall_scene.lua" />
     <None Include="..\..\..\..\customer\src\lua\view\init_view.lua" />
@@ -565,9 +567,30 @@ xcopy "$(ProjectDir)..\..\..\..\customer\src\lua" "$(LocalDebuggerWorkingDirecto
     <None Include="..\..\..\..\customer\src\lua\view\layouts\ui\hall\hall_bottom_node_layout.lua" />
     <None Include="..\..\..\..\customer\src\lua\view\layouts\ui\hall\hall_middle_node_layout.lua" />
     <None Include="..\..\..\..\customer\src\lua\view\layouts\ui\hall\hall_top_node_layout.lua" />
+    <None Include="..\..\..\..\customer\src\lua\view\layouts\ui\room\mahjong\left_invisible_1_mj_node_layout.lua" />
+    <None Include="..\..\..\..\customer\src\lua\view\layouts\ui\room\mahjong\left_invisible_2_mj_node_layout.lua" />
+    <None Include="..\..\..\..\customer\src\lua\view\layouts\ui\room\mahjong\left_invisible_mj_node_layout.lua" />
+    <None Include="..\..\..\..\customer\src\lua\view\layouts\ui\room\mahjong\left_visible_1_mj_node_layout.lua" />
+    <None Include="..\..\..\..\customer\src\lua\view\layouts\ui\room\mahjong\left_visible_2_mj_node_layout.lua" />
+    <None Include="..\..\..\..\customer\src\lua\view\layouts\ui\room\mahjong\my_invisible_1_mj_node_layout.lua" />
+    <None Include="..\..\..\..\customer\src\lua\view\layouts\ui\room\mahjong\my_invisible_2_mj_node_layout.lua" />
+    <None Include="..\..\..\..\customer\src\lua\view\layouts\ui\room\mahjong\my_invisible_mj_node_layout.lua" />
+    <None Include="..\..\..\..\customer\src\lua\view\layouts\ui\room\mahjong\my_visible_1_mj_node_layout.lua" />
+    <None Include="..\..\..\..\customer\src\lua\view\layouts\ui\room\mahjong\my_visible_2_mj_node_layout.lua" />
+    <None Include="..\..\..\..\customer\src\lua\view\layouts\ui\room\mahjong\opposite_invisible_1_mj_node_layout.lua" />
+    <None Include="..\..\..\..\customer\src\lua\view\layouts\ui\room\mahjong\opposite_invisible_2_mj_node_layout.lua" />
+    <None Include="..\..\..\..\customer\src\lua\view\layouts\ui\room\mahjong\opposite_invisible_mj_node_layout.lua" />
+    <None Include="..\..\..\..\customer\src\lua\view\layouts\ui\room\mahjong\opposite_visible_1_mj_node_layout.lua" />
+    <None Include="..\..\..\..\customer\src\lua\view\layouts\ui\room\mahjong\opposite_visible_2_mj_node_layout.lua" />
+    <None Include="..\..\..\..\customer\src\lua\view\layouts\ui\room\mahjong\right_invisible_1_mj_node_layout.lua" />
+    <None Include="..\..\..\..\customer\src\lua\view\layouts\ui\room\mahjong\right_invisible_2_mj_node_layout.lua" />
+    <None Include="..\..\..\..\customer\src\lua\view\layouts\ui\room\mahjong\right_invisible_mj_node_layout.lua" />
+    <None Include="..\..\..\..\customer\src\lua\view\layouts\ui\room\mahjong\right_visible_1_mj_node_layout.lua" />
+    <None Include="..\..\..\..\customer\src\lua\view\layouts\ui\room\mahjong\right_visible_2_mj_node_layout.lua" />
     <None Include="..\..\..\..\customer\src\lua\view\login\login_scene.lua" />
-    <None Include="..\..\..\..\customer\src\lua\view\room\normal_room_scene.lua" />
-    <None Include="..\..\..\..\customer\src\lua\view\room\room_scene.lua" />
+    <None Include="..\..\..\..\customer\src\lua\view\room\mahjong\mahjong_creator.lua" />
+    <None Include="..\..\..\..\customer\src\lua\view\room\scene\normal_room_scene.lua" />
+    <None Include="..\..\..\..\customer\src\lua\view\room\scene\room_scene.lua" />
     <None Include="..\..\..\src\main.lua" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

@@ -12,7 +12,5 @@ author:
 modification:
 --]]
 
-if gamer then
-    gamer.LayerConstants = require "view.constant.layer_constants"
-    gamer.SceneConstants = require "view.constant.scene_constants"
-end
+gamer.LayerConstants = require "view.constant.layer_constants.lua"
+gamer.SceneConstants = require "view.constant.scene_constants.lua"

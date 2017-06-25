@@ -12,3 +12,6 @@ author:
 modification:
 --]]
 
+require "data.data_constants.lua"
+
+gamer.g_data_mgr_ = gamer.DataManager:getInstance()

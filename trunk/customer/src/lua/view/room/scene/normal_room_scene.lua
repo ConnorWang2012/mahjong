@@ -12,19 +12,30 @@ author:
 modification:
 --]]
 
-local NormalRoomScene = class("NormalRoomScene", require "view.room.room_scene")
+local NormalRoomScene = class("NormalRoomScene", require "view.room.scene.room_scene.lua")
+local MahjongLayer    = require "view.room.mahjong_layer.lua"
 
 function NormalRoomScene:ctor(view_file)
 	print("[NormalRoomScene:ctor]")
     self.super.ctor(self, view_file)
+	self:initLayout()
+end
+
+function NormalRoomScene:initLayout()
+	self:initMahjongLayer()
+end
+
+function NormalRoomScene:initMahjongLayer()
+	
 end
 
 function NormalRoomScene:onEnter()
 	-- TODO : dispatch layer enter event to all listeners
     print("[NormalRoomScene:onEnter]")
-	local proto = gamer.DataManager:getInstance():getMutableData(1)
-	local player_id = proto:player_id()
-	print("[NormalRoomScene:onEnter] player_id : %d", player_id)
+	local proto = gamer.g_data_mgr_:getMutableData(gamer.DataIDs.DATA_ID_GAME_START_MSG_PROTOCOL)
+	local room_owner_id = proto:room_owner_id()
+	print("[NormalRoomScene:onEnter] room_owner_id : %d", room_owner_id)
+	
 end
 
 function NormalRoomScene:onExit()

@@ -312,21 +312,27 @@ void MsgManager::dealWithRoomMsg(const ServerMsg& msg)
 
 void MsgManager::dealWithCreateRoomMsg(const ServerMsg& msg)
 {
-    protocol::CreateRoomMsgProtocol proto;
-    this->dealWithDispatchMsg(msg, &proto, "gamer::protocol::CreateRoomMsgProtocol");
+    auto key = (int)DataIDs::DATA_ID_CREATE_ROOM_MSG_PROTOCOL;
+    auto proto = DataManager::getInstance()->createData<protocol::CreateRoomMsgProtocol>();
+    DataManager::getInstance()->cacheData(key, proto);
+
+    this->dealWithDispatchMsg(msg, proto, "gamer::protocol::CreateRoomMsgProtocol");
 }
 
 void MsgManager::dealWithStartGameMsg(const ServerMsg& msg)
 {
-    protocol::GameStartMsgProtocol proto;
-    this->dealWithDispatchMsg(msg, &proto, "gamer::protocol::GameStartMsgProtocol");
+    auto key = (int)DataIDs::DATA_ID_GAME_START_MSG_PROTOCOL;
+    auto proto = DataManager::getInstance()->createData<protocol::GameStartMsgProtocol>();
+    DataManager::getInstance()->cacheData(key, proto);
 
-    auto card_size = proto.player_cards_size();
-    auto cards = proto.player_cards(0);
-    for (auto i = 0; i < cards.invisible_hand_cards_size(); i++)
-    {
-        printf("card %d\n", cards.invisible_hand_cards(i));
-    }
+    this->dealWithDispatchMsg(msg, proto, "gamer::protocol::GameStartMsgProtocol");
+
+    //auto card_size = proto->player_cards_size();
+    //auto cards = proto->player_cards(0);
+    //for (auto i = 0; i < cards.invisible_hand_cards_size(); i++)
+    //{
+    //    auto card = cards.invisible_hand_cards(i);
+    //}
 }
 
 void MsgManager::onSocketConnected(gamer::Event* event)

@@ -16,16 +16,16 @@ if not cc.exports.gamer then
 	cc.exports.gamer = {}
 end
 ]]
-require "data.init_data"
-require "logic.init_logic"
-require "network.init_network"
-require "view.init_view"
+require "data.init_data.lua"
+require "logic.init_logic.lua"
+require "network.init_network.lua"
+require "view.init_view.lua"
 
 gamer.ResWidth = 1920
 gamer.ResHeight = 1080
 
-gamer.LayerManager = require "logic.manager.layer_manager"
-gamer.SceneManager = require "logic.manager.scene_manager"
+gamer.LayerManager = require "logic.manager.layer_manager.lua"
+gamer.SceneManager = require "logic.manager.scene_manager.lua"
 
 gamer.initEngine = function()
     if CC_SHOW_FPS then

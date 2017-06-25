@@ -12,7 +12,7 @@ author:
 modification:
 --]]
 
-local RoomScene = class("RoomScene", require "view.base.layer_base")
+local RoomScene = class("RoomScene", require "view.base.layer_base.lua")
 
 function RoomScene:ctor(view_file)
 	print("[RoomScene:ctor]")
