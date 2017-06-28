@@ -26,7 +26,7 @@ modification:
 #include "msg/msg_code.h"
 #include "msg/protocol/my_login_msg_protocol.pb.h"
 #include "msg/protocol/create_room_msg_protocol.pb.h"
-#include "msg/protocol/game_start_msg_protocol.pb.h"
+#include "msg/protocol/room_msg_protocol.pb.h"
 #include "network/network_manager.h"
 
 namespace gamer
@@ -321,11 +321,11 @@ void MsgManager::dealWithCreateRoomMsg(const ServerMsg& msg)
 
 void MsgManager::dealWithStartGameMsg(const ServerMsg& msg)
 {
-    auto key = (int)DataIDs::DATA_ID_GAME_START_MSG_PROTOCOL;
-    auto proto = DataManager::getInstance()->createData<protocol::GameStartMsgProtocol>();
+    auto key = (int)DataIDs::DATA_ID_ROOM_MSG_PROTOCOL;
+    auto proto = DataManager::getInstance()->createData<protocol::RoomMsgProtocol>();
     DataManager::getInstance()->cacheData(key, proto);
 
-    this->dealWithDispatchMsg(msg, proto, "gamer::protocol::GameStartMsgProtocol");
+    this->dealWithDispatchMsg(msg, proto, "gamer::protocol::RoomMsgProtocol");
 
     //auto card_size = proto->player_cards_size();
     //auto cards = proto->player_cards(0);

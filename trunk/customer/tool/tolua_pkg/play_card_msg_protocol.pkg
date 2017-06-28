@@ -1,0 +1,40 @@
+$#include "msg/protocol/play_card_msg_protocol.pb.h"
+
+$#include <string>
+$#include <google/protobuf/stubs/common.h>
+
+$#include <google/protobuf/generated_message_util.h>
+$#include <google/protobuf/message.h>
+$#include <google/protobuf/repeated_field.h>
+$#include <google/protobuf/extension_set.h>
+$#include <google/protobuf/unknown_field_set.h>
+
+namespace gamer {
+
+namespace protocol {
+
+class PlayCardMsgProtocol : public google::protobuf::Message {
+public:
+	PlayCardMsgProtocol();
+
+	int ByteSize() const;
+
+	inline void set_player_id(int value);
+	inline int player_id() const;
+
+	inline void set_room_id(int value);
+	inline int room_id() const;
+
+	inline void set_cur_round(int value);
+	inline int cur_round() const;
+
+	inline void set_operation_id(int value);
+	inline int operation_id() const;
+
+	inline void set_discard(int value);
+	inline int discard() const;
+};
+
+} // namespace protocol
+
+} // namespace gamer

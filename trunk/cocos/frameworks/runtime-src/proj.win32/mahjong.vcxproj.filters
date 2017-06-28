@@ -836,9 +836,6 @@
     <ClInclude Include="..\..\..\..\customer\src\cpp\logic\msg\msg_type.h">
       <Filter>classes\cpp\logic\msg</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\..\customer\src\cpp\logic\msg\protocol\game_start_msg_protocol.pb.h">
-      <Filter>classes\cpp\logic\msg\protocol</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\..\..\customer\src\cpp\logic\msg\protocol\my_login_msg_protocol.pb.h">
       <Filter>classes\cpp\logic\msg\protocol</Filter>
     </ClInclude>
@@ -862,6 +859,15 @@
     </ClInclude>
     <ClInclude Include="..\..\..\..\customer\src\cpp\data\data_constants.h">
       <Filter>classes\cpp\data</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\customer\src\cpp\logic\msg\protocol\play_card_msg_protocol.pb.h">
+      <Filter>classes\cpp\logic\msg\protocol</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\customer\src\cpp\logic\msg\protocol\room_msg_protocol.pb.h">
+      <Filter>classes\cpp\logic\msg\protocol</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\customer\src\cpp\logic\msg\protocol\room_operation_msg_protocol.pb.h">
+      <Filter>classes\cpp\logic\msg\protocol</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -1124,9 +1130,6 @@
     <ClCompile Include="..\..\..\..\customer\src\cpp\logic\msg\msg_manager.cc">
       <Filter>classes\cpp\logic\msg</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\..\..\customer\src\cpp\logic\msg\protocol\game_start_msg_protocol.pb.cc">
-      <Filter>classes\cpp\logic\msg\protocol</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\..\..\customer\src\cpp\logic\msg\protocol\my_login_msg_protocol.pb.cc">
       <Filter>classes\cpp\logic\msg\protocol</Filter>
     </ClCompile>
@@ -1137,9 +1140,6 @@
       <Filter>classes\cpp\logic\msg\protocol</Filter>
     </ClCompile>
     <ClCompile Include="..\..\..\..\customer\src\cpp\logic\lua_bind\auto\lua_bind_create_room_msg_protocol.cc">
-      <Filter>classes\cpp\logic\lua_bind\auto</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\..\..\customer\src\cpp\logic\lua_bind\auto\lua_bind_game_start_msg_protocol.cc">
       <Filter>classes\cpp\logic\lua_bind\auto</Filter>
     </ClCompile>
     <ClCompile Include="..\..\..\..\customer\src\cpp\logic\msg\protocol\player_cards_msg_protocol.pb.cc">
@@ -1158,6 +1158,24 @@
       <Filter>classes\cpp\logic\lua_bind\auto</Filter>
     </ClCompile>
     <ClCompile Include="..\..\..\..\customer\src\cpp\logic\lua_bind\auto\lua_bind_player_msg_protocol.cc">
+      <Filter>classes\cpp\logic\lua_bind\auto</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\customer\src\cpp\logic\msg\protocol\play_card_msg_protocol.pb.cc">
+      <Filter>classes\cpp\logic\msg\protocol</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\customer\src\cpp\logic\msg\protocol\room_msg_protocol.pb.cc">
+      <Filter>classes\cpp\logic\msg\protocol</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\customer\src\cpp\logic\msg\protocol\room_operation_msg_protocol.pb.cc">
+      <Filter>classes\cpp\logic\msg\protocol</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\customer\src\cpp\logic\lua_bind\auto\lua_bind_room_operation_msg_protocol.cc">
+      <Filter>classes\cpp\logic\lua_bind\auto</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\customer\src\cpp\logic\lua_bind\auto\lua_bind_play_card_msg_protocol.cc">
+      <Filter>classes\cpp\logic\lua_bind\auto</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\customer\src\cpp\logic\lua_bind\auto\lua_bind_room_msg_protocol.cc">
       <Filter>classes\cpp\logic\lua_bind\auto</Filter>
     </ClCompile>
   </ItemGroup>

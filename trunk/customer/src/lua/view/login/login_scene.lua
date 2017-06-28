@@ -26,8 +26,8 @@ function LoginScene:onBtnLoginTouch(sender)
     print("[LoginScene:onBtnLoginTouch] connected : ", tostring(connected))
 
     local proto = gamer.protocol.MyLoginMsgProtocol()
-    proto:set_account(2017)
-    proto:set_password(2018)
+    proto:set_account(2020)
+    proto:set_password(2030)
 
     gamer.MsgManager:getInstance():sendMsg(gamer.MsgTypes.C2S_MSG_TYPE_LOGIN, 
         gamer.MsgIDs.MSG_ID_LOGIN_MY, 

@@ -1,4 +1,4 @@
-$#include "msg/protocol/game_start_msg_protocol.pb.h"
+$#include "msg/protocol/room_msg_protocol.pb.h"
 $#include "msg/protocol/player_cards_msg_protocol.pb.h"
 
 $#include <string>
@@ -14,9 +14,9 @@ namespace gamer {
 
 namespace protocol {
 
-class GameStartMsgProtocol : public google::protobuf::Message {
+class RoomMsgProtocol : public google::protobuf::Message {
 public:
-	GameStartMsgProtocol();
+	RoomMsgProtocol();
 
 	int ByteSize() const;
 

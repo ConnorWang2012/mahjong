@@ -18,7 +18,7 @@ modification:
 #include "data/data_constants.h"
 #include "msg/protocol/my_login_msg_protocol.pb.h"
 #include "msg/protocol/create_room_msg_protocol.pb.h"
-#include "msg/protocol/game_start_msg_protocol.pb.h"
+#include "msg/protocol/room_msg_protocol.pb.h"
 
 namespace gamer
 {
@@ -82,9 +82,9 @@ void DataManager::releaseData(int key, google::protobuf::Message* data)
 			SAFE_DELETE(proto);
 		}
 		break;
-	case (int)gamer::DataIDs::DATA_ID_GAME_START_MSG_PROTOCOL:
+	case (int)gamer::DataIDs::DATA_ID_ROOM_MSG_PROTOCOL:
 		{
-			auto proto = dynamic_cast<protocol::GameStartMsgProtocol*>(data);
+			auto proto = dynamic_cast<protocol::RoomMsgProtocol*>(data);
             proto->mutable_player_cards()->DeleteSubrange(0, proto->player_cards_size());
             SAFE_DELETE(proto);
 		}

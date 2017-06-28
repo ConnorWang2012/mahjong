@@ -61,7 +61,7 @@ function HallScene:onCreateRoomMsgReceived(code, msg_type, msg_id, msg)
     print("[HallScene:onCreateRoomMsgReceived] room_id : ", msg:room_id())
 	print("[HallScene:onCreateRoomMsgReceived] room_owner_id : ", msg:room_owner_id())
     if code == gamer.MsgCodes.SUCCEED then
-        local proto = gamer.protocol.GameStartMsgProtocol()
+        local proto = gamer.protocol.RoomMsgProtocol()
         proto:set_room_id(msg:room_id())
         proto:set_room_owner_id(msg:room_owner_id())
 
@@ -75,7 +75,14 @@ end
 function HallScene:onGameStartMsgReceived(code, msg_type, msg_id, msg)
     print("[HallScene:onGameStartMsgReceived] code : ", code)
     if code == gamer.MsgCodes.SUCCEED then
-        gamer.SceneManager.runScene(gamer.SceneConstants.SceneIDs.NORMAL_ROOM_SCENE)
+        --gamer.SceneManager.runScene(gamer.SceneConstants.SceneIDs.NORMAL_ROOM_SCENE)
+		print("[HallScene:onCreateRoomMsgReceived] remian card num : ", msg:remain_cards_num())
+		local player_cards = msg:player_cards(0)
+		print("[HallScene:onCreateRoomMsgReceived] invisible_hand_cards_size : ", player_cards:invisible_hand_cards_size())
+		for i = 0, player_cards:invisible_hand_cards_size() - 1 do
+			print("[HallScene:onCreateRoomMsgReceived] i : ",  i)
+			print("[HallScene:onCreateRoomMsgReceived] invisible_hand_cards : ", player_cards:invisible_hand_cards(i))
+		end
     end
 end
 

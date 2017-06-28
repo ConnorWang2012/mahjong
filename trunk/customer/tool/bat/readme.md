@@ -1,0 +1,1 @@
+## 1.tolua_data_manager,  need to modify tolua_data_manager_gamer_DataManager_getMutableData00

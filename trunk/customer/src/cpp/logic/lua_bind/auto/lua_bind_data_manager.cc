@@ -84,8 +84,8 @@ static int tolua_data_manager_gamer_DataManager_getMutableData00(lua_State* tolu
    case (int)gamer::DataIDs::DATA_ID_CREATE_ROOM_MSG_PROTOCOL:
        tolua_pushusertype(tolua_S, (void*)tolua_ret, "gamer::protocol::CreateRoomMsgProtocol");
        break;
-   case (int)gamer::DataIDs::DATA_ID_GAME_START_MSG_PROTOCOL:
-       tolua_pushusertype(tolua_S, (void*)tolua_ret, "gamer::protocol::GameStartMsgProtocol");
+   case (int)gamer::DataIDs::DATA_ID_ROOM_MSG_PROTOCOL:
+       tolua_pushusertype(tolua_S, (void*)tolua_ret, "gamer::protocol::RoomMsgProtocol");
        break;
    default:
        goto tolua_lerror;
