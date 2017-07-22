@@ -18,8 +18,10 @@ local MJConst	     = require "view.constant.mahjong_constants.lua"
 local MyInvisibleMJLayout  = require "view.layouts.ui.room.mahjong.my_invisible_mj_node_layout.lua"
 local MyInvisibleMJLayout1 = require "view.layouts.ui.room.mahjong.my_invisible_1_mj_node_layout.lua"
 local MyInvisibleMJLayout2 = require "view.layouts.ui.room.mahjong.my_invisible_2_mj_node_layout.lua"
+local MyInvisibleMJLayout3 = require "view.layouts.ui.room.mahjong.my_invisible_3_mj_node_layout.lua"
 local MyVisibleMJLayout1   = require "view.layouts.ui.room.mahjong.my_visible_1_mj_node_layout.lua"
 local MyVisibleMJLayout2   = require "view.layouts.ui.room.mahjong.my_visible_2_mj_node_layout.lua"
+local MyVisibleMJLayout3   = require "view.layouts.ui.room.mahjong.my_visible_3_mj_node_layout.lua"
 
 local LeftInvisibleMJLayout  = require "view.layouts.ui.room.mahjong.left_invisible_mj_node_layout.lua"
 local LeftInvisibleMJLayout1 = require "view.layouts.ui.room.mahjong.left_invisible_1_mj_node_layout.lua"
@@ -58,41 +60,53 @@ function MahjongCreator.create(value, direction, type, state)
 	elseif direction == MJConst.Directions.RIGHT then 
 		mj_node = MahjongCreator.initRightPlayerCardLayout(value, type)
 	end
-
+	-- TODO : state
 	return mj_node
 end
 
 function MahjongCreator.initMyCardLayout(value, type)
 	local mj_layout = nil
-	local need_show_card_value = false
 	if type == MJConst.Types.INVISIBLE then
 		mj_layout = MyInvisibleMJLayout:create().root
-		need_show_card_value = true
+		local png = MahjongCreator.getCardPng(value)		
+		if png then
+			local img_fg = mj_layout:getChildByName("img_fg")
+			img_fg:loadTexture(png, ccui.TextureResType.plistType)
+		end
+
 	elseif type == MJConst.Types.INVISIBLE_AN_GANG_1 then
 		mj_layout = MyInvisibleMJLayout1:create().root
+
 	elseif type == MJConst.Types.INVISIBLE_AN_GANG_2 then
 		mj_layout = MyInvisibleMJLayout2:create().root
+
 	elseif type == MJConst.Types.VISIBLE then
 		mj_layout = MyVisibleMJLayout1:create().root
-		need_show_card_value = true
+		local png = MahjongCreator.getCardPng(value)		
+		if png then
+			local img_fg = mj_layout:getChildByName("img_fg")
+			img_fg:loadTexture(png, ccui.TextureResType.plistType)
+		end
+
 	elseif type == MJConst.Types.VISIBLE_MING_GANG then
-		mj_layout = MyVisibleMJLayout2:create().root
-		need_show_card_value = true
+		mj_layout = MyVisibleMJLayout3:create().root
+		local png = MahjongCreator.getCardPng(value)
+		if png then
+			local img_fg = mj_layout:getChildByName("img_left_fg") 
+			local img_fg2 = mj_layout:getChildByName("img_top_fg")
+			local img_fg3 = mj_layout:getChildByName("img_right_fg")
+			img_fg:loadTexture(png, ccui.TextureResType.plistType)
+			img_fg2:loadTexture(png, ccui.TextureResType.plistType)
+			img_fg3:loadTexture(png, ccui.TextureResType.plistType)
+		end
+
 	elseif type == MJConst.Types.VISIBLE_DISCARD then
 		-- TODO
 	end
 
 	if nil == mj_layout then
 		print("[MahjongCreator.initMyCardLayout] nil == mj_layout")
-		return
-	end
-	
-	if need_show_card_value then
-		local png = MahjongCreator.getCardPng(value)
-		local img_fg = mj_layout:getChildByName("img_fg") or mj_layout:getChildByName("img_top_fg")
-		if png then
-			img_fg:loadTexture(png, ccui.TextureResType.plistType)
-		end
+		return nil
 	end
 
 	return mj_layout

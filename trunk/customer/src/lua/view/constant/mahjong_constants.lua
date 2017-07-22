@@ -35,4 +35,16 @@ MahjongConstants.CardPngs = {
 	  "season_or_flower_7.png", "season_or_flower_8.png" }
 }
 
+MahjongConstants.Sizes = {
+	CARD_W1			= 94,  -- width of player self visible card 
+	CARD_W2			= 125, -- width of player self invisible card
+	CARD_W3			= 282, -- width of player self visible card(ming gang)
+	CARD_INTERVAL1	= 110,  -- interval of player self visible card and invisible card
+	OFFSET_X1		= 110,  -- position offset x of player self visible card
+	OFFSET_X2		= 180, -- position offset x of player self visible card(ming gang)
+	OFFSET_Y1		= 76,  -- position offset y of player self visible card
+	OFFSET_Y2		= 78,  -- position offset y of player self visible card(ming gang)
+	OFFSET_Y3		= 100, -- position offset y of player self invisible card
+}
+
 return MahjongConstants

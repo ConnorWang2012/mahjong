@@ -48,7 +48,7 @@ function LayerManager.addLayer(layer_id)
 	end
 	
 	local layer = LayerManager.createLayer(layer_id)
-	local scene = gamer.SceneManager:getRunningScene()
+	local scene = gamer.g_scene_msg_:getRunningScene()
 	if scene then
 		scene:addChild(layer) -- TODO : deal with z order
 		LayerManager.layer_ids[layer_id] = layer_id

@@ -23,7 +23,8 @@ modification:
 namespace gamer
 {
 
-void DataManager::cacheData(int key, google::protobuf::Message* data) {
+void DataManager::cacheData(int key, google::protobuf::Message* data) 
+{
 	auto data_old = this->getMutableData(key);
 	if (nullptr != data_old)
 	{
@@ -44,7 +45,6 @@ const google::protobuf::Message* const DataManager::getData(int key) const
 
 google::protobuf::Message* DataManager::getMutableData(int key)
 {
-	// return const_cast<google::protobuf::Message*>(this->getData(key));
     auto itr = data_map_.find(key);
     if ( itr != data_map_.end())
     {

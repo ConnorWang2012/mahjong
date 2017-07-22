@@ -24,9 +24,6 @@ require "view.init_view.lua"
 gamer.ResWidth = 1920
 gamer.ResHeight = 1080
 
-gamer.LayerManager = require "logic.manager.layer_manager.lua"
-gamer.SceneManager = require "logic.manager.scene_manager.lua"
-
 gamer.initEngine = function()
     if CC_SHOW_FPS then
         cc.Director:getInstance():setDisplayStats(true)

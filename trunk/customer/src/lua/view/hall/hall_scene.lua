@@ -50,7 +50,7 @@ function HallScene:onImgNormalRoomTouch(sender)
     proto:set_players_num(1)
     proto:set_room_cards_num(1)
 
-    gamer.MsgManager:getInstance():sendMsg(gamer.MsgTypes.C2S_MSG_TYPE_ROOM, 
+    gamer.g_msg_mgr_:sendMsg(gamer.MsgTypes.C2S_MSG_TYPE_ROOM, 
         gamer.MsgIDs.MSG_ID_ROOM_CREATE, 
         proto,
         handler(self, self.onCreateRoomMsgReceived))
@@ -65,7 +65,7 @@ function HallScene:onCreateRoomMsgReceived(code, msg_type, msg_id, msg)
         proto:set_room_id(msg:room_id())
         proto:set_room_owner_id(msg:room_owner_id())
 
-        gamer.MsgManager:getInstance():sendMsg(gamer.MsgTypes.C2S_MSG_TYPE_ROOM, 
+        gamer.g_msg_mgr_:sendMsg(gamer.MsgTypes.C2S_MSG_TYPE_ROOM, 
             gamer.MsgIDs.MSG_ID_ROOM_START_GAME, 
             proto,
             handler(self, self.onGameStartMsgReceived))
@@ -75,14 +75,16 @@ end
 function HallScene:onGameStartMsgReceived(code, msg_type, msg_id, msg)
     print("[HallScene:onGameStartMsgReceived] code : ", code)
     if code == gamer.MsgCodes.SUCCEED then
-        --gamer.SceneManager.runScene(gamer.SceneConstants.SceneIDs.NORMAL_ROOM_SCENE)
 		print("[HallScene:onCreateRoomMsgReceived] remian card num : ", msg:remain_cards_num())
+		--[[
 		local player_cards = msg:player_cards(0)
 		print("[HallScene:onCreateRoomMsgReceived] invisible_hand_cards_size : ", player_cards:invisible_hand_cards_size())
 		for i = 0, player_cards:invisible_hand_cards_size() - 1 do
 			print("[HallScene:onCreateRoomMsgReceived] i : ",  i)
 			print("[HallScene:onCreateRoomMsgReceived] invisible_hand_cards : ", player_cards:invisible_hand_cards(i))
 		end
+		]]
+		gamer.g_scene_msg_.runScene(gamer.SceneConstants.SceneIDs.NORMAL_ROOM_SCENE)
     end
 end
 

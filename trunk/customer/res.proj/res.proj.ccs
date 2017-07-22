@@ -127,9 +127,11 @@
                 <Project Name="left_visible_2_mj_node_layout.csd" Type="Node" />
                 <Project Name="my_invisible_1_mj_node_layout.csd" Type="Node" />
                 <Project Name="my_invisible_2_mj_node_layout.csd" Type="Node" />
+                <Project Name="my_invisible_3_mj_node_layout.csd" Type="Node" />
                 <Project Name="my_invisible_mj_node_layout.csd" Type="Node" />
                 <Project Name="my_visible_1_mj_node_layout.csd" Type="Node" />
                 <Project Name="my_visible_2_mj_node_layout.csd" Type="Node" />
+                <Project Name="my_visible_3_mj_node_layout.csd" Type="Node" />
                 <Project Name="opposite_invisible_1_mj_node_layout.csd" Type="Node" />
                 <Project Name="opposite_invisible_2_mj_node_layout.csd" Type="Node" />
                 <Project Name="opposite_invisible_mj_node_layout.csd" Type="Node" />

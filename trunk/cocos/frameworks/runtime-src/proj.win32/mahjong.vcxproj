@@ -550,6 +550,7 @@ xcopy "$(ProjectDir)..\..\..\..\customer\src\lua" "$(LocalDebuggerWorkingDirecto
   </ItemGroup>
   <ItemGroup>
     <None Include="..\..\..\..\customer\src\lua\data\data_constants.lua" />
+    <None Include="..\..\..\..\customer\src\lua\data\data_manager.lua" />
     <None Include="..\..\..\..\customer\src\lua\data\init_data.lua" />
     <None Include="..\..\..\..\customer\src\lua\logic\constant\msg_id.lua" />
     <None Include="..\..\..\..\customer\src\lua\logic\constant\msg_code.lua" />
@@ -580,9 +581,11 @@ xcopy "$(ProjectDir)..\..\..\..\customer\src\lua" "$(LocalDebuggerWorkingDirecto
     <None Include="..\..\..\..\customer\src\lua\view\layouts\ui\room\mahjong\left_visible_2_mj_node_layout.lua" />
     <None Include="..\..\..\..\customer\src\lua\view\layouts\ui\room\mahjong\my_invisible_1_mj_node_layout.lua" />
     <None Include="..\..\..\..\customer\src\lua\view\layouts\ui\room\mahjong\my_invisible_2_mj_node_layout.lua" />
+    <None Include="..\..\..\..\customer\src\lua\view\layouts\ui\room\mahjong\my_invisible_3_mj_node_layout.lua" />
     <None Include="..\..\..\..\customer\src\lua\view\layouts\ui\room\mahjong\my_invisible_mj_node_layout.lua" />
     <None Include="..\..\..\..\customer\src\lua\view\layouts\ui\room\mahjong\my_visible_1_mj_node_layout.lua" />
     <None Include="..\..\..\..\customer\src\lua\view\layouts\ui\room\mahjong\my_visible_2_mj_node_layout.lua" />
+    <None Include="..\..\..\..\customer\src\lua\view\layouts\ui\room\mahjong\my_visible_3_mj_node_layout.lua" />
     <None Include="..\..\..\..\customer\src\lua\view\layouts\ui\room\mahjong\opposite_invisible_1_mj_node_layout.lua" />
     <None Include="..\..\..\..\customer\src\lua\view\layouts\ui\room\mahjong\opposite_invisible_2_mj_node_layout.lua" />
     <None Include="..\..\..\..\customer\src\lua\view\layouts\ui\room\mahjong\opposite_invisible_mj_node_layout.lua" />

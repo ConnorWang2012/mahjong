@@ -38,7 +38,7 @@ end
 function LoginScene:onLoginResponse(code, msg_type, msg_id, msg)
     print("[LoginScene:onLoginResponse] code : ", code)
     if code == gamer.MsgCodes.SUCCEED then
-        gamer.SceneManager.runScene(gamer.SceneConstants.SceneIDs.HALL_SCENE)
+        gamer.g_scene_msg_.runScene(gamer.SceneConstants.SceneIDs.HALL_SCENE)
     end
 end
 

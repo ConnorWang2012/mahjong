@@ -16,6 +16,8 @@ require "logic.constant.msg_id.lua"
 require "logic.constant.msg_type.lua"
 require "logic.constant.msg_code.lua"
 
+gamer.g_layer_mgr_ = require "logic.manager.layer_manager.lua"
+gamer.g_scene_msg_ = require "logic.manager.scene_manager.lua"
 gamer.g_event_mgr_ = gamer.EventManager:getInstance()
 gamer.g_cmd_mgr_   = gamer.CommandManager:getInstance()
 gamer.g_msg_mgr_   = gamer.MsgManager:getInstance()
