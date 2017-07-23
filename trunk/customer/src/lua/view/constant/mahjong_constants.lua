@@ -39,12 +39,24 @@ MahjongConstants.Sizes = {
 	CARD_W1			= 94,  -- width of player self visible card 
 	CARD_W2			= 125, -- width of player self invisible card
 	CARD_W3			= 282, -- width of player self visible card(ming gang)
-	CARD_INTERVAL1	= 110,  -- interval of player self visible card and invisible card
-	OFFSET_X1		= 110,  -- position offset x of player self visible card
+	CARD_INTERVAL1	= 110, -- interval of player self visible card and invisible card
+	OFFSET_X1		= 110, -- position offset x of player self visible card
 	OFFSET_X2		= 180, -- position offset x of player self visible card(ming gang)
 	OFFSET_Y1		= 76,  -- position offset y of player self visible card
 	OFFSET_Y2		= 78,  -- position offset y of player self visible card(ming gang)
 	OFFSET_Y3		= 100, -- position offset y of player self invisible card
+
+	LEFT_CARD_OFFSET_X0	= 350, -- position offset x of left player for first card
+	CARD_OFFSET_Y0		= 900, -- position offset y of left player or right player for first card
+
+	CARD_OFFSET_X1		= 15,  -- position offset x of left player or right player visible card
+	CARD_OFFSET_X2		= 15,  -- position offset x of left player or right player invisible card
+	CARD_OFFSET_X3		= 45,  -- position offset x of left player or right player visible card(ming gang)
+	CARD_OFFSET_Y1		= 40, 
+	CARD_OFFSET_Y2		= 40, 
+	CARD_OFFSET_Y3		= 120, 
+
+	RIGHT_CARD_OFFSET_X0	= 1570, -- position offset x of right player for first card
 }
 
 return MahjongConstants

@@ -122,9 +122,11 @@
               <Folder Name="mahjong">
                 <Project Name="left_invisible_1_mj_node_layout.csd" Type="Node" />
                 <Project Name="left_invisible_2_mj_node_layout.csd" Type="Node" />
+                <Project Name="left_invisible_3_mj_node_layout.csd" Type="Node" />
                 <Project Name="left_invisible_mj_node_layout.csd" Type="Node" />
                 <Project Name="left_visible_1_mj_node_layout.csd" Type="Node" />
                 <Project Name="left_visible_2_mj_node_layout.csd" Type="Node" />
+                <Project Name="left_visible_3_mj_node_layout.csd" Type="Node" />
                 <Project Name="my_invisible_1_mj_node_layout.csd" Type="Node" />
                 <Project Name="my_invisible_2_mj_node_layout.csd" Type="Node" />
                 <Project Name="my_invisible_3_mj_node_layout.csd" Type="Node" />
@@ -139,9 +141,11 @@
                 <Project Name="opposite_visible_2_mj_node_layout.csd" Type="Node" />
                 <Project Name="right_invisible_1_mj_node_layout.csd" Type="Node" />
                 <Project Name="right_invisible_2_mj_node_layout.csd" Type="Node" />
+                <Project Name="right_invisible_3_mj_node_layout.csd" Type="Node" />
                 <Project Name="right_invisible_mj_node_layout.csd" Type="Node" />
                 <Project Name="right_visible_1_mj_node_layout.csd" Type="Node" />
                 <Project Name="right_visible_2_mj_node_layout.csd" Type="Node" />
+                <Project Name="right_visible_3_mj_node_layout.csd" Type="Node" />
               </Folder>
             </Folder>
           </Folder>

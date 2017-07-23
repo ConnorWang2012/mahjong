@@ -26,8 +26,10 @@ local MyVisibleMJLayout3   = require "view.layouts.ui.room.mahjong.my_visible_3_
 local LeftInvisibleMJLayout  = require "view.layouts.ui.room.mahjong.left_invisible_mj_node_layout.lua"
 local LeftInvisibleMJLayout1 = require "view.layouts.ui.room.mahjong.left_invisible_1_mj_node_layout.lua"
 local LeftInvisibleMJLayout2 = require "view.layouts.ui.room.mahjong.left_invisible_2_mj_node_layout.lua"
+local LeftInvisibleMJLayout3 = require "view.layouts.ui.room.mahjong.left_invisible_3_mj_node_layout.lua"
 local LeftVisibleMJLayout1   = require "view.layouts.ui.room.mahjong.left_visible_1_mj_node_layout.lua"
 local LeftVisibleMJLayout2   = require "view.layouts.ui.room.mahjong.left_visible_2_mj_node_layout.lua"
+local LeftVisibleMJLayout3   = require "view.layouts.ui.room.mahjong.left_visible_3_mj_node_layout.lua"
 
 local OppositeInvisibleMJLayout  = require "view.layouts.ui.room.mahjong.opposite_invisible_mj_node_layout.lua"
 local OppositeInvisibleMJLayout1 = require "view.layouts.ui.room.mahjong.opposite_invisible_1_mj_node_layout.lua"
@@ -38,8 +40,10 @@ local OppositeVisibleMJLayout2   = require "view.layouts.ui.room.mahjong.opposit
 local RightInvisibleMJLayout  = require "view.layouts.ui.room.mahjong.right_invisible_mj_node_layout.lua"
 local RightInvisibleMJLayout1 = require "view.layouts.ui.room.mahjong.right_invisible_1_mj_node_layout.lua"
 local RightInvisibleMJLayout2 = require "view.layouts.ui.room.mahjong.right_invisible_2_mj_node_layout.lua"
+local RightInvisibleMJLayout3 = require "view.layouts.ui.room.mahjong.right_invisible_3_mj_node_layout.lua"
 local RightVisibleMJLayout1   = require "view.layouts.ui.room.mahjong.right_visible_1_mj_node_layout.lua"
 local RightVisibleMJLayout2   = require "view.layouts.ui.room.mahjong.right_visible_2_mj_node_layout.lua"
+local RightVisibleMJLayout3   = require "view.layouts.ui.room.mahjong.right_visible_3_mj_node_layout.lua"
 
 function MahjongCreator.create(value, direction, type, state)
 	if nil == value or nil == direction or nil == type or nil == state then
@@ -52,7 +56,7 @@ function MahjongCreator.create(value, direction, type, state)
 
 	local mj_node = nil
 	if direction == MJConst.Directions.SELF then -- self
-		mj_node = MahjongCreator.initMyCardLayout(value, type)
+		mj_node = MahjongCreator.initPlayerSelfCardLayout(value, type)
 	elseif direction == MJConst.Directions.LEFT then
 		mj_node = MahjongCreator.initLeftPlayerCardLayout(value, type)
 	elseif direction == MJConst.Directions.OPPOSITE then
@@ -64,7 +68,7 @@ function MahjongCreator.create(value, direction, type, state)
 	return mj_node
 end
 
-function MahjongCreator.initMyCardLayout(value, type)
+function MahjongCreator.initPlayerSelfCardLayout(value, type)
 	local mj_layout = nil
 	if type == MJConst.Types.INVISIBLE then
 		mj_layout = MyInvisibleMJLayout:create().root
@@ -105,19 +109,18 @@ function MahjongCreator.initMyCardLayout(value, type)
 	end
 
 	if nil == mj_layout then
-		print("[MahjongCreator.initMyCardLayout] nil == mj_layout")
+		print("[MahjongCreator.initPlayerSelfCardLayout] nil == mj_layout")
 		return nil
 	end
 
 	return mj_layout
 end
 
-function MahjongCreator.initLeftPlayerCardLayout(type)
+function MahjongCreator.initLeftPlayerCardLayout(value, type)
 	local mj_layout = nil
 	local need_show_card_value = false
 	if type == MJConst.Types.INVISIBLE then
 		mj_layout = LeftInvisibleMJLayout:create().root
-		need_show_card_value = true
 	elseif type == MJConst.Types.INVISIBLE_AN_GANG_1 then
 		mj_layout = LeftInvisibleMJLayout1:create().root
 	elseif type == MJConst.Types.INVISIBLE_AN_GANG_2 then
@@ -126,8 +129,17 @@ function MahjongCreator.initLeftPlayerCardLayout(type)
 		mj_layout = LeftVisibleMJLayout1:create().root
 		need_show_card_value = true
 	elseif type == MJConst.Types.VISIBLE_MING_GANG then
-		mj_layout = LeftVisibleMJLayout2:create().root
-		need_show_card_value = true
+		mj_layout = LeftVisibleMJLayout3:create().root
+		local png = MahjongCreator.getCardPng(value)
+		if png then
+			local img_fg1 = mj_layout:getChildByName("img_top_fg1") 
+			local img_fg2 = mj_layout:getChildByName("img_top_fg2")
+			local img_fg3 = mj_layout:getChildByName("img_top_fg3")
+			img_fg1:loadTexture(png, ccui.TextureResType.plistType)
+			img_fg2:loadTexture(png, ccui.TextureResType.plistType)
+			img_fg3:loadTexture(png, ccui.TextureResType.plistType)
+		end
+
 	elseif type == MJConst.Types.VISIBLE_DISCARD then
 		-- TODO
 	end
@@ -148,7 +160,7 @@ function MahjongCreator.initLeftPlayerCardLayout(type)
 	return mj_layout
 end
 
-function MahjongCreator.initOppositePlayerCardLayout(type)
+function MahjongCreator.initOppositePlayerCardLayout(value, type)
 	local mj_layout = nil
 	local need_show_card_value = false
 	if type == MJConst.Types.INVISIBLE then
@@ -184,12 +196,11 @@ function MahjongCreator.initOppositePlayerCardLayout(type)
 	return mj_layout
 end
 
-function MahjongCreator.initRightPlayerCardLayout(type)
+function MahjongCreator.initRightPlayerCardLayout(value, type)
 	local mj_layout = nil
 	local need_show_card_value = false
 	if type == MJConst.Types.INVISIBLE then
 		mj_layout = RightInvisibleMJLayout:create().root
-		need_show_card_value = true
 	elseif type == MJConst.Types.INVISIBLE_AN_GANG_1 then
 		mj_layout = RightInvisibleMJLayout1:create().root
 	elseif type == MJConst.Types.INVISIBLE_AN_GANG_2 then
@@ -198,8 +209,17 @@ function MahjongCreator.initRightPlayerCardLayout(type)
 		mj_layout = RightVisibleMJLayout1:create().root
 		need_show_card_value = true
 	elseif type == MJConst.Types.VISIBLE_MING_GANG then
-		mj_layout = RightVisibleMJLayout2:create().root
-		need_show_card_value = true
+		mj_layout = RightVisibleMJLayout3:create().root
+		local png = MahjongCreator.getCardPng(value)
+		if png then
+			local img_fg1 = mj_layout:getChildByName("img_top_fg1") 
+			local img_fg2 = mj_layout:getChildByName("img_top_fg2")
+			local img_fg3 = mj_layout:getChildByName("img_top_fg3")
+			img_fg1:loadTexture(png, ccui.TextureResType.plistType)
+			img_fg2:loadTexture(png, ccui.TextureResType.plistType)
+			img_fg3:loadTexture(png, ccui.TextureResType.plistType)
+		end
+
 	elseif type == MJConst.Types.VISIBLE_DISCARD then
 		-- TODO
 	end
