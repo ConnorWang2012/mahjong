@@ -1356,5 +1356,11 @@
     <None Include="..\..\..\..\customer\src\lua\view\layouts\ui\room\mahjong\right_visible_3_mj_node_layout.lua">
       <Filter>classes\lua\view\layouts\ui\room\mahjong</Filter>
     </None>
+    <None Include="..\..\..\..\customer\src\lua\view\layouts\ui\room\mahjong\opposite_visible_3_mj_node_layout.lua">
+      <Filter>classes\lua\view\layouts\ui\room\mahjong</Filter>
+    </None>
+    <None Include="..\..\..\..\customer\src\lua\view\layouts\ui\room\mahjong\opposite_invisible_3_mj_node_layout.lua">
+      <Filter>classes\lua\view\layouts\ui\room\mahjong</Filter>
+    </None>
   </ItemGroup>
 </Project>

@@ -101,7 +101,33 @@ function NormalRoomScene:initMahjongOfLeftPlayer()
 end
 
 function NormalRoomScene:initMahjongOfOppositePlayer()
+	-- visible hand cards	
+	local player_cards = gamer.g_data_mgr_.getMahjongOfPlayerSelf()
 
+	local playercards = gamer.protocol.PlayerCardsMsgProtocol()
+	playercards:add_visible_hand_cards(11)
+	playercards:add_visible_hand_cards(11)
+	playercards:add_visible_hand_cards(11)
+	playercards:add_visible_hand_cards(11)
+
+	playercards:add_visible_hand_cards(47)
+	playercards:add_visible_hand_cards(47)
+	playercards:add_visible_hand_cards(47)
+--[[	playercards:add_visible_hand_cards(47)
+
+	playercards:add_visible_hand_cards(45)
+	playercards:add_visible_hand_cards(45)
+	playercards:add_visible_hand_cards(45)
+	playercards:add_visible_hand_cards(45)
+]]
+	local visible_mahjongs_num = playercards:visible_hand_cards_size()
+	local ming_gang_num = self:getMingGangNum(visible_mahjongs_num)
+	print("ming_gang_num : ", ming_gang_num)
+	local offset_x = self:initVisibleMahjongOfOppositePlayer(playercards, ming_gang_num)
+
+	-- invisible hand cards	
+	print("offset_x : ", offset_x)
+	self:initInvisibleMahjongOfOppositePlayer(player_cards, offset_x)
 end
 
 function NormalRoomScene:initMahjongOfRightPlayer()
@@ -174,7 +200,7 @@ function NormalRoomScene:initVisibleMahjongOfPlayerSelf(mahjongs, ming_gang_num)
 	-- get cur offset x
 	local offset_x = 0
 	if ming_gang_num > 0 then
-		if offset_x2 ~= MahjongConst.Sizes.OFFSET_X1 then -- contain ming gang and peng(not ming gang)  
+		if offset_x2 ~= MahjongConst.Sizes.OFFSET_X1 then -- contain ming gang and peng(not ming gang) or chi  
 			offset_x = offset_x2 + MahjongConst.Sizes.CARD_W1 / 2 + MahjongConst.Sizes.CARD_INTERVAL1
 		else -- only contains ming gang 
 			offset_x = offset_x1 + MahjongConst.Sizes.CARD_W1 / 2
@@ -249,7 +275,7 @@ function NormalRoomScene:initVisibleMahjongOfLeftPlayer(mahjongs, ming_gang_num)
 	local offset_x = 0
 	local offset_y = 0
 	if ming_gang_num > 0 then
-		if offset_x2 ~= MahjongConst.Sizes.LEFT_CARD_OFFSET_X0 then -- contain ming gang and peng(not ming gang) 
+		if offset_x2 ~= MahjongConst.Sizes.LEFT_CARD_OFFSET_X0 then -- contain ming gang and peng(not ming gang) or chi
 			offset_x = offset_x2 - MahjongConst.Sizes.CARD_OFFSET_X1
 			offset_y = offset_y2 - MahjongConst.Sizes.CARD_OFFSET_Y1
 		else -- only contains ming gang 
@@ -283,6 +309,80 @@ function NormalRoomScene:initInvisibleMahjongOfLeftPlayer(mahjongs, offset_x, of
 	end
 end
 
+-- maybe contain 0 or 1 or 2 or 3 ming gang
+-- @ return : position offset x of invisible card
+function NormalRoomScene:initVisibleMahjongOfOppositePlayer(mahjongs, ming_gang_num)
+	-- ming gang
+	local offset_x1 = MahjongConst.Sizes.OPPOSITE_CARD_OFFSET_X0
+	for i = 1, ming_gang_num do
+		local mj_node = MahjongCreator.create(mahjongs:visible_hand_cards(4 * (i - 1)),
+											  MahjongConst.Directions.OPPOSITE, 
+											  MahjongConst.Types.VISIBLE_MING_GANG, 
+											  MahjongConst.States.NORMAL)
+		if mj_node then
+			offset_x1 = MahjongConst.Sizes.OPPOSITE_CARD_OFFSET_X0 - 
+			            MahjongConst.Sizes.OPPOSITE_CARD_OFFSET_X1 * (i - 1)
+			mj_node:setPosition(cc.p(offset_x1, MahjongConst.Sizes.OPPOSITE_CARD_OFFSET_Y0))
+			self.mahjong_layer_:addChild(mj_node)
+		end
+	end
+
+	-- not ming gang
+	local offset_x2 = MahjongConst.Sizes.OPPOSITE_CARD_OFFSET_X0
+	if ming_gang_num > 0 then
+		offset_x1 = offset_x1 - MahjongConst.Sizes.OPPOSITE_CARD_OFFSET_X3 / 2 - 
+		            MahjongConst.Sizes.OPPOSITE_CARD_OFFSET_X1 / 2
+	end
+
+	local mahjongs_num = mahjongs:visible_hand_cards_size()
+	for i = 4 * ming_gang_num, mahjongs_num - 1 do
+		local mj_node = MahjongCreator.create(mahjongs:visible_hand_cards(i), 
+										      MahjongConst.Directions.OPPOSITE, 
+										      MahjongConst.Types.VISIBLE, 
+										      MahjongConst.States.NORMAL)
+
+		if mj_node then
+			offset_x2 = offset_x1 - MahjongConst.Sizes.OPPOSITE_CARD_OFFSET_X1 * (i - 4 * ming_gang_num)
+			mj_node:setPosition(cc.p(offset_x2, MahjongConst.Sizes.OPPOSITE_CARD_OFFSET_Y0))
+			self.mahjong_layer_:addChild(mj_node)
+		end
+	end
+
+	-- get cur offset x
+	local offset_x = 0
+	if ming_gang_num > 0 then
+		if offset_x2 ~= MahjongConst.Sizes.OPPOSITE_CARD_OFFSET_X0 then -- contain ming gang and peng(not ming gang) or chi 
+			offset_x = offset_x2 - MahjongConst.Sizes.OPPOSITE_CARD_OFFSET_X1 - MahjongConst.Sizes.CARD_INTERVAL2
+		else -- only contains ming gang 
+			offset_x = offset_x1 - MahjongConst.Sizes.OPPOSITE_CARD_OFFSET_X1 / 2
+		end
+	else
+		if mahjongs_num > 0 then
+			offset_x = offset_x2 - MahjongConst.Sizes.OPPOSITE_CARD_OFFSET_X1 - MahjongConst.Sizes.CARD_INTERVAL2
+		else
+			offset_x = MahjongConst.Sizes.OPPOSITE_CARD_OFFSET_X0
+		end
+	end
+
+	return offset_x
+end
+
+function NormalRoomScene:initInvisibleMahjongOfOppositePlayer(mahjongs, offset_x)
+	for i = 0, mahjongs:invisible_hand_cards_size() - 1 do
+		local mj_node = MahjongCreator.create(mahjongs:invisible_hand_cards(i), 
+											  MahjongConst.Directions.OPPOSITE, 
+											  MahjongConst.Types.INVISIBLE, 
+											  MahjongConst.States.NORMAL)
+		if mj_node then
+			mj_node:setPosition(cc.p(offset_x - MahjongConst.Sizes.OPPOSITE_CARD_OFFSET_X2 * i, 
+			                         MahjongConst.Sizes.OPPOSITE_CARD_OFFSET_Y0))
+			self.mahjong_layer_:addChild(mj_node)
+		end
+	end
+end
+
+-- maybe contain 0 or 1 or 2 or 3 ming gang
+-- @ return : position offset x, y of invisible card
 function NormalRoomScene:initVisibleMahjongOfRightPlayer(mahjongs, ming_gang_num)
 	-- ming gang
 	local offset_x1 = MahjongConst.Sizes.RIGHT_CARD_OFFSET_X0
@@ -327,7 +427,7 @@ function NormalRoomScene:initVisibleMahjongOfRightPlayer(mahjongs, ming_gang_num
 	local offset_x = 0
 	local offset_y = 0
 	if ming_gang_num > 0 then
-		if offset_x2 ~= MahjongConst.Sizes.RIGHT_CARD_OFFSET_X0 then -- contain ming gang and peng(not ming gang) 
+		if offset_x2 ~= MahjongConst.Sizes.RIGHT_CARD_OFFSET_X0 then -- contain ming gang and peng(not ming gang) or chi
 			offset_x = offset_x2 + MahjongConst.Sizes.CARD_OFFSET_X1
 			offset_y = offset_y2 - MahjongConst.Sizes.CARD_OFFSET_Y1
 		else -- only contains ming gang 

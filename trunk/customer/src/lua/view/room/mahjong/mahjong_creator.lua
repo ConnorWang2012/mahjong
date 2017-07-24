@@ -34,8 +34,10 @@ local LeftVisibleMJLayout3   = require "view.layouts.ui.room.mahjong.left_visibl
 local OppositeInvisibleMJLayout  = require "view.layouts.ui.room.mahjong.opposite_invisible_mj_node_layout.lua"
 local OppositeInvisibleMJLayout1 = require "view.layouts.ui.room.mahjong.opposite_invisible_1_mj_node_layout.lua"
 local OppositeInvisibleMJLayout2 = require "view.layouts.ui.room.mahjong.opposite_invisible_2_mj_node_layout.lua"
+local OppositeInvisibleMJLayout3 = require "view.layouts.ui.room.mahjong.opposite_invisible_3_mj_node_layout.lua"
 local OppositeVisibleMJLayout1   = require "view.layouts.ui.room.mahjong.opposite_visible_1_mj_node_layout.lua"
 local OppositeVisibleMJLayout2   = require "view.layouts.ui.room.mahjong.opposite_visible_2_mj_node_layout.lua"
+local OppositeVisibleMJLayout3   = require "view.layouts.ui.room.mahjong.opposite_visible_3_mj_node_layout.lua"
 
 local RightInvisibleMJLayout  = require "view.layouts.ui.room.mahjong.right_invisible_mj_node_layout.lua"
 local RightInvisibleMJLayout1 = require "view.layouts.ui.room.mahjong.right_invisible_1_mj_node_layout.lua"
@@ -165,7 +167,6 @@ function MahjongCreator.initOppositePlayerCardLayout(value, type)
 	local need_show_card_value = false
 	if type == MJConst.Types.INVISIBLE then
 		mj_layout = OppositeInvisibleMJLayout:create().root
-		need_show_card_value = true
 	elseif type == MJConst.Types.INVISIBLE_AN_GANG_1 then
 		mj_layout = OppositeInvisibleMJLayout1:create().root
 	elseif type == MJConst.Types.INVISIBLE_AN_GANG_2 then
@@ -174,8 +175,17 @@ function MahjongCreator.initOppositePlayerCardLayout(value, type)
 		mj_layout = OppositeVisibleMJLayout1:create().root
 		need_show_card_value = true
 	elseif type == MJConst.Types.VISIBLE_MING_GANG then
-		mj_layout = OppositeVisibleMJLayout2:create().root
-		need_show_card_value = true
+		mj_layout = OppositeVisibleMJLayout3:create().root
+		local png = MahjongCreator.getCardPng(value)
+		if png then
+			local img_fg1 = mj_layout:getChildByName("img_top_fg1") 
+			local img_fg2 = mj_layout:getChildByName("img_top_fg2")
+			local img_fg3 = mj_layout:getChildByName("img_top_fg3")
+			img_fg1:loadTexture(png, ccui.TextureResType.plistType)
+			img_fg2:loadTexture(png, ccui.TextureResType.plistType)
+			img_fg3:loadTexture(png, ccui.TextureResType.plistType)
+		end
+
 	elseif type == MJConst.Types.VISIBLE_DISCARD then
 		-- TODO
 	end

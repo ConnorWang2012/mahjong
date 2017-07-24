@@ -28,18 +28,5 @@
         <EnableHTML5Advanced Value="False" />
       </Value>
     </Item>
-    <Item Key="TabsParamsKey">
-      <Value ctype="TabsInfo">
-        <OpenedDocuments>
-          <FilePathData Path="layouts/ui/room/mahjong/left_visible_3_mj_node_layout.csd" />
-          <FilePathData Path="layouts/ui/room/mahjong/right_visible_3_mj_node_layout.csd" />
-          <FilePathData Path="layouts/ui/room/mahjong/right_invisible_3_mj_node_layout.csd" />
-          <FilePathData Path="layouts/ui/room/mahjong/right_invisible_1_mj_node_layout.csd" />
-          <FilePathData Path="layouts/ui/room/mahjong/right_visible_1_mj_node_layout.csd" />
-          <FilePathData Path="layouts/ui/room/mahjong/right_invisible_mj_node_layout.csd" />
-        </OpenedDocuments>
-        <ActiveDocument Path="layouts/ui/room/mahjong/right_visible_1_mj_node_layout.csd" />
-      </Value>
-    </Item>
   </Properties>
 </UserData>

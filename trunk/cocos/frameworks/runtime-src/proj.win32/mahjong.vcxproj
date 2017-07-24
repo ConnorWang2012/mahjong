@@ -590,9 +590,11 @@ xcopy "$(ProjectDir)..\..\..\..\customer\src\lua" "$(LocalDebuggerWorkingDirecto
     <None Include="..\..\..\..\customer\src\lua\view\layouts\ui\room\mahjong\my_visible_3_mj_node_layout.lua" />
     <None Include="..\..\..\..\customer\src\lua\view\layouts\ui\room\mahjong\opposite_invisible_1_mj_node_layout.lua" />
     <None Include="..\..\..\..\customer\src\lua\view\layouts\ui\room\mahjong\opposite_invisible_2_mj_node_layout.lua" />
+    <None Include="..\..\..\..\customer\src\lua\view\layouts\ui\room\mahjong\opposite_invisible_3_mj_node_layout.lua" />
     <None Include="..\..\..\..\customer\src\lua\view\layouts\ui\room\mahjong\opposite_invisible_mj_node_layout.lua" />
     <None Include="..\..\..\..\customer\src\lua\view\layouts\ui\room\mahjong\opposite_visible_1_mj_node_layout.lua" />
     <None Include="..\..\..\..\customer\src\lua\view\layouts\ui\room\mahjong\opposite_visible_2_mj_node_layout.lua" />
+    <None Include="..\..\..\..\customer\src\lua\view\layouts\ui\room\mahjong\opposite_visible_3_mj_node_layout.lua" />
     <None Include="..\..\..\..\customer\src\lua\view\layouts\ui\room\mahjong\right_invisible_1_mj_node_layout.lua" />
     <None Include="..\..\..\..\customer\src\lua\view\layouts\ui\room\mahjong\right_invisible_2_mj_node_layout.lua" />
     <None Include="..\..\..\..\customer\src\lua\view\layouts\ui\room\mahjong\right_invisible_3_mj_node_layout.lua" />
