@@ -22,6 +22,7 @@ local MyInvisibleMJLayout3 = require "view.layouts.ui.room.mahjong.my_invisible_
 local MyVisibleMJLayout1   = require "view.layouts.ui.room.mahjong.my_visible_1_mj_node_layout.lua"
 local MyVisibleMJLayout2   = require "view.layouts.ui.room.mahjong.my_visible_2_mj_node_layout.lua"
 local MyVisibleMJLayout3   = require "view.layouts.ui.room.mahjong.my_visible_3_mj_node_layout.lua"
+local MyDiscardMJLayout    = require "view.layouts.ui.room.mahjong.my_discard_mj_node_layout.lua"
 
 local LeftInvisibleMJLayout  = require "view.layouts.ui.room.mahjong.left_invisible_mj_node_layout.lua"
 local LeftInvisibleMJLayout1 = require "view.layouts.ui.room.mahjong.left_invisible_1_mj_node_layout.lua"
@@ -30,6 +31,7 @@ local LeftInvisibleMJLayout3 = require "view.layouts.ui.room.mahjong.left_invisi
 local LeftVisibleMJLayout1   = require "view.layouts.ui.room.mahjong.left_visible_1_mj_node_layout.lua"
 local LeftVisibleMJLayout2   = require "view.layouts.ui.room.mahjong.left_visible_2_mj_node_layout.lua"
 local LeftVisibleMJLayout3   = require "view.layouts.ui.room.mahjong.left_visible_3_mj_node_layout.lua"
+local LeftDiscardMJLayout    = require "view.layouts.ui.room.mahjong.left_discard_mj_node_layout.lua"
 
 local OppositeInvisibleMJLayout  = require "view.layouts.ui.room.mahjong.opposite_invisible_mj_node_layout.lua"
 local OppositeInvisibleMJLayout1 = require "view.layouts.ui.room.mahjong.opposite_invisible_1_mj_node_layout.lua"
@@ -46,13 +48,16 @@ local RightInvisibleMJLayout3 = require "view.layouts.ui.room.mahjong.right_invi
 local RightVisibleMJLayout1   = require "view.layouts.ui.room.mahjong.right_visible_1_mj_node_layout.lua"
 local RightVisibleMJLayout2   = require "view.layouts.ui.room.mahjong.right_visible_2_mj_node_layout.lua"
 local RightVisibleMJLayout3   = require "view.layouts.ui.room.mahjong.right_visible_3_mj_node_layout.lua"
+local RightDiscardMJLayout    = require "view.layouts.ui.room.mahjong.right_discard_mj_node_layout.lua"
+
+MahjongCreator.opposite_discard_zorder_ = 1000
+MahjongCreator.right_discard_zorder_    = 1100
 
 function MahjongCreator.create(value, direction, type, state)
 	if nil == value or nil == direction or nil == type or nil == state then
 		local str = string.format("value : %s, direction : %s, type : %s, state : %s",
-			tostring(value), tostring(direction), tostring(type), tostring(state))
+			                      tostring(value), tostring(direction), tostring(type), tostring(state))
 		print("[MahjongCreator.create] param error : ", str)
-		-- TODO : log
 		return nil
 	end
 
@@ -67,6 +72,11 @@ function MahjongCreator.create(value, direction, type, state)
 		mj_node = MahjongCreator.initRightPlayerCardLayout(value, type)
 	end
 	-- TODO : state
+
+	if mj_node then
+		mj_node:setTag(value)
+	end
+
 	return mj_node
 end
 
@@ -107,12 +117,17 @@ function MahjongCreator.initPlayerSelfCardLayout(value, type)
 		end
 
 	elseif type == MJConst.Types.VISIBLE_DISCARD then
-		-- TODO
+		mj_layout = MyDiscardMJLayout:create().root
+		local png = MahjongCreator.getCardPng(value)		
+		if png then
+			local img_fg = mj_layout:getChildByName("img_fg")
+			img_fg:loadTexture(png, ccui.TextureResType.plistType)
+		end
+
 	end
 
 	if nil == mj_layout then
 		print("[MahjongCreator.initPlayerSelfCardLayout] nil == mj_layout")
-		return nil
 	end
 
 	return mj_layout
@@ -143,7 +158,13 @@ function MahjongCreator.initLeftPlayerCardLayout(value, type)
 		end
 
 	elseif type == MJConst.Types.VISIBLE_DISCARD then
-		-- TODO
+		mj_layout = LeftDiscardMJLayout:create().root
+		local png = MahjongCreator.getCardPng(value)		
+		if png then
+			local img_fg = mj_layout:getChildByName("img_fg")
+			img_fg:loadTexture(png, ccui.TextureResType.plistType)
+		end
+
 	end
 
 	if nil == mj_layout then
@@ -187,7 +208,17 @@ function MahjongCreator.initOppositePlayerCardLayout(value, type)
 		end
 
 	elseif type == MJConst.Types.VISIBLE_DISCARD then
-		-- TODO
+		mj_layout = OppositeVisibleMJLayout1:create().root
+		local png = MahjongCreator.getCardPng(value)		
+		if png then
+			local img_fg = mj_layout:getChildByName("img_fg")
+			img_fg:loadTexture(png, ccui.TextureResType.plistType)
+		end
+
+		-- for opposite player discard(visble mahjong), modify it's local z order as lower
+		mj_layout:setLocalZOrder(MahjongCreator.opposite_discard_zorder_)
+		MahjongCreator.opposite_discard_zorder_ = MahjongCreator.opposite_discard_zorder_ - 1
+
 	end
 
 	if nil == mj_layout then
@@ -231,7 +262,17 @@ function MahjongCreator.initRightPlayerCardLayout(value, type)
 		end
 
 	elseif type == MJConst.Types.VISIBLE_DISCARD then
-		-- TODO
+		mj_layout = RightDiscardMJLayout:create().root
+		local png = MahjongCreator.getCardPng(value)		
+		if png then
+			local img_fg = mj_layout:getChildByName("img_fg")
+			img_fg:loadTexture(png, ccui.TextureResType.plistType)
+		end
+
+		-- for right player discard(visble mahjong), modify it's local z order as lower
+		mj_layout:setLocalZOrder(MahjongCreator.right_discard_zorder_)
+		MahjongCreator.right_discard_zorder_ = MahjongCreator.right_discard_zorder_ - 1
+
 	end
 
 	if nil == mj_layout then

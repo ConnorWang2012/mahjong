@@ -33,9 +33,21 @@ function NormalRoomScene:initMahjongLayer()
 	end
 
 	self:initMahjongOfPlayerSelf()
-	self:initMahjongOfLeftPlayer()
-	self:initMahjongOfOppositePlayer()
-	self:initMahjongOfRightPlayer()
+	self:initMahjongOfLeftPlayer() -- TODO : remove
+	self:initMahjongOfOppositePlayer() -- TODO : remove
+	self:initMahjongOfRightPlayer() -- TODO : remove
+
+	local players_num = gamer.g_data_mgr_.getRoomPlayersNum()
+	if 2 == players_num then
+		self:initMahjongOfOppositePlayer()
+	elseif 3 == players_num then
+		self:initMahjongOfLeftPlayer()
+		self:initMahjongOfRightPlayer()
+	elseif 4 == players_num then
+		self:initMahjongOfLeftPlayer()
+		self:initMahjongOfOppositePlayer()
+		self:initMahjongOfRightPlayer()
+	end
 end
 
 function NormalRoomScene:initMahjongOfPlayerSelf()
@@ -225,6 +237,10 @@ function NormalRoomScene:initInvisibleMahjongOfPlayerSelf(mahjongs, offset_x)
 		if mj_node then
 			mj_node:setPosition(cc.p(offset_x + MahjongConst.Sizes.CARD_W2 * i, MahjongConst.Sizes.OFFSET_Y3))
 			self.mahjong_layer_:addChild(mj_node)
+
+			local img_bg = mj_node:getChildByName("img_bg")
+			img_bg:setTouchEnabled(true)
+			img_bg:addClickEventListener(handler(self, self.onMahjongNodeTouch))
 		end
 	end
 end
@@ -477,6 +493,219 @@ function NormalRoomScene:getMingGangNum(visible_mahjongs_num)
 		ming_gang_num = 3
 	end
 	return ming_gang_num
+end
+
+function NormalRoomScene:getNextDiscardPosOfPlayerSelf()
+	local x, y = MahjongConst.Sizes.DISCARD_X1, MahjongConst.Sizes.DISCARD_Y1
+	if self.player_self_last_discard_ then
+		local pos_x, pos_y = self.player_self_last_discard_:getPosition() 
+		--print("[NormalRoomScene:getNextDiscardPosOfPlayerSelf] pos_x, pos_y : ", pos_x,  pos_y)
+		if pos_y == MahjongConst.Sizes.DISCARD_Y1 then 
+			if pos_x < MahjongConst.Sizes.DISCARD_X11 then
+				x = pos_x + MahjongConst.Sizes.DISCARD_OFFSET_X
+			else
+				x, y = MahjongConst.Sizes.DISCARD_X2, MahjongConst.Sizes.DISCARD_Y2
+			end
+		elseif pos_y == MahjongConst.Sizes.DISCARD_Y2 then 
+			if pos_x < MahjongConst.Sizes.DISCARD_X22 then
+				x, y = pos_x + MahjongConst.Sizes.DISCARD_OFFSET_X, pos_y
+			else
+				x, y = MahjongConst.Sizes.DISCARD_X3, MahjongConst.Sizes.DISCARD_Y3
+			end
+		elseif pos_y == MahjongConst.Sizes.DISCARD_Y3 then 
+			if pos_x < MahjongConst.Sizes.DISCARD_X33 then
+				x, y = pos_x + MahjongConst.Sizes.DISCARD_OFFSET_X, pos_y
+			else
+				print("[NormalRoomScene:getNextDiscardPosOfPlayerSelf] pos overflow")
+				x, y = pos_x, pos_y
+				-- TODO : get a available pos
+			end
+		end
+	end
+	return x, y
+end
+
+function NormalRoomScene:getNextDiscardPosOfLeftPlayer()
+	local x, y = MahjongConst.Sizes.LEFT_DISCARD_X1, MahjongConst.Sizes.LEFT_DISCARD_Y1
+	if self.left_player_last_discard_ then
+		local pos_x, pos_y = self.left_player_last_discard_:getPosition() 
+		--print("[NormalRoomScene:getNextDiscardPosOfLeftPlayer] pos_x, pos_y : ", pos_x,  pos_y)
+		if pos_y == MahjongConst.Sizes.LEFT_DISCARD_Y11 then
+			x, y = MahjongConst.Sizes.LEFT_DISCARD_X2, MahjongConst.Sizes.LEFT_DISCARD_Y2
+		elseif pos_y == MahjongConst.Sizes.LEFT_DISCARD_Y22 then
+			x, y = MahjongConst.Sizes.LEFT_DISCARD_X3, MahjongConst.Sizes.LEFT_DISCARD_Y3
+		elseif pos_y == MahjongConst.Sizes.LEFT_DISCARD_Y33 then
+			x, y = MahjongConst.Sizes.LEFT_DISCARD_X4, MahjongConst.Sizes.LEFT_DISCARD_Y4
+		elseif pos_y == MahjongConst.Sizes.LEFT_DISCARD_Y44 then
+			print("[NormalRoomScene:getNextDiscardPosOfLeftPlayer] pos overflow")
+			x, y = pos_x, pos_y
+			-- TODO : get a available pos
+		else
+			x = pos_x - MahjongConst.Sizes.LEFT_DISCARD_OFFSET_X
+			y = pos_y - MahjongConst.Sizes.LEFT_DISCARD_OFFSET_Y
+		end
+	end
+	return x, y
+end
+
+function NormalRoomScene:getNextDiscardPosOfOppositePlayer()
+	local x, y = MahjongConst.Sizes.OPPOSITE_DISCARD_X1, MahjongConst.Sizes.OPPOSITE_DISCARD_Y1
+	if self.opposite_player_last_discard_ then
+		local pos_x, pos_y = self.opposite_player_last_discard_:getPosition() 
+		--print("[NormalRoomScene:getNextDiscardPosOfOppositePlayer] pos_x, pos_y : ", pos_x,  pos_y)
+		if pos_y == MahjongConst.Sizes.OPPOSITE_DISCARD_Y1 then 
+			if pos_x > MahjongConst.Sizes.OPPOSITE_DISCARD_X11 then
+				x = pos_x - MahjongConst.Sizes.OPPOSITE_DISCARD_OFFSET_X
+			else
+				x, y = MahjongConst.Sizes.OPPOSITE_DISCARD_X2, MahjongConst.Sizes.OPPOSITE_DISCARD_Y2
+			end
+		elseif pos_y == MahjongConst.Sizes.OPPOSITE_DISCARD_Y2 then 
+			if pos_x > MahjongConst.Sizes.OPPOSITE_DISCARD_X22 then
+				x, y = pos_x - MahjongConst.Sizes.OPPOSITE_DISCARD_OFFSET_X, pos_y
+			else
+				x, y = MahjongConst.Sizes.OPPOSITE_DISCARD_X3, MahjongConst.Sizes.OPPOSITE_DISCARD_Y3
+			end
+		elseif pos_y == MahjongConst.Sizes.OPPOSITE_DISCARD_Y3 then
+			if pos_x > MahjongConst.Sizes.OPPOSITE_DISCARD_X33 then
+				x, y = pos_x - MahjongConst.Sizes.OPPOSITE_DISCARD_OFFSET_X, pos_y
+			else
+				print("[NormalRoomScene:getNextDiscardPosOfOppositePlayer] pos overflow")
+				x, y = pos_x, pos_y
+				-- TODO : get a available pos
+			end
+		end
+	end
+	return x, y
+end
+
+function NormalRoomScene:getNextDiscardPosOfRightPlayer()
+	local x, y = MahjongConst.Sizes.RIGHT_DISCARD_X1, MahjongConst.Sizes.RIGHT_DISCARD_Y1
+	if self.right_player_last_discard_ then
+		local pos_x, pos_y = self.right_player_last_discard_:getPosition() 
+		--print("[NormalRoomScene:getNextDiscardPosOfLeftPlayer] pos_x, pos_y : ", pos_x,  pos_y)
+		if pos_y == MahjongConst.Sizes.RIGHT_DISCARD_Y11 then
+			x, y = MahjongConst.Sizes.RIGHT_DISCARD_X2, MahjongConst.Sizes.RIGHT_DISCARD_Y2
+		elseif pos_y == MahjongConst.Sizes.RIGHT_DISCARD_Y22 then
+			x, y = MahjongConst.Sizes.RIGHT_DISCARD_X3, MahjongConst.Sizes.RIGHT_DISCARD_Y3
+		elseif pos_y == MahjongConst.Sizes.RIGHT_DISCARD_Y33 then
+			x, y = MahjongConst.Sizes.RIGHT_DISCARD_X4, MahjongConst.Sizes.RIGHT_DISCARD_Y4
+		elseif pos_y == MahjongConst.Sizes.RIGHT_DISCARD_Y44 then
+			print("[NormalRoomScene:getNextDiscardPosOfRightPlayer] pos overflow")
+			x, y = pos_x, pos_y
+			-- TODO : get a available pos
+		else
+			x = pos_x - MahjongConst.Sizes.RIGHT_DISCARD_OFFSET_X
+			y = pos_y + MahjongConst.Sizes.RIGHT_DISCARD_OFFSET_Y
+		end
+	end
+	return x, y
+end
+
+function NormalRoomScene:dealWithDiscardOfPlayerSelf(mahjong_value)
+	local mj = MahjongCreator.create(mahjong_value, 
+									 MahjongConst.Directions.SELF, 
+									 MahjongConst.Types.VISIBLE_DISCARD, 
+									 MahjongConst.States.NORMAL)
+	if mj then
+		local x, y = self:getNextDiscardPosOfPlayerSelf()
+		mj:setPosition(cc.p(x, y))
+		self.mahjong_layer_:addChild(mj)
+
+		self.player_self_last_discard_ = mj
+	end
+end
+
+function NormalRoomScene:dealWithDiscardOfLeftPlayer(mahjong_value)
+	local mj = MahjongCreator.create(mahjong_value, 
+									 MahjongConst.Directions.LEFT, 
+									 MahjongConst.Types.VISIBLE_DISCARD, 
+									 MahjongConst.States.NORMAL)
+	if mj then
+		local x, y = self:getNextDiscardPosOfLeftPlayer()
+		local zorder = 1
+
+		if self.left_player_last_discard_ then
+			zorder = self.left_player_last_discard_:getLocalZOrder() + 1
+		end
+
+		if y == MahjongConst.Sizes.LEFT_DISCARD_Y1 then
+			zorder = MahjongConst.ZOrders.DISCARD_LINE_1
+		elseif y == MahjongConst.Sizes.LEFT_DISCARD_Y2 then
+			zorder = MahjongConst.ZOrders.DISCARD_LINE_2
+		elseif y == MahjongConst.Sizes.LEFT_DISCARD_Y3 then
+			zorder = MahjongConst.ZOrders.DISCARD_LINE_3
+		elseif y == MahjongConst.Sizes.LEFT_DISCARD_Y4 then
+			zorder = MahjongConst.ZOrders.DISCARD_LINE_4
+		end
+		--print("[NormalRoomScene:dealWithDiscardOfLeftPlayer] y : ", y)
+		--print("[NormalRoomScene:dealWithDiscardOfLeftPlayer] zorder : ", zorder)
+		mj:setPosition(cc.p(x, y))
+		mj:setLocalZOrder(zorder)
+		self.mahjong_layer_:addChild(mj)
+
+		self.left_player_last_discard_ = mj
+	end
+end
+
+function NormalRoomScene:dealWithDiscardOfOppositePlayer(mahjong_value)
+	local mj = MahjongCreator.create(mahjong_value, 
+									 MahjongConst.Directions.OPPOSITE, 
+									 MahjongConst.Types.VISIBLE_DISCARD, 
+									 MahjongConst.States.NORMAL)
+	if mj then
+		local x, y = self:getNextDiscardPosOfOppositePlayer()
+		mj:setPosition(cc.p(x, y))
+		self.mahjong_layer_:addChild(mj)
+
+		self.opposite_player_last_discard_ = mj
+	end
+end
+
+function NormalRoomScene:dealWithDiscardOfRightPlayer(mahjong_value)
+	local mj = MahjongCreator.create(mahjong_value, 
+									 MahjongConst.Directions.RIGHT, 
+									 MahjongConst.Types.VISIBLE_DISCARD, 
+									 MahjongConst.States.NORMAL)
+	if mj then
+		local x, y = self:getNextDiscardPosOfRightPlayer()
+		--print("[NormalRoomScene:dealWithDiscardOfRightPlayer] y : ", y)
+		mj:setPosition(cc.p(x, y))
+		self.mahjong_layer_:addChild(mj)
+
+		self.right_player_last_discard_ = mj
+	end
+end
+
+function NormalRoomScene:onMahjongNodeTouch(sender)
+    print("[NormalRoomScene:onMahjongNodeTouch]")
+	local mj_node = sender:getParent()
+	local y = mj_node:getPositionY() 
+	--print("[NormalRoomScene:onMahjongNodeTouch] y : ", y)
+	if y == MahjongConst.Sizes.OFFSET_Y3 then -- first selecte
+		mj_node:setPositionY(MahjongConst.Sizes.OFFSET_Y4)
+		-- TODO : reset position y of pre selected mahjong
+		if self.last_selected_mj_ then
+			self.last_selected_mj_:setPositionY(MahjongConst.Sizes.OFFSET_Y3)
+		end
+
+		self.last_selected_mj_ = mj_node
+
+	elseif y == MahjongConst.Sizes.OFFSET_Y4 then -- second selecte
+		-- TODO : do play mahjong action, modify invisible mahjong position, send play mahjong msg 
+		local mj_value = mj_node:getTag()
+		print("[NormalRoomScene:onMahjongNodeTouch] mj_value : ", mj_value)
+		--[[
+		do
+			self:dealWithDiscardOfOppositePlayer(mj_value)
+			self:dealWithDiscardOfLeftPlayer(mj_value)
+			self:dealWithDiscardOfRightPlayer(mj_value)
+		end
+		]]
+
+		self:dealWithDiscardOfPlayerSelf(mj_value)
+		mj_node:removeFromParent()
+		self.last_selected_mj_ = nil	
+	end
 end
 
 function NormalRoomScene:onEnter()

@@ -95,6 +95,17 @@
                 <PlistImageFile Name="wind_or_dragon_6.png" Key="wind_or_dragon_6.png" />
                 <PlistImageFile Name="wind_or_dragon_7.png" Key="wind_or_dragon_7.png" />
               </PlistImageFolder>
+              <PlistImageFolder Image="room.png" PListFile="room.plist" Name=".room_PList.Dir">
+                <PlistImageFile Name="i_room_direction_east.png" Key="i_room_direction_east.png" />
+                <PlistImageFile Name="i_room_direction_north.png" Key="i_room_direction_north.png" />
+                <PlistImageFile Name="i_room_direction_player_left.png" Key="i_room_direction_player_left.png" />
+                <PlistImageFile Name="i_room_direction_player_opposite.png" Key="i_room_direction_player_opposite.png" />
+                <PlistImageFile Name="i_room_direction_player_right.png" Key="i_room_direction_player_right.png" />
+                <PlistImageFile Name="i_room_direction_player_self.png" Key="i_room_direction_player_self.png" />
+                <PlistImageFile Name="i_room_direction_south.png" Key="i_room_direction_south.png" />
+                <PlistImageFile Name="i_room_direction_west.png" Key="i_room_direction_west.png" />
+                <PlistImageFile Name="room_direction_bg.png" Key="room_direction_bg.png" />
+              </PlistImageFolder>
             </Folder>
             <Image Name="normal_room_bg.jpg" />
           </Folder>
@@ -120,6 +131,7 @@
             <Folder Name="login" />
             <Folder Name="room">
               <Folder Name="mahjong">
+                <Project Name="left_discard_mj_node_layout.csd" Type="Node" />
                 <Project Name="left_invisible_1_mj_node_layout.csd" Type="Node" />
                 <Project Name="left_invisible_2_mj_node_layout.csd" Type="Node" />
                 <Project Name="left_invisible_3_mj_node_layout.csd" Type="Node" />
@@ -127,6 +139,7 @@
                 <Project Name="left_visible_1_mj_node_layout.csd" Type="Node" />
                 <Project Name="left_visible_2_mj_node_layout.csd" Type="Node" />
                 <Project Name="left_visible_3_mj_node_layout.csd" Type="Node" />
+                <Project Name="my_discard_mj_node_layout.csd" Type="Node" />
                 <Project Name="my_invisible_1_mj_node_layout.csd" Type="Node" />
                 <Project Name="my_invisible_2_mj_node_layout.csd" Type="Node" />
                 <Project Name="my_invisible_3_mj_node_layout.csd" Type="Node" />
@@ -141,6 +154,7 @@
                 <Project Name="opposite_visible_1_mj_node_layout.csd" Type="Node" />
                 <Project Name="opposite_visible_2_mj_node_layout.csd" Type="Node" />
                 <Project Name="opposite_visible_3_mj_node_layout.csd" Type="Node" />
+                <Project Name="right_discard_mj_node_layout.csd" Type="Node" />
                 <Project Name="right_invisible_1_mj_node_layout.csd" Type="Node" />
                 <Project Name="right_invisible_2_mj_node_layout.csd" Type="Node" />
                 <Project Name="right_invisible_3_mj_node_layout.csd" Type="Node" />

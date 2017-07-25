@@ -35,4 +35,9 @@ function DataManager.getMahjongOfPlayerSelf()
 	return nil
 end
 
+function DataManager.getRoomPlayersNum()
+	local proto_room = data_mgr:getMutableData(gamer.DataIDs.DATA_ID_ROOM_MSG_PROTOCOL)
+	return proto_room:players_num()
+end
+
 return DataManager

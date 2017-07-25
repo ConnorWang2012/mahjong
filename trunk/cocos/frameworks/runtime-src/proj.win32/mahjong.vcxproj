@@ -581,6 +581,7 @@ xcopy "$(ProjectDir)..\..\..\..\customer\src\lua" "$(LocalDebuggerWorkingDirecto
     <None Include="..\..\..\..\customer\src\lua\view\layouts\ui\room\mahjong\left_visible_1_mj_node_layout.lua" />
     <None Include="..\..\..\..\customer\src\lua\view\layouts\ui\room\mahjong\left_visible_2_mj_node_layout.lua" />
     <None Include="..\..\..\..\customer\src\lua\view\layouts\ui\room\mahjong\left_visible_3_mj_node_layout.lua" />
+    <None Include="..\..\..\..\customer\src\lua\view\layouts\ui\room\mahjong\my_discard_mj_node_layout.lua" />
     <None Include="..\..\..\..\customer\src\lua\view\layouts\ui\room\mahjong\my_invisible_1_mj_node_layout.lua" />
     <None Include="..\..\..\..\customer\src\lua\view\layouts\ui\room\mahjong\my_invisible_2_mj_node_layout.lua" />
     <None Include="..\..\..\..\customer\src\lua\view\layouts\ui\room\mahjong\my_invisible_3_mj_node_layout.lua" />

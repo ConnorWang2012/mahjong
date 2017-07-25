@@ -41,6 +41,7 @@ MahjongConstants.Sizes = {
 	OFFSET_Y1		= 76,  -- position offset y of player self visible card
 	OFFSET_Y2		= 78,  -- position offset y of player self visible card(ming gang)
 	OFFSET_Y3		= 100, -- position offset y of player self invisible card
+	OFFSET_Y4		= 150, -- position y of player self invisible card for selected
 	CARD_W1			= 94,  -- width of player self visible card 
 	CARD_W2			= 125, -- width of player self invisible card
 	CARD_W3			= 282, -- width of player self visible card(ming gang)
@@ -65,7 +66,70 @@ MahjongConstants.Sizes = {
 	OPPOSITE_CARD_OFFSET_X2	= 53,   -- position offset x of opposite player invisible card
 	OPPOSITE_CARD_OFFSET_X3	= 147,  -- position offset x of opposite player visible card(ming gang)
 
-	CARD_INTERVAL2 = 25
+	CARD_INTERVAL2 = 25,
+
+	DISCARD_X1		= 700,  -- first position x of discard for first line(player self)
+	DISCARD_Y1		= 460,
+	DISCARD_X11		= 1197, -- last position x of discard for first line(player self)
+	DISCARD_X2		= 600,  -- first position x of discard for second line(player self)
+	DISCARD_Y2		= 385,
+	DISCARD_X22		= 1339, -- last position x of discard for second line(player self)
+	DISCARD_X3		= 428,  
+	DISCARD_Y3		= 310,
+	DISCARD_X33		= 1509, 
+
+	DISCARD_OFFSET_X = 68,  -- player self
+
+	LEFT_DISCARD_X1		= 700,  
+	LEFT_DISCARD_Y1		= 720,
+	LEFT_DISCARD_Y11	= 560, 
+	LEFT_DISCARD_X2		= 631,
+	LEFT_DISCARD_Y2		= 750,
+	LEFT_DISCARD_Y22	= 510, 
+	LEFT_DISCARD_X3		= 562,  
+	LEFT_DISCARD_Y3		= 789,
+	LEFT_DISCARD_Y33	= 469, 
+	LEFT_DISCARD_X4		= 495,  
+	LEFT_DISCARD_Y4		= 828,
+	LEFT_DISCARD_Y44	= 428, 
+
+	LEFT_DISCARD_OFFSET_X = 9,
+	LEFT_DISCARD_OFFSET_Y = 40,  
+
+	OPPOSITE_DISCARD_X1		= 1160, 
+	OPPOSITE_DISCARD_Y1		= 792,
+	OPPOSITE_DISCARD_X11	= 800,  
+	OPPOSITE_DISCARD_X2		= 1236, 
+	OPPOSITE_DISCARD_Y2		= 847,
+	OPPOSITE_DISCARD_X22	= 697, 
+	OPPOSITE_DISCARD_X3		= 1310, 
+	OPPOSITE_DISCARD_Y3		= 902, 
+	OPPOSITE_DISCARD_X33	= 594, 
+
+	OPPOSITE_DISCARD_OFFSET_X = 50, 
+
+	RIGHT_DISCARD_X1		= 1247,  
+	RIGHT_DISCARD_Y1		= 560,
+	RIGHT_DISCARD_Y11		= 720, 
+	RIGHT_DISCARD_X2		= 1330,  
+	RIGHT_DISCARD_Y2		= 510,
+	RIGHT_DISCARD_Y22		= 750, 
+	RIGHT_DISCARD_X3		= 1413,  
+	RIGHT_DISCARD_Y3		= 469,
+	RIGHT_DISCARD_Y33		= 789, 
+	RIGHT_DISCARD_X4		= 1496,  
+	RIGHT_DISCARD_Y4		= 428,
+	RIGHT_DISCARD_Y44		= 828, 
+
+	RIGHT_DISCARD_OFFSET_X = 9,
+	RIGHT_DISCARD_OFFSET_Y = 40, 
+}
+
+MahjongConstants.ZOrders = {
+	DISCARD_LINE_1 = 1300, -- left or right player discard zorder for line 1
+	DISCARD_LINE_2 = 1200,
+	DISCARD_LINE_3 = 1100,
+	DISCARD_LINE_4 = 1000,
 }
 
 return MahjongConstants
