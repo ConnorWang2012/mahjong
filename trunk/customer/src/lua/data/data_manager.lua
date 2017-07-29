@@ -15,7 +15,7 @@ modification:
 local DataManager = {}
 local data_mgr = gamer.DataManager:getInstance()
 
-function DataManager.getPlayerSelfID()
+function DataManager.getSelfPlayerID()
 	if not DataManager.player_self_id_ then
 		local proto_login = data_mgr:getMutableData(gamer.DataIDs.DATA_ID_MY_LOGIN_MSG_PROTOCOL)
 		DataManager.player_self_id_ = proto_login:player():player_id()
@@ -24,7 +24,7 @@ function DataManager.getPlayerSelfID()
 end
 
 function DataManager.getMahjongOfPlayerSelf()
-	local player_self_id = DataManager.getPlayerSelfID()
+	local player_self_id = DataManager.getSelfPlayerID()
 	print("[DataManager:getMahjongOfPlayerSelf] : ", player_self_id)
 	local proto_room = data_mgr:getMutableData(gamer.DataIDs.DATA_ID_ROOM_MSG_PROTOCOL)	
 	for i = 0, proto_room:player_cards_size() - 1 do

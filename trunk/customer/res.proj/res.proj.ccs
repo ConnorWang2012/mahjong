@@ -10,6 +10,22 @@
           </Folder>
           <Folder Name="hall">
             <Folder Name="plist">
+              <PlistImageFolder Image="create_room.png" PListFile="create_room.plist" Name=".create_room_PList.Dir">
+                <PlistImageFile Name="btn_create.png" Key="btn_create.png" />
+                <PlistImageFile Name="create_room_bg2.png" Key="create_room_bg2.png" />
+                <PlistImageFile Name="create_room_title_bg.png" Key="create_room_title_bg.png" />
+                <PlistImageFile Name="i_create_room_title.png" Key="i_create_room_title.png" />
+                <PlistImageFile Name="i_ellipse.png" Key="i_ellipse.png" />
+                <PlistImageFile Name="i_player_num.png" Key="i_player_num.png" />
+                <PlistImageFile Name="i_room_card.png" Key="i_room_card.png" />
+                <PlistImageFile Name="i_rounds.png" Key="i_rounds.png" />
+                <PlistImageFile Name="i_selected.png" Key="i_selected.png" />
+                <PlistImageFile Name="i_selected_bg.png" Key="i_selected_bg.png" />
+                <PlistImageFile Name="i_selected_bg2.png" Key="i_selected_bg2.png" />
+                <PlistImageFile Name="i_selected2.png" Key="i_selected2.png" />
+                <PlistImageFile Name="i_join_room_title.png" Key="i_join_room_title.png" />
+                <PlistImageFile Name="i_square.png" Key="i_square.png" />
+              </PlistImageFolder>
               <PlistImageFolder Image="hall_bottom.png" PListFile="hall_bottom.plist" Name=".hall_bottom_PList.Dir">
                 <PlistImageFile Name="hall_activity.png" Key="hall_activity.png" />
                 <PlistImageFile Name="hall_bottom_bg.png" Key="hall_bottom_bg.png" />
@@ -19,7 +35,9 @@
               </PlistImageFolder>
               <PlistImageFolder Image="hall_middle.png" PListFile="hall_middle.plist" Name=".hall_middle_PList.Dir">
                 <PlistImageFile Name="hall_room_normal.png" Key="hall_room_normal.png" />
-                <PlistImageFile Name="hall_room_personal.png" Key="hall_room_personal.png" />
+                <PlistImageFile Name="hall_create_room_bg.png" Key="hall_create_room_bg.png" />
+                <PlistImageFile Name="hall_join_room_bg.png" Key="hall_join_room_bg.png" />
+                <PlistImageFile Name="hall_middle_girl.png" Key="hall_middle_girl.png" />
               </PlistImageFolder>
               <PlistImageFolder Image="hall_top.png" PListFile="hall_top.plist" Name=".hall_top_PList.Dir">
                 <PlistImageFile Name="hall_firstcharge.png" Key="hall_firstcharge.png" />
@@ -33,6 +51,7 @@
               </PlistImageFolder>
             </Folder>
             <Image Name="hall_bg.jpg" />
+            <Image Name="popup_bg1.png" />
           </Folder>
           <Folder Name="login">
             <Image Name="login_bg.jpg" />
@@ -124,9 +143,11 @@
           </Folder>
           <Folder Name="ui">
             <Folder Name="hall">
+              <Project Name="create_room_layer_layout.csd" Type="Layer" />
               <Project Name="hall_bottom_node_layout.csd" Type="Node" />
               <Project Name="hall_middle_node_layout.csd" Type="Node" />
               <Project Name="hall_top_node_layout.csd" Type="Node" />
+              <Project Name="join_room_layer_layout.csd" Type="Layer" />
             </Folder>
             <Folder Name="login" />
             <Folder Name="room">

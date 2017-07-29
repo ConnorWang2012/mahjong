@@ -11,11 +11,7 @@
 author:
 modification:
 --]]
---[[
-if not cc.exports.gamer then
-	cc.exports.gamer = {}
-end
-]]
+
 require "data.init_data.lua"
 require "logic.init_logic.lua"
 require "network.init_network.lua"

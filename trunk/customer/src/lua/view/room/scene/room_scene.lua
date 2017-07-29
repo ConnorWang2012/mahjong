@@ -19,6 +19,11 @@ function RoomScene:ctor(view_file)
     RoomScene.super.ctor(self, view_file)
 end
 
+function RoomScene:onServerMsgReceived(code, msg_type, msg_id, msg)
+	-- TODO : dispatch layer enter event to all listeners
+    print("[RoomScene:onEnter]")
+end
+
 function RoomScene:onEnter()
 	-- TODO : dispatch layer enter event to all listeners
     print("[RoomScene:onEnter]")

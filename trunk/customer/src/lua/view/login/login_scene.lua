@@ -25,32 +25,54 @@ function LoginScene:onBtnLoginTouch(sender)
     local connected = gamer.NetworkManager:getInstance():is_connected()
     print("[LoginScene:onBtnLoginTouch] connected : ", tostring(connected))
 
+	math.randomseed(tostring(os.time()):reverse():sub(1, 7))
+	local account = math.random(1, 1000)
+	print("[LoginScene:onBtnLoginTouch] account : ", account)
+
     local proto = gamer.protocol.MyLoginMsgProtocol()
-    proto:set_account(2020)
+    proto:set_account(tostring(account))
     proto:set_password(2030)
 
     gamer.MsgManager:getInstance():sendMsg(gamer.MsgTypes.C2S_MSG_TYPE_LOGIN, 
         gamer.MsgIDs.MSG_ID_LOGIN_MY, 
-        proto, 
-        handler(self, self.onLoginResponse))
+        proto)
 end
 
-function LoginScene:onLoginResponse(code, msg_type, msg_id, msg)
-    print("[LoginScene:onLoginResponse] code : ", code)
-    if code == gamer.MsgCodes.SUCCEED then
-        gamer.g_scene_msg_.runScene(gamer.SceneConstants.SceneIDs.HALL_SCENE)
-    end
+function LoginScene:dealWithMyLoginMsgReceived(code, msg)
+	gamer.g_scene_msg_.runScene(gamer.SceneConstants.SceneIDs.HALL_SCENE)
+end
+
+function LoginScene:addMsgListeners()
+	gamer.g_msg_mgr_:addMsgListener(gamer.MsgTypes.S2C_MSG_TYPE_LOGIN, handler(self, self.onServerMsgReceived))
+end
+
+function LoginScene:removeMsgListeners()
+	gamer.g_msg_mgr_:removeMsgListener(gamer.MsgTypes.S2C_MSG_TYPE_LOGIN, handler(self, self.onServerMsgReceived))
+end
+
+function LoginScene:onServerMsgReceived(code, msg_type, msg_id, msg)
+    print("[LoginScene:onServerMsgReceived] code, msg_type, msg_id : ", code, msg_type, msg_id)
+	if code ~= gamer.MsgCodes.SUCCEED then
+		print("[LoginScene:onServerMsgReceived] error")
+	end
+
+	if msg_type == gamer.MsgTypes.S2C_MSG_TYPE_LOGIN then
+		if msg_id == gamer.MsgIDs.MSG_ID_LOGIN_MY then
+			self:dealWithMyLoginMsgReceived(code, msg)
+		end
+	end
 end
 
 function LoginScene:onEnter()
 	-- TODO : dispatch layer enter event to all listeners
     print("[LoginScene:onEnter]")
-    
+    self:addMsgListeners()
 end
 
 function LoginScene:onExit()
 	-- TODO : dispatch layer exit event to all listeners
     print("[LoginScene:onExit]")
+	self:removeMsgListeners()
 end
 
 return LoginScene

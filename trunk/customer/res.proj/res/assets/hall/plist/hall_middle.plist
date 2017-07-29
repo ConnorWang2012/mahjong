@@ -4,10 +4,36 @@
     <dict>
         <key>frames</key>
         <dict>
+            <key>hall_create_room_bg.png</key>
+            <dict>
+                <key>frame</key>
+                <string>{{2,443},{439,605}}</string>
+                <key>offset</key>
+                <string>{0,0}</string>
+                <key>rotated</key>
+                <true/>
+                <key>sourceColorRect</key>
+                <string>{{0,0},{439,605}}</string>
+                <key>sourceSize</key>
+                <string>{439,605}</string>
+            </dict>
+            <key>hall_join_room_bg.png</key>
+            <dict>
+                <key>frame</key>
+                <string>{{2,2},{439,605}}</string>
+                <key>offset</key>
+                <string>{0,0}</string>
+                <key>rotated</key>
+                <true/>
+                <key>sourceColorRect</key>
+                <string>{{0,0},{439,605}}</string>
+                <key>sourceSize</key>
+                <string>{439,605}</string>
+            </dict>
             <key>hall_middle_girl.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{942,2},{471,477}}</string>
+                <string>{{609,2},{471,477}}</string>
                 <key>offset</key>
                 <string>{37,-1}</string>
                 <key>rotated</key>
@@ -20,26 +46,13 @@
             <key>hall_room_normal.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{2,2},{487,475}}</string>
+                <string>{{609,481},{487,475}}</string>
                 <key>offset</key>
                 <string>{1,-2}</string>
                 <key>rotated</key>
                 <true/>
                 <key>sourceColorRect</key>
                 <string>{{30,4},{487,475}}</string>
-                <key>sourceSize</key>
-                <string>{545,479}</string>
-            </dict>
-            <key>hall_room_personal.png</key>
-            <dict>
-                <key>frame</key>
-                <string>{{479,2},{461,479}}</string>
-                <key>offset</key>
-                <string>{-4,0}</string>
-                <key>rotated</key>
-                <false/>
-                <key>sourceColorRect</key>
-                <string>{{38,0},{461,479}}</string>
                 <key>sourceSize</key>
                 <string>{545,479}</string>
             </dict>
@@ -51,9 +64,9 @@
             <key>realTextureFileName</key>
             <string>hall_middle.png</string>
             <key>size</key>
-            <string>{1415,491}</string>
+            <string>{1086,970}</string>
             <key>smartupdate</key>
-            <string>$TexturePacker:SmartUpdate:4cc74c31fa285a3ab7b3bb1e55315a10:1/1$</string>
+            <string>$TexturePacker:SmartUpdate:071e3fc7520a8572f85a179a5f98baaa:1/1$</string>
             <key>textureFileName</key>
             <string>hall_middle.png</string>
         </dict>

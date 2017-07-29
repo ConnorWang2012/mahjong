@@ -15,33 +15,28 @@ namespace gamer
 class MsgManager
 {
 public:
-    typedef std::function<void(int, msg_header_t, msg_header_t, void*)> MsgResponseCallback;
+    //typedef std::function<void(int, msg_header_t, msg_header_t, void*)> MsgResponseCallback;
     typedef int LuaFunction;
     typedef unsigned int msg_header_t;
-    
-    //MsgManager& operator=(const MsgManager&) = delete;
-
-    //MsgManager(const MsgManager&) = delete;
-
-    //void *operator new(std::size_t) = delete;
 	
     static MsgManager* getInstance();
 
-    // use for c++ only
-    //bool sendMsg(msg_header_t msg_type, 
-    //             msg_header_t msg_id, 
-    //             const MsgResponseCallback& response_cb);
-
-    // use for c++ only
-    //bool sendMsg(const gamer::ClientMsg& msg, const MsgResponseCallback& response_cb);
-
-    // use for lua only
-    //bool sendMsg(const gamer::ClientMsg& msg, gamer::LuaFunction response_cb);
-
     bool sendMsg(msg_header_t msg_type, 
                  msg_header_t msg_id, 
-                 const google::protobuf::Message& msg, 
-                 gamer::LuaFunction response_cb);
+                 const google::protobuf::Message& msg);
+
+    void addMsgListener(msg_header_t msg_type, 
+                        msg_header_t msg_id, 
+                        gamer::LuaFunction listener);
+
+    void addMsgListener(msg_header_t msg_type,
+                        gamer::LuaFunction listener);
+
+    void removeMsgListener(msg_header_t msg_type, 
+                           msg_header_t msg_id, 
+                           gamer::LuaFunction listener);
+
+    void removeMsgListener(msg_header_t msg_type, gamer::LuaFunction listener);
 };
 
 } // namespace gamer

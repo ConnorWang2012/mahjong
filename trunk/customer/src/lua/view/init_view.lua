@@ -12,5 +12,5 @@ author:
 modification:
 --]]
 
-gamer.LayerConstants = require "view.constant.layer_constants.lua"
+gamer.PopupConstants = require "view.constant.popup_constants.lua"
 gamer.SceneConstants = require "view.constant.scene_constants.lua"

@@ -178,6 +178,9 @@
     <Filter Include="classes\lua\view\room\mahjong">
       <UniqueIdentifier>{5d2c50ca-0aa0-4b71-afd8-42469efe9eee}</UniqueIdentifier>
     </Filter>
+    <Filter Include="classes\lua\view\hall\popups">
+      <UniqueIdentifier>{abca24aa-60b1-4bbc-a0a5-04a2fd69f8e5}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\Classes\AppDelegate.h">
@@ -1194,9 +1197,6 @@
     <None Include="..\..\..\..\customer\src\lua\view\base\node_base.lua">
       <Filter>classes\lua\view\base</Filter>
     </None>
-    <None Include="..\..\..\..\customer\src\lua\view\constant\layer_constants.lua">
-      <Filter>classes\lua\view\constant</Filter>
-    </None>
     <None Include="..\..\..\..\customer\src\lua\view\constant\scene_constants.lua">
       <Filter>classes\lua\view\constant</Filter>
     </None>
@@ -1220,9 +1220,6 @@
     </None>
     <None Include="..\..\..\..\customer\src\lua\logic\init_modules.lua">
       <Filter>classes\lua\logic</Filter>
-    </None>
-    <None Include="..\..\..\..\customer\src\lua\logic\manager\layer_manager.lua">
-      <Filter>classes\lua\logic\manager</Filter>
     </None>
     <None Include="..\..\..\..\customer\src\lua\logic\manager\scene_manager.lua">
       <Filter>classes\lua\logic\manager</Filter>
@@ -1364,6 +1361,27 @@
     </None>
     <None Include="..\..\..\..\customer\src\lua\view\layouts\ui\room\mahjong\my_discard_mj_node_layout.lua">
       <Filter>classes\lua\view\layouts\ui\room\mahjong</Filter>
+    </None>
+    <None Include="..\..\..\..\customer\src\lua\logic\manager\popup_manager.lua">
+      <Filter>classes\lua\logic\manager</Filter>
+    </None>
+    <None Include="..\..\..\..\customer\src\lua\view\constant\popup_constants.lua">
+      <Filter>classes\lua\view\constant</Filter>
+    </None>
+    <None Include="..\..\..\..\customer\res.proj\res\layouts\ui\hall\join_room_layer_layout.lua">
+      <Filter>classes\lua\view\layouts\ui\hall</Filter>
+    </None>
+    <None Include="..\..\..\..\customer\res.proj\res\layouts\ui\hall\create_room_layer_layout.lua">
+      <Filter>classes\lua\view\layouts\ui\hall</Filter>
+    </None>
+    <None Include="..\..\..\..\customer\src\lua\view\base\popup_base.lua">
+      <Filter>classes\lua\view\base</Filter>
+    </None>
+    <None Include="..\..\..\..\customer\src\lua\view\hall\popups\create_room_popup.lua">
+      <Filter>classes\lua\view\hall\popups</Filter>
+    </None>
+    <None Include="..\..\..\..\customer\src\lua\view\hall\popups\join_room_popup.lua">
+      <Filter>classes\lua\view\hall\popups</Filter>
     </None>
   </ItemGroup>
 </Project>

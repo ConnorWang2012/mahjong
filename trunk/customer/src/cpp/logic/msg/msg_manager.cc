@@ -14,6 +14,8 @@ modification:
 
 #include "msg_manager.h"
 
+#include <algorithm>
+
 #include "cocos/base/CCDirector.h"
 #include "cocos/base/CCScheduler.h"
 
@@ -26,6 +28,7 @@ modification:
 #include "msg/msg_code.h"
 #include "msg/protocol/my_login_msg_protocol.pb.h"
 #include "msg/protocol/create_room_msg_protocol.pb.h"
+#include "msg/protocol/room_operation_msg_protocol.pb.h"
 #include "msg/protocol/room_msg_protocol.pb.h"
 #include "network/network_manager.h"
 
@@ -43,26 +46,67 @@ MsgManager* MsgManager::getInstance()
 	return &s_msg_mgr;
 }
 
-bool MsgManager::sendMsg(const ClientMsg& msg, const MsgResponseCallback& response_cb)
+bool MsgManager::sendMsg(const ClientMsg& msg)
 {
-    auto m = static_cast<google::protobuf::Message*>(msg.context);
-    return this->sendMsg(msg.type, msg.id, *m, false, -1, response_cb);
-}
-
-bool MsgManager::sendMsg(msg_header_t msg_type,
-                         msg_header_t msg_id,
-                         const google::protobuf::Message& msg,
-                         const MsgResponseCallback& response_cb)
-{
-    return this->sendMsg(msg_type, msg_id, msg, false, -1, response_cb);
+    auto msg_tmp = static_cast<google::protobuf::Message*>(msg.context);
+    return this->sendMsg(msg.type, msg.id, *msg_tmp);
 }
 
 bool MsgManager::sendMsg(msg_header_t msg_type, 
                          msg_header_t msg_id, 
-                         const google::protobuf::Message& msg, 
-                         gamer::LuaFunction response_cb)
+                         const google::protobuf::Message& msg)
 {
-    return this->sendMsg(msg_type, msg_id, msg, true, response_cb, nullptr);
+    return this->doSendMsg(msg_type, msg_id, msg);
+}
+
+void MsgManager::addMsgListener(msg_header_t msg_type, 
+                                msg_header_t msg_id, 
+                                const MsgResponseCallback& listener)
+{
+    this->addMsgListenerForCpp(msg_type, msg_id, listener);
+}
+
+void MsgManager::addMsgListener(msg_header_t msg_type, const MsgResponseCallback& listener)
+{
+    this->addMsgListenerForCpp(msg_type, (msg_header_t)MsgIDs::MSG_ID_UNKNOW, listener);
+}
+
+void MsgManager::addMsgListener(msg_header_t msg_type, 
+                                msg_header_t msg_id, 
+                                gamer::LuaFunction listener)
+{
+    LuaBindHelper::getInstance()->storeLuaFunction(4);
+    this->addMsgListenerForLua(msg_type, msg_id, listener);
+}
+
+void MsgManager::addMsgListener(msg_header_t msg_type, gamer::LuaFunction listener)
+{
+    LuaBindHelper::getInstance()->storeLuaFunction(3);
+    this->addMsgListenerForLua(msg_type, (msg_header_t)MsgIDs::MSG_ID_UNKNOW, listener);
+}
+
+void MsgManager::removeMsgListener(msg_header_t msg_type, 
+                                   msg_header_t msg_id, 
+                                   const MsgResponseCallback& listener)
+{
+    this->removeMsgListenerForCpp(msg_type, msg_id, listener);
+}
+
+void MsgManager::removeMsgListener(msg_header_t msg_type, const MsgResponseCallback& listener)
+{
+    this->removeMsgListenerForCpp(msg_type, (msg_header_t)MsgIDs::MSG_ID_UNKNOW, listener);
+}
+
+void MsgManager::removeMsgListener(msg_header_t msg_type, 
+                                   msg_header_t msg_id, 
+                                   gamer::LuaFunction listener)
+{
+    this->removeMsgListenerForLua(msg_type, msg_id, listener);
+}
+
+void MsgManager::removeMsgListener(msg_header_t msg_type, gamer::LuaFunction listener)
+{
+    this->removeMsgListenerForLua(msg_type, (msg_header_t)MsgIDs::MSG_ID_UNKNOW, listener);
 }
 
 void MsgManager::init()
@@ -98,6 +142,10 @@ void MsgManager::addMsgHandlers()
     // create room
     msg_handlers_.insert(std::make_pair((int)MsgIDs::MSG_ID_ROOM_CREATE,
         CALLBACK_SELECTOR_1(MsgManager::dealWithCreateRoomMsg, this)));
+    
+    // join room
+    msg_handlers_.insert(std::make_pair((int)MsgIDs::MSG_ID_ROOM_PLAYER_JOIN,
+        CALLBACK_SELECTOR_1(MsgManager::dealWithPlayerJoinRoomMsg, this)));
 
     // start game
     msg_handlers_.insert(std::make_pair((int)MsgIDs::MSG_ID_ROOM_START_GAME,
@@ -149,29 +197,15 @@ bool MsgManager::packMsg(msg_header_t msg_type,
     return msg.SerializeToArray(buf + gamer::client_msg_header_len(), msg.ByteSize());
 }
 
-bool MsgManager::sendMsg(msg_header_t msg_type,
-                         msg_header_t msg_id,
-                         const google::protobuf::Message& msg,
-                         bool is_lua,
-                         gamer::LuaFunction lua_cb,
-                         const MsgResponseCallback& cpp_cb)
+bool MsgManager::doSendMsg(msg_header_t msg_type,
+                           msg_header_t msg_id,
+                           const google::protobuf::Message& msg)
 {
     char buf[MsgManager::MAX_MSG_LEN] = { 0 };
     msg_header_t len_total = 0;
     auto ok = this->packMsg(msg_type, msg_id, msg, buf, len_total);
     if (ok)
     {
-        auto key = this->getMsgCallbackKey(msg_type, msg_id);
-        if (is_lua)
-        {
-            LuaBindHelper::getInstance()->storeLuaFunction(5);
-            msg_response_lua_callbacks_.insert(std::make_pair(key, lua_cb));
-        }
-        else
-        {
-            msg_response_cpp_callbacks_.insert(std::make_pair(key, cpp_cb));
-        }
-
         return NetworkManager::getInstance()->send(buf, len_total);
     }
 
@@ -185,31 +219,74 @@ std::string MsgManager::getMsgCallbackKey(msg_header_t msg_type, msg_header_t ms
     return buf;
 }
 
-void MsgManager::getMsgCallbacks(const std::string& key,
-                                 MsgResponseCallback& cpp_cb,
-                                 gamer::LuaFunction& lua_cb)
+void MsgManager::addMsgListenerForLua(msg_header_t msg_type, 
+                                      msg_header_t msg_id, 
+                                      gamer::LuaFunction lua_cb)
 {
-    // C++ callback
-    auto itr1 = msg_response_cpp_callbacks_.find(key);
-    if (itr1 != msg_response_cpp_callbacks_.end())
+    auto key = this->getMsgCallbackKey(msg_type, msg_id);
+    auto itr = msg_response_lua_callbacks_.find(key);
+    if (itr != msg_response_lua_callbacks_.end())
     {
-        cpp_cb = itr1->second;
+        itr->second.insert(lua_cb);
     }
     else
     {
-        cpp_cb = nullptr;
+        std::unordered_set<gamer::LuaFunction> myset = { lua_cb };
+        msg_response_lua_callbacks_.insert(std::make_pair(key, myset));
     }
+}
 
-    // Lua callback
-    auto itr2 = msg_response_lua_callbacks_.find(key);
-    gamer::LuaFunction lua_callback = -1;
-    if (itr2 != msg_response_lua_callbacks_.end())
+void MsgManager::addMsgListenerForCpp(msg_header_t msg_type, 
+                                      msg_header_t msg_id, 
+                                      const MsgResponseCallback& cpp_cb)
+{
+    auto key = this->getMsgCallbackKey(msg_type, msg_id);
+    auto itr = msg_response_cpp_callbacks_.find(key);
+    if (itr != msg_response_cpp_callbacks_.end())
     {
-        lua_cb = itr2->second;
+        itr->second.push_back(cpp_cb);
     }
     else
     {
-        lua_cb = -1;
+        std::vector<MsgResponseCallback> vec = { cpp_cb };
+        msg_response_cpp_callbacks_.insert(std::make_pair(key, vec));
+    }
+}
+
+void MsgManager::removeMsgListenerForLua(msg_header_t msg_type, 
+                                         msg_header_t msg_id, 
+                                         gamer::LuaFunction listener)
+{
+    auto key = this->getMsgCallbackKey(msg_type, msg_id);
+    auto itr = msg_response_lua_callbacks_.find(key);
+    if (itr != msg_response_lua_callbacks_.end())
+    {
+        itr->second.erase(listener);
+    }
+}
+
+void MsgManager::removeMsgListenerForCpp(msg_header_t msg_type, 
+                                         msg_header_t msg_id,
+                                         const MsgResponseCallback& listener)
+{
+    auto key = this->getMsgCallbackKey(msg_type, msg_id);
+    auto itr = msg_response_cpp_callbacks_.find(key);
+    if (itr != msg_response_cpp_callbacks_.end())
+    {
+        //auto it = std::find(itr->second.begin(), itr->second.end(), listener); // operation == is not member function
+        for (auto it = itr->second.begin(); it != itr->second.end(); it++)
+        {
+            // NOTE : not strictly right
+            auto a = it->target<void(*)(int, msg_header_t, msg_header_t, 
+                                        const google::protobuf::Message* msg)>();
+            auto b = listener.target<void(*)(int, msg_header_t, msg_header_t, 
+                                             const google::protobuf::Message* msg)>();
+            if (a == b)
+            {
+                itr->second.erase(it);
+                break;
+            }
+        }
     }
 }
 
@@ -219,35 +296,67 @@ void MsgManager::dispatchMsg(int msg_code,
                              const google::protobuf::Message* msg,
                              const std::string& class_name)
 {
-    MsgResponseCallback cppcb = nullptr;
-    auto luacb                = -1;
+    //MsgResponseCallback cppcb = nullptr;
+    //auto luacb                = -1;
     auto msgcode              = msg_code;
     auto msgtype              = msg_type;
     auto msgid                = msg_id;
     auto msgtmp               = msg;
     auto classname            = class_name;
 
-    auto key = this->getMsgCallbackKey(msg_type, msg_id);
-    this->getMsgCallbacks(key, cppcb, luacb);
+    auto key = this->getMsgCallbackKey(msg_type, msg_id); // for specific msg
+    auto key2 = this->getMsgCallbackKey(msg_type, (int)MsgIDs::MSG_ID_UNKNOW); // for one msg type
+    //this->getMsgCallbacks(key, cppcb, luacb);
 
     auto callback = [=](float) {
         cocos2d::Director::getInstance()->getScheduler()->unschedule("dispatch_msg", this);
-        
-        // C++
-        if (nullptr != cppcb)
+
+        // C++ callback
+        auto itr1 = msg_response_cpp_callbacks_.find(key);
+        if (itr1 != msg_response_cpp_callbacks_.end())
         {
-            cppcb(msgcode, msgtype, msgid, msgtmp);
+            for (const MsgResponseCallback& cpp_cb : itr1->second)
+            {
+                cpp_cb(msgcode, msgtype, msgid, msgtmp);
+            }
         }
 
-        // Lua
-        if (-1 != luacb)
+        itr1 = msg_response_cpp_callbacks_.find(key2);
+        if (itr1 != msg_response_cpp_callbacks_.end())
         {
-            LuaBindHelper::getInstance()->dispatchMsg(luacb,
-                                                      msgcode,
-                                                      msgtype,
-                                                      msgid,
-                                                      msgtmp,
-                                                      classname);
+            for (const MsgResponseCallback& cpp_cb : itr1->second)
+            {
+                cpp_cb(msgcode, msgtype, msgid, msgtmp);
+            }
+        }
+
+        // Lua callback
+        auto itr2 = msg_response_lua_callbacks_.find(key);
+        if (itr2 != msg_response_lua_callbacks_.end())
+        {
+            for (gamer::LuaFunction lua_cb : itr2->second)
+            {
+                LuaBindHelper::getInstance()->dispatchMsg(lua_cb,
+                                                          msgcode,
+                                                          msgtype,
+                                                          msgid,
+                                                          msgtmp,
+                                                          classname);
+            }
+        }
+
+        itr2 = msg_response_lua_callbacks_.find(key2);
+        if (itr2 != msg_response_lua_callbacks_.end())
+        {
+            for (gamer::LuaFunction lua_cb : itr2->second)
+            {
+                LuaBindHelper::getInstance()->dispatchMsg(lua_cb,
+                                                          msgcode,
+                                                          msgtype,
+                                                          msgid,
+                                                          msgtmp,
+                                                          classname);
+            }
         }
     };
 
@@ -317,6 +426,12 @@ void MsgManager::dealWithCreateRoomMsg(const ServerMsg& msg)
     DataManager::getInstance()->cacheData(key, proto);
 
     this->dealWithDispatchMsg(msg, proto, "gamer::protocol::CreateRoomMsgProtocol");
+}
+
+void MsgManager::dealWithPlayerJoinRoomMsg(const ServerMsg& msg)
+{
+    gamer::protocol::RoomOperationMsgProtocol proto;
+    this->dealWithDispatchMsg(msg, &proto, "gamer::protocol::RoomOperationMsgProtocol");
 }
 
 void MsgManager::dealWithStartGameMsg(const ServerMsg& msg)

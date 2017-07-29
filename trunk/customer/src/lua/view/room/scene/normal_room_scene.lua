@@ -33,10 +33,11 @@ function NormalRoomScene:initMahjongLayer()
 	end
 
 	self:initMahjongOfPlayerSelf()
-	self:initMahjongOfLeftPlayer() -- TODO : remove
-	self:initMahjongOfOppositePlayer() -- TODO : remove
-	self:initMahjongOfRightPlayer() -- TODO : remove
-
+	--[[
+	self:initMahjongOfLeftPlayer() 
+	self:initMahjongOfOppositePlayer() 
+	self:initMahjongOfRightPlayer() 
+	]]
 	local players_num = gamer.g_data_mgr_.getRoomPlayersNum()
 	if 2 == players_num then
 		self:initMahjongOfOppositePlayer()
@@ -53,8 +54,34 @@ end
 function NormalRoomScene:initMahjongOfPlayerSelf()
 	-- visible hand cards	
 	local player_cards = gamer.g_data_mgr_.getMahjongOfPlayerSelf()
-	
+	--[[
 	local playercards = gamer.protocol.PlayerCardsMsgProtocol()
+	playercards:add_visible_hand_cards(11)
+	playercards:add_visible_hand_cards(11)
+	playercards:add_visible_hand_cards(11)
+	playercards:add_visible_hand_cards(11)
+
+	playercards:add_visible_hand_cards(21)
+	playercards:add_visible_hand_cards(21)
+	playercards:add_visible_hand_cards(21)
+	playercards:add_visible_hand_cards(21)
+	
+	playercards:add_visible_hand_cards(31)
+	playercards:add_visible_hand_cards(31)
+	playercards:add_visible_hand_cards(31)
+	playercards:add_visible_hand_cards(31)
+]]
+	local visible_mahjongs_num = player_cards:visible_hand_cards_size()
+	local ming_gang_num = self:getMingGangNum(visible_mahjongs_num)
+	local offset_x = self:initVisibleMahjongOfPlayerSelf(player_cards, ming_gang_num)
+	
+	-- invisible hand cards
+	self:initInvisibleMahjongOfPlayerSelf(player_cards, offset_x)
+end
+
+function NormalRoomScene:initMahjongOfLeftPlayer()
+	-- visible hand cards	
+	local player_cards = gamer.g_data_mgr_.getMahjongOfPlayerSelf()
 --[[
 	local playercards = gamer.protocol.PlayerCardsMsgProtocol()
 	playercards:add_visible_hand_cards(11)
@@ -62,50 +89,20 @@ function NormalRoomScene:initMahjongOfPlayerSelf()
 	playercards:add_visible_hand_cards(11)
 	playercards:add_visible_hand_cards(11)
 
-	playercards:add_visible_hand_cards(21)
-	playercards:add_visible_hand_cards(21)
-	playercards:add_visible_hand_cards(21)
-	playercards:add_visible_hand_cards(21)
-	
-	playercards:add_visible_hand_cards(31)
-	playercards:add_visible_hand_cards(31)
-	playercards:add_visible_hand_cards(31)
-	playercards:add_visible_hand_cards(31)
-]]
-	local visible_mahjongs_num = playercards:visible_hand_cards_size()
-	local ming_gang_num = self:getMingGangNum(visible_mahjongs_num)
-	print("ming_gang_num : ", ming_gang_num)
-	local offset_x = self:initVisibleMahjongOfPlayerSelf(playercards, ming_gang_num)
-	
-	-- invisible hand cards
-	print("offset_x : ", offset_x)
-	self:initInvisibleMahjongOfPlayerSelf(player_cards, offset_x)
-end
-
-function NormalRoomScene:initMahjongOfLeftPlayer()
-	-- visible hand cards	
-	local player_cards = gamer.g_data_mgr_.getMahjongOfPlayerSelf()
-
-	local playercards = gamer.protocol.PlayerCardsMsgProtocol()
-	playercards:add_visible_hand_cards(11)
-	playercards:add_visible_hand_cards(11)
-	playercards:add_visible_hand_cards(11)
-	playercards:add_visible_hand_cards(11)
-
 	playercards:add_visible_hand_cards(47)
 	playercards:add_visible_hand_cards(47)
 	playercards:add_visible_hand_cards(47)
---[[	playercards:add_visible_hand_cards(47)
+	playercards:add_visible_hand_cards(47)
 
 	playercards:add_visible_hand_cards(45)
 	playercards:add_visible_hand_cards(45)
 	playercards:add_visible_hand_cards(45)
 	playercards:add_visible_hand_cards(45)
 ]]
-	local visible_mahjongs_num = playercards:visible_hand_cards_size()
+	local visible_mahjongs_num = player_cards:visible_hand_cards_size()
 	local ming_gang_num = self:getMingGangNum(visible_mahjongs_num)
 	print("ming_gang_num : ", ming_gang_num)
-	local offset_x, offset_y = self:initVisibleMahjongOfLeftPlayer(playercards, ming_gang_num)
+	local offset_x, offset_y = self:initVisibleMahjongOfLeftPlayer(player_cards, ming_gang_num)
 
 	-- invisible hand cards	
 	print("offset_x, offset_y : ", offset_x, offset_y)
@@ -115,7 +112,7 @@ end
 function NormalRoomScene:initMahjongOfOppositePlayer()
 	-- visible hand cards	
 	local player_cards = gamer.g_data_mgr_.getMahjongOfPlayerSelf()
-
+--[[
 	local playercards = gamer.protocol.PlayerCardsMsgProtocol()
 	playercards:add_visible_hand_cards(11)
 	playercards:add_visible_hand_cards(11)
@@ -125,27 +122,25 @@ function NormalRoomScene:initMahjongOfOppositePlayer()
 	playercards:add_visible_hand_cards(47)
 	playercards:add_visible_hand_cards(47)
 	playercards:add_visible_hand_cards(47)
---[[	playercards:add_visible_hand_cards(47)
+	playercards:add_visible_hand_cards(47)
 
 	playercards:add_visible_hand_cards(45)
 	playercards:add_visible_hand_cards(45)
 	playercards:add_visible_hand_cards(45)
 	playercards:add_visible_hand_cards(45)
 ]]
-	local visible_mahjongs_num = playercards:visible_hand_cards_size()
+	local visible_mahjongs_num = player_cards:visible_hand_cards_size()
 	local ming_gang_num = self:getMingGangNum(visible_mahjongs_num)
-	print("ming_gang_num : ", ming_gang_num)
-	local offset_x = self:initVisibleMahjongOfOppositePlayer(playercards, ming_gang_num)
+	local offset_x = self:initVisibleMahjongOfOppositePlayer(player_cards, ming_gang_num)
 
 	-- invisible hand cards	
-	print("offset_x : ", offset_x)
 	self:initInvisibleMahjongOfOppositePlayer(player_cards, offset_x)
 end
 
 function NormalRoomScene:initMahjongOfRightPlayer()
 	-- visible hand cards	
 	local player_cards = gamer.g_data_mgr_.getMahjongOfPlayerSelf()
-
+--[[
 	local playercards = gamer.protocol.PlayerCardsMsgProtocol()
 	playercards:add_visible_hand_cards(11)
 	playercards:add_visible_hand_cards(11)
@@ -155,20 +150,18 @@ function NormalRoomScene:initMahjongOfRightPlayer()
 	playercards:add_visible_hand_cards(37)
 	playercards:add_visible_hand_cards(37)
 	playercards:add_visible_hand_cards(37)
---[[	playercards:add_visible_hand_cards(37)
+	playercards:add_visible_hand_cards(37)
 
 	playercards:add_visible_hand_cards(45)
 	playercards:add_visible_hand_cards(45)
 	playercards:add_visible_hand_cards(45)
 	playercards:add_visible_hand_cards(45)
 ]]
-	local visible_mahjongs_num = playercards:visible_hand_cards_size()
+	local visible_mahjongs_num = player_cards:visible_hand_cards_size()
 	local ming_gang_num = self:getMingGangNum(visible_mahjongs_num)
-	print("ming_gang_num : ", ming_gang_num)
-	local offset_x, offset_y = self:initVisibleMahjongOfRightPlayer(playercards, ming_gang_num)
+	local offset_x, offset_y = self:initVisibleMahjongOfRightPlayer(player_cards, ming_gang_num)
 
 	-- invisible hand cards	
-	print("offset_x, offset_y : ", offset_x, offset_y)
 	self:initInvisibleMahjongOfRightPlayer(player_cards, offset_x, offset_y)
 end
 

@@ -549,6 +549,8 @@ xcopy "$(ProjectDir)..\..\..\..\customer\src\lua" "$(LocalDebuggerWorkingDirecto
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <None Include="..\..\..\..\customer\res.proj\res\layouts\ui\hall\create_room_layer_layout.lua" />
+    <None Include="..\..\..\..\customer\res.proj\res\layouts\ui\hall\join_room_layer_layout.lua" />
     <None Include="..\..\..\..\customer\src\lua\data\data_constants.lua" />
     <None Include="..\..\..\..\customer\src\lua\data\data_manager.lua" />
     <None Include="..\..\..\..\customer\src\lua\data\init_data.lua" />
@@ -557,16 +559,19 @@ xcopy "$(ProjectDir)..\..\..\..\customer\src\lua" "$(LocalDebuggerWorkingDirecto
     <None Include="..\..\..\..\customer\src\lua\logic\constant\msg_type.lua" />
     <None Include="..\..\..\..\customer\src\lua\logic\init_logic.lua" />
     <None Include="..\..\..\..\customer\src\lua\logic\init_modules.lua" />
-    <None Include="..\..\..\..\customer\src\lua\logic\manager\layer_manager.lua" />
+    <None Include="..\..\..\..\customer\src\lua\logic\manager\popup_manager.lua" />
     <None Include="..\..\..\..\customer\src\lua\logic\manager\scene_manager.lua" />
     <None Include="..\..\..\..\customer\src\lua\logic\test\test_lua_bind_event_listener.lua" />
     <None Include="..\..\..\..\customer\src\lua\network\init_network.lua" />
     <None Include="..\..\..\..\customer\src\lua\view\base\layer_base.lua" />
     <None Include="..\..\..\..\customer\src\lua\view\base\node_base.lua" />
-    <None Include="..\..\..\..\customer\src\lua\view\constant\layer_constants.lua" />
+    <None Include="..\..\..\..\customer\src\lua\view\base\popup_base.lua" />
     <None Include="..\..\..\..\customer\src\lua\view\constant\mahjong_constants.lua" />
+    <None Include="..\..\..\..\customer\src\lua\view\constant\popup_constants.lua" />
     <None Include="..\..\..\..\customer\src\lua\view\constant\scene_constants.lua" />
     <None Include="..\..\..\..\customer\src\lua\view\hall\hall_scene.lua" />
+    <None Include="..\..\..\..\customer\src\lua\view\hall\popups\create_room_popup.lua" />
+    <None Include="..\..\..\..\customer\src\lua\view\hall\popups\join_room_popup.lua" />
     <None Include="..\..\..\..\customer\src\lua\view\init_view.lua" />
     <None Include="..\..\..\..\customer\src\lua\view\layouts\scene\hall\hall_scene_layout.lua" />
     <None Include="..\..\..\..\customer\src\lua\view\layouts\scene\login\login_scene_layout.lua" />

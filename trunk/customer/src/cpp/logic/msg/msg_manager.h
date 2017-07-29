@@ -17,6 +17,8 @@ modification:
 
 #include <string>
 #include <unordered_map>
+#include <unordered_set>
+#include <vector>
 
 #include "base/macros.h"
 #include "msg/msg.h"
@@ -51,19 +53,44 @@ public:
 	static MsgManager* getInstance();
 
     // use for c++ only
-    bool sendMsg(const ClientMsg& msg, const MsgResponseCallback& response_cb);
+    bool sendMsg(const ClientMsg& msg);
 
-    // use for c++ only
-    bool sendMsg(msg_header_t msg_type,
-                 msg_header_t msg_id,
-                 const google::protobuf::Message& msg,
-                 const MsgResponseCallback& response_cb);
-
-    // use for lua only
+    // use for c++ and lua
     bool sendMsg(msg_header_t msg_type, 
                  msg_header_t msg_id, 
-                 const google::protobuf::Message& msg, 
-                 gamer::LuaFunction response_cb);
+                 const google::protobuf::Message& msg);
+
+    // use for c++ only
+    void addMsgListener(msg_header_t msg_type,
+                        msg_header_t msg_id,
+                        const MsgResponseCallback& listener);
+
+    // use for c++ only
+    void addMsgListener(msg_header_t msg_type, const MsgResponseCallback& listener);
+
+    // use for lua only
+    void addMsgListener(msg_header_t msg_type, 
+                        msg_header_t msg_id, 
+                        gamer::LuaFunction listener);
+
+    // use for lua only
+    void addMsgListener(msg_header_t msg_type, gamer::LuaFunction listener);
+
+    // use for c++ only
+    void removeMsgListener(msg_header_t msg_type,
+                           msg_header_t msg_id,
+                           const MsgResponseCallback& listener);
+
+    // use for c++ only
+    void removeMsgListener(msg_header_t msg_type, const MsgResponseCallback& listener);
+
+    // use for lua only
+    void removeMsgListener(msg_header_t msg_type, 
+                           msg_header_t msg_id, 
+                           gamer::LuaFunction listener);
+
+    // use for lua only
+    void removeMsgListener(msg_header_t msg_type, gamer::LuaFunction listener);
 
 private:
     typedef std::function<void(const ServerMsg&)> MsgHandler;
@@ -84,18 +111,27 @@ private:
                  char* buf, 
                  msg_header_t& len);
 
-    bool sendMsg(msg_header_t msg_type,
-                 msg_header_t msg_id,
-                 const google::protobuf::Message& msg,
-                 bool is_lua, 
-                 gamer::LuaFunction lua_cb, 
-                 const MsgResponseCallback& cpp_cb);
+    bool doSendMsg(msg_header_t msg_type,
+                   msg_header_t msg_id,
+                   const google::protobuf::Message& msg);
 
     std::string getMsgCallbackKey(msg_header_t msg_type, msg_header_t msg_id);
 
-    void getMsgCallbacks(const std::string& key, 
-                         MsgResponseCallback& cpp_cb, 
-                         gamer::LuaFunction& lua_cb);
+    void addMsgListenerForLua(msg_header_t msg_type, 
+                              msg_header_t msg_id, 
+                              gamer::LuaFunction listener);
+
+    void addMsgListenerForCpp(msg_header_t msg_type, 
+                              msg_header_t msg_id, 
+                              const MsgResponseCallback& listener);
+
+    void removeMsgListenerForLua(msg_header_t msg_type, 
+                                 msg_header_t msg_id,
+                                 gamer::LuaFunction listener);
+
+    void removeMsgListenerForCpp(msg_header_t msg_type,
+                                 msg_header_t msg_id,
+                                 const MsgResponseCallback& listener);
 
     // use main thread£¨UI thread£©to dispatch msg£¨can not dispatch msg in network thread, 
     // because in network thread use UI will be crash, and usually, customer use UI in msg callback£©.
@@ -117,6 +153,8 @@ private:
 
     void dealWithCreateRoomMsg(const ServerMsg& msg);
 
+    void dealWithPlayerJoinRoomMsg(const ServerMsg& msg);
+
     void dealWithStartGameMsg(const ServerMsg& msg);
 
     void onSocketConnected(gamer::Event* event);
@@ -125,8 +163,8 @@ private:
 
     friend class NetworkManager;
 
-    std::unordered_map<std::string, MsgResponseCallback> msg_response_cpp_callbacks_;
-    std::unordered_map<std::string, LuaFunction> msg_response_lua_callbacks_;
+    std::unordered_map<std::string, std::vector<MsgResponseCallback>> msg_response_cpp_callbacks_;
+    std::unordered_map<std::string, std::unordered_set<gamer::LuaFunction>> msg_response_lua_callbacks_;
 
     std::unordered_map<int, MsgHandler> msg_handlers_;    // key is MsgIDs
     std::unordered_map<int, MsgHandler> msg_dispatchers_; // key is MsgTypes

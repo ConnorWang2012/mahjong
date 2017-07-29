@@ -65,7 +65,7 @@ function LayerBase:onEnter()
 end
 
 function LayerBase:onExit()
-    print("[LayerBase:onEnter]")
+    print("[LayerBase:onExit]")
 	-- TODO : dispatch layer exit event to all listeners
 end
 

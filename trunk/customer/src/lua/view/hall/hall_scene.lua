@@ -40,63 +40,106 @@ function HallScene:initLayout()
     local img_normal_room = node_middle:getChildByName("img_middle")
     img_normal_room:setTouchEnabled(true)
     img_normal_room:addClickEventListener(handler(self, self.onImgNormalRoomTouch))
+
+	local node = self.hall_middle_layout:getChildByName("node_right")
+    local img = node:getChildByName("img_right")
+    img:setTouchEnabled(true)
+    img:addClickEventListener(handler(self, self.onImgRightTouch))
+
+	node = self.hall_middle_layout:getChildByName("node_left")
+    img = node:getChildByName("img_left")
+    img:setTouchEnabled(true)
+    img:addClickEventListener(handler(self, self.onImgLeftTouch))
+
+end
+
+function HallScene:onImgRightTouch(sender)
+    print("[HallScene:onImgRightTouch]")
+	gamer.g_popup_mgr_.showPopup(gamer.PopupConstants.PopupIDs.POPUP_ID_ROOM_JOIN)
+end
+
+function HallScene:onImgLeftTouch(sender)
+    print("[HallScene:onImgLeftTouch]")
+
+	local data_mgr = gamer.DataManager:getInstance()
+	local proto_room = data_mgr:getMutableData(gamer.DataIDs.DATA_ID_CREATE_ROOM_MSG_PROTOCOL)	
+	print("[HallScene:onImgLeftTouch] room_owner_id, room_id : ", proto_room:room_owner_id(), proto_room:room_id())
+
+	local proto = gamer.protocol.RoomMsgProtocol()
+    proto:set_room_id(proto_room:room_id())
+    proto:set_room_owner_id(proto_room:room_owner_id())
+
+    gamer.g_msg_mgr_:sendMsg(gamer.MsgTypes.C2S_MSG_TYPE_ROOM, gamer.MsgIDs.MSG_ID_ROOM_START_GAME, proto)
 end
 
 function HallScene:onImgNormalRoomTouch(sender)
     print("[HallScene:onImgNormalRoomTouch]")
-    local proto = gamer.protocol.CreateRoomMsgProtocol()
-    proto:set_room_owner_id(10000001)
-    proto:set_rounds_num(10)
-    proto:set_players_num(1)
-    proto:set_room_cards_num(1)
-
-    gamer.g_msg_mgr_:sendMsg(gamer.MsgTypes.C2S_MSG_TYPE_ROOM, 
-        gamer.MsgIDs.MSG_ID_ROOM_CREATE, 
-        proto,
-        handler(self, self.onCreateRoomMsgReceived))
+	gamer.g_popup_mgr_.showPopup(gamer.PopupConstants.PopupIDs.POPUP_ID_ROOM_CREATE)
 end
 
-function HallScene:onCreateRoomMsgReceived(code, msg_type, msg_id, msg)
-    print("[HallScene:onCreateRoomMsgReceived] code : ", code)
-    print("[HallScene:onCreateRoomMsgReceived] room_id : ", msg:room_id())
-	print("[HallScene:onCreateRoomMsgReceived] room_owner_id : ", msg:room_owner_id())
-    if code == gamer.MsgCodes.SUCCEED then
-        local proto = gamer.protocol.RoomMsgProtocol()
-        proto:set_room_id(msg:room_id())
-        proto:set_room_owner_id(msg:room_owner_id())
-
-        gamer.g_msg_mgr_:sendMsg(gamer.MsgTypes.C2S_MSG_TYPE_ROOM, 
-            gamer.MsgIDs.MSG_ID_ROOM_START_GAME, 
-            proto,
-            handler(self, self.onGameStartMsgReceived))
-    end
+function HallScene:dealWithCreateRoomMsgReceived(code, msg)
+	print("[HallScene:dealWithCreateRoomMsgReceived]")
+	print("[HallScene:dealWithStarGameMsgReceived] room_id : ", msg:room_id())
+	gamer.g_popup_mgr_.removePopup(gamer.PopupConstants.PopupIDs.POPUP_ID_ROOM_CREATE)
 end
 
-function HallScene:onGameStartMsgReceived(code, msg_type, msg_id, msg)
-    print("[HallScene:onGameStartMsgReceived] code : ", code)
-    if code == gamer.MsgCodes.SUCCEED then
-		print("[HallScene:onCreateRoomMsgReceived] remian card num : ", msg:remain_cards_num())
-		--[[
-		local player_cards = msg:player_cards(0)
-		print("[HallScene:onCreateRoomMsgReceived] invisible_hand_cards_size : ", player_cards:invisible_hand_cards_size())
-		for i = 0, player_cards:invisible_hand_cards_size() - 1 do
-			print("[HallScene:onCreateRoomMsgReceived] i : ",  i)
-			print("[HallScene:onCreateRoomMsgReceived] invisible_hand_cards : ", player_cards:invisible_hand_cards(i))
+function HallScene:dealWithJoinRoomMsgReceived(code, msg)
+    print("[HallScene:dealWithJoinRoomMsgReceived] code : ", code)
+	if code == gamer.MsgCodes.SUCCEED then
+		gamer.g_popup_mgr_.removePopup(gamer.PopupConstants.PopupIDs.POPUP_ID_ROOM_JOIN)
+		
+		local data_mgr = gamer.DataManager:getInstance()
+		local proto_room = data_mgr:getMutableData(gamer.DataIDs.DATA_ID_CREATE_ROOM_MSG_PROTOCOL)	
+		print("[HallScene:dealWithJoinRoomMsgReceived] room_owner_id, room_id : ", proto_room:room_owner_id(), proto_room:room_id())
+
+		local proto = gamer.protocol.RoomMsgProtocol()
+		proto:set_room_id(proto_room:room_id())
+		proto:set_room_owner_id(proto_room:room_owner_id())
+
+		gamer.g_msg_mgr_:sendMsg(gamer.MsgTypes.C2S_MSG_TYPE_ROOM, gamer.MsgIDs.MSG_ID_ROOM_START_GAME, proto)
+	end
+end
+
+function HallScene:dealWithStarGameMsgReceived(code, msg)
+	print("[HallScene:dealWithStarGameMsgReceived]")
+	gamer.g_scene_msg_.runScene(gamer.SceneConstants.SceneIDs.NORMAL_ROOM_SCENE)
+end
+
+function HallScene:addMsgListeners()
+	gamer.g_msg_mgr_:addMsgListener(gamer.MsgTypes.S2C_MSG_TYPE_ROOM, handler(self, self.onServerMsgReceived))
+end
+
+function HallScene:removeMsgListeners()
+	gamer.g_msg_mgr_:removeMsgListener(gamer.MsgTypes.S2C_MSG_TYPE_ROOM, handler(self, self.onServerMsgReceived))
+end
+
+function HallScene:onServerMsgReceived(code, msg_type, msg_id, msg)
+    print("[HallScene:onServerMsgReceived] code, msg_type, msg_id : ", code, msg_type, msg_id)
+	if code ~= gamer.MsgCodes.SUCCEED then
+		print("[HallScene:onServerMsgReceived] error")
+	end
+
+	if msg_type == gamer.MsgTypes.S2C_MSG_TYPE_ROOM then
+		if msg_id == gamer.MsgIDs.MSG_ID_ROOM_CREATE then
+			self:dealWithCreateRoomMsgReceived(code, msg)
+		elseif msg_id == gamer.MsgIDs.MSG_ID_ROOM_PLAYER_JOIN then
+			self:dealWithJoinRoomMsgReceived(code, msg)
+		elseif msg_id == gamer.MsgIDs.MSG_ID_ROOM_START_GAME then
+			self:dealWithStarGameMsgReceived(code, msg)
 		end
-		]]
-		gamer.g_scene_msg_.runScene(gamer.SceneConstants.SceneIDs.NORMAL_ROOM_SCENE)
-    end
+	end
 end
 
 function HallScene:onEnter()
 	-- TODO : dispatch layer enter event to all listeners
     print("[HallScene:onEnter]")
-    
+    self:addMsgListeners()
 end
 
 function HallScene:onExit()
 	-- TODO : dispatch layer exit event to all listeners
     print("[HallScene:onExit]")
+	self:removeMsgListeners()
 end
 
 return HallScene

@@ -1,6 +1,6 @@
 /*
 ** Lua binding: msg_manager
-** Generated automatically by tolua++-1.0.92 on 06/10/17 02:24:30.
+** Generated automatically by tolua++-1.0.92 on 07/29/17 19:11:52.
 */
 
 #ifndef __cplusplus
@@ -67,9 +67,7 @@ static int tolua_msg_manager_gamer_MsgManager_sendMsg00(lua_State* tolua_S)
      !tolua_isnumber(tolua_S,2,0,&tolua_err) ||
      !tolua_isnumber(tolua_S,3,0,&tolua_err) ||
      (tolua_isvaluenil(tolua_S,4,&tolua_err) || !tolua_isusertype(tolua_S,4,"const google::protobuf::Message",0,&tolua_err)) ||
-     //(tolua_isvaluenil(tolua_S,5,&tolua_err) || !tolua_isusertype(tolua_S,5,"gamer::LuaFunction",0,&tolua_err)) ||
-     !lua_isfunction(tolua_S, 5) ||
-     !tolua_isnoobj(tolua_S,6,&tolua_err)
+     !tolua_isnoobj(tolua_S,5,&tolua_err)
  )
   goto tolua_lerror;
  else
@@ -79,12 +77,11 @@ static int tolua_msg_manager_gamer_MsgManager_sendMsg00(lua_State* tolua_S)
   unsigned int msg_type = (( unsigned int)  tolua_tonumber(tolua_S,2,0));
   unsigned int msg_id = (( unsigned int)  tolua_tonumber(tolua_S,3,0));
   const google::protobuf::Message* msg = ((const google::protobuf::Message*)  tolua_tousertype(tolua_S,4,0));
-  int response_cb = ((int) tolua_tonumber(tolua_S,5,0));
 #ifndef TOLUA_RELEASE
   if (!self) tolua_error(tolua_S,"invalid 'self' in function 'sendMsg'", NULL);
 #endif
   {
-   bool tolua_ret = (bool)  self->sendMsg(msg_type,msg_id,*msg,response_cb);
+   bool tolua_ret = (bool)  self->sendMsg(msg_type,msg_id,*msg);
    tolua_pushboolean(tolua_S,(bool)tolua_ret);
   }
  }
@@ -94,6 +91,148 @@ static int tolua_msg_manager_gamer_MsgManager_sendMsg00(lua_State* tolua_S)
  tolua_error(tolua_S,"#ferror in function 'sendMsg'.",&tolua_err);
  return 0;
 #endif
+}
+#endif //#ifndef TOLUA_DISABLE
+
+/* method: addMsgListener of class  gamer::MsgManager */
+#ifndef TOLUA_DISABLE_tolua_msg_manager_gamer_MsgManager_addMsgListener00
+static int tolua_msg_manager_gamer_MsgManager_addMsgListener00(lua_State* tolua_S)
+{
+#ifndef TOLUA_RELEASE
+ tolua_Error tolua_err;
+ if (
+     !tolua_isusertype(tolua_S,1,"gamer::MsgManager",0,&tolua_err) ||
+     !tolua_isnumber(tolua_S,2,0,&tolua_err) ||
+     !tolua_isnumber(tolua_S,3,0,&tolua_err) ||
+     //(tolua_isvaluenil(tolua_S,4,&tolua_err) || !tolua_isusertype(tolua_S,4,"gamer::LuaFunction",0,&tolua_err)) ||
+     !lua_isfunction(tolua_S, 4) ||
+     !tolua_isnoobj(tolua_S,5,&tolua_err)
+ )
+  goto tolua_lerror;
+ else
+#endif
+ {
+  gamer::MsgManager* self = (gamer::MsgManager*)  tolua_tousertype(tolua_S,1,0);
+  unsigned int msg_type = (( unsigned int)  tolua_tonumber(tolua_S,2,0));
+  unsigned int msg_id = (( unsigned int)  tolua_tonumber(tolua_S,3,0));
+  //gamer::LuaFunction listener = *((gamer::LuaFunction*)  tolua_tousertype(tolua_S,4,0));
+  gamer::LuaFunction listener = tolua_tonumber(tolua_S, 4, 0);
+#ifndef TOLUA_RELEASE
+  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'addMsgListener'", NULL);
+#endif
+  {
+   self->addMsgListener(msg_type,msg_id,listener);
+  }
+ }
+ return 0;
+#ifndef TOLUA_RELEASE
+ tolua_lerror:
+ tolua_error(tolua_S,"#ferror in function 'addMsgListener'.",&tolua_err);
+ return 0;
+#endif
+}
+#endif //#ifndef TOLUA_DISABLE
+
+/* method: addMsgListener of class  gamer::MsgManager */
+#ifndef TOLUA_DISABLE_tolua_msg_manager_gamer_MsgManager_addMsgListener01
+static int tolua_msg_manager_gamer_MsgManager_addMsgListener01(lua_State* tolua_S)
+{
+    tolua_Error tolua_err;
+    if (
+        !tolua_isusertype(tolua_S, 1, "gamer::MsgManager", 0, &tolua_err) ||
+        !tolua_isnumber(tolua_S, 2, 0, &tolua_err) ||
+        //(tolua_isvaluenil(tolua_S,3,&tolua_err) || !tolua_isusertype(tolua_S,3,"gamer::LuaFunction",0,&tolua_err)) ||
+        !lua_isfunction(tolua_S, 3) ||
+        !tolua_isnoobj(tolua_S,4,&tolua_err)
+ )
+  goto tolua_lerror;
+ else
+ {
+  gamer::MsgManager* self = (gamer::MsgManager*)  tolua_tousertype(tolua_S,1,0);
+  unsigned int msg_type = (( unsigned int)  tolua_tonumber(tolua_S,2,0));
+  //gamer::LuaFunction listener = *((gamer::LuaFunction*)  tolua_tousertype(tolua_S,3,0));
+  gamer::LuaFunction listener = tolua_tonumber(tolua_S, 3, 0);
+#ifndef TOLUA_RELEASE
+  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'addMsgListener'", NULL);
+#endif
+  {
+   self->addMsgListener(msg_type,listener);
+  }
+ }
+ return 0;
+tolua_lerror:
+ return tolua_msg_manager_gamer_MsgManager_addMsgListener00(tolua_S);
+}
+#endif //#ifndef TOLUA_DISABLE
+
+/* method: removeMsgListener of class  gamer::MsgManager */
+#ifndef TOLUA_DISABLE_tolua_msg_manager_gamer_MsgManager_removeMsgListener00
+static int tolua_msg_manager_gamer_MsgManager_removeMsgListener00(lua_State* tolua_S)
+{
+#ifndef TOLUA_RELEASE
+ tolua_Error tolua_err;
+ if (
+     !tolua_isusertype(tolua_S,1,"gamer::MsgManager",0,&tolua_err) ||
+     !tolua_isnumber(tolua_S,2,0,&tolua_err) ||
+     !tolua_isnumber(tolua_S,3,0,&tolua_err) ||
+     //(tolua_isvaluenil(tolua_S,4,&tolua_err) || !tolua_isusertype(tolua_S,4,"gamer::LuaFunction",0,&tolua_err)) ||
+     !lua_isfunction(tolua_S, 4) ||
+     !tolua_isnoobj(tolua_S,5,&tolua_err)
+ )
+  goto tolua_lerror;
+ else
+#endif
+ {
+  gamer::MsgManager* self = (gamer::MsgManager*)  tolua_tousertype(tolua_S,1,0);
+  unsigned int msg_type = (( unsigned int)  tolua_tonumber(tolua_S,2,0));
+  unsigned int msg_id = (( unsigned int)  tolua_tonumber(tolua_S,3,0));
+  //gamer::LuaFunction listener = *((gamer::LuaFunction*)  tolua_tousertype(tolua_S,4,0));
+  gamer::LuaFunction listener = tolua_tonumber(tolua_S, 4, 0);
+#ifndef TOLUA_RELEASE
+  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'removeMsgListener'", NULL);
+#endif
+  {
+   self->removeMsgListener(msg_type,msg_id,listener);
+  }
+ }
+ return 0;
+#ifndef TOLUA_RELEASE
+ tolua_lerror:
+ tolua_error(tolua_S,"#ferror in function 'removeMsgListener'.",&tolua_err);
+ return 0;
+#endif
+}
+#endif //#ifndef TOLUA_DISABLE
+
+/* method: removeMsgListener of class  gamer::MsgManager */
+#ifndef TOLUA_DISABLE_tolua_msg_manager_gamer_MsgManager_removeMsgListener01
+static int tolua_msg_manager_gamer_MsgManager_removeMsgListener01(lua_State* tolua_S)
+{
+ tolua_Error tolua_err;
+ if (
+     !tolua_isusertype(tolua_S,1,"gamer::MsgManager",0,&tolua_err) ||
+     !tolua_isnumber(tolua_S,2,0,&tolua_err) ||
+     //(tolua_isvaluenil(tolua_S,3,&tolua_err) || !tolua_isusertype(tolua_S,3,"gamer::LuaFunction",0,&tolua_err)) ||
+     !lua_isfunction(tolua_S, 3) ||
+     !tolua_isnoobj(tolua_S,4,&tolua_err)
+ )
+  goto tolua_lerror;
+ else
+ {
+  gamer::MsgManager* self = (gamer::MsgManager*)  tolua_tousertype(tolua_S,1,0);
+  unsigned int msg_type = (( unsigned int)  tolua_tonumber(tolua_S,2,0));
+  //gamer::LuaFunction listener = *((gamer::LuaFunction*)  tolua_tousertype(tolua_S,3,0));
+  gamer::LuaFunction listener = tolua_tonumber(tolua_S, 3, 0);
+#ifndef TOLUA_RELEASE
+  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'removeMsgListener'", NULL);
+#endif
+  {
+   self->removeMsgListener(msg_type,listener);
+  }
+ }
+ return 0;
+tolua_lerror:
+ return tolua_msg_manager_gamer_MsgManager_removeMsgListener00(tolua_S);
 }
 #endif //#ifndef TOLUA_DISABLE
 
@@ -110,6 +249,10 @@ TOLUA_API int tolua_msg_manager_open (lua_State* tolua_S)
    tolua_beginmodule(tolua_S,"MsgManager");
     tolua_function(tolua_S,"getInstance",tolua_msg_manager_gamer_MsgManager_getInstance00);
     tolua_function(tolua_S,"sendMsg",tolua_msg_manager_gamer_MsgManager_sendMsg00);
+    tolua_function(tolua_S,"addMsgListener",tolua_msg_manager_gamer_MsgManager_addMsgListener00);
+    tolua_function(tolua_S,"addMsgListener",tolua_msg_manager_gamer_MsgManager_addMsgListener01);
+    tolua_function(tolua_S,"removeMsgListener",tolua_msg_manager_gamer_MsgManager_removeMsgListener00);
+    tolua_function(tolua_S,"removeMsgListener",tolua_msg_manager_gamer_MsgManager_removeMsgListener01);
    tolua_endmodule(tolua_S);
   tolua_endmodule(tolua_S);
  tolua_endmodule(tolua_S);

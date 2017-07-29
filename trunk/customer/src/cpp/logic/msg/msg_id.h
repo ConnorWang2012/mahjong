@@ -20,6 +20,7 @@ namespace gamer
 
 enum class MsgIDs 
 {
+    MSG_ID_UNKNOW                   = 0,
     MSG_ID_LOGIN_3RD_PARTY          = 1,
     MSG_ID_LOGIN_MY                 = 2,
     MSG_ID_ROOM_CREATE              = 3,
