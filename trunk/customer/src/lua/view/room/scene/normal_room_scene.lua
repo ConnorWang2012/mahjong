@@ -15,6 +15,7 @@ modification:
 local NormalRoomScene = class("NormalRoomScene", require "view.room.scene.room_scene.lua")
 local MahjongCreator  = require "view.room.mahjong.mahjong_creator.lua"
 local MahjongConst    = require "view.constant.mahjong_constants.lua"
+local PlayCardHelper  = require "logic.util.play_card_helper.lua"
 
 function NormalRoomScene:ctor(view_file)
 	print("[NormalRoomScene:ctor]")
@@ -39,6 +40,7 @@ function NormalRoomScene:initMahjongLayer()
 	self:initMahjongOfRightPlayer() 
 	]]
 	local players_num = gamer.g_data_mgr_.getRoomPlayersNum()
+	print("[NormalRoomScene:initMahjongLayer] players_num : ", players_num)
 	if 2 == players_num then
 		self:initMahjongOfOppositePlayer()
 	elseif 3 == players_num then
@@ -52,8 +54,10 @@ function NormalRoomScene:initMahjongLayer()
 end
 
 function NormalRoomScene:initMahjongOfPlayerSelf()
+	self.player_self_invisible_mj_nodes_ = {}
+
 	-- visible hand cards	
-	local player_cards = gamer.g_data_mgr_.getMahjongOfPlayerSelf()
+	local player_cards = gamer.g_data_mgr_.getMahjongsOfPlayerSelf()
 	--[[
 	local playercards = gamer.protocol.PlayerCardsMsgProtocol()
 	playercards:add_visible_hand_cards(11)
@@ -77,11 +81,14 @@ function NormalRoomScene:initMahjongOfPlayerSelf()
 	
 	-- invisible hand cards
 	self:initInvisibleMahjongOfPlayerSelf(player_cards, offset_x)
+
+	-- direction
+	PlayCardHelper.setPlayerDirection(gamer.g_data_mgr_:getSelfPlayerID(), MahjongConst.Directions.SELF)
 end
 
 function NormalRoomScene:initMahjongOfLeftPlayer()
 	-- visible hand cards	
-	local player_cards = gamer.g_data_mgr_.getMahjongOfPlayerSelf()
+	local player_cards = gamer.g_data_mgr_.getMahjongsOfLeftPlayer()
 --[[
 	local playercards = gamer.protocol.PlayerCardsMsgProtocol()
 	playercards:add_visible_hand_cards(11)
@@ -107,11 +114,14 @@ function NormalRoomScene:initMahjongOfLeftPlayer()
 	-- invisible hand cards	
 	print("offset_x, offset_y : ", offset_x, offset_y)
 	self:initInvisibleMahjongOfLeftPlayer(player_cards, offset_x, offset_y)
+
+	-- direction
+	PlayCardHelper.setPlayerDirection(player_cards:player_id(), MahjongConst.Directions.LEFT)
 end
 
 function NormalRoomScene:initMahjongOfOppositePlayer()
 	-- visible hand cards	
-	local player_cards = gamer.g_data_mgr_.getMahjongOfPlayerSelf()
+	local player_cards = gamer.g_data_mgr_.getMahjongsOfOppositePlayer()
 --[[
 	local playercards = gamer.protocol.PlayerCardsMsgProtocol()
 	playercards:add_visible_hand_cards(11)
@@ -135,11 +145,14 @@ function NormalRoomScene:initMahjongOfOppositePlayer()
 
 	-- invisible hand cards	
 	self:initInvisibleMahjongOfOppositePlayer(player_cards, offset_x)
+
+	-- direction
+	PlayCardHelper.setPlayerDirection(player_cards:player_id(), MahjongConst.Directions.OPPOSITE)
 end
 
 function NormalRoomScene:initMahjongOfRightPlayer()
 	-- visible hand cards	
-	local player_cards = gamer.g_data_mgr_.getMahjongOfPlayerSelf()
+	local player_cards = gamer.g_data_mgr_.getMahjongsOfRightPlayer()
 --[[
 	local playercards = gamer.protocol.PlayerCardsMsgProtocol()
 	playercards:add_visible_hand_cards(11)
@@ -163,6 +176,9 @@ function NormalRoomScene:initMahjongOfRightPlayer()
 
 	-- invisible hand cards	
 	self:initInvisibleMahjongOfRightPlayer(player_cards, offset_x, offset_y)
+
+	-- direction
+	PlayCardHelper.setPlayerDirection(player_cards:player_id(), MahjongConst.Directions.RIGHT)
 end
 
 -- maybe contain 0 or 1 or 2 or 3 ming gang
@@ -234,8 +250,12 @@ function NormalRoomScene:initInvisibleMahjongOfPlayerSelf(mahjongs, offset_x)
 			local img_bg = mj_node:getChildByName("img_bg")
 			img_bg:setTouchEnabled(true)
 			img_bg:addClickEventListener(handler(self, self.onMahjongNodeTouch))
+
+			table.insert(self.player_self_invisible_mj_nodes_, mj_node)
 		end
 	end
+
+	self.player_self_invisible_mj_offset_x_ = offset_x
 end
 
 -- maybe contain 0 or 1 or 2 or 3 ming gang
@@ -669,6 +689,70 @@ function NormalRoomScene:dealWithDiscardOfRightPlayer(mahjong_value)
 	end
 end
 
+function NormalRoomScene:dealWithDiscard(msg)
+	print("[NormalRoomScene:dealWithDiscard]")
+	local direction = PlayCardHelper.getPlayerDirection(msg:player_id())
+	print("[NormalRoomScene:dealWithDiscard] direction : ", direction)
+
+	if direction == MahjongConst.Directions.LEFT then
+	elseif direction == MahjongConst.Directions.OPPOSITE then
+		print("[NormalRoomScene:dealWithDiscard] discard : ", msg:discard())
+		self:dealWithDiscardOfOppositePlayer(msg:discard())
+	elseif direction == MahjongConst.Directions.RIGHT then
+	end
+end
+
+function NormalRoomScene:dealWithNewCard(msg)
+	print("[NormalRoomScene:dealWithNewCard]")
+	print("[NormalRoomScene:dealWithNewCard] new card : ", msg:new_card())
+	PlayCardHelper.setNewCardOfPlayerSelf(msg:new_card())
+
+	local mj_node = MahjongCreator.create(msg:new_card(), 
+										  MahjongConst.Directions.SELF, 
+										  MahjongConst.Types.INVISIBLE, 
+										  MahjongConst.States.NORMAL)
+    if mj_node then
+		local n = #self.player_self_invisible_mj_nodes_
+		mj_node:setPosition(cc.p(self.player_self_invisible_mj_offset_x_ + MahjongConst.Sizes.CARD_W2 * n, 
+	                             MahjongConst.Sizes.OFFSET_Y3))
+		self.mahjong_layer_:addChild(mj_node)
+
+		table.insert(self.player_self_invisible_mj_nodes_, mj_node)
+	end
+end
+
+function NormalRoomScene:dealWithPlayCardMsgReceived(code, msg)
+	print("[NormalRoomScene:dealWithPlayCardMsgReceived]")
+	if code ~= gamer.MsgCodes.SUCCEED then
+		print("[NormalRoomScene:dealWithPlayCardMsgReceived] play self discard failed")
+		return
+	end
+
+	if msg:player_id() ~= gamer.g_data_mgr_:getSelfPlayerID() then -- other player discard succeed
+		print("[NormalRoomScene:dealWithPlayCardMsgReceived] other player discard succeed")
+		self:dealWithDiscard(msg)
+
+		if msg:new_card() ~= 0 then
+			self:dealWithNewCard(msg)
+		end
+	else -- player self discard succeed
+		print("[NormalRoomScene:dealWithPlayCardMsgReceived] player self discard succeed")
+		-- update invisible hand card
+		local new_card = PlayCardHelper.getNewCardOfPlayerSelf()
+		if new_card then
+			gamer.g_data_mgr_:updateInvisibleHandCardForDiscard(new_card, msg:discard())
+		end
+	end
+end
+
+function NormalRoomScene:addMsgListeners()
+	gamer.g_msg_mgr_:addMsgListener(gamer.MsgTypes.S2C_MSG_TYPE_ROOM, handler(self, self.onServerMsgReceived))
+end
+
+function NormalRoomScene:removeMsgListeners()
+	gamer.g_msg_mgr_:removeMsgListener(gamer.MsgTypes.S2C_MSG_TYPE_ROOM, handler(self, self.onServerMsgReceived))
+end
+
 function NormalRoomScene:onMahjongNodeTouch(sender)
     print("[NormalRoomScene:onMahjongNodeTouch]")
 	local mj_node = sender:getParent()
@@ -684,37 +768,64 @@ function NormalRoomScene:onMahjongNodeTouch(sender)
 		self.last_selected_mj_ = mj_node
 
 	elseif y == MahjongConst.Sizes.OFFSET_Y4 then -- second selecte
-		-- TODO : do play mahjong action, modify invisible mahjong position, send play mahjong msg 
+		-- do play mahjong action, modify invisible mahjong position, send play mahjong msg 
 		local mj_value = mj_node:getTag()
 		print("[NormalRoomScene:onMahjongNodeTouch] mj_value : ", mj_value)
-		--[[
-		do
-			self:dealWithDiscardOfOppositePlayer(mj_value)
-			self:dealWithDiscardOfLeftPlayer(mj_value)
-			self:dealWithDiscardOfRightPlayer(mj_value)
-		end
-		]]
 
 		self:dealWithDiscardOfPlayerSelf(mj_value)
+
+		-- modify invisible mahjong position
+		for k, v in pairs(self.player_self_invisible_mj_nodes_) do
+			if mj_node == v then
+				print("[NormalRoomScene:onMahjongNodeTouch] remove mj node")
+				table.remove(self.player_self_invisible_mj_nodes_, k)
+				break
+			end
+		end
+
+		for k, v in pairs(self.player_self_invisible_mj_nodes_) do
+			v:setPosition(cc.p(self.player_self_invisible_mj_offset_x_ + MahjongConst.Sizes.CARD_W2 * (k - 1), 
+			                   MahjongConst.Sizes.OFFSET_Y3))
+		end
+
 		mj_node:removeFromParent()
 		self.last_selected_mj_ = nil	
+
+		-- send play mahjong msg 
+		local proto = gamer.protocol.PlayCardMsgProtocol()
+		proto:set_player_id(gamer.g_data_mgr_:getSelfPlayerID())
+		proto:set_room_id(gamer.g_data_mgr_:getRoomID())
+		proto:set_cur_round(1) -- TODO : get cur round
+		proto:set_operation_id(0)
+		proto:set_discard(mj_value)
+
+		gamer.g_msg_mgr_:sendMsg(gamer.MsgTypes.C2S_MSG_TYPE_ROOM, gamer.MsgIDs.MSG_ID_ROOM_PLAY_CARD, proto)
+	end
+end
+
+function NormalRoomScene:onServerMsgReceived(code, msg_type, msg_id, msg)
+    print("[NormalRoomScene:onServerMsgReceived] code, msg_type, msg_id : ", code, msg_type, msg_id)
+	if code ~= gamer.MsgCodes.SUCCEED then
+		print("[NormalRoomScene:onServerMsgReceived] error")
+	end
+
+	if msg_type == gamer.MsgTypes.S2C_MSG_TYPE_ROOM then
+		if msg_id == gamer.MsgIDs.MSG_ID_ROOM_PLAY_CARD then
+			self:dealWithPlayCardMsgReceived(code, msg)
+		end
 	end
 end
 
 function NormalRoomScene:onEnter()
 	-- TODO : dispatch layer enter event to all listeners
     print("[NormalRoomScene:onEnter]")
-	--[[local player_cards = gamer.g_data_mgr_.getMahjongOfPlayerSelf()
-	for i = 0, player_cards:invisible_hand_cards_size() - 1 do
-		print("[NormalRoomScene:onEnter] i : ",  i)
-		print("[NormalRoomScene:onEnter] invisible_hand_cards : ", player_cards:invisible_hand_cards(i))
-	end
-	]]
+	self:addMsgListeners()
 end
 
 function NormalRoomScene:onExit()
 	-- TODO : dispatch layer exit event to all listeners
     print("[NormalRoomScene:onExit]")
+	self:removeMsgListeners()
 end
 
 return NormalRoomScene

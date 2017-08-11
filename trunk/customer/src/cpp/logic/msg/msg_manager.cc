@@ -30,6 +30,7 @@ modification:
 #include "msg/protocol/create_room_msg_protocol.pb.h"
 #include "msg/protocol/room_operation_msg_protocol.pb.h"
 #include "msg/protocol/room_msg_protocol.pb.h"
+#include "msg/protocol/play_card_msg_protocol.pb.h"
 #include "network/network_manager.h"
 
 namespace gamer
@@ -150,6 +151,10 @@ void MsgManager::addMsgHandlers()
     // start game
     msg_handlers_.insert(std::make_pair((int)MsgIDs::MSG_ID_ROOM_START_GAME,
         CALLBACK_SELECTOR_1(MsgManager::dealWithStartGameMsg, this)));
+
+    // play card
+    msg_handlers_.insert(std::make_pair((int)MsgIDs::MSG_ID_ROOM_PLAY_CARD,
+        CALLBACK_SELECTOR_1(MsgManager::dealWithPlayCardMsg, this)));
 }
 
 bool MsgManager::packMsg(const ClientMsg& msg, char* buf, msg_header_t& len)
@@ -195,6 +200,23 @@ bool MsgManager::packMsg(msg_header_t msg_type,
     memcpy(buf + sizeof(msg_header_t) * 2, &msg_id, sizeof(msg_header_t));
 
     return msg.SerializeToArray(buf + gamer::client_msg_header_len(), msg.ByteSize());
+}
+
+bool MsgManager::parseMsg(const ServerMsg & server_msg, google::protobuf::Message* msg)
+{
+    if (nullptr == msg)
+        return false; // TODO : log
+
+    if (MsgCodes::MSG_RESPONSE_CODE_SUCCESS == (MsgCodes)server_msg.code &&
+        nullptr != server_msg.context)
+    {
+        char buf[MsgManager::MAX_MSG_LEN] = { 0 };
+        int len = server_msg.total_len - gamer::server_msg_header_len();
+        if (msg->ParseFromArray(server_msg.context, len))
+            return true;
+    }
+
+    return false;
 }
 
 bool MsgManager::doSendMsg(msg_header_t msg_type,
@@ -441,13 +463,20 @@ void MsgManager::dealWithStartGameMsg(const ServerMsg& msg)
     DataManager::getInstance()->cacheData(key, proto);
 
     this->dealWithDispatchMsg(msg, proto, "gamer::protocol::RoomMsgProtocol");
+}
 
-    //auto card_size = proto->player_cards_size();
-    //auto cards = proto->player_cards(0);
-    //for (auto i = 0; i < cards.invisible_hand_cards_size(); i++)
-    //{
-    //    auto card = cards.invisible_hand_cards(i);
-    //}
+void MsgManager::dealWithPlayCardMsg(const ServerMsg& msg)
+{
+    gamer::protocol::PlayCardMsgProtocol proto;
+    if (this->parseMsg(msg, &proto))
+    {
+        this->dispatchMsg(msg.code, msg.type, msg.id, &proto, 
+            "gamer::protocol::PlayCardMsgProtocol");
+    }
+    else
+    {
+        // TODO : log
+    }
 }
 
 void MsgManager::onSocketConnected(gamer::Event* event)

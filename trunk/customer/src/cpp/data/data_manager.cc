@@ -23,6 +23,12 @@ modification:
 namespace gamer
 {
 
+DataManager::DataManager()
+    :self_player_id_(0)
+{
+
+}
+
 void DataManager::cacheData(int key, google::protobuf::Message* data) 
 {
 	auto data_old = this->getMutableData(key);
@@ -33,16 +39,6 @@ void DataManager::cacheData(int key, google::protobuf::Message* data)
 	this->setData(key, data);
 }
 
-const google::protobuf::Message* const DataManager::getData(int key) const
-{
-	auto itr = data_map_.find(key);
-	if (itr != data_map_.end())
-	{
-		return itr->second;
-	}
-	return nullptr;
-}
-
 google::protobuf::Message* DataManager::getMutableData(int key)
 {
     auto itr = data_map_.find(key);
@@ -51,6 +47,18 @@ google::protobuf::Message* DataManager::getMutableData(int key)
         return itr->second;
     }
     return nullptr;
+}
+
+const int DataManager::getSelfPlayerID()
+{
+    if (self_player_id_ <= 0)
+    {
+        auto key = (int)gamer::DataIDs::DATA_ID_MY_LOGIN_MSG_PROTOCOL;
+        auto proto_login = DataManager::getInstance()->getMutableData(key);
+        auto msg = dynamic_cast<protocol::MyLoginMsgProtocol*>(proto_login);
+        self_player_id_ = msg->player().player_id();
+    }
+    return self_player_id_;
 }
 
 void DataManager::setData(int key, google::protobuf::Message* data)

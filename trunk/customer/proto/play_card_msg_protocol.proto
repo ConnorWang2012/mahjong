@@ -5,5 +5,6 @@ message PlayCardMsgProtocol {
   required int32 room_id  			= 2;
   required int32 cur_round  		= 3;
   required int32 operation_id  		= 4;
-  optional int32 discard			= 5;
+  optional int32 discard			= 5[default = 0];
+  optional int32 new_card			= 6[default = 0];
 }

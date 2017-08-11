@@ -95,6 +95,19 @@ public:
 private:
     typedef std::function<void(const ServerMsg&)> MsgHandler;
 
+    enum PlayCardOperationIDs {
+        DISCARD,
+        MELD_CARD_0,			// give up
+        MELD_CARD_1,			// chi
+        MELD_CARD_2,			// peng
+        MELD_CARD_3,			// peng + gang
+        MELD_CARD_4,			// ming gang
+        MELD_CARD_5,			// an gang
+        MELD_CARD_6,			// bu hua
+        MELD_CARD_7,			// hu
+        MELD_CARD_8,			// zi mo
+    };
+
     MsgManager();
 
     void init();
@@ -110,6 +123,8 @@ private:
                  const google::protobuf::Message& msg, 
                  char* buf, 
                  msg_header_t& len);
+
+    bool parseMsg(const ServerMsg& server_msg, google::protobuf::Message* msg);
 
     bool doSendMsg(msg_header_t msg_type,
                    msg_header_t msg_id,
@@ -156,6 +171,8 @@ private:
     void dealWithPlayerJoinRoomMsg(const ServerMsg& msg);
 
     void dealWithStartGameMsg(const ServerMsg& msg);
+
+    void dealWithPlayCardMsg(const ServerMsg& msg);
 
     void onSocketConnected(gamer::Event* event);
 

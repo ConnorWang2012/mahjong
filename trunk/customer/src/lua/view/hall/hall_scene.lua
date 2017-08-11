@@ -79,7 +79,7 @@ end
 
 function HallScene:dealWithCreateRoomMsgReceived(code, msg)
 	print("[HallScene:dealWithCreateRoomMsgReceived]")
-	print("[HallScene:dealWithStarGameMsgReceived] room_id : ", msg:room_id())
+	print("[HallScene:dealWithCreateRoomMsgReceived] room_id : ", msg:room_id())
 	gamer.g_popup_mgr_.removePopup(gamer.PopupConstants.PopupIDs.POPUP_ID_ROOM_CREATE)
 end
 
@@ -100,8 +100,8 @@ function HallScene:dealWithJoinRoomMsgReceived(code, msg)
 	end
 end
 
-function HallScene:dealWithStarGameMsgReceived(code, msg)
-	print("[HallScene:dealWithStarGameMsgReceived]")
+function HallScene:dealWithStartGameMsgReceived(code, msg)
+	print("[HallScene:dealWithStartGameMsgReceived]")
 	gamer.g_scene_msg_.runScene(gamer.SceneConstants.SceneIDs.NORMAL_ROOM_SCENE)
 end
 
@@ -125,7 +125,7 @@ function HallScene:onServerMsgReceived(code, msg_type, msg_id, msg)
 		elseif msg_id == gamer.MsgIDs.MSG_ID_ROOM_PLAYER_JOIN then
 			self:dealWithJoinRoomMsgReceived(code, msg)
 		elseif msg_id == gamer.MsgIDs.MSG_ID_ROOM_START_GAME then
-			self:dealWithStarGameMsgReceived(code, msg)
+			self:dealWithStartGameMsgReceived(code, msg)
 		end
 	end
 end

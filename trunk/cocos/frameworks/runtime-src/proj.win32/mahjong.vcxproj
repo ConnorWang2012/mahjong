@@ -562,6 +562,7 @@ xcopy "$(ProjectDir)..\..\..\..\customer\src\lua" "$(LocalDebuggerWorkingDirecto
     <None Include="..\..\..\..\customer\src\lua\logic\manager\popup_manager.lua" />
     <None Include="..\..\..\..\customer\src\lua\logic\manager\scene_manager.lua" />
     <None Include="..\..\..\..\customer\src\lua\logic\test\test_lua_bind_event_listener.lua" />
+    <None Include="..\..\..\..\customer\src\lua\logic\util\play_card_helper.lua" />
     <None Include="..\..\..\..\customer\src\lua\network\init_network.lua" />
     <None Include="..\..\..\..\customer\src\lua\view\base\layer_base.lua" />
     <None Include="..\..\..\..\customer\src\lua\view\base\node_base.lua" />

@@ -181,6 +181,9 @@
     <Filter Include="classes\lua\view\hall\popups">
       <UniqueIdentifier>{abca24aa-60b1-4bbc-a0a5-04a2fd69f8e5}</UniqueIdentifier>
     </Filter>
+    <Filter Include="classes\lua\logic\util">
+      <UniqueIdentifier>{64603fb6-ddce-410b-94f6-d1e8c4b544d8}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\Classes\AppDelegate.h">
@@ -1382,6 +1385,9 @@
     </None>
     <None Include="..\..\..\..\customer\src\lua\view\hall\popups\join_room_popup.lua">
       <Filter>classes\lua\view\hall\popups</Filter>
+    </None>
+    <None Include="..\..\..\..\customer\src\lua\logic\util\play_card_helper.lua">
+      <Filter>classes\lua\logic\util</Filter>
     </None>
   </ItemGroup>
 </Project>

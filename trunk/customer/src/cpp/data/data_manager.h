@@ -33,16 +33,16 @@ namespace gamer
 class DataManager : public BasicManager<DataManager>
 {
 public:
+    DataManager();
+
     template<typename DataType>
     DataType* createData();
 
     void cacheData(int key, google::protobuf::Message* data);
 
-    //const google::protobuf::Message& getData(int key) const;
-
-	const google::protobuf::Message* const getData(int key) const;
-
     google::protobuf::Message* getMutableData(int key);
+
+    const int getSelfPlayerID();
 
 private:
 	void setData(int key, google::protobuf::Message* data);
@@ -50,6 +50,8 @@ private:
 	void releaseData(int key, google::protobuf::Message* data);
 
     std::unordered_map<int, google::protobuf::Message*> data_map_;
+
+    int self_player_id_;
 };
 
 template<typename DataType>

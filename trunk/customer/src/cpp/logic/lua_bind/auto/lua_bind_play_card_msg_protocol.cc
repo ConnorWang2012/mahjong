@@ -1,6 +1,6 @@
 /*
 ** Lua binding: play_card_msg_protocol
-** Generated automatically by tolua++-1.0.92 on 06/28/17 20:56:07.
+** Generated automatically by tolua++-1.0.92 on 08/09/17 17:39:27.
 */
 
 #ifndef __cplusplus
@@ -455,6 +455,71 @@ static int tolua_play_card_msg_protocol_gamer_protocol_PlayCardMsgProtocol_disca
 }
 #endif //#ifndef TOLUA_DISABLE
 
+/* method: set_new_card of class  gamer::protocol::PlayCardMsgProtocol */
+#ifndef TOLUA_DISABLE_tolua_play_card_msg_protocol_gamer_protocol_PlayCardMsgProtocol_set_new_card00
+static int tolua_play_card_msg_protocol_gamer_protocol_PlayCardMsgProtocol_set_new_card00(lua_State* tolua_S)
+{
+#ifndef TOLUA_RELEASE
+ tolua_Error tolua_err;
+ if (
+     !tolua_isusertype(tolua_S,1,"gamer::protocol::PlayCardMsgProtocol",0,&tolua_err) ||
+     !tolua_isnumber(tolua_S,2,0,&tolua_err) ||
+     !tolua_isnoobj(tolua_S,3,&tolua_err)
+ )
+  goto tolua_lerror;
+ else
+#endif
+ {
+  gamer::protocol::PlayCardMsgProtocol* self = (gamer::protocol::PlayCardMsgProtocol*)  tolua_tousertype(tolua_S,1,0);
+  int value = ((int)  tolua_tonumber(tolua_S,2,0));
+#ifndef TOLUA_RELEASE
+  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'set_new_card'", NULL);
+#endif
+  {
+   self->set_new_card(value);
+  }
+ }
+ return 0;
+#ifndef TOLUA_RELEASE
+ tolua_lerror:
+ tolua_error(tolua_S,"#ferror in function 'set_new_card'.",&tolua_err);
+ return 0;
+#endif
+}
+#endif //#ifndef TOLUA_DISABLE
+
+/* method: new_card of class  gamer::protocol::PlayCardMsgProtocol */
+#ifndef TOLUA_DISABLE_tolua_play_card_msg_protocol_gamer_protocol_PlayCardMsgProtocol_new_card00
+static int tolua_play_card_msg_protocol_gamer_protocol_PlayCardMsgProtocol_new_card00(lua_State* tolua_S)
+{
+#ifndef TOLUA_RELEASE
+ tolua_Error tolua_err;
+ if (
+     !tolua_isusertype(tolua_S,1,"const gamer::protocol::PlayCardMsgProtocol",0,&tolua_err) ||
+     !tolua_isnoobj(tolua_S,2,&tolua_err)
+ )
+  goto tolua_lerror;
+ else
+#endif
+ {
+  const gamer::protocol::PlayCardMsgProtocol* self = (const gamer::protocol::PlayCardMsgProtocol*)  tolua_tousertype(tolua_S,1,0);
+#ifndef TOLUA_RELEASE
+  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'new_card'", NULL);
+#endif
+  {
+   int tolua_ret = (int)  self->new_card();
+   tolua_pushnumber(tolua_S,(lua_Number)tolua_ret);
+  }
+ }
+ return 1;
+#ifndef TOLUA_RELEASE
+ tolua_lerror:
+ tolua_error(tolua_S,"#ferror in function 'new_card'.",&tolua_err);
+ return 0;
+#endif
+}
+#endif //#ifndef TOLUA_DISABLE
+
 /* Open function */
 TOLUA_API int tolua_play_card_msg_protocol_open (lua_State* tolua_S)
 {
@@ -486,6 +551,8 @@ TOLUA_API int tolua_play_card_msg_protocol_open (lua_State* tolua_S)
      tolua_function(tolua_S,"operation_id",tolua_play_card_msg_protocol_gamer_protocol_PlayCardMsgProtocol_operation_id00);
      tolua_function(tolua_S,"set_discard",tolua_play_card_msg_protocol_gamer_protocol_PlayCardMsgProtocol_set_discard00);
      tolua_function(tolua_S,"discard",tolua_play_card_msg_protocol_gamer_protocol_PlayCardMsgProtocol_discard00);
+     tolua_function(tolua_S,"set_new_card",tolua_play_card_msg_protocol_gamer_protocol_PlayCardMsgProtocol_set_new_card00);
+     tolua_function(tolua_S,"new_card",tolua_play_card_msg_protocol_gamer_protocol_PlayCardMsgProtocol_new_card00);
     tolua_endmodule(tolua_S);
    tolua_endmodule(tolua_S);
   tolua_endmodule(tolua_S);

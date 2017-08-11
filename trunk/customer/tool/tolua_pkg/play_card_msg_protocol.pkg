@@ -33,6 +33,9 @@ public:
 
 	inline void set_discard(int value);
 	inline int discard() const;
+
+	inline void set_new_card(int value);
+	inline int new_card() const;
 };
 
 } // namespace protocol
