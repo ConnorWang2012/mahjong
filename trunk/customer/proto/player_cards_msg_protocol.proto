@@ -8,4 +8,5 @@ message PlayerCardsMsgProtocol {
   repeated int32 season_cards	   		= 5; // visible hand card
   repeated int32 discards	   		    = 6;
   repeated int32 waiting_cards	   		= 7;
+  optional int32 invisible_hand_cards_num = 8[default = 0]; // use for mahjong layout of client(for other player, invisible_hand_cards_size() is always 0)
 }

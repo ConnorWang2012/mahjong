@@ -16,90 +16,52 @@ modification:
 
 #include "base/macros.h"
 #include "data/data_constants.h"
-#include "msg/protocol/my_login_msg_protocol.pb.h"
-#include "msg/protocol/create_room_msg_protocol.pb.h"
-#include "msg/protocol/room_msg_protocol.pb.h"
+#include "logic/constant/card_constants.h"
 
 namespace gamer
 {
 
 DataManager::DataManager()
-    :self_player_id_(0)
+    :my_login_msg_protocol_(nullptr)
+    ,create_room_msg_protocol_(nullptr)
+    ,room_msg_protocol_(nullptr)
+    ,cards_msg_proto_of_player_self_(nullptr)
+    ,cards_msg_proto_of_left_player_(nullptr)
+    ,cards_msg_proto_of_opposite_player_(nullptr)
+    ,cards_msg_proto_of_right_player_(nullptr)
 {
 
 }
 
-void DataManager::cacheData(int key, google::protobuf::Message* data) 
+void DataManager::updateCardForDiscard(int discard)
 {
-	auto data_old = this->getMutableData(key);
-	if (nullptr != data_old)
-	{
-		this->releaseData(key, data_old);
-	}
-	this->setData(key, data);
-}
+    if (nullptr == cards_msg_proto_of_player_self_)
+        return;
 
-google::protobuf::Message* DataManager::getMutableData(int key)
-{
-    auto itr = data_map_.find(key);
-    if ( itr != data_map_.end())
-    {
-        return itr->second;
+    // remove the discard from invisible hand cards
+    auto cards = cards_msg_proto_of_player_self_->mutable_invisible_hand_cards();
+    auto n = cards->size();
+    for (int i = 0; i < n; i++) {
+        if (cards->Get(i) == discard) {
+            if (i != n - 1) {
+                cards->SwapElements(i, n - 1);
+            }
+            cards->RemoveLast();
+            break;
+        }
     }
-    return nullptr;
+
+    // add the discard to discards
+    cards_msg_proto_of_player_self_->add_discards(discard);
 }
 
-const int DataManager::getSelfPlayerID()
+void DataManager::updateInvisibleHandCard(int new_card)
 {
-    if (self_player_id_ <= 0)
-    {
-        auto key = (int)gamer::DataIDs::DATA_ID_MY_LOGIN_MSG_PROTOCOL;
-        auto proto_login = DataManager::getInstance()->getMutableData(key);
-        auto msg = dynamic_cast<protocol::MyLoginMsgProtocol*>(proto_login);
-        self_player_id_ = msg->player().player_id();
+    auto n = cards_msg_proto_of_player_self_->invisible_hand_cards_size();
+    if (n <= CardConstants::ONE_PLAYER_CARD_NUM) {
+        cards_msg_proto_of_player_self_->add_invisible_hand_cards(new_card);
     }
-    return self_player_id_;
 }
 
-void DataManager::setData(int key, google::protobuf::Message* data)
-{
-	auto itr = data_map_.find(key);
-	if (itr != data_map_.end())
-	{
-		itr->second = data;
-	}
-	else
-	{
-		data_map_.insert(std::make_pair(key, data));
-	}
-}
-
-void DataManager::releaseData(int key, google::protobuf::Message* data)
-{
-	switch (key)
-	{
-	case (int)gamer::DataIDs::DATA_ID_MY_LOGIN_MSG_PROTOCOL:
-		{
-			auto proto = dynamic_cast<protocol::MyLoginMsgProtocol*>(data);
-			SAFE_DELETE(proto);
-		}
-		break;
-	case (int)gamer::DataIDs::DATA_ID_CREATE_ROOM_MSG_PROTOCOL:
-		{
-			auto proto = dynamic_cast<protocol::CreateRoomMsgProtocol*>(data);
-			SAFE_DELETE(proto);
-		}
-		break;
-	case (int)gamer::DataIDs::DATA_ID_ROOM_MSG_PROTOCOL:
-		{
-			auto proto = dynamic_cast<protocol::RoomMsgProtocol*>(data);
-            proto->mutable_player_cards()->DeleteSubrange(0, proto->player_cards_size());
-            SAFE_DELETE(proto);
-		}
-		break;
-	default:
-		break;
-	}
-}
 
 } // namespace gamer

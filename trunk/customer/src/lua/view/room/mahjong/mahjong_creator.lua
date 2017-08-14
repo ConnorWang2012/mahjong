@@ -53,10 +53,9 @@ local RightDiscardMJLayout    = require "view.layouts.ui.room.mahjong.right_disc
 MahjongCreator.opposite_discard_zorder_ = 1000
 MahjongCreator.right_discard_zorder_    = 1100
 
-function MahjongCreator.create(value, direction, type, state)
-	if nil == value or nil == direction or nil == type or nil == state then
-		local str = string.format("value : %s, direction : %s, type : %s, state : %s",
-			                      tostring(value), tostring(direction), tostring(type), tostring(state))
+function MahjongCreator.create(direction, type, value)
+	if nil == direction or nil == type then
+		local str = string.format("direction : %s, type : %s", tostring(direction), tostring(type))
 		print("[MahjongCreator.create] param error : ", str)
 		return nil
 	end
@@ -71,9 +70,8 @@ function MahjongCreator.create(value, direction, type, state)
 	elseif direction == MJConst.Directions.RIGHT then 
 		mj_node = MahjongCreator.initRightPlayerCardLayout(value, type)
 	end
-	-- TODO : state
 
-	if mj_node then
+	if mj_node and value then
 		mj_node:setTag(value)
 	end
 
@@ -291,9 +289,9 @@ function MahjongCreator.getCardPng(value)
 	elseif value <= 26 then
 		return MJConst.CardPngs[3][value - 17]
 	elseif value <= 33 then
-		return MJConst.CardPngs[3][value - 26]
+		return MJConst.CardPngs[4][value - 26]
 	elseif value <= 41 then
-		return MJConst.CardPngs[3][value - 33]
+		return MJConst.CardPngs[5][value - 33]
 	end
 	return nil
 end

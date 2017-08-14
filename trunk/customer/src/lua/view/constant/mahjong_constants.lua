@@ -17,7 +17,6 @@ local MahjongConstants = {}
 MahjongConstants.Directions = { SELF = 1, LEFT = 2, OPPOSITE = 3, RIGHT = 4 }
 MahjongConstants.Types	    = { INVISIBLE = 1, INVISIBLE_AN_GANG_1 = 2, INVISIBLE_AN_GANG_2 = 3,
 								VISIBLE = 4, VISIBLE_MING_GANG = 5, VISIBLE_DISCARD = 6 }
-MahjongConstants.States		= { NORMAL = 1, SELECTED = 2, TOUCH_ENABLE = 3, TOUCH_DISABLE = 4 }
 
 --[[
     card index :
@@ -182,5 +181,8 @@ MahjongConstants.ZOrders = {
 	DISCARD_LINE_3 = 1100,
 	DISCARD_LINE_4 = 1000,
 }
+
+MahjongConstants.ONE_PLAYER_CARDS_NUM  = 13
+MahjongConstants.ONE_PLAYER_CARDS_NUM2 = 14
 
 return MahjongConstants

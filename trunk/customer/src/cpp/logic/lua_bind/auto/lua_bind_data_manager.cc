@@ -1,6 +1,6 @@
 /*
 ** Lua binding: data_manager
-** Generated automatically by tolua++-1.0.92 on 06/19/17 21:44:43.
+** Generated automatically by tolua++-1.0.92 on 08/12/17 03:04:49.
 */
 
 #ifndef __cplusplus
@@ -16,13 +16,15 @@ TOLUA_API int  tolua_data_manager_open (lua_State* tolua_S);
 #include "data_manager.h"
 #include <unordered_map>
 #include "base/basic_manager.h"
-#include "data/data_constants.h"
 
 /* function to register type */
 static void tolua_reg_types (lua_State* tolua_S)
 {
- tolua_usertype(tolua_S,"google::protobuf::Message");
+ tolua_usertype(tolua_S,"gamer::protocol::PlayerCardsMsgProtocol");
  tolua_usertype(tolua_S,"gamer::DataManager");
+ tolua_usertype(tolua_S,"gamer::protocol::RoomMsgProtocol");
+ tolua_usertype(tolua_S,"gamer::protocol::CreateRoomMsgProtocol");
+ tolua_usertype(tolua_S,"gamer::protocol::MyLoginMsgProtocol");
  tolua_usertype(tolua_S,"BasicManager<DataManager>");
 }
 
@@ -54,9 +56,361 @@ static int tolua_data_manager_gamer_DataManager_getInstance00(lua_State* tolua_S
 }
 #endif //#ifndef TOLUA_DISABLE
 
-/* method: getMutableData of class  gamer::DataManager */
-#ifndef TOLUA_DISABLE_tolua_data_manager_gamer_DataManager_getMutableData00
-static int tolua_data_manager_gamer_DataManager_getMutableData00(lua_State* tolua_S)
+/* method: my_login_msg_protocol of class  gamer::DataManager */
+#ifndef TOLUA_DISABLE_tolua_data_manager_gamer_DataManager_my_login_msg_protocol00
+static int tolua_data_manager_gamer_DataManager_my_login_msg_protocol00(lua_State* tolua_S)
+{
+#ifndef TOLUA_RELEASE
+ tolua_Error tolua_err;
+ if (
+     !tolua_isusertype(tolua_S,1,"gamer::DataManager",0,&tolua_err) ||
+     !tolua_isnoobj(tolua_S,2,&tolua_err)
+ )
+  goto tolua_lerror;
+ else
+#endif
+ {
+  gamer::DataManager* self = (gamer::DataManager*)  tolua_tousertype(tolua_S,1,0);
+#ifndef TOLUA_RELEASE
+  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'my_login_msg_protocol'", NULL);
+#endif
+  {
+   gamer::protocol::MyLoginMsgProtocol* tolua_ret = (gamer::protocol::MyLoginMsgProtocol*)  self->my_login_msg_protocol();
+    tolua_pushusertype(tolua_S,(void*)tolua_ret,"gamer::protocol::MyLoginMsgProtocol");
+  }
+ }
+ return 1;
+#ifndef TOLUA_RELEASE
+ tolua_lerror:
+ tolua_error(tolua_S,"#ferror in function 'my_login_msg_protocol'.",&tolua_err);
+ return 0;
+#endif
+}
+#endif //#ifndef TOLUA_DISABLE
+
+/* method: create_room_msg_protocol of class  gamer::DataManager */
+#ifndef TOLUA_DISABLE_tolua_data_manager_gamer_DataManager_create_room_msg_protocol00
+static int tolua_data_manager_gamer_DataManager_create_room_msg_protocol00(lua_State* tolua_S)
+{
+#ifndef TOLUA_RELEASE
+ tolua_Error tolua_err;
+ if (
+     !tolua_isusertype(tolua_S,1,"gamer::DataManager",0,&tolua_err) ||
+     !tolua_isnoobj(tolua_S,2,&tolua_err)
+ )
+  goto tolua_lerror;
+ else
+#endif
+ {
+  gamer::DataManager* self = (gamer::DataManager*)  tolua_tousertype(tolua_S,1,0);
+#ifndef TOLUA_RELEASE
+  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'create_room_msg_protocol'", NULL);
+#endif
+  {
+   gamer::protocol::CreateRoomMsgProtocol* tolua_ret = (gamer::protocol::CreateRoomMsgProtocol*)  self->create_room_msg_protocol();
+    tolua_pushusertype(tolua_S,(void*)tolua_ret,"gamer::protocol::CreateRoomMsgProtocol");
+  }
+ }
+ return 1;
+#ifndef TOLUA_RELEASE
+ tolua_lerror:
+ tolua_error(tolua_S,"#ferror in function 'create_room_msg_protocol'.",&tolua_err);
+ return 0;
+#endif
+}
+#endif //#ifndef TOLUA_DISABLE
+
+/* method: room_msg_protocol of class  gamer::DataManager */
+#ifndef TOLUA_DISABLE_tolua_data_manager_gamer_DataManager_room_msg_protocol00
+static int tolua_data_manager_gamer_DataManager_room_msg_protocol00(lua_State* tolua_S)
+{
+#ifndef TOLUA_RELEASE
+ tolua_Error tolua_err;
+ if (
+     !tolua_isusertype(tolua_S,1,"gamer::DataManager",0,&tolua_err) ||
+     !tolua_isnoobj(tolua_S,2,&tolua_err)
+ )
+  goto tolua_lerror;
+ else
+#endif
+ {
+  gamer::DataManager* self = (gamer::DataManager*)  tolua_tousertype(tolua_S,1,0);
+#ifndef TOLUA_RELEASE
+  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'room_msg_protocol'", NULL);
+#endif
+  {
+   gamer::protocol::RoomMsgProtocol* tolua_ret = (gamer::protocol::RoomMsgProtocol*)  self->room_msg_protocol();
+    tolua_pushusertype(tolua_S,(void*)tolua_ret,"gamer::protocol::RoomMsgProtocol");
+  }
+ }
+ return 1;
+#ifndef TOLUA_RELEASE
+ tolua_lerror:
+ tolua_error(tolua_S,"#ferror in function 'room_msg_protocol'.",&tolua_err);
+ return 0;
+#endif
+}
+#endif //#ifndef TOLUA_DISABLE
+
+/* method: cards_msg_protocol_of_player_self of class  gamer::DataManager */
+#ifndef TOLUA_DISABLE_tolua_data_manager_gamer_DataManager_cards_msg_protocol_of_player_self00
+static int tolua_data_manager_gamer_DataManager_cards_msg_protocol_of_player_self00(lua_State* tolua_S)
+{
+#ifndef TOLUA_RELEASE
+ tolua_Error tolua_err;
+ if (
+     !tolua_isusertype(tolua_S,1,"gamer::DataManager",0,&tolua_err) ||
+     !tolua_isnoobj(tolua_S,2,&tolua_err)
+ )
+  goto tolua_lerror;
+ else
+#endif
+ {
+  gamer::DataManager* self = (gamer::DataManager*)  tolua_tousertype(tolua_S,1,0);
+#ifndef TOLUA_RELEASE
+  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'cards_msg_protocol_of_player_self'", NULL);
+#endif
+  {
+   gamer::protocol::PlayerCardsMsgProtocol* tolua_ret = (gamer::protocol::PlayerCardsMsgProtocol*)  self->cards_msg_protocol_of_player_self();
+    tolua_pushusertype(tolua_S,(void*)tolua_ret,"gamer::protocol::PlayerCardsMsgProtocol");
+  }
+ }
+ return 1;
+#ifndef TOLUA_RELEASE
+ tolua_lerror:
+ tolua_error(tolua_S,"#ferror in function 'cards_msg_protocol_of_player_self'.",&tolua_err);
+ return 0;
+#endif
+}
+#endif //#ifndef TOLUA_DISABLE
+
+/* method: cards_msg_protocol_of_left_player of class  gamer::DataManager */
+#ifndef TOLUA_DISABLE_tolua_data_manager_gamer_DataManager_cards_msg_protocol_of_left_player00
+static int tolua_data_manager_gamer_DataManager_cards_msg_protocol_of_left_player00(lua_State* tolua_S)
+{
+#ifndef TOLUA_RELEASE
+ tolua_Error tolua_err;
+ if (
+     !tolua_isusertype(tolua_S,1,"gamer::DataManager",0,&tolua_err) ||
+     !tolua_isnoobj(tolua_S,2,&tolua_err)
+ )
+  goto tolua_lerror;
+ else
+#endif
+ {
+  gamer::DataManager* self = (gamer::DataManager*)  tolua_tousertype(tolua_S,1,0);
+#ifndef TOLUA_RELEASE
+  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'cards_msg_protocol_of_left_player'", NULL);
+#endif
+  {
+   gamer::protocol::PlayerCardsMsgProtocol* tolua_ret = (gamer::protocol::PlayerCardsMsgProtocol*)  self->cards_msg_protocol_of_left_player();
+    tolua_pushusertype(tolua_S,(void*)tolua_ret,"gamer::protocol::PlayerCardsMsgProtocol");
+  }
+ }
+ return 1;
+#ifndef TOLUA_RELEASE
+ tolua_lerror:
+ tolua_error(tolua_S,"#ferror in function 'cards_msg_protocol_of_left_player'.",&tolua_err);
+ return 0;
+#endif
+}
+#endif //#ifndef TOLUA_DISABLE
+
+/* method: cards_msg_protocol_of_opposite_player of class  gamer::DataManager */
+#ifndef TOLUA_DISABLE_tolua_data_manager_gamer_DataManager_cards_msg_protocol_of_opposite_player00
+static int tolua_data_manager_gamer_DataManager_cards_msg_protocol_of_opposite_player00(lua_State* tolua_S)
+{
+#ifndef TOLUA_RELEASE
+ tolua_Error tolua_err;
+ if (
+     !tolua_isusertype(tolua_S,1,"gamer::DataManager",0,&tolua_err) ||
+     !tolua_isnoobj(tolua_S,2,&tolua_err)
+ )
+  goto tolua_lerror;
+ else
+#endif
+ {
+  gamer::DataManager* self = (gamer::DataManager*)  tolua_tousertype(tolua_S,1,0);
+#ifndef TOLUA_RELEASE
+  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'cards_msg_protocol_of_opposite_player'", NULL);
+#endif
+  {
+   gamer::protocol::PlayerCardsMsgProtocol* tolua_ret = (gamer::protocol::PlayerCardsMsgProtocol*)  self->cards_msg_protocol_of_opposite_player();
+    tolua_pushusertype(tolua_S,(void*)tolua_ret,"gamer::protocol::PlayerCardsMsgProtocol");
+  }
+ }
+ return 1;
+#ifndef TOLUA_RELEASE
+ tolua_lerror:
+ tolua_error(tolua_S,"#ferror in function 'cards_msg_protocol_of_opposite_player'.",&tolua_err);
+ return 0;
+#endif
+}
+#endif //#ifndef TOLUA_DISABLE
+
+/* method: cards_msg_protocol_of_right_player of class  gamer::DataManager */
+#ifndef TOLUA_DISABLE_tolua_data_manager_gamer_DataManager_cards_msg_protocol_of_right_player00
+static int tolua_data_manager_gamer_DataManager_cards_msg_protocol_of_right_player00(lua_State* tolua_S)
+{
+#ifndef TOLUA_RELEASE
+ tolua_Error tolua_err;
+ if (
+     !tolua_isusertype(tolua_S,1,"gamer::DataManager",0,&tolua_err) ||
+     !tolua_isnoobj(tolua_S,2,&tolua_err)
+ )
+  goto tolua_lerror;
+ else
+#endif
+ {
+  gamer::DataManager* self = (gamer::DataManager*)  tolua_tousertype(tolua_S,1,0);
+#ifndef TOLUA_RELEASE
+  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'cards_msg_protocol_of_right_player'", NULL);
+#endif
+  {
+   gamer::protocol::PlayerCardsMsgProtocol* tolua_ret = (gamer::protocol::PlayerCardsMsgProtocol*)  self->cards_msg_protocol_of_right_player();
+    tolua_pushusertype(tolua_S,(void*)tolua_ret,"gamer::protocol::PlayerCardsMsgProtocol");
+  }
+ }
+ return 1;
+#ifndef TOLUA_RELEASE
+ tolua_lerror:
+ tolua_error(tolua_S,"#ferror in function 'cards_msg_protocol_of_right_player'.",&tolua_err);
+ return 0;
+#endif
+}
+#endif //#ifndef TOLUA_DISABLE
+
+/* method: self_player_id of class  gamer::DataManager */
+#ifndef TOLUA_DISABLE_tolua_data_manager_gamer_DataManager_self_player_id00
+static int tolua_data_manager_gamer_DataManager_self_player_id00(lua_State* tolua_S)
+{
+#ifndef TOLUA_RELEASE
+ tolua_Error tolua_err;
+ if (
+     !tolua_isusertype(tolua_S,1,"const gamer::DataManager",0,&tolua_err) ||
+     !tolua_isnoobj(tolua_S,2,&tolua_err)
+ )
+  goto tolua_lerror;
+ else
+#endif
+ {
+  const gamer::DataManager* self = (const gamer::DataManager*)  tolua_tousertype(tolua_S,1,0);
+#ifndef TOLUA_RELEASE
+  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'self_player_id'", NULL);
+#endif
+  {
+   const int tolua_ret = (const int)  self->self_player_id();
+   tolua_pushnumber(tolua_S,(lua_Number)tolua_ret);
+  }
+ }
+ return 1;
+#ifndef TOLUA_RELEASE
+ tolua_lerror:
+ tolua_error(tolua_S,"#ferror in function 'self_player_id'.",&tolua_err);
+ return 0;
+#endif
+}
+#endif //#ifndef TOLUA_DISABLE
+
+/* method: left_player_id of class  gamer::DataManager */
+#ifndef TOLUA_DISABLE_tolua_data_manager_gamer_DataManager_left_player_id00
+static int tolua_data_manager_gamer_DataManager_left_player_id00(lua_State* tolua_S)
+{
+#ifndef TOLUA_RELEASE
+ tolua_Error tolua_err;
+ if (
+     !tolua_isusertype(tolua_S,1,"const gamer::DataManager",0,&tolua_err) ||
+     !tolua_isnoobj(tolua_S,2,&tolua_err)
+ )
+  goto tolua_lerror;
+ else
+#endif
+ {
+  const gamer::DataManager* self = (const gamer::DataManager*)  tolua_tousertype(tolua_S,1,0);
+#ifndef TOLUA_RELEASE
+  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'left_player_id'", NULL);
+#endif
+  {
+   const int tolua_ret = (const int)  self->left_player_id();
+   tolua_pushnumber(tolua_S,(lua_Number)tolua_ret);
+  }
+ }
+ return 1;
+#ifndef TOLUA_RELEASE
+ tolua_lerror:
+ tolua_error(tolua_S,"#ferror in function 'left_player_id'.",&tolua_err);
+ return 0;
+#endif
+}
+#endif //#ifndef TOLUA_DISABLE
+
+/* method: opposite_player_id of class  gamer::DataManager */
+#ifndef TOLUA_DISABLE_tolua_data_manager_gamer_DataManager_opposite_player_id00
+static int tolua_data_manager_gamer_DataManager_opposite_player_id00(lua_State* tolua_S)
+{
+#ifndef TOLUA_RELEASE
+ tolua_Error tolua_err;
+ if (
+     !tolua_isusertype(tolua_S,1,"const gamer::DataManager",0,&tolua_err) ||
+     !tolua_isnoobj(tolua_S,2,&tolua_err)
+ )
+  goto tolua_lerror;
+ else
+#endif
+ {
+  const gamer::DataManager* self = (const gamer::DataManager*)  tolua_tousertype(tolua_S,1,0);
+#ifndef TOLUA_RELEASE
+  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'opposite_player_id'", NULL);
+#endif
+  {
+   const int tolua_ret = (const int)  self->opposite_player_id();
+   tolua_pushnumber(tolua_S,(lua_Number)tolua_ret);
+  }
+ }
+ return 1;
+#ifndef TOLUA_RELEASE
+ tolua_lerror:
+ tolua_error(tolua_S,"#ferror in function 'opposite_player_id'.",&tolua_err);
+ return 0;
+#endif
+}
+#endif //#ifndef TOLUA_DISABLE
+
+/* method: right_player_id of class  gamer::DataManager */
+#ifndef TOLUA_DISABLE_tolua_data_manager_gamer_DataManager_right_player_id00
+static int tolua_data_manager_gamer_DataManager_right_player_id00(lua_State* tolua_S)
+{
+#ifndef TOLUA_RELEASE
+ tolua_Error tolua_err;
+ if (
+     !tolua_isusertype(tolua_S,1,"const gamer::DataManager",0,&tolua_err) ||
+     !tolua_isnoobj(tolua_S,2,&tolua_err)
+ )
+  goto tolua_lerror;
+ else
+#endif
+ {
+  const gamer::DataManager* self = (const gamer::DataManager*)  tolua_tousertype(tolua_S,1,0);
+#ifndef TOLUA_RELEASE
+  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'right_player_id'", NULL);
+#endif
+  {
+   const int tolua_ret = (const int)  self->right_player_id();
+   tolua_pushnumber(tolua_S,(lua_Number)tolua_ret);
+  }
+ }
+ return 1;
+#ifndef TOLUA_RELEASE
+ tolua_lerror:
+ tolua_error(tolua_S,"#ferror in function 'right_player_id'.",&tolua_err);
+ return 0;
+#endif
+}
+#endif //#ifndef TOLUA_DISABLE
+
+/* method: updateCardForDiscard of class  gamer::DataManager */
+#ifndef TOLUA_DISABLE_tolua_data_manager_gamer_DataManager_updateCardForDiscard00
+static int tolua_data_manager_gamer_DataManager_updateCardForDiscard00(lua_State* tolua_S)
 {
 #ifndef TOLUA_RELEASE
  tolua_Error tolua_err;
@@ -70,34 +424,51 @@ static int tolua_data_manager_gamer_DataManager_getMutableData00(lua_State* tolu
 #endif
  {
   gamer::DataManager* self = (gamer::DataManager*)  tolua_tousertype(tolua_S,1,0);
-  int key = ((int)  tolua_tonumber(tolua_S,2,0));
+  int discard = ((int)  tolua_tonumber(tolua_S,2,0));
 #ifndef TOLUA_RELEASE
-  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'getMutableData'", NULL);
+  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'updateCardForDiscard'", NULL);
 #endif
   {
-   google::protobuf::Message* tolua_ret = (google::protobuf::Message*)  self->getMutableData(key);
-   switch (key)
-   {
-   case (int)gamer::DataIDs::DATA_ID_MY_LOGIN_MSG_PROTOCOL:
-       tolua_pushusertype(tolua_S, (void*)tolua_ret, "gamer::protocol::MyLoginMsgProtocol");
-       break;
-   case (int)gamer::DataIDs::DATA_ID_CREATE_ROOM_MSG_PROTOCOL:
-       tolua_pushusertype(tolua_S, (void*)tolua_ret, "gamer::protocol::CreateRoomMsgProtocol");
-       break;
-   case (int)gamer::DataIDs::DATA_ID_ROOM_MSG_PROTOCOL:
-       tolua_pushusertype(tolua_S, (void*)tolua_ret, "gamer::protocol::RoomMsgProtocol");
-       break;
-   default:
-       goto tolua_lerror;
-       break;
-   }
-    //tolua_pushusertype(tolua_S,(void*)tolua_ret,"google::protobuf::Message");
+   self->updateCardForDiscard(discard);
   }
  }
- return 1;
+ return 0;
 #ifndef TOLUA_RELEASE
  tolua_lerror:
- tolua_error(tolua_S,"#ferror in function 'getMutableData'.",&tolua_err);
+ tolua_error(tolua_S,"#ferror in function 'updateCardForDiscard'.",&tolua_err);
+ return 0;
+#endif
+}
+#endif //#ifndef TOLUA_DISABLE
+
+/* method: updateInvisibleHandCard of class  gamer::DataManager */
+#ifndef TOLUA_DISABLE_tolua_data_manager_gamer_DataManager_updateInvisibleHandCard00
+static int tolua_data_manager_gamer_DataManager_updateInvisibleHandCard00(lua_State* tolua_S)
+{
+#ifndef TOLUA_RELEASE
+ tolua_Error tolua_err;
+ if (
+     !tolua_isusertype(tolua_S,1,"gamer::DataManager",0,&tolua_err) ||
+     !tolua_isnumber(tolua_S,2,0,&tolua_err) ||
+     !tolua_isnoobj(tolua_S,3,&tolua_err)
+ )
+  goto tolua_lerror;
+ else
+#endif
+ {
+  gamer::DataManager* self = (gamer::DataManager*)  tolua_tousertype(tolua_S,1,0);
+  int new_card = ((int)  tolua_tonumber(tolua_S,2,0));
+#ifndef TOLUA_RELEASE
+  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'updateInvisibleHandCard'", NULL);
+#endif
+  {
+   self->updateInvisibleHandCard(new_card);
+  }
+ }
+ return 0;
+#ifndef TOLUA_RELEASE
+ tolua_lerror:
+ tolua_error(tolua_S,"#ferror in function 'updateInvisibleHandCard'.",&tolua_err);
  return 0;
 #endif
 }
@@ -115,7 +486,19 @@ TOLUA_API int tolua_data_manager_open (lua_State* tolua_S)
    tolua_cclass(tolua_S,"DataManager","gamer::DataManager","BasicManager<DataManager>",NULL);
    tolua_beginmodule(tolua_S,"DataManager");
     tolua_function(tolua_S,"getInstance",tolua_data_manager_gamer_DataManager_getInstance00);
-    tolua_function(tolua_S,"getMutableData",tolua_data_manager_gamer_DataManager_getMutableData00);
+    tolua_function(tolua_S,"my_login_msg_protocol",tolua_data_manager_gamer_DataManager_my_login_msg_protocol00);
+    tolua_function(tolua_S,"create_room_msg_protocol",tolua_data_manager_gamer_DataManager_create_room_msg_protocol00);
+    tolua_function(tolua_S,"room_msg_protocol",tolua_data_manager_gamer_DataManager_room_msg_protocol00);
+    tolua_function(tolua_S,"cards_msg_protocol_of_player_self",tolua_data_manager_gamer_DataManager_cards_msg_protocol_of_player_self00);
+    tolua_function(tolua_S,"cards_msg_protocol_of_left_player",tolua_data_manager_gamer_DataManager_cards_msg_protocol_of_left_player00);
+    tolua_function(tolua_S,"cards_msg_protocol_of_opposite_player",tolua_data_manager_gamer_DataManager_cards_msg_protocol_of_opposite_player00);
+    tolua_function(tolua_S,"cards_msg_protocol_of_right_player",tolua_data_manager_gamer_DataManager_cards_msg_protocol_of_right_player00);
+    tolua_function(tolua_S,"self_player_id",tolua_data_manager_gamer_DataManager_self_player_id00);
+    tolua_function(tolua_S,"left_player_id",tolua_data_manager_gamer_DataManager_left_player_id00);
+    tolua_function(tolua_S,"opposite_player_id",tolua_data_manager_gamer_DataManager_opposite_player_id00);
+    tolua_function(tolua_S,"right_player_id",tolua_data_manager_gamer_DataManager_right_player_id00);
+    tolua_function(tolua_S,"updateCardForDiscard",tolua_data_manager_gamer_DataManager_updateCardForDiscard00);
+    tolua_function(tolua_S,"updateInvisibleHandCard",tolua_data_manager_gamer_DataManager_updateInvisibleHandCard00);
    tolua_endmodule(tolua_S);
   tolua_endmodule(tolua_S);
  tolua_endmodule(tolua_S);

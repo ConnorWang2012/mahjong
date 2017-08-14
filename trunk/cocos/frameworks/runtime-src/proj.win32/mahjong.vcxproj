@@ -281,6 +281,7 @@ xcopy "$(ProjectDir)..\..\..\..\customer\src\lua" "$(LocalDebuggerWorkingDirecto
     <ClInclude Include="..\..\..\..\customer\src\cpp\logic\base\listener.h" />
     <ClInclude Include="..\..\..\..\customer\src\cpp\logic\base\myevent.h" />
     <ClInclude Include="..\..\..\..\customer\src\cpp\logic\base\macros.h" />
+    <ClInclude Include="..\..\..\..\customer\src\cpp\logic\constant\card_constants.h" />
     <ClInclude Include="..\..\..\..\customer\src\cpp\logic\constant\command_constants.h" />
     <ClInclude Include="..\..\..\..\customer\src\cpp\logic\constant\event_constants.h" />
     <ClInclude Include="..\..\..\..\customer\src\cpp\logic\lua_bind\lua_bind_helper.h" />
@@ -552,7 +553,6 @@ xcopy "$(ProjectDir)..\..\..\..\customer\src\lua" "$(LocalDebuggerWorkingDirecto
     <None Include="..\..\..\..\customer\res.proj\res\layouts\ui\hall\create_room_layer_layout.lua" />
     <None Include="..\..\..\..\customer\res.proj\res\layouts\ui\hall\join_room_layer_layout.lua" />
     <None Include="..\..\..\..\customer\src\lua\data\data_constants.lua" />
-    <None Include="..\..\..\..\customer\src\lua\data\data_manager.lua" />
     <None Include="..\..\..\..\customer\src\lua\data\init_data.lua" />
     <None Include="..\..\..\..\customer\src\lua\logic\constant\msg_id.lua" />
     <None Include="..\..\..\..\customer\src\lua\logic\constant\msg_code.lua" />

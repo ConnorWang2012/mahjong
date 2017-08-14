@@ -50,6 +50,8 @@ public:
 	inline int waiting_cards(int index) const;
 
 	inline void add_waiting_cards(int value);
+
+	inline int invisible_hand_cards_num() const;
 };
 
 } // namespace protocol

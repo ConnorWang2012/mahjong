@@ -61,8 +61,7 @@ end
 function HallScene:onImgLeftTouch(sender)
     print("[HallScene:onImgLeftTouch]")
 
-	local data_mgr = gamer.DataManager:getInstance()
-	local proto_room = data_mgr:getMutableData(gamer.DataIDs.DATA_ID_CREATE_ROOM_MSG_PROTOCOL)	
+	local proto_room = gamer.g_data_mgr_:create_room_msg_protocol()	
 	print("[HallScene:onImgLeftTouch] room_owner_id, room_id : ", proto_room:room_owner_id(), proto_room:room_id())
 
 	local proto = gamer.protocol.RoomMsgProtocol()
@@ -88,8 +87,7 @@ function HallScene:dealWithJoinRoomMsgReceived(code, msg)
 	if code == gamer.MsgCodes.SUCCEED then
 		gamer.g_popup_mgr_.removePopup(gamer.PopupConstants.PopupIDs.POPUP_ID_ROOM_JOIN)
 		
-		local data_mgr = gamer.DataManager:getInstance()
-		local proto_room = data_mgr:getMutableData(gamer.DataIDs.DATA_ID_CREATE_ROOM_MSG_PROTOCOL)	
+		local proto_room = gamer.g_data_mgr_:create_room_msg_protocol()	
 		print("[HallScene:dealWithJoinRoomMsgReceived] room_owner_id, room_id : ", proto_room:room_owner_id(), proto_room:room_id())
 
 		local proto = gamer.protocol.RoomMsgProtocol()

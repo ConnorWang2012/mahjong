@@ -16,6 +16,7 @@
                 <PlistImageFile Name="create_room_title_bg.png" Key="create_room_title_bg.png" />
                 <PlistImageFile Name="i_create_room_title.png" Key="i_create_room_title.png" />
                 <PlistImageFile Name="i_ellipse.png" Key="i_ellipse.png" />
+                <PlistImageFile Name="i_join_room_title.png" Key="i_join_room_title.png" />
                 <PlistImageFile Name="i_player_num.png" Key="i_player_num.png" />
                 <PlistImageFile Name="i_room_card.png" Key="i_room_card.png" />
                 <PlistImageFile Name="i_rounds.png" Key="i_rounds.png" />
@@ -23,7 +24,6 @@
                 <PlistImageFile Name="i_selected_bg.png" Key="i_selected_bg.png" />
                 <PlistImageFile Name="i_selected_bg2.png" Key="i_selected_bg2.png" />
                 <PlistImageFile Name="i_selected2.png" Key="i_selected2.png" />
-                <PlistImageFile Name="i_join_room_title.png" Key="i_join_room_title.png" />
                 <PlistImageFile Name="i_square.png" Key="i_square.png" />
               </PlistImageFolder>
               <PlistImageFolder Image="hall_bottom.png" PListFile="hall_bottom.plist" Name=".hall_bottom_PList.Dir">
@@ -34,10 +34,10 @@
                 <PlistImageFile Name="hall_task.png" Key="hall_task.png" />
               </PlistImageFolder>
               <PlistImageFolder Image="hall_middle.png" PListFile="hall_middle.plist" Name=".hall_middle_PList.Dir">
-                <PlistImageFile Name="hall_room_normal.png" Key="hall_room_normal.png" />
                 <PlistImageFile Name="hall_create_room_bg.png" Key="hall_create_room_bg.png" />
                 <PlistImageFile Name="hall_join_room_bg.png" Key="hall_join_room_bg.png" />
                 <PlistImageFile Name="hall_middle_girl.png" Key="hall_middle_girl.png" />
+                <PlistImageFile Name="hall_room_normal.png" Key="hall_room_normal.png" />
               </PlistImageFolder>
               <PlistImageFolder Image="hall_top.png" PListFile="hall_top.plist" Name=".hall_top_PList.Dir">
                 <PlistImageFile Name="hall_firstcharge.png" Key="hall_firstcharge.png" />

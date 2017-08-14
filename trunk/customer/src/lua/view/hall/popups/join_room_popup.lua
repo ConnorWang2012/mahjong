@@ -64,7 +64,7 @@ function JoinRoomPopup:onImgNumTouch(sender)
 	if "txt_num_6" == name then
 		-- send join room msg
 		local room_id = self:getRoomID()
-		local player_id = gamer.g_data_mgr_.getSelfPlayerID()
+		local player_id = gamer.g_data_mgr_:self_player_id()
 		local proto = gamer.protocol.RoomOperationMsgProtocol()
 		proto:set_room_id(room_id) 
 		proto:set_player_id(player_id)

@@ -1,6 +1,6 @@
 /*
 ** Lua binding: player_cards_msg_protocol
-** Generated automatically by tolua++-1.0.92 on 07/30/17 07:55:01.
+** Generated automatically by tolua++-1.0.92 on 08/13/17 16:25:32.
 */
 
 #ifndef __cplusplus
@@ -657,6 +657,38 @@ static int tolua_player_cards_msg_protocol_gamer_protocol_PlayerCardsMsgProtocol
 }
 #endif //#ifndef TOLUA_DISABLE
 
+/* method: invisible_hand_cards_num of class  gamer::protocol::PlayerCardsMsgProtocol */
+#ifndef TOLUA_DISABLE_tolua_player_cards_msg_protocol_gamer_protocol_PlayerCardsMsgProtocol_invisible_hand_cards_num00
+static int tolua_player_cards_msg_protocol_gamer_protocol_PlayerCardsMsgProtocol_invisible_hand_cards_num00(lua_State* tolua_S)
+{
+#ifndef TOLUA_RELEASE
+ tolua_Error tolua_err;
+ if (
+     !tolua_isusertype(tolua_S,1,"const gamer::protocol::PlayerCardsMsgProtocol",0,&tolua_err) ||
+     !tolua_isnoobj(tolua_S,2,&tolua_err)
+ )
+  goto tolua_lerror;
+ else
+#endif
+ {
+  const gamer::protocol::PlayerCardsMsgProtocol* self = (const gamer::protocol::PlayerCardsMsgProtocol*)  tolua_tousertype(tolua_S,1,0);
+#ifndef TOLUA_RELEASE
+  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'invisible_hand_cards_num'", NULL);
+#endif
+  {
+   int tolua_ret = (int)  self->invisible_hand_cards_num();
+   tolua_pushnumber(tolua_S,(lua_Number)tolua_ret);
+  }
+ }
+ return 1;
+#ifndef TOLUA_RELEASE
+ tolua_lerror:
+ tolua_error(tolua_S,"#ferror in function 'invisible_hand_cards_num'.",&tolua_err);
+ return 0;
+#endif
+}
+#endif //#ifndef TOLUA_DISABLE
+
 /* Open function */
 TOLUA_API int tolua_player_cards_msg_protocol_open (lua_State* tolua_S)
 {
@@ -694,6 +726,7 @@ TOLUA_API int tolua_player_cards_msg_protocol_open (lua_State* tolua_S)
      tolua_function(tolua_S,"waiting_cards_size",tolua_player_cards_msg_protocol_gamer_protocol_PlayerCardsMsgProtocol_waiting_cards_size00);
      tolua_function(tolua_S,"waiting_cards",tolua_player_cards_msg_protocol_gamer_protocol_PlayerCardsMsgProtocol_waiting_cards00);
      tolua_function(tolua_S,"add_waiting_cards",tolua_player_cards_msg_protocol_gamer_protocol_PlayerCardsMsgProtocol_add_waiting_cards00);
+     tolua_function(tolua_S,"invisible_hand_cards_num",tolua_player_cards_msg_protocol_gamer_protocol_PlayerCardsMsgProtocol_invisible_hand_cards_num00);
     tolua_endmodule(tolua_S);
    tolua_endmodule(tolua_S);
   tolua_endmodule(tolua_S);

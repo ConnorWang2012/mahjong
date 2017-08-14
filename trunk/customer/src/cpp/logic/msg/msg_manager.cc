@@ -425,9 +425,8 @@ void MsgManager::dealWithLoginMsg(const ServerMsg& msg)
 
 void MsgManager::dealWithMgLoginMsg(const ServerMsg& msg)
 {
-    auto key = (int)DataIDs::DATA_ID_MY_LOGIN_MSG_PROTOCOL;
 	auto proto = DataManager::getInstance()->createData<protocol::MyLoginMsgProtocol>();
-	DataManager::getInstance()->cacheData(key, proto);
+	DataManager::getInstance()->set_my_login_msg_protocol(proto);
 
     this->dealWithDispatchMsg(msg, proto, "gamer::protocol::MyLoginMsgProtocol");
 }
@@ -443,9 +442,8 @@ void MsgManager::dealWithRoomMsg(const ServerMsg& msg)
 
 void MsgManager::dealWithCreateRoomMsg(const ServerMsg& msg)
 {
-    auto key = (int)DataIDs::DATA_ID_CREATE_ROOM_MSG_PROTOCOL;
     auto proto = DataManager::getInstance()->createData<protocol::CreateRoomMsgProtocol>();
-    DataManager::getInstance()->cacheData(key, proto);
+    DataManager::getInstance()->set_create_room_msg_protocol(proto);
 
     this->dealWithDispatchMsg(msg, proto, "gamer::protocol::CreateRoomMsgProtocol");
 }
@@ -458,11 +456,80 @@ void MsgManager::dealWithPlayerJoinRoomMsg(const ServerMsg& msg)
 
 void MsgManager::dealWithStartGameMsg(const ServerMsg& msg)
 {
-    auto key = (int)DataIDs::DATA_ID_ROOM_MSG_PROTOCOL;
-    auto proto = DataManager::getInstance()->createData<protocol::RoomMsgProtocol>();
-    DataManager::getInstance()->cacheData(key, proto);
+    auto data_mgr = DataManager::getInstance();
+    auto proto = data_mgr->createData<protocol::RoomMsgProtocol>();
+    data_mgr->set_room_msg_protocol(proto);
 
-    this->dealWithDispatchMsg(msg, proto, "gamer::protocol::RoomMsgProtocol");
+    if ( !this->parseMsg(msg, proto) )
+    {
+        // TODO : log
+        return;
+    }
+
+    // set cards for all players
+    // player self
+    auto self_player_id = data_mgr->self_player_id();
+    auto n = proto->player_cards_size();
+    auto index = 0;
+    for (auto i = 0; i < n; i++)
+    {
+        if (self_player_id == proto->player_cards(i).player_id())
+        {
+            data_mgr->set_cards_msg_protocol_of_player_self(proto->mutable_player_cards(i));
+            index = i;
+            break;
+        }
+    }
+    // left player
+    if (n > 2)
+    {
+        if (0 == index)
+        {
+            data_mgr->set_cards_msg_protocol_of_left_player(proto->mutable_player_cards(n - 1));
+        }
+        else
+        {
+            data_mgr->set_cards_msg_protocol_of_left_player(proto->mutable_player_cards(index - 1));
+        }
+    }
+    // opposite player
+    if (2 == n)
+    {
+        if (0 == index)
+        {
+            data_mgr->set_cards_msg_protocol_of_opposite_player(proto->mutable_player_cards(1));
+        }
+        else
+        {
+            data_mgr->set_cards_msg_protocol_of_opposite_player(proto->mutable_player_cards(0));
+        }
+    }
+    else if (4 == n)
+    {
+        if (index < 2)
+        {
+            data_mgr->set_cards_msg_protocol_of_opposite_player(proto->mutable_player_cards(index + 2));
+        }
+        else
+        {
+            data_mgr->set_cards_msg_protocol_of_opposite_player(proto->mutable_player_cards(index - 2));
+        }
+    }
+    // right player
+    if (n > 2)
+    {
+        if (index < (n - 1))
+        {
+            data_mgr->set_cards_msg_protocol_of_right_player(proto->mutable_player_cards(index + 1));
+        }
+        else
+        {
+            data_mgr->set_cards_msg_protocol_of_right_player(proto->mutable_player_cards(0));
+        }
+    }
+
+    //this->dealWithDispatchMsg(msg, proto, "gamer::protocol::RoomMsgProtocol");
+    this->dispatchMsg(msg.code, msg.type, msg.id, proto, "gamer::protocol::RoomMsgProtocol");
 }
 
 void MsgManager::dealWithPlayCardMsg(const ServerMsg& msg)

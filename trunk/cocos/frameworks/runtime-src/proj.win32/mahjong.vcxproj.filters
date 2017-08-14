@@ -875,6 +875,9 @@
     <ClInclude Include="..\..\..\..\customer\src\cpp\logic\msg\protocol\room_operation_msg_protocol.pb.h">
       <Filter>classes\cpp\logic\msg\protocol</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\..\..\customer\src\cpp\logic\constant\card_constants.h">
+      <Filter>classes\cpp\logic\constant</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\Classes\AppDelegate.cpp">
@@ -1274,9 +1277,6 @@
     </None>
     <None Include="..\..\..\..\customer\src\lua\view\room\mahjong\mahjong_creator.lua">
       <Filter>classes\lua\view\room\mahjong</Filter>
-    </None>
-    <None Include="..\..\..\..\customer\src\lua\data\data_manager.lua">
-      <Filter>classes\lua\data</Filter>
     </None>
     <None Include="..\..\..\..\customer\src\lua\view\layouts\ui\room\mahjong\left_invisible_2_mj_node_layout.lua">
       <Filter>classes\lua\view\layouts\ui\room\mahjong</Filter>
