@@ -554,6 +554,7 @@ xcopy "$(ProjectDir)..\..\..\..\customer\src\lua" "$(LocalDebuggerWorkingDirecto
     <None Include="..\..\..\..\customer\res.proj\res\layouts\ui\hall\join_room_layer_layout.lua" />
     <None Include="..\..\..\..\customer\src\lua\data\data_constants.lua" />
     <None Include="..\..\..\..\customer\src\lua\data\init_data.lua" />
+    <None Include="..\..\..\..\customer\src\lua\logic\constant\card_constants.lua" />
     <None Include="..\..\..\..\customer\src\lua\logic\constant\msg_id.lua" />
     <None Include="..\..\..\..\customer\src\lua\logic\constant\msg_code.lua" />
     <None Include="..\..\..\..\customer\src\lua\logic\constant\msg_type.lua" />
@@ -564,6 +565,8 @@ xcopy "$(ProjectDir)..\..\..\..\customer\src\lua" "$(LocalDebuggerWorkingDirecto
     <None Include="..\..\..\..\customer\src\lua\logic\test\test_lua_bind_event_listener.lua" />
     <None Include="..\..\..\..\customer\src\lua\logic\util\play_card_helper.lua" />
     <None Include="..\..\..\..\customer\src\lua\network\init_network.lua" />
+    <None Include="..\..\..\..\customer\src\lua\view\animations\room\node_operation_anim.lua" />
+    <None Include="..\..\..\..\customer\src\lua\view\animations\room\node_operation_anim2.lua" />
     <None Include="..\..\..\..\customer\src\lua\view\base\layer_base.lua" />
     <None Include="..\..\..\..\customer\src\lua\view\base\node_base.lua" />
     <None Include="..\..\..\..\customer\src\lua\view\base\popup_base.lua" />

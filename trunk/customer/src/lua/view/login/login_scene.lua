@@ -40,15 +40,15 @@ function LoginScene:onBtnLoginTouch(sender)
 end
 
 function LoginScene:dealWithMyLoginMsgReceived(code, msg)
-	gamer.g_scene_msg_.runScene(gamer.SceneConstants.SceneIDs.HALL_SCENE)
+	gamer.scene_msg_.runScene(gamer.SceneConstants.SceneIDs.HALL_SCENE)
 end
 
 function LoginScene:addMsgListeners()
-	gamer.g_msg_mgr_:addMsgListener(gamer.MsgTypes.S2C_MSG_TYPE_LOGIN, handler(self, self.onServerMsgReceived))
+	gamer.msg_mgr_:addMsgListener(gamer.MsgTypes.S2C_MSG_TYPE_LOGIN, handler(self, self.onServerMsgReceived))
 end
 
 function LoginScene:removeMsgListeners()
-	gamer.g_msg_mgr_:removeMsgListener(gamer.MsgTypes.S2C_MSG_TYPE_LOGIN, handler(self, self.onServerMsgReceived))
+	gamer.msg_mgr_:removeMsgListener(gamer.MsgTypes.S2C_MSG_TYPE_LOGIN, handler(self, self.onServerMsgReceived))
 end
 
 function LoginScene:onServerMsgReceived(code, msg_type, msg_id, msg)

@@ -184,6 +184,18 @@
     <Filter Include="classes\lua\logic\util">
       <UniqueIdentifier>{64603fb6-ddce-410b-94f6-d1e8c4b544d8}</UniqueIdentifier>
     </Filter>
+    <Filter Include="classes\lua\view\animations">
+      <UniqueIdentifier>{4834526c-90c1-4bb4-a6ee-bfa266f875de}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="classes\lua\view\animations\login">
+      <UniqueIdentifier>{ce38a6f2-1d46-4e4a-994f-0e13118b5cbd}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="classes\lua\view\animations\hall">
+      <UniqueIdentifier>{93ef2130-7d67-4ae5-93db-3e6e844d2ba8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="classes\lua\view\animations\room">
+      <UniqueIdentifier>{bebc3df2-d5fc-4c62-9ff3-afaba586b5f5}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\Classes\AppDelegate.h">
@@ -1388,6 +1400,15 @@
     </None>
     <None Include="..\..\..\..\customer\src\lua\logic\util\play_card_helper.lua">
       <Filter>classes\lua\logic\util</Filter>
+    </None>
+    <None Include="..\..\..\..\customer\src\lua\view\animations\room\node_operation_anim.lua">
+      <Filter>classes\lua\view\animations\room</Filter>
+    </None>
+    <None Include="..\..\..\..\customer\src\lua\logic\constant\card_constants.lua">
+      <Filter>classes\lua\logic\constant</Filter>
+    </None>
+    <None Include="..\..\..\..\customer\src\lua\view\animations\room\node_operation_anim2.lua">
+      <Filter>classes\lua\view\animations\room</Filter>
     </None>
   </ItemGroup>
 </Project>

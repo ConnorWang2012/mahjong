@@ -20,11 +20,11 @@
             <Size X="102.0000" Y="124.0000" />
             <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
             <Position Y="12.0000" />
-            <Scale ScaleX="0.6000" ScaleY="0.6000" />
+            <Scale ScaleX="0.5600" ScaleY="0.5100" />
             <CColor A="255" R="255" G="255" B="255" />
             <PrePosition />
             <PreSize X="0.0000" Y="0.0000" />
-            <FileData Type="PlistSubImage" Path="character_7.png" Plist="assets/room/plist/cards.plist" />
+            <FileData Type="PlistSubImage" Path="dot_9.png" Plist="assets/room/plist/cards.plist" />
           </AbstractNodeData>
         </Children>
       </ObjectData>

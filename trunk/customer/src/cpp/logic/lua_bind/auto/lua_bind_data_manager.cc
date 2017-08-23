@@ -1,6 +1,6 @@
 /*
 ** Lua binding: data_manager
-** Generated automatically by tolua++-1.0.92 on 08/12/17 03:04:49.
+** Generated automatically by tolua++-1.0.92 on 08/19/17 00:09:24.
 */
 
 #ifndef __cplusplus
@@ -22,8 +22,9 @@ static void tolua_reg_types (lua_State* tolua_S)
 {
  tolua_usertype(tolua_S,"gamer::protocol::PlayerCardsMsgProtocol");
  tolua_usertype(tolua_S,"gamer::DataManager");
- tolua_usertype(tolua_S,"gamer::protocol::RoomMsgProtocol");
  tolua_usertype(tolua_S,"gamer::protocol::CreateRoomMsgProtocol");
+ tolua_usertype(tolua_S,"gamer::protocol::RoomMsgProtocol");
+ tolua_usertype(tolua_S,"gamer::protocol::PlayCardMsgProtocol");
  tolua_usertype(tolua_S,"gamer::protocol::MyLoginMsgProtocol");
  tolua_usertype(tolua_S,"BasicManager<DataManager>");
 }
@@ -147,6 +148,38 @@ static int tolua_data_manager_gamer_DataManager_room_msg_protocol00(lua_State* t
 #ifndef TOLUA_RELEASE
  tolua_lerror:
  tolua_error(tolua_S,"#ferror in function 'room_msg_protocol'.",&tolua_err);
+ return 0;
+#endif
+}
+#endif //#ifndef TOLUA_DISABLE
+
+/* method: play_card_msg_protocol of class  gamer::DataManager */
+#ifndef TOLUA_DISABLE_tolua_data_manager_gamer_DataManager_play_card_msg_protocol00
+static int tolua_data_manager_gamer_DataManager_play_card_msg_protocol00(lua_State* tolua_S)
+{
+#ifndef TOLUA_RELEASE
+ tolua_Error tolua_err;
+ if (
+     !tolua_isusertype(tolua_S,1,"gamer::DataManager",0,&tolua_err) ||
+     !tolua_isnoobj(tolua_S,2,&tolua_err)
+ )
+  goto tolua_lerror;
+ else
+#endif
+ {
+  gamer::DataManager* self = (gamer::DataManager*)  tolua_tousertype(tolua_S,1,0);
+#ifndef TOLUA_RELEASE
+  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'play_card_msg_protocol'", NULL);
+#endif
+  {
+   gamer::protocol::PlayCardMsgProtocol* tolua_ret = (gamer::protocol::PlayCardMsgProtocol*)  self->play_card_msg_protocol();
+    tolua_pushusertype(tolua_S,(void*)tolua_ret,"gamer::protocol::PlayCardMsgProtocol");
+  }
+ }
+ return 1;
+#ifndef TOLUA_RELEASE
+ tolua_lerror:
+ tolua_error(tolua_S,"#ferror in function 'play_card_msg_protocol'.",&tolua_err);
  return 0;
 #endif
 }
@@ -489,6 +522,7 @@ TOLUA_API int tolua_data_manager_open (lua_State* tolua_S)
     tolua_function(tolua_S,"my_login_msg_protocol",tolua_data_manager_gamer_DataManager_my_login_msg_protocol00);
     tolua_function(tolua_S,"create_room_msg_protocol",tolua_data_manager_gamer_DataManager_create_room_msg_protocol00);
     tolua_function(tolua_S,"room_msg_protocol",tolua_data_manager_gamer_DataManager_room_msg_protocol00);
+    tolua_function(tolua_S,"play_card_msg_protocol",tolua_data_manager_gamer_DataManager_play_card_msg_protocol00);
     tolua_function(tolua_S,"cards_msg_protocol_of_player_self",tolua_data_manager_gamer_DataManager_cards_msg_protocol_of_player_self00);
     tolua_function(tolua_S,"cards_msg_protocol_of_left_player",tolua_data_manager_gamer_DataManager_cards_msg_protocol_of_left_player00);
     tolua_function(tolua_S,"cards_msg_protocol_of_opposite_player",tolua_data_manager_gamer_DataManager_cards_msg_protocol_of_opposite_player00);

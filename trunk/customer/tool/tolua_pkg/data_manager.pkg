@@ -18,6 +18,8 @@ public:
 
     inline gamer::protocol::RoomMsgProtocol* room_msg_protocol();
 
+    inline gamer::protocol::PlayCardMsgProtocol* play_card_msg_protocol();
+
     inline gamer::protocol::PlayerCardsMsgProtocol* cards_msg_protocol_of_player_self();
 
     inline gamer::protocol::PlayerCardsMsgProtocol* cards_msg_protocol_of_left_player();

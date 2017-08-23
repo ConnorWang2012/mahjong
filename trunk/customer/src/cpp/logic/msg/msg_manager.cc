@@ -212,8 +212,7 @@ bool MsgManager::parseMsg(const ServerMsg & server_msg, google::protobuf::Messag
     {
         char buf[MsgManager::MAX_MSG_LEN] = { 0 };
         int len = server_msg.total_len - gamer::server_msg_header_len();
-        if (msg->ParseFromArray(server_msg.context, len))
-            return true;
+        return msg->ParseFromArray(server_msg.context, len);
     }
 
     return false;
@@ -386,33 +385,6 @@ void MsgManager::dispatchMsg(int msg_code,
     scheduler->schedule(callback, this, 0, false, "dispatch_msg");
 }
 
-void MsgManager::dealWithDispatchMsg(const ServerMsg& server_msg,
-                                     google::protobuf::Message* msg, 
-                                     const std::string& class_name)
-{
-    if (nullptr == msg)
-        return; // TODO : log
-
-    if (MsgCodes::MSG_RESPONSE_CODE_SUCCESS == (MsgCodes)server_msg.code && 
-        nullptr != server_msg.context)
-    {
-        char buf[MsgManager::MAX_MSG_LEN] = { 0 };
-        int len = server_msg.total_len - gamer::server_msg_header_len();
-		if (msg->ParseFromArray(server_msg.context, len))
-		{
-			this->dispatchMsg(server_msg.code, server_msg.type, server_msg.id, msg, class_name);
-		}
-		else
-		{
-			// TODO : log
-		}
-    }
-    else
-    {
-        this->dispatchMsg(server_msg.code, server_msg.type, server_msg.id, nullptr, "");
-    }
-}
-
 void MsgManager::dealWithLoginMsg(const ServerMsg& msg)
 {
     printf("[MsgManager::DealWithLoginMsg] msg_type : %d, msg_id : %d", msg.type, msg.id);
@@ -425,10 +397,18 @@ void MsgManager::dealWithLoginMsg(const ServerMsg& msg)
 
 void MsgManager::dealWithMgLoginMsg(const ServerMsg& msg)
 {
-	auto proto = DataManager::getInstance()->createData<protocol::MyLoginMsgProtocol>();
-	DataManager::getInstance()->set_my_login_msg_protocol(proto);
-
-    this->dealWithDispatchMsg(msg, proto, "gamer::protocol::MyLoginMsgProtocol");
+	auto proto = DataManager::getInstance()->my_login_msg_protocol();
+    if (this->parseMsg(msg, proto))
+    {
+        this->dispatchMsg(msg.code, msg.type, msg.id, proto, 
+            "gamer::protocol::MyLoginMsgProtocol");
+    }
+    else
+    {
+        this->dispatchMsg(msg.code, msg.type, msg.id, nullptr, "");
+        // TODO : log
+    }
+    
 }
 
 void MsgManager::dealWithRoomMsg(const ServerMsg& msg)
@@ -442,27 +422,42 @@ void MsgManager::dealWithRoomMsg(const ServerMsg& msg)
 
 void MsgManager::dealWithCreateRoomMsg(const ServerMsg& msg)
 {
-    auto proto = DataManager::getInstance()->createData<protocol::CreateRoomMsgProtocol>();
-    DataManager::getInstance()->set_create_room_msg_protocol(proto);
-
-    this->dealWithDispatchMsg(msg, proto, "gamer::protocol::CreateRoomMsgProtocol");
+    auto proto = DataManager::getInstance()->create_room_msg_protocol();
+    if (this->parseMsg(msg, proto))
+    {
+        this->dispatchMsg(msg.code, msg.type, msg.id, proto,
+            "gamer::protocol::CreateRoomMsgProtocol");
+    }
+    else
+    {
+        this->dispatchMsg(msg.code, msg.type, msg.id, nullptr, "");
+        // TODO : log
+    }
 }
 
 void MsgManager::dealWithPlayerJoinRoomMsg(const ServerMsg& msg)
 {
     gamer::protocol::RoomOperationMsgProtocol proto;
-    this->dealWithDispatchMsg(msg, &proto, "gamer::protocol::RoomOperationMsgProtocol");
+    if (this->parseMsg(msg, &proto))
+    {
+        this->dispatchMsg(msg.code, msg.type, msg.id, &proto,
+            "gamer::protocol::RoomOperationMsgProtocol");
+    }
+    else
+    {
+        this->dispatchMsg(msg.code, msg.type, msg.id, nullptr, "");
+        // TODO : log
+    }
 }
 
 void MsgManager::dealWithStartGameMsg(const ServerMsg& msg)
 {
     auto data_mgr = DataManager::getInstance();
-    auto proto = data_mgr->createData<protocol::RoomMsgProtocol>();
-    data_mgr->set_room_msg_protocol(proto);
-
+    auto proto = data_mgr->room_msg_protocol();
     if ( !this->parseMsg(msg, proto) )
     {
         // TODO : log
+        this->dispatchMsg(msg.code, msg.type, msg.id, nullptr, "");
         return;
     }
 
@@ -475,7 +470,7 @@ void MsgManager::dealWithStartGameMsg(const ServerMsg& msg)
     {
         if (self_player_id == proto->player_cards(i).player_id())
         {
-            data_mgr->set_cards_msg_protocol_of_player_self(proto->mutable_player_cards(i));
+            data_mgr->set_player_self_cards_index(i);
             index = i;
             break;
         }
@@ -485,11 +480,11 @@ void MsgManager::dealWithStartGameMsg(const ServerMsg& msg)
     {
         if (0 == index)
         {
-            data_mgr->set_cards_msg_protocol_of_left_player(proto->mutable_player_cards(n - 1));
+            data_mgr->set_left_player_cards_index(n - 1);
         }
         else
         {
-            data_mgr->set_cards_msg_protocol_of_left_player(proto->mutable_player_cards(index - 1));
+            data_mgr->set_left_player_cards_index(index - 1);
         }
     }
     // opposite player
@@ -497,22 +492,22 @@ void MsgManager::dealWithStartGameMsg(const ServerMsg& msg)
     {
         if (0 == index)
         {
-            data_mgr->set_cards_msg_protocol_of_opposite_player(proto->mutable_player_cards(1));
+            data_mgr->set_opposite_player_cards_index(1);
         }
         else
         {
-            data_mgr->set_cards_msg_protocol_of_opposite_player(proto->mutable_player_cards(0));
+            data_mgr->set_opposite_player_cards_index(0);
         }
     }
     else if (4 == n)
     {
         if (index < 2)
         {
-            data_mgr->set_cards_msg_protocol_of_opposite_player(proto->mutable_player_cards(index + 2));
+            data_mgr->set_opposite_player_cards_index(index + 2);
         }
         else
         {
-            data_mgr->set_cards_msg_protocol_of_opposite_player(proto->mutable_player_cards(index - 2));
+            data_mgr->set_opposite_player_cards_index(index - 2);
         }
     }
     // right player
@@ -520,28 +515,32 @@ void MsgManager::dealWithStartGameMsg(const ServerMsg& msg)
     {
         if (index < (n - 1))
         {
-            data_mgr->set_cards_msg_protocol_of_right_player(proto->mutable_player_cards(index + 1));
+            data_mgr->set_right_player_cards_index(index + 1);
         }
         else
         {
-            data_mgr->set_cards_msg_protocol_of_right_player(proto->mutable_player_cards(0));
+            data_mgr->set_right_player_cards_index(0);
         }
     }
+    
+    // sort invisible hand cards of player self 
+    auto cards = data_mgr->cards_msg_protocol_of_player_self()->mutable_invisible_hand_cards();
+    std::sort(cards->begin(), cards->end());
 
-    //this->dealWithDispatchMsg(msg, proto, "gamer::protocol::RoomMsgProtocol");
     this->dispatchMsg(msg.code, msg.type, msg.id, proto, "gamer::protocol::RoomMsgProtocol");
 }
 
 void MsgManager::dealWithPlayCardMsg(const ServerMsg& msg)
 {
-    gamer::protocol::PlayCardMsgProtocol proto;
-    if (this->parseMsg(msg, &proto))
+    auto proto = DataManager::getInstance()->play_card_msg_protocol();
+    if (this->parseMsg(msg, proto))
     {
-        this->dispatchMsg(msg.code, msg.type, msg.id, &proto, 
+        this->dispatchMsg(msg.code, msg.type, msg.id, proto, 
             "gamer::protocol::PlayCardMsgProtocol");
     }
     else
     {
+        this->dispatchMsg(msg.code, msg.type, msg.id, nullptr, "");
         // TODO : log
     }
 }

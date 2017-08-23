@@ -1,10 +1,13 @@
 package gamer.protocol;
 
 message PlayCardMsgProtocol {
-  required int32 player_id  		= 1;
-  required int32 room_id  			= 2;
-  required int32 cur_round  		= 3;
-  required int32 operation_id  		= 4;
-  optional int32 discard			= 5[default = 0];
-  optional int32 new_card			= 6[default = 0];
+  required int32 player_id  				= 1;
+  required int32 room_id  					= 2;
+  required int32 cur_round  				= 3;
+  required int32 operation_id  				= 4;
+  optional int32 discard					= 5[default = -1];
+  optional int32 new_card					= 6[default = -1];
+  optional int32 next_operate_player_id 	= 7[default = 0];
+  optional int32 my_available_operation_id 	= 8[default = 0];
+  repeated int32 operating_cards    		= 9; // use for operation chi.
 }

@@ -25,43 +25,70 @@ DataManager::DataManager()
     :my_login_msg_protocol_(nullptr)
     ,create_room_msg_protocol_(nullptr)
     ,room_msg_protocol_(nullptr)
-    ,cards_msg_proto_of_player_self_(nullptr)
-    ,cards_msg_proto_of_left_player_(nullptr)
-    ,cards_msg_proto_of_opposite_player_(nullptr)
-    ,cards_msg_proto_of_right_player_(nullptr)
+    ,play_card_msg_protocol_(nullptr)
+    ,player_self_cards_index_(0)
+    ,left_player_cards_index_(0)
+    ,opposite_player_cards_index_(0)
+    ,right_player_cards_index_(0)
 {
 
 }
 
 void DataManager::updateCardForDiscard(int discard)
 {
-    if (nullptr == cards_msg_proto_of_player_self_)
-        return;
-
-    // remove the discard from invisible hand cards
-    auto cards = cards_msg_proto_of_player_self_->mutable_invisible_hand_cards();
-    auto n = cards->size();
-    for (int i = 0; i < n; i++) {
-        if (cards->Get(i) == discard) {
-            if (i != n - 1) {
-                cards->SwapElements(i, n - 1);
+    auto proto = this->cards_msg_protocol_of_player_self();
+    if (nullptr != proto)
+    {
+        // remove the discard from invisible hand cards
+        auto cards = proto->mutable_invisible_hand_cards();
+        auto n = cards->size();
+        for (int i = 0; i < n; i++) {
+            if (cards->Get(i) == discard) {
+                if (i != n - 1) {
+                    cards->SwapElements(i, n - 1);
+                }
+                cards->RemoveLast();
+                break;
             }
-            cards->RemoveLast();
-            break;
+        }
+
+        // add the discard to discards or season cards or flower cards
+        if (discard > CardConstants::INVALID_CARD_VALUE && 
+            discard < CardConstants::SEASON_SPRING) 
+        {
+            proto->add_discards(discard);
+        }
+        else if (discard >= CardConstants::SEASON_SPRING &&
+                 discard <= CardConstants::SEASON_WINTER) 
+        {
+            proto->add_season_cards(discard);
+        }
+        else if (discard >= CardConstants::FLOWER_PLUM &&
+                 discard <= CardConstants::FLOWER_BAMBOO) {
+            proto->add_flower_cards(discard);
         }
     }
 
-    // add the discard to discards
-    cards_msg_proto_of_player_self_->add_discards(discard);
+    // update remain card
+    if (nullptr != room_msg_protocol_)
+    {
+        auto size = room_msg_protocol_->remain_cards_size();
+        if (size > 0) 
+        {
+            room_msg_protocol_->mutable_remain_cards()->RemoveLast();
+        }
+    }
 }
 
 void DataManager::updateInvisibleHandCard(int new_card)
 {
-    auto n = cards_msg_proto_of_player_self_->invisible_hand_cards_size();
-    if (n <= CardConstants::ONE_PLAYER_CARD_NUM) {
-        cards_msg_proto_of_player_self_->add_invisible_hand_cards(new_card);
+    auto proto = this->cards_msg_protocol_of_player_self();
+    if (nullptr != proto)
+    {
+        if (proto->invisible_hand_cards_size() <= CardConstants::ONE_PLAYER_CARD_NUM) {
+            proto->add_invisible_hand_cards(new_card);
+        }
     }
 }
-
 
 } // namespace gamer

@@ -47,7 +47,7 @@ function PopupManager.init()
 	if not PopupManager.popup_wrapper_ then
 		PopupManager.popup_wrapper_ = cc.Layer:create()
 		PopupManager.popup_wrapper_:setLocalZOrder(gamer.PopupConstants.POPUP_WRAPPER_ZORDER)
-		local scene = gamer.g_scene_msg_:getRunningScene()
+		local scene = gamer.scene_msg_:getRunningScene()
 		if scene then
 			scene:addChild(PopupManager.popup_wrapper_)
 		end

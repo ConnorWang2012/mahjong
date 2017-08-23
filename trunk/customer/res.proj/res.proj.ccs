@@ -3,7 +3,14 @@
   <SolutionFolder>
     <Group ctype="ResourceGroup">
       <RootFolder Name=".">
-        <Folder Name="animations" />
+        <Folder Name="animations">
+          <Folder Name="hall" />
+          <Folder Name="login" />
+          <Folder Name="room">
+            <Project Name="node_operation_anim.csd" Type="Node" />
+            <Project Name="node_operation_anim2.csd" Type="Node" />
+          </Folder>
+        </Folder>
         <Folder Name="assets">
           <Folder Name="common">
             <Image Name="btn_common_purple.png" />
@@ -113,6 +120,17 @@
                 <PlistImageFile Name="wind_or_dragon_5.png" Key="wind_or_dragon_5.png" />
                 <PlistImageFile Name="wind_or_dragon_6.png" Key="wind_or_dragon_6.png" />
                 <PlistImageFile Name="wind_or_dragon_7.png" Key="wind_or_dragon_7.png" />
+              </PlistImageFolder>
+              <PlistImageFolder Image="operation.png" PListFile="operation.plist" Name=".operation_PList.Dir">
+                <PlistImageFile Name="i_operation_buhua.png" Key="i_operation_buhua.png" />
+                <PlistImageFile Name="i_operation_chi.png" Key="i_operation_chi.png" />
+                <PlistImageFile Name="i_operation_gang.png" Key="i_operation_gang.png" />
+                <PlistImageFile Name="i_operation_guo.png" Key="i_operation_guo.png" />
+                <PlistImageFile Name="i_operation_hu.png" Key="i_operation_hu.png" />
+                <PlistImageFile Name="i_operation_peng.png" Key="i_operation_peng.png" />
+                <PlistImageFile Name="i_operation_ting.png" Key="i_operation_ting.png" />
+                <PlistImageFile Name="i_operation_zimo.png" Key="i_operation_zimo.png" />
+                <PlistImageFile Name="operation_bg.png" Key="operation_bg.png" />
               </PlistImageFolder>
               <PlistImageFolder Image="room.png" PListFile="room.plist" Name=".room_PList.Dir">
                 <PlistImageFile Name="i_room_direction_east.png" Key="i_room_direction_east.png" />

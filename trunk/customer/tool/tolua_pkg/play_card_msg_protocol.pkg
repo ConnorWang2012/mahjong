@@ -36,6 +36,14 @@ public:
 
 	inline void set_new_card(int value);
 	inline int new_card() const;
+
+	inline int next_operate_player_id() const;
+
+	inline int my_available_operation_id() const;
+
+	inline int operating_cards_size() const;
+	inline int operating_cards(int index) const;
+	inline void add_operating_cards(int value);
 };
 
 } // namespace protocol

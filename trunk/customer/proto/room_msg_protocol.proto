@@ -7,7 +7,7 @@ message RoomMsgProtocol {
   optional int32 players_num  		                = 3;
   optional int32 cur_round			                  = 4;
   optional int32 total_round	                    = 5;
-  optional int32 remain_cards_num	                = 6;
+  optional int32 remain_cards_num	                = 6; // TODO : remove it, use remain_cards_size()
   optional int32 banker_id  		                  = 7;
   optional int32 banker_is_same_time              = 8;
 

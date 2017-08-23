@@ -14,6 +14,7 @@ modification:
 
 local PlayCardHelper = {}
 local MahjongConst   = require "view.constant.mahjong_constants.lua"
+local CardConst      = require "logic.constant.card_constants.lua"
 PlayCardHelper.directions_ = {}
 
 function PlayCardHelper.setPlayerDirection(player_id, direction)
@@ -29,7 +30,7 @@ function PlayCardHelper.setNewCardOfPlayerSelf(new_card)
 end
 
 function PlayCardHelper.getNewCardOfPlayerSelf()
-	return PlayCardHelper.new_card_
+	return PlayCardHelper.new_card_ or CardConst.CardValues.INVALID_CARD_VALUE
 end
 
 function PlayCardHelper.getNextPlayerDirectionImageName(players_num, cur_acting_player_id)
@@ -73,6 +74,28 @@ function PlayCardHelper.getNextPlayerDirectionImageName(players_num, cur_acting_
 	end
 
 	return PlayCardHelper.player_direction_img_name_ 
+end
+
+function PlayCardHelper.setHasSpecialOperation(has)
+	PlayCardHelper.has_special_speration_ = has
+end
+
+function PlayCardHelper.hasSpecialOperation()
+	return PlayCardHelper.has_special_speration_
+end
+
+function PlayCardHelper.iCanDiscard()
+	if PlayCardHelper.hasSpecialOperation() then
+		print("[PlayCardHelper.iCanDiscard] has special operation")
+		return false
+	end
+
+	local next_player_id = gamer.data_mgr_:play_card_msg_protocol():next_operate_player_id()
+	if next_player_id == gamer.data_mgr_:self_player_id() then
+		return true
+	end
+
+	return false
 end
 
 return PlayCardHelper

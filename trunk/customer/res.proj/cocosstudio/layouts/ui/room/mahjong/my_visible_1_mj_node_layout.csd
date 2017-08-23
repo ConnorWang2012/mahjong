@@ -16,15 +16,15 @@
             <PreSize X="0.0000" Y="0.0000" />
             <FileData Type="PlistSubImage" Path="mj_my_visible.png" Plist="assets/room/plist/cards.plist" />
           </AbstractNodeData>
-          <AbstractNodeData Name="img_fg" ActionTag="-1930126656" Tag="13" IconVisible="False" LeftMargin="-50.0015" RightMargin="-51.9985" TopMargin="-83.0000" BottomMargin="-41.0000" LeftEage="33" RightEage="33" TopEage="40" BottomEage="40" Scale9OriginX="33" Scale9OriginY="40" Scale9Width="36" Scale9Height="44" ctype="ImageViewObjectData">
+          <AbstractNodeData Name="img_fg" ActionTag="-1930126656" Tag="13" IconVisible="False" LeftMargin="-51.0000" RightMargin="-51.0000" TopMargin="-83.0000" BottomMargin="-41.0000" LeftEage="33" RightEage="33" TopEage="40" BottomEage="40" Scale9OriginX="33" Scale9OriginY="40" Scale9Width="36" Scale9Height="44" ctype="ImageViewObjectData">
             <Size X="102.0000" Y="124.0000" />
             <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
-            <Position X="0.9985" Y="21.0000" />
-            <Scale ScaleX="0.8600" ScaleY="0.9000" />
+            <Position Y="21.0000" />
+            <Scale ScaleX="0.8000" ScaleY="0.7100" />
             <CColor A="255" R="255" G="255" B="255" />
             <PrePosition />
             <PreSize X="0.0000" Y="0.0000" />
-            <FileData Type="PlistSubImage" Path="wind_or_dragon_6.png" Plist="assets/room/plist/cards.plist" />
+            <FileData Type="PlistSubImage" Path="dot_9.png" Plist="assets/room/plist/cards.plist" />
           </AbstractNodeData>
         </Children>
       </ObjectData>

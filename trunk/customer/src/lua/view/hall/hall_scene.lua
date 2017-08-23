@@ -55,60 +55,60 @@ end
 
 function HallScene:onImgRightTouch(sender)
     print("[HallScene:onImgRightTouch]")
-	gamer.g_popup_mgr_.showPopup(gamer.PopupConstants.PopupIDs.POPUP_ID_ROOM_JOIN)
+	gamer.popup_mgr_.showPopup(gamer.PopupConstants.PopupIDs.POPUP_ID_ROOM_JOIN)
 end
 
 function HallScene:onImgLeftTouch(sender)
     print("[HallScene:onImgLeftTouch]")
 
-	local proto_room = gamer.g_data_mgr_:create_room_msg_protocol()	
+	local proto_room = gamer.data_mgr_:create_room_msg_protocol()	
 	print("[HallScene:onImgLeftTouch] room_owner_id, room_id : ", proto_room:room_owner_id(), proto_room:room_id())
 
 	local proto = gamer.protocol.RoomMsgProtocol()
     proto:set_room_id(proto_room:room_id())
     proto:set_room_owner_id(proto_room:room_owner_id())
 
-    gamer.g_msg_mgr_:sendMsg(gamer.MsgTypes.C2S_MSG_TYPE_ROOM, gamer.MsgIDs.MSG_ID_ROOM_START_GAME, proto)
+    gamer.msg_mgr_:sendMsg(gamer.MsgTypes.C2S_MSG_TYPE_ROOM, gamer.MsgIDs.MSG_ID_ROOM_START_GAME, proto)
 end
 
 function HallScene:onImgNormalRoomTouch(sender)
     print("[HallScene:onImgNormalRoomTouch]")
-	gamer.g_popup_mgr_.showPopup(gamer.PopupConstants.PopupIDs.POPUP_ID_ROOM_CREATE)
+	gamer.popup_mgr_.showPopup(gamer.PopupConstants.PopupIDs.POPUP_ID_ROOM_CREATE)
 end
 
 function HallScene:dealWithCreateRoomMsgReceived(code, msg)
 	print("[HallScene:dealWithCreateRoomMsgReceived]")
 	print("[HallScene:dealWithCreateRoomMsgReceived] room_id : ", msg:room_id())
-	gamer.g_popup_mgr_.removePopup(gamer.PopupConstants.PopupIDs.POPUP_ID_ROOM_CREATE)
+	gamer.popup_mgr_.removePopup(gamer.PopupConstants.PopupIDs.POPUP_ID_ROOM_CREATE)
 end
 
 function HallScene:dealWithJoinRoomMsgReceived(code, msg)
     print("[HallScene:dealWithJoinRoomMsgReceived] code : ", code)
 	if code == gamer.MsgCodes.SUCCEED then
-		gamer.g_popup_mgr_.removePopup(gamer.PopupConstants.PopupIDs.POPUP_ID_ROOM_JOIN)
+		gamer.popup_mgr_.removePopup(gamer.PopupConstants.PopupIDs.POPUP_ID_ROOM_JOIN)
 		
-		local proto_room = gamer.g_data_mgr_:create_room_msg_protocol()	
+		local proto_room = gamer.data_mgr_:create_room_msg_protocol()	
 		print("[HallScene:dealWithJoinRoomMsgReceived] room_owner_id, room_id : ", proto_room:room_owner_id(), proto_room:room_id())
 
 		local proto = gamer.protocol.RoomMsgProtocol()
 		proto:set_room_id(proto_room:room_id())
 		proto:set_room_owner_id(proto_room:room_owner_id())
 
-		gamer.g_msg_mgr_:sendMsg(gamer.MsgTypes.C2S_MSG_TYPE_ROOM, gamer.MsgIDs.MSG_ID_ROOM_START_GAME, proto)
+		gamer.msg_mgr_:sendMsg(gamer.MsgTypes.C2S_MSG_TYPE_ROOM, gamer.MsgIDs.MSG_ID_ROOM_START_GAME, proto)
 	end
 end
 
 function HallScene:dealWithStartGameMsgReceived(code, msg)
 	print("[HallScene:dealWithStartGameMsgReceived]")
-	gamer.g_scene_msg_.runScene(gamer.SceneConstants.SceneIDs.NORMAL_ROOM_SCENE)
+	gamer.scene_msg_.runScene(gamer.SceneConstants.SceneIDs.NORMAL_ROOM_SCENE)
 end
 
 function HallScene:addMsgListeners()
-	gamer.g_msg_mgr_:addMsgListener(gamer.MsgTypes.S2C_MSG_TYPE_ROOM, handler(self, self.onServerMsgReceived))
+	gamer.msg_mgr_:addMsgListener(gamer.MsgTypes.S2C_MSG_TYPE_ROOM, handler(self, self.onServerMsgReceived))
 end
 
 function HallScene:removeMsgListeners()
-	gamer.g_msg_mgr_:removeMsgListener(gamer.MsgTypes.S2C_MSG_TYPE_ROOM, handler(self, self.onServerMsgReceived))
+	gamer.msg_mgr_:removeMsgListener(gamer.MsgTypes.S2C_MSG_TYPE_ROOM, handler(self, self.onServerMsgReceived))
 end
 
 function HallScene:onServerMsgReceived(code, msg_type, msg_id, msg)

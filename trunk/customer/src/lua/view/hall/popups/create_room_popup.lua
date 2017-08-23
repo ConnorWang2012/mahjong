@@ -37,7 +37,7 @@ function CreateRoomPopup:onImgCreateRoomTouch(sender)
     proto:set_players_num(2)
     proto:set_room_cards_num(1)
 
-    gamer.g_msg_mgr_:sendMsg(gamer.MsgTypes.C2S_MSG_TYPE_ROOM, gamer.MsgIDs.MSG_ID_ROOM_CREATE, proto)
+    gamer.msg_mgr_:sendMsg(gamer.MsgTypes.C2S_MSG_TYPE_ROOM, gamer.MsgIDs.MSG_ID_ROOM_CREATE, proto)
 end
 
 function CreateRoomPopup:onEnter()
