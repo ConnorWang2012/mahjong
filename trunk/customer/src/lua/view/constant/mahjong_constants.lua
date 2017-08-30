@@ -15,9 +15,8 @@ modification:
 local MahjongConstants = {}
 
 MahjongConstants.Directions = { SELF = 1, LEFT = 2, OPPOSITE = 3, RIGHT = 4 }
-MahjongConstants.Types	    = { INVISIBLE = 1, INVISIBLE_AN_GANG_1 = 2, INVISIBLE_AN_GANG_2 = 3,
-								VISIBLE = 4, VISIBLE_MING_GANG = 5, VISIBLE_DISCARD = 6 }
-
+MahjongConstants.Types	    = { INVISIBLE = 1, INVISIBLE_1 = 2, INVISIBLE_2 = 3, INVISIBLE_3 = 4,
+								VISIBLE = 5, VISIBLE_MING_GANG = 6, VISIBLE_DISCARD = 7 }
 --[[
     card index :
 

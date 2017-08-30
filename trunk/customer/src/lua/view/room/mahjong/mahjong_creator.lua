@@ -62,13 +62,13 @@ function MahjongCreator.create(direction, type, value)
 
 	local mj_node = nil
 	if direction == MJConst.Directions.SELF then -- self
-		mj_node = MahjongCreator.initPlayerSelfCardLayout(value, type)
+		mj_node = MahjongCreator.initPlayerSelfCardLayout(type, value)
 	elseif direction == MJConst.Directions.LEFT then
-		mj_node = MahjongCreator.initLeftPlayerCardLayout(value, type)
+		mj_node = MahjongCreator.initLeftPlayerCardLayout(type, value)
 	elseif direction == MJConst.Directions.OPPOSITE then
-		mj_node = MahjongCreator.initOppositePlayerCardLayout(value, type)
+		mj_node = MahjongCreator.initOppositePlayerCardLayout(type, value)
 	elseif direction == MJConst.Directions.RIGHT then 
-		mj_node = MahjongCreator.initRightPlayerCardLayout(value, type)
+		mj_node = MahjongCreator.initRightPlayerCardLayout(type, value)
 	end
 
 	if mj_node and value then
@@ -78,7 +78,7 @@ function MahjongCreator.create(direction, type, value)
 	return mj_node
 end
 
-function MahjongCreator.initPlayerSelfCardLayout(value, type)
+function MahjongCreator.initPlayerSelfCardLayout(type, value)
 	local mj_layout = nil
 	if type == MJConst.Types.INVISIBLE then
 		local png = MahjongCreator.getCardPng(value)		
@@ -88,11 +88,14 @@ function MahjongCreator.initPlayerSelfCardLayout(value, type)
 			img_fg:loadTexture(png, ccui.TextureResType.plistType)
 		end
 
-	elseif type == MJConst.Types.INVISIBLE_AN_GANG_1 then
+	elseif type == MJConst.Types.INVISIBLE_1 then
 		mj_layout = MyInvisibleMJLayout1:create().root
 
-	elseif type == MJConst.Types.INVISIBLE_AN_GANG_2 then
+	elseif type == MJConst.Types.INVISIBLE_2 then
 		mj_layout = MyInvisibleMJLayout2:create().root
+
+	elseif type == MJConst.Types.INVISIBLE_3 then
+		mj_layout = MyInvisibleMJLayout3:create().root
 
 	elseif type == MJConst.Types.VISIBLE then
 		local png = MahjongCreator.getCardPng(value)		
@@ -131,14 +134,16 @@ function MahjongCreator.initPlayerSelfCardLayout(value, type)
 	return mj_layout
 end
 
-function MahjongCreator.initLeftPlayerCardLayout(value, type)
+function MahjongCreator.initLeftPlayerCardLayout(type, value)
 	local mj_layout = nil
 	if type == MJConst.Types.INVISIBLE then
 		mj_layout = LeftInvisibleMJLayout:create().root
-	elseif type == MJConst.Types.INVISIBLE_AN_GANG_1 then
+	elseif type == MJConst.Types.INVISIBLE_1 then
 		mj_layout = LeftInvisibleMJLayout1:create().root
-	elseif type == MJConst.Types.INVISIBLE_AN_GANG_2 then
+	elseif type == MJConst.Types.INVISIBLE_2 then
 		mj_layout = LeftInvisibleMJLayout2:create().root
+	elseif type == MJConst.Types.INVISIBLE_3 then
+		mj_layout = LeftInvisibleMJLayout3:create().root
 	elseif type == MJConst.Types.VISIBLE then
 		local png = MahjongCreator.getCardPng(value)
 		if png then
@@ -176,15 +181,17 @@ function MahjongCreator.initLeftPlayerCardLayout(value, type)
 	return mj_layout
 end
 
-function MahjongCreator.initOppositePlayerCardLayout(value, type)
+function MahjongCreator.initOppositePlayerCardLayout(type, value)
 	local mj_layout = nil
 	local need_show_card_value = false
 	if type == MJConst.Types.INVISIBLE then
 		mj_layout = OppositeInvisibleMJLayout:create().root
-	elseif type == MJConst.Types.INVISIBLE_AN_GANG_1 then
+	elseif type == MJConst.Types.INVISIBLE_1 then
 		mj_layout = OppositeInvisibleMJLayout1:create().root
-	elseif type == MJConst.Types.INVISIBLE_AN_GANG_2 then
+	elseif type == MJConst.Types.INVISIBLE_2 then
 		mj_layout = OppositeInvisibleMJLayout2:create().root
+	elseif type == MJConst.Types.INVISIBLE_3 then
+		mj_layout = OppositeInvisibleMJLayout3:create().root
 	elseif type == MJConst.Types.VISIBLE then	
 		local png = MahjongCreator.getCardPng(value)
 		if png then
@@ -226,14 +233,16 @@ function MahjongCreator.initOppositePlayerCardLayout(value, type)
 	return mj_layout
 end
 
-function MahjongCreator.initRightPlayerCardLayout(value, type)
+function MahjongCreator.initRightPlayerCardLayout(type, value)
 	local mj_layout = nil
 	if type == MJConst.Types.INVISIBLE then
 		mj_layout = RightInvisibleMJLayout:create().root
-	elseif type == MJConst.Types.INVISIBLE_AN_GANG_1 then
+	elseif type == MJConst.Types.INVISIBLE_1 then
 		mj_layout = RightInvisibleMJLayout1:create().root
-	elseif type == MJConst.Types.INVISIBLE_AN_GANG_2 then
+	elseif type == MJConst.Types.INVISIBLE_2 then
 		mj_layout = RightInvisibleMJLayout2:create().root
+	elseif type == MJConst.Types.INVISIBLE_3 then
+		mj_layout = RightInvisibleMJLayout3:create().root
 	elseif type == MJConst.Types.VISIBLE then
 		local png = MahjongCreator.getCardPng(value)
 		if png then

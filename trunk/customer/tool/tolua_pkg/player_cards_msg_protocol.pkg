@@ -21,43 +21,31 @@ public:
 
 	inline int player_id() const;
 
-	inline int visible_hand_cards_size() const;
-
-	inline int visible_hand_cards(int index) const;
-
-	inline void add_visible_hand_cards(int value);
-
-	inline int invisible_hand_cards_size() const;
-
-	inline int invisible_hand_cards(int index) const;
-
-	inline void add_invisible_hand_cards(int value);
-
-	inline int flower_cards_size() const;
-
-	inline int flower_cards(int index) const;
-
-	inline void add_flower_cards(int value);
-
-	inline int season_cards_size() const;
-
-	inline int season_cards(int index) const;
-
-	inline void add_season_cards(int value);
-
-	inline int waiting_cards_size() const;
-
-	inline int waiting_cards(int index) const;
-
-	inline void add_waiting_cards(int value);
-
 	inline int invisible_hand_cards_num() const;
 
-	inline int an_gang_cards_size() const;
+	inline int invisible_hand_cards_size() const;
+	inline int invisible_hand_cards(int index) const;
 
+	inline int flower_cards_size() const;
+	inline int flower_cards(int index) const;
+
+	inline int season_cards_size() const;
+	inline int season_cards(int index) const;
+
+	inline int peng_cards_size() const;
+	inline int peng_cards(int index) const;
+
+	inline int chi_cards_size() const;
+	inline int chi_cards(int index) const;
+
+	inline int ming_gang_cards_size() const;
+	inline int ming_gang_cards(int index) const;
+
+	inline int an_gang_cards_size() const;
 	inline int an_gang_cards(int index) const;
 
-	inline void add_an_gang_cards(int value);
+	inline int waiting_cards_size() const;
+	inline int waiting_cards(int index) const;
 };
 
 } // namespace protocol

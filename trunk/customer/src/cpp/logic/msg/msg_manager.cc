@@ -26,11 +26,7 @@ modification:
 #include "msg/msg_type.h"
 #include "msg/msg_id.h"
 #include "msg/msg_code.h"
-#include "msg/protocol/my_login_msg_protocol.pb.h"
-#include "msg/protocol/create_room_msg_protocol.pb.h"
 #include "msg/protocol/room_operation_msg_protocol.pb.h"
-#include "msg/protocol/room_msg_protocol.pb.h"
-#include "msg/protocol/play_card_msg_protocol.pb.h"
 #include "network/network_manager.h"
 
 namespace gamer
@@ -535,6 +531,8 @@ void MsgManager::dealWithPlayCardMsg(const ServerMsg& msg)
     auto proto = DataManager::getInstance()->play_card_msg_protocol();
     if (this->parseMsg(msg, proto))
     {
+        DataManager::getInstance()->updateCardAfterOperation(proto);
+
         this->dispatchMsg(msg.code, msg.type, msg.id, proto, 
             "gamer::protocol::PlayCardMsgProtocol");
     }

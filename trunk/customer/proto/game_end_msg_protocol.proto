@@ -1,0 +1,12 @@
+package gamer.protocol;
+import "player_cards_msg_protocol.proto";
+
+message GameEndMsgProtocol {
+  required int32 room_id			                    = 1;
+  required int32 room_owner_id		                = 2; 
+  optional int32 players_num  		                = 3;
+  optional int32 cur_round			                  = 4;
+  optional int32 total_round	                    = 5;
+  
+  repeated PlayerCardsMsgProtocol player_cards		= 12;
+}

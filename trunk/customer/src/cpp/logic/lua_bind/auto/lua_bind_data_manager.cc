@@ -1,6 +1,6 @@
 /*
 ** Lua binding: data_manager
-** Generated automatically by tolua++-1.0.92 on 08/19/17 00:09:24.
+** Generated automatically by tolua++-1.0.92 on 08/28/17 20:06:49.
 */
 
 #ifndef __cplusplus
@@ -441,9 +441,9 @@ static int tolua_data_manager_gamer_DataManager_right_player_id00(lua_State* tol
 }
 #endif //#ifndef TOLUA_DISABLE
 
-/* method: updateCardForDiscard of class  gamer::DataManager */
-#ifndef TOLUA_DISABLE_tolua_data_manager_gamer_DataManager_updateCardForDiscard00
-static int tolua_data_manager_gamer_DataManager_updateCardForDiscard00(lua_State* tolua_S)
+/* method: updateCardForDiscardOfPlayerSelf of class  gamer::DataManager */
+#ifndef TOLUA_DISABLE_tolua_data_manager_gamer_DataManager_updateCardForDiscardOfPlayerSelf00
+static int tolua_data_manager_gamer_DataManager_updateCardForDiscardOfPlayerSelf00(lua_State* tolua_S)
 {
 #ifndef TOLUA_RELEASE
  tolua_Error tolua_err;
@@ -459,49 +459,195 @@ static int tolua_data_manager_gamer_DataManager_updateCardForDiscard00(lua_State
   gamer::DataManager* self = (gamer::DataManager*)  tolua_tousertype(tolua_S,1,0);
   int discard = ((int)  tolua_tonumber(tolua_S,2,0));
 #ifndef TOLUA_RELEASE
-  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'updateCardForDiscard'", NULL);
+  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'updateCardForDiscardOfPlayerSelf'", NULL);
 #endif
   {
-   self->updateCardForDiscard(discard);
+   self->updateCardForDiscardOfPlayerSelf(discard);
   }
  }
  return 0;
 #ifndef TOLUA_RELEASE
  tolua_lerror:
- tolua_error(tolua_S,"#ferror in function 'updateCardForDiscard'.",&tolua_err);
+ tolua_error(tolua_S,"#ferror in function 'updateCardForDiscardOfPlayerSelf'.",&tolua_err);
  return 0;
 #endif
 }
 #endif //#ifndef TOLUA_DISABLE
 
-/* method: updateInvisibleHandCard of class  gamer::DataManager */
-#ifndef TOLUA_DISABLE_tolua_data_manager_gamer_DataManager_updateInvisibleHandCard00
-static int tolua_data_manager_gamer_DataManager_updateInvisibleHandCard00(lua_State* tolua_S)
+/* method: updateCardForChi of class  gamer::DataManager */
+#ifndef TOLUA_DISABLE_tolua_data_manager_gamer_DataManager_updateCardForChi00
+static int tolua_data_manager_gamer_DataManager_updateCardForChi00(lua_State* tolua_S)
 {
 #ifndef TOLUA_RELEASE
  tolua_Error tolua_err;
  if (
      !tolua_isusertype(tolua_S,1,"gamer::DataManager",0,&tolua_err) ||
      !tolua_isnumber(tolua_S,2,0,&tolua_err) ||
-     !tolua_isnoobj(tolua_S,3,&tolua_err)
+     !tolua_isnumber(tolua_S,3,0,&tolua_err) ||
+     !tolua_isnumber(tolua_S,4,0,&tolua_err) ||
+     !tolua_isnumber(tolua_S,5,0,&tolua_err) ||
+     !tolua_isnoobj(tolua_S,6,&tolua_err)
  )
   goto tolua_lerror;
  else
 #endif
  {
   gamer::DataManager* self = (gamer::DataManager*)  tolua_tousertype(tolua_S,1,0);
-  int new_card = ((int)  tolua_tonumber(tolua_S,2,0));
+  int player_id = ((int)  tolua_tonumber(tolua_S,2,0));
+  int card_of_chi = ((int)  tolua_tonumber(tolua_S,3,0));
+  int card_match_chi_1 = ((int)  tolua_tonumber(tolua_S,4,0));
+  int card_match_chi_2 = ((int)  tolua_tonumber(tolua_S,5,0));
 #ifndef TOLUA_RELEASE
-  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'updateInvisibleHandCard'", NULL);
+  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'updateCardForChi'", NULL);
 #endif
   {
-   self->updateInvisibleHandCard(new_card);
+   self->updateCardForChi(player_id,card_of_chi,card_match_chi_1,card_match_chi_2);
   }
  }
  return 0;
 #ifndef TOLUA_RELEASE
  tolua_lerror:
- tolua_error(tolua_S,"#ferror in function 'updateInvisibleHandCard'.",&tolua_err);
+ tolua_error(tolua_S,"#ferror in function 'updateCardForChi'.",&tolua_err);
+ return 0;
+#endif
+}
+#endif //#ifndef TOLUA_DISABLE
+
+/* method: updateCardForPeng of class  gamer::DataManager */
+#ifndef TOLUA_DISABLE_tolua_data_manager_gamer_DataManager_updateCardForPeng00
+static int tolua_data_manager_gamer_DataManager_updateCardForPeng00(lua_State* tolua_S)
+{
+#ifndef TOLUA_RELEASE
+ tolua_Error tolua_err;
+ if (
+     !tolua_isusertype(tolua_S,1,"gamer::DataManager",0,&tolua_err) ||
+     !tolua_isnumber(tolua_S,2,0,&tolua_err) ||
+     !tolua_isnumber(tolua_S,3,0,&tolua_err) ||
+     !tolua_isnoobj(tolua_S,4,&tolua_err)
+ )
+  goto tolua_lerror;
+ else
+#endif
+ {
+  gamer::DataManager* self = (gamer::DataManager*)  tolua_tousertype(tolua_S,1,0);
+  int player_id = ((int)  tolua_tonumber(tolua_S,2,0));
+  int card_of_peng = ((int)  tolua_tonumber(tolua_S,3,0));
+#ifndef TOLUA_RELEASE
+  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'updateCardForPeng'", NULL);
+#endif
+  {
+   self->updateCardForPeng(player_id,card_of_peng);
+  }
+ }
+ return 0;
+#ifndef TOLUA_RELEASE
+ tolua_lerror:
+ tolua_error(tolua_S,"#ferror in function 'updateCardForPeng'.",&tolua_err);
+ return 0;
+#endif
+}
+#endif //#ifndef TOLUA_DISABLE
+
+/* method: updateCardForPengAndGang of class  gamer::DataManager */
+#ifndef TOLUA_DISABLE_tolua_data_manager_gamer_DataManager_updateCardForPengAndGang00
+static int tolua_data_manager_gamer_DataManager_updateCardForPengAndGang00(lua_State* tolua_S)
+{
+#ifndef TOLUA_RELEASE
+ tolua_Error tolua_err;
+ if (
+     !tolua_isusertype(tolua_S,1,"gamer::DataManager",0,&tolua_err) ||
+     !tolua_isnumber(tolua_S,2,0,&tolua_err) ||
+     !tolua_isnumber(tolua_S,3,0,&tolua_err) ||
+     !tolua_isnoobj(tolua_S,4,&tolua_err)
+ )
+  goto tolua_lerror;
+ else
+#endif
+ {
+  gamer::DataManager* self = (gamer::DataManager*)  tolua_tousertype(tolua_S,1,0);
+  int player_id = ((int)  tolua_tonumber(tolua_S,2,0));
+  int card_of_peng_gang = ((int)  tolua_tonumber(tolua_S,3,0));
+#ifndef TOLUA_RELEASE
+  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'updateCardForPengAndGang'", NULL);
+#endif
+  {
+   self->updateCardForPengAndGang(player_id,card_of_peng_gang);
+  }
+ }
+ return 0;
+#ifndef TOLUA_RELEASE
+ tolua_lerror:
+ tolua_error(tolua_S,"#ferror in function 'updateCardForPengAndGang'.",&tolua_err);
+ return 0;
+#endif
+}
+#endif //#ifndef TOLUA_DISABLE
+
+/* method: updateCardForMingGang of class  gamer::DataManager */
+#ifndef TOLUA_DISABLE_tolua_data_manager_gamer_DataManager_updateCardForMingGang00
+static int tolua_data_manager_gamer_DataManager_updateCardForMingGang00(lua_State* tolua_S)
+{
+#ifndef TOLUA_RELEASE
+ tolua_Error tolua_err;
+ if (
+     !tolua_isusertype(tolua_S,1,"gamer::DataManager",0,&tolua_err) ||
+     !tolua_isnumber(tolua_S,2,0,&tolua_err) ||
+     !tolua_isnumber(tolua_S,3,0,&tolua_err) ||
+     !tolua_isnoobj(tolua_S,4,&tolua_err)
+ )
+  goto tolua_lerror;
+ else
+#endif
+ {
+  gamer::DataManager* self = (gamer::DataManager*)  tolua_tousertype(tolua_S,1,0);
+  int player_id = ((int)  tolua_tonumber(tolua_S,2,0));
+  int card_of_ming_gang = ((int)  tolua_tonumber(tolua_S,3,0));
+#ifndef TOLUA_RELEASE
+  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'updateCardForMingGang'", NULL);
+#endif
+  {
+   self->updateCardForMingGang(player_id,card_of_ming_gang);
+  }
+ }
+ return 0;
+#ifndef TOLUA_RELEASE
+ tolua_lerror:
+ tolua_error(tolua_S,"#ferror in function 'updateCardForMingGang'.",&tolua_err);
+ return 0;
+#endif
+}
+#endif //#ifndef TOLUA_DISABLE
+
+/* method: updateCardForAnGang of class  gamer::DataManager */
+#ifndef TOLUA_DISABLE_tolua_data_manager_gamer_DataManager_updateCardForAnGang00
+static int tolua_data_manager_gamer_DataManager_updateCardForAnGang00(lua_State* tolua_S)
+{
+#ifndef TOLUA_RELEASE
+ tolua_Error tolua_err;
+ if (
+     !tolua_isusertype(tolua_S,1,"gamer::DataManager",0,&tolua_err) ||
+     !tolua_isnumber(tolua_S,2,0,&tolua_err) ||
+     !tolua_isnumber(tolua_S,3,0,&tolua_err) ||
+     !tolua_isnoobj(tolua_S,4,&tolua_err)
+ )
+  goto tolua_lerror;
+ else
+#endif
+ {
+  gamer::DataManager* self = (gamer::DataManager*)  tolua_tousertype(tolua_S,1,0);
+  int player_id = ((int)  tolua_tonumber(tolua_S,2,0));
+  int card_of_an_gang = ((int)  tolua_tonumber(tolua_S,3,0));
+#ifndef TOLUA_RELEASE
+  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'updateCardForAnGang'", NULL);
+#endif
+  {
+   self->updateCardForAnGang(player_id,card_of_an_gang);
+  }
+ }
+ return 0;
+#ifndef TOLUA_RELEASE
+ tolua_lerror:
+ tolua_error(tolua_S,"#ferror in function 'updateCardForAnGang'.",&tolua_err);
  return 0;
 #endif
 }
@@ -531,8 +677,12 @@ TOLUA_API int tolua_data_manager_open (lua_State* tolua_S)
     tolua_function(tolua_S,"left_player_id",tolua_data_manager_gamer_DataManager_left_player_id00);
     tolua_function(tolua_S,"opposite_player_id",tolua_data_manager_gamer_DataManager_opposite_player_id00);
     tolua_function(tolua_S,"right_player_id",tolua_data_manager_gamer_DataManager_right_player_id00);
-    tolua_function(tolua_S,"updateCardForDiscard",tolua_data_manager_gamer_DataManager_updateCardForDiscard00);
-    tolua_function(tolua_S,"updateInvisibleHandCard",tolua_data_manager_gamer_DataManager_updateInvisibleHandCard00);
+    tolua_function(tolua_S,"updateCardForDiscardOfPlayerSelf",tolua_data_manager_gamer_DataManager_updateCardForDiscardOfPlayerSelf00);
+    tolua_function(tolua_S,"updateCardForChi",tolua_data_manager_gamer_DataManager_updateCardForChi00);
+    tolua_function(tolua_S,"updateCardForPeng",tolua_data_manager_gamer_DataManager_updateCardForPeng00);
+    tolua_function(tolua_S,"updateCardForPengAndGang",tolua_data_manager_gamer_DataManager_updateCardForPengAndGang00);
+    tolua_function(tolua_S,"updateCardForMingGang",tolua_data_manager_gamer_DataManager_updateCardForMingGang00);
+    tolua_function(tolua_S,"updateCardForAnGang",tolua_data_manager_gamer_DataManager_updateCardForAnGang00);
    tolua_endmodule(tolua_S);
   tolua_endmodule(tolua_S);
  tolua_endmodule(tolua_S);

@@ -1,6 +1,6 @@
 /*
 ** Lua binding: play_card_msg_protocol
-** Generated automatically by tolua++-1.0.92 on 08/23/17 23:07:15.
+** Generated automatically by tolua++-1.0.92 on 08/29/17 17:55:22.
 */
 
 #ifndef __cplusplus
@@ -552,6 +552,38 @@ static int tolua_play_card_msg_protocol_gamer_protocol_PlayCardMsgProtocol_next_
 }
 #endif //#ifndef TOLUA_DISABLE
 
+/* method: has_next_operate_player_new_card of class  gamer::protocol::PlayCardMsgProtocol */
+#ifndef TOLUA_DISABLE_tolua_play_card_msg_protocol_gamer_protocol_PlayCardMsgProtocol_has_next_operate_player_new_card00
+static int tolua_play_card_msg_protocol_gamer_protocol_PlayCardMsgProtocol_has_next_operate_player_new_card00(lua_State* tolua_S)
+{
+#ifndef TOLUA_RELEASE
+ tolua_Error tolua_err;
+ if (
+     !tolua_isusertype(tolua_S,1,"const gamer::protocol::PlayCardMsgProtocol",0,&tolua_err) ||
+     !tolua_isnoobj(tolua_S,2,&tolua_err)
+ )
+  goto tolua_lerror;
+ else
+#endif
+ {
+  const gamer::protocol::PlayCardMsgProtocol* self = (const gamer::protocol::PlayCardMsgProtocol*)  tolua_tousertype(tolua_S,1,0);
+#ifndef TOLUA_RELEASE
+  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'has_next_operate_player_new_card'", NULL);
+#endif
+  {
+   bool tolua_ret = (bool)  self->has_next_operate_player_new_card();
+   tolua_pushboolean(tolua_S,(bool)tolua_ret);
+  }
+ }
+ return 1;
+#ifndef TOLUA_RELEASE
+ tolua_lerror:
+ tolua_error(tolua_S,"#ferror in function 'has_next_operate_player_new_card'.",&tolua_err);
+ return 0;
+#endif
+}
+#endif //#ifndef TOLUA_DISABLE
+
 /* method: my_available_operation_id of class  gamer::protocol::PlayCardMsgProtocol */
 #ifndef TOLUA_DISABLE_tolua_play_card_msg_protocol_gamer_protocol_PlayCardMsgProtocol_my_available_operation_id00
 static int tolua_play_card_msg_protocol_gamer_protocol_PlayCardMsgProtocol_my_available_operation_id00(lua_State* tolua_S)
@@ -717,6 +749,7 @@ TOLUA_API int tolua_play_card_msg_protocol_open (lua_State* tolua_S)
      tolua_function(tolua_S,"set_new_card",tolua_play_card_msg_protocol_gamer_protocol_PlayCardMsgProtocol_set_new_card00);
      tolua_function(tolua_S,"new_card",tolua_play_card_msg_protocol_gamer_protocol_PlayCardMsgProtocol_new_card00);
      tolua_function(tolua_S,"next_operate_player_id",tolua_play_card_msg_protocol_gamer_protocol_PlayCardMsgProtocol_next_operate_player_id00);
+     tolua_function(tolua_S,"has_next_operate_player_new_card",tolua_play_card_msg_protocol_gamer_protocol_PlayCardMsgProtocol_has_next_operate_player_new_card00);
      tolua_function(tolua_S,"my_available_operation_id",tolua_play_card_msg_protocol_gamer_protocol_PlayCardMsgProtocol_my_available_operation_id00);
      tolua_function(tolua_S,"operating_cards_size",tolua_play_card_msg_protocol_gamer_protocol_PlayCardMsgProtocol_operating_cards_size00);
      tolua_function(tolua_S,"operating_cards",tolua_play_card_msg_protocol_gamer_protocol_PlayCardMsgProtocol_operating_cards00);

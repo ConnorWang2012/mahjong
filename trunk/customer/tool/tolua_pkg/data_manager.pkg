@@ -36,9 +36,20 @@ public:
 
     inline const int right_player_id() const;
 
-    void updateCardForDiscard(int discard);
+    void updateCardForDiscardOfPlayerSelf(int discard);
 
-    void updateInvisibleHandCard(int new_card);
+    void updateCardForChi(int player_id,
+                          int card_of_chi,
+                          int card_match_chi_1,
+                          int card_match_chi_2);
+
+    void updateCardForPeng(int player_id, int card_of_peng);
+
+    void updateCardForPengAndGang(int player_id, int card_of_peng_gang);
+
+    void updateCardForMingGang(int player_id, int card_of_ming_gang);
+
+    void updateCardForAnGang(int player_id, int card_of_an_gang);
 };
 
 } // namespace gamer

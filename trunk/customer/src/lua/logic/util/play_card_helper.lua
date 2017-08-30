@@ -25,14 +25,6 @@ function PlayCardHelper.getPlayerDirection(player_id)
 	return PlayCardHelper.directions_[player_id]
 end
 
-function PlayCardHelper.setNewCardOfPlayerSelf(new_card)
-	PlayCardHelper.new_card_ = new_card
-end
-
-function PlayCardHelper.getNewCardOfPlayerSelf()
-	return PlayCardHelper.new_card_ or CardConst.CardValues.INVALID_CARD_VALUE
-end
-
 function PlayCardHelper.getNextPlayerDirectionImageName(players_num, cur_acting_player_id)
 	if 4 == players_num then
 		if not PlayCardHelper.player_direction_img_name_ then

@@ -30,23 +30,29 @@ namespace gamer
 class DataManager : public BasicManager<DataManager>
 {
 public:
+    typedef gamer::protocol::MyLoginMsgProtocol MyLoginMsgProtocol;
+    typedef gamer::protocol::CreateRoomMsgProtocol CreateRoomMsgProtocol;
+    typedef gamer::protocol::RoomMsgProtocol RoomMsgProtocol;
+    typedef gamer::protocol::PlayerCardsMsgProtocol PlayerCardsMsgProtocol;
+    typedef gamer::protocol::PlayCardMsgProtocol PlayCardMsgProtocol;
+
     DataManager();
 
-    inline gamer::protocol::MyLoginMsgProtocol* my_login_msg_protocol();
+    inline MyLoginMsgProtocol* my_login_msg_protocol();
 
-    inline gamer::protocol::CreateRoomMsgProtocol* create_room_msg_protocol();
+    inline CreateRoomMsgProtocol* create_room_msg_protocol();
 
-    inline gamer::protocol::RoomMsgProtocol* room_msg_protocol();
+    inline RoomMsgProtocol* room_msg_protocol();
 
-    inline protocol::PlayCardMsgProtocol* play_card_msg_protocol();
+    inline PlayCardMsgProtocol* play_card_msg_protocol();
 
-    inline gamer::protocol::PlayerCardsMsgProtocol* cards_msg_protocol_of_player_self();
+    inline PlayerCardsMsgProtocol* cards_msg_protocol_of_player_self();
 
-    inline gamer::protocol::PlayerCardsMsgProtocol* cards_msg_protocol_of_left_player();
+    inline PlayerCardsMsgProtocol* cards_msg_protocol_of_left_player();
 
-    inline gamer::protocol::PlayerCardsMsgProtocol* cards_msg_protocol_of_opposite_player();
+    inline PlayerCardsMsgProtocol* cards_msg_protocol_of_opposite_player();
 
-    inline gamer::protocol::PlayerCardsMsgProtocol* cards_msg_protocol_of_right_player();
+    inline PlayerCardsMsgProtocol* cards_msg_protocol_of_right_player();
 
     inline void set_player_self_cards_index(int index);
 
@@ -64,16 +70,49 @@ public:
 
     inline int right_player_id() const;
 
-    void updateCardForDiscard(int discard);
+    void updateCardAfterOperation(PlayCardMsgProtocol* proto);
 
-    void updateInvisibleHandCard(int new_card);
+    void updateCardForDiscardOfPlayerSelf(int discard);
+
+    void updateCardForDiscard(int player_id, int discard);
+
+    void updateCardForChi(int player_id,
+                          int card_of_chi,
+                          int card_match_chi_1,
+                          int card_match_chi_2);
+
+    void updateCardForPeng(int player_id, int card_of_peng);
+
+    void updateCardForPengAndGang(int player_id, int card_of_peng_gang);
+
+    void updateCardForMingGang(int player_id, int card_of_ming_gang);
+
+    void updateCardForAnGang(int player_id, int card_of_an_gang);
 
 private:
+    typedef google::protobuf::RepeatedField<google::protobuf::int32> RepeatedField;
+
+    gamer::protocol::PlayerCardsMsgProtocol* getPlayerCardsMsgProtocol(int player_id);
+
+    void updateCardForNewCardOfPlayerSelf(int new_card);
+
+    void updateCardForNewCardOfOtherPlayer(int player_id);
+
+    void updateCardForDiscardOfOtherPlayer(int player_id, int discard);
+
+    int countInvisibleCard(PlayerCardsMsgProtocol* proto, int card) const;
+
+    int countCard(RepeatedField* repeated_field, int card) const;
+
+    void removeInvisibleCards(PlayerCardsMsgProtocol* proto, int card, int num);
+
+    void removeCards(RepeatedField* repeated_field, int card, int num);
+
     // keep the ownership
-    gamer::protocol::MyLoginMsgProtocol* my_login_msg_protocol_;
-    gamer::protocol::CreateRoomMsgProtocol* create_room_msg_protocol_;
-    gamer::protocol::RoomMsgProtocol* room_msg_protocol_;
-    gamer::protocol::PlayCardMsgProtocol* play_card_msg_protocol_;
+    MyLoginMsgProtocol* my_login_msg_protocol_;
+    CreateRoomMsgProtocol* create_room_msg_protocol_;
+    RoomMsgProtocol* room_msg_protocol_;
+    PlayCardMsgProtocol* play_card_msg_protocol_;
 
     int player_self_cards_index_;
     int left_player_cards_index_;
@@ -81,7 +120,7 @@ private:
     int right_player_cards_index_ = 0;
 };
 
-inline gamer::protocol::MyLoginMsgProtocol* DataManager::my_login_msg_protocol()
+inline DataManager::MyLoginMsgProtocol* DataManager::my_login_msg_protocol()
 {
     if (nullptr == my_login_msg_protocol_)
     {
@@ -90,7 +129,7 @@ inline gamer::protocol::MyLoginMsgProtocol* DataManager::my_login_msg_protocol()
     return my_login_msg_protocol_;
 }
 
-inline gamer::protocol::CreateRoomMsgProtocol* DataManager::create_room_msg_protocol()
+inline DataManager::CreateRoomMsgProtocol* DataManager::create_room_msg_protocol()
 {
     if (nullptr == create_room_msg_protocol_)
     {
@@ -99,7 +138,7 @@ inline gamer::protocol::CreateRoomMsgProtocol* DataManager::create_room_msg_prot
     return create_room_msg_protocol_;
 }
 
-inline gamer::protocol::RoomMsgProtocol* DataManager::room_msg_protocol()
+inline DataManager::RoomMsgProtocol* DataManager::room_msg_protocol()
 {
     if (nullptr == room_msg_protocol_)
     {
@@ -108,7 +147,7 @@ inline gamer::protocol::RoomMsgProtocol* DataManager::room_msg_protocol()
     return room_msg_protocol_;
 }
 
-inline protocol::PlayCardMsgProtocol* DataManager::play_card_msg_protocol()
+inline DataManager::PlayCardMsgProtocol* DataManager::play_card_msg_protocol()
 {
     if (nullptr == play_card_msg_protocol_)
     {
@@ -122,7 +161,7 @@ inline protocol::PlayCardMsgProtocol* DataManager::play_card_msg_protocol()
     return play_card_msg_protocol_;
 }
 
-inline gamer::protocol::PlayerCardsMsgProtocol* DataManager::cards_msg_protocol_of_player_self()
+inline DataManager::PlayerCardsMsgProtocol* DataManager::cards_msg_protocol_of_player_self()
 {
     if (nullptr != room_msg_protocol_)
     {
@@ -131,7 +170,7 @@ inline gamer::protocol::PlayerCardsMsgProtocol* DataManager::cards_msg_protocol_
     return nullptr;
 }
 
-inline gamer::protocol::PlayerCardsMsgProtocol* DataManager::cards_msg_protocol_of_left_player()
+inline DataManager::PlayerCardsMsgProtocol* DataManager::cards_msg_protocol_of_left_player()
 {
     if (nullptr != room_msg_protocol_)
     {
@@ -140,7 +179,7 @@ inline gamer::protocol::PlayerCardsMsgProtocol* DataManager::cards_msg_protocol_
     return nullptr;
 }
 
-inline gamer::protocol::PlayerCardsMsgProtocol* DataManager::cards_msg_protocol_of_opposite_player()
+inline DataManager::PlayerCardsMsgProtocol* DataManager::cards_msg_protocol_of_opposite_player()
 {
     if (nullptr != room_msg_protocol_)
     {
@@ -149,7 +188,7 @@ inline gamer::protocol::PlayerCardsMsgProtocol* DataManager::cards_msg_protocol_
     return nullptr;
 }
 
-inline gamer::protocol::PlayerCardsMsgProtocol* DataManager::cards_msg_protocol_of_right_player()
+inline DataManager::PlayerCardsMsgProtocol* DataManager::cards_msg_protocol_of_right_player()
 {
     if (nullptr != room_msg_protocol_)
     {

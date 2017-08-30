@@ -31,10 +31,11 @@
     <Item Key="TabsParamsKey">
       <Value ctype="TabsInfo">
         <OpenedDocuments>
-          <FilePathData Path="animations/room/node_operation_anim.csd" />
-          <FilePathData Path="animations/room/node_operation_anim2.csd" />
+          <FilePathData Path="layouts/ui/room/mahjong/opposite_invisible_3_mj_node_layout.csd" />
+          <FilePathData Path="layouts/ui/room/mahjong/opposite_visible_3_mj_node_layout.csd" />
+          <FilePathData Path="layouts/ui/room/mahjong/opposite_visible_1_mj_node_layout.csd" />
         </OpenedDocuments>
-        <ActiveDocument Path="animations/room/node_operation_anim.csd" />
+        <ActiveDocument Path="layouts/ui/room/mahjong/opposite_visible_3_mj_node_layout.csd" />
       </Value>
     </Item>
   </Properties>

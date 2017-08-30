@@ -39,7 +39,6 @@ function NormalRoomScene:initMahjongLayer()
 
 	self:initMahjongsOfPlayerSelf()
 	local players_num = gamer.data_mgr_:room_msg_protocol():players_num()
-	print("[NormalRoomScene:initMahjongLayer] players_num : ", players_num)
 	if 2 == players_num then
 		self:initMahjongsOfOppositePlayer()
 	elseif 3 == players_num then
@@ -60,209 +59,253 @@ function NormalRoomScene:initPlayCardTimerAndDirection()
 end
 
 function NormalRoomScene:initMahjongsOfPlayerSelf()
-	self.invisible_mj_nodes_player_self_ = {}
-	self.visible_mj_nodes_player_self_   = {} -- not including ming gang
-	self.visible_ming_gang_mj_nodes_player_self_ = {}
-
-	-- visible hand cards	
-	local player_cards = gamer.data_mgr_:cards_msg_protocol_of_player_self()
-	print("[NormalRoomScene:initMahjongsOfPlayerSelf] invisible_mahjongs_num : ", player_cards:invisible_hand_cards_size())
-	local visible_mahjongs_num = player_cards:visible_hand_cards_size()
-	local ming_gang_num = self:getMingGangNum(visible_mahjongs_num)
-	self.player_self_invisible_mj_offset_x_ = self:initVisibleMahjongsOfPlayerSelf(player_cards, ming_gang_num)
+	-- visible hand cards
+	self.player_self_invisible_mj_offset_x_ = self:initVisibleMahjongsOfPlayerSelf()
 	
-	-- invisible hand cards
-	self:initInvisibleMahjongsOfPlayerSelf(player_cards, self.player_self_invisible_mj_offset_x_)
+	-- invisible hand cards	
+	self:initInvisibleMahjongsOfPlayerSelf()
+
+	-- direction
+	local player_cards = gamer.data_mgr_:cards_msg_protocol_of_player_self()
+	PlayCardHelper.setPlayerDirection(player_cards:player_id(), MahjongConst.Directions.SELF)
 end
 
 function NormalRoomScene:initMahjongsOfLeftPlayer()
 	-- visible hand cards	
-	local player_cards = gamer.data_mgr_.cards_msg_protocol_of_left_player()
-	local visible_mahjongs_num = player_cards:visible_hand_cards_size()
-	local ming_gang_num = self:getMingGangNum(visible_mahjongs_num)
-	print("ming_gang_num : ", ming_gang_num)
-	local offset_x, offset_y = self:initVisibleMahjongsOfLeftPlayer(player_cards, ming_gang_num)
+	local offset_x, offset_y = self:initVisibleMahjongsOfLeftPlayer()
 
-	-- invisible hand cards	
-	print("offset_x, offset_y : ", offset_x, offset_y)
-	self:initInvisibleMahjongsOfLeftPlayer(player_cards, offset_x, offset_y)
+	-- invisible hand cards
+	self:initInvisibleMahjongsOfLeftPlayer(offset_x, offset_y)
 
 	-- direction
+	local player_cards = gamer.data_mgr_:cards_msg_protocol_of_left_player()
 	PlayCardHelper.setPlayerDirection(player_cards:player_id(), MahjongConst.Directions.LEFT)
 end
 
 function NormalRoomScene:initMahjongsOfOppositePlayer()
-	self.invisible_mj_nodes_opposite_player_ = {}
-	self.visible_mj_nodes_opposite_player_   = {} -- not including ming gang
-	self.visible_ming_gang_mj_nodes_opposite_player_ = {}
-
 	-- visible hand cards	
-	local player_cards = gamer.data_mgr_:cards_msg_protocol_of_opposite_player()
-	local visible_mahjongs_num = player_cards:visible_hand_cards_size()
-	local ming_gang_num = self:getMingGangNum(visible_mahjongs_num)
-	self.opposite_player_invisible_mj_offset_x_ = self:initVisibleMahjongsOfOppositePlayer(player_cards, ming_gang_num)
+	self.opposite_player_invisible_mj_offset_x_ = self:initVisibleMahjongsOfOppositePlayer()
 
 	-- invisible hand cards	
-	self:initInvisibleMahjongsOfOppositePlayer(player_cards, self.opposite_player_invisible_mj_offset_x_)
+	self:initInvisibleMahjongsOfOppositePlayer()
 
 	-- direction
+	local player_cards = gamer.data_mgr_:cards_msg_protocol_of_opposite_player()
 	PlayCardHelper.setPlayerDirection(player_cards:player_id(), MahjongConst.Directions.OPPOSITE)
 end
 
 function NormalRoomScene:initMahjongsOfRightPlayer()
 	-- visible hand cards	
-	local player_cards = gamer.data_mgr_.cards_msg_protocol_of_right_player()
-	local visible_mahjongs_num = player_cards:visible_hand_cards_size()
-	local ming_gang_num = self:getMingGangNum(visible_mahjongs_num)
-	local offset_x, offset_y = self:initVisibleMahjongsOfRightPlayer(player_cards, ming_gang_num)
+	local offset_x, offset_y = self:initVisibleMahjongsOfRightPlayer()
 
 	-- invisible hand cards	
-	self:initInvisibleMahjongsOfRightPlayer(player_cards, offset_x, offset_y)
+	self:initInvisibleMahjongsOfRightPlayer(offset_x, offset_y)
 
 	-- direction
+	local player_cards = gamer.data_mgr_:cards_msg_protocol_of_right_player()
 	PlayCardHelper.setPlayerDirection(player_cards:player_id(), MahjongConst.Directions.RIGHT)
 end
 
 -- @ return : position offset x for invisible card
-function NormalRoomScene:initVisibleMahjongsOfPlayerSelf(mahjongs, ming_gang_num)
+function NormalRoomScene:initVisibleMahjongsOfPlayerSelf()
 	-- ming gang
-	local offset_x1 = MahjongConst.Sizes.OFFSET_X1
-	for i = 1, ming_gang_num do
-		local mj_node = MahjongCreator.create(MahjongConst.Directions.SELF, 
-											  MahjongConst.Types.VISIBLE_MING_GANG, 
-											  mahjongs:visible_hand_cards(4 * (i - 1)))
-		if mj_node then
-			offset_x1 = MahjongConst.Sizes.OFFSET_X2 + MahjongConst.Sizes.CARD_W3 * (i - 1)
-			mj_node:setPosition(cc.p(offset_x1, MahjongConst.Sizes.OFFSET_Y2))
-			self.mahjong_layer_:addChild(mj_node)
+	local player_cards         = gamer.data_mgr_:cards_msg_protocol_of_player_self()
+	local ming_gang_cards_size = player_cards:ming_gang_cards_size()
+	local an_gang_cards_size   = player_cards:an_gang_cards_size()
+	local peng_cards_size      = player_cards:peng_cards_size()
+	local chi_cards_size       = player_cards:chi_cards_size()
+	local offset_x             = MahjongConst.Sizes.OFFSET_X1
+	local offsetx			   = MahjongConst.Sizes.OFFSET_X1 -- for return
+	self.visible_mj_nodes_player_self_ = {}
 
-			table.insert(self.visible_ming_gang_mj_nodes_player_self_, mj_node)
+	if ming_gang_cards_size >= 4 then
+		offset_x = MahjongConst.Sizes.OFFSET_X2
+		for i = 1, ming_gang_cards_size / 4 do
+			local mj_node = MahjongCreator.create(MahjongConst.Directions.SELF, 
+												  MahjongConst.Types.VISIBLE_MING_GANG, 
+												  player_cards:ming_gang_cards(4 * (i - 1)))
+			if mj_node then
+				mj_node:setPosition(cc.p(offset_x, MahjongConst.Sizes.OFFSET_Y2))
+				self.mahjong_layer_:addChild(mj_node)
+				offsetx = offset_x + MahjongConst.Sizes.CARD_W3 / 2 + MahjongConst.Sizes.CARD_INTERVAL1
+				offset_x = offset_x + MahjongConst.Sizes.CARD_W3
+				table.insert(self.visible_mj_nodes_player_self_, mj_node)
+			end
 		end
 	end
 
-	-- not ming gang
-	local offset_x2 = MahjongConst.Sizes.OFFSET_X1
-	if ming_gang_num > 0 then
-		offset_x1 = offset_x1 + MahjongConst.Sizes.CARD_W3 / 2 + MahjongConst.Sizes.CARD_W1 / 2
-	end
-
-	local mahjongs_num = mahjongs:visible_hand_cards_size()
-	for i = 4 * ming_gang_num, mahjongs_num - 1 do
-		local mj_node = MahjongCreator.create(MahjongConst.Directions.SELF, 
-										      MahjongConst.Types.VISIBLE, 
-										      mahjongs:visible_hand_cards(i))
-
-		if mj_node then
-			offset_x2 = offset_x1 + MahjongConst.Sizes.CARD_W1 * (i - 4 * ming_gang_num)
-			mj_node:setPosition(cc.p(offset_x2, MahjongConst.Sizes.OFFSET_Y1))
-			self.mahjong_layer_:addChild(mj_node)
-
-			table.insert(self.visible_mj_nodes_player_self_, mj_node)
+	-- an gang
+	if an_gang_cards_size >= 4 then
+		if ming_gang_cards_size <= 0 then
+			offset_x = MahjongConst.Sizes.OFFSET_X2
+		end
+		for i = 1, an_gang_cards_size / 4 do
+			local mj_node = MahjongCreator.create(MahjongConst.Directions.SELF, 
+												  MahjongConst.Types.INVISIBLE_3, 
+												  player_cards:an_gang_cards(4 * (i - 1)))
+			if mj_node then
+				mj_node:setPosition(cc.p(offset_x, MahjongConst.Sizes.OFFSET_Y2))
+				self.mahjong_layer_:addChild(mj_node)
+				offsetx = offset_x + MahjongConst.Sizes.CARD_W3 / 2 + MahjongConst.Sizes.CARD_INTERVAL1
+				offset_x = offset_x + MahjongConst.Sizes.CARD_W3
+				table.insert(self.visible_mj_nodes_player_self_, mj_node)
+			end
 		end
 	end
 
-	-- get offset x for invisible mahjongs
-	local offset_x = 0
-	if ming_gang_num > 0 then
-		if offset_x2 ~= MahjongConst.Sizes.OFFSET_X1 then -- contain ming gang and peng(not ming gang) or chi  
-			offset_x = offset_x2 + MahjongConst.Sizes.CARD_W1 / 2 + MahjongConst.Sizes.CARD_INTERVAL1
-		else -- only contains ming gang 
-			offset_x = offset_x1 + MahjongConst.Sizes.CARD_W1 / 2
+	-- peng 
+	if peng_cards_size > 0 then
+		if ming_gang_cards_size > 0 or an_gang_cards_size > 0 then
+			offset_x = offset_x - MahjongConst.Sizes.CARD_W3 / 2 + MahjongConst.Sizes.CARD_W1 / 2
 		end
-	else
-		if mahjongs_num > 0 then
-			offset_x = offset_x2 + MahjongConst.Sizes.CARD_W1 / 2 + MahjongConst.Sizes.CARD_INTERVAL1
-		else
-			offset_x = MahjongConst.Sizes.OFFSET_X1
+
+		for i = 1, peng_cards_size do
+			local mj_node = MahjongCreator.create(MahjongConst.Directions.SELF, 
+												  MahjongConst.Types.VISIBLE, 
+												  player_cards:peng_cards(i - 1))
+			if mj_node then
+				mj_node:setPosition(cc.p(offset_x, MahjongConst.Sizes.OFFSET_Y1))
+				self.mahjong_layer_:addChild(mj_node)
+				offsetx = offset_x + MahjongConst.Sizes.CARD_W2 / 2 + MahjongConst.Sizes.CARD_INTERVAL1
+				offset_x = offset_x + MahjongConst.Sizes.CARD_W1
+				table.insert(self.visible_mj_nodes_player_self_, mj_node)
+			end
 		end
 	end
 
-	return offset_x
+	-- chi
+	if chi_cards_size > 0 then
+		if peng_cards_size <= 0 and (ming_gang_cards_size > 0 or an_gang_cards_size > 0) then
+			offset_x = offset_x - MahjongConst.Sizes.CARD_W3 / 2 + MahjongConst.Sizes.CARD_W1 / 2
+		end
+
+		for i = 1, chi_cards_size do
+			local mj_node = MahjongCreator.create(MahjongConst.Directions.SELF, 
+												  MahjongConst.Types.VISIBLE, 
+												  player_cards:chi_cards(i - 1))
+			if mj_node then
+				mj_node:setPosition(cc.p(offset_x, MahjongConst.Sizes.OFFSET_Y1))
+				self.mahjong_layer_:addChild(mj_node)
+				offsetx = offset_x + MahjongConst.Sizes.CARD_W2 / 2 + MahjongConst.Sizes.CARD_INTERVAL1
+				offset_x = offset_x + MahjongConst.Sizes.CARD_W1
+				table.insert(self.visible_mj_nodes_player_self_, mj_node)
+			end
+		end
+	end
+
+	return offsetx
 end
 
-function NormalRoomScene:initInvisibleMahjongsOfPlayerSelf(mahjongs, offset_x)
-	for i = 0, mahjongs:invisible_hand_cards_size() - 1 do
+function NormalRoomScene:initInvisibleMahjongsOfPlayerSelf()
+	self.invisible_mj_nodes_player_self_ = {}
+	local myInsert = table.insert
+	local player_cards = gamer.data_mgr_:cards_msg_protocol_of_player_self()
+	for i = 0, player_cards:invisible_hand_cards_size() - 1 do
 		local mj_node = MahjongCreator.create(MahjongConst.Directions.SELF, 
 											  MahjongConst.Types.INVISIBLE, 
-											  mahjongs:invisible_hand_cards(i))
+											  player_cards:invisible_hand_cards(i))
 		if mj_node then
-			mj_node:setPosition(cc.p(offset_x + MahjongConst.Sizes.CARD_W2 * i, MahjongConst.Sizes.OFFSET_Y3))
+			mj_node:setPosition(cc.p(self.player_self_invisible_mj_offset_x_ + MahjongConst.Sizes.CARD_W2 * i, 
+			                         MahjongConst.Sizes.OFFSET_Y3))
 			self.mahjong_layer_:addChild(mj_node)
 
 			local img_bg = mj_node:getChildByName("img_bg")
 			img_bg:setTouchEnabled(true)
 			img_bg:addClickEventListener(handler(self, self.onMahjongNodeTouch))
 
-			table.insert(self.invisible_mj_nodes_player_self_, mj_node)
+			myInsert(self.invisible_mj_nodes_player_self_, mj_node)
 		end
 	end
 end
 
 -- @ return : position offset x, y for invisible card
-function NormalRoomScene:initVisibleMahjongsOfLeftPlayer(mahjongs, ming_gang_num)
+function NormalRoomScene:initVisibleMahjongsOfLeftPlayer()
 	-- ming gang
-	local offset_x1 = MahjongConst.Sizes.LEFT_CARD_OFFSET_X0
-	local offset_y1 = MahjongConst.Sizes.CARD_OFFSET_Y0
-	for i = 1, ming_gang_num do
-		local mj_node = MahjongCreator.create(MahjongConst.Directions.LEFT, 
-											  MahjongConst.Types.VISIBLE_MING_GANG, 
-											  mahjongs:visible_hand_cards(4 * (i - 1)))
-		if mj_node then
-			offset_x1 = MahjongConst.Sizes.LEFT_CARD_OFFSET_X0 - MahjongConst.Sizes.CARD_OFFSET_X3 * (i - 1)
-			offset_y1 = MahjongConst.Sizes.CARD_OFFSET_Y0 - MahjongConst.Sizes.CARD_OFFSET_Y3 * (i - 1)
-			mj_node:setPosition(cc.p(offset_x1, offset_y1))
-			self.mahjong_layer_:addChild(mj_node)
+	local player_cards         = gamer.data_mgr_:cards_msg_protocol_of_left_player()
+	local ming_gang_cards_size = player_cards:ming_gang_cards_size()
+	local an_gang_cards_size   = player_cards:an_gang_cards_size()
+	local peng_cards_size      = player_cards:peng_cards_size()
+	local chi_cards_size       = player_cards:chi_cards_size()
+	local offset_x             = MahjongConst.Sizes.LEFT_CARD_OFFSET_X0
+	local offset_y             = MahjongConst.Sizes.CARD_OFFSET_Y0
+	local offsetx			   = offset_x -- for return
+	local offsety			   = offset_y -- for return
+
+	if ming_gang_cards_size >= 4 then
+		for i = 1, ming_gang_cards_size / 4 do
+			local mj_node = MahjongCreator.create(MahjongConst.Directions.LEFT, 
+												  MahjongConst.Types.VISIBLE_MING_GANG, 
+												  player_cards:ming_gang_cards(4 * (i - 1)))
+			if mj_node then
+				mj_node:setPosition(cc.p(offset_x, offset_y))
+				self.mahjong_layer_:addChild(mj_node)
+				offset_x = offset_x - MahjongConst.Sizes.CARD_OFFSET_X3
+				offset_y = offset_y - MahjongConst.Sizes.CARD_OFFSET_Y3
+			end
 		end
 	end
 
-	-- not ming gang
-	local offset_x2 = MahjongConst.Sizes.LEFT_CARD_OFFSET_X0
-	local offset_y2 = MahjongConst.Sizes.CARD_OFFSET_Y0
-	if ming_gang_num > 0 then
-		offset_x1 = offset_x1 - MahjongConst.Sizes.CARD_OFFSET_X3 / 2 - MahjongConst.Sizes.CARD_OFFSET_X1 / 2
-		offset_y1 = offset_y1 - MahjongConst.Sizes.CARD_OFFSET_Y3 / 2 - MahjongConst.Sizes.CARD_OFFSET_Y1 / 2
-	end
-
-	local mahjongs_num = mahjongs:visible_hand_cards_size()
-	for i = 4 * ming_gang_num, mahjongs_num - 1 do
-		local mj_node = MahjongCreator.create(MahjongConst.Directions.LEFT, 
-										      MahjongConst.Types.VISIBLE, 
-										      mahjongs:visible_hand_cards(i))
-
-		if mj_node then
-			offset_x2 = offset_x1 - MahjongConst.Sizes.CARD_OFFSET_X1 * (i - 4 * ming_gang_num)
-			offset_y2 = offset_y1 - MahjongConst.Sizes.CARD_OFFSET_Y1 * (i - 4 * ming_gang_num)
-			mj_node:setPosition(cc.p(offset_x2, offset_y2))
-			self.mahjong_layer_:addChild(mj_node)
+	-- an gang
+	if an_gang_cards_size >= 4 then
+		for i = 1, an_gang_cards_size / 4 do
+			local mj_node = MahjongCreator.create(MahjongConst.Directions.LEFT, 
+												  MahjongConst.Types.INVISIBLE_3, 
+												  player_cards:an_gang_cards(4 * (i - 1)))
+			if mj_node then
+				mj_node:setPosition(cc.p(offset_x, offset_y))
+				self.mahjong_layer_:addChild(mj_node)
+				offset_x = offset_x - MahjongConst.Sizes.CARD_OFFSET_X3
+				offset_y = offset_y - MahjongConst.Sizes.CARD_OFFSET_Y3
+			end
 		end
 	end
 
-	-- get cur offset
-	local offset_x = 0
-	local offset_y = 0
-	if ming_gang_num > 0 then
-		if offset_x2 ~= MahjongConst.Sizes.LEFT_CARD_OFFSET_X0 then -- contain ming gang and peng(not ming gang) or chi
-			offset_x = offset_x2 - MahjongConst.Sizes.CARD_OFFSET_X1
-			offset_y = offset_y2 - MahjongConst.Sizes.CARD_OFFSET_Y1
-		else -- only contains ming gang 
-			offset_x = offset_x1 - MahjongConst.Sizes.CARD_OFFSET_X1 / 2
-			offset_y = offset_y1 - MahjongConst.Sizes.CARD_OFFSET_Y1 / 2
+	-- peng
+	if peng_cards_size > 0 then
+		if ming_gang_cards_size > 0 or an_gang_cards_size > 0 then
+			offset_x = offset_x + MahjongConst.Sizes.CARD_OFFSET_X3 / 3
+			offset_y = offset_y + MahjongConst.Sizes.CARD_OFFSET_Y3 / 3
 		end
-	else
-		if mahjongs_num > 0 then
-			offset_x = offset_x2 - MahjongConst.Sizes.CARD_OFFSET_X1 / 2
-			offset_y = offset_y2 - MahjongConst.Sizes.CARD_OFFSET_Y1 / 2
-		else
-			offset_x = MahjongConst.Sizes.LEFT_CARD_OFFSET_X0
-			offset_y = MahjongConst.Sizes.CARD_OFFSET_Y0
+
+		for i = 0, peng_cards_size - 1 do
+			local mj_node = MahjongCreator.create(MahjongConst.Directions.LEFT, 
+												  MahjongConst.Types.VISIBLE, 
+												  player_cards:peng_cards(i))
+			if mj_node then
+				mj_node:setPosition(cc.p(offset_x, offset_y))
+				self.mahjong_layer_:addChild(mj_node)
+				offset_x = offset_x - MahjongConst.Sizes.CARD_OFFSET_X1
+				offset_y = offset_y - MahjongConst.Sizes.CARD_OFFSET_Y1
+			end
+		end
+	end
+
+	-- chi 
+	if chi_cards_size > 0 then
+		if peng_cards_size <= 0 and (ming_gang_cards_size > 0 or an_gang_cards_size > 0) then
+			offset_x = offset_x + MahjongConst.Sizes.CARD_OFFSET_X3 / 3
+			offset_y = offset_y + MahjongConst.Sizes.CARD_OFFSET_Y3 / 3
+		end
+
+		for i = 0, chi_cards_size - 1 do
+			local mj_node = MahjongCreator.create(MahjongConst.Directions.LEFT, 
+												  MahjongConst.Types.VISIBLE, 
+												  player_cards:chi_cards(i))
+			if mj_node then
+				mj_node:setPosition(cc.p(offset_x, offset_y))
+				self.mahjong_layer_:addChild(mj_node)
+				offset_x = offset_x - MahjongConst.Sizes.CARD_OFFSET_X1
+				offset_y = offset_y - MahjongConst.Sizes.CARD_OFFSET_Y1
+			end
 		end
 	end
 
 	return offset_x, offset_y
 end
 
-function NormalRoomScene:initInvisibleMahjongsOfLeftPlayer(mahjongs, offset_x, offset_y)
-	for i = 0, mahjongs:invisible_hand_cards_num() - 1 do
+function NormalRoomScene:initInvisibleMahjongsOfLeftPlayer(offset_x, offset_y)
+	local player_cards = gamer.data_mgr_:ards_msg_protocol_of_left_player()
+	for i = 0, player_cards:invisible_hand_cards_num() - 1 do
 		local mj_node = MahjongCreator.create(MahjongConst.Directions.LEFT, 
 											  MahjongConst.Types.INVISIBLE)
 		if mj_node then
@@ -274,71 +317,104 @@ function NormalRoomScene:initInvisibleMahjongsOfLeftPlayer(mahjongs, offset_x, o
 end
 
 -- @ return : position offset x for invisible card
-function NormalRoomScene:initVisibleMahjongsOfOppositePlayer(mahjongs, ming_gang_num)
+function NormalRoomScene:initVisibleMahjongsOfOppositePlayer()
 	-- ming gang
-	local myInsert = table.insert
-	local offset_x1 = MahjongConst.Sizes.OPPOSITE_CARD_OFFSET_X0
-	for i = 1, ming_gang_num do
-		local mj_node = MahjongCreator.create(MahjongConst.Directions.OPPOSITE, 
-											  MahjongConst.Types.VISIBLE_MING_GANG, 
-											  mahjongs:visible_hand_cards(4 * (i - 1)))
-		if mj_node then
-			offset_x1 = MahjongConst.Sizes.OPPOSITE_CARD_OFFSET_X0 - 
-			            MahjongConst.Sizes.OPPOSITE_CARD_OFFSET_X1 * (i - 1)
-			mj_node:setPosition(cc.p(offset_x1, MahjongConst.Sizes.OPPOSITE_CARD_OFFSET_Y0))
-			self.mahjong_layer_:addChild(mj_node)
-			myInsert(self.visible_ming_gang_mj_nodes_opposite_player_, mj_node)
+	local player_cards         = gamer.data_mgr_:cards_msg_protocol_of_opposite_player()
+	local ming_gang_cards_size = player_cards:ming_gang_cards_size()
+	local an_gang_cards_size   = player_cards:an_gang_cards_size()
+	local peng_cards_size      = player_cards:peng_cards_size()
+	local chi_cards_size       = player_cards:chi_cards_size()
+	local offset_x             = MahjongConst.Sizes.OPPOSITE_CARD_OFFSET_X0
+	local offsetx			   = MahjongConst.Sizes.OPPOSITE_CARD_OFFSET_X0 -- for return
+	self.visible_mj_nodes_opposite_player_ = {}
+
+	if ming_gang_cards_size >= 4 then
+		offset_x = MahjongConst.Sizes.OPPOSITE_CARD_OFFSET_X0
+		for i = 1, ming_gang_cards_size / 4 do
+			local mj_node = MahjongCreator.create(MahjongConst.Directions.OPPOSITE, 
+												  MahjongConst.Types.VISIBLE_MING_GANG, 
+												  player_cards:ming_gang_cards(4 * (i - 1)))
+			if mj_node then
+				mj_node:setPosition(cc.p(offset_x, MahjongConst.Sizes.OPPOSITE_CARD_OFFSET_Y0))
+				self.mahjong_layer_:addChild(mj_node)
+				offsetx = offset_x - MahjongConst.Sizes.OPPOSITE_CARD_OFFSET_X3 / 2 - 
+				          MahjongConst.Sizes.OPPOSITE_CARD_OFFSET_X1 / 2 - MahjongConst.Sizes.CARD_INTERVAL2
+				offset_x = offset_x - MahjongConst.Sizes.OPPOSITE_CARD_OFFSET_X3
+				table.insert(self.visible_mj_nodes_opposite_player_, mj_node)
+			end
 		end
 	end
 
-	-- not ming gang
-	local offset_x2 = MahjongConst.Sizes.OPPOSITE_CARD_OFFSET_X0
-	if ming_gang_num > 0 then
-		offset_x1 = offset_x1 - MahjongConst.Sizes.OPPOSITE_CARD_OFFSET_X3 / 2 - 
-		            MahjongConst.Sizes.OPPOSITE_CARD_OFFSET_X1 / 2
-	end
-
-	local mahjongs_num = mahjongs:visible_hand_cards_size()
-	for i = 4 * ming_gang_num, mahjongs_num - 1 do
-		local mj_node = MahjongCreator.create(MahjongConst.Directions.OPPOSITE, 
-										      MahjongConst.Types.VISIBLE, 
-										      mahjongs:visible_hand_cards(i))
-
-		if mj_node then
-			offset_x2 = offset_x1 - MahjongConst.Sizes.OPPOSITE_CARD_OFFSET_X1 * (i - 4 * ming_gang_num)
-			mj_node:setPosition(cc.p(offset_x2, MahjongConst.Sizes.OPPOSITE_CARD_OFFSET_Y0))
-			self.mahjong_layer_:addChild(mj_node)
-			myInsert(self.visible_mj_nodes_opposite_player_, mj_node)
+	-- an gang
+	if an_gang_cards_size >= 4 then
+		for i = 1, an_gang_cards_size / 4 do
+			local mj_node = MahjongCreator.create(MahjongConst.Directions.OPPOSITE, 
+												  MahjongConst.Types.INVISIBLE_3, 
+												  player_cards:an_gang_cards(4 * (i - 1)))
+			if mj_node then
+				mj_node:setPosition(cc.p(offset_x, MahjongConst.Sizes.OPPOSITE_CARD_OFFSET_Y0))
+				self.mahjong_layer_:addChild(mj_node)
+				offsetx = offset_x - MahjongConst.Sizes.OPPOSITE_CARD_OFFSET_X3 / 2 - 
+				          MahjongConst.Sizes.OPPOSITE_CARD_OFFSET_X1 / 2 - MahjongConst.Sizes.CARD_INTERVAL2
+				offset_x = offset_x - MahjongConst.Sizes.OPPOSITE_CARD_OFFSET_X3
+				table.insert(self.visible_mj_nodes_opposite_player_, mj_node)
+			end
 		end
 	end
 
-	-- get cur offset x
-	local offset_x = 0
-	if ming_gang_num > 0 then
-		if offset_x2 ~= MahjongConst.Sizes.OPPOSITE_CARD_OFFSET_X0 then -- contain ming gang and peng(not ming gang) or chi 
-			offset_x = offset_x2 - MahjongConst.Sizes.OPPOSITE_CARD_OFFSET_X1 - MahjongConst.Sizes.CARD_INTERVAL2
-		else -- only contains ming gang 
-			offset_x = offset_x1 - MahjongConst.Sizes.OPPOSITE_CARD_OFFSET_X1 / 2
+	-- peng 
+	if peng_cards_size > 0 then
+		if ming_gang_cards_size > 0 or an_gang_cards_size > 0 then
+			offset_x = offset_x + MahjongConst.Sizes.OPPOSITE_CARD_OFFSET_X3 / 3
 		end
-	else
-		if mahjongs_num > 0 then
-			offset_x = offset_x2 - MahjongConst.Sizes.OPPOSITE_CARD_OFFSET_X1 - MahjongConst.Sizes.CARD_INTERVAL2
-		else
-			offset_x = MahjongConst.Sizes.OPPOSITE_CARD_OFFSET_X0
+
+		for i = 1, peng_cards_size do
+			local mj_node = MahjongCreator.create(MahjongConst.Directions.OPPOSITE, 
+												  MahjongConst.Types.VISIBLE, 
+												  player_cards:peng_cards(i - 1))
+			if mj_node then
+				mj_node:setPosition(cc.p(offset_x, MahjongConst.Sizes.OPPOSITE_CARD_OFFSET_Y0))
+				self.mahjong_layer_:addChild(mj_node)
+				offsetx = offset_x - MahjongConst.Sizes.OPPOSITE_CARD_OFFSET_X1 - MahjongConst.Sizes.CARD_INTERVAL2
+				offset_x = offset_x - MahjongConst.Sizes.OPPOSITE_CARD_OFFSET_X1
+				table.insert(self.visible_mj_nodes_opposite_player_, mj_node)
+			end
 		end
 	end
 
-	return offset_x
+	-- chi
+	if chi_cards_size > 0 then
+		if peng_cards_size <= 0 and (ming_gang_cards_size > 0 or an_gang_cards_size > 0) then
+			offset_x = offset_x + MahjongConst.Sizes.OPPOSITE_CARD_OFFSET_X3 / 3
+		end
+		for i = 1, chi_cards_size do
+			local mj_node = MahjongCreator.create(MahjongConst.Directions.OPPOSITE, 
+												  MahjongConst.Types.VISIBLE, 
+												  player_cards:chi_cards(i - 1))
+			if mj_node then
+				mj_node:setPosition(cc.p(offset_x, MahjongConst.Sizes.OPPOSITE_CARD_OFFSET_Y0))
+				self.mahjong_layer_:addChild(mj_node)
+				offsetx = offset_x - MahjongConst.Sizes.OPPOSITE_CARD_OFFSET_X1 - MahjongConst.Sizes.CARD_INTERVAL2
+				offset_x = offset_x - MahjongConst.Sizes.OPPOSITE_CARD_OFFSET_X1
+				table.insert(self.visible_mj_nodes_opposite_player_, mj_node)
+			end
+		end
+	end
+
+	return offsetx
 end
 
-function NormalRoomScene:initInvisibleMahjongsOfOppositePlayer(mahjongs, offset_x)
-	print("NormalRoomScene:initInvisibleMahjongsOfOppositePlayer, invisible_hand_cards_num : ", mahjongs:invisible_hand_cards_num())
+function NormalRoomScene:initInvisibleMahjongsOfOppositePlayer()
+	local player_cards = gamer.data_mgr_:cards_msg_protocol_of_opposite_player()
 	local myInsert = table.insert
-	for i = 0, mahjongs:invisible_hand_cards_num() - 1 do
+	self.invisible_mj_nodes_opposite_player_ = {}
+	print("[NormalRoomScene:initInvisibleMahjongsOfOppositePlayer] invisible_hand_cards_num : ", player_cards:invisible_hand_cards_num())
+	for i = 0, player_cards:invisible_hand_cards_num() - 1 do
 		local mj_node = MahjongCreator.create(MahjongConst.Directions.OPPOSITE, 
 											  MahjongConst.Types.INVISIBLE)
 		if mj_node then
-			mj_node:setPosition(cc.p(offset_x - MahjongConst.Sizes.OPPOSITE_CARD_OFFSET_X2 * i, 
+			mj_node:setPosition(cc.p(self.opposite_player_invisible_mj_offset_x_ - 
+			                         MahjongConst.Sizes.OPPOSITE_CARD_OFFSET_X2 * i, 
 			                         MahjongConst.Sizes.OPPOSITE_CARD_OFFSET_Y0))
 			self.mahjong_layer_:addChild(mj_node)
 			myInsert(self.invisible_mj_nodes_opposite_player_, mj_node)
@@ -347,70 +423,91 @@ function NormalRoomScene:initInvisibleMahjongsOfOppositePlayer(mahjongs, offset_
 end
 
 -- @ return : position offset x, y for invisible card
-function NormalRoomScene:initVisibleMahjongsOfRightPlayer(mahjongs, ming_gang_num)
+function NormalRoomScene:initVisibleMahjongsOfRightPlayer()
 	-- ming gang
-	local offset_x1 = MahjongConst.Sizes.RIGHT_CARD_OFFSET_X0
-	local offset_y1 = MahjongConst.Sizes.CARD_OFFSET_Y0
-	for i = 1, ming_gang_num do
-		local mj_node = MahjongCreator.create(MahjongConst.Directions.RIGHT, 
-											  MahjongConst.Types.VISIBLE_MING_GANG, 
-											  mahjongs:visible_hand_cards(4 * (i - 1)))
-		if mj_node then
-			offset_x1 = MahjongConst.Sizes.RIGHT_CARD_OFFSET_X0 + MahjongConst.Sizes.CARD_OFFSET_X3 * (i - 1)
-			offset_y1 = MahjongConst.Sizes.CARD_OFFSET_Y0 - MahjongConst.Sizes.CARD_OFFSET_Y3 * (i - 1)
-			mj_node:setPosition(cc.p(offset_x1, offset_y1))
-			self.mahjong_layer_:addChild(mj_node)
+	local player_cards         = gamer.data_mgr_:cards_msg_protocol_of_right_player()
+	local ming_gang_cards_size = player_cards:ming_gang_cards_size()
+	local an_gang_cards_size   = player_cards:an_gang_cards_size()
+	local peng_cards_size      = player_cards:peng_cards_size()
+	local chi_cards_size       = player_cards:chi_cards_size()
+	local offset_x             = MahjongConst.Sizes.RIGHT_CARD_OFFSET_X0
+	local offset_y             = MahjongConst.Sizes.CARD_OFFSET_Y0
+
+	if ming_gang_cards_size >= 4 then
+		for i = 1, ming_gang_cards_size / 4 do
+			local mj_node = MahjongCreator.create(MahjongConst.Directions.RIGHT, 
+												  MahjongConst.Types.VISIBLE_MING_GANG, 
+												  player_cards:ming_gang_cards(4 * (i - 1)))
+			if mj_node then
+				mj_node:setPosition(cc.p(offset_x, offset_y))
+				self.mahjong_layer_:addChild(mj_node)
+				offset_x = offset_x + MahjongConst.Sizes.CARD_OFFSET_X3
+				offset_y = offset_y - MahjongConst.Sizes.CARD_OFFSET_Y3
+			end
 		end
 	end
 
-	-- not ming gang
-	local offset_x2 = MahjongConst.Sizes.RIGHT_CARD_OFFSET_X0
-	local offset_y2 = MahjongConst.Sizes.CARD_OFFSET_Y0
-	if ming_gang_num > 0 then
-		offset_x1 = offset_x1 + MahjongConst.Sizes.CARD_OFFSET_X3 / 2 + MahjongConst.Sizes.CARD_OFFSET_X1 / 2
-		offset_y1 = offset_y1 - MahjongConst.Sizes.CARD_OFFSET_Y3 / 2 - MahjongConst.Sizes.CARD_OFFSET_Y1 / 2
-	end
-
-	local mahjongs_num = mahjongs:visible_hand_cards_size()
-	for i = 4 * ming_gang_num, mahjongs_num - 1 do
-		local mj_node = MahjongCreator.create(MahjongConst.Directions.RIGHT, 
-										      MahjongConst.Types.VISIBLE, 
-										      mahjongs:visible_hand_cards(i))
-
-		if mj_node then
-			offset_x2 = offset_x1 + MahjongConst.Sizes.CARD_OFFSET_X1 * (i - 4 * ming_gang_num)
-			offset_y2 = offset_y1 - MahjongConst.Sizes.CARD_OFFSET_Y1 * (i - 4 * ming_gang_num)
-			mj_node:setPosition(cc.p(offset_x2, offset_y2))
-			self.mahjong_layer_:addChild(mj_node)
+	-- an gang
+	if an_gang_cards_size >= 4 then
+		for i = 1, an_gang_cards_size / 4 do
+			local mj_node = MahjongCreator.create(MahjongConst.Directions.RIGHT, 
+												  MahjongConst.Types.INVISIBLE_3, 
+												  player_cards:an_gang_cards(4 * (i - 1)))
+			if mj_node then
+				mj_node:setPosition(cc.p(offset_x, offset_y))
+				self.mahjong_layer_:addChild(mj_node)
+				offset_x = offset_x + MahjongConst.Sizes.CARD_OFFSET_X3
+				offset_y = offset_y - MahjongConst.Sizes.CARD_OFFSET_Y3
+			end
 		end
 	end
 
-	-- get cur offset
-	local offset_x = 0
-	local offset_y = 0
-	if ming_gang_num > 0 then
-		if offset_x2 ~= MahjongConst.Sizes.RIGHT_CARD_OFFSET_X0 then -- contain ming gang and peng(not ming gang) or chi
-			offset_x = offset_x2 + MahjongConst.Sizes.CARD_OFFSET_X1
-			offset_y = offset_y2 - MahjongConst.Sizes.CARD_OFFSET_Y1
-		else -- only contains ming gang 
-			offset_x = offset_x1 + MahjongConst.Sizes.CARD_OFFSET_X1 / 2
-			offset_y = offset_y1 - MahjongConst.Sizes.CARD_OFFSET_Y1 / 2
+	-- peng
+	if peng_cards_size > 0 then
+		if ming_gang_cards_size > 0 or an_gang_cards_size > 0 then
+			offset_x = offset_x - MahjongConst.Sizes.CARD_OFFSET_X3 / 3
+			offset_y = offset_y + MahjongConst.Sizes.CARD_OFFSET_Y3 / 3
 		end
-	else
-		if mahjongs_num > 0 then
-			offset_x = offset_x2 + MahjongConst.Sizes.CARD_OFFSET_X1 / 2
-			offset_y = offset_y2 - MahjongConst.Sizes.CARD_OFFSET_Y1 / 2
-		else
-			offset_x = MahjongConst.Sizes.RIGHT_CARD_OFFSET_X0
-			offset_y = MahjongConst.Sizes.CARD_OFFSET_Y0
+
+		for i = 0, peng_cards_size - 1 do
+			local mj_node = MahjongCreator.create(MahjongConst.Directions.RIGHT, 
+												  MahjongConst.Types.VISIBLE, 
+												  player_cards:peng_cards(i))
+			if mj_node then
+				mj_node:setPosition(cc.p(offset_x, offset_y))
+				self.mahjong_layer_:addChild(mj_node)
+				offset_x = offset_x + MahjongConst.Sizes.CARD_OFFSET_X1
+				offset_y = offset_y - MahjongConst.Sizes.CARD_OFFSET_Y1
+			end
+		end
+	end
+
+	-- chi 
+	if chi_cards_size > 0 then
+		if peng_cards_size <= 0 and (ming_gang_cards_size > 0 or an_gang_cards_size > 0) then
+			offset_x = offset_x - MahjongConst.Sizes.CARD_OFFSET_X3 / 3
+			offset_y = offset_y + MahjongConst.Sizes.CARD_OFFSET_Y3 / 3
+		end
+
+		for i = 0, chi_cards_size - 1 do
+			local mj_node = MahjongCreator.create(MahjongConst.Directions.RIGHT, 
+												  MahjongConst.Types.VISIBLE, 
+												  player_cards:chi_cards(i))
+			if mj_node then
+				mj_node:setPosition(cc.p(offset_x, offset_y))
+				self.mahjong_layer_:addChild(mj_node)
+				offset_x = offset_x + MahjongConst.Sizes.CARD_OFFSET_X1
+				offset_y = offset_y - MahjongConst.Sizes.CARD_OFFSET_Y1
+			end
 		end
 	end
 
 	return offset_x, offset_y
 end
 
-function NormalRoomScene:initInvisibleMahjongsOfRightPlayer(mahjongs, offset_x, offset_y)
-	for i = 0, mahjongs:invisible_hand_cards_num() - 1 do
+function NormalRoomScene:initInvisibleMahjongsOfRightPlayer(offset_x, offset_y)
+	local player_cards = gamer.data_mgr_:cards_msg_protocol_of_right_player()
+	for i = 0, player_cards:invisible_hand_cards_num() - 1 do
 		local mj_node = MahjongCreator.create(MahjongConst.Directions.RIGHT, 
 											  MahjongConst.Types.INVISIBLE)
 		if mj_node then
@@ -421,29 +518,34 @@ function NormalRoomScene:initInvisibleMahjongsOfRightPlayer(mahjongs, offset_x, 
 	end
 end
 
-function NormalRoomScene:getMingGangNum(visible_mahjongs_num)
-	local ming_gang_num = 0
-	if 4 == visible_mahjongs_num then      -- 1 ming gang
-		ming_gang_num = 1
-	elseif 7 == visible_mahjongs_num then  -- 1 ming gang
-		ming_gang_num = 1
-	elseif 8 == visible_mahjongs_num then  -- 2 ming gang
-		ming_gang_num = 2
-	elseif 10 == visible_mahjongs_num then -- 1 ming gang
-		ming_gang_num = 1
-	elseif 11 == visible_mahjongs_num then -- 2 ming gang
-		ming_gang_num = 2
-	elseif 12 == visible_mahjongs_num then -- 3 ming gang
-		ming_gang_num = 3
-	end
-	return ming_gang_num
+function NormalRoomScene:initMahjongsAfterOperationForPlayerSelf()
+	self:removeAllMahjongNodes(self.visible_mj_nodes_player_self_)
+	self:removeAllMahjongNodes(self.invisible_mj_nodes_player_self_)
+
+	self:initMahjongsOfPlayerSelf()
+
+	self:removeLastDiscardNodeForPlayerSelf()
+end
+
+function NormalRoomScene:initMahjongsAfterOperationForLeftPlayer()
+end
+
+function NormalRoomScene:initMahjongsAfterOperationForOppositePlayer()
+	self:removeAllMahjongNodes(self.visible_mj_nodes_opposite_player_)
+	self:removeAllMahjongNodes(self.invisible_mj_nodes_opposite_player_)
+
+	self:initMahjongsOfOppositePlayer()
+
+	self:removeLastDiscardNodeForOppositePlayer()
+end
+
+function NormalRoomScene:initMahjongsAfterOperationForRightPlayer()
 end
 
 function NormalRoomScene:getNextDiscardPosOfPlayerSelf()
 	local x, y = MahjongConst.Sizes.DISCARD_X1, MahjongConst.Sizes.DISCARD_Y1
 	if self.player_self_last_discard_ then
 		local pos_x, pos_y = self.player_self_last_discard_:getPosition() 
-		--print("[NormalRoomScene:getNextDiscardPosOfPlayerSelf] pos_x, pos_y : ", pos_x,  pos_y)
 		if pos_y == MahjongConst.Sizes.DISCARD_Y1 then 
 			if pos_x < MahjongConst.Sizes.DISCARD_X11 then
 				x = pos_x + MahjongConst.Sizes.DISCARD_OFFSET_X
@@ -473,7 +575,6 @@ function NormalRoomScene:getNextDiscardPosOfLeftPlayer()
 	local x, y = MahjongConst.Sizes.LEFT_DISCARD_X1, MahjongConst.Sizes.LEFT_DISCARD_Y1
 	if self.left_player_last_discard_ then
 		local pos_x, pos_y = self.left_player_last_discard_:getPosition() 
-		--print("[NormalRoomScene:getNextDiscardPosOfLeftPlayer] pos_x, pos_y : ", pos_x,  pos_y)
 		if pos_y == MahjongConst.Sizes.LEFT_DISCARD_Y11 then
 			x, y = MahjongConst.Sizes.LEFT_DISCARD_X2, MahjongConst.Sizes.LEFT_DISCARD_Y2
 		elseif pos_y == MahjongConst.Sizes.LEFT_DISCARD_Y22 then
@@ -496,7 +597,6 @@ function NormalRoomScene:getNextDiscardPosOfOppositePlayer()
 	local x, y = MahjongConst.Sizes.OPPOSITE_DISCARD_X1, MahjongConst.Sizes.OPPOSITE_DISCARD_Y1
 	if self.opposite_player_last_discard_ then
 		local pos_x, pos_y = self.opposite_player_last_discard_:getPosition() 
-		--print("[NormalRoomScene:getNextDiscardPosOfOppositePlayer] pos_x, pos_y : ", pos_x,  pos_y)
 		if pos_y == MahjongConst.Sizes.OPPOSITE_DISCARD_Y1 then 
 			if pos_x > MahjongConst.Sizes.OPPOSITE_DISCARD_X11 then
 				x = pos_x - MahjongConst.Sizes.OPPOSITE_DISCARD_OFFSET_X
@@ -526,7 +626,6 @@ function NormalRoomScene:getNextDiscardPosOfRightPlayer()
 	local x, y = MahjongConst.Sizes.RIGHT_DISCARD_X1, MahjongConst.Sizes.RIGHT_DISCARD_Y1
 	if self.right_player_last_discard_ then
 		local pos_x, pos_y = self.right_player_last_discard_:getPosition() 
-		--print("[NormalRoomScene:getNextDiscardPosOfLeftPlayer] pos_x, pos_y : ", pos_x,  pos_y)
 		if pos_y == MahjongConst.Sizes.RIGHT_DISCARD_Y11 then
 			x, y = MahjongConst.Sizes.RIGHT_DISCARD_X2, MahjongConst.Sizes.RIGHT_DISCARD_Y2
 		elseif pos_y == MahjongConst.Sizes.RIGHT_DISCARD_Y22 then
@@ -587,153 +686,145 @@ function NormalRoomScene:removeMahjongNode(mahjong_nodes_table, mahjong_value)
 	end
 end
 
-function NormalRoomScene:addVisibleMahjongNodesForPlayerSelf(mahjong_values)
-	local offset_x = MahjongConst.Sizes.OFFSET_X1
-	local n1 = #self.visible_ming_gang_mj_nodes_player_self_
-	local n2 = #self.visible_mj_nodes_player_self_
-	if n1 > 0 then
-		offset_x = self.visible_ming_gang_mj_nodes_player_self_[n1]:getPositionX() + 
-			        MahjongConst.Sizes.CARD_W3 / 2 + MahjongConst.Sizes.CARD_W1 / 2
+function NormalRoomScene:removeLastMahjongNode(mahjong_nodes_table)
+	local n = #mahjong_nodes_table
+	if n > 0 then
+		mahjong_nodes_table[n]:removeFromParent()
+		table.remove(mahjong_nodes_table, n)
 	end
-	if n2 > 0 then
-		offset_x = offset_x + MahjongConst.Sizes.CARD_W1 * n2
-	end
-
-	local offsetx = MahjongConst.Sizes.OFFSET_X1
-	for i = 1, #mahjong_values do
-		local mj_node = MahjongCreator.create(MahjongConst.Directions.SELF, 
-										      MahjongConst.Types.VISIBLE, 
-										      mahjong_values[i])
-		if mj_node then
-			offsetx = offset_x + MahjongConst.Sizes.CARD_W1 * (i - 1)
-			mj_node:setPosition(cc.p(offsetx, MahjongConst.Sizes.OFFSET_Y1))
-			self.mahjong_layer_:addChild(mj_node)
-
-			table.insert(self.visible_mj_nodes_player_self_, mj_node)
-		end
-	end
-
-	return offsetx
 end
 
-function NormalRoomScene:addVisibleMahjongNodesForOppositePlayer(mahjong_values)
-	local offset_x = MahjongConst.Sizes.OPPOSITE_CARD_OFFSET_X0
-	local n1 = #self.visible_ming_gang_mj_nodes_opposite_player_
-	local n2 = #self.visible_mj_nodes_opposite_player_
-	if n1 > 0 then
-		offset_x = self.visible_ming_gang_mj_nodes_opposite_player_[n1]:getPositionX() - 
-			       MahjongConst.Sizes.OPPOSITE_CARD_OFFSET_X3 / 2 - 
-				   MahjongConst.Sizes.OPPOSITE_CARD_OFFSET_X1 / 2
-	end
-	if n2 > 0 then
-		offset_x = offset_x - MahjongConst.Sizes.OPPOSITE_CARD_OFFSET_X1 * n2
-	end
-
-	local offsetx = MahjongConst.Sizes.OPPOSITE_CARD_OFFSET_X0
-	for i = 1, #mahjong_values do
-		local mj_node = MahjongCreator.create(MahjongConst.Directions.OPPOSITE, 
-										      MahjongConst.Types.VISIBLE, 
-										      mahjong_values[i])
-		if mj_node then
-			offsetx = offset_x - MahjongConst.Sizes.OPPOSITE_CARD_OFFSET_X1 * (i - 1)
-			mj_node:setPosition(cc.p(offsetx, MahjongConst.Sizes.OPPOSITE_CARD_OFFSET_Y0))
-			self.mahjong_layer_:addChild(mj_node)
-
-			table.insert(self.visible_mj_nodes_opposite_player_, mj_node)
+function NormalRoomScene:removeMahjongNodes(mahjong_nodes_table, mahjong_value, num)
+	local func = function(nodes_table, value)
+		for k, v in pairs(nodes_table) do
+			if v:getTag() == value then
+				v:removeFromParent()
+				table.remove(nodes_table, k)
+				break
+			end
 		end
 	end
-
-	return offsetx
-end
-
-function NormalRoomScene:modifyInvisibleMjPosOfOppositePlayer(num, pos_last_visible_mj)
-	-- remove num mahjong nodes from invisible mahjong nodes
-	local n = #self.invisible_mj_nodes_opposite_player_
-	if n < num then
-		return
-	end
-	
 	for i = 1, num do
+		func(mahjong_nodes_table, mahjong_value)
+	end
+end
+
+function NormalRoomScene:removeAllMahjongNodes(mahjong_nodes_table)
+	local n = #mahjong_nodes_table
+	for i = 1, n do
 		local last = n - i + 1
-		self.invisible_mj_nodes_opposite_player_[last]:removeFromParent()
-		table.remove(self.invisible_mj_nodes_opposite_player_, last)
+		mahjong_nodes_table[last]:removeFromParent()
+		table.remove(mahjong_nodes_table, last)
+	end
+	mahjong_nodes_table = {}
+end
+
+function NormalRoomScene:removeLastDiscardNodeForPlayerSelf()
+	local players_num = gamer.data_mgr_:room_msg_protocol():players_num()
+	if players_num > 2 then
+		if self.left_player_last_discard_ then
+			self.left_player_last_discard_:removeFromParent()
+			self.left_player_last_discard_ = self.left_player_second_to_last_discard_
+		end
+	else
+		if self.opposite_player_last_discard_ then
+			self.opposite_player_last_discard_:removeFromParent()
+			self.opposite_player_last_discard_ = self.opposite_player_second_to_last_discard_
+		end
+	end
+end
+
+function NormalRoomScene:removeLastDiscardNodeForOppositePlayer()
+	local players_num = gamer.data_mgr_:room_msg_protocol():players_num()
+	if 2 == players_num then
+		if self.player_self_last_discard_ then
+			self.player_self_last_discard_:removeFromParent()
+			self.player_self_last_discard_ = self.player_self_second_to_last_discard_
+		end
+	elseif 4 == players_num then
+		if self.right_player_last_discard_ then
+			self.right_player_last_discard_:removeFromParent()
+			self.right_player_last_discard_ = self.right_player_second_to_last_discard_
+		end
+	end
+end
+
+function NormalRoomScene:modifyMahjongsOfPlayerSelfAfterDiscard(mahjong_value)
+	-- remove discard from invisible cards
+	gamer.data_mgr_:updateCardForDiscardOfPlayerSelf(mahjong_value)
+
+	-- add discard node
+	self:showDiscardOfPlayerSelf(mahjong_value)
+
+	-- remove invisible card node
+	local new_card = gamer.data_mgr_:play_card_msg_protocol():new_card()
+	if new_card == CardConst.CardValues.INVALID_CARD_VALUE then
+		self:removeMahjongNode(self.invisible_mj_nodes_player_self_, mahjong_value)
+		self:resetPositionOfInvisibleMahjongsForPlayerSelf()
+	elseif new_card == mahjong_value then
+		self:removeLastMahjongNode(self.invisible_mj_nodes_player_self_)
+	else
+		self:removeAllMahjongNodes(self.invisible_mj_nodes_player_self_)
+		self:initInvisibleMahjongsOfPlayerSelf()
 	end
 
-	-- modify invisibl mahjong nodes position
-	self.opposite_player_invisible_mj_offset_x_ = pos_last_visible_mj - MahjongConst.Sizes.OPPOSITE_CARD_OFFSET_X1 - 
-											      MahjongConst.Sizes.CARD_INTERVAL2
-	self:resetPositionOfInvisibleMahjongsForOppositePlayer()
+	self.last_selected_mj_ = nil
 end
 
 function NormalRoomScene:modifyMahjongsOfPlayerSelfAfterChi(cards)
-	-- add 3 visivle mahjong nodes for chi
-	local offset_x = self:addVisibleMahjongNodesForPlayerSelf(cards)
-
-	-- remove 2 invisivle mahjong nodes those use to chi
-	local discard = gamer.data_mgr_:play_card_msg_protocol():discard()
-	for _, v in pairs(cards) do
-		if v ~= discard then
-			self:removeMahjongNode(self.invisible_mj_nodes_player_self_, v)
-		end
-	end
-
-	-- modify position of invisivle mahjong nodes
-	self.player_self_invisible_mj_offset_x_ = offset_x + MahjongConst.Sizes.CARD_W1 / 2 + 
-			                                  MahjongConst.Sizes.CARD_INTERVAL1
-	self:resetPositionOfInvisibleMahjongsForPlayerSelf()
+	gamer.data_mgr_:updateCardForChi(gamer.data_mgr_:self_player_id(), cards[1], cards[2], cards[3])
+	
+	self:initMahjongsAfterOperationForPlayerSelf()
 end
 
 function NormalRoomScene:modifyMahjongsOfPlayerSelfAfterPeng()
 	local discard = gamer.data_mgr_:play_card_msg_protocol():discard()
-	-- add 3 visivle mahjong nodes for peng
-	local offset_x = self:addVisibleMahjongNodesForPlayerSelf({ discard, discard, discard })
+	gamer.data_mgr_:updateCardForPeng(gamer.data_mgr_:self_player_id(), discard)
 
-	-- remove 2 invisivle mahjong nodes those use to peng
-	self:removeMahjongNode(self.invisible_mj_nodes_player_self_, discard)
-	self:removeMahjongNode(self.invisible_mj_nodes_player_self_, discard)
-
-	-- modify position of invisivle mahjong nodes
-	self.player_self_invisible_mj_offset_x_ = offset_x + MahjongConst.Sizes.CARD_W1 / 2 + 
-			                                  MahjongConst.Sizes.CARD_INTERVAL1
-	self:resetPositionOfInvisibleMahjongsForPlayerSelf()
+	self:initMahjongsAfterOperationForPlayerSelf()
 end
 
-function NormalRoomScene:modifyMahjongsOfOppositePlayerAfterChi()
-	-- add mahjong for chi
-	local proto = gamer.data_mgr_:play_card_msg_protocol()
-	local size = proto:operating_cards_size()
-	if size ~= 2 then
-		print("[NormalRoomScene:modifyMahjongsOfOppositePlayerAfterChi] data error")
-		return
-	end
-
-	local cards = { proto:discard(), proto:operating_cards(0), proto:operating_cards(1) }
-	table.sort(cards)
-	local offset_x = self:addVisibleMahjongNodesForOppositePlayer(cards)
-	
-	-- remove 2 mahjong nodes from invisible mahjong nodes and reset invisibl mahjong nodes position
-	self:modifyInvisibleMjPosOfOppositePlayer(2, offset_x)
-end
-
-function NormalRoomScene:modifyMahjongsOfOppositePlayerAfterPeng()
-	-- add mahjong for peng
+function NormalRoomScene:modifyMahjongsOfPlayerSelfAfterPengGang()
 	local discard = gamer.data_mgr_:play_card_msg_protocol():discard()
-	local cards = { discard, discard, discard }
-	local offset_x = self:addVisibleMahjongNodesForOppositePlayer(cards)
+	gamer.data_mgr_:updateCardForPengAndGang(gamer.data_mgr_:self_player_id(), discard)
 
-	-- remove 2 mahjong nodes from invisible mahjong nodes and reset invisibl mahjong nodes position
-	self:modifyInvisibleMjPosOfOppositePlayer(2, offset_x)
+	self:initMahjongsAfterOperationForPlayerSelf()
+end
+
+function NormalRoomScene:modifyMahjongsOfPlayerSelfAfterMingGang()
+	local discard = gamer.data_mgr_:play_card_msg_protocol():discard()
+	gamer.data_mgr_:updateCardForMingGang(gamer.data_mgr_:self_player_id(), discard)
+
+	self:initMahjongsAfterOperationForPlayerSelf()
+end
+
+function NormalRoomScene:modifyMahjongsOfPlayerSelfAfterAnGang()
+	local discard = gamer.data_mgr_:play_card_msg_protocol():discard()
+	gamer.data_mgr_:updateCardForAnGang(gamer.data_mgr_:self_player_id(), discard)
+
+	self:initMahjongsAfterOperationForPlayerSelf()
+end
+
+function NormalRoomScene:modifyOtherPlayerMahjongsAfterDiscard(play_card_msg)
+	print("[NormalRoomScene:modifyOtherPlayerMahjongsAfterDiscard]")
+	local direction = PlayCardHelper.getPlayerDirection(play_card_msg:player_id())
+
+	if direction == MahjongConst.Directions.LEFT then
+	elseif direction == MahjongConst.Directions.OPPOSITE then
+		self:showDiscardOfOppositePlayer(play_card_msg:discard())
+		self:removeLastMahjongNode(self.invisible_mj_nodes_opposite_player_)
+	elseif direction == MahjongConst.Directions.RIGHT then
+	end
 end
 
 function NormalRoomScene:modifyOtherPlayerMahjongsAfterChi()
 	print("[NormalRoomScene:modifyOtherPlayerMahjongsAfterChi]")
 	local player_id = gamer.data_mgr_:play_card_msg_protocol():player_id()
 	local direction = PlayCardHelper.getPlayerDirection(player_id)
-	print("[NormalRoomScene:modifyOtherPlayerMahjongsAfterChi] direction : ", direction)
 
 	if direction == MahjongConst.Directions.LEFT then
 	elseif direction == MahjongConst.Directions.OPPOSITE then
-		self:modifyMahjongsOfOppositePlayerAfterChi()
+		self:initMahjongsAfterOperationForOppositePlayer()
 	elseif direction == MahjongConst.Directions.RIGHT then
 	end
 end
@@ -745,8 +836,95 @@ function NormalRoomScene:modifyOtherPlayerMahjongsAfterPeng()
 
 	if direction == MahjongConst.Directions.LEFT then
 	elseif direction == MahjongConst.Directions.OPPOSITE then
-		self:modifyMahjongsOfOppositePlayerAfterPeng()
+		self:initMahjongsAfterOperationForOppositePlayer()
 	elseif direction == MahjongConst.Directions.RIGHT then
+	end
+end
+
+function NormalRoomScene:modifyOtherPlayerMahjongsAfterPengGang()
+	print("[NormalRoomScene:modifyOtherPlayerMahjongsAfterPengGang]")
+	local player_id = gamer.data_mgr_:play_card_msg_protocol():player_id()
+	local direction = PlayCardHelper.getPlayerDirection(player_id)
+
+	if direction == MahjongConst.Directions.LEFT then
+	elseif direction == MahjongConst.Directions.OPPOSITE then
+		self:initMahjongsAfterOperationForOppositePlayer()
+	elseif direction == MahjongConst.Directions.RIGHT then
+	end
+end
+
+function NormalRoomScene:modifyOtherPlayerMahjongsAfterMingGang()
+	print("[NormalRoomScene:modifyOtherPlayerMahjongsAfterMingGang]")
+	local player_id = gamer.data_mgr_:play_card_msg_protocol():player_id()
+	local direction = PlayCardHelper.getPlayerDirection(player_id)
+
+	if direction == MahjongConst.Directions.LEFT then
+	elseif direction == MahjongConst.Directions.OPPOSITE then
+		self:initMahjongsAfterOperationForOppositePlayer()
+	elseif direction == MahjongConst.Directions.RIGHT then
+	end
+end
+
+function NormalRoomScene:modifyOtherPlayerMahjongsAfterAnGang()
+	print("[NormalRoomScene:modifyOtherPlayerMahjongsAfterAnGang]")
+	local player_id = gamer.data_mgr_:play_card_msg_protocol():player_id()
+	local direction = PlayCardHelper.getPlayerDirection(player_id)
+
+	if direction == MahjongConst.Directions.LEFT then
+	elseif direction == MahjongConst.Directions.OPPOSITE then
+		self:initMahjongsAfterOperationForOppositePlayer()
+	elseif direction == MahjongConst.Directions.RIGHT then
+	end
+end
+
+function NormalRoomScene:modifyOtherPlayerMahjongsAfterBuhua()
+	print("[NormalRoomScene:modifyOtherPlayerMahjongsAfterBuhua]")
+	local player_id = gamer.data_mgr_:play_card_msg_protocol():player_id()
+	local direction = PlayCardHelper.getPlayerDirection(player_id)
+
+	if direction == MahjongConst.Directions.LEFT then
+	elseif direction == MahjongConst.Directions.OPPOSITE then
+
+	elseif direction == MahjongConst.Directions.RIGHT then
+	end
+end
+
+function NormalRoomScene:modifyOtherPlayerMahjongsAfterHu()
+	print("[NormalRoomScene:modifyOtherPlayerMahjongsAfterHu]")
+	local player_id = gamer.data_mgr_:play_card_msg_protocol():player_id()
+	local direction = PlayCardHelper.getPlayerDirection(player_id)
+
+	if direction == MahjongConst.Directions.LEFT then
+	elseif direction == MahjongConst.Directions.OPPOSITE then
+		self:modifyMahjongsOfOppositePlayerAfterHu()
+	elseif direction == MahjongConst.Directions.RIGHT then
+	end
+end
+
+function NormalRoomScene:modifyOtherPlayerMahjongsAfterZimo()
+	print("[NormalRoomScene:modifyOtherPlayerMahjongsAfterZimo]")
+	local player_id = gamer.data_mgr_:play_card_msg_protocol():player_id()
+	local direction = PlayCardHelper.getPlayerDirection(player_id)
+
+	if direction == MahjongConst.Directions.LEFT then
+	elseif direction == MahjongConst.Directions.OPPOSITE then
+
+	elseif direction == MahjongConst.Directions.RIGHT then
+	end
+end
+
+function NormalRoomScene:resetPositionOfInvisibleMahjongsForPlayerSelf()
+	for k, v in pairs(self.invisible_mj_nodes_player_self_) do
+		v:setPosition(cc.p(self.player_self_invisible_mj_offset_x_ + MahjongConst.Sizes.CARD_W2 * (k - 1), 
+			               MahjongConst.Sizes.OFFSET_Y3))
+	end
+end
+
+function NormalRoomScene:resetPositionOfInvisibleMahjongsForOppositePlayer()
+	for k, v in pairs(self.invisible_mj_nodes_opposite_player_) do
+		v:setPosition(cc.p(self.opposite_player_invisible_mj_offset_x_ - 
+						   MahjongConst.Sizes.OPPOSITE_CARD_OFFSET_X1 * (k - 1), 
+			               MahjongConst.Sizes.OPPOSITE_CARD_OFFSET_Y0))
 	end
 end
 
@@ -756,8 +934,8 @@ function NormalRoomScene:showNextPlayCardDirection()
 	end
 
 	local players_num = gamer.data_mgr_:room_msg_protocol():players_num()
-	local cur_acting_player_id = gamer.data_mgr_:room_msg_protocol():cur_acting_player_id()
-	local img_name = PlayCardHelper.getNextPlayerDirectionImageName(players_num, cur_acting_player_id)
+	local player_id = gamer.data_mgr_:play_card_msg_protocol():next_operate_player_id()
+	local img_name = PlayCardHelper.getNextPlayerDirectionImageName(players_num, player_id)
 	print("[NormalRoomScene:initNextPlayCardDirection] img_name £º ", img_name)
 	self.img_player_direction_ = self.root_view_node_:getChildByName(img_name)
 	self.img_player_direction_:setVisible(true)
@@ -813,9 +991,12 @@ function NormalRoomScene:showAvailableOperationsForPlayerSelf(play_card_msg)
 	local discard = play_card_msg:discard()
 	print("[NormalRoomScene:showAvailableOperationsForPlayerSelf] operation_id : ", operation_id)
 	if operation_id == CardConst.OperationIDs.OPERATION_NONE then		   -- none
-		-- may be i have a new card
+		-- i have a new card and i can't operate except discard
+		print("[NormalRoomScene:showAvailableOperationsForPlayerSelf] new_card : ", play_card_msg:new_card())
 		if play_card_msg:new_card() ~= CardConst.CardValues.INVALID_CARD_VALUE then
-			self:dealWithNewCardOfPlayerSelf(msg, true)
+			self:dealWithNewCardOfPlayerSelf(play_card_msg, true)
+		elseif play_card_msg:next_operate_player_id() ~= CardConst.CardValues.INVALID_PLAYER_ID then -- means next player has got a new card
+			self:dealWithNewCardOfOtherPlayer(play_card_msg)
 		end
 	elseif operation_id == CardConst.OperationIDs.OPERATION_CHI then       -- chi
 		self:showOperationChi()
@@ -824,19 +1005,33 @@ function NormalRoomScene:showAvailableOperationsForPlayerSelf(play_card_msg)
 	elseif operation_id == CardConst.OperationIDs.OPERATION_PENG_GANG then -- peng + gang
 		self:showOperation(operation_id, "i_operation_gang.png", discard, true)
 	elseif operation_id == CardConst.OperationIDs.OPERATION_MING_GANG then -- ming gang
-		self:showOperation(operation_id, "i_operation_gang.png", discard, true)
+		self:showOperation(operation_id, "i_operation_gang.png", play_card_msg:new_card(), true)
+		if play_card_msg:new_card() ~= CardConst.CardValues.INVALID_CARD_VALUE then
+			self:dealWithNewCardOfPlayerSelf(play_card_msg, true)
+		end
 	elseif operation_id == CardConst.OperationIDs.OPERATION_AN_GANG then   -- an gang
-		self:showOperation(operation_id, "i_operation_gang.png", discard, true)
+		self:showOperation(operation_id, "i_operation_gang.png", play_card_msg:new_card(), true)
+		if play_card_msg:new_card() ~= CardConst.CardValues.INVALID_CARD_VALUE then
+			self:dealWithNewCardOfPlayerSelf(play_card_msg, true)
+		end
 	elseif operation_id == CardConst.OperationIDs.OPERATION_BU_HUA then    -- bu hua
-		self:showOperation(operation_id, "i_operation_buhua.png", discard, false)
+		self:showOperation(operation_id, "i_operation_buhua.png", play_card_msg:new_card(), false)
+		if play_card_msg:new_card() ~= CardConst.CardValues.INVALID_CARD_VALUE then
+			self:dealWithNewCardOfPlayerSelf(play_card_msg, true)
+		end
 	elseif operation_id == CardConst.OperationIDs.OPERATION_HU then        -- hu
 		self:showOperation(operation_id, "i_operation_hu.png", discard, true)
 	elseif operation_id == CardConst.OperationIDs.OPERATION_ZI_MO then     -- zi mo
 		self:showOperation(operation_id, "i_operation_zimo.png", discard, true)
+		if play_card_msg:new_card() ~= CardConst.CardValues.INVALID_CARD_VALUE then
+			self:dealWithNewCardOfPlayerSelf(play_card_msg, true)
+		end
+	elseif operation_id == CardConst.OperationIDs.OPERATION_GIVE_UP then   -- guo
 	end
 end
 
 function NormalRoomScene:showOperationChi()
+	print("[NormalRoomScene:showOperationChi]")
 	local init_func1 = function() 
 		if not self.node_operation_chi_1_ then -- node for operation chi 1
 			local layout = OperationAnim2:create()
@@ -864,12 +1059,16 @@ function NormalRoomScene:showOperationChi()
 			self.img_mj_chi_13_ = img_bg:getChildByName("img_mahjong_fg3")
 		end
 
-		local card1 = gamer.data_mgr_:play_card_msg_protocol():operating_cards(0)
-		local card2 = gamer.data_mgr_:play_card_msg_protocol():operating_cards(1)
-		local card3 = gamer.data_mgr_:play_card_msg_protocol():operating_cards(2)
+		local proto = gamer.data_mgr_:play_card_msg_protocol()
+		local card1 = proto:operating_cards(0)
+		local card2 = proto:operating_cards(1)
+		local card3 = proto:operating_cards(2)
 		self.img_mj_chi_11_:loadTexture(MahjongCreator.getCardPng(card1), ccui.TextureResType.plistType)
 		self.img_mj_chi_12_:loadTexture(MahjongCreator.getCardPng(card2), ccui.TextureResType.plistType)
 		self.img_mj_chi_13_:loadTexture(MahjongCreator.getCardPng(card3), ccui.TextureResType.plistType)
+	
+		self.node_operation_chi_1_:setVisible(true)
+		self.anim_operation_chi_1_:gotoFrameAndPlay(0, false)
 	end
 
 	local init_func2 = function() 
@@ -899,12 +1098,16 @@ function NormalRoomScene:showOperationChi()
 			self.img_mj_chi_23_ = img_bg:getChildByName("img_mahjong_fg3")
 		end
 
-		local card1 = gamer.data_mgr_:play_card_msg_protocol():operating_cards(3)
-		local card2 = gamer.data_mgr_:play_card_msg_protocol():operating_cards(4)
-		local card3 = gamer.data_mgr_:play_card_msg_protocol():operating_cards(5)
+		local proto = gamer.data_mgr_:play_card_msg_protocol()
+		local card1 = proto:operating_cards(3)
+		local card2 = proto:operating_cards(4)
+		local card3 = proto:operating_cards(5)
 		self.img_mj_chi_21_:loadTexture(MahjongCreator.getCardPng(card1), ccui.TextureResType.plistType)
 		self.img_mj_chi_22_:loadTexture(MahjongCreator.getCardPng(card2), ccui.TextureResType.plistType)
 		self.img_mj_chi_23_:loadTexture(MahjongCreator.getCardPng(card3), ccui.TextureResType.plistType)
+	
+		self.node_operation_chi_2_:setVisible(true)
+		self.anim_operation_chi_2_:gotoFrameAndPlay(0, false)
 	end
 
 	local init_func3 = function() 
@@ -934,15 +1137,20 @@ function NormalRoomScene:showOperationChi()
 			self.img_mj_chi_33_ = img_bg:getChildByName("img_mahjong_fg3")
 		end
 
-		local card1 = gamer.data_mgr_:play_card_msg_protocol():operating_cards(6)
-		local card2 = gamer.data_mgr_:play_card_msg_protocol():operating_cards(7)
-		local card3 = gamer.data_mgr_:play_card_msg_protocol():operating_cards(8)
+		local proto = gamer.data_mgr_:play_card_msg_protocol()
+		local card1 = proto:operating_cards(6)
+		local card2 = proto:operating_cards(7)
+		local card3 = proto:operating_cards(8)
 		self.img_mj_chi_31_:loadTexture(MahjongCreator.getCardPng(card1), ccui.TextureResType.plistType)
 		self.img_mj_chi_32_:loadTexture(MahjongCreator.getCardPng(card2), ccui.TextureResType.plistType)
 		self.img_mj_chi_33_:loadTexture(MahjongCreator.getCardPng(card3), ccui.TextureResType.plistType)
+	
+		self.node_operation_chi_3_:setVisible(true)
+		self.anim_operation_chi_3_:gotoFrameAndPlay(0, false)
 	end
 
 	local size = gamer.data_mgr_:play_card_msg_protocol():operating_cards_size()
+	print("[NormalRoomScene:showOperationChi] size : ", size)
 	if 3 == size then
 		init_func1()
 	elseif 6 == size then
@@ -987,12 +1195,50 @@ function NormalRoomScene:showOperation(operation_id, operation1_img_name, operat
 	self.anim_operation_:gotoFrameAndPlay(0, false)
 
 	PlayCardHelper.setHasSpecialOperation(true)
+
+	-- if operation is peng_gang, we need to offer peng operation
+	if operation_id == CardConst.OperationIDs.OPERATION_PENG_GANG then
+		if not self.node_operation2_ then
+			local layout = OperationAnim:create()
+			self.node_operation2_ = layout.root
+			self.anim_operation2_ = layout.animation
+			self:addChild(self.node_operation2_)
+			self.node_operation2_:setVisible(false)
+
+			self.node_operation2_:setPosition(cc.p(display.right, display.bottom + 470))
+			self.node_operation2_:runAction(self.anim_operation2_) -- not really run until call self.anim_operation2_:gotoFrameAndPlay(0, false)
+
+			local img_bg = self.node_operation2_:getChildByName("img_operation_bg")
+			self.img_operation21_ = img_bg:getChildByName("img_operation1")
+			self.img_operation21_:setTouchEnabled(true)
+			self.img_operation21_:addClickEventListener(handler(self, self.onBtnOperatoinTouch))
+
+			self.img_operation2_mj_ = img_bg:getChildByName("img_mahjong_fg")
+
+			self.img_operation22_ = img_bg:getChildByName("img_operation2")
+			self.img_operation22_:setTag(CardConst.OperationIDs.OPERATION_GIVE_UP)
+			self.img_operation22_:setTouchEnabled(true)
+			self.img_operation22_:addClickEventListener(handler(self, self.onBtnOperatoinTouch))
+		end
+
+		self.img_operation21_:setTag(CardConst.OperationIDs.OPERATION_PENG)
+		self.img_operation21_:loadTexture("i_operation_peng.png", ccui.TextureResType.plistType)
+		self.img_operation2_mj_:loadTexture(MahjongCreator.getCardPng(operation_mj_value), ccui.TextureResType.plistType)
+		self.img_operation22_:setVisible(operation2_visible)
+		self.node_operation2_:setVisible(true)
+		self.anim_operation2_:gotoFrameAndPlay(0, false)
+	end
 end
 
 function NormalRoomScene:hideOperations()
 	if self.node_operation_ then
 		self.node_operation_:setVisible(false)
 	end
+
+	if self.node_operation2_ then
+		self.node_operation2_:setVisible(false)
+	end
+
 	if self.node_operation_chi_1_ then
 		self.node_operation_chi_1_:setVisible(false)
 	end
@@ -1024,6 +1270,20 @@ function NormalRoomScene:showNewCardOfPlayerSelf(mahjong_value)
 	end
 end
 
+function NormalRoomScene:showDiscardOfPlayerSelf(mahjong_value)
+	local mj = MahjongCreator.create(MahjongConst.Directions.SELF, 
+									 MahjongConst.Types.VISIBLE_DISCARD, 
+									 mahjong_value)
+	if mj then
+		local x, y = self:getNextDiscardPosOfPlayerSelf()
+		mj:setPosition(cc.p(x, y))
+		self.mahjong_layer_:addChild(mj)
+
+		self.player_self_second_to_last_discard_ = self.player_self_last_discard_
+		self.player_self_last_discard_ = mj
+	end
+end
+
 function NormalRoomScene:showDiscardOfLeftPlayer(mahjong_value)
 	local mj = MahjongCreator.create(MahjongConst.Directions.LEFT, 
 									 MahjongConst.Types.VISIBLE_DISCARD, 
@@ -1045,12 +1305,12 @@ function NormalRoomScene:showDiscardOfLeftPlayer(mahjong_value)
 		elseif y == MahjongConst.Sizes.LEFT_DISCARD_Y4 then
 			zorder = MahjongConst.ZOrders.DISCARD_LINE_4
 		end
-		--print("[NormalRoomScene:showDiscardOfLeftPlayer] y : ", y)
-		--print("[NormalRoomScene:showDiscardOfLeftPlayer] zorder : ", zorder)
+
 		mj:setPosition(cc.p(x, y))
 		mj:setLocalZOrder(zorder)
 		self.mahjong_layer_:addChild(mj)
 
+		self.left_player_second_to_last_discard_ = self.left_player_last_discard_
 		self.left_player_last_discard_ = mj
 	end
 end
@@ -1064,6 +1324,7 @@ function NormalRoomScene:showDiscardOfOppositePlayer(mahjong_value)
 		mj:setPosition(cc.p(x, y))
 		self.mahjong_layer_:addChild(mj)
 
+		self.opposite_player_second_to_last_discard_ = self.opposite_player_last_discard_
 		self.opposite_player_last_discard_ = mj
 	end
 end
@@ -1074,10 +1335,10 @@ function NormalRoomScene:showDiscardOfRightPlayer(mahjong_value)
 									 mahjong_value)
 	if mj then
 		local x, y = self:getNextDiscardPosOfRightPlayer()
-		--print("[NormalRoomScene:showDiscardOfRightPlayer] y : ", y)
 		mj:setPosition(cc.p(x, y))
 		self.mahjong_layer_:addChild(mj)
 
+		self.right_player_second_to_last_discard_ = self.right_player_last_discard_
 		self.right_player_last_discard_ = mj
 	end
 end
@@ -1095,54 +1356,9 @@ function NormalRoomScene:showDiscardOfOtherPlayer(play_card_msg)
 	end
 end
 
-function NormalRoomScene:resetPositionOfInvisibleMahjongsForPlayerSelf()
-	for k, v in pairs(self.invisible_mj_nodes_player_self_) do
-		v:setPosition(cc.p(self.player_self_invisible_mj_offset_x_ + MahjongConst.Sizes.CARD_W2 * (k - 1), 
-			               MahjongConst.Sizes.OFFSET_Y3))
-	end
-end
-
-function NormalRoomScene:resetPositionOfInvisibleMahjongsForOppositePlayer()
-	for k, v in pairs(self.invisible_mj_nodes_opposite_player_) do
-		v:setPosition(cc.p(self.opposite_player_invisible_mj_offset_x_ - 
-						   MahjongConst.Sizes.OPPOSITE_CARD_OFFSET_X1 * (k - 1), 
-			               MahjongConst.Sizes.OPPOSITE_CARD_OFFSET_Y0))
-	end
-end
-
-function NormalRoomScene:dealWithDiscardOfPlayerSelf(mahjong_node)
-	-- add discard node
-	local mahjong_value = mahjong_node:getTag()
-	local mj = MahjongCreator.create(MahjongConst.Directions.SELF, 
-									 MahjongConst.Types.VISIBLE_DISCARD, 
-									 mahjong_value)
-	if mj then
-		local x, y = self:getNextDiscardPosOfPlayerSelf()
-		mj:setPosition(cc.p(x, y))
-		self.mahjong_layer_:addChild(mj)
-
-		self.player_self_last_discard_ = mj
-	end
-
-	-- modify invisible mahjong position
-	for k, v in pairs(self.invisible_mj_nodes_player_self_) do
-		if mahjong_node == v then
-			--print("[NormalRoomScene:dealWithDiscardOfPlayerSelf] remove mj node")
-			table.remove(self.invisible_mj_nodes_player_self_, k)
-			break
-		end
-	end
-
-	self:resetPositionOfInvisibleMahjongsForPlayerSelf()
-
-	mahjong_node:removeFromParent()
-	self.last_selected_mj_ = nil	
-end
-
 function NormalRoomScene:dealWithNewCardOfPlayerSelf(play_card_msg, change_diretion)
 	print("[NormalRoomScene:dealWithNewCardOfPlayerSelf]")
 	print("[NormalRoomScene:dealWithNewCardOfPlayerSelf] new card : ", play_card_msg:new_card())
-	PlayCardHelper.setNewCardOfPlayerSelf(play_card_msg:new_card())
 
 	self:showNewCardOfPlayerSelf(play_card_msg:new_card())
 
@@ -1151,9 +1367,29 @@ function NormalRoomScene:dealWithNewCardOfPlayerSelf(play_card_msg, change_diret
 	if change_diretion then
 		self:showNextPlayCardDirection()
 	end
+end
 
-	-- show zi mo or ming gang or an gang or bu hua
-	--self:showAvailableOperationsForPlayerSelf(play_card_msg)
+function NormalRoomScene:dealWithNewCardOfOtherPlayer(play_card_msg)
+	local direction = PlayCardHelper.getPlayerDirection(play_card_msg:next_operate_player_id())
+	print("[NormalRoomScene:dealWithNewCardOfPlayerSelf] direction : ", direction)
+	if direction == MahjongConst.Directions.LEFT then
+	elseif direction == MahjongConst.Directions.OPPOSITE then
+		local mj_node = MahjongCreator.create(MahjongConst.Directions.OPPOSITE, 
+											  MahjongConst.Types.INVISIBLE)
+		local n = #self.invisible_mj_nodes_opposite_player_
+		local last_pos_x = self.opposite_player_invisible_mj_offset_x_
+		if n > 0 then
+			last_pos_x = self.invisible_mj_nodes_opposite_player_[n]:getPositionX()
+		end
+		mj_node:setPosition(cc.p(last_pos_x - MahjongConst.Sizes.OPPOSITE_CARD_OFFSET_X2 -
+								 MahjongConst.Sizes.CARD_INTERVAL2, 
+			                     MahjongConst.Sizes.OPPOSITE_CARD_OFFSET_Y0))
+		self.mahjong_layer_:addChild(mj_node)
+		table.insert(self.invisible_mj_nodes_opposite_player_, mj_node)
+	elseif direction == MahjongConst.Directions.RIGHT then
+	end
+
+	self:showNextPlayCardDirection()
 end
 
 function NormalRoomScene:dealWithPlayCardMsgOfOtherPlayer(msg)
@@ -1162,7 +1398,8 @@ function NormalRoomScene:dealWithPlayCardMsgOfOtherPlayer(msg)
 	print("[NormalRoomScene:dealWithPlayCardMsgOfOtherPlayer] operation_id : ", operation_id)
 	if operation_id == CardConst.OperationIDs.OPERATION_DISCARD then       -- discard
 		-- show other player's discard and show available operations with that card
-		self:showDiscardOfOtherPlayer(msg)
+		--self:showDiscardOfOtherPlayer(msg)
+		self:modifyOtherPlayerMahjongsAfterDiscard(msg)
 		self:showAvailableOperationsForPlayerSelf(msg)
 	elseif operation_id == CardConst.OperationIDs.OPERATION_NONE then      
 		
@@ -1171,11 +1408,11 @@ function NormalRoomScene:dealWithPlayCardMsgOfOtherPlayer(msg)
 	elseif operation_id == CardConst.OperationIDs.OPERATION_PENG then      -- peng
 		self:modifyOtherPlayerMahjongsAfterPeng()
 	elseif operation_id == CardConst.OperationIDs.OPERATION_PENG_GANG then -- peng + gang
-
+		self:modifyOtherPlayerMahjongsAfterPengGang()
 	elseif operation_id == CardConst.OperationIDs.OPERATION_MING_GANG then -- ming gang
-
+		self:modifyOtherPlayerMahjongsAfterMingGang()
 	elseif operation_id == CardConst.OperationIDs.OPERATION_AN_GANG then   -- an gang
-
+		self:modifyOtherPlayerMahjongsAfterAnGang()
 	elseif operation_id == CardConst.OperationIDs.OPERATION_BU_HUA then    -- bu hua
 
 	elseif operation_id == CardConst.OperationIDs.OPERATION_HU then        -- hu
@@ -1183,25 +1420,33 @@ function NormalRoomScene:dealWithPlayCardMsgOfOtherPlayer(msg)
 	elseif operation_id == CardConst.OperationIDs.OPERATION_ZI_MO then     -- zi mo
 
 	elseif operation_id == CardConst.OperationIDs.OPERATION_GIVE_UP then   -- guo
-		
+		print("[NormalRoomScene:dealWithPlayCardMsgOfOtherPlayer] next_operate_player_id : ", msg:next_operate_player_id())
+		print("[NormalRoomScene:dealWithPlayCardMsgOfOtherPlayer] self_player_id : ", gamer.data_mgr_:self_player_id())
+		print("[NormalRoomScene:dealWithPlayCardMsgOfOtherPlayer] has_next_operate_player_new_card : ", tostring(msg:has_next_operate_player_new_card()))
+		if msg:next_operate_player_id() ~= CardConst.CardValues.INVALID_PLAYER_ID and
+		   msg:next_operate_player_id() ~= gamer.data_mgr_:self_player_id() then -- means next player has got a new card
+			if msg:has_next_operate_player_new_card() then
+				self:dealWithNewCardOfOtherPlayer(msg)
+			end
+		end
 	end
 end
 
 function NormalRoomScene:dealWithPlayCardMsgOfPlayerSelf(msg)
 	print("[NormalRoomScene:dealWithPlayCardMsgOfPlayerSelf]")
 	local operation_id = msg:operation_id()
+	print("[NormalRoomScene:dealWithPlayCardMsgOfPlayerSelf] operation_id : ", operation_id)
+	print("[NormalRoomScene:dealWithPlayCardMsgOfPlayerSelf] next_operate_player_id : ", msg:next_operate_player_id())
 	if operation_id == CardConst.OperationIDs.OPERATION_DISCARD then       -- discard
-		-- update invisible hand card
-		local new_card = PlayCardHelper.getNewCardOfPlayerSelf()
-		if new_card ~= CardConst.CardValues.INVALID_CARD_VALUE then
-			gamer.data_mgr_:updateCardForDiscard(msg:discard())
-			PlayCardHelper.setNewCardOfPlayerSelf(CardConst.CardValues.INVALID_CARD_VALUE)
+		if msg:next_operate_player_id() ~= CardConst.CardValues.INVALID_PLAYER_ID then -- means next player has got a new card
+			self:dealWithNewCardOfOtherPlayer(msg)
 		end
 	elseif operation_id == CardConst.OperationIDs.OPERATION_NONE then      -- new card
 		self:dealWithNewCardOfPlayerSelf(msg, false)
 	elseif operation_id == CardConst.OperationIDs.OPERATION_CHI then       -- chi
 	elseif operation_id == CardConst.OperationIDs.OPERATION_PENG then      -- peng
 	elseif operation_id == CardConst.OperationIDs.OPERATION_PENG_GANG then -- peng + gang
+		self:showAvailableOperationsForPlayerSelf(msg)
 	elseif operation_id == CardConst.OperationIDs.OPERATION_MING_GANG then -- ming gang
 		self:dealWithNewCardOfPlayerSelf(msg, false)
 	elseif operation_id == CardConst.OperationIDs.OPERATION_AN_GANG then   -- an gang
@@ -1212,6 +1457,9 @@ function NormalRoomScene:dealWithPlayCardMsgOfPlayerSelf(msg)
 	elseif operation_id == CardConst.OperationIDs.OPERATION_ZI_MO then     -- zi mo
 		self:dealWithNewCardOfPlayerSelf(msg, false)
 	elseif operation_id == CardConst.OperationIDs.OPERATION_GIVE_UP then   -- guo
+		if msg:next_operate_player_id() == gamer.data_mgr_:self_player_id() then
+			self:showAvailableOperationsForPlayerSelf(msg)
+		end
 	end
 end
 
@@ -1303,27 +1551,33 @@ function NormalRoomScene:onBtnOperatoinTouch(sender)
 		self:sendPlayCardMsg(CardConst.OperationIDs.OPERATION_PENG, cards)
 	elseif operation_id == CardConst.OperationIDs.OPERATION_PENG_GANG then -- peng + gang
 		--self:showNextPlayCardDirection()
-		self.node_operation_:setVisible(false)
-		self:sendPlayCardMsg(CardConst.OperationIDs.OPERATION_PENG_GANG)
+		self:hideOperations()
+		self:modifyMahjongsOfPlayerSelfAfterPengGang()
+		local cards = { gamer.data_mgr_:play_card_msg_protocol():discard() }
+		self:sendPlayCardMsg(CardConst.OperationIDs.OPERATION_PENG_GANG, cards)
 	elseif operation_id == CardConst.OperationIDs.OPERATION_MING_GANG then -- ming gang
 		self:hideOperations()
-		self:sendPlayCardMsg(CardConst.OperationIDs.OPERATION_MING_GANG)
+		self:modifyMahjongsOfPlayerSelfAfterMingGang()
+		local cards = { gamer.data_mgr_:play_card_msg_protocol():new_card() }
+		self:sendPlayCardMsg(CardConst.OperationIDs.OPERATION_MING_GANG, cards)
 	elseif operation_id == CardConst.OperationIDs.OPERATION_AN_GANG then   -- an gang
 		self:hideOperations()
-		self:sendPlayCardMsg(CardConst.OperationIDs.OPERATION_AN_GANG)
+		self:modifyMahjongsOfPlayerSelfAfterAnGang()
+		local cards = { gamer.data_mgr_:play_card_msg_protocol():new_card() }
+		self:sendPlayCardMsg(CardConst.OperationIDs.OPERATION_AN_GANG, cards)
 	elseif operation_id == CardConst.OperationIDs.OPERATION_BU_HUA then    -- bu hua
 		self:hideOperations()
 
 		-- send bu hua msg
-		local discard = PlayCardHelper.getNewCardOfPlayerSelf()
-		if discard ~= CardConst.CardValues.INVALID_CARD_VALUE then
-			self:sendPlayCardMsg(CardConst.OperationIDs.OPERATION_BU_HUA, discard)
-		end
+		local card_buhua = gamer.data_mgr_:play_card_msg_protocol():new_card()
+		self:sendPlayCardMsg(CardConst.OperationIDs.OPERATION_BU_HUA, { card_buhua })
 
+		-- remove mahjong node of hua
 		local n = #self.invisible_mj_nodes_player_self_
-		local node_new_card = self.invisible_mj_nodes_player_self_[n]
-		node_new_card:removeFromParent()
-		table.remove(self.invisible_mj_nodes_player_self_, n)
+		if n > 0 then
+			self.invisible_mj_nodes_player_self_[n]:removeFromParent()
+			table.remove(self.invisible_mj_nodes_player_self_, n)
+		end
 	elseif operation_id == CardConst.OperationIDs.OPERATION_HU then        -- hu
 		self:hideOperations()
 
@@ -1340,6 +1594,8 @@ function NormalRoomScene:onBtnOperatoinTouch(sender)
 		self:sendPlayCardMsg(CardConst.OperationIDs.OPERATION_ZI_MO)
 	elseif operation_id == CardConst.OperationIDs.OPERATION_GIVE_UP then   -- guo
 		self:hideOperations()
+		local cards = { gamer.data_mgr_:play_card_msg_protocol():discard() }
+		self:sendPlayCardMsg(CardConst.OperationIDs.OPERATION_GIVE_UP, cards)
 	end
 end
 
@@ -1354,7 +1610,6 @@ function NormalRoomScene:onMahjongNodeTouch(sender)
 	local y = mj_node:getPositionY() 
 	if y == MahjongConst.Sizes.OFFSET_Y3 then -- first selecte
 		mj_node:setPositionY(MahjongConst.Sizes.OFFSET_Y4)
-		-- TODO : reset position y of pre selected mahjong
 		if self.last_selected_mj_ then
 			self.last_selected_mj_:setPositionY(MahjongConst.Sizes.OFFSET_Y3)
 		end
@@ -1362,18 +1617,16 @@ function NormalRoomScene:onMahjongNodeTouch(sender)
 		self.last_selected_mj_ = mj_node
 
 	elseif y == MahjongConst.Sizes.OFFSET_Y4 then -- second selecte
-		-- do play mahjong action, modify invisible mahjong position, send play mahjong msg 
-		-- update play card timer and direction of next player to play card
 		local mj_value = mj_node:getTag()
 		print("[NormalRoomScene:onMahjongNodeTouch] mj_value : ", mj_value)
-		self:dealWithDiscardOfPlayerSelf(mj_node)
+		self:modifyMahjongsOfPlayerSelfAfterDiscard(mj_value)
 
 		-- send play mahjong msg 
 		self:sendPlayCardMsg(CardConst.OperationIDs.OPERATION_DISCARD, { mj_value })
 
 		-- start play card timer and show direction of next player to play card
-		self:startPlayCardTimer()
-		self:showNextPlayCardDirection()
+		--self:startPlayCardTimer()
+		--self:showNextPlayCardDirection()
 	end
 end
 

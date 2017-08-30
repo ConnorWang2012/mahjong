@@ -16,7 +16,8 @@ local CardConstants = {}
 
 CardConstants.CardValues =
 {
-	INVALID_CARD_VALUE            = -1,
+	INVALID_CARD_VALUE           = -1,
+	INVALID_PLAYER_ID            = 0
 }
 
 CardConstants.OperationIDs = 

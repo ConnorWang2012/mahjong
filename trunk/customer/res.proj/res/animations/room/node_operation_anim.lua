@@ -102,7 +102,7 @@ layout:setSize({width = 144.0000, height = 201.0000})
 layout:setLeftMargin(152.8283)
 layout:setRightMargin(115.1717)
 layout:setTopMargin(-17.5430)
-layout:setBottomMargin(-22.4571)
+layout:setBottomMargin(-22.4570)
 img_operation_bg:addChild(img_mahjong_bg)
 
 --Create img_mahjong_fg
