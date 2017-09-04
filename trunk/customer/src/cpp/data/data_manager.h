@@ -230,7 +230,7 @@ inline int DataManager::left_player_id() const
 {
     if (nullptr != room_msg_protocol_)
     {
-        return room_msg_protocol_->player_cards(player_self_cards_index_).player_id();
+        return room_msg_protocol_->player_cards(left_player_cards_index_).player_id();
     }
     return 0;
 }

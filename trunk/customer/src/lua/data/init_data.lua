@@ -12,6 +12,4 @@ author:
 modification:
 --]]
 
-require "data.data_constants.lua"
-
---gamer.data_mgr_  = require "data.data_manager.lua"
+--require "data.data_constants.lua"

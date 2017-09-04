@@ -88,7 +88,6 @@ void DataManager::updateCardAfterOperation(PlayCardMsgProtocol* proto)
             this->updateCardForNewCardOfPlayerSelf(proto->new_card());
         }
     }
-    // TODO new card is error
     else if (proto->next_operate_player_id() != 0)
     {
         if (proto->has_next_operate_player_new_card())

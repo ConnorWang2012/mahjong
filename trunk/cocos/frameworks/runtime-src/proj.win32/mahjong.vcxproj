@@ -71,7 +71,7 @@
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
-      <AdditionalIncludeDirectories>$(ProjectDir)..\Classes;$(EngineRoot)external\win32-specific\zlib\include;$(EngineRoot)external;$(EngineRoot)external\lua\lua;$(EngineRoot)external\lua\tolua;$(EngineRoot)external\chipmunk\include\chipmunk;$(EngineRoot)external\curl\include\win32;$(EngineRoot)extensions;$(EngineRoot)tools\simulator\libsimulator\lib;$(EngineRoot)tools\simulator\libsimulator\lib\protobuf-lite;$(EngineRoot);%(AdditionalIncludeDirectories);$(_COCOS_HEADER_WIN32_BEGIN);$(_COCOS_HEADER_WIN32_END);$(EngineRoot)..\..\..\customer\src\cpp;$(EngineRoot)..\..\..\customer\src\cpp\data;$(EngineRoot)..\..\..\customer\src\cpp\logic;$(EngineRoot)..\..\..\customer\src\cpp\logic\base;$(EngineRoot)..\..\..\customer\src\cpp\logic\constant;$(EngineRoot)..\..\..\customer\src\cpp\logic\lua_bind;$(EngineRoot)..\..\..\customer\src\cpp\logic\lua_include;$(EngineRoot)..\..\..\customer\src\cpp\logic\manager;$(EngineRoot)..\..\..\customer\src\cpp\logic\provider;$(EngineRoot)..\..\..\customer\src\cpp\logic\test;$(EngineRoot)..\..\..\customer\src\cpp\logic\tolua_include;$(EngineRoot)..\..\..\customer\src\cpp\logic\util;$(EngineRoot)..\..\..\customer\src\cpp\network;$(EngineRoot)..\..\..\customer\src\cpp\network\libevent\src\include;$(EngineRoot)..\..\..\customer\src\cpp\network\libevent\src\include\event2;$(EngineRoot)..\..\..\customer\src\cpp\network\libevent\src\compat;$(EngineRoot)..\..\..\customer\src\cpp\network\libevent\src\WIN32-Code;$(EngineRoot)..\..\..\customer\src\cpp\network\libevent\src\WIN32-Code\nmake;$(EngineRoot)..\..\..\customer\src\cpp\network\libevent\src\WIN32-Code\nmake\event2;$(EngineRoot)..\..\..\customer\src\cpp\view;$(EngineRoot)..\..\..\customer\src\cpp\view\base;$(EngineRoot)..\..\..\customer\src\cpp\view\constant;$(EngineRoot)..\..\..\customer\src\cpp\view\manager;$(EngineRoot)..\..\..\customer\src\cpp\view\provider;$(EngineRoot)..\..\..\customer\src\cpp\view\scene;$(EngineRoot)..\..\..\customer\src\cpp\view\test;$(EngineRoot)..\..\..\customer\src\cpp\view\ui;$(EngineRoot)..\..\..\customer\src\cpp\view\util</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(ProjectDir)..\Classes;$(EngineRoot)external\win32-specific\zlib\include;$(EngineRoot)external;$(EngineRoot)external\lua\lua;$(EngineRoot)external\lua\tolua;$(EngineRoot)external\chipmunk\include\chipmunk;$(EngineRoot)external\curl\include\win32;$(EngineRoot)extensions;$(EngineRoot)tools\simulator\libsimulator\lib;$(EngineRoot)tools\simulator\libsimulator\lib\protobuf-lite;$(EngineRoot);%(AdditionalIncludeDirectories);$(_COCOS_HEADER_WIN32_BEGIN);$(_COCOS_HEADER_WIN32_END);$(EngineRoot)..\..\..\customer\src\cpp;$(EngineRoot)..\..\..\customer\src\cpp\data;$(EngineRoot)..\..\..\customer\src\cpp\logic;$(EngineRoot)..\..\..\customer\src\cpp\logic\base;$(EngineRoot)..\..\..\customer\src\cpp\logic\constant;$(EngineRoot)..\..\..\customer\src\cpp\logic\log;$(EngineRoot)..\..\..\customer\src\cpp\logic\lua_bind;$(EngineRoot)..\..\..\customer\src\cpp\logic\lua_include;$(EngineRoot)..\..\..\customer\src\cpp\logic\manager;$(EngineRoot)..\..\..\customer\src\cpp\logic\provider;$(EngineRoot)..\..\..\customer\src\cpp\logic\test;$(EngineRoot)..\..\..\customer\src\cpp\logic\tolua_include;$(EngineRoot)..\..\..\customer\src\cpp\logic\util;$(EngineRoot)..\..\..\customer\src\cpp\network;$(EngineRoot)..\..\..\customer\src\cpp\network\libevent\src\include;$(EngineRoot)..\..\..\customer\src\cpp\network\libevent\src\include\event2;$(EngineRoot)..\..\..\customer\src\cpp\network\libevent\src\compat;$(EngineRoot)..\..\..\customer\src\cpp\network\libevent\src\WIN32-Code;$(EngineRoot)..\..\..\customer\src\cpp\network\libevent\src\WIN32-Code\nmake;$(EngineRoot)..\..\..\customer\src\cpp\network\libevent\src\WIN32-Code\nmake\event2;$(EngineRoot)..\..\..\customer\src\cpp\view;$(EngineRoot)..\..\..\customer\src\cpp\view\base;$(EngineRoot)..\..\..\customer\src\cpp\view\constant;$(EngineRoot)..\..\..\customer\src\cpp\view\manager;$(EngineRoot)..\..\..\customer\src\cpp\view\provider;$(EngineRoot)..\..\..\customer\src\cpp\view\scene;$(EngineRoot)..\..\..\customer\src\cpp\view\test;$(EngineRoot)..\..\..\customer\src\cpp\view\ui;$(EngineRoot)..\..\..\customer\src\cpp\view\util</AdditionalIncludeDirectories>
       <PrecompiledHeader>
       </PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
@@ -80,7 +80,7 @@
       <DebugInformationFormat>EditAndContinue</DebugInformationFormat>
       <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
       <Optimization>Disabled</Optimization>
-      <PreprocessorDefinitions>WIN32;_WINDOWS;STRICT;_CRT_SECURE_NO_WARNINGS;_SCL_SECURE_NO_WARNINGS_DEBUG;COCOS2D_DEBUG=1;GLFW_EXPOSE_NATIVE_WIN32;GLFW_EXPOSE_NATIVE_WGL;_USRLUASTATIC;_USRLIBSIMSTATIC;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>WIN32;_WINDOWS;STRICT;_CRT_SECURE_NO_WARNINGS;_SCL_SECURE_NO_WARNINGS_DEBUG;COCOS2D_DEBUG=1;GLFW_EXPOSE_NATIVE_WIN32;GLFW_EXPOSE_NATIVE_WGL;_USRLUASTATIC;_USRLIBSIMSTATIC;CONNOR_GAME_LOG_OPENED;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <DisableSpecificWarnings>4267;4251;4244;%(DisableSpecificWarnings)</DisableSpecificWarnings>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
       <ProgramDataBaseFileName>$(IntDir)vc$(PlatformToolsetVersion).pdb</ProgramDataBaseFileName>
@@ -131,7 +131,15 @@
 xcopy /Y /Q "$(OutDir)*.dll" "$(LocalDebuggerWorkingDirectory)"
 xcopy "$(ProjectDir)..\..\..\res" "$(LocalDebuggerWorkingDirectory)\res" /D /E /I /F /Y
 xcopy "$(ProjectDir)..\..\..\src" "$(LocalDebuggerWorkingDirectory)\src" /D /E /I /F /Y
-xcopy "$(ProjectDir)..\..\..\..\customer\src\lua" "$(LocalDebuggerWorkingDirectory)\src\customer\src\lua" /D /E /I /F /Y</Command>
+xcopy "$(ProjectDir)..\..\..\..\customer\src\lua" "$(LocalDebuggerWorkingDirectory)\src\customer\src\lua" /D /E /I /F /Y
+xcopy "$(ProjectDir)..\..\..\res" "$(LocalDebuggerWorkingDirectory)\win32-2\res" /D /E /I /F /Y
+xcopy "$(ProjectDir)..\..\..\src" "$(LocalDebuggerWorkingDirectory)\win32-2\src" /D /E /I /F /Y
+xcopy "$(ProjectDir)..\..\..\..\customer\src\lua" "$(LocalDebuggerWorkingDirectory)\win32-2\src\customer\src\lua" /D /E /I /F /Y
+xcopy /Y /Q "$(LocalDebuggerWorkingDirectory)\*.exe" "$(LocalDebuggerWorkingDirectory)\win32-2"
+xcopy "$(ProjectDir)..\..\..\res" "$(LocalDebuggerWorkingDirectory)\win32-3\res" /D /E /I /F /Y
+xcopy "$(ProjectDir)..\..\..\src" "$(LocalDebuggerWorkingDirectory)\win32-3\src" /D /E /I /F /Y
+xcopy "$(ProjectDir)..\..\..\..\customer\src\lua" "$(LocalDebuggerWorkingDirectory)\win32-3\src\customer\src\lua" /D /E /I /F /Y
+xcopy /Y /Q "$(LocalDebuggerWorkingDirectory)\*.exe" "$(LocalDebuggerWorkingDirectory)\win32-3"</Command>
       <Outputs>$(TargetName).cab</Outputs>
       <Inputs>$(TargetFileName)</Inputs>
     </CustomBuildStep>
@@ -193,81 +201,6 @@ xcopy "$(ProjectDir)..\..\..\..\customer\src\lua" "$(LocalDebuggerWorkingDirecto
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClInclude Include="..\..\..\..\..\..\..\..\tcp_client\libevent\src\include\openssl\aes.h" />
-    <ClInclude Include="..\..\..\..\..\..\..\..\tcp_client\libevent\src\include\openssl\asn1.h" />
-    <ClInclude Include="..\..\..\..\..\..\..\..\tcp_client\libevent\src\include\openssl\asn1t.h" />
-    <ClInclude Include="..\..\..\..\..\..\..\..\tcp_client\libevent\src\include\openssl\asn1_mac.h" />
-    <ClInclude Include="..\..\..\..\..\..\..\..\tcp_client\libevent\src\include\openssl\async.h" />
-    <ClInclude Include="..\..\..\..\..\..\..\..\tcp_client\libevent\src\include\openssl\bio.h" />
-    <ClInclude Include="..\..\..\..\..\..\..\..\tcp_client\libevent\src\include\openssl\blowfish.h" />
-    <ClInclude Include="..\..\..\..\..\..\..\..\tcp_client\libevent\src\include\openssl\bn.h" />
-    <ClInclude Include="..\..\..\..\..\..\..\..\tcp_client\libevent\src\include\openssl\buffer.h" />
-    <ClInclude Include="..\..\..\..\..\..\..\..\tcp_client\libevent\src\include\openssl\camellia.h" />
-    <ClInclude Include="..\..\..\..\..\..\..\..\tcp_client\libevent\src\include\openssl\cast.h" />
-    <ClInclude Include="..\..\..\..\..\..\..\..\tcp_client\libevent\src\include\openssl\cmac.h" />
-    <ClInclude Include="..\..\..\..\..\..\..\..\tcp_client\libevent\src\include\openssl\cms.h" />
-    <ClInclude Include="..\..\..\..\..\..\..\..\tcp_client\libevent\src\include\openssl\comp.h" />
-    <ClInclude Include="..\..\..\..\..\..\..\..\tcp_client\libevent\src\include\openssl\conf.h" />
-    <ClInclude Include="..\..\..\..\..\..\..\..\tcp_client\libevent\src\include\openssl\conf_api.h" />
-    <ClInclude Include="..\..\..\..\..\..\..\..\tcp_client\libevent\src\include\openssl\crypto.h" />
-    <ClInclude Include="..\..\..\..\..\..\..\..\tcp_client\libevent\src\include\openssl\ct.h" />
-    <ClInclude Include="..\..\..\..\..\..\..\..\tcp_client\libevent\src\include\openssl\des.h" />
-    <ClInclude Include="..\..\..\..\..\..\..\..\tcp_client\libevent\src\include\openssl\dh.h" />
-    <ClInclude Include="..\..\..\..\..\..\..\..\tcp_client\libevent\src\include\openssl\dsa.h" />
-    <ClInclude Include="..\..\..\..\..\..\..\..\tcp_client\libevent\src\include\openssl\dtls1.h" />
-    <ClInclude Include="..\..\..\..\..\..\..\..\tcp_client\libevent\src\include\openssl\ebcdic.h" />
-    <ClInclude Include="..\..\..\..\..\..\..\..\tcp_client\libevent\src\include\openssl\ec.h" />
-    <ClInclude Include="..\..\..\..\..\..\..\..\tcp_client\libevent\src\include\openssl\ecdh.h" />
-    <ClInclude Include="..\..\..\..\..\..\..\..\tcp_client\libevent\src\include\openssl\ecdsa.h" />
-    <ClInclude Include="..\..\..\..\..\..\..\..\tcp_client\libevent\src\include\openssl\engine.h" />
-    <ClInclude Include="..\..\..\..\..\..\..\..\tcp_client\libevent\src\include\openssl\err.h" />
-    <ClInclude Include="..\..\..\..\..\..\..\..\tcp_client\libevent\src\include\openssl\evp.h" />
-    <ClInclude Include="..\..\..\..\..\..\..\..\tcp_client\libevent\src\include\openssl\e_os2.h" />
-    <ClInclude Include="..\..\..\..\..\..\..\..\tcp_client\libevent\src\include\openssl\hmac.h" />
-    <ClInclude Include="..\..\..\..\..\..\..\..\tcp_client\libevent\src\include\openssl\idea.h" />
-    <ClInclude Include="..\..\..\..\..\..\..\..\tcp_client\libevent\src\include\openssl\kdf.h" />
-    <ClInclude Include="..\..\..\..\..\..\..\..\tcp_client\libevent\src\include\openssl\lhash.h" />
-    <ClInclude Include="..\..\..\..\..\..\..\..\tcp_client\libevent\src\include\openssl\md2.h" />
-    <ClInclude Include="..\..\..\..\..\..\..\..\tcp_client\libevent\src\include\openssl\md4.h" />
-    <ClInclude Include="..\..\..\..\..\..\..\..\tcp_client\libevent\src\include\openssl\md5.h" />
-    <ClInclude Include="..\..\..\..\..\..\..\..\tcp_client\libevent\src\include\openssl\mdc2.h" />
-    <ClInclude Include="..\..\..\..\..\..\..\..\tcp_client\libevent\src\include\openssl\modes.h" />
-    <ClInclude Include="..\..\..\..\..\..\..\..\tcp_client\libevent\src\include\openssl\objects.h" />
-    <ClInclude Include="..\..\..\..\..\..\..\..\tcp_client\libevent\src\include\openssl\obj_mac.h" />
-    <ClInclude Include="..\..\..\..\..\..\..\..\tcp_client\libevent\src\include\openssl\ocsp.h" />
-    <ClInclude Include="..\..\..\..\..\..\..\..\tcp_client\libevent\src\include\openssl\opensslconf.h" />
-    <ClInclude Include="..\..\..\..\..\..\..\..\tcp_client\libevent\src\include\openssl\opensslv.h" />
-    <ClInclude Include="..\..\..\..\..\..\..\..\tcp_client\libevent\src\include\openssl\ossl_typ.h" />
-    <ClInclude Include="..\..\..\..\..\..\..\..\tcp_client\libevent\src\include\openssl\pem.h" />
-    <ClInclude Include="..\..\..\..\..\..\..\..\tcp_client\libevent\src\include\openssl\pem2.h" />
-    <ClInclude Include="..\..\..\..\..\..\..\..\tcp_client\libevent\src\include\openssl\pkcs12.h" />
-    <ClInclude Include="..\..\..\..\..\..\..\..\tcp_client\libevent\src\include\openssl\pkcs7.h" />
-    <ClInclude Include="..\..\..\..\..\..\..\..\tcp_client\libevent\src\include\openssl\rand.h" />
-    <ClInclude Include="..\..\..\..\..\..\..\..\tcp_client\libevent\src\include\openssl\rc2.h" />
-    <ClInclude Include="..\..\..\..\..\..\..\..\tcp_client\libevent\src\include\openssl\rc4.h" />
-    <ClInclude Include="..\..\..\..\..\..\..\..\tcp_client\libevent\src\include\openssl\rc5.h" />
-    <ClInclude Include="..\..\..\..\..\..\..\..\tcp_client\libevent\src\include\openssl\ripemd.h" />
-    <ClInclude Include="..\..\..\..\..\..\..\..\tcp_client\libevent\src\include\openssl\rsa.h" />
-    <ClInclude Include="..\..\..\..\..\..\..\..\tcp_client\libevent\src\include\openssl\safestack.h" />
-    <ClInclude Include="..\..\..\..\..\..\..\..\tcp_client\libevent\src\include\openssl\seed.h" />
-    <ClInclude Include="..\..\..\..\..\..\..\..\tcp_client\libevent\src\include\openssl\sha.h" />
-    <ClInclude Include="..\..\..\..\..\..\..\..\tcp_client\libevent\src\include\openssl\srp.h" />
-    <ClInclude Include="..\..\..\..\..\..\..\..\tcp_client\libevent\src\include\openssl\srtp.h" />
-    <ClInclude Include="..\..\..\..\..\..\..\..\tcp_client\libevent\src\include\openssl\ssl.h" />
-    <ClInclude Include="..\..\..\..\..\..\..\..\tcp_client\libevent\src\include\openssl\ssl2.h" />
-    <ClInclude Include="..\..\..\..\..\..\..\..\tcp_client\libevent\src\include\openssl\ssl3.h" />
-    <ClInclude Include="..\..\..\..\..\..\..\..\tcp_client\libevent\src\include\openssl\stack.h" />
-    <ClInclude Include="..\..\..\..\..\..\..\..\tcp_client\libevent\src\include\openssl\symhacks.h" />
-    <ClInclude Include="..\..\..\..\..\..\..\..\tcp_client\libevent\src\include\openssl\tls1.h" />
-    <ClInclude Include="..\..\..\..\..\..\..\..\tcp_client\libevent\src\include\openssl\ts.h" />
-    <ClInclude Include="..\..\..\..\..\..\..\..\tcp_client\libevent\src\include\openssl\txt_db.h" />
-    <ClInclude Include="..\..\..\..\..\..\..\..\tcp_client\libevent\src\include\openssl\ui.h" />
-    <ClInclude Include="..\..\..\..\..\..\..\..\tcp_client\libevent\src\include\openssl\whrlpool.h" />
-    <ClInclude Include="..\..\..\..\..\..\..\..\tcp_client\libevent\src\include\openssl\x509.h" />
-    <ClInclude Include="..\..\..\..\..\..\..\..\tcp_client\libevent\src\include\openssl\x509v3.h" />
-    <ClInclude Include="..\..\..\..\..\..\..\..\tcp_client\libevent\src\include\openssl\x509_vfy.h" />
-    <ClInclude Include="..\..\..\..\..\..\..\..\tcp_client\libevent\src\include\openssl\__DECC_INCLUDE_EPILOGUE.H" />
-    <ClInclude Include="..\..\..\..\..\..\..\..\tcp_client\libevent\src\include\openssl\__DECC_INCLUDE_PROLOGUE.H" />
     <ClInclude Include="..\..\..\..\customer\src\cpp\data\data_constants.h" />
     <ClInclude Include="..\..\..\..\customer\src\cpp\data\data_manager.h" />
     <ClInclude Include="..\..\..\..\customer\src\cpp\logic\3rd_party\login\login_helper.h" />
@@ -284,6 +217,7 @@ xcopy "$(ProjectDir)..\..\..\..\customer\src\lua" "$(LocalDebuggerWorkingDirecto
     <ClInclude Include="..\..\..\..\customer\src\cpp\logic\constant\card_constants.h" />
     <ClInclude Include="..\..\..\..\customer\src\cpp\logic\constant\command_constants.h" />
     <ClInclude Include="..\..\..\..\customer\src\cpp\logic\constant\event_constants.h" />
+    <ClInclude Include="..\..\..\..\customer\src\cpp\logic\log\mylog.h" />
     <ClInclude Include="..\..\..\..\customer\src\cpp\logic\lua_bind\lua_bind_helper.h" />
     <ClInclude Include="..\..\..\..\customer\src\cpp\logic\lua_bind\lua_bind_register.h" />
     <ClInclude Include="..\..\..\..\customer\src\cpp\logic\lua_include\lauxlib.h" />
@@ -404,6 +338,81 @@ xcopy "$(ProjectDir)..\..\..\..\customer\src\lua" "$(LocalDebuggerWorkingDirecto
     <ClInclude Include="..\..\..\..\customer\src\cpp\network\libevent\src\include\evhttp.h" />
     <ClInclude Include="..\..\..\..\customer\src\cpp\network\libevent\src\include\evrpc.h" />
     <ClInclude Include="..\..\..\..\customer\src\cpp\network\libevent\src\include\evutil.h" />
+    <ClInclude Include="..\..\..\..\customer\src\cpp\network\libevent\src\include\openssl\aes.h" />
+    <ClInclude Include="..\..\..\..\customer\src\cpp\network\libevent\src\include\openssl\asn1.h" />
+    <ClInclude Include="..\..\..\..\customer\src\cpp\network\libevent\src\include\openssl\asn1t.h" />
+    <ClInclude Include="..\..\..\..\customer\src\cpp\network\libevent\src\include\openssl\asn1_mac.h" />
+    <ClInclude Include="..\..\..\..\customer\src\cpp\network\libevent\src\include\openssl\async.h" />
+    <ClInclude Include="..\..\..\..\customer\src\cpp\network\libevent\src\include\openssl\bio.h" />
+    <ClInclude Include="..\..\..\..\customer\src\cpp\network\libevent\src\include\openssl\blowfish.h" />
+    <ClInclude Include="..\..\..\..\customer\src\cpp\network\libevent\src\include\openssl\bn.h" />
+    <ClInclude Include="..\..\..\..\customer\src\cpp\network\libevent\src\include\openssl\buffer.h" />
+    <ClInclude Include="..\..\..\..\customer\src\cpp\network\libevent\src\include\openssl\camellia.h" />
+    <ClInclude Include="..\..\..\..\customer\src\cpp\network\libevent\src\include\openssl\cast.h" />
+    <ClInclude Include="..\..\..\..\customer\src\cpp\network\libevent\src\include\openssl\cmac.h" />
+    <ClInclude Include="..\..\..\..\customer\src\cpp\network\libevent\src\include\openssl\cms.h" />
+    <ClInclude Include="..\..\..\..\customer\src\cpp\network\libevent\src\include\openssl\comp.h" />
+    <ClInclude Include="..\..\..\..\customer\src\cpp\network\libevent\src\include\openssl\conf.h" />
+    <ClInclude Include="..\..\..\..\customer\src\cpp\network\libevent\src\include\openssl\conf_api.h" />
+    <ClInclude Include="..\..\..\..\customer\src\cpp\network\libevent\src\include\openssl\crypto.h" />
+    <ClInclude Include="..\..\..\..\customer\src\cpp\network\libevent\src\include\openssl\ct.h" />
+    <ClInclude Include="..\..\..\..\customer\src\cpp\network\libevent\src\include\openssl\des.h" />
+    <ClInclude Include="..\..\..\..\customer\src\cpp\network\libevent\src\include\openssl\dh.h" />
+    <ClInclude Include="..\..\..\..\customer\src\cpp\network\libevent\src\include\openssl\dsa.h" />
+    <ClInclude Include="..\..\..\..\customer\src\cpp\network\libevent\src\include\openssl\dtls1.h" />
+    <ClInclude Include="..\..\..\..\customer\src\cpp\network\libevent\src\include\openssl\ebcdic.h" />
+    <ClInclude Include="..\..\..\..\customer\src\cpp\network\libevent\src\include\openssl\ec.h" />
+    <ClInclude Include="..\..\..\..\customer\src\cpp\network\libevent\src\include\openssl\ecdh.h" />
+    <ClInclude Include="..\..\..\..\customer\src\cpp\network\libevent\src\include\openssl\ecdsa.h" />
+    <ClInclude Include="..\..\..\..\customer\src\cpp\network\libevent\src\include\openssl\engine.h" />
+    <ClInclude Include="..\..\..\..\customer\src\cpp\network\libevent\src\include\openssl\err.h" />
+    <ClInclude Include="..\..\..\..\customer\src\cpp\network\libevent\src\include\openssl\evp.h" />
+    <ClInclude Include="..\..\..\..\customer\src\cpp\network\libevent\src\include\openssl\e_os2.h" />
+    <ClInclude Include="..\..\..\..\customer\src\cpp\network\libevent\src\include\openssl\hmac.h" />
+    <ClInclude Include="..\..\..\..\customer\src\cpp\network\libevent\src\include\openssl\idea.h" />
+    <ClInclude Include="..\..\..\..\customer\src\cpp\network\libevent\src\include\openssl\kdf.h" />
+    <ClInclude Include="..\..\..\..\customer\src\cpp\network\libevent\src\include\openssl\lhash.h" />
+    <ClInclude Include="..\..\..\..\customer\src\cpp\network\libevent\src\include\openssl\md2.h" />
+    <ClInclude Include="..\..\..\..\customer\src\cpp\network\libevent\src\include\openssl\md4.h" />
+    <ClInclude Include="..\..\..\..\customer\src\cpp\network\libevent\src\include\openssl\md5.h" />
+    <ClInclude Include="..\..\..\..\customer\src\cpp\network\libevent\src\include\openssl\mdc2.h" />
+    <ClInclude Include="..\..\..\..\customer\src\cpp\network\libevent\src\include\openssl\modes.h" />
+    <ClInclude Include="..\..\..\..\customer\src\cpp\network\libevent\src\include\openssl\objects.h" />
+    <ClInclude Include="..\..\..\..\customer\src\cpp\network\libevent\src\include\openssl\obj_mac.h" />
+    <ClInclude Include="..\..\..\..\customer\src\cpp\network\libevent\src\include\openssl\ocsp.h" />
+    <ClInclude Include="..\..\..\..\customer\src\cpp\network\libevent\src\include\openssl\opensslconf.h" />
+    <ClInclude Include="..\..\..\..\customer\src\cpp\network\libevent\src\include\openssl\opensslv.h" />
+    <ClInclude Include="..\..\..\..\customer\src\cpp\network\libevent\src\include\openssl\ossl_typ.h" />
+    <ClInclude Include="..\..\..\..\customer\src\cpp\network\libevent\src\include\openssl\pem.h" />
+    <ClInclude Include="..\..\..\..\customer\src\cpp\network\libevent\src\include\openssl\pem2.h" />
+    <ClInclude Include="..\..\..\..\customer\src\cpp\network\libevent\src\include\openssl\pkcs12.h" />
+    <ClInclude Include="..\..\..\..\customer\src\cpp\network\libevent\src\include\openssl\pkcs7.h" />
+    <ClInclude Include="..\..\..\..\customer\src\cpp\network\libevent\src\include\openssl\rand.h" />
+    <ClInclude Include="..\..\..\..\customer\src\cpp\network\libevent\src\include\openssl\rc2.h" />
+    <ClInclude Include="..\..\..\..\customer\src\cpp\network\libevent\src\include\openssl\rc4.h" />
+    <ClInclude Include="..\..\..\..\customer\src\cpp\network\libevent\src\include\openssl\rc5.h" />
+    <ClInclude Include="..\..\..\..\customer\src\cpp\network\libevent\src\include\openssl\ripemd.h" />
+    <ClInclude Include="..\..\..\..\customer\src\cpp\network\libevent\src\include\openssl\rsa.h" />
+    <ClInclude Include="..\..\..\..\customer\src\cpp\network\libevent\src\include\openssl\safestack.h" />
+    <ClInclude Include="..\..\..\..\customer\src\cpp\network\libevent\src\include\openssl\seed.h" />
+    <ClInclude Include="..\..\..\..\customer\src\cpp\network\libevent\src\include\openssl\sha.h" />
+    <ClInclude Include="..\..\..\..\customer\src\cpp\network\libevent\src\include\openssl\srp.h" />
+    <ClInclude Include="..\..\..\..\customer\src\cpp\network\libevent\src\include\openssl\srtp.h" />
+    <ClInclude Include="..\..\..\..\customer\src\cpp\network\libevent\src\include\openssl\ssl.h" />
+    <ClInclude Include="..\..\..\..\customer\src\cpp\network\libevent\src\include\openssl\ssl2.h" />
+    <ClInclude Include="..\..\..\..\customer\src\cpp\network\libevent\src\include\openssl\ssl3.h" />
+    <ClInclude Include="..\..\..\..\customer\src\cpp\network\libevent\src\include\openssl\stack.h" />
+    <ClInclude Include="..\..\..\..\customer\src\cpp\network\libevent\src\include\openssl\symhacks.h" />
+    <ClInclude Include="..\..\..\..\customer\src\cpp\network\libevent\src\include\openssl\tls1.h" />
+    <ClInclude Include="..\..\..\..\customer\src\cpp\network\libevent\src\include\openssl\ts.h" />
+    <ClInclude Include="..\..\..\..\customer\src\cpp\network\libevent\src\include\openssl\txt_db.h" />
+    <ClInclude Include="..\..\..\..\customer\src\cpp\network\libevent\src\include\openssl\ui.h" />
+    <ClInclude Include="..\..\..\..\customer\src\cpp\network\libevent\src\include\openssl\whrlpool.h" />
+    <ClInclude Include="..\..\..\..\customer\src\cpp\network\libevent\src\include\openssl\x509.h" />
+    <ClInclude Include="..\..\..\..\customer\src\cpp\network\libevent\src\include\openssl\x509v3.h" />
+    <ClInclude Include="..\..\..\..\customer\src\cpp\network\libevent\src\include\openssl\x509_vfy.h" />
+    <ClInclude Include="..\..\..\..\customer\src\cpp\network\libevent\src\include\openssl\__DECC_INCLUDE_EPILOGUE.H" />
+    <ClInclude Include="..\..\..\..\customer\src\cpp\network\libevent\src\include\openssl\__DECC_INCLUDE_PROLOGUE.H" />
     <ClInclude Include="..\..\..\..\customer\src\cpp\network\libevent\src\iocp-internal.h" />
     <ClInclude Include="..\..\..\..\customer\src\cpp\network\libevent\src\ipv6-internal.h" />
     <ClInclude Include="..\..\..\..\customer\src\cpp\network\libevent\src\kqueue-internal.h" />
@@ -433,6 +442,7 @@ xcopy "$(ProjectDir)..\..\..\..\customer\src\lua" "$(LocalDebuggerWorkingDirecto
     <ClCompile Include="..\..\..\..\customer\src\cpp\logic\base\command_listener.cc" />
     <ClCompile Include="..\..\..\..\customer\src\cpp\logic\base\event_listener.cc" />
     <ClCompile Include="..\..\..\..\customer\src\cpp\logic\base\myevent.cc" />
+    <ClCompile Include="..\..\..\..\customer\src\cpp\logic\log\mylog.cc" />
     <ClCompile Include="..\..\..\..\customer\src\cpp\logic\lua_bind\auto\lua_bind_command_listener.cc" />
     <ClCompile Include="..\..\..\..\customer\src\cpp\logic\lua_bind\auto\lua_bind_command_manager.cc" />
     <ClCompile Include="..\..\..\..\customer\src\cpp\logic\lua_bind\auto\lua_bind_create_room_msg_protocol.cc" />
@@ -441,6 +451,7 @@ xcopy "$(ProjectDir)..\..\..\..\customer\src\lua" "$(LocalDebuggerWorkingDirecto
     <ClCompile Include="..\..\..\..\customer\src\cpp\logic\lua_bind\auto\lua_bind_event_manager.cc" />
     <ClCompile Include="..\..\..\..\customer\src\cpp\logic\lua_bind\auto\lua_bind_msg.cc" />
     <ClCompile Include="..\..\..\..\customer\src\cpp\logic\lua_bind\auto\lua_bind_msg_manager.cc" />
+    <ClCompile Include="..\..\..\..\customer\src\cpp\logic\lua_bind\auto\lua_bind_mylog.cc" />
     <ClCompile Include="..\..\..\..\customer\src\cpp\logic\lua_bind\auto\lua_bind_my_login_msg_protocol.cc" />
     <ClCompile Include="..\..\..\..\customer\src\cpp\logic\lua_bind\auto\lua_bind_network_manager.cc" />
     <ClCompile Include="..\..\..\..\customer\src\cpp\logic\lua_bind\auto\lua_bind_player_cards_msg_protocol.cc" />

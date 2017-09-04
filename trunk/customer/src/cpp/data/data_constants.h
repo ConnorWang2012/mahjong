@@ -18,13 +18,13 @@
 namespace gamer 
 {
 
-enum class DataIDs 
-{
-	DATA_ID_INVALID,
-    DATA_ID_MY_LOGIN_MSG_PROTOCOL,
-    DATA_ID_CREATE_ROOM_MSG_PROTOCOL,
-    DATA_ID_ROOM_MSG_PROTOCOL
-};
+//enum class DataIDs 
+//{
+//	DATA_ID_INVALID,
+//    DATA_ID_MY_LOGIN_MSG_PROTOCOL,
+//    DATA_ID_CREATE_ROOM_MSG_PROTOCOL,
+//    DATA_ID_ROOM_MSG_PROTOCOL
+//};
 
 } // namespace gamer
 

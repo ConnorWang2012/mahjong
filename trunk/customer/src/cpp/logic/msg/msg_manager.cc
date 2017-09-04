@@ -313,8 +313,6 @@ void MsgManager::dispatchMsg(int msg_code,
                              const google::protobuf::Message* msg,
                              const std::string& class_name)
 {
-    //MsgResponseCallback cppcb = nullptr;
-    //auto luacb                = -1;
     auto msgcode              = msg_code;
     auto msgtype              = msg_type;
     auto msgid                = msg_id;

@@ -38,6 +38,8 @@ public:
 	inline int new_card() const;
 
 	inline int next_operate_player_id() const;
+	inline void set_next_operate_player_id(int value);
+
 	inline bool has_next_operate_player_new_card() const;
 
 	inline int my_available_operation_id() const;

@@ -1,0 +1,8 @@
+$#include "log/mylog.h"
+
+namespace gamer
+{
+
+    void writelog(const std::string& s);
+
+}

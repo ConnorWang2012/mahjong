@@ -25,6 +25,7 @@ TOLUA_API int tolua_event_listener_open(lua_State*);
 TOLUA_API int tolua_event_manager_open(lua_State*);
 TOLUA_API int tolua_command_manager_open(lua_State*);
 TOLUA_API int tolua_data_manager_open(lua_State*);
+TOLUA_API int tolua_mylog_open(lua_State*);
 TOLUA_API int tolua_msg_open(lua_State*);
 TOLUA_API int tolua_msg_manager_open(lua_State*);
 TOLUA_API int tolua_network_manager_open(lua_State*);

@@ -196,6 +196,9 @@
     <Filter Include="classes\lua\view\animations\room">
       <UniqueIdentifier>{bebc3df2-d5fc-4c62-9ff3-afaba586b5f5}</UniqueIdentifier>
     </Filter>
+    <Filter Include="classes\cpp\logic\log">
+      <UniqueIdentifier>{2ebd71ac-1aad-4b63-b6d3-53bbb2ddfe4b}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\Classes\AppDelegate.h">
@@ -412,231 +415,6 @@
     </ClInclude>
     <ClInclude Include="..\..\..\..\customer\src\cpp\network\libevent\src\WIN32-Code\nmake\event2\event-config.h">
       <Filter>classes\cpp\network\libevent\win32</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\..\..\..\..\..\tcp_client\libevent\src\include\openssl\aes.h">
-      <Filter>classes\cpp\network\libevent\include\openssl</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\..\..\..\..\..\tcp_client\libevent\src\include\openssl\asn1.h">
-      <Filter>classes\cpp\network\libevent\include\openssl</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\..\..\..\..\..\tcp_client\libevent\src\include\openssl\asn1t.h">
-      <Filter>classes\cpp\network\libevent\include\openssl</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\..\..\..\..\..\tcp_client\libevent\src\include\openssl\asn1_mac.h">
-      <Filter>classes\cpp\network\libevent\include\openssl</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\..\..\..\..\..\tcp_client\libevent\src\include\openssl\async.h">
-      <Filter>classes\cpp\network\libevent\include\openssl</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\..\..\..\..\..\tcp_client\libevent\src\include\openssl\bio.h">
-      <Filter>classes\cpp\network\libevent\include\openssl</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\..\..\..\..\..\tcp_client\libevent\src\include\openssl\blowfish.h">
-      <Filter>classes\cpp\network\libevent\include\openssl</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\..\..\..\..\..\tcp_client\libevent\src\include\openssl\bn.h">
-      <Filter>classes\cpp\network\libevent\include\openssl</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\..\..\..\..\..\tcp_client\libevent\src\include\openssl\buffer.h">
-      <Filter>classes\cpp\network\libevent\include\openssl</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\..\..\..\..\..\tcp_client\libevent\src\include\openssl\camellia.h">
-      <Filter>classes\cpp\network\libevent\include\openssl</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\..\..\..\..\..\tcp_client\libevent\src\include\openssl\cast.h">
-      <Filter>classes\cpp\network\libevent\include\openssl</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\..\..\..\..\..\tcp_client\libevent\src\include\openssl\cmac.h">
-      <Filter>classes\cpp\network\libevent\include\openssl</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\..\..\..\..\..\tcp_client\libevent\src\include\openssl\cms.h">
-      <Filter>classes\cpp\network\libevent\include\openssl</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\..\..\..\..\..\tcp_client\libevent\src\include\openssl\comp.h">
-      <Filter>classes\cpp\network\libevent\include\openssl</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\..\..\..\..\..\tcp_client\libevent\src\include\openssl\conf.h">
-      <Filter>classes\cpp\network\libevent\include\openssl</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\..\..\..\..\..\tcp_client\libevent\src\include\openssl\conf_api.h">
-      <Filter>classes\cpp\network\libevent\include\openssl</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\..\..\..\..\..\tcp_client\libevent\src\include\openssl\crypto.h">
-      <Filter>classes\cpp\network\libevent\include\openssl</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\..\..\..\..\..\tcp_client\libevent\src\include\openssl\ct.h">
-      <Filter>classes\cpp\network\libevent\include\openssl</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\..\..\..\..\..\tcp_client\libevent\src\include\openssl\des.h">
-      <Filter>classes\cpp\network\libevent\include\openssl</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\..\..\..\..\..\tcp_client\libevent\src\include\openssl\dh.h">
-      <Filter>classes\cpp\network\libevent\include\openssl</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\..\..\..\..\..\tcp_client\libevent\src\include\openssl\dsa.h">
-      <Filter>classes\cpp\network\libevent\include\openssl</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\..\..\..\..\..\tcp_client\libevent\src\include\openssl\dtls1.h">
-      <Filter>classes\cpp\network\libevent\include\openssl</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\..\..\..\..\..\tcp_client\libevent\src\include\openssl\ebcdic.h">
-      <Filter>classes\cpp\network\libevent\include\openssl</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\..\..\..\..\..\tcp_client\libevent\src\include\openssl\ec.h">
-      <Filter>classes\cpp\network\libevent\include\openssl</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\..\..\..\..\..\tcp_client\libevent\src\include\openssl\ecdh.h">
-      <Filter>classes\cpp\network\libevent\include\openssl</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\..\..\..\..\..\tcp_client\libevent\src\include\openssl\ecdsa.h">
-      <Filter>classes\cpp\network\libevent\include\openssl</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\..\..\..\..\..\tcp_client\libevent\src\include\openssl\engine.h">
-      <Filter>classes\cpp\network\libevent\include\openssl</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\..\..\..\..\..\tcp_client\libevent\src\include\openssl\err.h">
-      <Filter>classes\cpp\network\libevent\include\openssl</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\..\..\..\..\..\tcp_client\libevent\src\include\openssl\evp.h">
-      <Filter>classes\cpp\network\libevent\include\openssl</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\..\..\..\..\..\tcp_client\libevent\src\include\openssl\e_os2.h">
-      <Filter>classes\cpp\network\libevent\include\openssl</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\..\..\..\..\..\tcp_client\libevent\src\include\openssl\hmac.h">
-      <Filter>classes\cpp\network\libevent\include\openssl</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\..\..\..\..\..\tcp_client\libevent\src\include\openssl\idea.h">
-      <Filter>classes\cpp\network\libevent\include\openssl</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\..\..\..\..\..\tcp_client\libevent\src\include\openssl\kdf.h">
-      <Filter>classes\cpp\network\libevent\include\openssl</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\..\..\..\..\..\tcp_client\libevent\src\include\openssl\lhash.h">
-      <Filter>classes\cpp\network\libevent\include\openssl</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\..\..\..\..\..\tcp_client\libevent\src\include\openssl\md2.h">
-      <Filter>classes\cpp\network\libevent\include\openssl</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\..\..\..\..\..\tcp_client\libevent\src\include\openssl\md4.h">
-      <Filter>classes\cpp\network\libevent\include\openssl</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\..\..\..\..\..\tcp_client\libevent\src\include\openssl\md5.h">
-      <Filter>classes\cpp\network\libevent\include\openssl</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\..\..\..\..\..\tcp_client\libevent\src\include\openssl\mdc2.h">
-      <Filter>classes\cpp\network\libevent\include\openssl</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\..\..\..\..\..\tcp_client\libevent\src\include\openssl\modes.h">
-      <Filter>classes\cpp\network\libevent\include\openssl</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\..\..\..\..\..\tcp_client\libevent\src\include\openssl\objects.h">
-      <Filter>classes\cpp\network\libevent\include\openssl</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\..\..\..\..\..\tcp_client\libevent\src\include\openssl\obj_mac.h">
-      <Filter>classes\cpp\network\libevent\include\openssl</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\..\..\..\..\..\tcp_client\libevent\src\include\openssl\ocsp.h">
-      <Filter>classes\cpp\network\libevent\include\openssl</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\..\..\..\..\..\tcp_client\libevent\src\include\openssl\opensslconf.h">
-      <Filter>classes\cpp\network\libevent\include\openssl</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\..\..\..\..\..\tcp_client\libevent\src\include\openssl\opensslv.h">
-      <Filter>classes\cpp\network\libevent\include\openssl</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\..\..\..\..\..\tcp_client\libevent\src\include\openssl\ossl_typ.h">
-      <Filter>classes\cpp\network\libevent\include\openssl</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\..\..\..\..\..\tcp_client\libevent\src\include\openssl\pem.h">
-      <Filter>classes\cpp\network\libevent\include\openssl</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\..\..\..\..\..\tcp_client\libevent\src\include\openssl\pem2.h">
-      <Filter>classes\cpp\network\libevent\include\openssl</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\..\..\..\..\..\tcp_client\libevent\src\include\openssl\pkcs12.h">
-      <Filter>classes\cpp\network\libevent\include\openssl</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\..\..\..\..\..\tcp_client\libevent\src\include\openssl\pkcs7.h">
-      <Filter>classes\cpp\network\libevent\include\openssl</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\..\..\..\..\..\tcp_client\libevent\src\include\openssl\rand.h">
-      <Filter>classes\cpp\network\libevent\include\openssl</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\..\..\..\..\..\tcp_client\libevent\src\include\openssl\rc2.h">
-      <Filter>classes\cpp\network\libevent\include\openssl</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\..\..\..\..\..\tcp_client\libevent\src\include\openssl\rc4.h">
-      <Filter>classes\cpp\network\libevent\include\openssl</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\..\..\..\..\..\tcp_client\libevent\src\include\openssl\rc5.h">
-      <Filter>classes\cpp\network\libevent\include\openssl</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\..\..\..\..\..\tcp_client\libevent\src\include\openssl\ripemd.h">
-      <Filter>classes\cpp\network\libevent\include\openssl</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\..\..\..\..\..\tcp_client\libevent\src\include\openssl\rsa.h">
-      <Filter>classes\cpp\network\libevent\include\openssl</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\..\..\..\..\..\tcp_client\libevent\src\include\openssl\safestack.h">
-      <Filter>classes\cpp\network\libevent\include\openssl</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\..\..\..\..\..\tcp_client\libevent\src\include\openssl\seed.h">
-      <Filter>classes\cpp\network\libevent\include\openssl</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\..\..\..\..\..\tcp_client\libevent\src\include\openssl\sha.h">
-      <Filter>classes\cpp\network\libevent\include\openssl</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\..\..\..\..\..\tcp_client\libevent\src\include\openssl\srp.h">
-      <Filter>classes\cpp\network\libevent\include\openssl</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\..\..\..\..\..\tcp_client\libevent\src\include\openssl\srtp.h">
-      <Filter>classes\cpp\network\libevent\include\openssl</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\..\..\..\..\..\tcp_client\libevent\src\include\openssl\ssl.h">
-      <Filter>classes\cpp\network\libevent\include\openssl</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\..\..\..\..\..\tcp_client\libevent\src\include\openssl\ssl2.h">
-      <Filter>classes\cpp\network\libevent\include\openssl</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\..\..\..\..\..\tcp_client\libevent\src\include\openssl\ssl3.h">
-      <Filter>classes\cpp\network\libevent\include\openssl</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\..\..\..\..\..\tcp_client\libevent\src\include\openssl\stack.h">
-      <Filter>classes\cpp\network\libevent\include\openssl</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\..\..\..\..\..\tcp_client\libevent\src\include\openssl\symhacks.h">
-      <Filter>classes\cpp\network\libevent\include\openssl</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\..\..\..\..\..\tcp_client\libevent\src\include\openssl\tls1.h">
-      <Filter>classes\cpp\network\libevent\include\openssl</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\..\..\..\..\..\tcp_client\libevent\src\include\openssl\ts.h">
-      <Filter>classes\cpp\network\libevent\include\openssl</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\..\..\..\..\..\tcp_client\libevent\src\include\openssl\txt_db.h">
-      <Filter>classes\cpp\network\libevent\include\openssl</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\..\..\..\..\..\tcp_client\libevent\src\include\openssl\ui.h">
-      <Filter>classes\cpp\network\libevent\include\openssl</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\..\..\..\..\..\tcp_client\libevent\src\include\openssl\whrlpool.h">
-      <Filter>classes\cpp\network\libevent\include\openssl</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\..\..\..\..\..\tcp_client\libevent\src\include\openssl\x509.h">
-      <Filter>classes\cpp\network\libevent\include\openssl</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\..\..\..\..\..\tcp_client\libevent\src\include\openssl\x509v3.h">
-      <Filter>classes\cpp\network\libevent\include\openssl</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\..\..\..\..\..\tcp_client\libevent\src\include\openssl\x509_vfy.h">
-      <Filter>classes\cpp\network\libevent\include\openssl</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\..\..\..\..\..\tcp_client\libevent\src\include\openssl\__DECC_INCLUDE_EPILOGUE.H">
-      <Filter>classes\cpp\network\libevent\include\openssl</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\..\..\..\..\..\tcp_client\libevent\src\include\openssl\__DECC_INCLUDE_PROLOGUE.H">
-      <Filter>classes\cpp\network\libevent\include\openssl</Filter>
     </ClInclude>
     <ClInclude Include="..\..\..\..\customer\src\cpp\logic\base\common.h">
       <Filter>classes\cpp\logic\base</Filter>
@@ -889,6 +667,234 @@
     </ClInclude>
     <ClInclude Include="..\..\..\..\customer\src\cpp\logic\constant\card_constants.h">
       <Filter>classes\cpp\logic\constant</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\customer\src\cpp\network\libevent\src\include\openssl\aes.h">
+      <Filter>classes\cpp\network\libevent\include\openssl</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\customer\src\cpp\network\libevent\src\include\openssl\asn1.h">
+      <Filter>classes\cpp\network\libevent\include\openssl</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\customer\src\cpp\network\libevent\src\include\openssl\asn1t.h">
+      <Filter>classes\cpp\network\libevent\include\openssl</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\customer\src\cpp\network\libevent\src\include\openssl\asn1_mac.h">
+      <Filter>classes\cpp\network\libevent\include\openssl</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\customer\src\cpp\network\libevent\src\include\openssl\async.h">
+      <Filter>classes\cpp\network\libevent\include\openssl</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\customer\src\cpp\network\libevent\src\include\openssl\bio.h">
+      <Filter>classes\cpp\network\libevent\include\openssl</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\customer\src\cpp\network\libevent\src\include\openssl\blowfish.h">
+      <Filter>classes\cpp\network\libevent\include\openssl</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\customer\src\cpp\network\libevent\src\include\openssl\bn.h">
+      <Filter>classes\cpp\network\libevent\include\openssl</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\customer\src\cpp\network\libevent\src\include\openssl\buffer.h">
+      <Filter>classes\cpp\network\libevent\include\openssl</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\customer\src\cpp\network\libevent\src\include\openssl\camellia.h">
+      <Filter>classes\cpp\network\libevent\include\openssl</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\customer\src\cpp\network\libevent\src\include\openssl\cast.h">
+      <Filter>classes\cpp\network\libevent\include\openssl</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\customer\src\cpp\network\libevent\src\include\openssl\cmac.h">
+      <Filter>classes\cpp\network\libevent\include\openssl</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\customer\src\cpp\network\libevent\src\include\openssl\cms.h">
+      <Filter>classes\cpp\network\libevent\include\openssl</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\customer\src\cpp\network\libevent\src\include\openssl\comp.h">
+      <Filter>classes\cpp\network\libevent\include\openssl</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\customer\src\cpp\network\libevent\src\include\openssl\conf.h">
+      <Filter>classes\cpp\network\libevent\include\openssl</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\customer\src\cpp\network\libevent\src\include\openssl\conf_api.h">
+      <Filter>classes\cpp\network\libevent\include\openssl</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\customer\src\cpp\network\libevent\src\include\openssl\crypto.h">
+      <Filter>classes\cpp\network\libevent\include\openssl</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\customer\src\cpp\network\libevent\src\include\openssl\ct.h">
+      <Filter>classes\cpp\network\libevent\include\openssl</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\customer\src\cpp\network\libevent\src\include\openssl\des.h">
+      <Filter>classes\cpp\network\libevent\include\openssl</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\customer\src\cpp\network\libevent\src\include\openssl\dh.h">
+      <Filter>classes\cpp\network\libevent\include\openssl</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\customer\src\cpp\network\libevent\src\include\openssl\dsa.h">
+      <Filter>classes\cpp\network\libevent\include\openssl</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\customer\src\cpp\network\libevent\src\include\openssl\dtls1.h">
+      <Filter>classes\cpp\network\libevent\include\openssl</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\customer\src\cpp\network\libevent\src\include\openssl\ebcdic.h">
+      <Filter>classes\cpp\network\libevent\include\openssl</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\customer\src\cpp\network\libevent\src\include\openssl\ec.h">
+      <Filter>classes\cpp\network\libevent\include\openssl</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\customer\src\cpp\network\libevent\src\include\openssl\ecdh.h">
+      <Filter>classes\cpp\network\libevent\include\openssl</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\customer\src\cpp\network\libevent\src\include\openssl\ecdsa.h">
+      <Filter>classes\cpp\network\libevent\include\openssl</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\customer\src\cpp\network\libevent\src\include\openssl\engine.h">
+      <Filter>classes\cpp\network\libevent\include\openssl</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\customer\src\cpp\network\libevent\src\include\openssl\err.h">
+      <Filter>classes\cpp\network\libevent\include\openssl</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\customer\src\cpp\network\libevent\src\include\openssl\evp.h">
+      <Filter>classes\cpp\network\libevent\include\openssl</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\customer\src\cpp\network\libevent\src\include\openssl\e_os2.h">
+      <Filter>classes\cpp\network\libevent\include\openssl</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\customer\src\cpp\network\libevent\src\include\openssl\hmac.h">
+      <Filter>classes\cpp\network\libevent\include\openssl</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\customer\src\cpp\network\libevent\src\include\openssl\idea.h">
+      <Filter>classes\cpp\network\libevent\include\openssl</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\customer\src\cpp\network\libevent\src\include\openssl\kdf.h">
+      <Filter>classes\cpp\network\libevent\include\openssl</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\customer\src\cpp\network\libevent\src\include\openssl\lhash.h">
+      <Filter>classes\cpp\network\libevent\include\openssl</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\customer\src\cpp\network\libevent\src\include\openssl\md2.h">
+      <Filter>classes\cpp\network\libevent\include\openssl</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\customer\src\cpp\network\libevent\src\include\openssl\md4.h">
+      <Filter>classes\cpp\network\libevent\include\openssl</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\customer\src\cpp\network\libevent\src\include\openssl\md5.h">
+      <Filter>classes\cpp\network\libevent\include\openssl</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\customer\src\cpp\network\libevent\src\include\openssl\mdc2.h">
+      <Filter>classes\cpp\network\libevent\include\openssl</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\customer\src\cpp\network\libevent\src\include\openssl\modes.h">
+      <Filter>classes\cpp\network\libevent\include\openssl</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\customer\src\cpp\network\libevent\src\include\openssl\objects.h">
+      <Filter>classes\cpp\network\libevent\include\openssl</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\customer\src\cpp\network\libevent\src\include\openssl\obj_mac.h">
+      <Filter>classes\cpp\network\libevent\include\openssl</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\customer\src\cpp\network\libevent\src\include\openssl\ocsp.h">
+      <Filter>classes\cpp\network\libevent\include\openssl</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\customer\src\cpp\network\libevent\src\include\openssl\opensslconf.h">
+      <Filter>classes\cpp\network\libevent\include\openssl</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\customer\src\cpp\network\libevent\src\include\openssl\opensslv.h">
+      <Filter>classes\cpp\network\libevent\include\openssl</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\customer\src\cpp\network\libevent\src\include\openssl\ossl_typ.h">
+      <Filter>classes\cpp\network\libevent\include\openssl</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\customer\src\cpp\network\libevent\src\include\openssl\pem.h">
+      <Filter>classes\cpp\network\libevent\include\openssl</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\customer\src\cpp\network\libevent\src\include\openssl\pem2.h">
+      <Filter>classes\cpp\network\libevent\include\openssl</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\customer\src\cpp\network\libevent\src\include\openssl\pkcs12.h">
+      <Filter>classes\cpp\network\libevent\include\openssl</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\customer\src\cpp\network\libevent\src\include\openssl\pkcs7.h">
+      <Filter>classes\cpp\network\libevent\include\openssl</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\customer\src\cpp\network\libevent\src\include\openssl\rand.h">
+      <Filter>classes\cpp\network\libevent\include\openssl</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\customer\src\cpp\network\libevent\src\include\openssl\rc2.h">
+      <Filter>classes\cpp\network\libevent\include\openssl</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\customer\src\cpp\network\libevent\src\include\openssl\rc4.h">
+      <Filter>classes\cpp\network\libevent\include\openssl</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\customer\src\cpp\network\libevent\src\include\openssl\rc5.h">
+      <Filter>classes\cpp\network\libevent\include\openssl</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\customer\src\cpp\network\libevent\src\include\openssl\ripemd.h">
+      <Filter>classes\cpp\network\libevent\include\openssl</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\customer\src\cpp\network\libevent\src\include\openssl\rsa.h">
+      <Filter>classes\cpp\network\libevent\include\openssl</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\customer\src\cpp\network\libevent\src\include\openssl\safestack.h">
+      <Filter>classes\cpp\network\libevent\include\openssl</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\customer\src\cpp\network\libevent\src\include\openssl\seed.h">
+      <Filter>classes\cpp\network\libevent\include\openssl</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\customer\src\cpp\network\libevent\src\include\openssl\sha.h">
+      <Filter>classes\cpp\network\libevent\include\openssl</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\customer\src\cpp\network\libevent\src\include\openssl\srp.h">
+      <Filter>classes\cpp\network\libevent\include\openssl</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\customer\src\cpp\network\libevent\src\include\openssl\srtp.h">
+      <Filter>classes\cpp\network\libevent\include\openssl</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\customer\src\cpp\network\libevent\src\include\openssl\ssl.h">
+      <Filter>classes\cpp\network\libevent\include\openssl</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\customer\src\cpp\network\libevent\src\include\openssl\ssl2.h">
+      <Filter>classes\cpp\network\libevent\include\openssl</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\customer\src\cpp\network\libevent\src\include\openssl\ssl3.h">
+      <Filter>classes\cpp\network\libevent\include\openssl</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\customer\src\cpp\network\libevent\src\include\openssl\stack.h">
+      <Filter>classes\cpp\network\libevent\include\openssl</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\customer\src\cpp\network\libevent\src\include\openssl\symhacks.h">
+      <Filter>classes\cpp\network\libevent\include\openssl</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\customer\src\cpp\network\libevent\src\include\openssl\tls1.h">
+      <Filter>classes\cpp\network\libevent\include\openssl</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\customer\src\cpp\network\libevent\src\include\openssl\ts.h">
+      <Filter>classes\cpp\network\libevent\include\openssl</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\customer\src\cpp\network\libevent\src\include\openssl\txt_db.h">
+      <Filter>classes\cpp\network\libevent\include\openssl</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\customer\src\cpp\network\libevent\src\include\openssl\ui.h">
+      <Filter>classes\cpp\network\libevent\include\openssl</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\customer\src\cpp\network\libevent\src\include\openssl\whrlpool.h">
+      <Filter>classes\cpp\network\libevent\include\openssl</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\customer\src\cpp\network\libevent\src\include\openssl\x509.h">
+      <Filter>classes\cpp\network\libevent\include\openssl</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\customer\src\cpp\network\libevent\src\include\openssl\x509v3.h">
+      <Filter>classes\cpp\network\libevent\include\openssl</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\customer\src\cpp\network\libevent\src\include\openssl\x509_vfy.h">
+      <Filter>classes\cpp\network\libevent\include\openssl</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\customer\src\cpp\network\libevent\src\include\openssl\__DECC_INCLUDE_EPILOGUE.H">
+      <Filter>classes\cpp\network\libevent\include\openssl</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\customer\src\cpp\network\libevent\src\include\openssl\__DECC_INCLUDE_PROLOGUE.H">
+      <Filter>classes\cpp\network\libevent\include\openssl</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\customer\src\cpp\logic\log\mylog.h">
+      <Filter>classes\cpp\logic\log</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -1197,6 +1203,12 @@
       <Filter>classes\cpp\logic\lua_bind\auto</Filter>
     </ClCompile>
     <ClCompile Include="..\..\..\..\customer\src\cpp\logic\lua_bind\auto\lua_bind_room_msg_protocol.cc">
+      <Filter>classes\cpp\logic\lua_bind\auto</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\customer\src\cpp\logic\log\mylog.cc">
+      <Filter>classes\cpp\logic\log</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\customer\src\cpp\logic\lua_bind\auto\lua_bind_mylog.cc">
       <Filter>classes\cpp\logic\lua_bind\auto</Filter>
     </ClCompile>
   </ItemGroup>

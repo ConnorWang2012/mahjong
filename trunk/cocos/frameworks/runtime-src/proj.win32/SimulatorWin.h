@@ -42,7 +42,7 @@ protected:
 
     // helper
     std::string convertPathFormatToUnixStyle(const std::string& path);
-    std::string getUserDocumentPath();
+    //std::string getUserDocumentPath(); // connor 2017-09-01
     std::string getApplicationExePath();
     std::string getApplicationPath();
     static char* convertTCharToUtf8(const TCHAR* src);

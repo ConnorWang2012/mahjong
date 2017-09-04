@@ -86,9 +86,18 @@ function HallScene:dealWithJoinRoomMsgReceived(code, msg)
     print("[HallScene:dealWithJoinRoomMsgReceived] code : ", code)
 	if code == gamer.MsgCodes.SUCCEED then
 		gamer.popup_mgr_.removePopup(gamer.PopupConstants.PopupIDs.POPUP_ID_ROOM_JOIN)
-		
+		--[[
+		if not self.test_ then
+			self.test_ = true
+			return
+		end
+		]]
 		local proto_room = gamer.data_mgr_:create_room_msg_protocol()	
 		print("[HallScene:dealWithJoinRoomMsgReceived] room_owner_id, room_id : ", proto_room:room_owner_id(), proto_room:room_id())
+
+		if gamer.data_mgr_:self_player_id() ~= proto_room:room_owner_id() then
+			return
+		end
 
 		local proto = gamer.protocol.RoomMsgProtocol()
 		proto:set_room_id(proto_room:room_id())
