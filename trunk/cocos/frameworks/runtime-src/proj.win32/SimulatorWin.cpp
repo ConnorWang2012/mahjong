@@ -2,6 +2,22 @@
 #pragma comment(lib, "comctl32.lib")
 #pragma comment(linker, "\"/manifestdependency:type='Win32' name='Microsoft.Windows.Common-Controls' version='6.0.0.0' processorArchitecture='X86' publicKeyToken='6595b64144ccf1df' language='*'\"")
 
+// connor 2017-09-01
+//#include "stdafx.h"
+//#include <io.h>
+//#include <stdlib.h>
+//#include <malloc.h>
+//#include <stdio.h>
+//#include <fcntl.h>
+//#include <Commdlg.h>
+//#include <Shlobj.h>
+//#include <winnls.h>
+//#include <shobjidl.h>
+//#include <objbase.h>
+//#include <objidl.h>
+//#include <shlguid.h>
+//#include <shellapi.h>
+
 #include "stdafx.h"
 #include <io.h>
 #include <stdlib.h>
@@ -9,12 +25,6 @@
 #include <stdio.h>
 #include <fcntl.h>
 #include <Commdlg.h>
-#include <Shlobj.h>
-#include <winnls.h>
-#include <shobjidl.h>
-#include <objbase.h>
-#include <objidl.h>
-#include <shlguid.h>
 #include <shellapi.h>
 
 #include "SimulatorWin.h"
@@ -213,10 +223,11 @@ int SimulatorWin::getPositionY()
 
 int SimulatorWin::run()
 {
-    INITCOMMONCONTROLSEX InitCtrls;
-    InitCtrls.dwSize = sizeof(InitCtrls);
-    InitCtrls.dwICC = ICC_WIN95_CLASSES;
-    InitCommonControlsEx(&InitCtrls);
+    // connor 2017-09-01
+    //INITCOMMONCONTROLSEX InitCtrls;
+    //InitCtrls.dwSize = sizeof(InitCtrls);
+    //InitCtrls.dwICC = ICC_WIN95_CLASSES;
+    //InitCommonControlsEx(&InitCtrls);
 
     parseCocosProjectConfig(_project);
 
@@ -654,21 +665,21 @@ std::string SimulatorWin::convertPathFormatToUnixStyle(const std::string& path)
 //
 // @return: C:/Users/win8/Documents/
 //
-std::string SimulatorWin::getUserDocumentPath()
-{
-    TCHAR filePath[MAX_PATH];
-    SHGetSpecialFolderPath(NULL, filePath, CSIDL_PERSONAL, FALSE);
-    int length = 2 * wcslen(filePath);
-    char* tempstring = new char[length + 1];
-    wcstombs(tempstring, filePath, length + 1);
-    string userDocumentPath(tempstring);
-    delete [] tempstring;
-
-    userDocumentPath = convertPathFormatToUnixStyle(userDocumentPath);
-    userDocumentPath.append("/");
-
-    return userDocumentPath;
-}
+//std::string SimulatorWin::getUserDocumentPath()
+//{
+//    TCHAR filePath[MAX_PATH];
+//    SHGetSpecialFolderPath(NULL, filePath, CSIDL_PERSONAL, FALSE);
+//    int length = 2 * wcslen(filePath);
+//    char* tempstring = new char[length + 1];
+//    wcstombs(tempstring, filePath, length + 1);
+//    string userDocumentPath(tempstring);
+//    delete [] tempstring;
+//
+//    userDocumentPath = convertPathFormatToUnixStyle(userDocumentPath);
+//    userDocumentPath.append("/");
+//
+//    return userDocumentPath;
+//}
 
 //
 // convert Unicode/LocalCode TCHAR to Utf8 char

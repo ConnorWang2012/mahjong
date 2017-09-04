@@ -3,10 +3,11 @@
 #include "cocos2d.h"
 #include "scripting/lua-bindings/manual/lua_module_register.h"
 
+#include "mylog.h"
 #include "lua_bind_helper.h"
 #include "network_manager.h"
 
-// #define USE_AUDIO_ENGINE 1
+ #define USE_AUDIO_ENGINE 1
 // #define USE_SIMPLE_AUDIO_ENGINE 1
 
 #if USE_AUDIO_ENGINE && USE_SIMPLE_AUDIO_ENGINE
@@ -91,7 +92,8 @@ bool AppDelegate::applicationDidFinishLaunching()
 
     engine->addSearchPath("src/customer/src/lua");
     engine->addSearchPath("src/customer/src/lua/view/layouts");
-    //engine->addSearchPath("../res");
+
+    gamer::initlog();
 
     if (engine->executeScriptFile("main.lua"))
     {
