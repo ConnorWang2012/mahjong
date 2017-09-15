@@ -16,6 +16,7 @@ modification:
 #define CONNOR_GAME_SRC_MSG_MANAGER_H_
 
 #include <string>
+#include <queue>
 #include <unordered_map>
 #include <unordered_set>
 #include <vector>
@@ -93,6 +94,16 @@ public:
     void removeMsgListener(msg_header_t msg_type, gamer::LuaFunction listener);
 
 private:
+    struct MsgProtocol
+    {
+        msg_header_t type;
+        msg_header_t id;
+        msg_header_t code;
+        google::protobuf::Message* msg;
+        std::string class_name;
+        std::string dispatch_key;
+    };
+
     typedef std::function<void(const ServerMsg&)> MsgHandler;
 
     MsgManager();
@@ -118,6 +129,8 @@ private:
                    const google::protobuf::Message& msg);
 
     std::string getMsgCallbackKey(msg_header_t msg_type, msg_header_t msg_id);
+
+    std::string getMsgDispatchKey();
 
     void addMsgListenerForLua(msg_header_t msg_type, 
                               msg_header_t msg_id, 
@@ -168,6 +181,9 @@ private:
 
     std::unordered_map<int, MsgHandler> msg_handlers_;    // key is MsgIDs
     std::unordered_map<int, MsgHandler> msg_dispatchers_; // key is MsgTypes
+
+    std::queue<MsgProtocol*> msg_queue_;
+    int msg_dispatch_index_;
 
     static const int MAX_MSG_LEN = 4096;
 };

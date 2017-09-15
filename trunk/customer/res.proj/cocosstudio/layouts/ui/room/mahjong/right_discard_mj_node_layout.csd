@@ -16,15 +16,15 @@
             <PreSize X="0.0000" Y="0.0000" />
             <FileData Type="PlistSubImage" Path="mj_left_visible.png" Plist="assets/room/plist/cards.plist" />
           </AbstractNodeData>
-          <AbstractNodeData Name="img_fg" ActionTag="-1782835193" Tag="18" RotationSkewX="-90.0000" RotationSkewY="-101.0000" IconVisible="False" LeftMargin="-48.0000" RightMargin="-54.0000" TopMargin="-78.0000" BottomMargin="-46.0000" LeftEage="33" RightEage="33" TopEage="40" BottomEage="40" Scale9OriginX="33" Scale9OriginY="40" Scale9Width="36" Scale9Height="44" ctype="ImageViewObjectData">
+          <AbstractNodeData Name="img_fg" ActionTag="-1782835193" Tag="18" RotationSkewX="-89.0000" RotationSkewY="-102.0000" IconVisible="False" LeftMargin="-48.0000" RightMargin="-54.0000" TopMargin="-76.8100" BottomMargin="-47.1900" LeftEage="33" RightEage="33" TopEage="40" BottomEage="40" Scale9OriginX="33" Scale9OriginY="40" Scale9Width="36" Scale9Height="44" ctype="ImageViewObjectData">
             <Size X="102.0000" Y="124.0000" />
             <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
-            <Position X="3.0000" Y="16.0000" />
-            <Scale ScaleX="0.3500" ScaleY="0.5300" />
+            <Position X="3.0000" Y="14.8100" />
+            <Scale ScaleX="0.2900" ScaleY="0.5200" />
             <CColor A="255" R="255" G="255" B="255" />
             <PrePosition />
             <PreSize X="0.0000" Y="0.0000" />
-            <FileData Type="PlistSubImage" Path="bamboo_1.png" Plist="assets/room/plist/cards.plist" />
+            <FileData Type="PlistSubImage" Path="dot_9.png" Plist="assets/room/plist/cards.plist" />
           </AbstractNodeData>
         </Children>
       </ObjectData>

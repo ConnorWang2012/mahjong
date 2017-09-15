@@ -89,6 +89,10 @@ public:
 
     void updateCardForAnGang(int player_id, int card_of_an_gang);
 
+    void updateCardForBuhua(int player_id, int card_of_flower_season);
+
+    void updateCardForHu(int player_id);
+
 private:
     typedef google::protobuf::RepeatedField<google::protobuf::int32> RepeatedField;
 

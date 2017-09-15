@@ -54,4 +54,13 @@ SceneConstants.ScenesCfg =
 		}
 }
 
+SceneConstants.LocalZOrders =
+{
+    ROOM_MAHJONG_LAYER                 = 100,
+    ROOM_PLAYER_HEAD_LAYER			   = 101,
+	ROOM_MENU_LAYER			           = 102,
+	ROOM_ANIMATION_LAYER			   = 103,
+	ROOM_NOTIFICATION_LAYER			   = 104
+}
+
 return SceneConstants

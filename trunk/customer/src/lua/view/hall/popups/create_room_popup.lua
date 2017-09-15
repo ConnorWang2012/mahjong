@@ -32,7 +32,7 @@ function CreateRoomPopup:onImgCreateRoomTouch(sender)
     print("[CreateRoomPopup:onImgCreateRoomTouch]")
 
 	local proto = gamer.protocol.CreateRoomMsgProtocol()
-    proto:set_room_owner_id(10000001)
+    proto:set_room_owner_id(gamer.data_mgr_:self_player_id())
     proto:set_rounds_num(10)
     proto:set_players_num(2)
     proto:set_room_cards_num(1)

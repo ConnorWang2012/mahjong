@@ -82,9 +82,6 @@
     <Filter Include="classes\lua\logic\manager">
       <UniqueIdentifier>{3af6571c-bd7a-4ca3-ac7a-c8befa500a9a}</UniqueIdentifier>
     </Filter>
-    <Filter Include="classes\lua\logic\base">
-      <UniqueIdentifier>{4d9f3ecc-abe0-4095-b8ae-56f35bcaff5e}</UniqueIdentifier>
-    </Filter>
     <Filter Include="classes\lua\logic\constant">
       <UniqueIdentifier>{e10e6cc7-56be-4b42-ade1-0dcbb152a856}</UniqueIdentifier>
     </Filter>
@@ -175,9 +172,6 @@
     <Filter Include="classes\lua\view\layouts\ui\room\mahjong">
       <UniqueIdentifier>{d033e8eb-c849-42de-b8f6-1376a197100b}</UniqueIdentifier>
     </Filter>
-    <Filter Include="classes\lua\view\room\mahjong">
-      <UniqueIdentifier>{5d2c50ca-0aa0-4b71-afd8-42469efe9eee}</UniqueIdentifier>
-    </Filter>
     <Filter Include="classes\lua\view\hall\popups">
       <UniqueIdentifier>{abca24aa-60b1-4bbc-a0a5-04a2fd69f8e5}</UniqueIdentifier>
     </Filter>
@@ -198,6 +192,12 @@
     </Filter>
     <Filter Include="classes\cpp\logic\log">
       <UniqueIdentifier>{2ebd71ac-1aad-4b63-b6d3-53bbb2ddfe4b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="classes\lua\view\common">
+      <UniqueIdentifier>{9bfff450-9496-4698-abb2-e68cc3ffe2fb}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="classes\lua\view\layouts\ui\common">
+      <UniqueIdentifier>{d0dff916-4742-41ae-8f2c-39f121dd0dda}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -896,6 +896,9 @@
     <ClInclude Include="..\..\..\..\customer\src\cpp\logic\log\mylog.h">
       <Filter>classes\cpp\logic\log</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\..\..\customer\src\cpp\logic\msg\protocol\ting_card_msg_protocol.pb.h">
+      <Filter>classes\cpp\logic\msg\protocol</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\Classes\AppDelegate.cpp">
@@ -1211,6 +1214,12 @@
     <ClCompile Include="..\..\..\..\customer\src\cpp\logic\lua_bind\auto\lua_bind_mylog.cc">
       <Filter>classes\cpp\logic\lua_bind\auto</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\..\..\customer\src\cpp\logic\lua_bind\auto\lua_bind_ting_card_msg_protocol.cc">
+      <Filter>classes\cpp\logic\lua_bind\auto</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\customer\src\cpp\logic\msg\protocol\ting_card_msg_protocol.pb.cc">
+      <Filter>classes\cpp\logic\msg\protocol</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="game.rc">
@@ -1298,9 +1307,6 @@
     </None>
     <None Include="..\..\..\..\customer\src\lua\view\constant\mahjong_constants.lua">
       <Filter>classes\lua\view\constant</Filter>
-    </None>
-    <None Include="..\..\..\..\customer\src\lua\view\room\mahjong\mahjong_creator.lua">
-      <Filter>classes\lua\view\room\mahjong</Filter>
     </None>
     <None Include="..\..\..\..\customer\src\lua\view\layouts\ui\room\mahjong\left_invisible_2_mj_node_layout.lua">
       <Filter>classes\lua\view\layouts\ui\room\mahjong</Filter>
@@ -1413,13 +1419,61 @@
     <None Include="..\..\..\..\customer\src\lua\logic\util\play_card_helper.lua">
       <Filter>classes\lua\logic\util</Filter>
     </None>
-    <None Include="..\..\..\..\customer\src\lua\view\animations\room\node_operation_anim.lua">
-      <Filter>classes\lua\view\animations\room</Filter>
-    </None>
     <None Include="..\..\..\..\customer\src\lua\logic\constant\card_constants.lua">
       <Filter>classes\lua\logic\constant</Filter>
     </None>
     <None Include="..\..\..\..\customer\src\lua\view\animations\room\node_operation_anim2.lua">
+      <Filter>classes\lua\view\animations\room</Filter>
+    </None>
+    <None Include="..\..\..\..\customer\src\lua\view\common\player_head_creator.lua">
+      <Filter>classes\lua\view\common</Filter>
+    </None>
+    <None Include="..\..\..\..\customer\src\lua\view\layouts\ui\room\room_player_head_node_layout.lua">
+      <Filter>classes\lua\view\layouts\ui\room</Filter>
+    </None>
+    <None Include="..\..\..\..\customer\res.proj\res\layouts\ui\hall\hall_player_head_node_layout.lua">
+      <Filter>classes\lua\view\layouts\ui\hall</Filter>
+    </None>
+    <None Include="..\..\..\..\customer\src\lua\view\layouts\ui\room\room_player_head_layer_layout.lua">
+      <Filter>classes\lua\view\layouts\ui\room</Filter>
+    </None>
+    <None Include="..\..\..\..\customer\src\lua\view\layouts\ui\room\room_menu_layer_layout.lua">
+      <Filter>classes\lua\view\layouts\ui\room</Filter>
+    </None>
+    <None Include="..\..\..\..\customer\src\lua\logic\constant\player_constants.lua">
+      <Filter>classes\lua\logic\constant</Filter>
+    </None>
+    <None Include="..\..\..\..\customer\src\lua\view\animations\room\node_zimo_anim.lua">
+      <Filter>classes\lua\view\animations\room</Filter>
+    </None>
+    <None Include="..\..\..\..\customer\src\lua\view\animations\room\node_buhua_anim.lua">
+      <Filter>classes\lua\view\animations\room</Filter>
+    </None>
+    <None Include="..\..\..\..\customer\src\lua\view\animations\room\node_chi_anim.lua">
+      <Filter>classes\lua\view\animations\room</Filter>
+    </None>
+    <None Include="..\..\..\..\customer\src\lua\view\animations\room\node_gang_anim.lua">
+      <Filter>classes\lua\view\animations\room</Filter>
+    </None>
+    <None Include="..\..\..\..\customer\src\lua\view\animations\room\node_hu_anim.lua">
+      <Filter>classes\lua\view\animations\room</Filter>
+    </None>
+    <None Include="..\..\..\..\customer\src\lua\view\animations\room\node_peng_anim.lua">
+      <Filter>classes\lua\view\animations\room</Filter>
+    </None>
+    <None Include="..\..\..\..\customer\src\lua\view\common\animation_creator.lua">
+      <Filter>classes\lua\view\common</Filter>
+    </None>
+    <None Include="..\..\..\..\customer\src\lua\view\common\mahjong_creator.lua">
+      <Filter>classes\lua\view\common</Filter>
+    </None>
+    <None Include="..\..\..\..\customer\src\lua\view\animations\room\node_operation_anim1.lua">
+      <Filter>classes\lua\view\animations\room</Filter>
+    </None>
+    <None Include="..\..\..\..\customer\src\lua\view\animations\room\node_operation_anim3.lua">
+      <Filter>classes\lua\view\animations\room</Filter>
+    </None>
+    <None Include="..\..\..\..\customer\src\lua\view\animations\room\node_ting_anim.lua">
       <Filter>classes\lua\view\animations\room</Filter>
     </None>
   </ItemGroup>

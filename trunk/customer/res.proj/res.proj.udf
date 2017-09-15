@@ -18,7 +18,7 @@
         <iOS_Target Value="res.proj-mobile" />
         <iOS_BundleID Value="" />
         <Platform Value="None" />
-        <RunPlatform Value="None" />
+        <RunPlatform Value="Windows" />
         <FrameworkVersion Value="cocos2d-x-3.10" />
         <IsDebugKeystore Value="True" />
         <KeystorePassword Value="" />
@@ -31,11 +31,10 @@
     <Item Key="TabsParamsKey">
       <Value ctype="TabsInfo">
         <OpenedDocuments>
-          <FilePathData Path="layouts/ui/room/mahjong/opposite_invisible_3_mj_node_layout.csd" />
-          <FilePathData Path="layouts/ui/room/mahjong/opposite_visible_3_mj_node_layout.csd" />
-          <FilePathData Path="layouts/ui/room/mahjong/opposite_visible_1_mj_node_layout.csd" />
+          <FilePathData Path="layouts/ui/room/room_player_head_layer_layout.csd" />
+          <FilePathData Path="layouts/ui/room/room_menu_layer_layout.csd" />
         </OpenedDocuments>
-        <ActiveDocument Path="layouts/ui/room/mahjong/opposite_visible_3_mj_node_layout.csd" />
+        <ActiveDocument Path="layouts/ui/room/room_menu_layer_layout.csd" />
       </Value>
     </Item>
   </Properties>

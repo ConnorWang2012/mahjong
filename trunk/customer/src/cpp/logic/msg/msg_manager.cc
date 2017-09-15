@@ -23,6 +23,7 @@ modification:
 #include "data/data_manager.h"
 #include "event_headers.h"
 #include "lua_bind_helper.h"
+#include "log/mylog.h"
 #include "msg/msg_type.h"
 #include "msg/msg_id.h"
 #include "msg/msg_code.h"
@@ -32,7 +33,7 @@ modification:
 namespace gamer
 {
 
-MsgManager::MsgManager()
+MsgManager::MsgManager() : msg_dispatch_index_(0)
 {
     this->init();
 }
@@ -198,7 +199,7 @@ bool MsgManager::packMsg(msg_header_t msg_type,
     return msg.SerializeToArray(buf + gamer::client_msg_header_len(), msg.ByteSize());
 }
 
-bool MsgManager::parseMsg(const ServerMsg & server_msg, google::protobuf::Message* msg)
+bool MsgManager::parseMsg(const ServerMsg& server_msg, google::protobuf::Message* msg)
 {
     if (nullptr == msg)
         return false; // TODO : log
@@ -233,6 +234,18 @@ std::string MsgManager::getMsgCallbackKey(msg_header_t msg_type, msg_header_t ms
 {
     char buf[gamer::client_msg_header_len()];
     snprintf(buf, sizeof(buf), "%d%d", msg_type, msg_id);
+    return buf;
+}
+
+std::string MsgManager::getMsgDispatchKey()
+{
+    char buf[14];
+    snprintf(buf, sizeof(buf), "msg_dispatch%d", msg_dispatch_index_);
+    msg_dispatch_index_++;
+    if (msg_dispatch_index_ > 10)
+    {
+        msg_dispatch_index_ = 0;
+    }
     return buf;
 }
 
@@ -313,18 +326,31 @@ void MsgManager::dispatchMsg(int msg_code,
                              const google::protobuf::Message* msg,
                              const std::string& class_name)
 {
-    auto msgcode              = msg_code;
-    auto msgtype              = msg_type;
-    auto msgid                = msg_id;
-    auto msgtmp               = msg;
-    auto classname            = class_name;
+    // push msg to msg queue
+    auto msg_protocol = new MsgProtocol;
+    msg_queue_.push(msg_protocol);
+    msg_protocol->type = msg_type;
+    msg_protocol->id = msg_id;
+    msg_protocol->code = msg_code;
+    msg_protocol->msg = msg->New();
+    msg_protocol->msg->CopyFrom(*msg);
+    msg_protocol->class_name = class_name;
+    msg_protocol->dispatch_key = this->getMsgDispatchKey();
 
-    auto key = this->getMsgCallbackKey(msg_type, msg_id); // for specific msg
-    auto key2 = this->getMsgCallbackKey(msg_type, (int)MsgIDs::MSG_ID_UNKNOW); // for one msg type
-    //this->getMsgCallbacks(key, cppcb, luacb);
-
+    // callback for dispatching msg
     auto callback = [=](float) {
-        cocos2d::Director::getInstance()->getScheduler()->unschedule("dispatch_msg", this);
+        auto msg_protocol = msg_queue_.front();
+        auto msgcode = msg_protocol->code;
+        auto msgtype = msg_protocol->type;
+        auto msgid = msg_protocol->id;
+        auto msgtmp = msg_protocol->msg;
+        auto classname = msg_protocol->class_name;
+        
+        auto key = this->getMsgCallbackKey(msgtype, msgid); // for specific msg type
+        auto key2 = this->getMsgCallbackKey(msgtype, (int)MsgIDs::MSG_ID_UNKNOW); // for unspecific msg type
+
+        cocos2d::Director::getInstance()->getScheduler()->unschedule(msg_protocol->dispatch_key,
+            this);
 
         // C++ callback
         auto itr1 = msg_response_cpp_callbacks_.find(key);
@@ -373,10 +399,16 @@ void MsgManager::dispatchMsg(int msg_code,
                                                           classname);
             }
         }
+
+        // delete msg from msg queue
+        msg_queue_.pop();
+        delete msg_protocol->msg;
+        delete msg_protocol;
     };
 
-    auto scheduler = cocos2d::Director::getInstance()->getScheduler();
-    scheduler->schedule(callback, this, 0, false, "dispatch_msg");
+    // dispatch msg by UI thread(main thread)
+    cocos2d::Director::getInstance()->getScheduler()->schedule(callback, 
+        this, 0, false, msg_protocol->dispatch_key);
 }
 
 void MsgManager::dealWithLoginMsg(const ServerMsg& msg)
@@ -530,7 +562,7 @@ void MsgManager::dealWithPlayCardMsg(const ServerMsg& msg)
     if (this->parseMsg(msg, proto))
     {
         DataManager::getInstance()->updateCardAfterOperation(proto);
-
+        gamer::writelog("[MsgManager::dealWithPlayCardMsg] operation id : %d", proto->operation_id());
         this->dispatchMsg(msg.code, msg.type, msg.id, proto, 
             "gamer::protocol::PlayCardMsgProtocol");
     }

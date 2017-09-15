@@ -1,5 +1,5 @@
 <GameFile>
-  <PropertyGroup Name="mahjong_node_layout" Type="Node" ID="6c0b0dd9-60a1-4a6e-977b-c2eccc754691" Version="3.10.0.0" />
+  <PropertyGroup Name="my_invisible_mj_node_layout" Type="Node" ID="6c0b0dd9-60a1-4a6e-977b-c2eccc754691" Version="3.10.0.0" />
   <Content ctype="GameProjectContent">
     <Content>
       <Animation Duration="0" Speed="1.0000" />
@@ -16,15 +16,15 @@
             <PreSize X="0.0000" Y="0.0000" />
             <FileData Type="PlistSubImage" Path="mj_my_invisible.png" Plist="assets/room/plist/cards.plist" />
           </AbstractNodeData>
-          <AbstractNodeData Name="img_fg" ActionTag="-1123629505" Tag="10" IconVisible="False" LeftMargin="-51.0000" RightMargin="-51.0000" TopMargin="-49.1520" BottomMargin="-74.8480" LeftEage="47" RightEage="47" TopEage="40" BottomEage="40" Scale9OriginX="47" Scale9OriginY="40" Scale9Width="8" Scale9Height="44" ctype="ImageViewObjectData">
+          <AbstractNodeData Name="img_fg" ActionTag="-1123629505" Tag="10" IconVisible="False" LeftMargin="-53.0000" RightMargin="-49.0000" TopMargin="-48.0000" BottomMargin="-76.0000" LeftEage="47" RightEage="47" TopEage="40" BottomEage="40" Scale9OriginX="47" Scale9OriginY="40" Scale9Width="8" Scale9Height="44" ctype="ImageViewObjectData">
             <Size X="102.0000" Y="124.0000" />
             <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
-            <Position Y="-12.8480" />
+            <Position X="-2.0000" Y="-14.0000" />
             <Scale ScaleX="1.0000" ScaleY="1.0000" />
             <CColor A="255" R="255" G="255" B="255" />
             <PrePosition />
             <PreSize X="0.0000" Y="0.0000" />
-            <FileData Type="PlistSubImage" Path="wind_or_dragon_5.png" Plist="assets/room/plist/cards.plist" />
+            <FileData Type="PlistSubImage" Path="dot_9.png" Plist="assets/room/plist/cards.plist" />
           </AbstractNodeData>
         </Children>
       </ObjectData>

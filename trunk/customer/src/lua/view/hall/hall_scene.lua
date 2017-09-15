@@ -12,10 +12,12 @@ author:
 modification:
 --]]
 
-local HallScene         = class("HallScene", require "view.base.layer_base")
-local HallTopLayout     = require "view.layouts.ui.hall.hall_top_node_layout"
-local HallMiddleLayout  = require "view.layouts.ui.hall.hall_middle_node_layout"
-local HallBottomLayout  = require "view.layouts.ui.hall.hall_bottom_node_layout"
+local HallScene         = class("HallScene", require "view.base.layer_base.lua")
+local HallTopLayout     = require "view.layouts.ui.hall.hall_top_node_layout.lua"
+local HallMiddleLayout  = require "view.layouts.ui.hall.hall_middle_node_layout.lua"
+local HallBottomLayout  = require "view.layouts.ui.hall.hall_bottom_node_layout.lua"
+local PlayerHeadLayout  = require "view.layouts.ui.hall.hall_player_head_node_layout.lua"
+local PlayerHeadCreator = require "view.common.player_head_creator.lua"
 
 function HallScene:ctor(view_file)
     self.super.ctor(self, view_file)
@@ -24,33 +26,37 @@ function HallScene:ctor(view_file)
 end
 
 function HallScene:initLayout()
-    self.hall_top_layout = HallTopLayout:create().root    
-    self:addChild(self.hall_top_layout)
-    self.hall_top_layout:setPosition(display.top_center)
+    self.hall_top_layout_ = HallTopLayout:create().root    
+    self:addChild(self.hall_top_layout_)
+    self.hall_top_layout_:setPosition(display.top_center)
 
-    self.hall_middle_layout = HallMiddleLayout:create().root    
-    self:addChild(self.hall_middle_layout)
-    self.hall_middle_layout:setPosition(display.center)
+	self.player_head_layout_ = PlayerHeadLayout:create().root
+	self.hall_top_layout_:getChildByName("node_head"):addChild(self.player_head_layout_)
+	local head_node = PlayerHeadCreator.create("assets/common/head_stencil.png", "assets/common/woman_4.png")
+	self.player_head_layout_:addChild(head_node)
 
-    self.hall_bottom_layout = HallBottomLayout:create().root    
-    self:addChild(self.hall_bottom_layout)
-    self.hall_bottom_layout:setPosition(display.top_bottom)
+    self.hall_middle_layout_ = HallMiddleLayout:create().root    
+    self:addChild(self.hall_middle_layout_)
+    self.hall_middle_layout_:setPosition(display.center)
 
-    local node_middle = self.hall_middle_layout:getChildByName("node_middle")
+    self.hall_bottom_layout_ = HallBottomLayout:create().root    
+    self:addChild(self.hall_bottom_layout_)
+    self.hall_bottom_layout_:setPosition(display.top_bottom)
+
+    local node_middle = self.hall_middle_layout_:getChildByName("node_middle")
     local img_normal_room = node_middle:getChildByName("img_middle")
     img_normal_room:setTouchEnabled(true)
     img_normal_room:addClickEventListener(handler(self, self.onImgNormalRoomTouch))
 
-	local node = self.hall_middle_layout:getChildByName("node_right")
+	local node = self.hall_middle_layout_:getChildByName("node_right")
     local img = node:getChildByName("img_right")
     img:setTouchEnabled(true)
     img:addClickEventListener(handler(self, self.onImgRightTouch))
 
-	node = self.hall_middle_layout:getChildByName("node_left")
+	node = self.hall_middle_layout_:getChildByName("node_left")
     img = node:getChildByName("img_left")
     img:setTouchEnabled(true)
     img:addClickEventListener(handler(self, self.onImgLeftTouch))
-
 end
 
 function HallScene:onImgRightTouch(sender)
@@ -89,6 +95,11 @@ function HallScene:dealWithJoinRoomMsgReceived(code, msg)
 		--[[
 		if not self.test_ then
 			self.test_ = true
+			return
+		end
+	]]
+	--[[	if not self.test2_ then
+			self.test2_ = true
 			return
 		end
 		]]

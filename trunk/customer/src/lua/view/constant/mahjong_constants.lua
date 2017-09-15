@@ -17,56 +17,6 @@ local MahjongConstants = {}
 MahjongConstants.Directions = { SELF = 1, LEFT = 2, OPPOSITE = 3, RIGHT = 4 }
 MahjongConstants.Types	    = { INVISIBLE = 1, INVISIBLE_1 = 2, INVISIBLE_2 = 3, INVISIBLE_3 = 4,
 								VISIBLE = 5, VISIBLE_MING_GANG = 6, VISIBLE_DISCARD = 7 }
---[[
-    card index :
-
-    BAMBOO_1            = 0,
-    BAMBOO_2            = 1,
-    BAMBOO_3            = 2,
-    BAMBOO_4            = 3,
-    BAMBOO_5            = 4,
-    BAMBOO_6            = 5,
-    BAMBOO_7            = 6,
-    BAMBOO_8            = 7,
-    BAMBOO_9            = 8,
-
-    CHARACTER_1         = 9,
-    CHARACTER_2         = 10,
-    CHARACTER_3         = 11,
-    CHARACTER_4         = 12,
-    CHARACTER_5         = 13,
-    CHARACTER_6         = 14,
-    CHARACTER_7         = 15,
-    CHARACTER_8         = 16,
-    CHARACTER_9         = 17,
-
-    DOT_1               = 18,
-    DOT_2               = 19,
-    DOT_3               = 20,
-    DOT_4               = 21,
-    DOT_5               = 22,
-    DOT_6               = 23,
-    DOT_7               = 24,
-    DOT_8               = 25,
-    DOT_9               = 26,
-
-    WIND_EAST           = 27, 
-    WIND_SOUTH          = 28, 
-    WIND_WEST           = 29, 
-    WIND_NORTH          = 30, 
-    DRAGON_GREEN        = 31, 
-    DRAGON_RED          = 32, 
-    DRAGON_WHITE        = 33,
-
-    SEASON_SPRING       = 34,
-    SEASON_SUMMER       = 35,
-    SEASON_AUTUMN       = 36,
-    SEASON_WINTER       = 37,
-    FLOWER_PLUM         = 38,
-    FLOWER_ORCHID       = 39,
-    FLOWER_CHRYSANTHEMUM = 40,
-    FLOWER_BAMBOO       = 41
-]]
 
 MahjongConstants.CardPngs = {
 	{ "bamboo_1.png", "bamboo_2.png", "bamboo_3.png", "bamboo_4.png", "bamboo_5.png", 
@@ -85,6 +35,7 @@ MahjongConstants.CardPngs = {
 }
 
 MahjongConstants.Sizes = {
+	-- mahjong position
 	OFFSET_X1		= 110, -- position offset x of player self for first card
 	OFFSET_X2		= 180, -- position offset x of player self visible card(ming gang)
 	OFFSET_Y1		= 76,  -- position offset y of player self visible card
@@ -172,6 +123,15 @@ MahjongConstants.Sizes = {
 
 	RIGHT_DISCARD_OFFSET_X = 9,
 	RIGHT_DISCARD_OFFSET_Y = 40, 
+
+	-- animation position
+	PLAYER_SELF_OPERATION_ANIM_Y = 350,
+
+	LEFT_PLAYER_OPERATION_ANIM_X = 200,
+
+	OPPOSITE_PLAYER_OPERATION_ANIM_Y = display.top - 350,
+
+	RIGHT_PLAYER_OPERATION_ANIM_X = display.right - 200,
 }
 
 MahjongConstants.ZOrders = {
@@ -181,7 +141,17 @@ MahjongConstants.ZOrders = {
 	DISCARD_LINE_4 = 1000,
 }
 
-MahjongConstants.ONE_PLAYER_CARDS_NUM  = 13
-MahjongConstants.ONE_PLAYER_CARDS_NUM2 = 14
+MahjongConstants.AnimationIDs = {
+	ANIMATION_OPERATION1	= 1,
+	ANIMATION_OPERATION2	= 2,
+	ANIMATION_OPERATION3	= 3,
+	ANIMATION_CHI			= 4,
+	ANIMATION_PENG			= 5,
+	ANIMATION_GANG			= 6,
+	ANIMATION_BUHUA			= 7,
+	ANIMATION_TING			= 8,
+	ANIMATION_HU			= 9,
+	ANIMATION_ZIMO			= 10
+}
 
 return MahjongConstants

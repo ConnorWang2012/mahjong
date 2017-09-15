@@ -1,0 +1,30 @@
+$#include "msg/protocol/ting_card_msg_protocol.pb.h"
+
+$#include <string>
+$#include <google/protobuf/stubs/common.h>
+
+$#include <google/protobuf/generated_message_util.h>
+$#include <google/protobuf/message.h>
+$#include <google/protobuf/repeated_field.h>
+$#include <google/protobuf/extension_set.h>
+$#include <google/protobuf/unknown_field_set.h>
+
+namespace gamer {
+
+namespace protocol {
+
+class TingCardMsgProtocol : public google::protobuf::Message {
+public:
+	TingCardMsgProtocol();
+
+	int ByteSize() const;
+
+	inline int cards_of_ting_size() const;
+	inline int cards_of_ting(int index) const;
+
+	inline int discard() const;
+};
+
+} // namespace protocol
+
+} // namespace gamer

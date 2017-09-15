@@ -75,17 +75,32 @@ void DataManager::updateCardAfterOperation(PlayCardMsgProtocol* proto)
             this->updateCardForAnGang(proto->player_id(), proto->discard());
             break;
         }
+        case PlayCardOperationIDs::OPERATION_BU_HUA:
+        {
+            this->updateCardForBuhua(proto->player_id(), proto->discard());
+            break;
+        }
+        case PlayCardOperationIDs::OPERATION_HU:
+        {
+            this->updateCardForHu(proto->player_id());
+            break;
+        }
         default:
             break;
         }
     }
 
-    // update new cards
+    // update new cards and remain cards
     if (proto->next_operate_player_id() == this->self_player_id())
     {
         if (proto->new_card() != CardConstants::INVALID_CARD_VALUE)
         {
             this->updateCardForNewCardOfPlayerSelf(proto->new_card());
+            auto num = room_msg_protocol_->remain_cards_num() - 1;
+            if (num >= 0)
+            {
+                room_msg_protocol_->set_remain_cards_num(num);
+            }
         }
     }
     else if (proto->next_operate_player_id() != 0)
@@ -93,6 +108,11 @@ void DataManager::updateCardAfterOperation(PlayCardMsgProtocol* proto)
         if (proto->has_next_operate_player_new_card())
         {
             this->updateCardForNewCardOfOtherPlayer(proto->next_operate_player_id());
+            auto num = room_msg_protocol_->remain_cards_num() - 1;
+            if (num >= 0)
+            {
+                room_msg_protocol_->set_remain_cards_num(num);
+            }
         }
     }
 }
@@ -356,6 +376,52 @@ void DataManager::updateCardForAnGang(int player_id, int card_of_an_gang)
             {
                 proto->set_invisible_hand_cards_num(size);
             }
+        }
+    }
+}
+
+void DataManager::updateCardForBuhua(int player_id, int card_of_flower_season)
+{
+    auto proto = this->getPlayerCardsMsgProtocol(player_id);
+    if (nullptr != proto)
+    {
+        if (card_of_flower_season >= CardConstants::FLOWER_PLUM &&
+            card_of_flower_season >= CardConstants::FLOWER_BAMBOO)
+        {
+            proto->add_flower_cards(card_of_flower_season);
+        }
+        else if (card_of_flower_season >= CardConstants::SEASON_SPRING &&
+                 card_of_flower_season >= CardConstants::SEASON_WINTER)
+        {
+            proto->add_season_cards(card_of_flower_season);
+        }
+
+        if (this->self_player_id() == player_id)
+        {
+            this->removeInvisibleCards(proto, card_of_flower_season, 1);
+            auto cards = proto->mutable_invisible_hand_cards();
+            std::sort(cards->begin(), cards->end());
+        }
+        else
+        {
+            auto size = proto->invisible_hand_cards_num() - 1;
+            if (size > 0)
+            {
+                proto->set_invisible_hand_cards_num(size);
+            }
+        }
+    }
+}
+
+void DataManager::updateCardForHu(int player_id)
+{
+    auto proto = this->play_card_msg_protocol();
+    if (nullptr != proto)
+    {
+        if (proto->invisible_hand_cards_size() > 0)
+        {
+            auto cards = proto->mutable_invisible_hand_cards();
+            std::sort(cards->begin(), cards->end());
         }
     }
 }

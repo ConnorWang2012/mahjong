@@ -36,15 +36,15 @@
             <PreSize X="0.0000" Y="0.0000" />
             <FileData Type="PlistSubImage" Path="mj_left_gang.png" Plist="assets/room/plist/cards.plist" />
           </AbstractNodeData>
-          <AbstractNodeData Name="img_top_fg1" ActionTag="1157847182" Tag="109" RotationSkewX="90.0000" RotationSkewY="69.9982" IconVisible="False" LeftMargin="-62.3602" RightMargin="-39.6398" TopMargin="-121.3584" BottomMargin="-2.6416" FlipX="True" FlipY="True" LeftEage="30" RightEage="30" TopEage="22" BottomEage="22" Scale9OriginX="30" Scale9OriginY="22" Scale9Width="42" Scale9Height="80" ctype="ImageViewObjectData">
+          <AbstractNodeData Name="img_top_fg1" ActionTag="1157847182" Tag="109" RotationSkewX="90.0000" RotationSkewY="69.9982" IconVisible="False" LeftMargin="-62.0000" RightMargin="-40.0000" TopMargin="-117.0000" BottomMargin="-7.0000" FlipX="True" FlipY="True" LeftEage="30" RightEage="30" TopEage="22" BottomEage="22" Scale9OriginX="30" Scale9OriginY="22" Scale9Width="42" Scale9Height="80" ctype="ImageViewObjectData">
             <Size X="102.0000" Y="124.0000" />
             <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
-            <Position X="-11.3602" Y="59.3584" />
-            <Scale ScaleX="0.3000" ScaleY="0.4000" />
+            <Position X="-11.0000" Y="55.0000" />
+            <Scale ScaleX="0.3400" ScaleY="0.4300" />
             <CColor A="255" R="255" G="255" B="255" />
             <PrePosition />
             <PreSize X="0.0000" Y="0.0000" />
-            <FileData Type="PlistSubImage" Path="character_7.png" Plist="assets/room/plist/cards.plist" />
+            <FileData Type="PlistSubImage" Path="dot_9.png" Plist="assets/room/plist/cards.plist" />
           </AbstractNodeData>
           <AbstractNodeData Name="img_top_bg" ActionTag="547593894" Tag="33" IconVisible="False" LeftMargin="-40.5000" RightMargin="-50.5000" TopMargin="-56.0000" BottomMargin="-12.0000" FlipX="True" LeftEage="30" RightEage="30" TopEage="22" BottomEage="22" Scale9OriginX="30" Scale9OriginY="22" Scale9Width="31" Scale9Height="24" ctype="ImageViewObjectData">
             <Size X="91.0000" Y="68.0000" />
@@ -56,25 +56,25 @@
             <PreSize X="0.0000" Y="0.0000" />
             <FileData Type="PlistSubImage" Path="mj_left_gang.png" Plist="assets/room/plist/cards.plist" />
           </AbstractNodeData>
-          <AbstractNodeData Name="img_top_fg2" ActionTag="-1517944856" Tag="39" RotationSkewX="90.0000" RotationSkewY="69.9982" IconVisible="False" LeftMargin="-41.0000" RightMargin="-61.0000" TopMargin="-102.0000" BottomMargin="-22.0000" FlipX="True" FlipY="True" LeftEage="30" RightEage="30" TopEage="22" BottomEage="22" Scale9OriginX="30" Scale9OriginY="22" Scale9Width="42" Scale9Height="80" ctype="ImageViewObjectData">
+          <AbstractNodeData Name="img_top_fg2" ActionTag="-1517944856" Tag="39" RotationSkewX="90.0000" RotationSkewY="69.9982" IconVisible="False" LeftMargin="-42.0000" RightMargin="-60.0000" TopMargin="-99.0000" BottomMargin="-25.0000" FlipX="True" FlipY="True" LeftEage="30" RightEage="30" TopEage="22" BottomEage="22" Scale9OriginX="30" Scale9OriginY="22" Scale9Width="42" Scale9Height="80" ctype="ImageViewObjectData">
             <Size X="102.0000" Y="124.0000" />
             <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
-            <Position X="10.0000" Y="40.0000" />
-            <Scale ScaleX="0.3000" ScaleY="0.4000" />
+            <Position X="9.0000" Y="37.0000" />
+            <Scale ScaleX="0.3400" ScaleY="0.4300" />
             <CColor A="255" R="255" G="255" B="255" />
             <PrePosition />
             <PreSize X="0.0000" Y="0.0000" />
-            <FileData Type="PlistSubImage" Path="character_7.png" Plist="assets/room/plist/cards.plist" />
+            <FileData Type="PlistSubImage" Path="dot_9.png" Plist="assets/room/plist/cards.plist" />
           </AbstractNodeData>
-          <AbstractNodeData Name="img_top_fg3" ActionTag="-222515858" Tag="108" RotationSkewX="90.0000" RotationSkewY="69.9981" IconVisible="False" LeftMargin="-31.0000" RightMargin="-71.0000" TopMargin="-37.0000" BottomMargin="-87.0000" FlipX="True" FlipY="True" LeftEage="30" RightEage="30" TopEage="22" BottomEage="22" Scale9OriginX="30" Scale9OriginY="22" Scale9Width="42" Scale9Height="80" ctype="ImageViewObjectData">
+          <AbstractNodeData Name="img_top_fg3" ActionTag="-222515858" Tag="108" RotationSkewX="90.0000" RotationSkewY="69.9981" IconVisible="False" LeftMargin="-32.0000" RightMargin="-70.0000" TopMargin="-37.0000" BottomMargin="-87.0000" FlipX="True" FlipY="True" LeftEage="30" RightEage="30" TopEage="22" BottomEage="22" Scale9OriginX="30" Scale9OriginY="22" Scale9Width="42" Scale9Height="80" ctype="ImageViewObjectData">
             <Size X="102.0000" Y="124.0000" />
             <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
-            <Position X="20.0000" Y="-25.0000" />
-            <Scale ScaleX="0.3000" ScaleY="0.4000" />
+            <Position X="19.0000" Y="-25.0000" />
+            <Scale ScaleX="0.3400" ScaleY="0.4300" />
             <CColor A="255" R="255" G="255" B="255" />
             <PrePosition />
             <PreSize X="0.0000" Y="0.0000" />
-            <FileData Type="PlistSubImage" Path="character_7.png" Plist="assets/room/plist/cards.plist" />
+            <FileData Type="PlistSubImage" Path="dot_9.png" Plist="assets/room/plist/cards.plist" />
           </AbstractNodeData>
         </Children>
       </ObjectData>

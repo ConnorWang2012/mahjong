@@ -50,6 +50,8 @@ public:
     void updateCardForMingGang(int player_id, int card_of_ming_gang);
 
     void updateCardForAnGang(int player_id, int card_of_an_gang);
+
+    void updateCardForBuhua(int player_id, int card_of_flower_season);
 };
 
 } // namespace gamer

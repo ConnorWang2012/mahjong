@@ -1,4 +1,5 @@
 package gamer.protocol;
+import "ting_card_msg_protocol.proto";
 
 message PlayCardMsgProtocol {
   required int32 player_id  				= 1;
@@ -10,5 +11,7 @@ message PlayCardMsgProtocol {
   optional int32 next_operate_player_id 			= 7[default = 0];
   optional bool  has_next_operate_player_new_card 	= 8[default = false]; // whether next operate player has new card, use to ui layout of client
   optional int32 my_available_operation_id 			= 9[default = 0];
-  repeated int32 operating_cards    				= 10; // use for operation chi.
+  repeated int32 operating_cards    				= 10; // use for operation chi
+  repeated int32 invisible_hand_cards    			= 11; // after player hu or zimo, server send invisible hand cards of player hu or zimo to other player
+  repeated TingCardMsgProtocol ting_cards           = 12;
 }

@@ -1,6 +1,6 @@
 /*
 ** Lua binding: room_msg_protocol
-** Generated automatically by tolua++-1.0.92 on 06/28/17 20:55:58.
+** Generated automatically by tolua++-1.0.92 on 09/09/17 22:03:40.
 */
 
 #ifndef __cplusplus
@@ -390,9 +390,9 @@ static int tolua_room_msg_protocol_gamer_protocol_RoomMsgProtocol_remain_cards_n
 }
 #endif //#ifndef TOLUA_DISABLE
 
-/* method: cur_acting_player_id of class  gamer::protocol::RoomMsgProtocol */
-#ifndef TOLUA_DISABLE_tolua_room_msg_protocol_gamer_protocol_RoomMsgProtocol_cur_acting_player_id00
-static int tolua_room_msg_protocol_gamer_protocol_RoomMsgProtocol_cur_acting_player_id00(lua_State* tolua_S)
+/* method: operating_player_id of class  gamer::protocol::RoomMsgProtocol */
+#ifndef TOLUA_DISABLE_tolua_room_msg_protocol_gamer_protocol_RoomMsgProtocol_operating_player_id00
+static int tolua_room_msg_protocol_gamer_protocol_RoomMsgProtocol_operating_player_id00(lua_State* tolua_S)
 {
 #ifndef TOLUA_RELEASE
  tolua_Error tolua_err;
@@ -406,25 +406,25 @@ static int tolua_room_msg_protocol_gamer_protocol_RoomMsgProtocol_cur_acting_pla
  {
   const gamer::protocol::RoomMsgProtocol* self = (const gamer::protocol::RoomMsgProtocol*)  tolua_tousertype(tolua_S,1,0);
 #ifndef TOLUA_RELEASE
-  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'cur_acting_player_id'", NULL);
+  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'operating_player_id'", NULL);
 #endif
   {
-   int tolua_ret = (int)  self->cur_acting_player_id();
+   int tolua_ret = (int)  self->operating_player_id();
    tolua_pushnumber(tolua_S,(lua_Number)tolua_ret);
   }
  }
  return 1;
 #ifndef TOLUA_RELEASE
  tolua_lerror:
- tolua_error(tolua_S,"#ferror in function 'cur_acting_player_id'.",&tolua_err);
+ tolua_error(tolua_S,"#ferror in function 'operating_player_id'.",&tolua_err);
  return 0;
 #endif
 }
 #endif //#ifndef TOLUA_DISABLE
 
-/* method: cur_action_id of class  gamer::protocol::RoomMsgProtocol */
-#ifndef TOLUA_DISABLE_tolua_room_msg_protocol_gamer_protocol_RoomMsgProtocol_cur_action_id00
-static int tolua_room_msg_protocol_gamer_protocol_RoomMsgProtocol_cur_action_id00(lua_State* tolua_S)
+/* method: operation_id of class  gamer::protocol::RoomMsgProtocol */
+#ifndef TOLUA_DISABLE_tolua_room_msg_protocol_gamer_protocol_RoomMsgProtocol_operation_id00
+static int tolua_room_msg_protocol_gamer_protocol_RoomMsgProtocol_operation_id00(lua_State* tolua_S)
 {
 #ifndef TOLUA_RELEASE
  tolua_Error tolua_err;
@@ -438,17 +438,17 @@ static int tolua_room_msg_protocol_gamer_protocol_RoomMsgProtocol_cur_action_id0
  {
   const gamer::protocol::RoomMsgProtocol* self = (const gamer::protocol::RoomMsgProtocol*)  tolua_tousertype(tolua_S,1,0);
 #ifndef TOLUA_RELEASE
-  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'cur_action_id'", NULL);
+  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'operation_id'", NULL);
 #endif
   {
-   int tolua_ret = (int)  self->cur_action_id();
+   int tolua_ret = (int)  self->operation_id();
    tolua_pushnumber(tolua_S,(lua_Number)tolua_ret);
   }
  }
  return 1;
 #ifndef TOLUA_RELEASE
  tolua_lerror:
- tolua_error(tolua_S,"#ferror in function 'cur_action_id'.",&tolua_err);
+ tolua_error(tolua_S,"#ferror in function 'operation_id'.",&tolua_err);
  return 0;
 #endif
 }
@@ -613,8 +613,8 @@ TOLUA_API int tolua_room_msg_protocol_open (lua_State* tolua_S)
      tolua_function(tolua_S,"cur_round",tolua_room_msg_protocol_gamer_protocol_RoomMsgProtocol_cur_round00);
      tolua_function(tolua_S,"total_round",tolua_room_msg_protocol_gamer_protocol_RoomMsgProtocol_total_round00);
      tolua_function(tolua_S,"remain_cards_num",tolua_room_msg_protocol_gamer_protocol_RoomMsgProtocol_remain_cards_num00);
-     tolua_function(tolua_S,"cur_acting_player_id",tolua_room_msg_protocol_gamer_protocol_RoomMsgProtocol_cur_acting_player_id00);
-     tolua_function(tolua_S,"cur_action_id",tolua_room_msg_protocol_gamer_protocol_RoomMsgProtocol_cur_action_id00);
+     tolua_function(tolua_S,"operating_player_id",tolua_room_msg_protocol_gamer_protocol_RoomMsgProtocol_operating_player_id00);
+     tolua_function(tolua_S,"operation_id",tolua_room_msg_protocol_gamer_protocol_RoomMsgProtocol_operation_id00);
      tolua_function(tolua_S,"banker_id",tolua_room_msg_protocol_gamer_protocol_RoomMsgProtocol_banker_id00);
      tolua_function(tolua_S,"banker_is_same_time",tolua_room_msg_protocol_gamer_protocol_RoomMsgProtocol_banker_is_same_time00);
      tolua_function(tolua_S,"player_cards_size",tolua_room_msg_protocol_gamer_protocol_RoomMsgProtocol_player_cards_size00);

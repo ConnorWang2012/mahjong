@@ -25,53 +25,11 @@ function PlayCardHelper.getPlayerDirection(player_id)
 	return PlayCardHelper.directions_[player_id]
 end
 
-function PlayCardHelper.getNextPlayerDirectionImageName(players_num, cur_acting_player_id)
-	if 4 == players_num then
-		if not PlayCardHelper.player_direction_img_name_ then
-			PlayCardHelper.player_direction_img_name_ = "img_direction_cur1"
-		elseif "img_direction_cur1" == PlayCardHelper.player_direction_img_name_ then
-			PlayCardHelper.player_direction_img_name_ = "img_direction_cur2"
-		elseif "img_direction_cur2" == PlayCardHelper.player_direction_img_name_ then
-			PlayCardHelper.player_direction_img_name_ = "img_direction_cur3"
-		elseif "img_direction_cur3" == PlayCardHelper.player_direction_img_name_ then
-			PlayCardHelper.player_direction_img_name_ = "img_direction_cur4"
-		elseif "img_direction_cur4" == PlayCardHelper.player_direction_img_name_ then
-			PlayCardHelper.player_direction_img_name_ = "img_direction_cur1"
-		end
-
-	elseif 3 == players_num then
-		if not PlayCardHelper.player_direction_img_name_ then
-			PlayCardHelper.player_direction_img_name_ = "img_direction_cur1"
-		elseif "img_direction_cur1" == PlayCardHelper.player_direction_img_name_ then
-			PlayCardHelper.player_direction_img_name_ = "img_direction_cur2"
-		elseif "img_direction_cur2" == PlayCardHelper.player_direction_img_name_ then
-			PlayCardHelper.player_direction_img_name_ = "img_direction_cur4"
-		elseif "img_direction_cur4" == PlayCardHelper.player_direction_img_name_ then
-			PlayCardHelper.player_direction_img_name_ = "img_direction_cur1"
-		end
-
-	elseif 2 == players_num then
-		if not PlayCardHelper.player_direction_img_name_ then
-			local direction = PlayCardHelper.getPlayerDirection(cur_acting_player_id)
-			if direction == MahjongConst.Directions.SELF then
-				PlayCardHelper.player_direction_img_name_ = "img_direction_cur1"
-			else
-				PlayCardHelper.player_direction_img_name_ = "img_direction_cur3"
-			end
-		elseif "img_direction_cur1" == PlayCardHelper.player_direction_img_name_ then
-			PlayCardHelper.player_direction_img_name_ = "img_direction_cur3"
-		elseif "img_direction_cur3" == PlayCardHelper.player_direction_img_name_ then
-			PlayCardHelper.player_direction_img_name_ = "img_direction_cur1"
-		end
-	end
-
-	return PlayCardHelper.player_direction_img_name_ 
-end
-
 function PlayCardHelper.setHasSpecialOperation(has)
 	PlayCardHelper.has_special_speration_ = has
 end
 
+-- has operation but discard
 function PlayCardHelper.hasSpecialOperation()
 	return PlayCardHelper.has_special_speration_
 end
@@ -88,6 +46,45 @@ function PlayCardHelper.iCanDiscard()
 	end
 
 	return false
+end
+
+function PlayCardHelper.isMahongValueValid(mahjong_value)
+	if not mahjong_value then
+		return false
+	end
+
+	if mahjong_value >= CardConst.CardValues.BAMBOO_1 and 
+	   mahjong_value <= CardConst.CardValues.FLOWER_BAMBOO then
+		return true
+	end
+
+	return false
+end
+
+function PlayCardHelper.getImageNameOfDirectionForOperatingPlayer()
+	local player_id = gamer.data_mgr_:play_card_msg_protocol():next_operate_player_id()
+	local direction = PlayCardHelper.getPlayerDirection(player_id)
+
+	if direction == MahjongConst.Directions.SELF then
+		return "img_direction_cur1"
+	elseif direction == MahjongConst.Directions.LEFT then
+		return "img_direction_cur4"
+	elseif direction == MahjongConst.Directions.OPPOSITE then
+		return "img_direction_cur3"
+	elseif direction == MahjongConst.Directions.RIGHT then
+		return "img_direction_cur2"
+	end
+	return "img_direction_cur2"
+end
+
+function PlayCardHelper.getImageNameOfDirectionAfterPlayerSelf()
+	local players_num = gamer.data_mgr_:room_msg_protocol():players_num()
+	if 2 == players_num then
+		return "img_direction_cur3"
+	else
+		return "img_direction_cur2"
+	end
+	return "img_direction_cur2"
 end
 
 return PlayCardHelper

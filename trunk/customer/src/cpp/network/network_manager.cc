@@ -193,7 +193,7 @@ void NetworkManager::parseBuffer(char* buf, gamer::ServerMsg& msg)
 
 void NetworkManager::onNetworkUpdate()
 {
-    printf("[NetworkManager::onNetworkUpdate]");
+    //printf("[NetworkManager::onNetworkUpdate]");
     while (true)
     {
         event_base_loop(evbase_, EVLOOP_NONBLOCK | EVLOOP_NO_EXIT_ON_EMPTY);
@@ -243,6 +243,12 @@ void NetworkManager::onBufferRead(struct bufferevent* bev, void* ctx)
         return;
     }
 
+    if (buf_len > NetworkManager::MAX_BUFFER_LEN)
+    {
+        printf("[NetworkManager::onBufferRead] buffer len is to large");
+        return;
+    }
+
     char buf[NetworkManager::MAX_BUFFER_LEN] = { 0 };
     if(evbuffer_remove(input, buf, buf_len) <= 0)
     {
@@ -250,10 +256,15 @@ void NetworkManager::onBufferRead(struct bufferevent* bev, void* ctx)
         return;
     }
 
-    gamer::ServerMsg msg = { 0, 0, 0, 0, nullptr };
-    NetworkManager::parseBuffer(buf, msg);
+    unsigned parsed_buf_len = 0;
+    while (parsed_buf_len < buf_len)
+    {
+        gamer::ServerMsg msg = { 0, 0, 0, 0, nullptr };
+        NetworkManager::parseBuffer(buf + parsed_buf_len, msg);
 
-    MsgManager::getInstance()->onMsgReceived(msg);
+        MsgManager::getInstance()->onMsgReceived(msg);
+        parsed_buf_len += msg.total_len;
+    }
 }
 
 void NetworkManager::onBufferWrite(struct bufferevent* bev, void* ctx) 

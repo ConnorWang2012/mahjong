@@ -139,7 +139,11 @@ xcopy /Y /Q "$(LocalDebuggerWorkingDirectory)\*.exe" "$(LocalDebuggerWorkingDire
 xcopy "$(ProjectDir)..\..\..\res" "$(LocalDebuggerWorkingDirectory)\win32-3\res" /D /E /I /F /Y
 xcopy "$(ProjectDir)..\..\..\src" "$(LocalDebuggerWorkingDirectory)\win32-3\src" /D /E /I /F /Y
 xcopy "$(ProjectDir)..\..\..\..\customer\src\lua" "$(LocalDebuggerWorkingDirectory)\win32-3\src\customer\src\lua" /D /E /I /F /Y
-xcopy /Y /Q "$(LocalDebuggerWorkingDirectory)\*.exe" "$(LocalDebuggerWorkingDirectory)\win32-3"</Command>
+xcopy /Y /Q "$(LocalDebuggerWorkingDirectory)\*.exe" "$(LocalDebuggerWorkingDirectory)\win32-3"
+xcopy "$(ProjectDir)..\..\..\res" "$(LocalDebuggerWorkingDirectory)\win32-4\res" /D /E /I /F /Y
+xcopy "$(ProjectDir)..\..\..\src" "$(LocalDebuggerWorkingDirectory)\win32-4\src" /D /E /I /F /Y
+xcopy "$(ProjectDir)..\..\..\..\customer\src\lua" "$(LocalDebuggerWorkingDirectory)\win32-4\src\customer\src\lua" /D /E /I /F /Y
+xcopy /Y /Q "$(LocalDebuggerWorkingDirectory)\*.exe" "$(LocalDebuggerWorkingDirectory)\win32-4"</Command>
       <Outputs>$(TargetName).cab</Outputs>
       <Inputs>$(TargetFileName)</Inputs>
     </CustomBuildStep>
@@ -238,6 +242,7 @@ xcopy /Y /Q "$(LocalDebuggerWorkingDirectory)\*.exe" "$(LocalDebuggerWorkingDire
     <ClInclude Include="..\..\..\..\customer\src\cpp\logic\msg\protocol\play_card_msg_protocol.pb.h" />
     <ClInclude Include="..\..\..\..\customer\src\cpp\logic\msg\protocol\room_msg_protocol.pb.h" />
     <ClInclude Include="..\..\..\..\customer\src\cpp\logic\msg\protocol\room_operation_msg_protocol.pb.h" />
+    <ClInclude Include="..\..\..\..\customer\src\cpp\logic\msg\protocol\ting_card_msg_protocol.pb.h" />
     <ClInclude Include="..\..\..\..\customer\src\cpp\logic\provider\id_provider.h" />
     <ClInclude Include="..\..\..\..\customer\src\cpp\network\google\protobuf\config.h" />
     <ClInclude Include="..\..\..\..\customer\src\cpp\network\google\protobuf\descriptor.h" />
@@ -459,6 +464,7 @@ xcopy /Y /Q "$(LocalDebuggerWorkingDirectory)\*.exe" "$(LocalDebuggerWorkingDire
     <ClCompile Include="..\..\..\..\customer\src\cpp\logic\lua_bind\auto\lua_bind_play_card_msg_protocol.cc" />
     <ClCompile Include="..\..\..\..\customer\src\cpp\logic\lua_bind\auto\lua_bind_room_msg_protocol.cc" />
     <ClCompile Include="..\..\..\..\customer\src\cpp\logic\lua_bind\auto\lua_bind_room_operation_msg_protocol.cc" />
+    <ClCompile Include="..\..\..\..\customer\src\cpp\logic\lua_bind\auto\lua_bind_ting_card_msg_protocol.cc" />
     <ClCompile Include="..\..\..\..\customer\src\cpp\logic\lua_bind\lua_bind_helper.cc" />
     <ClCompile Include="..\..\..\..\customer\src\cpp\logic\lua_bind\lua_bind_register.cc" />
     <ClCompile Include="..\..\..\..\customer\src\cpp\logic\manager\command_manager.cc" />
@@ -471,6 +477,7 @@ xcopy /Y /Q "$(LocalDebuggerWorkingDirectory)\*.exe" "$(LocalDebuggerWorkingDire
     <ClCompile Include="..\..\..\..\customer\src\cpp\logic\msg\protocol\play_card_msg_protocol.pb.cc" />
     <ClCompile Include="..\..\..\..\customer\src\cpp\logic\msg\protocol\room_msg_protocol.pb.cc" />
     <ClCompile Include="..\..\..\..\customer\src\cpp\logic\msg\protocol\room_operation_msg_protocol.pb.cc" />
+    <ClCompile Include="..\..\..\..\customer\src\cpp\logic\msg\protocol\ting_card_msg_protocol.pb.cc" />
     <ClCompile Include="..\..\..\..\customer\src\cpp\network\google\protobuf\descriptor.cc" />
     <ClCompile Include="..\..\..\..\customer\src\cpp\network\google\protobuf\descriptor.pb.cc" />
     <ClCompile Include="..\..\..\..\customer\src\cpp\network\google\protobuf\descriptor_database.cc" />
@@ -562,6 +569,7 @@ xcopy /Y /Q "$(LocalDebuggerWorkingDirectory)\*.exe" "$(LocalDebuggerWorkingDire
   </ItemGroup>
   <ItemGroup>
     <None Include="..\..\..\..\customer\res.proj\res\layouts\ui\hall\create_room_layer_layout.lua" />
+    <None Include="..\..\..\..\customer\res.proj\res\layouts\ui\hall\hall_player_head_node_layout.lua" />
     <None Include="..\..\..\..\customer\res.proj\res\layouts\ui\hall\join_room_layer_layout.lua" />
     <None Include="..\..\..\..\customer\src\lua\data\data_constants.lua" />
     <None Include="..\..\..\..\customer\src\lua\data\init_data.lua" />
@@ -569,6 +577,7 @@ xcopy /Y /Q "$(LocalDebuggerWorkingDirectory)\*.exe" "$(LocalDebuggerWorkingDire
     <None Include="..\..\..\..\customer\src\lua\logic\constant\msg_id.lua" />
     <None Include="..\..\..\..\customer\src\lua\logic\constant\msg_code.lua" />
     <None Include="..\..\..\..\customer\src\lua\logic\constant\msg_type.lua" />
+    <None Include="..\..\..\..\customer\src\lua\logic\constant\player_constants.lua" />
     <None Include="..\..\..\..\customer\src\lua\logic\init_logic.lua" />
     <None Include="..\..\..\..\customer\src\lua\logic\init_modules.lua" />
     <None Include="..\..\..\..\customer\src\lua\logic\manager\popup_manager.lua" />
@@ -576,11 +585,22 @@ xcopy /Y /Q "$(LocalDebuggerWorkingDirectory)\*.exe" "$(LocalDebuggerWorkingDire
     <None Include="..\..\..\..\customer\src\lua\logic\test\test_lua_bind_event_listener.lua" />
     <None Include="..\..\..\..\customer\src\lua\logic\util\play_card_helper.lua" />
     <None Include="..\..\..\..\customer\src\lua\network\init_network.lua" />
-    <None Include="..\..\..\..\customer\src\lua\view\animations\room\node_operation_anim.lua" />
+    <None Include="..\..\..\..\customer\src\lua\view\animations\room\node_buhua_anim.lua" />
+    <None Include="..\..\..\..\customer\src\lua\view\animations\room\node_chi_anim.lua" />
+    <None Include="..\..\..\..\customer\src\lua\view\animations\room\node_gang_anim.lua" />
+    <None Include="..\..\..\..\customer\src\lua\view\animations\room\node_hu_anim.lua" />
+    <None Include="..\..\..\..\customer\src\lua\view\animations\room\node_operation_anim1.lua" />
     <None Include="..\..\..\..\customer\src\lua\view\animations\room\node_operation_anim2.lua" />
+    <None Include="..\..\..\..\customer\src\lua\view\animations\room\node_operation_anim3.lua" />
+    <None Include="..\..\..\..\customer\src\lua\view\animations\room\node_peng_anim.lua" />
+    <None Include="..\..\..\..\customer\src\lua\view\animations\room\node_ting_anim.lua" />
+    <None Include="..\..\..\..\customer\src\lua\view\animations\room\node_zimo_anim.lua" />
     <None Include="..\..\..\..\customer\src\lua\view\base\layer_base.lua" />
     <None Include="..\..\..\..\customer\src\lua\view\base\node_base.lua" />
     <None Include="..\..\..\..\customer\src\lua\view\base\popup_base.lua" />
+    <None Include="..\..\..\..\customer\src\lua\view\common\animation_creator.lua" />
+    <None Include="..\..\..\..\customer\src\lua\view\common\mahjong_creator.lua" />
+    <None Include="..\..\..\..\customer\src\lua\view\common\player_head_creator.lua" />
     <None Include="..\..\..\..\customer\src\lua\view\constant\mahjong_constants.lua" />
     <None Include="..\..\..\..\customer\src\lua\view\constant\popup_constants.lua" />
     <None Include="..\..\..\..\customer\src\lua\view\constant\scene_constants.lua" />
@@ -623,8 +643,10 @@ xcopy /Y /Q "$(LocalDebuggerWorkingDirectory)\*.exe" "$(LocalDebuggerWorkingDire
     <None Include="..\..\..\..\customer\src\lua\view\layouts\ui\room\mahjong\right_visible_1_mj_node_layout.lua" />
     <None Include="..\..\..\..\customer\src\lua\view\layouts\ui\room\mahjong\right_visible_2_mj_node_layout.lua" />
     <None Include="..\..\..\..\customer\src\lua\view\layouts\ui\room\mahjong\right_visible_3_mj_node_layout.lua" />
+    <None Include="..\..\..\..\customer\src\lua\view\layouts\ui\room\room_menu_layer_layout.lua" />
+    <None Include="..\..\..\..\customer\src\lua\view\layouts\ui\room\room_player_head_layer_layout.lua" />
+    <None Include="..\..\..\..\customer\src\lua\view\layouts\ui\room\room_player_head_node_layout.lua" />
     <None Include="..\..\..\..\customer\src\lua\view\login\login_scene.lua" />
-    <None Include="..\..\..\..\customer\src\lua\view\room\mahjong\mahjong_creator.lua" />
     <None Include="..\..\..\..\customer\src\lua\view\room\scene\normal_room_scene.lua" />
     <None Include="..\..\..\..\customer\src\lua\view\room\scene\room_scene.lua" />
     <None Include="..\..\..\src\main.lua" />

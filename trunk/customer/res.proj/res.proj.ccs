@@ -7,13 +7,106 @@
           <Folder Name="hall" />
           <Folder Name="login" />
           <Folder Name="room">
-            <Project Name="node_operation_anim.csd" Type="Node" />
+            <Project Name="node_buhua_anim.csd" Type="Node" />
+            <Project Name="node_chi_anim.csd" Type="Node" />
+            <Project Name="node_gang_anim.csd" Type="Node" />
+            <Project Name="node_hu_anim.csd" Type="Node" />
+            <Project Name="node_operation_anim1.csd" Type="Node" />
             <Project Name="node_operation_anim2.csd" Type="Node" />
+            <Project Name="node_operation_anim3.csd" Type="Node" />
+            <Project Name="node_peng_anim.csd" Type="Node" />
+            <Project Name="node_ting_anim.csd" Type="Node" />
+            <Project Name="node_zimo_anim.csd" Type="Node" />
           </Folder>
         </Folder>
         <Folder Name="assets">
           <Folder Name="common">
+            <Folder Name="plist">
+              <PlistImageFolder Image="head.png" PListFile="head.plist" Name=".head_PList.Dir">
+                <PlistImageFile Name="default_head.jpg" Key="default_head.jpg" />
+                <PlistImageFile Name="head_bg1.png" Key="head_bg1.png" />
+                <PlistImageFile Name="head_bg2.png" Key="head_bg2.png" />
+                <PlistImageFile Name="head_pet_1.jpg" Key="head_pet_1.jpg" />
+                <PlistImageFile Name="head_pet_2.jpg" Key="head_pet_2.jpg" />
+                <PlistImageFile Name="man_1.png" Key="man_1.png" />
+                <PlistImageFile Name="man_10.png" Key="man_10.png" />
+                <PlistImageFile Name="man_11.png" Key="man_11.png" />
+                <PlistImageFile Name="man_2.png" Key="man_2.png" />
+                <PlistImageFile Name="man_3.png" Key="man_3.png" />
+                <PlistImageFile Name="man_4.png" Key="man_4.png" />
+                <PlistImageFile Name="man_5.png" Key="man_5.png" />
+                <PlistImageFile Name="man_6.png" Key="man_6.png" />
+                <PlistImageFile Name="man_7.png" Key="man_7.png" />
+                <PlistImageFile Name="man_8.png" Key="man_8.png" />
+                <PlistImageFile Name="man_9.png" Key="man_9.png" />
+                <PlistImageFile Name="woman_1.png" Key="woman_1.png" />
+                <PlistImageFile Name="woman_10.png" Key="woman_10.png" />
+                <PlistImageFile Name="woman_11.png" Key="woman_11.png" />
+                <PlistImageFile Name="woman_2.png" Key="woman_2.png" />
+                <PlistImageFile Name="woman_3.png" Key="woman_3.png" />
+                <PlistImageFile Name="woman_4.png" Key="woman_4.png" />
+                <PlistImageFile Name="woman_5.png" Key="woman_5.png" />
+                <PlistImageFile Name="woman_6.png" Key="woman_6.png" />
+                <PlistImageFile Name="woman_7.png" Key="woman_7.png" />
+                <PlistImageFile Name="woman_8.png" Key="woman_8.png" />
+                <PlistImageFile Name="woman_9.png" Key="woman_9.png" />
+              </PlistImageFolder>
+              <PlistImageFolder Image="light_1_1.png" PListFile="light_1_1.plist" Name=".light_1_1_PList.Dir">
+                <PlistImageFile Name="10001.png" Key="10001.png" />
+                <PlistImageFile Name="10002.png" Key="10002.png" />
+                <PlistImageFile Name="10003.png" Key="10003.png" />
+                <PlistImageFile Name="10004.png" Key="10004.png" />
+                <PlistImageFile Name="10005.png" Key="10005.png" />
+                <PlistImageFile Name="10006.png" Key="10006.png" />
+                <PlistImageFile Name="10007.png" Key="10007.png" />
+                <PlistImageFile Name="10008.png" Key="10008.png" />
+                <PlistImageFile Name="10009.png" Key="10009.png" />
+              </PlistImageFolder>
+              <PlistImageFolder Image="light_1_2.png" PListFile="light_1_2.plist" Name=".light_1_2_PList.Dir">
+                <PlistImageFile Name="10010.png" Key="10010.png" />
+                <PlistImageFile Name="10011.png" Key="10011.png" />
+                <PlistImageFile Name="10012.png" Key="10012.png" />
+                <PlistImageFile Name="10013.png" Key="10013.png" />
+                <PlistImageFile Name="10014.png" Key="10014.png" />
+                <PlistImageFile Name="10015.png" Key="10015.png" />
+                <PlistImageFile Name="10016.png" Key="10016.png" />
+                <PlistImageFile Name="10017.png" Key="10017.png" />
+                <PlistImageFile Name="10018.png" Key="10018.png" />
+                <PlistImageFile Name="10019.png" Key="10019.png" />
+              </PlistImageFolder>
+              <PlistImageFolder Image="light_2.png" PListFile="light_2.plist" Name=".light_2_PList.Dir">
+                <PlistImageFile Name="light_01.png" Key="light_01.png" />
+                <PlistImageFile Name="light_02.png" Key="light_02.png" />
+                <PlistImageFile Name="light_03.png" Key="light_03.png" />
+                <PlistImageFile Name="light_04.png" Key="light_04.png" />
+                <PlistImageFile Name="light_05.png" Key="light_05.png" />
+                <PlistImageFile Name="light_06.png" Key="light_06.png" />
+                <PlistImageFile Name="light_07.png" Key="light_07.png" />
+                <PlistImageFile Name="light_08.png" Key="light_08.png" />
+                <PlistImageFile Name="light_09.png" Key="light_09.png" />
+                <PlistImageFile Name="light_10.png" Key="light_10.png" />
+                <PlistImageFile Name="light_11.png" Key="light_11.png" />
+                <PlistImageFile Name="light_12.png" Key="light_12.png" />
+              </PlistImageFolder>
+              <PlistImageFolder Image="light_3.png" PListFile="light_3.plist" Name=".light_3_PList.Dir">
+                <PlistImageFile Name="light_01.png" Key="light_01.png" />
+                <PlistImageFile Name="light_02.png" Key="light_02.png" />
+                <PlistImageFile Name="light_03.png" Key="light_03.png" />
+                <PlistImageFile Name="light_04.png" Key="light_04.png" />
+                <PlistImageFile Name="light_05.png" Key="light_05.png" />
+                <PlistImageFile Name="light_06.png" Key="light_06.png" />
+                <PlistImageFile Name="light_07.png" Key="light_07.png" />
+              </PlistImageFolder>
+            </Folder>
             <Image Name="btn_common_purple.png" />
+            <Image Name="head_stencil.png" />
+            <Image Name="numbers_blue.png" />
+            <Image Name="numbers_orange.png" />
+            <Image Name="player.png" />
+            <Image Name="woman_4.png" />
+          </Folder>
+          <Folder Name="font">
+            <TTF Name="FZZhengHeiS-B-GB.ttf" />
           </Folder>
           <Folder Name="hall">
             <Folder Name="plist">
@@ -35,22 +128,31 @@
               </PlistImageFolder>
               <PlistImageFolder Image="hall_bottom.png" PListFile="hall_bottom.plist" Name=".hall_bottom_PList.Dir">
                 <PlistImageFile Name="hall_activity.png" Key="hall_activity.png" />
-                <PlistImageFile Name="hall_bottom_bg.png" Key="hall_bottom_bg.png" />
+                <PlistImageFile Name="hall_firstcharge.png" Key="hall_firstcharge.png" />
+                <PlistImageFile Name="hall_firstcharge1.png" Key="hall_firstcharge1.png" />
                 <PlistImageFile Name="hall_rank.png" Key="hall_rank.png" />
                 <PlistImageFile Name="hall_shop.png" Key="hall_shop.png" />
                 <PlistImageFile Name="hall_task.png" Key="hall_task.png" />
               </PlistImageFolder>
               <PlistImageFolder Image="hall_middle.png" PListFile="hall_middle.plist" Name=".hall_middle_PList.Dir">
+                <PlistImageFile Name="hall_back_room.png" Key="hall_back_room.png" />
                 <PlistImageFile Name="hall_create_room_bg.png" Key="hall_create_room_bg.png" />
+                <PlistImageFile Name="hall_doce1.png" Key="hall_doce1.png" />
+                <PlistImageFile Name="hall_doce2.png" Key="hall_doce2.png" />
+                <PlistImageFile Name="hall_girl.png" Key="hall_girl.png" />
                 <PlistImageFile Name="hall_join_room_bg.png" Key="hall_join_room_bg.png" />
-                <PlistImageFile Name="hall_middle_girl.png" Key="hall_middle_girl.png" />
-                <PlistImageFile Name="hall_room_normal.png" Key="hall_room_normal.png" />
+                <PlistImageFile Name="hall_key.png" Key="hall_key.png" />
+                <PlistImageFile Name="hall_mahjong.png" Key="hall_mahjong.png" />
+                <PlistImageFile Name="hall_mahjong1.png" Key="hall_mahjong1.png" />
+                <PlistImageFile Name="hall_mahjong2.png" Key="hall_mahjong2.png" />
               </PlistImageFolder>
               <PlistImageFolder Image="hall_top.png" PListFile="hall_top.plist" Name=".hall_top_PList.Dir">
-                <PlistImageFile Name="hall_firstcharge.png" Key="hall_firstcharge.png" />
+                <PlistImageFile Name="hall_flower.png" Key="hall_flower.png" />
                 <PlistImageFile Name="hall_friend.png" Key="hall_friend.png" />
                 <PlistImageFile Name="hall_msg.png" Key="hall_msg.png" />
-                <PlistImageFile Name="hall_role.png" Key="hall_role.png" />
+                <PlistImageFile Name="hall_notice_bg.png" Key="hall_notice_bg.png" />
+                <PlistImageFile Name="hall_notice_horn.png" Key="hall_notice_horn.png" />
+                <PlistImageFile Name="hall_pendant.png" Key="hall_pendant.png" />
                 <PlistImageFile Name="hall_set.png" Key="hall_set.png" />
                 <PlistImageFile Name="hall_sign.png" Key="hall_sign.png" />
                 <PlistImageFile Name="hall_title_bg.png" Key="hall_title_bg.png" />
@@ -58,6 +160,7 @@
               </PlistImageFolder>
             </Folder>
             <Image Name="hall_bg.jpg" />
+            <Image Name="hall_bottom_bg.png" />
             <Image Name="popup_bg1.png" />
           </Folder>
           <Folder Name="login">
@@ -121,18 +224,36 @@
                 <PlistImageFile Name="wind_or_dragon_6.png" Key="wind_or_dragon_6.png" />
                 <PlistImageFile Name="wind_or_dragon_7.png" Key="wind_or_dragon_7.png" />
               </PlistImageFolder>
+              <PlistImageFolder Image="menu.png" PListFile="menu.plist" Name=".menu_PList.Dir">
+                <PlistImageFile Name="i_menu_item_dissolve.png" Key="i_menu_item_dissolve.png" />
+                <PlistImageFile Name="i_menu_item_exit.png" Key="i_menu_item_exit.png" />
+                <PlistImageFile Name="i_menu_item_setting.png" Key="i_menu_item_setting.png" />
+                <PlistImageFile Name="i_menu_pull_down.png" Key="i_menu_pull_down.png" />
+                <PlistImageFile Name="i_menu_retract.png" Key="i_menu_retract.png" />
+                <PlistImageFile Name="menu_bg.png" Key="menu_bg.png" />
+              </PlistImageFolder>
               <PlistImageFolder Image="operation.png" PListFile="operation.plist" Name=".operation_PList.Dir">
                 <PlistImageFile Name="i_operation_buhua.png" Key="i_operation_buhua.png" />
                 <PlistImageFile Name="i_operation_chi.png" Key="i_operation_chi.png" />
                 <PlistImageFile Name="i_operation_gang.png" Key="i_operation_gang.png" />
+                <PlistImageFile Name="i_operation_gang1.png" Key="i_operation_gang1.png" />
                 <PlistImageFile Name="i_operation_guo.png" Key="i_operation_guo.png" />
                 <PlistImageFile Name="i_operation_hu.png" Key="i_operation_hu.png" />
+                <PlistImageFile Name="i_operation_hu1.png" Key="i_operation_hu1.png" />
                 <PlistImageFile Name="i_operation_peng.png" Key="i_operation_peng.png" />
+                <PlistImageFile Name="i_operation_peng1.png" Key="i_operation_peng1.png" />
                 <PlistImageFile Name="i_operation_ting.png" Key="i_operation_ting.png" />
+                <PlistImageFile Name="i_operation_ting1.png" Key="i_operation_ting1.png" />
                 <PlistImageFile Name="i_operation_zimo.png" Key="i_operation_zimo.png" />
                 <PlistImageFile Name="operation_bg.png" Key="operation_bg.png" />
               </PlistImageFolder>
-              <PlistImageFolder Image="room.png" PListFile="room.plist" Name=".room_PList.Dir">
+              <PlistImageFolder Image="table.png" PListFile="table.plist" Name=".table_PList.Dir">
+                <PlistImageFile Name="flower.png" Key="flower.png" />
+                <PlistImageFile Name="i_banker.png" Key="i_banker.png" />
+                <PlistImageFile Name="i_discard_flag.png" Key="i_discard_flag.png" />
+                <PlistImageFile Name="i_gold.png" Key="i_gold.png" />
+                <PlistImageFile Name="i_last_discard_mark.png" Key="i_last_discard_mark.png" />
+                <PlistImageFile Name="i_remain_card_bg.png" Key="i_remain_card_bg.png" />
                 <PlistImageFile Name="i_room_direction_east.png" Key="i_room_direction_east.png" />
                 <PlistImageFile Name="i_room_direction_north.png" Key="i_room_direction_north.png" />
                 <PlistImageFile Name="i_room_direction_player_left.png" Key="i_room_direction_player_left.png" />
@@ -141,6 +262,7 @@
                 <PlistImageFile Name="i_room_direction_player_self.png" Key="i_room_direction_player_self.png" />
                 <PlistImageFile Name="i_room_direction_south.png" Key="i_room_direction_south.png" />
                 <PlistImageFile Name="i_room_direction_west.png" Key="i_room_direction_west.png" />
+                <PlistImageFile Name="i_waiting_card.png" Key="i_waiting_card.png" />
                 <PlistImageFile Name="room_direction_bg.png" Key="room_direction_bg.png" />
               </PlistImageFolder>
             </Folder>
@@ -160,10 +282,12 @@
             </Folder>
           </Folder>
           <Folder Name="ui">
+            <Folder Name="common" />
             <Folder Name="hall">
               <Project Name="create_room_layer_layout.csd" Type="Layer" />
               <Project Name="hall_bottom_node_layout.csd" Type="Node" />
               <Project Name="hall_middle_node_layout.csd" Type="Node" />
+              <Project Name="hall_player_head_node_layout.csd" Type="Node" />
               <Project Name="hall_top_node_layout.csd" Type="Node" />
               <Project Name="join_room_layer_layout.csd" Type="Layer" />
             </Folder>
@@ -202,6 +326,9 @@
                 <Project Name="right_visible_2_mj_node_layout.csd" Type="Node" />
                 <Project Name="right_visible_3_mj_node_layout.csd" Type="Node" />
               </Folder>
+              <Project Name="room_menu_layer_layout.csd" Type="Layer" />
+              <Project Name="room_player_head_layer_layout.csd" Type="Layer" />
+              <Project Name="room_player_head_node_layout.csd" Type="Node" />
             </Folder>
           </Folder>
         </Folder>

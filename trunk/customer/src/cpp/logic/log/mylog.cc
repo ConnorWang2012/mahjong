@@ -15,13 +15,20 @@ modification:
 #include "mylog.h"
 
 #include <chrono>
-#include <iostream>
 
 #ifdef _WIN32
 #include <direct.h> 
 #include <io.h> 
 #include <iomanip>
 #include <windows.h>
+#elif __APPLE__
+
+#elif __ANDROID__
+
+#elif __linux__
+
+#elif __unix__ 
+
 #endif
 
 namespace gamer 
@@ -35,14 +42,21 @@ void initlog()
 	auto y = tm->tm_year + 1900;
 	auto m = tm->tm_mon + 1;
 	auto d = tm->tm_mday;
-	char buf[20];
-	snprintf(buf, sizeof(buf), "log/%d-%d-%d", y, m, d);
 
 #ifdef _WIN32
-    if (_access("log", 0) < 0)
+    WCHAR full_path[MAX_PATH] = { 0 };
+    ::GetModuleFileName(nullptr, full_path, MAX_PATH);
+    std::wstring path_tmp = full_path;
+    path_tmp = path_tmp.substr(0, path_tmp.rfind(L"\\") + 1);
+    auto path = gamer::convertPathFormatToUnixStyle(gamer::stringWideCharToUtf8(path_tmp));
+    path += "mylog";
+    if (_access(path.c_str(), 0) < 0)
     {
-        _mkdir("log");
+        _mkdir(path.c_str());
     }
+
+    char buf[MAX_PATH];
+    snprintf(buf, sizeof(buf), "%s/%d-%d-%d", path.c_str(), y, m, d);
 	if (_access(buf, 0) < 0) 
     {
 		_mkdir(buf);
@@ -179,6 +193,48 @@ void printferror(const char* format, ...)
 	std::cout << buf << std::endl;
 #endif
 	va_end(args);
+}
+
+inline std::string convertPathFormatToUnixStyle(const std::string& path)
+{
+    std::string ret = path;
+    int len = ret.length();
+    for (int i = 0; i < len; ++i)
+    {
+        if (ret[i] == '\\')
+        {
+            ret[i] = '/';
+        }
+    }
+    return ret;
+}
+
+std::string stringWideCharToUtf8(const std::wstring& ws)
+{
+    std::string ret;
+#ifdef _WIN32
+    if ( !ws.empty() )
+    {
+        int num = WideCharToMultiByte(CP_UTF8, 0, ws.c_str(), -1, nullptr, 0, nullptr, FALSE);
+        if (num)
+        {
+            char* utf8 = new char[num + 1];
+            utf8[0] = 0;
+
+            num = WideCharToMultiByte(CP_UTF8, 0, ws.c_str(), -1, utf8, num + 1, nullptr, FALSE);
+
+            ret = utf8;
+            delete[] utf8;
+        }
+    }
+#elif __APPLE__
+
+#elif __ANDROID__
+
+
+#endif
+
+    return ret;
 }
 
 } // namespace gamer

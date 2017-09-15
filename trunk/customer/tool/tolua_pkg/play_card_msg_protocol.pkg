@@ -1,4 +1,5 @@
 $#include "msg/protocol/play_card_msg_protocol.pb.h"
+$#include "msg/protocol/ting_card_msg_protocol.pb.h"
 
 $#include <string>
 $#include <google/protobuf/stubs/common.h>
@@ -47,6 +48,12 @@ public:
 	inline int operating_cards_size() const;
 	inline int operating_cards(int index) const;
 	inline void add_operating_cards(int value);
+
+	inline int invisible_hand_cards_size() const;
+	inline int invisible_hand_cards(int index) const;
+
+	inline int ting_cards_size() const;
+	inline const gamer::protocol::TingCardMsgProtocol& ting_cards(int index) const;
 };
 
 } // namespace protocol

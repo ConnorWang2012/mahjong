@@ -16,6 +16,7 @@ modification:
 #define CONNOR_GAME_SRC_FRAMEWORK_LOG_H_
 
 #include <fstream>
+#include <iostream>
 #include <string>
 
 namespace gamer 
@@ -62,6 +63,11 @@ namespace gamer
     void printfwarning(const char* format, ...);
 
     void printferror(const char* format, ...);
+
+    // D:\aaa\bbb\ccc\abc.txt --> D:/aaa/bbb/ccc/abc.txt
+    inline std::string convertPathFormatToUnixStyle(const std::string& path);
+
+    std::string stringWideCharToUtf8(const std::wstring& ws);
 
     static std::ofstream s_ofs_log_;
     static std::string s_log_path_;
