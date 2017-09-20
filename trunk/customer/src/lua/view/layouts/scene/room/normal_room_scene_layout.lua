@@ -341,6 +341,28 @@ layout:setTopMargin(19.5000)
 layout:setBottomMargin(35.5000)
 img_remain_cards:addChild(txt_remain_cards)
 
+--Create img_chat
+local img_chat = ccui.ImageView:create()
+img_chat:ignoreContentAdaptWithSize(false)
+img_chat:loadTexture("assets/common/i_chat.png",0)
+img_chat:setLayoutComponentEnabled(true)
+img_chat:setName("img_chat")
+img_chat:setTag(123)
+img_chat:setCascadeColorEnabled(true)
+img_chat:setCascadeOpacityEnabled(true)
+img_chat:setPosition(1835.9800, 110.5100)
+layout = ccui.LayoutComponent:bindLayoutComponent(img_chat)
+layout:setPositionPercentX(1.9125)
+layout:setPositionPercentY(0.1727)
+layout:setPercentWidth(0.0938)
+layout:setPercentHeight(0.1406)
+layout:setSize({width = 90.0000, height = 90.0000})
+layout:setLeftMargin(1790.9800)
+layout:setRightMargin(-920.9800)
+layout:setTopMargin(484.4900)
+layout:setBottomMargin(65.5100)
+room_scene:addChild(img_chat)
+
 --Create Animation
 result['animation'] = ccs.ActionTimeline:create()
   

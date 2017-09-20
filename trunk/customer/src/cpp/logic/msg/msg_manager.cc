@@ -19,6 +19,7 @@ modification:
 #include "cocos/base/CCDirector.h"
 #include "cocos/base/CCScheduler.h"
 
+#include "base/macros.h"
 #include "data/data_constants.h"
 #include "data/data_manager.h"
 #include "event_headers.h"
@@ -33,7 +34,9 @@ modification:
 namespace gamer
 {
 
-MsgManager::MsgManager() : msg_dispatch_index_(0)
+MsgManager::MsgManager() 
+    : msg_dispatch_index_(0), 
+      is_multi_msg_(false)
 {
     this->init();
 }
@@ -149,6 +152,10 @@ void MsgManager::addMsgHandlers()
     msg_handlers_.insert(std::make_pair((int)MsgIDs::MSG_ID_ROOM_START_GAME,
         CALLBACK_SELECTOR_1(MsgManager::dealWithStartGameMsg, this)));
 
+    // game end
+    msg_handlers_.insert(std::make_pair((int)MsgIDs::MSG_ID_ROOM_GAME_END,
+        CALLBACK_SELECTOR_1(MsgManager::dealWithGameEndMsg, this)));
+
     // play card
     msg_handlers_.insert(std::make_pair((int)MsgIDs::MSG_ID_ROOM_PLAY_CARD,
         CALLBACK_SELECTOR_1(MsgManager::dealWithPlayCardMsg, this)));
@@ -240,7 +247,7 @@ std::string MsgManager::getMsgCallbackKey(msg_header_t msg_type, msg_header_t ms
 std::string MsgManager::getMsgDispatchKey()
 {
     char buf[14];
-    snprintf(buf, sizeof(buf), "msg_dispatch%d", msg_dispatch_index_);
+    snprintf(buf, sizeof(buf), "m_dispatch%d", msg_dispatch_index_);
     msg_dispatch_index_++;
     if (msg_dispatch_index_ > 10)
     {
@@ -323,92 +330,99 @@ void MsgManager::removeMsgListenerForCpp(msg_header_t msg_type,
 void MsgManager::dispatchMsg(int msg_code, 
                              msg_header_t msg_type,
                              msg_header_t msg_id,
-                             const google::protobuf::Message* msg,
+                             google::protobuf::Message* msg,
                              const std::string& class_name)
 {
-    // push msg to msg queue
-    auto msg_protocol = new MsgProtocol;
-    msg_queue_.push(msg_protocol);
-    msg_protocol->type = msg_type;
-    msg_protocol->id = msg_id;
-    msg_protocol->code = msg_code;
-    msg_protocol->msg = msg->New();
-    msg_protocol->msg->CopyFrom(*msg);
-    msg_protocol->class_name = class_name;
-    msg_protocol->dispatch_key = this->getMsgDispatchKey();
+    if (nullptr == msg)
+        return;
 
-    // callback for dispatching msg
-    auto callback = [=](float) {
-        auto msg_protocol = msg_queue_.front();
-        auto msgcode = msg_protocol->code;
-        auto msgtype = msg_protocol->type;
-        auto msgid = msg_protocol->id;
-        auto msgtmp = msg_protocol->msg;
-        auto classname = msg_protocol->class_name;
-        
-        auto key = this->getMsgCallbackKey(msgtype, msgid); // for specific msg type
-        auto key2 = this->getMsgCallbackKey(msgtype, (int)MsgIDs::MSG_ID_UNKNOW); // for unspecific msg type
+    if (this->is_multi_msg())
+    {
+        // push msg to msg queue
+        auto msg_protocol = new MsgProtocol;
+        msg_queue_.push(msg_protocol);
+        msg_protocol->type          = msg_type;
+        msg_protocol->id            = msg_id;
+        msg_protocol->code          = msg_code;
+        msg_protocol->msg           = msg->New();
+        msg_protocol->msg->CopyFrom(*msg);
+        msg_protocol->class_name    = class_name;
+        msg_protocol->dispatch_key  = this->getMsgDispatchKey();
 
-        cocos2d::Director::getInstance()->getScheduler()->unschedule(msg_protocol->dispatch_key,
-            this);
-
-        // C++ callback
-        auto itr1 = msg_response_cpp_callbacks_.find(key);
-        if (itr1 != msg_response_cpp_callbacks_.end())
+        // dispatch msg by UI thread(main thread)
+        if (1 == msg_queue_.size())
         {
-            for (const MsgResponseCallback& cpp_cb : itr1->second)
-            {
-                cpp_cb(msgcode, msgtype, msgid, msgtmp);
-            }
+            cocos2d::Director::getInstance()->getScheduler()->schedule(
+                CALLBACK_SELECTOR_1(MsgManager::onMsgDispatch, this),
+                this, 0, false, msg_protocol->dispatch_key);
         }
+    }
+    else
+    {
+        // callback for dispatching single msg
+        auto callback = [=](float) {
+            auto msgtype    = msg_type;
+            auto msgid      = msg_id;
+            auto msgcode    = msg_code;
+            auto msgtmp     = msg;
+            auto classname  = class_name;
 
-        itr1 = msg_response_cpp_callbacks_.find(key2);
-        if (itr1 != msg_response_cpp_callbacks_.end())
-        {
-            for (const MsgResponseCallback& cpp_cb : itr1->second)
+            auto key = this->getMsgCallbackKey(msgtype, msgid); // for specific msg type
+            auto key2 = this->getMsgCallbackKey(msgtype, (int)MsgIDs::MSG_ID_UNKNOW); // for unspecific msg type
+
+            cocos2d::Director::getInstance()->getScheduler()->unschedule("s_dispatch", this);
+
+            if (msgid == (msg_header_t)MsgIDs::MSG_ID_ROOM_PLAY_CARD)
             {
-                cpp_cb(msgcode, msgtype, msgid, msgtmp);
+                DataManager::getInstance()->updateCardAfterOperation(
+                    dynamic_cast<gamer::protocol::PlayCardMsgProtocol*>(msgtmp));
             }
-        }
 
-        // Lua callback
-        auto itr2 = msg_response_lua_callbacks_.find(key);
-        if (itr2 != msg_response_lua_callbacks_.end())
-        {
-            for (gamer::LuaFunction lua_cb : itr2->second)
+            // C++ callback
+            auto itr1 = msg_response_cpp_callbacks_.find(key);
+            if (itr1 != msg_response_cpp_callbacks_.end())
             {
-                LuaBindHelper::getInstance()->dispatchMsg(lua_cb,
-                                                          msgcode,
-                                                          msgtype,
-                                                          msgid,
-                                                          msgtmp,
-                                                          classname);
+                for (const MsgResponseCallback& cpp_cb : itr1->second)
+                {
+                    cpp_cb(msgcode, msgtype, msgid, msgtmp);
+                }
             }
-        }
 
-        itr2 = msg_response_lua_callbacks_.find(key2);
-        if (itr2 != msg_response_lua_callbacks_.end())
-        {
-            for (gamer::LuaFunction lua_cb : itr2->second)
+            itr1 = msg_response_cpp_callbacks_.find(key2);
+            if (itr1 != msg_response_cpp_callbacks_.end())
             {
-                LuaBindHelper::getInstance()->dispatchMsg(lua_cb,
-                                                          msgcode,
-                                                          msgtype,
-                                                          msgid,
-                                                          msgtmp,
-                                                          classname);
+                for (const MsgResponseCallback& cpp_cb : itr1->second)
+                {
+                    cpp_cb(msgcode, msgtype, msgid, msgtmp);
+                }
             }
-        }
 
-        // delete msg from msg queue
-        msg_queue_.pop();
-        delete msg_protocol->msg;
-        delete msg_protocol;
-    };
+            // Lua callback
+            auto itr2 = msg_response_lua_callbacks_.find(key);
+            if (itr2 != msg_response_lua_callbacks_.end())
+            {
+                for (gamer::LuaFunction lua_cb : itr2->second)
+                {
+                    LuaBindHelper::getInstance()->dispatchMsg(lua_cb,
+                        msgcode, msgtype, msgid, msgtmp, classname);
+                }
+            }
 
-    // dispatch msg by UI thread(main thread)
-    cocos2d::Director::getInstance()->getScheduler()->schedule(callback, 
-        this, 0, false, msg_protocol->dispatch_key);
+            itr2 = msg_response_lua_callbacks_.find(key2);
+            if (itr2 != msg_response_lua_callbacks_.end())
+            {
+                for (gamer::LuaFunction lua_cb : itr2->second)
+                {
+                    LuaBindHelper::getInstance()->dispatchMsg(lua_cb,
+                        msgcode, msgtype, msgid, msgtmp, classname);
+                }
+            }
+        };
+
+        // dispatch msg by UI thread(main thread)
+        cocos2d::Director::getInstance()->getScheduler()->schedule(callback,
+            this, 0, false, "s_dispatch");
+    }
 }
 
 void MsgManager::dealWithLoginMsg(const ServerMsg& msg)
@@ -480,6 +494,7 @@ void MsgManager::dealWithStartGameMsg(const ServerMsg& msg)
 {
     auto data_mgr = DataManager::getInstance();
     auto proto = data_mgr->room_msg_protocol();
+    //proto->clear_player_cards();
     if ( !this->parseMsg(msg, proto) )
     {
         // TODO : log
@@ -556,13 +571,28 @@ void MsgManager::dealWithStartGameMsg(const ServerMsg& msg)
     this->dispatchMsg(msg.code, msg.type, msg.id, proto, "gamer::protocol::RoomMsgProtocol");
 }
 
+void MsgManager::dealWithGameEndMsg(const ServerMsg& msg)
+{
+    auto proto = DataManager::getInstance()->game_end_msg_protocol();
+    if (this->parseMsg(msg, proto))
+    {
+        this->dispatchMsg(msg.code, msg.type, msg.id, proto,
+            "gamer::protocol::GameEndMsgProtocol");
+    }
+    else
+    {
+        this->dispatchMsg(msg.code, msg.type, msg.id, nullptr, "");
+        // TODO : log
+    }
+}
+
 void MsgManager::dealWithPlayCardMsg(const ServerMsg& msg)
 {
     auto proto = DataManager::getInstance()->play_card_msg_protocol();
     if (this->parseMsg(msg, proto))
     {
-        DataManager::getInstance()->updateCardAfterOperation(proto);
-        gamer::writelog("[MsgManager::dealWithPlayCardMsg] operation id : %d", proto->operation_id());
+        //DataManager::getInstance()->updateCardAfterOperation(proto);
+        //gamer::writelog("[MsgManager::dealWithPlayCardMsg] operation id : %d", proto->operation_id());
         this->dispatchMsg(msg.code, msg.type, msg.id, proto, 
             "gamer::protocol::PlayCardMsgProtocol");
     }
@@ -573,9 +603,94 @@ void MsgManager::dealWithPlayCardMsg(const ServerMsg& msg)
     }
 }
 
+void MsgManager::onMsgDispatch(float dt)
+{
+    if (0 == msg_queue_.size())
+    {
+        gamer::writelog("[MsgManager::dispatchMsg] 0 == msg_queue_.size()");
+        return;
+    }
+
+    auto msg_protocol = msg_queue_.front();
+
+    if (msg_protocol->id == (msg_header_t)MsgIDs::MSG_ID_ROOM_PLAY_CARD)
+    {
+        DataManager::getInstance()->updateCardAfterOperation(
+            dynamic_cast<gamer::protocol::PlayCardMsgProtocol*>(msg_protocol->msg));
+    }
+
+    auto key = this->getMsgCallbackKey(msg_protocol->type, msg_protocol->id); // for specific msg type
+    auto key2 = this->getMsgCallbackKey(msg_protocol->type, (int)MsgIDs::MSG_ID_UNKNOW); // for unspecific msg type
+
+    cocos2d::Director::getInstance()->getScheduler()->unschedule(
+        msg_protocol->dispatch_key, this);
+
+    // C++ callback
+    auto itr1 = msg_response_cpp_callbacks_.find(key);
+    if (itr1 != msg_response_cpp_callbacks_.end())
+    {
+        for (const MsgResponseCallback& cpp_cb : itr1->second)
+        {
+            cpp_cb(msg_protocol->code, msg_protocol->type, msg_protocol->id,
+                msg_protocol->msg);
+        }
+    }
+
+    itr1 = msg_response_cpp_callbacks_.find(key2);
+    if (itr1 != msg_response_cpp_callbacks_.end())
+    {
+        for (const MsgResponseCallback& cpp_cb : itr1->second)
+        {
+            cpp_cb(msg_protocol->code, msg_protocol->type, msg_protocol->id,
+                msg_protocol->msg);
+        }
+    }
+
+    // Lua callback
+    auto itr2 = msg_response_lua_callbacks_.find(key);
+    if (itr2 != msg_response_lua_callbacks_.end())
+    {
+        for (gamer::LuaFunction lua_cb : itr2->second)
+        {
+            LuaBindHelper::getInstance()->dispatchMsg(lua_cb,
+                msg_protocol->code,
+                msg_protocol->type,
+                msg_protocol->id,
+                msg_protocol->msg,
+                msg_protocol->class_name);
+        }
+    }
+
+    itr2 = msg_response_lua_callbacks_.find(key2);
+    if (itr2 != msg_response_lua_callbacks_.end())
+    {
+        for (gamer::LuaFunction lua_cb : itr2->second)
+        {
+            LuaBindHelper::getInstance()->dispatchMsg(lua_cb,
+                msg_protocol->code,
+                msg_protocol->type,
+                msg_protocol->id,
+                msg_protocol->msg,
+                msg_protocol->class_name);
+        }
+    }
+
+    // delete msg from msg queue
+    msg_queue_.pop();
+    delete msg_protocol->msg;
+    delete msg_protocol;
+
+    // check whether msg queue has msg, if has, dispatch next msg
+    if (msg_queue_.size() > 0)
+    {
+        cocos2d::Director::getInstance()->getScheduler()->schedule(
+            CALLBACK_SELECTOR_1(MsgManager::onMsgDispatch, this), this, 0, false, 
+            msg_queue_.front()->dispatch_key);
+    }
+}
+
 void MsgManager::onSocketConnected(gamer::Event* event)
 {
-
 }
 
 void MsgManager::onMsgReceived(const ServerMsg& msg)

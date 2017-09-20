@@ -18,11 +18,13 @@ modification:
 #include <unordered_map>
 
 #include "base/basic_manager.h"
+#include "logic/constant/card_constants.h"
 #include "msg/protocol/my_login_msg_protocol.pb.h"
 #include "msg/protocol/create_room_msg_protocol.pb.h"
 #include "msg/protocol/room_msg_protocol.pb.h"
 #include "msg/protocol/player_cards_msg_protocol.pb.h"
 #include "msg/protocol/play_card_msg_protocol.pb.h"
+#include "msg/protocol/game_end_msg_protocol.pb.h"
 
 namespace gamer
 {
@@ -30,11 +32,12 @@ namespace gamer
 class DataManager : public BasicManager<DataManager>
 {
 public:
-    typedef gamer::protocol::MyLoginMsgProtocol MyLoginMsgProtocol;
-    typedef gamer::protocol::CreateRoomMsgProtocol CreateRoomMsgProtocol;
-    typedef gamer::protocol::RoomMsgProtocol RoomMsgProtocol;
+    typedef gamer::protocol::MyLoginMsgProtocol     MyLoginMsgProtocol;
+    typedef gamer::protocol::CreateRoomMsgProtocol  CreateRoomMsgProtocol;
+    typedef gamer::protocol::RoomMsgProtocol        RoomMsgProtocol;
     typedef gamer::protocol::PlayerCardsMsgProtocol PlayerCardsMsgProtocol;
-    typedef gamer::protocol::PlayCardMsgProtocol PlayCardMsgProtocol;
+    typedef gamer::protocol::PlayCardMsgProtocol    PlayCardMsgProtocol;
+    typedef gamer::protocol::GameEndMsgProtocol     GameEndMsgProtocol;
 
     DataManager();
 
@@ -45,6 +48,8 @@ public:
     inline RoomMsgProtocol* room_msg_protocol();
 
     inline PlayCardMsgProtocol* play_card_msg_protocol();
+
+    inline GameEndMsgProtocol* game_end_msg_protocol();
 
     inline PlayerCardsMsgProtocol* cards_msg_protocol_of_player_self();
 
@@ -89,14 +94,14 @@ public:
 
     void updateCardForAnGang(int player_id, int card_of_an_gang);
 
-    void updateCardForBuhua(int player_id, int card_of_flower_season);
+    void updateCardForBuhua(int player_id);
 
     void updateCardForHu(int player_id);
 
 private:
     typedef google::protobuf::RepeatedField<google::protobuf::int32> RepeatedField;
 
-    gamer::protocol::PlayerCardsMsgProtocol* getPlayerCardsMsgProtocol(int player_id);
+    PlayerCardsMsgProtocol* getPlayerCardsMsgProtocol(int player_id);
 
     void updateCardForNewCardOfPlayerSelf(int new_card);
 
@@ -112,11 +117,18 @@ private:
 
     void removeCards(RepeatedField* repeated_field, int card, int num);
 
+    inline bool is_season_or_flower(int card) const;
+
+    inline bool is_season(int card) const;
+
+    inline bool is_flower(int card) const;
+
     // keep the ownership
-    MyLoginMsgProtocol* my_login_msg_protocol_;
-    CreateRoomMsgProtocol* create_room_msg_protocol_;
-    RoomMsgProtocol* room_msg_protocol_;
-    PlayCardMsgProtocol* play_card_msg_protocol_;
+    MyLoginMsgProtocol*     my_login_msg_protocol_;
+    CreateRoomMsgProtocol*  create_room_msg_protocol_;
+    RoomMsgProtocol*        room_msg_protocol_;
+    PlayCardMsgProtocol*    play_card_msg_protocol_;
+    GameEndMsgProtocol*     game_end_msg_protocol_;
 
     int player_self_cards_index_;
     int left_player_cards_index_;
@@ -128,7 +140,7 @@ inline DataManager::MyLoginMsgProtocol* DataManager::my_login_msg_protocol()
 {
     if (nullptr == my_login_msg_protocol_)
     {
-        my_login_msg_protocol_ = new protocol::MyLoginMsgProtocol;
+        my_login_msg_protocol_ = new MyLoginMsgProtocol;
     }
     return my_login_msg_protocol_;
 }
@@ -137,7 +149,7 @@ inline DataManager::CreateRoomMsgProtocol* DataManager::create_room_msg_protocol
 {
     if (nullptr == create_room_msg_protocol_)
     {
-        create_room_msg_protocol_ = new protocol::CreateRoomMsgProtocol;
+        create_room_msg_protocol_ = new CreateRoomMsgProtocol;
     }
     return create_room_msg_protocol_;
 }
@@ -146,7 +158,7 @@ inline DataManager::RoomMsgProtocol* DataManager::room_msg_protocol()
 {
     if (nullptr == room_msg_protocol_)
     {
-        room_msg_protocol_ = new protocol::RoomMsgProtocol;
+        room_msg_protocol_ = new RoomMsgProtocol;
     }
     return room_msg_protocol_;
 }
@@ -155,7 +167,7 @@ inline DataManager::PlayCardMsgProtocol* DataManager::play_card_msg_protocol()
 {
     if (nullptr == play_card_msg_protocol_)
     {
-        play_card_msg_protocol_ = new protocol::PlayCardMsgProtocol;
+        play_card_msg_protocol_ = new PlayCardMsgProtocol;
         // init next operating player id
         if (nullptr != room_msg_protocol_)
         {
@@ -163,6 +175,15 @@ inline DataManager::PlayCardMsgProtocol* DataManager::play_card_msg_protocol()
         }
     }
     return play_card_msg_protocol_;
+}
+
+inline DataManager::GameEndMsgProtocol* DataManager::game_end_msg_protocol()
+{
+    if (nullptr == game_end_msg_protocol_)
+    {
+        game_end_msg_protocol_ = new GameEndMsgProtocol;
+    }
+    return game_end_msg_protocol_;
 }
 
 inline DataManager::PlayerCardsMsgProtocol* DataManager::cards_msg_protocol_of_player_self()
@@ -255,6 +276,27 @@ inline int DataManager::right_player_id() const
         return room_msg_protocol_->player_cards(right_player_cards_index_).player_id();
     }
     return 0;
+}
+
+inline bool DataManager::is_season_or_flower(int card) const {
+    if (card >= CardConstants::SEASON_SPRING && card <= CardConstants::FLOWER_BAMBOO) {
+        return true;
+    }
+    return false;
+}
+
+inline bool DataManager::is_season(int card) const {
+    if (card >= CardConstants::SEASON_SPRING && card <= CardConstants::SEASON_WINTER) {
+        return true;
+    }
+    return false;
+}
+
+inline bool DataManager::is_flower(int card) const {
+    if (card >= CardConstants::FLOWER_PLUM && card <= CardConstants::FLOWER_BAMBOO) {
+        return true;
+    }
+    return false;
 }
 
 } // namespace gamer

@@ -153,7 +153,7 @@ private:
     void dispatchMsg(int msg_code, 
                      msg_header_t msg_type, 
                      msg_header_t msg_id, 
-                     const google::protobuf::Message* msg,
+                     google::protobuf::Message* msg,
                      const std::string& class_name);
 
     void dealWithLoginMsg(const ServerMsg& msg);
@@ -168,11 +168,20 @@ private:
 
     void dealWithStartGameMsg(const ServerMsg& msg);
 
+    void dealWithGameEndMsg(const ServerMsg& msg);
+
     void dealWithPlayCardMsg(const ServerMsg& msg);
+
+    // callback for dispatching msg, use for dispatching multi-msg
+    void onMsgDispatch(float dt);
 
     void onSocketConnected(gamer::Event* event);
 
     void onMsgReceived(const ServerMsg& msg);
+
+    inline void set_is_multi_msg(bool is_multi_msg);
+
+    inline bool is_multi_msg() const;
 
     friend class NetworkManager;
 
@@ -186,7 +195,20 @@ private:
     int msg_dispatch_index_;
 
     static const int MAX_MSG_LEN = 4096;
+
+    bool is_multi_msg_;
 };
+
+
+inline void MsgManager::set_is_multi_msg(bool is_multi_msg)
+{
+    is_multi_msg_ = is_multi_msg;
+}
+
+inline bool MsgManager::is_multi_msg() const
+{
+    return is_multi_msg_;
+}
 
 } // namespace gamer
 

@@ -139,6 +139,16 @@
             <PreSize X="0.2510" Y="0.1531" />
             <FileData Type="PlistSubImage" Path="i_remain_card_bg.png" Plist="assets/room/plist/table.plist" />
           </AbstractNodeData>
+          <AbstractNodeData Name="img_chat" ActionTag="2001652205" Tag="123" IconVisible="False" LeftMargin="1790.9800" RightMargin="-920.9800" TopMargin="484.4900" BottomMargin="65.5100" LeftEage="21" RightEage="21" TopEage="20" BottomEage="20" Scale9OriginX="21" Scale9OriginY="20" Scale9Width="22" Scale9Height="22" ctype="ImageViewObjectData">
+            <Size X="90.0000" Y="90.0000" />
+            <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
+            <Position X="1835.9800" Y="110.5100" />
+            <Scale ScaleX="1.0000" ScaleY="1.0000" />
+            <CColor A="255" R="255" G="255" B="255" />
+            <PrePosition X="1.9125" Y="0.1727" />
+            <PreSize X="0.0938" Y="0.1406" />
+            <FileData Type="Normal" Path="assets/common/i_chat.png" Plist="" />
+          </AbstractNodeData>
         </Children>
       </ObjectData>
     </Content>

@@ -1,6 +1,6 @@
 /*
 ** Lua binding: player_cards_msg_protocol
-** Generated automatically by tolua++-1.0.92 on 08/28/17 04:53:00.
+** Generated automatically by tolua++-1.0.92 on 09/18/17 00:32:09.
 */
 
 #ifndef __cplusplus
@@ -656,9 +656,9 @@ static int tolua_player_cards_msg_protocol_gamer_protocol_PlayerCardsMsgProtocol
 }
 #endif //#ifndef TOLUA_DISABLE
 
-/* method: waiting_cards_size of class  gamer::protocol::PlayerCardsMsgProtocol */
-#ifndef TOLUA_DISABLE_tolua_player_cards_msg_protocol_gamer_protocol_PlayerCardsMsgProtocol_waiting_cards_size00
-static int tolua_player_cards_msg_protocol_gamer_protocol_PlayerCardsMsgProtocol_waiting_cards_size00(lua_State* tolua_S)
+/* method: ting_cards_size of class  gamer::protocol::PlayerCardsMsgProtocol */
+#ifndef TOLUA_DISABLE_tolua_player_cards_msg_protocol_gamer_protocol_PlayerCardsMsgProtocol_ting_cards_size00
+static int tolua_player_cards_msg_protocol_gamer_protocol_PlayerCardsMsgProtocol_ting_cards_size00(lua_State* tolua_S)
 {
 #ifndef TOLUA_RELEASE
  tolua_Error tolua_err;
@@ -672,25 +672,25 @@ static int tolua_player_cards_msg_protocol_gamer_protocol_PlayerCardsMsgProtocol
  {
   const gamer::protocol::PlayerCardsMsgProtocol* self = (const gamer::protocol::PlayerCardsMsgProtocol*)  tolua_tousertype(tolua_S,1,0);
 #ifndef TOLUA_RELEASE
-  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'waiting_cards_size'", NULL);
+  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'ting_cards_size'", NULL);
 #endif
   {
-   int tolua_ret = (int)  self->waiting_cards_size();
+   int tolua_ret = (int)  self->ting_cards_size();
    tolua_pushnumber(tolua_S,(lua_Number)tolua_ret);
   }
  }
  return 1;
 #ifndef TOLUA_RELEASE
  tolua_lerror:
- tolua_error(tolua_S,"#ferror in function 'waiting_cards_size'.",&tolua_err);
+ tolua_error(tolua_S,"#ferror in function 'ting_cards_size'.",&tolua_err);
  return 0;
 #endif
 }
 #endif //#ifndef TOLUA_DISABLE
 
-/* method: waiting_cards of class  gamer::protocol::PlayerCardsMsgProtocol */
-#ifndef TOLUA_DISABLE_tolua_player_cards_msg_protocol_gamer_protocol_PlayerCardsMsgProtocol_waiting_cards00
-static int tolua_player_cards_msg_protocol_gamer_protocol_PlayerCardsMsgProtocol_waiting_cards00(lua_State* tolua_S)
+/* method: ting_cards of class  gamer::protocol::PlayerCardsMsgProtocol */
+#ifndef TOLUA_DISABLE_tolua_player_cards_msg_protocol_gamer_protocol_PlayerCardsMsgProtocol_ting_cards00
+static int tolua_player_cards_msg_protocol_gamer_protocol_PlayerCardsMsgProtocol_ting_cards00(lua_State* tolua_S)
 {
 #ifndef TOLUA_RELEASE
  tolua_Error tolua_err;
@@ -706,17 +706,17 @@ static int tolua_player_cards_msg_protocol_gamer_protocol_PlayerCardsMsgProtocol
   const gamer::protocol::PlayerCardsMsgProtocol* self = (const gamer::protocol::PlayerCardsMsgProtocol*)  tolua_tousertype(tolua_S,1,0);
   int index = ((int)  tolua_tonumber(tolua_S,2,0));
 #ifndef TOLUA_RELEASE
-  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'waiting_cards'", NULL);
+  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'ting_cards'", NULL);
 #endif
   {
-   int tolua_ret = (int)  self->waiting_cards(index);
+   int tolua_ret = (int)  self->ting_cards(index);
    tolua_pushnumber(tolua_S,(lua_Number)tolua_ret);
   }
  }
  return 1;
 #ifndef TOLUA_RELEASE
  tolua_lerror:
- tolua_error(tolua_S,"#ferror in function 'waiting_cards'.",&tolua_err);
+ tolua_error(tolua_S,"#ferror in function 'ting_cards'.",&tolua_err);
  return 0;
 #endif
 }
@@ -759,8 +759,8 @@ TOLUA_API int tolua_player_cards_msg_protocol_open (lua_State* tolua_S)
      tolua_function(tolua_S,"ming_gang_cards",tolua_player_cards_msg_protocol_gamer_protocol_PlayerCardsMsgProtocol_ming_gang_cards00);
      tolua_function(tolua_S,"an_gang_cards_size",tolua_player_cards_msg_protocol_gamer_protocol_PlayerCardsMsgProtocol_an_gang_cards_size00);
      tolua_function(tolua_S,"an_gang_cards",tolua_player_cards_msg_protocol_gamer_protocol_PlayerCardsMsgProtocol_an_gang_cards00);
-     tolua_function(tolua_S,"waiting_cards_size",tolua_player_cards_msg_protocol_gamer_protocol_PlayerCardsMsgProtocol_waiting_cards_size00);
-     tolua_function(tolua_S,"waiting_cards",tolua_player_cards_msg_protocol_gamer_protocol_PlayerCardsMsgProtocol_waiting_cards00);
+     tolua_function(tolua_S,"ting_cards_size",tolua_player_cards_msg_protocol_gamer_protocol_PlayerCardsMsgProtocol_ting_cards_size00);
+     tolua_function(tolua_S,"ting_cards",tolua_player_cards_msg_protocol_gamer_protocol_PlayerCardsMsgProtocol_ting_cards00);
     tolua_endmodule(tolua_S);
    tolua_endmodule(tolua_S);
   tolua_endmodule(tolua_S);

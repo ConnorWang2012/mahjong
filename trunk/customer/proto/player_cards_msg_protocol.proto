@@ -1,7 +1,7 @@
 package gamer.protocol;
 
 message PlayerCardsMsgProtocol {
-  optional int32 player_id  	      	  = 1[default = 0];
+  required int32 player_id  	      	  = 1;
   optional int32 invisible_hand_cards_num = 2[default = 0]; // use for mahjong layout of client(for other player, invisible_hand_cards_size() is always 0)
   repeated int32 invisible_hand_cards	  = 3; // not including an gang cards
   repeated int32 flower_cards	   		  = 4; 
@@ -11,5 +11,5 @@ message PlayerCardsMsgProtocol {
   repeated int32 ming_gang_cards	   	  = 8;
   repeated int32 an_gang_cards	   		  = 9;
   repeated int32 discards	   		      = 10;
-  repeated int32 waiting_cards	   		  = 11;
+  repeated int32 ting_cards               = 11;
 }

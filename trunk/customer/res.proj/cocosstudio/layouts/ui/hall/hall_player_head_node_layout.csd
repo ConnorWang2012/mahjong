@@ -6,8 +6,8 @@
       <ObjectData Name="node_player_head" Tag="26" ctype="GameNodeObjectData">
         <Size X="0.0000" Y="0.0000" />
         <Children>
-          <AbstractNodeData Name="txt_name" ActionTag="-36759383" Tag="84" IconVisible="False" LeftMargin="110.0000" RightMargin="-264.0000" TopMargin="-94.6383" BottomMargin="48.6383" FontSize="38" LabelText="上官正伶" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="TextObjectData">
-            <Size X="154.0000" Y="46.0000" />
+          <AbstractNodeData Name="txt_name" ActionTag="-36759383" Tag="84" IconVisible="False" LeftMargin="110.0000" RightMargin="-302.0000" TopMargin="-94.6383" BottomMargin="48.6383" FontSize="38" LabelText="西边小姐姐" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="TextObjectData">
+            <Size X="192.0000" Y="46.0000" />
             <AnchorPoint ScaleY="0.5000" />
             <Position X="110.0000" Y="71.6383" />
             <Scale ScaleX="1.0000" ScaleY="1.0000" />
@@ -30,7 +30,7 @@
             <OutlineColor A="255" R="255" G="0" B="0" />
             <ShadowColor A="255" R="110" G="110" B="110" />
           </AbstractNodeData>
-          <AbstractNodeData Name="txt_level_name" ActionTag="732020278" Tag="86" IconVisible="False" LeftMargin="110.0000" RightMargin="-264.0000" TopMargin="-35.3381" BottomMargin="-10.6619" FontSize="38" LabelText="第一骑士" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="TextObjectData">
+          <AbstractNodeData Name="txt_level_name" ActionTag="732020278" Tag="86" IconVisible="False" LeftMargin="110.0000" RightMargin="-264.0000" TopMargin="-35.3381" BottomMargin="-10.6619" FontSize="38" LabelText="一级牌手" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="TextObjectData">
             <Size X="154.0000" Y="46.0000" />
             <AnchorPoint ScaleY="0.5000" />
             <Position X="110.0000" Y="12.3381" />

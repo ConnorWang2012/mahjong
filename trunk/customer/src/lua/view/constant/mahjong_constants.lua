@@ -38,14 +38,20 @@ MahjongConstants.Sizes = {
 	-- mahjong position
 	OFFSET_X1		= 110, -- position offset x of player self for first card
 	OFFSET_X2		= 180, -- position offset x of player self visible card(ming gang)
+	OFFSET_X5		= 200, -- position offset x of player self flower card
+
 	OFFSET_Y1		= 76,  -- position offset y of player self visible card
 	OFFSET_Y2		= 78,  -- position offset y of player self visible card(ming gang)
 	OFFSET_Y3		= 100, -- position offset y of player self invisible card
 	OFFSET_Y4		= 150, -- position y of player self invisible card for selected
+	OFFSET_Y5		= 250, -- position offset y of player self flower card
+
 	CARD_W1			= 94,  -- width of player self visible card 
 	CARD_W2			= 125, -- width of player self invisible card
 	CARD_W3			= 282, -- width of player self visible card(ming gang)
+	
 	CARD_INTERVAL1	= 110, -- interval of player self visible card and invisible card
+	CARD_INTERVAL3	= 62, -- interval of invisible card and new card for player self
 
 	LEFT_CARD_OFFSET_X0	= 350, -- position offset x of left player for first card
 	CARD_OFFSET_Y0		= 900, -- position offset y of left player or right player for first card
@@ -66,7 +72,7 @@ MahjongConstants.Sizes = {
 	OPPOSITE_CARD_OFFSET_X2	= 53,   -- position offset x of opposite player invisible card
 	OPPOSITE_CARD_OFFSET_X3	= 147,  -- position offset x of opposite player visible card(ming gang)
 
-	CARD_INTERVAL2 = 25,
+	CARD_INTERVAL2 = 25, -- interval of invisible card and new card for other player
 
 	DISCARD_X1		= 700,  -- first position x of discard for first line(player self)
 	DISCARD_Y1		= 460,
@@ -139,6 +145,11 @@ MahjongConstants.ZOrders = {
 	DISCARD_LINE_2 = 1200,
 	DISCARD_LINE_3 = 1100,
 	DISCARD_LINE_4 = 1000,
+
+	FLOWER_CARD_PLAYER_SELF			    = 2000,
+	VISIBLE_HAND_CARD_PLAYER_SELF	    = 2001,
+	INVISIBLE_AN_GANG_CARD_PLAYER_SELF	= 2001,
+	INVISIBLE_HAND_CARD_PLAYER_SELF	    = 2002
 }
 
 MahjongConstants.AnimationIDs = {

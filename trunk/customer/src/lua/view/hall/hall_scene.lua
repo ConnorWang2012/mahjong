@@ -32,7 +32,7 @@ function HallScene:initLayout()
 
 	self.player_head_layout_ = PlayerHeadLayout:create().root
 	self.hall_top_layout_:getChildByName("node_head"):addChild(self.player_head_layout_)
-	local head_node = PlayerHeadCreator.create("assets/common/head_stencil.png", "assets/common/woman_4.png")
+	local head_node = PlayerHeadCreator.createWithDefaultStencil("woman_4.png")
 	self.player_head_layout_:addChild(head_node)
 
     self.hall_middle_layout_ = HallMiddleLayout:create().root    
@@ -97,8 +97,8 @@ function HallScene:dealWithJoinRoomMsgReceived(code, msg)
 			self.test_ = true
 			return
 		end
-	]]
-	--[[	if not self.test2_ then
+	
+		if not self.test2_ then
 			self.test2_ = true
 			return
 		end
@@ -106,15 +106,14 @@ function HallScene:dealWithJoinRoomMsgReceived(code, msg)
 		local proto_room = gamer.data_mgr_:create_room_msg_protocol()	
 		print("[HallScene:dealWithJoinRoomMsgReceived] room_owner_id, room_id : ", proto_room:room_owner_id(), proto_room:room_id())
 
-		if gamer.data_mgr_:self_player_id() ~= proto_room:room_owner_id() then
-			return
-		end
-
+		gamer.msg_helper_.sendStartGameMsg()
+		--[[
 		local proto = gamer.protocol.RoomMsgProtocol()
 		proto:set_room_id(proto_room:room_id())
 		proto:set_room_owner_id(proto_room:room_owner_id())
 
 		gamer.msg_mgr_:sendMsg(gamer.MsgTypes.C2S_MSG_TYPE_ROOM, gamer.MsgIDs.MSG_ID_ROOM_START_GAME, proto)
+		]]
 	end
 end
 

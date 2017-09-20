@@ -76,6 +76,7 @@ CardConstants.CardValues =
 
 CardConstants.OperationIDs = 
 {
+	OPERATION_UNKNOW		= -1,
     OPERATION_DISCARD		= 0,
     OPERATION_NONE			= 1, -- just a new card, no operation(only server to client)
     OPERATION_CHI			= 2, -- chi

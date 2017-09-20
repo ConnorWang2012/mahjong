@@ -236,6 +236,7 @@ xcopy /Y /Q "$(LocalDebuggerWorkingDirectory)\*.exe" "$(LocalDebuggerWorkingDire
     <ClInclude Include="..\..\..\..\customer\src\cpp\logic\msg\msg_manager.h" />
     <ClInclude Include="..\..\..\..\customer\src\cpp\logic\msg\msg_type.h" />
     <ClInclude Include="..\..\..\..\customer\src\cpp\logic\msg\protocol\create_room_msg_protocol.pb.h" />
+    <ClInclude Include="..\..\..\..\customer\src\cpp\logic\msg\protocol\game_end_msg_protocol.pb.h" />
     <ClInclude Include="..\..\..\..\customer\src\cpp\logic\msg\protocol\my_login_msg_protocol.pb.h" />
     <ClInclude Include="..\..\..\..\customer\src\cpp\logic\msg\protocol\player_cards_msg_protocol.pb.h" />
     <ClInclude Include="..\..\..\..\customer\src\cpp\logic\msg\protocol\player_msg_protocol.pb.h" />
@@ -454,6 +455,7 @@ xcopy /Y /Q "$(LocalDebuggerWorkingDirectory)\*.exe" "$(LocalDebuggerWorkingDire
     <ClCompile Include="..\..\..\..\customer\src\cpp\logic\lua_bind\auto\lua_bind_data_manager.cc" />
     <ClCompile Include="..\..\..\..\customer\src\cpp\logic\lua_bind\auto\lua_bind_event_listener.cc" />
     <ClCompile Include="..\..\..\..\customer\src\cpp\logic\lua_bind\auto\lua_bind_event_manager.cc" />
+    <ClCompile Include="..\..\..\..\customer\src\cpp\logic\lua_bind\auto\lua_bind_game_end_msg_protocol.cc" />
     <ClCompile Include="..\..\..\..\customer\src\cpp\logic\lua_bind\auto\lua_bind_msg.cc" />
     <ClCompile Include="..\..\..\..\customer\src\cpp\logic\lua_bind\auto\lua_bind_msg_manager.cc" />
     <ClCompile Include="..\..\..\..\customer\src\cpp\logic\lua_bind\auto\lua_bind_mylog.cc" />
@@ -471,6 +473,7 @@ xcopy /Y /Q "$(LocalDebuggerWorkingDirectory)\*.exe" "$(LocalDebuggerWorkingDire
     <ClCompile Include="..\..\..\..\customer\src\cpp\logic\manager\event_manager.cc" />
     <ClCompile Include="..\..\..\..\customer\src\cpp\logic\msg\msg_manager.cc" />
     <ClCompile Include="..\..\..\..\customer\src\cpp\logic\msg\protocol\create_room_msg_protocol.pb.cc" />
+    <ClCompile Include="..\..\..\..\customer\src\cpp\logic\msg\protocol\game_end_msg_protocol.pb.cc" />
     <ClCompile Include="..\..\..\..\customer\src\cpp\logic\msg\protocol\my_login_msg_protocol.pb.cc" />
     <ClCompile Include="..\..\..\..\customer\src\cpp\logic\msg\protocol\player_cards_msg_protocol.pb.cc" />
     <ClCompile Include="..\..\..\..\customer\src\cpp\logic\msg\protocol\player_msg_protocol.pb.cc" />
@@ -568,9 +571,6 @@ xcopy /Y /Q "$(LocalDebuggerWorkingDirectory)\*.exe" "$(LocalDebuggerWorkingDire
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <None Include="..\..\..\..\customer\res.proj\res\layouts\ui\hall\create_room_layer_layout.lua" />
-    <None Include="..\..\..\..\customer\res.proj\res\layouts\ui\hall\hall_player_head_node_layout.lua" />
-    <None Include="..\..\..\..\customer\res.proj\res\layouts\ui\hall\join_room_layer_layout.lua" />
     <None Include="..\..\..\..\customer\src\lua\data\data_constants.lua" />
     <None Include="..\..\..\..\customer\src\lua\data\init_data.lua" />
     <None Include="..\..\..\..\customer\src\lua\logic\constant\card_constants.lua" />
@@ -585,6 +585,7 @@ xcopy /Y /Q "$(LocalDebuggerWorkingDirectory)\*.exe" "$(LocalDebuggerWorkingDire
     <None Include="..\..\..\..\customer\src\lua\logic\test\test_lua_bind_event_listener.lua" />
     <None Include="..\..\..\..\customer\src\lua\logic\util\play_card_helper.lua" />
     <None Include="..\..\..\..\customer\src\lua\network\init_network.lua" />
+    <None Include="..\..\..\..\customer\src\lua\network\msg_helper.lua" />
     <None Include="..\..\..\..\customer\src\lua\view\animations\room\node_buhua_anim.lua" />
     <None Include="..\..\..\..\customer\src\lua\view\animations\room\node_chi_anim.lua" />
     <None Include="..\..\..\..\customer\src\lua\view\animations\room\node_gang_anim.lua" />
@@ -611,9 +612,12 @@ xcopy /Y /Q "$(LocalDebuggerWorkingDirectory)\*.exe" "$(LocalDebuggerWorkingDire
     <None Include="..\..\..\..\customer\src\lua\view\layouts\scene\hall\hall_scene_layout.lua" />
     <None Include="..\..\..\..\customer\src\lua\view\layouts\scene\login\login_scene_layout.lua" />
     <None Include="..\..\..\..\customer\src\lua\view\layouts\scene\room\normal_room_scene_layout.lua" />
+    <None Include="..\..\..\..\customer\src\lua\view\layouts\ui\hall\create_room_layer_layout.lua" />
     <None Include="..\..\..\..\customer\src\lua\view\layouts\ui\hall\hall_bottom_node_layout.lua" />
     <None Include="..\..\..\..\customer\src\lua\view\layouts\ui\hall\hall_middle_node_layout.lua" />
+    <None Include="..\..\..\..\customer\src\lua\view\layouts\ui\hall\hall_player_head_node_layout.lua" />
     <None Include="..\..\..\..\customer\src\lua\view\layouts\ui\hall\hall_top_node_layout.lua" />
+    <None Include="..\..\..\..\customer\src\lua\view\layouts\ui\hall\join_room_layer_layout.lua" />
     <None Include="..\..\..\..\customer\src\lua\view\layouts\ui\room\mahjong\left_invisible_1_mj_node_layout.lua" />
     <None Include="..\..\..\..\customer\src\lua\view\layouts\ui\room\mahjong\left_invisible_2_mj_node_layout.lua" />
     <None Include="..\..\..\..\customer\src\lua\view\layouts\ui\room\mahjong\left_invisible_3_mj_node_layout.lua" />

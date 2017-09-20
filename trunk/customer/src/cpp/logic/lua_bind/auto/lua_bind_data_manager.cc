@@ -1,6 +1,6 @@
 /*
 ** Lua binding: data_manager
-** Generated automatically by tolua++-1.0.92 on 09/08/17 05:35:57.
+** Generated automatically by tolua++-1.0.92 on 09/18/17 21:12:55.
 */
 
 #ifndef __cplusplus
@@ -662,8 +662,7 @@ static int tolua_data_manager_gamer_DataManager_updateCardForBuhua00(lua_State* 
  if (
      !tolua_isusertype(tolua_S,1,"gamer::DataManager",0,&tolua_err) ||
      !tolua_isnumber(tolua_S,2,0,&tolua_err) ||
-     !tolua_isnumber(tolua_S,3,0,&tolua_err) ||
-     !tolua_isnoobj(tolua_S,4,&tolua_err)
+     !tolua_isnoobj(tolua_S,3,&tolua_err)
  )
   goto tolua_lerror;
  else
@@ -671,12 +670,11 @@ static int tolua_data_manager_gamer_DataManager_updateCardForBuhua00(lua_State* 
  {
   gamer::DataManager* self = (gamer::DataManager*)  tolua_tousertype(tolua_S,1,0);
   int player_id = ((int)  tolua_tonumber(tolua_S,2,0));
-  int card_of_flower_season = ((int)  tolua_tonumber(tolua_S,3,0));
 #ifndef TOLUA_RELEASE
   if (!self) tolua_error(tolua_S,"invalid 'self' in function 'updateCardForBuhua'", NULL);
 #endif
   {
-   self->updateCardForBuhua(player_id,card_of_flower_season);
+   self->updateCardForBuhua(player_id);
   }
  }
  return 0;

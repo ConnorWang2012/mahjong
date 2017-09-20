@@ -84,6 +84,7 @@ function MahjongCreator.initPlayerSelfCardLayout(type, value)
 		local png = MahjongCreator.getCardPng(value)		
 		if png then
 			mj_layout = MyInvisibleMJLayout:create().root
+			mj_layout:setLocalZOrder(MahjongConst.ZOrders.INVISIBLE_HAND_CARD_PLAYER_SELF)
 			local img_fg = mj_layout:getChildByName("img_fg")
 			img_fg:loadTexture(png, ccui.TextureResType.plistType)
 		end
@@ -96,11 +97,13 @@ function MahjongCreator.initPlayerSelfCardLayout(type, value)
 
 	elseif type == MahjongConst.Types.INVISIBLE_3 then
 		mj_layout = MyInvisibleMJLayout3:create().root
+		mj_layout:setLocalZOrder(MahjongConst.ZOrders.INVISIBLE_AN_GANG_CARD_PLAYER_SELF)
 
 	elseif type == MahjongConst.Types.VISIBLE then
 		local png = MahjongCreator.getCardPng(value)		
 		if png then
 			mj_layout = MyVisibleMJLayout1:create().root
+			mj_layout:setLocalZOrder(MahjongConst.ZOrders.VISIBLE_HAND_CARD_PLAYER_SELF)
 			local img_fg = mj_layout:getChildByName("img_fg")
 			img_fg:loadTexture(png, ccui.TextureResType.plistType)
 		end
@@ -109,6 +112,7 @@ function MahjongCreator.initPlayerSelfCardLayout(type, value)
 		local png = MahjongCreator.getCardPng(value)
 		if png then
 			mj_layout = MyVisibleMJLayout3:create().root
+			mj_layout:setLocalZOrder(MahjongConst.ZOrders.VISIBLE_HAND_CARD_PLAYER_SELF)
 			local img_fg = mj_layout:getChildByName("img_left_fg") 
 			local img_fg2 = mj_layout:getChildByName("img_top_fg")
 			local img_fg3 = mj_layout:getChildByName("img_right_fg")

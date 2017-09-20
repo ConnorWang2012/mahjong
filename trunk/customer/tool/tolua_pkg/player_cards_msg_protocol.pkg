@@ -44,8 +44,8 @@ public:
 	inline int an_gang_cards_size() const;
 	inline int an_gang_cards(int index) const;
 
-	inline int waiting_cards_size() const;
-	inline int waiting_cards(int index) const;
+	inline int ting_cards_size() const;
+	inline int ting_cards(int index) const;
 };
 
 } // namespace protocol

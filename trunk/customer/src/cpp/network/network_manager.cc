@@ -221,7 +221,7 @@ void NetworkManager::onBufferEventReceived(struct bufferevent* bev, short event,
 		printf("client connected\n");
         NetworkManager::getInstance()->set_connected(true);
 
-        MsgManager::getInstance(); // TODO : init this in some ohter place
+        MsgManager::getInstance(); // TODO : init this in some other place
         EventManager::getInstance()->dispatchEvent((int)EventIDs::EVENT_ID_SOCKET_CONNECTED);
 	} 
 	else if (event & BEV_EVENT_TIMEOUT) 
@@ -262,9 +262,16 @@ void NetworkManager::onBufferRead(struct bufferevent* bev, void* ctx)
         gamer::ServerMsg msg = { 0, 0, 0, 0, nullptr };
         NetworkManager::parseBuffer(buf + parsed_buf_len, msg);
 
+        if (buf_len > msg.total_len)
+        {
+            MsgManager::getInstance()->set_is_multi_msg(true);
+        }
+
         MsgManager::getInstance()->onMsgReceived(msg);
         parsed_buf_len += msg.total_len;
     }
+
+    MsgManager::getInstance()->set_is_multi_msg(false);
 }
 
 void NetworkManager::onBufferWrite(struct bufferevent* bev, void* ctx) 

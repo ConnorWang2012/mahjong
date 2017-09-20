@@ -20,5 +20,3 @@ gamer.scene_msg_ = require "logic.manager.scene_manager.lua"
 gamer.popup_mgr_ = require "logic.manager.popup_manager.lua"
 gamer.event_mgr_ = gamer.EventManager:getInstance()
 gamer.cmd_mgr_   = gamer.CommandManager:getInstance()
-gamer.data_mgr_  = gamer.DataManager:getInstance()
-gamer.msg_mgr_   = gamer.MsgManager:getInstance()

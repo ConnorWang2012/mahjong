@@ -12,4 +12,4 @@ author:
 modification:
 --]]
 
---require "data.data_constants.lua"
+gamer.data_mgr_  = gamer.DataManager:getInstance()

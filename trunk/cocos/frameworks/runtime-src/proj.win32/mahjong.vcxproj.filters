@@ -899,6 +899,9 @@
     <ClInclude Include="..\..\..\..\customer\src\cpp\logic\msg\protocol\ting_card_msg_protocol.pb.h">
       <Filter>classes\cpp\logic\msg\protocol</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\..\..\customer\src\cpp\logic\msg\protocol\game_end_msg_protocol.pb.h">
+      <Filter>classes\cpp\logic\msg\protocol</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\Classes\AppDelegate.cpp">
@@ -1220,6 +1223,12 @@
     <ClCompile Include="..\..\..\..\customer\src\cpp\logic\msg\protocol\ting_card_msg_protocol.pb.cc">
       <Filter>classes\cpp\logic\msg\protocol</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\..\..\customer\src\cpp\logic\msg\protocol\game_end_msg_protocol.pb.cc">
+      <Filter>classes\cpp\logic\msg\protocol</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\customer\src\cpp\logic\lua_bind\auto\lua_bind_game_end_msg_protocol.cc">
+      <Filter>classes\cpp\logic\lua_bind\auto</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="game.rc">
@@ -1268,15 +1277,6 @@
     </None>
     <None Include="..\..\..\..\customer\src\lua\view\hall\hall_scene.lua">
       <Filter>classes\lua\view\hall</Filter>
-    </None>
-    <None Include="..\..\..\..\customer\src\lua\view\layouts\ui\hall\hall_middle_node_layout.lua">
-      <Filter>classes\lua\view\layouts\ui\hall</Filter>
-    </None>
-    <None Include="..\..\..\..\customer\src\lua\view\layouts\ui\hall\hall_top_node_layout.lua">
-      <Filter>classes\lua\view\layouts\ui\hall</Filter>
-    </None>
-    <None Include="..\..\..\..\customer\src\lua\view\layouts\ui\hall\hall_bottom_node_layout.lua">
-      <Filter>classes\lua\view\layouts\ui\hall</Filter>
     </None>
     <None Include="..\..\..\..\customer\src\lua\view\layouts\scene\login\login_scene_layout.lua">
       <Filter>classes\lua\view\layouts\scene\login</Filter>
@@ -1401,12 +1401,6 @@
     <None Include="..\..\..\..\customer\src\lua\view\constant\popup_constants.lua">
       <Filter>classes\lua\view\constant</Filter>
     </None>
-    <None Include="..\..\..\..\customer\res.proj\res\layouts\ui\hall\join_room_layer_layout.lua">
-      <Filter>classes\lua\view\layouts\ui\hall</Filter>
-    </None>
-    <None Include="..\..\..\..\customer\res.proj\res\layouts\ui\hall\create_room_layer_layout.lua">
-      <Filter>classes\lua\view\layouts\ui\hall</Filter>
-    </None>
     <None Include="..\..\..\..\customer\src\lua\view\base\popup_base.lua">
       <Filter>classes\lua\view\base</Filter>
     </None>
@@ -1430,9 +1424,6 @@
     </None>
     <None Include="..\..\..\..\customer\src\lua\view\layouts\ui\room\room_player_head_node_layout.lua">
       <Filter>classes\lua\view\layouts\ui\room</Filter>
-    </None>
-    <None Include="..\..\..\..\customer\res.proj\res\layouts\ui\hall\hall_player_head_node_layout.lua">
-      <Filter>classes\lua\view\layouts\ui\hall</Filter>
     </None>
     <None Include="..\..\..\..\customer\src\lua\view\layouts\ui\room\room_player_head_layer_layout.lua">
       <Filter>classes\lua\view\layouts\ui\room</Filter>
@@ -1475,6 +1466,27 @@
     </None>
     <None Include="..\..\..\..\customer\src\lua\view\animations\room\node_ting_anim.lua">
       <Filter>classes\lua\view\animations\room</Filter>
+    </None>
+    <None Include="..\..\..\..\customer\src\lua\view\layouts\ui\hall\hall_player_head_node_layout.lua">
+      <Filter>classes\lua\view\layouts\ui\hall</Filter>
+    </None>
+    <None Include="..\..\..\..\customer\src\lua\view\layouts\ui\hall\hall_top_node_layout.lua">
+      <Filter>classes\lua\view\layouts\ui\hall</Filter>
+    </None>
+    <None Include="..\..\..\..\customer\src\lua\view\layouts\ui\hall\join_room_layer_layout.lua">
+      <Filter>classes\lua\view\layouts\ui\hall</Filter>
+    </None>
+    <None Include="..\..\..\..\customer\src\lua\view\layouts\ui\hall\create_room_layer_layout.lua">
+      <Filter>classes\lua\view\layouts\ui\hall</Filter>
+    </None>
+    <None Include="..\..\..\..\customer\src\lua\view\layouts\ui\hall\hall_bottom_node_layout.lua">
+      <Filter>classes\lua\view\layouts\ui\hall</Filter>
+    </None>
+    <None Include="..\..\..\..\customer\src\lua\view\layouts\ui\hall\hall_middle_node_layout.lua">
+      <Filter>classes\lua\view\layouts\ui\hall</Filter>
+    </None>
+    <None Include="..\..\..\..\customer\src\lua\network\msg_helper.lua">
+      <Filter>classes\lua\network</Filter>
     </None>
   </ItemGroup>
 </Project>

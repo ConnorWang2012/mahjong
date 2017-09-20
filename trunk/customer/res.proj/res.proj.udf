@@ -32,9 +32,12 @@
       <Value ctype="TabsInfo">
         <OpenedDocuments>
           <FilePathData Path="layouts/ui/room/room_player_head_layer_layout.csd" />
+          <FilePathData Path="layouts/ui/room/room_player_head_node_layout.csd" />
           <FilePathData Path="layouts/ui/room/room_menu_layer_layout.csd" />
+          <FilePathData Path="layouts/scene/room/normal_room_scene_layout.csd" />
+          <FilePathData Path="layouts/ui/hall/hall_player_head_node_layout.csd" />
         </OpenedDocuments>
-        <ActiveDocument Path="layouts/ui/room/room_menu_layer_layout.csd" />
+        <ActiveDocument Path="layouts/ui/room/room_player_head_node_layout.csd" />
       </Value>
     </Item>
   </Properties>

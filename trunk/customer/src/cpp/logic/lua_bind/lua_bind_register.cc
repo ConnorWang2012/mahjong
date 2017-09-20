@@ -35,6 +35,7 @@ int lua_bind_register(lua_State* L)
     tolua_ting_card_msg_protocol_open(L);
     tolua_player_cards_msg_protocol_open(L);
     tolua_player_msg_protocol_open(L);
+    tolua_game_end_msg_protocol_open(L);
 
     return 0;
 }

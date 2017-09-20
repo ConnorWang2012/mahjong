@@ -16,7 +16,6 @@ modification:
 
 #include "base/macros.h"
 #include "data/data_constants.h"
-#include "logic/constant/card_constants.h"
 
 namespace gamer
 {
@@ -77,7 +76,7 @@ void DataManager::updateCardAfterOperation(PlayCardMsgProtocol* proto)
         }
         case PlayCardOperationIDs::OPERATION_BU_HUA:
         {
-            this->updateCardForBuhua(proto->player_id(), proto->discard());
+            this->updateCardForBuhua(proto->player_id());
             break;
         }
         case PlayCardOperationIDs::OPERATION_HU:
@@ -93,6 +92,8 @@ void DataManager::updateCardAfterOperation(PlayCardMsgProtocol* proto)
     // update new cards and remain cards
     if (proto->next_operate_player_id() == this->self_player_id())
     {
+        // 1.update new cards and remain cards for player self
+        // player self get one new card
         if (proto->new_card() != CardConstants::INVALID_CARD_VALUE)
         {
             this->updateCardForNewCardOfPlayerSelf(proto->new_card());
@@ -102,9 +103,19 @@ void DataManager::updateCardAfterOperation(PlayCardMsgProtocol* proto)
                 room_msg_protocol_->set_remain_cards_num(num);
             }
         }
+
+        // after buhua, player self get some new cards whose stored in operating_cards
+        if (proto->operation_id() == PlayCardOperationIDs::OPERATION_BU_HUA)
+        {
+            for (int i = 0; i < proto->operating_cards_size(); i++)
+            {
+                this->updateCardForNewCardOfPlayerSelf(proto->operating_cards(i));
+            }
+        }
     }
     else if (proto->next_operate_player_id() != 0)
     {
+        // 2.update new cards and remain cards for other player
         if (proto->has_next_operate_player_new_card())
         {
             this->updateCardForNewCardOfOtherPlayer(proto->next_operate_player_id());
@@ -160,7 +171,8 @@ void DataManager::updateCardForNewCardOfPlayerSelf(int new_card)
     auto proto = this->cards_msg_protocol_of_player_self();
     if (nullptr != proto)
     {
-        if (proto->invisible_hand_cards_size() <= CardConstants::ONE_PLAYER_CARD_NUM) {
+        if (proto->invisible_hand_cards_size() <= CardConstants::ONE_PLAYER_CARD_NUM) 
+        {
             proto->add_invisible_hand_cards(new_card);
         }
     }
@@ -380,31 +392,55 @@ void DataManager::updateCardForAnGang(int player_id, int card_of_an_gang)
     }
 }
 
-void DataManager::updateCardForBuhua(int player_id, int card_of_flower_season)
+void DataManager::updateCardForBuhua(int player_id)
 {
     auto proto = this->getPlayerCardsMsgProtocol(player_id);
     if (nullptr != proto)
     {
-        if (card_of_flower_season >= CardConstants::FLOWER_PLUM &&
-            card_of_flower_season >= CardConstants::FLOWER_BAMBOO)
+        if (this->self_player_id() == player_id) 
         {
-            proto->add_flower_cards(card_of_flower_season);
-        }
-        else if (card_of_flower_season >= CardConstants::SEASON_SPRING &&
-                 card_of_flower_season >= CardConstants::SEASON_WINTER)
-        {
-            proto->add_season_cards(card_of_flower_season);
-        }
+            // add hua card and remove hua card from invisible cards
+            auto player_cards = this->cards_msg_protocol_of_player_self();
+            auto size = player_cards->invisible_hand_cards_size();
 
-        if (this->self_player_id() == player_id)
-        {
-            this->removeInvisibleCards(proto, card_of_flower_season, 1);
+            for (int i = size - 1; i > -1; i--)
+            {
+                auto card = player_cards->invisible_hand_cards(i);
+                if (this->is_season(card))
+                {
+                    proto->add_flower_cards(card);
+                    this->removeInvisibleCards(proto, card, 1);
+                }
+                else if (this->is_flower(card))
+                {
+                    proto->add_season_cards(card);
+                    this->removeInvisibleCards(proto, card, 1);
+                }
+            }
+
             auto cards = proto->mutable_invisible_hand_cards();
             std::sort(cards->begin(), cards->end());
-        }
-        else
+        } 
+        else 
         {
-            auto size = proto->invisible_hand_cards_num() - 1;
+            // add hua card
+            auto hua_card_size = this->play_card_msg_protocol()->operating_cards_size();
+
+            for (auto i = 0; i < hua_card_size; i++)
+            {
+                auto hua_card = this->play_card_msg_protocol()->operating_cards(i);
+                if (this->is_season(hua_card))
+                {
+                    proto->add_flower_cards(hua_card);
+                }
+                else if (this->is_flower(hua_card))
+                {
+                    proto->add_season_cards(hua_card);
+                }
+            }
+
+            // remove hua card from invisible cards
+            auto size = proto->invisible_hand_cards_num() - hua_card_size;
             if (size > 0)
             {
                 proto->set_invisible_hand_cards_num(size);

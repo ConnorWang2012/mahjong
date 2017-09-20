@@ -1,4 +1,4 @@
---[[
+﻿--[[
 @ copyright(C), 2015-2020, ConnorAndHisFriendsCompany.Inc
 @ filename:	   normal_room_scene.lua
 @ author:	   Connor
@@ -26,10 +26,28 @@ local PlayCardHelper    = require "logic.util.play_card_helper.lua"
 function NormalRoomScene:ctor(view_file)
 	print("[NormalRoomScene:ctor]")
     self.super.ctor(self, view_file)
+
 	self:initAnimationLayer()	-- layer z order : 3
 	self:initMahjongLayer()		-- layer z order : 0
 	self:initPlayerHeadLayer()	-- layer z order : 1
 	self:initMenuLayer()		-- layer z order : 2
+end
+
+function NormalRoomScene:initBeforeGameStart()
+	self.player_self_last_discard_		= nil
+	self.left_player_last_discard_		= nil
+	self.opposite_player_last_discard_	= nil
+	self.right_player_last_discard_		= nil
+
+	self.player_self_flower_offset_x_	= nil
+end
+
+function NormalRoomScene:initAnimationLayer()
+	if not self.animation_layer_ then
+		self.animation_layer_ = cc.Layer:create()
+		self:addChild(self.animation_layer_)
+		self.animation_layer_:setLocalZOrder(gamer.SceneConstants.LocalZOrders.ROOM_ANIMATION_LAYER)
+	end
 end
 
 function NormalRoomScene:initMahjongLayer()
@@ -38,38 +56,52 @@ function NormalRoomScene:initMahjongLayer()
 end
 
 function NormalRoomScene:initPlayerHeadLayer()
-	if not self.player_head_layer_ then
-		self.player_head_layer_ = HeadLayerLayout:create().root
-		self.player_head_layer_:setLocalZOrder(gamer.SceneConstants.LocalZOrders.ROOM_PLAYER_HEAD_LAYER)
-		self:addChild(self.player_head_layer_)
+	if self.player_head_layer_ then
+		return
 	end
+
+	self.player_head_layer_ = HeadLayerLayout:create().root
+	self.player_head_layer_:setLocalZOrder(gamer.SceneConstants.LocalZOrders.ROOM_PLAYER_HEAD_LAYER)
+	self:addChild(self.player_head_layer_)
 
 	local init_player_self_head = function()
 		self.player_self_head_layout_ = self.player_head_layer_:getChildByName("file_node_player_self_head")
-		local head_node = PlayerHeadCreator.create("assets/common/head_stencil.png", "assets/common/woman_4.png")
+		local head_node = PlayerHeadCreator.createWithDefaultStencil("woman_4.png")
 		self.player_self_head_layout_:getChildByName("node_head"):addChild(head_node)
-		head_node:getStencil():setScale(0.8)
+		self.player_self_head_layout_:getChildByName("img_ting"):setVisible(true)
+		self.player_self_head_layout_:getChildByName("txt_gold"):setString("8000")
+
+		head_node:getStencil():setScale(0.9)
 	end
 
 	local init_left_player_head = function()
 		self.left_player_head_layout_ = self.player_head_layer_:getChildByName("file_node_left_player_head")
-		local head_node = PlayerHeadCreator.create("assets/common/head_stencil.png", "assets/common/woman_4.png")
+		local head_node = PlayerHeadCreator.createWithDefaultStencil("woman_6.png")
 		self.left_player_head_layout_:getChildByName("node_head"):addChild(head_node)
-		head_node:getStencil():setScale(0.8)
+		self.left_player_head_layout_:getChildByName("txt_name"):setString("上浅玲心")
+		self.left_player_head_layout_:getChildByName("txt_gold"):setString("3500")
+
+		head_node:getStencil():setScale(0.9)
 	end
 
 	local init_opposite_player_head = function()
 		self.opposite_player_head_layout_ = self.player_head_layer_:getChildByName("file_node_opposite_player_head")
-		local head_node = PlayerHeadCreator.create("assets/common/head_stencil.png", "assets/common/woman_4.png")
+		local head_node = PlayerHeadCreator.createWithDefaultStencil("woman_2.png")
 		self.opposite_player_head_layout_:getChildByName("node_head"):addChild(head_node)
-		head_node:getStencil():setScale(0.8)
+		self.opposite_player_head_layout_:getChildByName("txt_name"):setString("大美人鱼儿")
+		self.opposite_player_head_layout_:getChildByName("txt_gold"):setString("6000")
+
+		head_node:getStencil():setScale(0.9)
 	end
 
 	local init_right_player_head = function()
 		self.right_player_head_layout_ = self.player_head_layer_:getChildByName("file_node_right_player_head")
-		local head_node = PlayerHeadCreator.create("assets/common/head_stencil.png", "assets/common/woman_4.png")
+		local head_node = PlayerHeadCreator.createWithDefaultStencil("woman_5.png")
 		self.right_player_head_layout_:getChildByName("node_head"):addChild(head_node)
-		head_node:getStencil():setScale(0.8)
+		self.right_player_head_layout_:getChildByName("txt_name"):setString("梦回唐朝")
+		self.right_player_head_layout_:getChildByName("txt_gold"):setString("9000")
+
+		head_node:getStencil():setScale(0.9)
 	end
 
 	local players_num = gamer.data_mgr_:room_msg_protocol():players_num()
@@ -97,14 +129,6 @@ function NormalRoomScene:initMenuLayer()
 	end
 end
 
-function NormalRoomScene:initAnimationLayer()
-	if not self.animation_layer_ then
-		self.animation_layer_ = cc.Layer:create()
-		self:addChild(self.animation_layer_)
-		self.animation_layer_:setLocalZOrder(gamer.SceneConstants.LocalZOrders.ROOM_ANIMATION_LAYER)
-	end
-end
-
 function NormalRoomScene:initMahjongs()
 	if not self.mahjong_layer_ then
 		self.mahjong_layer_ = cc.Layer:create()
@@ -114,9 +138,8 @@ function NormalRoomScene:initMahjongs()
 		self.mahjong_layer_:removeAllChildren()
 	end
 
-	self:initMahjongsOfPlayerSelf()
 	local players_num = gamer.data_mgr_:room_msg_protocol():players_num()
-	print("[NormalRoomScene:initMahjongs] players_num : ", players_num)
+	self:initMahjongsOfPlayerSelf()
 	if 2 == players_num then
 		self:initMahjongsOfOppositePlayer()
 	elseif 3 == players_num then
@@ -138,15 +161,14 @@ function NormalRoomScene:initPlayCardTimerAndDirection()
 end
 
 function NormalRoomScene:initMahjongsOfPlayerSelf()
-	-- visible hand cards
+	-- visible hand cards(not including flower cards)
 	self:initVisibleMahjongsOfPlayerSelf()
+
+	-- visible flower cards
+	self:initVisibleFlowerMahjongsOfPlayerSelf()
 
 	-- invisible hand cards	
 	self:initInvisibleMahjongsOfPlayerSelf()
-
-	-- direction
-	local player_cards = gamer.data_mgr_:cards_msg_protocol_of_player_self()
-	PlayCardHelper.setPlayerDirection(player_cards:player_id(), MahjongConst.Directions.SELF)
 end
 
 function NormalRoomScene:initMahjongsOfLeftPlayer()
@@ -179,8 +201,6 @@ function NormalRoomScene:initVisibleMahjongsOfPlayerSelf()
 	local an_gang_cards_size   = player_cards:an_gang_cards_size()
 	local peng_cards_size      = player_cards:peng_cards_size()
 	local chi_cards_size       = player_cards:chi_cards_size()
-	local flower_cards_size    = player_cards:flower_cards_size()
-	local season_cards_size    = player_cards:season_cards_size()
 	local offset_x             = MahjongConst.Sizes.OFFSET_X1
 	local offsetx			   = MahjongConst.Sizes.OFFSET_X1 -- for invisible mahjongs
 	self.visible_mj_nodes_player_self_ = {}
@@ -264,11 +284,44 @@ function NormalRoomScene:initVisibleMahjongsOfPlayerSelf()
 	self.player_self_invisible_mj_offset_x_ = offsetx
 end
 
+function NormalRoomScene:initVisibleFlowerMahjongsOfPlayerSelf()
+	-- flower and season
+	local player_cards      = gamer.data_mgr_:cards_msg_protocol_of_player_self()
+	local flower_cards_size = player_cards:flower_cards_size()
+	local season_cards_size = player_cards:season_cards_size()
+	local flower_offset_x = MahjongConst.Sizes.OFFSET_X5
+	local flower_offset_y = MahjongConst.Sizes.OFFSET_Y5
+
+	for i = 0, flower_cards_size - 1 do
+		local mj_node = MahjongCreator.create(MahjongConst.Directions.SELF, 
+												MahjongConst.Types.VISIBLE, 
+												player_cards:flower_cards(i))
+		if mj_node then
+			mj_node:setPosition(cc.p(flower_offset_x, flower_offset_y))
+			self.mahjong_layer_:addChild(mj_node)
+			flower_offset_x = flower_offset_x + MahjongConst.Sizes.CARD_W1
+			self.player_self_flower_offset_x_ = flower_offset_x
+		end
+	end
+
+	for i = 0, season_cards_size - 1 do
+		local mj_node = MahjongCreator.create(MahjongConst.Directions.SELF, 
+												MahjongConst.Types.VISIBLE, 
+												player_cards:season_cards(i))
+		if mj_node then
+			mj_node:setPosition(cc.p(flower_offset_x, flower_offset_y))
+			self.mahjong_layer_:addChild(mj_node)
+			flower_offset_x = flower_offset_x + MahjongConst.Sizes.CARD_W1
+			self.player_self_flower_offset_x_ = flower_offset_x
+		end
+	end
+end
+
 function NormalRoomScene:initInvisibleMahjongsOfPlayerSelf()
 	self.invisible_mj_nodes_player_self_ = {}
 	local myInsert = table.insert
 	local player_cards = gamer.data_mgr_:cards_msg_protocol_of_player_self()
-	print("[NormalRoomScene:initInvisibleMahjongsOfPlayerSelf] invisible_hand_cards_size : ", player_cards:invisible_hand_cards_size())
+
 	for i = 0, player_cards:invisible_hand_cards_size() - 1 do
 		local mj_node = MahjongCreator.create(MahjongConst.Directions.SELF, 
 											  MahjongConst.Types.INVISIBLE, 
@@ -743,7 +796,8 @@ function NormalRoomScene:initMahjongsAfterOperationForPlayerSelf()
 	self:removeAllMahjongNodes(self.visible_mj_nodes_player_self_)
 	self:removeAllMahjongNodes(self.invisible_mj_nodes_player_self_)
 
-	self:initMahjongsOfPlayerSelf()
+	self:initVisibleMahjongsOfPlayerSelf()
+	self:initInvisibleMahjongsOfPlayerSelf()
 
 	self:removeLastDiscardNodeForPlayerSelf()
 end
@@ -920,6 +974,7 @@ end
 function NormalRoomScene:playCardTimer()
 	if self.play_card_time_count_ >= 0 then
 		self:setTimeOfPlayCardTimer(self.play_card_time_count_)
+
 		self.play_card_time_count_ = self.play_card_time_count_ - 1
 
 		self:dealWithOperationTimeout1()
@@ -1133,6 +1188,33 @@ function NormalRoomScene:modifyMahjongsOfPlayerSelfAfterPengGang()
 	gamer.data_mgr_:updateCardForPengAndGang(gamer.data_mgr_:self_player_id(), discard)
 
 	self:initMahjongsAfterOperationForPlayerSelf()
+end
+
+function NormalRoomScene:modifyMahjongsOfPlayerSelfAfterBuhua()
+	local flower_offset_x = self.player_self_flower_offset_x_ or MahjongConst.Sizes.OFFSET_X5
+	local flower_offset_y = MahjongConst.Sizes.OFFSET_Y5
+
+	local player_cards = gamer.data_mgr_:cards_msg_protocol_of_player_self()
+	for i = player_cards:invisible_hand_cards_size() - 1, 0, -1 do
+		if PlayCardHelper.isFlowerOrSeasonCard(player_cards:invisible_hand_cards(i)) then
+			local mj_node = MahjongCreator.create(MahjongConst.Directions.SELF, 
+											      MahjongConst.Types.VISIBLE, 
+											      player_cards:invisible_hand_cards(i))
+			if mj_node then
+				mj_node:setPosition(cc.p(flower_offset_x, flower_offset_y))
+				self.mahjong_layer_:addChild(mj_node)
+				flower_offset_x = flower_offset_x + MahjongConst.Sizes.CARD_W1
+				self.player_self_flower_offset_x_ = flower_offset_x
+			end
+		elseif i <= player_cards:invisible_hand_cards_size() - 2 then
+			break
+		end
+	end
+
+	gamer.data_mgr_:updateCardForBuhua(gamer.data_mgr_:self_player_id())
+	
+	self:removeAllMahjongNodes(self.invisible_mj_nodes_player_self_)
+	self:initInvisibleMahjongsOfPlayerSelf()
 end
 
 function NormalRoomScene:modifyMahjongsOfPlayerSelfAfterMingGang()
@@ -1362,21 +1444,31 @@ function NormalRoomScene:showAvailableOperationsForPlayerSelf(play_card_msg)
 		self:showOperationPengGang(play_card_msg)
 	elseif operation_id == CardConst.OperationIDs.OPERATION_MING_GANG then   -- ming gang
 		self:showOperationMingGang(play_card_msg)
-		self:dealWithNewCardOfPlayerSelf(play_card_msg:new_card())
+		if play_card_msg:new_card() ~= CardConst.CardValues.INVALID_CARD_VALUE then
+			self:dealWithNewCardOfPlayerSelf(play_card_msg:new_card())
+		end
 	elseif operation_id == CardConst.OperationIDs.OPERATION_AN_GANG then     -- an gang
 		self:showOperationAnGang(play_card_msg)
-		self:dealWithNewCardOfPlayerSelf(play_card_msg:new_card())
+		if play_card_msg:new_card() ~= CardConst.CardValues.INVALID_CARD_VALUE then
+			self:dealWithNewCardOfPlayerSelf(play_card_msg:new_card())
+		end
 	elseif operation_id == CardConst.OperationIDs.OPERATION_BU_HUA then      -- bu hua
 		self:showOperationBuhua(play_card_msg)
-		self:dealWithNewCardOfPlayerSelf(play_card_msg:new_card())
+		if play_card_msg:new_card() ~= CardConst.CardValues.INVALID_CARD_VALUE then
+			self:dealWithNewCardOfPlayerSelf(play_card_msg:new_card())
+		end
 	elseif operation_id == CardConst.OperationIDs.OPERATION_TING then        -- ting
 		self:showOperationTing(play_card_msg)
-		self:dealWithNewCardOfPlayerSelf(play_card_msg:new_card())
+		if play_card_msg:new_card() ~= CardConst.CardValues.INVALID_CARD_VALUE then
+			self:dealWithNewCardOfPlayerSelf(play_card_msg:new_card())
+		end
 	elseif operation_id == CardConst.OperationIDs.OPERATION_HU then          -- hu
 		self:showOperationHu(play_card_msg)
 	elseif operation_id == CardConst.OperationIDs.OPERATION_ZI_MO then       -- zi mo
 		self:showOperationZimo(play_card_msg)
-		self:dealWithNewCardOfPlayerSelf(play_card_msg:new_card())
+		if play_card_msg:new_card() ~= CardConst.CardValues.INVALID_CARD_VALUE then
+			self:dealWithNewCardOfPlayerSelf(play_card_msg:new_card())
+		end
 	elseif operation_id == CardConst.OperationIDs.OPERATION_GIVE_UP then     -- guo
 	end
 end
@@ -1451,8 +1543,13 @@ end
 
 function NormalRoomScene:showOperationBuhua(play_card_msg)
 	print("[NormalRoomScene:showOperationBuhua]")
-	self:showOperationForOneMahjong1(CardConst.OperationIDs.OPERATION_BU_HUA, 
-		"i_operation_buhua.png", play_card_msg:new_card(), false, display.bottom + 300)
+	if play_card_msg:operating_cards_size() > 0 then
+		self:showOperationForOneMahjong1(CardConst.OperationIDs.OPERATION_BU_HUA, 
+			"i_operation_buhua.png", play_card_msg:operating_cards(0), false, display.bottom + 300)
+	elseif play_card_msg:new_card() ~= CardConst.CardValues.INVALID_CARD_VALUE then
+		self:showOperationForOneMahjong1(CardConst.OperationIDs.OPERATION_BU_HUA, 
+			"i_operation_buhua.png", play_card_msg:new_card(), false, display.bottom + 300)
+	end
 end
 
 function NormalRoomScene:showOperationTing(play_card_msg)
@@ -2147,8 +2244,18 @@ function NormalRoomScene:dealWithPlayerSelfOperationAnGang(play_card_msg)
 end
 
 function NormalRoomScene:dealWithPlayerSelfOperationBuhua(play_card_msg)
-	if play_card_msg:new_card() ~= CardConst.CardValues.INVALID_CARD_VALUE then
-		self:dealWithNewCardOfPlayerSelf(play_card_msg:new_card())
+	self:showAvailableOperationsForPlayerSelf(play_card_msg)
+	
+	if play_card_msg:operating_cards_size() > 0 then
+		-- after buhua, player self get some new cards whose stored in operating_cards
+		-- 1.show new cards
+		self:removeAllMahjongNodes(self.invisible_mj_nodes_player_self_)
+		self:initInvisibleMahjongsOfPlayerSelf()
+		-- 2.modify last new card position x
+		local n = #self.invisible_mj_nodes_player_self_
+		local x = self.invisible_mj_nodes_player_self_[n]:getPositionX()
+		self.invisible_mj_nodes_player_self_[n]:setPositionX(x + MahjongConst.Sizes.CARD_INTERVAL3)
+
 		self:startPlayCardTimer()
 	end
 end
@@ -2185,8 +2292,7 @@ function NormalRoomScene:doPlayerSelfOperationDiscard(mahjong_value)
 	self:modifyMahjongsOfPlayerSelfAfterDiscard(mahjong_value)
 
 	-- send play mahjong msg 
-	self:sendPlayCardMsg(CardConst.OperationIDs.OPERATION_DISCARD, mahjong_value)
-
+	gamer.msg_helper_.sendPlayCardMsg(CardConst.OperationIDs.OPERATION_DISCARD, mahjong_value)
 	-- clear cur operating player id
 	gamer.data_mgr_:play_card_msg_protocol():set_next_operate_player_id(PlayerConst.INVALID_PLAYER_ID)
 	
@@ -2206,7 +2312,7 @@ function NormalRoomScene:doPlayerSelfOperationChi(sender)
 	cards[3] = parent:getChildByName("img_mahjong_fg3"):getTag()
 
 	self:modifyMahjongsOfPlayerSelfAfterChi(cards)
-	self:sendPlayCardMsg(CardConst.OperationIDs.OPERATION_CHI, cards)
+	gamer.msg_helper_.sendPlayCardMsg(CardConst.OperationIDs.OPERATION_CHI, cards)
 
 	self:showAnimationForPlayerOperation(gamer.data_mgr_:self_player_id(), 
 	                                     CardConst.OperationIDs.OPERATION_CHI)
@@ -2218,7 +2324,7 @@ function NormalRoomScene:doPlayerSelfOperationPeng()
 	self:showAnimationForPlayerOperation(gamer.data_mgr_:self_player_id(), 
 	                                     CardConst.OperationIDs.OPERATION_PENG)
 
-	self:sendPlayCardMsg(CardConst.OperationIDs.OPERATION_PENG, 
+	gamer.msg_helper_.sendPlayCardMsg(CardConst.OperationIDs.OPERATION_PENG, 
 	                     gamer.data_mgr_:play_card_msg_protocol():discard())
 end
 
@@ -2228,7 +2334,7 @@ function NormalRoomScene:doPlayerSelfOperationPengGang()
 	self:showAnimationForPlayerOperation(gamer.data_mgr_:self_player_id(), 
 	                                     CardConst.OperationIDs.OPERATION_PENG_GANG)
 
-	self:sendPlayCardMsg(CardConst.OperationIDs.OPERATION_PENG_GANG, 
+	gamer.msg_helper_.sendPlayCardMsg(CardConst.OperationIDs.OPERATION_PENG_GANG, 
 	                     gamer.data_mgr_:play_card_msg_protocol():discard())
 end
 
@@ -2238,7 +2344,7 @@ function NormalRoomScene:doPlayerSelfOperationMingGang()
 	self:showAnimationForPlayerOperation(gamer.data_mgr_:self_player_id(), 
 	                                     CardConst.OperationIDs.OPERATION_MING_GANG)
 
-	self:sendPlayCardMsg(CardConst.OperationIDs.OPERATION_MING_GANG, 
+	gamer.msg_helper_.sendPlayCardMsg(CardConst.OperationIDs.OPERATION_MING_GANG, 
 	                     gamer.data_mgr_:play_card_msg_protocol():new_card())
 end
 
@@ -2248,25 +2354,17 @@ function NormalRoomScene:doPlayerSelfOperationAnGang()
 	self:showAnimationForPlayerOperation(gamer.data_mgr_:self_player_id(), 
 	                                     CardConst.OperationIDs.OPERATION_AN_GANG)
 
-	self:sendPlayCardMsg(CardConst.OperationIDs.OPERATION_AN_GANG, 
+	gamer.msg_helper_.sendPlayCardMsg(CardConst.OperationIDs.OPERATION_AN_GANG, 
 	                     gamer.data_mgr_:play_card_msg_protocol():new_card())
 end
 
 function NormalRoomScene:doPlayerSelfOperationBuhua()
 	self:hideOperations()
-
-	-- remove mahjong node of hua
-	local n = #self.invisible_mj_nodes_player_self_
-	if n > 0 then
-		self.invisible_mj_nodes_player_self_[n]:removeFromParent()
-		table.remove(self.invisible_mj_nodes_player_self_, n)
-	end
-
+	self:modifyMahjongsOfPlayerSelfAfterBuhua()
 	self:showAnimationForPlayerOperation(gamer.data_mgr_:self_player_id(), 
 	                                     CardConst.OperationIDs.OPERATION_BU_HUA)
 
-	-- send bu hua msg
-	self:sendPlayCardMsg(CardConst.OperationIDs.OPERATION_BU_HUA, 
+	gamer.msg_helper_.sendPlayCardMsg(CardConst.OperationIDs.OPERATION_BU_HUA, 
 	                     gamer.data_mgr_:play_card_msg_protocol():new_card())
 end
 
@@ -2288,7 +2386,7 @@ function NormalRoomScene:doPlayerSelfOperationTing()
 		self:showNextPlayCardDirectionAfterPlayerSelf()
 		self:startPlayCardTimer()
 
-		self:sendPlayCardMsg(CardConst.OperationIDs.OPERATION_TING, discard)
+		gamer.msg_helper_.sendPlayCardMsg(CardConst.OperationIDs.OPERATION_TING, discard)
 	end
 end
 
@@ -2299,7 +2397,7 @@ function NormalRoomScene:doPlayerSelfOperationHu()
 	                                     CardConst.OperationIDs.OPERATION_HU)
 	self:showInvisibleMahjongsForGameEnd()		
 
-	self:sendPlayCardMsg(CardConst.OperationIDs.OPERATION_HU, 
+	gamer.msg_helper_.sendPlayCardMsg(CardConst.OperationIDs.OPERATION_HU, 
 	                     gamer.data_mgr_:play_card_msg_protocol():discard())
 end
 
@@ -2310,12 +2408,12 @@ function NormalRoomScene:doPlayerSelfOperationZimo()
 	                                     CardConst.OperationIDs.OPERATION_ZI_MO)
 	self:showInvisibleMahjongsForGameEnd()
 	
-	self:sendPlayCardMsg(CardConst.OperationIDs.OPERATION_ZI_MO)
+	gamer.msg_helper_.sendPlayCardMsg(CardConst.OperationIDs.OPERATION_ZI_MO)
 end
 
 function NormalRoomScene:doPlayerSelfOperationGiveup()
 	self:hideOperations()
-	self:sendPlayCardMsg(CardConst.OperationIDs.OPERATION_GIVE_UP, 
+	gamer.msg_helper_.sendPlayCardMsg(CardConst.OperationIDs.OPERATION_GIVE_UP, 
 	                     gamer.data_mgr_:play_card_msg_protocol():discard())
 end
 
@@ -2380,6 +2478,12 @@ function NormalRoomScene:dealWithPlayCardMsgOfPlayerSelf(msg)
 	elseif operation_id == CardConst.OperationIDs.OPERATION_GIVE_UP then   -- guo
 		self:dealWithPlayerSelfOperationGiveup(msg)
 	end
+
+	-- deal with available operation
+	if operation_id == CardConst.OperationIDs.OPERATION_UNKNOW and
+	   msg:my_available_operation_id() ~= CardConst.OperationIDs.OPERATION_UNKNOW then
+		self:showAvailableOperationsForPlayerSelf(msg)
+	end
 end
 
 function NormalRoomScene:dealWithPlayCardMsgReceived(code, msg)
@@ -2398,35 +2502,31 @@ function NormalRoomScene:dealWithPlayCardMsgReceived(code, msg)
 	end
 end
 
-function NormalRoomScene:sendPlayCardMsg(operation_id, card)
-	local proto = gamer.protocol.PlayCardMsgProtocol()
-	proto:set_player_id(gamer.data_mgr_:self_player_id())
-	proto:set_room_id(gamer.data_mgr_:room_msg_protocol():room_id())
-	proto:set_cur_round(1) -- TODO : get cur round
-	proto:set_operation_id(operation_id)
-	if operation_id == CardConst.OperationIDs.OPERATION_CHI then
-		local discard = gamer.data_mgr_:play_card_msg_protocol():discard()
-		proto:set_discard(discard)
-		for k, v in pairs(card) do
-			if v ~= discard then
-				proto:add_operating_cards(v)
-			end
-		end
-	else
-		if card then
-			proto:set_discard(card)
-		end
-	end
+function NormalRoomScene:dealWithStartGameMsgReceived(code, msg)
+	print("[NormalRoomScene:dealWithStartGameMsgReceived]")
+	self:initBeforeGameStart()
+	self:initMahjongLayer()
+end
 
-	gamer.msg_mgr_:sendMsg(gamer.MsgTypes.C2S_MSG_TYPE_ROOM, gamer.MsgIDs.MSG_ID_ROOM_PLAY_CARD, proto)
+function NormalRoomScene:dealWithGameEndMsgReceived(code, msg)
+	print("[NormalRoomScene:dealWithGameEndMsgReceived]")
+	local func = function()
+		gamer.msg_helper_.sendStartGameMsg()
+	end
+	local delay_action = cc.DelayTime:create(3)
+	local call_action = cc.CallFunc:create(func)
+	local sequence_action = cc.Sequence:create(delay_action, call_action)
+	self:runAction(sequence_action)
 end
 
 function NormalRoomScene:addMsgListeners()
-	gamer.msg_mgr_:addMsgListener(gamer.MsgTypes.S2C_MSG_TYPE_ROOM, handler(self, self.onServerMsgReceived))
+	gamer.msg_mgr_:addMsgListener(gamer.MsgTypes.S2C_MSG_TYPE_ROOM, 
+		handler(self, self.onServerMsgReceived))
 end
 
 function NormalRoomScene:removeMsgListeners()
-	gamer.msg_mgr_:removeMsgListener(gamer.MsgTypes.S2C_MSG_TYPE_ROOM, handler(self, self.onServerMsgReceived))
+	gamer.msg_mgr_:removeMsgListener(gamer.MsgTypes.S2C_MSG_TYPE_ROOM, 
+		handler(self, self.onServerMsgReceived))
 end
 
 function NormalRoomScene:onBtnOperatoinTouch(sender)
@@ -2497,6 +2597,10 @@ function NormalRoomScene:onServerMsgReceived(code, msg_type, msg_id, msg)
 	if msg_type == gamer.MsgTypes.S2C_MSG_TYPE_ROOM then
 		if msg_id == gamer.MsgIDs.MSG_ID_ROOM_PLAY_CARD then
 			self:dealWithPlayCardMsgReceived(code, msg)
+		elseif msg_id == gamer.MsgIDs.MSG_ID_ROOM_START_GAME then
+			self:dealWithStartGameMsgReceived(code, msg)
+		elseif msg_id == gamer.MsgIDs.MSG_ID_ROOM_GAME_END then
+			self:dealWithGameEndMsgReceived(code, msg)
 		end
 	end
 end

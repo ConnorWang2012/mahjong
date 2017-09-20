@@ -12,3 +12,5 @@ author:
 modification:
 --]]
 
+gamer.msg_mgr_    = gamer.MsgManager:getInstance()
+gamer.msg_helper_ = require "network.msg_helper.lua"

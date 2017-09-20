@@ -61,6 +61,14 @@ function PlayCardHelper.isMahongValueValid(mahjong_value)
 	return false
 end
 
+function PlayCardHelper.isFlowerOrSeasonCard(mahjong_value)
+	if mahjong_value >= CardConst.CardValues.SEASON_SPRING and
+	   mahjong_value <= CardConst.CardValues.FLOWER_BAMBOO then
+		return true
+	end
+	return false
+end
+
 function PlayCardHelper.getImageNameOfDirectionForOperatingPlayer()
 	local player_id = gamer.data_mgr_:play_card_msg_protocol():next_operate_player_id()
 	local direction = PlayCardHelper.getPlayerDirection(player_id)

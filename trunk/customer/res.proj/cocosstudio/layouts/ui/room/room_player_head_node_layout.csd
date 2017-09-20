@@ -15,6 +15,16 @@
             <PrePosition />
             <PreSize X="0.0000" Y="0.0000" />
           </AbstractNodeData>
+          <AbstractNodeData Name="img_circle" ActionTag="854381383" Tag="129" IconVisible="False" LeftMargin="-103.2500" RightMargin="-103.2500" TopMargin="-103.2500" BottomMargin="-103.2500" LeftEage="28" RightEage="28" TopEage="33" BottomEage="33" Scale9OriginX="28" Scale9OriginY="33" Scale9Width="213" Scale9Height="203" ctype="ImageViewObjectData">
+            <Size X="206.5000" Y="206.5000" />
+            <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
+            <Position />
+            <Scale ScaleX="1.0000" ScaleY="1.0000" />
+            <CColor A="255" R="255" G="255" B="255" />
+            <PrePosition />
+            <PreSize X="0.0000" Y="0.0000" />
+            <FileData Type="Normal" Path="assets/common/i_head_circle.png" Plist="" />
+          </AbstractNodeData>
           <AbstractNodeData Name="img_ting" ActionTag="122616456" VisibleForFrame="False" Tag="26" IconVisible="False" LeftMargin="32.5000" RightMargin="-117.5000" TopMargin="-116.5000" BottomMargin="15.5000" LeftEage="28" RightEage="28" TopEage="33" BottomEage="33" Scale9OriginX="28" Scale9OriginY="33" Scale9Width="29" Scale9Height="35" ctype="ImageViewObjectData">
             <Size X="85.0000" Y="101.0000" />
             <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />

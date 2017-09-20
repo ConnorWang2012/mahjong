@@ -1,0 +1,44 @@
+$#include "msg/protocol/game_end_msg_protocol.pb.h"
+
+$#include <string>
+$#include <google/protobuf/stubs/common.h>
+
+$#include <google/protobuf/generated_message_util.h>
+$#include <google/protobuf/message.h>
+$#include <google/protobuf/repeated_field.h>
+$#include <google/protobuf/extension_set.h>
+$#include <google/protobuf/unknown_field_set.h>
+
+namespace gamer {
+
+namespace protocol {
+
+class GameEndDataMsgProtocol : public google::protobuf::Message {
+public:
+	int ByteSize() const;
+
+	inline int player_id() const;
+	inline std::string nick_name() const;
+	inline int score() const;
+	inline int total_score() const;
+
+	inline const gamer::protocol::PlayerCardsMsgProtocol& player_cards(int index) const;
+};
+
+class GameEndMsgProtocol : public google::protobuf::Message {
+public:
+	int ByteSize() const;
+
+	inline int room_id() const;
+	inline int room_owner_id() const;
+	inline int players_num() const;
+	inline int cur_round() const;
+	inline int total_round() const;
+	inline int banker_id() const;
+
+	inline const gamer::protocol::GameEndDataMsgProtocol& game_end_data(int index) const;
+};
+
+} // namespace protocol
+
+} // namespace gamer

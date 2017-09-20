@@ -46,6 +46,23 @@ node_head:setCascadeOpacityEnabled(true)
 layout = ccui.LayoutComponent:bindLayoutComponent(node_head)
 node_room_player_head:addChild(node_head)
 
+--Create img_circle
+local img_circle = ccui.ImageView:create()
+img_circle:ignoreContentAdaptWithSize(false)
+img_circle:loadTexture("assets/common/i_head_circle.png",0)
+img_circle:setLayoutComponentEnabled(true)
+img_circle:setName("img_circle")
+img_circle:setTag(129)
+img_circle:setCascadeColorEnabled(true)
+img_circle:setCascadeOpacityEnabled(true)
+layout = ccui.LayoutComponent:bindLayoutComponent(img_circle)
+layout:setSize({width = 206.5000, height = 206.5000})
+layout:setLeftMargin(-103.2500)
+layout:setRightMargin(-103.2500)
+layout:setTopMargin(-103.2500)
+layout:setBottomMargin(-103.2500)
+node_room_player_head:addChild(img_circle)
+
 --Create img_ting
 local img_ting = ccui.ImageView:create()
 img_ting:ignoreContentAdaptWithSize(false)

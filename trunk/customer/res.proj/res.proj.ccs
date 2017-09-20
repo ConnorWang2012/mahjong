@@ -99,11 +99,12 @@
               </PlistImageFolder>
             </Folder>
             <Image Name="btn_common_purple.png" />
+            <Image Name="btn_shop.png" />
             <Image Name="head_stencil.png" />
+            <Image Name="i_chat.png" />
+            <Image Name="i_head_circle.png" />
             <Image Name="numbers_blue.png" />
             <Image Name="numbers_orange.png" />
-            <Image Name="player.png" />
-            <Image Name="woman_4.png" />
           </Folder>
           <Folder Name="font">
             <TTF Name="FZZhengHeiS-B-GB.ttf" />
