@@ -4,135 +4,135 @@
     <dict>
         <key>frames</key>
         <dict>
-            <key>hall_flower.png</key>
+            <key>10010.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{190,2},{433,166}}</string>
+                <string>{{2,2},{489,468}}</string>
                 <key>offset</key>
-                <string>{0,0}</string>
+                <string>{4,-18}</string>
                 <key>rotated</key>
                 <false/>
                 <key>sourceColorRect</key>
-                <string>{{0,0},{433,166}}</string>
+                <string>{{64,92},{489,468}}</string>
                 <key>sourceSize</key>
-                <string>{433,166}</string>
+                <string>{609,616}</string>
             </dict>
-            <key>hall_friend.png</key>
+            <key>10011.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{2,2},{171,186}}</string>
+                <string>{{493,444},{473,440}}</string>
                 <key>offset</key>
-                <string>{0,0}</string>
+                <string>{-5,-4}</string>
+                <key>rotated</key>
+                <false/>
+                <key>sourceColorRect</key>
+                <string>{{63,92},{473,440}}</string>
+                <key>sourceSize</key>
+                <string>{609,616}</string>
+            </dict>
+            <key>10012.png</key>
+            <dict>
+                <key>frame</key>
+                <string>{{493,2},{473,440}}</string>
+                <key>offset</key>
+                <string>{-5,-4}</string>
+                <key>rotated</key>
+                <false/>
+                <key>sourceColorRect</key>
+                <string>{{63,92},{473,440}}</string>
+                <key>sourceSize</key>
+                <string>{609,616}</string>
+            </dict>
+            <key>10013.png</key>
+            <dict>
+                <key>frame</key>
+                <string>{{2,886},{413,412}}</string>
+                <key>offset</key>
+                <string>{10,-14}</string>
                 <key>rotated</key>
                 <true/>
                 <key>sourceColorRect</key>
-                <string>{{0,0},{171,186}}</string>
+                <string>{{108,116},{413,412}}</string>
                 <key>sourceSize</key>
-                <string>{171,186}</string>
+                <string>{609,616}</string>
             </dict>
-            <key>hall_msg.png</key>
+            <key>10014.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{1619,54},{83,63}}</string>
+                <string>{{2,472},{413,412}}</string>
                 <key>offset</key>
-                <string>{3,-8}</string>
+                <string>{9,-13}</string>
+                <key>rotated</key>
+                <false/>
+                <key>sourceColorRect</key>
+                <string>{{107,115},{413,412}}</string>
+                <key>sourceSize</key>
+                <string>{609,616}</string>
+            </dict>
+            <key>10015.png</key>
+            <dict>
+                <key>frame</key>
+                <string>{{687,886},{379,314}}</string>
+                <key>offset</key>
+                <string>{-13,8}</string>
                 <key>rotated</key>
                 <true/>
                 <key>sourceColorRect</key>
-                <string>{{13,24},{83,63}}</string>
+                <string>{{102,143},{379,314}}</string>
                 <key>sourceSize</key>
-                <string>{103,95}</string>
+                <string>{609,616}</string>
             </dict>
-            <key>hall_notice_bg.png</key>
+            <key>10016.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{695,2},{1199,50}}</string>
+                <string>{{306,1301},{379,314}}</string>
                 <key>offset</key>
-                <string>{2,0}</string>
+                <string>{-13,8}</string>
                 <key>rotated</key>
                 <false/>
                 <key>sourceColorRect</key>
-                <string>{{6,0},{1199,50}}</string>
+                <string>{{102,143},{379,314}}</string>
                 <key>sourceSize</key>
-                <string>{1207,50}</string>
+                <string>{609,616}</string>
             </dict>
-            <key>hall_notice_horn.png</key>
+            <key>10017.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{1684,54},{80,70}}</string>
+                <string>{{2,1301},{331,302}}</string>
                 <key>offset</key>
-                <string>{6,-3}</string>
+                <string>{0,14}</string>
                 <key>rotated</key>
                 <true/>
                 <key>sourceColorRect</key>
-                <string>{{20,6},{80,70}}</string>
+                <string>{{139,143},{331,302}}</string>
                 <key>sourceSize</key>
-                <string>{108,76}</string>
+                <string>{609,616}</string>
             </dict>
-            <key>hall_pendant.png</key>
+            <key>10018.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{625,2},{68,154}}</string>
+                <string>{{416,886},{269,280}}</string>
                 <key>offset</key>
-                <string>{0,0}</string>
+                <string>{-21,21}</string>
                 <key>rotated</key>
                 <false/>
                 <key>sourceColorRect</key>
-                <string>{{0,0},{68,154}}</string>
+                <string>{{149,147},{269,280}}</string>
                 <key>sourceSize</key>
-                <string>{68,154}</string>
+                <string>{609,616}</string>
             </dict>
-            <key>hall_set.png</key>
+            <key>10019.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{1833,54},{77,77}}</string>
+                <string>{{687,1267},{243,242}}</string>
                 <key>offset</key>
-                <string>{4,-5}</string>
+                <string>{-29,32}</string>
                 <key>rotated</key>
                 <false/>
                 <key>sourceColorRect</key>
-                <string>{{17,14},{77,77}}</string>
+                <string>{{154,155},{243,242}}</string>
                 <key>sourceSize</key>
-                <string>{103,95}</string>
-            </dict>
-            <key>hall_sign.png</key>
-            <dict>
-                <key>frame</key>
-                <string>{{1756,54},{79,75}}</string>
-                <key>offset</key>
-                <string>{4,-5}</string>
-                <key>rotated</key>
-                <true/>
-                <key>sourceColorRect</key>
-                <string>{{16,15},{79,75}}</string>
-                <key>sourceSize</key>
-                <string>{103,95}</string>
-            </dict>
-            <key>hall_title_bg.png</key>
-            <dict>
-                <key>frame</key>
-                <string>{{695,54},{584,132}}</string>
-                <key>offset</key>
-                <string>{0,2}</string>
-                <key>rotated</key>
-                <false/>
-                <key>sourceColorRect</key>
-                <string>{{0,0},{584,132}}</string>
-                <key>sourceSize</key>
-                <string>{584,136}</string>
-            </dict>
-            <key>hall_title_name.png</key>
-            <dict>
-                <key>frame</key>
-                <string>{{1281,54},{336,100}}</string>
-                <key>offset</key>
-                <string>{0,0}</string>
-                <key>rotated</key>
-                <false/>
-                <key>sourceColorRect</key>
-                <string>{{0,0},{336,100}}</string>
-                <key>sourceSize</key>
-                <string>{336,100}</string>
+                <string>{609,616}</string>
             </dict>
         </dict>
         <key>metadata</key>
@@ -140,13 +140,13 @@
             <key>format</key>
             <integer>2</integer>
             <key>realTextureFileName</key>
-            <string>hall_top.png</string>
+            <string>light_1_2.png</string>
             <key>size</key>
-            <string>{1912,188}</string>
+            <string>{1003,1634}</string>
             <key>smartupdate</key>
-            <string>$TexturePacker:SmartUpdate:039e2877dcc0018ece82ab6e55953638:1/1$</string>
+            <string>$TexturePacker:SmartUpdate:bc8000b8caca41b2078705f2cff6c371:1/1$</string>
             <key>textureFileName</key>
-            <string>hall_top.png</string>
+            <string>light_1_2.png</string>
         </dict>
     </dict>
 </plist>
