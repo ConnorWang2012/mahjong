@@ -1,6 +1,6 @@
 /*
- * Copyright (c) 2000-2007 Niels Provos <provos@citi.umich.edu>
- * Copyright (c) 2007-2012 Niels Provos and Nick Mathewson
+ * Copyright 2000-2007 Niels Provos <provos@citi.umich.edu>
+ * Copyright 2007-2012 Niels Provos and Nick Mathewson
  *
  * Redistribution and use in source and binary forms, with or without
  * modification, are permitted provided that the following conditions
@@ -24,60 +24,22 @@
  * (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF
  * THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
-#ifndef EVENT1_EVENT_H_INCLUDED_
-#define EVENT1_EVENT_H_INCLUDED_
+#ifndef EVENT1_EVHTTP_H_INCLUDED_
+#define EVENT1_EVHTTP_H_INCLUDED_
 
-/** @file event.h
+/** @file evhttp.h
 
-  A library for writing event-driven network servers.
+  An http implementation subsystem for Libevent.
 
-  The <event.h> header is deprecated in Libevent 2.0 and later; please
-  use <event.h> instead.  Depending on what functionality you
-  need, you may also want to include more of the other event2/
+  The <evhttp.h> header is deprecated in Libevent 2.0 and later; please
+  use <event2/http.h> instead.  Depending on what functionality you
+  need, you may also want to include more of the other <event2/...>
   headers.
  */
 
-#ifdef __cplusplus
-extern "C" {
-#endif
-
-#include <event-config.h>
-#ifdef EVENT__HAVE_SYS_TYPES_H
-#include <sys/types.h>
-#endif
-#ifdef EVENT__HAVE_SYS_TIME_H
-#include <sys/time.h>
-#endif
-#ifdef EVENT__HAVE_STDINT_H
-#include <stdint.h>
-#endif
-#include <stdarg.h>
-
-/* For int types. */
-#include <evutil.h>
-
-#ifdef _WIN32
-#ifndef WIN32_LEAN_AND_MEAN
-#define WIN32_LEAN_AND_MEAN
-#endif
-#include <winsock2.h>
-#include <windows.h>
-#undef WIN32_LEAN_AND_MEAN
-#endif
-
-#include <event_struct.h>
 #include <event.h>
-#include <event_compat.h>
-#include <buffer.h>
-#include <buffer_compat.h>
-#include <bufferevent.h>
-#include <bufferevent_struct.h>
-#include <bufferevent_compat.h>
-#include <tag.h>
-#include <tag_compat.h>
+#include <http.h>
+#include <http_struct.h>
+#include <http_compat.h>
 
-#ifdef __cplusplus
-}
-#endif
-
-#endif /* EVENT1_EVENT_H_INCLUDED_ */
+#endif /* EVENT1_EVHTTP_H_INCLUDED_ */

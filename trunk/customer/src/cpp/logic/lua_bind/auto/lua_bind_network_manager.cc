@@ -17,9 +17,9 @@ TOLUA_API int  tolua_network_manager_open (lua_State* tolua_S);
 #include <functional>
 #include <string>
 #include <thread>
-#include "event2/bufferevent.h"
-#include "event2/event.h"
-#include "msg/msg.h"
+//#include <bufferevent.h>
+//#include <event.h>
+#include "msg.h"
 
 /* function to register type */
 static void tolua_reg_types (lua_State* tolua_S)

@@ -16,7 +16,7 @@ TOLUA_API int  tolua_event_listener_open (lua_State* tolua_S);
 #include "event_listener.h"
 #include <functional>
 #include <string>
-#include "listener.h"
+#include "mylistener.h"
 
 /* function to release collected object via destructor */
 #ifdef __cplusplus

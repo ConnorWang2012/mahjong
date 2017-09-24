@@ -177,7 +177,11 @@ void CommandManager::removeAllCmdListenersImpl(bool cleanup)
     {
         std::for_each (cmd_listeners_->begin(), 
                        cmd_listeners_->end(), 
-                       gamer::delete_vector_obj());
+                       //gamer::delete_vector_obj()); // xcode builded
+                       [&](CommandListener* cmd_listener)
+                       {
+                           SAFE_DELETE(cmd_listener);
+                       });
     }
     else
     {

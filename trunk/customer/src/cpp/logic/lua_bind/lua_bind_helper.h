@@ -28,7 +28,7 @@ extern "C"
 #include <google/protobuf/message.h>
 
 #include "macros.h"
-#include "msg/msg.h"
+#include "msg.h"
 
 //namespace gamer
 //{

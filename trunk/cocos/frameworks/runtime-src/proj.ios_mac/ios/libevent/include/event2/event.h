@@ -54,7 +54,7 @@
 
   @section usage Standard usage
 
-  Every program that uses Libevent must include the <event.h>
+  Every program that uses Libevent must include the <event2/event.h>
   header, and pass the -levent flag to the linker.  (You can instead link
   -levent_core if you only want the main event and buffered IO-based code,
   and don't want to link any protocol code.)
@@ -65,7 +65,7 @@
   library.  If you're going to use Libevent from multiple threads in a
   multithreaded application, you need to initialize thread support --
   typically by using evthread_use_pthreads() or
-  evthread_use_windows_threads().  See <thread.h> for more
+  evthread_use_windows_threads().  See <event2/thread.h> for more
   information.
 
   This is also the point where you can replace Libevent's memory
@@ -119,7 +119,7 @@
   output buffer is drained below the write low watermark, which is 0 by
   default.
 
-  See <bufferevent*.h> for more information.
+  See <event2/bufferevent*.h> for more information.
 
   @section timers Timers
 
@@ -133,7 +133,7 @@
   @section evdns Asynchronous DNS resolution
 
   Libevent provides an asynchronous DNS resolver that should be used instead
-  of the standard DNS resolver functions.  See the <dns.h>
+  of the standard DNS resolver functions.  See the <event2/dns.h>
   functions for more detail.
 
   @section evhttp Event-driven HTTP servers
@@ -141,7 +141,7 @@
   Libevent provides a very simple event-driven HTTP server that can be
   embedded in your program and used to service HTTP requests.
 
-  To use this capability, you need to include the <http.h> header in your
+  To use this capability, you need to include the <event2/http.h> header in your
   program.  See that header for more information.
 
   @section evrpc A framework for RPC servers and clients

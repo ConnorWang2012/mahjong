@@ -13,12 +13,12 @@
 /* Exported function */
 TOLUA_API int  tolua_msg_manager_open (lua_State* tolua_S);
 
-#include "msg/msg_manager.h"
+#include "msg_manager.h"
 #include <string>
 #include <unordered_map>
 #include "myevent.h"
 #include "macros.h"
-#include "msg/msg.h"
+#include "msg.h"
 
 /* function to register type */
 static void tolua_reg_types (lua_State* tolua_S)

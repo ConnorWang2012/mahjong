@@ -19,7 +19,7 @@ modification:
 #include <string>
 #include <thread>
 
-#include "msg/msg.h"
+#include "msg.h"
 
 struct bufferevent;
 struct event_base;

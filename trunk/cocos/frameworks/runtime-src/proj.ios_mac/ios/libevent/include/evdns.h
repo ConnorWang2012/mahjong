@@ -1,6 +1,6 @@
 /*
- * Copyright 2000-2007 Niels Provos <provos@citi.umich.edu>
- * Copyright 2007-2012 Niels Provos and Nick Mathewson
+ * Copyright (c) 2000-2007 Niels Provos <provos@citi.umich.edu>
+ * Copyright (c) 2007-2012 Niels Provos and Nick Mathewson
  *
  * Redistribution and use in source and binary forms, with or without
  * modification, are permitted provided that the following conditions
@@ -24,22 +24,22 @@
  * (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF
  * THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
-#ifndef EVENT1_EVHTTP_H_INCLUDED_
-#define EVENT1_EVHTTP_H_INCLUDED_
+#ifndef EVENT1_EVDNS_H_INCLUDED_
+#define EVENT1_EVDNS_H_INCLUDED_
 
-/** @file evhttp.h
+/** @file evdns.h
 
-  An http implementation subsystem for Libevent.
+  A dns subsystem for Libevent.
 
-  The <evhttp.h> header is deprecated in Libevent 2.0 and later; please
-  use <http.h> instead.  Depending on what functionality you
-  need, you may also want to include more of the other <...>
+  The <evdns.h> header is deprecated in Libevent 2.0 and later; please
+  use <event2/evdns.h> instead.  Depending on what functionality you
+  need, you may also want to include more of the other <event2/...>
   headers.
  */
 
 #include <event.h>
-#include <http.h>
-#include <http_struct.h>
-#include <http_compat.h>
+#include <dns.h>
+#include <dns_compat.h>
+#include <dns_struct.h>
 
-#endif /* EVENT1_EVHTTP_H_INCLUDED_ */
+#endif /* EVENT1_EVDNS_H_INCLUDED_ */

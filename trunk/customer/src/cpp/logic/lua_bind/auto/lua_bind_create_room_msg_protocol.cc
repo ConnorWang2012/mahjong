@@ -13,7 +13,7 @@
 /* Exported function */
 TOLUA_API int  tolua_create_room_msg_protocol_open (lua_State* tolua_S);
 
-#include "msg/protocol/create_room_msg_protocol.pb.h"
+#include "create_room_msg_protocol.pb.h"
 #include <string>
 #include <google/protobuf/stubs/common.h>
 #include <google/protobuf/generated_message_util.h>

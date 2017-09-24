@@ -15,7 +15,7 @@ TOLUA_API int  tolua_data_manager_open (lua_State* tolua_S);
 
 #include "data_manager.h"
 #include <unordered_map>
-#include "base/basic_manager.h"
+#include "basic_manager.h"
 
 /* function to register type */
 static void tolua_reg_types (lua_State* tolua_S)

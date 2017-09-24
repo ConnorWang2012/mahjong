@@ -13,7 +13,7 @@
 /* Exported function */
 TOLUA_API int  tolua_game_end_msg_protocol_open (lua_State* tolua_S);
 
-#include "msg/protocol/game_end_msg_protocol.pb.h"
+#include "game_end_msg_protocol.pb.h"
 #include <string>
 #include <google/protobuf/stubs/common.h>
 #include <google/protobuf/generated_message_util.h>
