@@ -17,14 +17,14 @@ modification:
 
 #include <unordered_map>
 
-#include "base/basic_manager.h"
-#include "logic/constant/card_constants.h"
-#include "msg/protocol/my_login_msg_protocol.pb.h"
-#include "msg/protocol/create_room_msg_protocol.pb.h"
-#include "msg/protocol/room_msg_protocol.pb.h"
-#include "msg/protocol/player_cards_msg_protocol.pb.h"
-#include "msg/protocol/play_card_msg_protocol.pb.h"
-#include "msg/protocol/game_end_msg_protocol.pb.h"
+#include "basic_manager.h"
+#include "card_constants.h"
+#include "my_login_msg_protocol.pb.h"
+#include "create_room_msg_protocol.pb.h"
+#include "room_msg_protocol.pb.h"
+#include "player_cards_msg_protocol.pb.h"
+#include "play_card_msg_protocol.pb.h"
+#include "game_end_msg_protocol.pb.h"
 
 namespace gamer
 {

@@ -8,7 +8,7 @@ require "logic.init_modules"
 local function main()
     gamer.initEngine()
     gamer.initModules()
-    gamer.SceneManager.runScene(gamer.SceneConstants.SceneIDs.LOGIN_SCENE)
+    gamer.scene_msg_.runScene(gamer.SceneConstants.SceneIDs.LOGIN_SCENE)
 end
 
 local status, msg = xpcall(main, __G__TRACKBACK__)

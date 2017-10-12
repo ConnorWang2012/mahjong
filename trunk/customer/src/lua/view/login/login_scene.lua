@@ -13,6 +13,10 @@ modification:
 --]]
 
 local LoginScene = class("LoginScene", require "view.base.layer_base")
+<<<<<<< HEAD
+=======
+--local MyImageFont     = require "view.base.my_widget.my_image_font.lua"
+>>>>>>> ab7fa54822aa31bd6e7940c685b629688ec8c0f4
 
 function LoginScene:ctor(view_file)
     self.super.ctor(self, view_file)

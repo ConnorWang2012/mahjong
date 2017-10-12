@@ -22,7 +22,7 @@ modification:
 #include <iomanip>
 #include <windows.h>
 #elif __APPLE__
-
+#include <iomanip>
 #elif __ANDROID__
 
 #elif __linux__
@@ -63,6 +63,7 @@ void initlog()
 	}
 #else
 	// TODO : other platform
+    char buf[255] = { 0 };
 #endif
 	
 	s_log_path_ = std::string(buf) + "/mylog.dat";

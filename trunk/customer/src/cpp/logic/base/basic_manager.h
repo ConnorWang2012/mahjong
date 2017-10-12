@@ -17,7 +17,7 @@ modification:
 
 #include <string>
 
-#include "base/macros.h"
+#include "macros.h"
 
 namespace gamer 
 {
@@ -36,7 +36,7 @@ public:
 
     static Drived* getInstance() 
     {
-        static typename Drived s_mgr;
+        static Drived s_mgr;
         return &s_mgr;
     }
 };

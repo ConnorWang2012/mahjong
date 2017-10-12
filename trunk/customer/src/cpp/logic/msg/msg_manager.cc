@@ -19,17 +19,17 @@ modification:
 #include "cocos/base/CCDirector.h"
 #include "cocos/base/CCScheduler.h"
 
-#include "base/macros.h"
-#include "data/data_constants.h"
-#include "data/data_manager.h"
+#include "macros.h"
+#include "data_constants.h"
+#include "data_manager.h"
 #include "event_headers.h"
 #include "lua_bind_helper.h"
-#include "log/mylog.h"
-#include "msg/msg_type.h"
-#include "msg/msg_id.h"
-#include "msg/msg_code.h"
-#include "msg/protocol/room_operation_msg_protocol.pb.h"
-#include "network/network_manager.h"
+#include "mylog.h"
+#include "msg_type.h"
+#include "msg_id.h"
+#include "msg_code.h"
+#include "room_operation_msg_protocol.pb.h"
+#include "network_manager.h"
 
 namespace gamer
 {

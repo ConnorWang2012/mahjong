@@ -21,18 +21,22 @@ modification:
 #include <netinet/in.h>
 #include <arpa/inet.h>
 #elif defined(__APPLE__)
+#include <sys/socket.h>
+#include <netinet/in.h>
+#include <arpa/inet.h>
+
+//#include "thread.h"
 #endif
 
 #include <chrono>
 
-#include "event2/buffer.h"
-#include "event2/bufferevent.h"
-#include "event2/event.h"
-#include "event2/thread.h"
+#include <event2/buffer.h>
+#include <event2/bufferevent.h>
+#include <event2/event.h>
 
 #include "event_headers.h"
 #include "macros.h"
-#include "msg/msg_manager.h"
+#include "msg_manager.h"
 
 namespace gamer
 {
@@ -78,7 +82,7 @@ void NetworkManager::connect()
 
     evthread_use_windows_threads();
 #else
-    evthread_use_pthreads();
+    //evthread_use_pthreads();
 #endif
 
 	if (nullptr == evbase_)

@@ -17,7 +17,7 @@
 #include "lua_bind_register.h"
 #include "tolua++.h"
 #include "macros.h"
-#include "msg/protocol/my_login_msg_protocol.pb.h"
+#include "my_login_msg_protocol.pb.h"
 
 namespace gamer {
 

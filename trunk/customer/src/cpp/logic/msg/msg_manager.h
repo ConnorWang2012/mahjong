@@ -21,8 +21,8 @@ modification:
 #include <unordered_set>
 #include <vector>
 
-#include "base/macros.h"
-#include "msg/msg.h"
+#include "macros.h"
+#include "msg.h"
 
 namespace google
 {

@@ -14,8 +14,8 @@ modification:
 
 #include "data_manager.h"
 
-#include "base/macros.h"
-#include "data/data_constants.h"
+#include "macros.h"
+#include "data_constants.h"
 
 namespace gamer
 {

@@ -13,7 +13,7 @@
 /* Exported function */
 TOLUA_API int  tolua_mylog_open (lua_State* tolua_S);
 
-#include "log/mylog.h"
+#include "mylog.h"
 
 /* function to register type */
 static void tolua_reg_types (lua_State* tolua_S)

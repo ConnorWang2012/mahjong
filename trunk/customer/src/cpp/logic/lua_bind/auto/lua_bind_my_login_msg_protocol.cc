@@ -13,7 +13,7 @@
 /* Exported function */
 TOLUA_API int  tolua_my_login_msg_protocol_open (lua_State* tolua_S);
 
-#include "msg/protocol/my_login_msg_protocol.pb.h"
+#include "my_login_msg_protocol.pb.h"
 #include <string>
 #include <google/protobuf/stubs/common.h>
 #include <google/protobuf/generated_message_util.h>

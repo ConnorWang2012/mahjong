@@ -13,7 +13,7 @@
 /* Exported function */
 TOLUA_API int  tolua_msg_open (lua_State* tolua_S);
 
-#include "msg/msg.h"
+#include "msg.h"
 #include <functional>
 #include "macros.h"
 
