@@ -13,7 +13,6 @@ modification:
 --]]
 
 local LoginScene = class("LoginScene", require "view.base.layer_base")
-local MyImageFont     = require "view.base.my_widget.my_image_font.lua"
 
 function LoginScene:ctor(view_file)
     self.super.ctor(self, view_file)
@@ -23,6 +22,7 @@ end
 
 function LoginScene:onBtnLoginTouch(sender)
     print("[LoginScene:onBtnLoginTouch]")
+	--[[
     local connected = gamer.NetworkManager:getInstance():is_connected()
     print("[LoginScene:onBtnLoginTouch] connected : ", tostring(connected))
 
@@ -37,6 +37,9 @@ function LoginScene:onBtnLoginTouch(sender)
     gamer.MsgManager:getInstance():sendMsg(gamer.MsgTypes.C2S_MSG_TYPE_LOGIN, 
         gamer.MsgIDs.MSG_ID_LOGIN_MY, 
         proto)
+	]]
+
+	gamer.wx_mgr_:sharePhoto(0, "")
 end
 
 function LoginScene:dealWithMyLoginMsgReceived(code, msg)
