@@ -31,18 +31,18 @@ function WXApiManager:ctor()
 	end
 end
 
-function WXApiManager:sharePhoto(wx_scene, photo_path)
-	local platform = cc.Application:getInstance():getTargetPlatform()
-	if (platform == cc.PLATFORM_OS_ANDROID) then
-		-- TODO
+function WXApiManager:shareImage(wx_scene, image_name)
+    local platform = cc.Application:getInstance():getTargetPlatform()
+    if (platform == cc.PLATFORM_OS_ANDROID) then
+        -- TODO
     elseif platform == cc.PLATFORM_OS_IPHONE or
-    	   platform == cc.PLATFORM_OS_IPAD then
-		local class_name = "WXApiManager"
-		local method_name = "sharePhoto"
-		local args = { wx_scene = wx_scene, photo_path = photo_path }
-		local ok, err_code = self.lua_bridge_.callStaticMethod(class_name, method_name, args)
-		return ok, err_code
-	end
+           platform == cc.PLATFORM_OS_IPAD then
+        local class_name = "WXApiManager"
+        local method_name = "shareImage"
+        local args = { wx_scene = wx_scene, image_name = image_name }
+        local ok, err_code = self.lua_bridge_.callStaticMethod(class_name, method_name, args)
+        return ok, err_code
+    end
 end
 
 return WXApiManager

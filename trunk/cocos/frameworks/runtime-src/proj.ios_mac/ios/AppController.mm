@@ -76,6 +76,24 @@ static AppDelegate s_sharedApplication;
     cocos2d::GLView *glview = cocos2d::GLViewImpl::createWithEAGLView((__bridge void *)_viewController.view);
     cocos2d::Director::getInstance()->setOpenGLView(glview);
     
+    // register wechat
+    /*
+    [WXApi registerApp:@"wxffbcfc5a28b14217" enableMTA:YES];
+    //[WXApi registerApp:@"wxffbcfc5a28b14217"];
+    
+    SendMessageToWXReq *sendReq = [[SendMessageToWXReq alloc] init];
+    sendReq.bText = NO;
+    sendReq.scene = WXSceneSession;
+    
+    WXMediaMessage *message = [WXMediaMessage message];
+    message.title = @"分享标题";
+    message.description = @"分享描述";
+    [message setThumbImage:[UIImage imageNamed:@"login_bg.jpg"]];
+
+    sendReq.message = message;
+    
+    [WXApi sendReq:sendReq];
+    */
     //run the cocos2d-x game scene
     app->run();
 
@@ -121,7 +139,6 @@ static AppDelegate s_sharedApplication;
      See also applicationDidEnterBackground:.
      */
 }
-
 
 #pragma mark -
 #pragma mark Memory management
