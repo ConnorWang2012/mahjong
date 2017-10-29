@@ -1,6 +1,6 @@
 /*
 ** Lua binding: create_room_msg_protocol
-** Generated automatically by tolua++-1.0.92 on 06/16/17 21:12:38.
+** Generated automatically by tolua++-1.0.92 on 10/29/17 22:14:29.
 */
 
 #ifndef __cplusplus
@@ -13,7 +13,7 @@
 /* Exported function */
 TOLUA_API int  tolua_create_room_msg_protocol_open (lua_State* tolua_S);
 
-#include "create_room_msg_protocol.pb.h"
+#include "msg/protocol/create_room_msg_protocol.pb.h"
 #include <string>
 #include <google/protobuf/stubs/common.h>
 #include <google/protobuf/generated_message_util.h>
@@ -325,6 +325,136 @@ static int tolua_create_room_msg_protocol_gamer_protocol_CreateRoomMsgProtocol_p
 }
 #endif //#ifndef TOLUA_DISABLE
 
+/* method: set_score_gold of class  gamer::protocol::CreateRoomMsgProtocol */
+#ifndef TOLUA_DISABLE_tolua_create_room_msg_protocol_gamer_protocol_CreateRoomMsgProtocol_set_score_gold00
+static int tolua_create_room_msg_protocol_gamer_protocol_CreateRoomMsgProtocol_set_score_gold00(lua_State* tolua_S)
+{
+#ifndef TOLUA_RELEASE
+ tolua_Error tolua_err;
+ if (
+     !tolua_isusertype(tolua_S,1,"gamer::protocol::CreateRoomMsgProtocol",0,&tolua_err) ||
+     !tolua_isnumber(tolua_S,2,0,&tolua_err) ||
+     !tolua_isnoobj(tolua_S,3,&tolua_err)
+ )
+  goto tolua_lerror;
+ else
+#endif
+ {
+  gamer::protocol::CreateRoomMsgProtocol* self = (gamer::protocol::CreateRoomMsgProtocol*)  tolua_tousertype(tolua_S,1,0);
+  int score = ((int)  tolua_tonumber(tolua_S,2,0));
+#ifndef TOLUA_RELEASE
+  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'set_score_gold'", NULL);
+#endif
+  {
+   self->set_score_gold(score);
+  }
+ }
+ return 0;
+#ifndef TOLUA_RELEASE
+ tolua_lerror:
+ tolua_error(tolua_S,"#ferror in function 'set_score_gold'.",&tolua_err);
+ return 0;
+#endif
+}
+#endif //#ifndef TOLUA_DISABLE
+
+/* method: score_gold of class  gamer::protocol::CreateRoomMsgProtocol */
+#ifndef TOLUA_DISABLE_tolua_create_room_msg_protocol_gamer_protocol_CreateRoomMsgProtocol_score_gold00
+static int tolua_create_room_msg_protocol_gamer_protocol_CreateRoomMsgProtocol_score_gold00(lua_State* tolua_S)
+{
+#ifndef TOLUA_RELEASE
+ tolua_Error tolua_err;
+ if (
+     !tolua_isusertype(tolua_S,1,"const gamer::protocol::CreateRoomMsgProtocol",0,&tolua_err) ||
+     !tolua_isnoobj(tolua_S,2,&tolua_err)
+ )
+  goto tolua_lerror;
+ else
+#endif
+ {
+  const gamer::protocol::CreateRoomMsgProtocol* self = (const gamer::protocol::CreateRoomMsgProtocol*)  tolua_tousertype(tolua_S,1,0);
+#ifndef TOLUA_RELEASE
+  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'score_gold'", NULL);
+#endif
+  {
+   int tolua_ret = (int)  self->score_gold();
+   tolua_pushnumber(tolua_S,(lua_Number)tolua_ret);
+  }
+ }
+ return 1;
+#ifndef TOLUA_RELEASE
+ tolua_lerror:
+ tolua_error(tolua_S,"#ferror in function 'score_gold'.",&tolua_err);
+ return 0;
+#endif
+}
+#endif //#ifndef TOLUA_DISABLE
+
+/* method: set_score_diamond of class  gamer::protocol::CreateRoomMsgProtocol */
+#ifndef TOLUA_DISABLE_tolua_create_room_msg_protocol_gamer_protocol_CreateRoomMsgProtocol_set_score_diamond00
+static int tolua_create_room_msg_protocol_gamer_protocol_CreateRoomMsgProtocol_set_score_diamond00(lua_State* tolua_S)
+{
+#ifndef TOLUA_RELEASE
+ tolua_Error tolua_err;
+ if (
+     !tolua_isusertype(tolua_S,1,"gamer::protocol::CreateRoomMsgProtocol",0,&tolua_err) ||
+     !tolua_isnumber(tolua_S,2,0,&tolua_err) ||
+     !tolua_isnoobj(tolua_S,3,&tolua_err)
+ )
+  goto tolua_lerror;
+ else
+#endif
+ {
+  gamer::protocol::CreateRoomMsgProtocol* self = (gamer::protocol::CreateRoomMsgProtocol*)  tolua_tousertype(tolua_S,1,0);
+  int score = ((int)  tolua_tonumber(tolua_S,2,0));
+#ifndef TOLUA_RELEASE
+  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'set_score_diamond'", NULL);
+#endif
+  {
+   self->set_score_diamond(score);
+  }
+ }
+ return 0;
+#ifndef TOLUA_RELEASE
+ tolua_lerror:
+ tolua_error(tolua_S,"#ferror in function 'set_score_diamond'.",&tolua_err);
+ return 0;
+#endif
+}
+#endif //#ifndef TOLUA_DISABLE
+
+/* method: score_diamond of class  gamer::protocol::CreateRoomMsgProtocol */
+#ifndef TOLUA_DISABLE_tolua_create_room_msg_protocol_gamer_protocol_CreateRoomMsgProtocol_score_diamond00
+static int tolua_create_room_msg_protocol_gamer_protocol_CreateRoomMsgProtocol_score_diamond00(lua_State* tolua_S)
+{
+#ifndef TOLUA_RELEASE
+ tolua_Error tolua_err;
+ if (
+     !tolua_isusertype(tolua_S,1,"const gamer::protocol::CreateRoomMsgProtocol",0,&tolua_err) ||
+     !tolua_isnoobj(tolua_S,2,&tolua_err)
+ )
+  goto tolua_lerror;
+ else
+#endif
+ {
+  const gamer::protocol::CreateRoomMsgProtocol* self = (const gamer::protocol::CreateRoomMsgProtocol*)  tolua_tousertype(tolua_S,1,0);
+#ifndef TOLUA_RELEASE
+  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'score_diamond'", NULL);
+#endif
+  {
+   int tolua_ret = (int)  self->score_diamond();
+   tolua_pushnumber(tolua_S,(lua_Number)tolua_ret);
+  }
+ }
+ return 1;
+#ifndef TOLUA_RELEASE
+ tolua_lerror:
+ tolua_error(tolua_S,"#ferror in function 'score_diamond'.",&tolua_err);
+ return 0;
+#endif
+}
+#endif //#ifndef TOLUA_DISABLE
+
 /* method: set_room_cards_num of class  gamer::protocol::CreateRoomMsgProtocol */
 #ifndef TOLUA_DISABLE_tolua_create_room_msg_protocol_gamer_protocol_CreateRoomMsgProtocol_set_room_cards_num00
 static int tolua_create_room_msg_protocol_gamer_protocol_CreateRoomMsgProtocol_set_room_cards_num00(lua_State* tolua_S)
@@ -422,33 +552,6 @@ static int tolua_create_room_msg_protocol_gamer_protocol_CreateRoomMsgProtocol_r
 }
 #endif //#ifndef TOLUA_DISABLE
 
-/* method: room_owner_id of class  gamer::protocol::CreateRoomMsgProtocol */
-#ifndef TOLUA_DISABLE_tolua_create_room_msg_protocol_gamer_protocol_CreateRoomMsgProtocol_room_owner_id01
-static int tolua_create_room_msg_protocol_gamer_protocol_CreateRoomMsgProtocol_room_owner_id01(lua_State* tolua_S)
-{
- tolua_Error tolua_err;
- if (
-     !tolua_isusertype(tolua_S,1,"const gamer::protocol::CreateRoomMsgProtocol",0,&tolua_err) ||
-     !tolua_isnoobj(tolua_S,2,&tolua_err)
- )
-  goto tolua_lerror;
- else
- {
-  const gamer::protocol::CreateRoomMsgProtocol* self = (const gamer::protocol::CreateRoomMsgProtocol*)  tolua_tousertype(tolua_S,1,0);
-#ifndef TOLUA_RELEASE
-  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'room_owner_id'", NULL);
-#endif
-  {
-   int tolua_ret = (int)  self->room_owner_id();
-   tolua_pushnumber(tolua_S,(lua_Number)tolua_ret);
-  }
- }
- return 1;
-tolua_lerror:
- return tolua_create_room_msg_protocol_gamer_protocol_CreateRoomMsgProtocol_room_owner_id00(tolua_S);
-}
-#endif //#ifndef TOLUA_DISABLE
-
 /* Open function */
 TOLUA_API int tolua_create_room_msg_protocol_open (lua_State* tolua_S)
 {
@@ -476,10 +579,13 @@ TOLUA_API int tolua_create_room_msg_protocol_open (lua_State* tolua_S)
      tolua_function(tolua_S,"rounds_num",tolua_create_room_msg_protocol_gamer_protocol_CreateRoomMsgProtocol_rounds_num00);
      tolua_function(tolua_S,"set_players_num",tolua_create_room_msg_protocol_gamer_protocol_CreateRoomMsgProtocol_set_players_num00);
      tolua_function(tolua_S,"players_num",tolua_create_room_msg_protocol_gamer_protocol_CreateRoomMsgProtocol_players_num00);
+     tolua_function(tolua_S,"set_score_gold",tolua_create_room_msg_protocol_gamer_protocol_CreateRoomMsgProtocol_set_score_gold00);
+     tolua_function(tolua_S,"score_gold",tolua_create_room_msg_protocol_gamer_protocol_CreateRoomMsgProtocol_score_gold00);
+     tolua_function(tolua_S,"set_score_diamond",tolua_create_room_msg_protocol_gamer_protocol_CreateRoomMsgProtocol_set_score_diamond00);
+     tolua_function(tolua_S,"score_diamond",tolua_create_room_msg_protocol_gamer_protocol_CreateRoomMsgProtocol_score_diamond00);
      tolua_function(tolua_S,"set_room_cards_num",tolua_create_room_msg_protocol_gamer_protocol_CreateRoomMsgProtocol_set_room_cards_num00);
      tolua_function(tolua_S,"room_cards_num",tolua_create_room_msg_protocol_gamer_protocol_CreateRoomMsgProtocol_room_cards_num00);
      tolua_function(tolua_S,"room_id",tolua_create_room_msg_protocol_gamer_protocol_CreateRoomMsgProtocol_room_id00);
-     tolua_function(tolua_S,"room_owner_id",tolua_create_room_msg_protocol_gamer_protocol_CreateRoomMsgProtocol_room_owner_id01);
     tolua_endmodule(tolua_S);
    tolua_endmodule(tolua_S);
   tolua_endmodule(tolua_S);

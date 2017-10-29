@@ -1,6 +1,6 @@
 /*
 ** Lua binding: my_login_msg_protocol
-** Generated automatically by tolua++-1.0.92 on 06/20/17 21:52:52.
+** Generated automatically by tolua++-1.0.92 on 10/29/17 21:18:14.
 */
 
 #ifndef __cplusplus
@@ -13,7 +13,7 @@
 /* Exported function */
 TOLUA_API int  tolua_my_login_msg_protocol_open (lua_State* tolua_S);
 
-#include "my_login_msg_protocol.pb.h"
+#include "msg/protocol/my_login_msg_protocol.pb.h"
 #include <string>
 #include <google/protobuf/stubs/common.h>
 #include <google/protobuf/generated_message_util.h>
@@ -204,7 +204,7 @@ static int tolua_my_login_msg_protocol_gamer_protocol_MyLoginMsgProtocol_set_pas
  tolua_Error tolua_err;
  if (
      !tolua_isusertype(tolua_S,1,"gamer::protocol::MyLoginMsgProtocol",0,&tolua_err) ||
-     !tolua_isnumber(tolua_S,2,0,&tolua_err) ||
+     !tolua_isstring(tolua_S,2,0,&tolua_err) ||
      !tolua_isnoobj(tolua_S,3,&tolua_err)
  )
   goto tolua_lerror;
@@ -212,7 +212,7 @@ static int tolua_my_login_msg_protocol_gamer_protocol_MyLoginMsgProtocol_set_pas
 #endif
  {
   gamer::protocol::MyLoginMsgProtocol* self = (gamer::protocol::MyLoginMsgProtocol*)  tolua_tousertype(tolua_S,1,0);
-  int value = ((int)  tolua_tonumber(tolua_S,2,0));
+  const char* value = ((const char*)  tolua_tostring(tolua_S,2,0));
 #ifndef TOLUA_RELEASE
   if (!self) tolua_error(tolua_S,"invalid 'self' in function 'set_password'", NULL);
 #endif
@@ -248,8 +248,8 @@ static int tolua_my_login_msg_protocol_gamer_protocol_MyLoginMsgProtocol_passwor
   if (!self) tolua_error(tolua_S,"invalid 'self' in function 'password'", NULL);
 #endif
   {
-   int tolua_ret = (int)  self->password();
-   tolua_pushnumber(tolua_S,(lua_Number)tolua_ret);
+   const std::string tolua_ret = (const std::string)  self->password();
+   tolua_pushcppstring(tolua_S,(const char*)tolua_ret);
   }
  }
  return 1;

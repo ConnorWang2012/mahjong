@@ -22,8 +22,8 @@ public:
 	inline void set_account(const char* value);
 	inline const std::string& account() const;
 
-	inline void set_password(int value);    
-    inline int password() const;
+	inline void set_password(const char* value);    
+    inline const std::string& password() const;
 
     inline const gamer::protocol::PlayerMsgProtocol& player() const;
 };

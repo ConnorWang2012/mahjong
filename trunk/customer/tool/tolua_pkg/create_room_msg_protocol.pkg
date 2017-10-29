@@ -28,6 +28,12 @@ public:
 	inline void set_players_num(int value);
     inline int players_num() const;
 
+    inline void set_score_gold(int score);
+    inline int score_gold() const;
+
+    inline void set_score_diamond(int score);
+    inline int score_diamond() const;
+
     inline void set_room_cards_num(int value);
     inline int room_cards_num() const;
 
