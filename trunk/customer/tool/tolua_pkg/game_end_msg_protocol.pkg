@@ -19,9 +19,14 @@ public:
 
 	inline int player_id() const;
 	inline std::string nick_name() const;
-	inline int score() const;
-	inline int total_score() const;
-
+	inline int score_gold() const;
+	inline int score_diamond() const;
+	inline int total_score_gold() const;
+	inline int total_score_diamond() const;
+	inline int rate_winning() const;
+	inline int num_ming_gang() const;
+	inline int num_an_gang() const;
+	
 	inline const gamer::protocol::PlayerCardsMsgProtocol& player_cards(int index) const;
 };
 

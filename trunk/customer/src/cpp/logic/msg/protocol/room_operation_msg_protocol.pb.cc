@@ -2,7 +2,7 @@
 // source: room_operation_msg_protocol.proto
 
 #define INTERNAL_SUPPRESS_PROTOBUF_FIELD_DEPRECATION
-#include "room_operation_msg_protocol.pb.h"
+#include "msg/protocol/room_operation_msg_protocol.pb.h"
 
 #include <algorithm>
 

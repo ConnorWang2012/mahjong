@@ -2,7 +2,7 @@
 // source: my_login_msg_protocol.proto
 
 #define INTERNAL_SUPPRESS_PROTOBUF_FIELD_DEPRECATION
-#include "my_login_msg_protocol.pb.h"
+#include "msg/protocol/my_login_msg_protocol.pb.h"
 
 #include <algorithm>
 

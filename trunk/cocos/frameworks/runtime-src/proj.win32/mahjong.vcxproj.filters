@@ -58,9 +58,6 @@
     <Filter Include="classes\cpp\logic\lua_bind">
       <UniqueIdentifier>{17dd974a-d19b-4acc-abe7-b60c45baaeb9}</UniqueIdentifier>
     </Filter>
-    <Filter Include="classes\cpp\logic\lua_include">
-      <UniqueIdentifier>{978dc40b-5b0c-480c-8f12-34417f0c7947}</UniqueIdentifier>
-    </Filter>
     <Filter Include="classes\cpp\logic\provider">
       <UniqueIdentifier>{19db301e-3dd8-4d20-b977-44d8a7dbf596}</UniqueIdentifier>
     </Filter>
@@ -91,17 +88,11 @@
     <Filter Include="classes\cpp\network\libevent">
       <UniqueIdentifier>{6a68a36b-cbde-48c5-ad85-f8f8417a1539}</UniqueIdentifier>
     </Filter>
-    <Filter Include="classes\cpp\network\libevent\compat">
-      <UniqueIdentifier>{eee83a76-316b-4619-abb6-eba127a72774}</UniqueIdentifier>
-    </Filter>
     <Filter Include="classes\cpp\network\libevent\include">
       <UniqueIdentifier>{cd8cdc45-bb24-47c7-b7fa-3feb6bb58a52}</UniqueIdentifier>
     </Filter>
     <Filter Include="classes\cpp\network\libevent\include\event2">
       <UniqueIdentifier>{c365ecda-6be2-4158-8d0c-e5b36182203a}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="classes\cpp\network\libevent\win32">
-      <UniqueIdentifier>{78964a36-d626-4a2e-938a-a0c749dbfcd1}</UniqueIdentifier>
     </Filter>
     <Filter Include="classes\cpp\network\libevent\include\openssl">
       <UniqueIdentifier>{a8177c4d-c777-41fe-8d1b-3e2360b5e9b8}</UniqueIdentifier>
@@ -130,33 +121,6 @@
     <Filter Include="classes\lua\view\hall">
       <UniqueIdentifier>{089934a4-7b15-4a62-ba32-99646b155677}</UniqueIdentifier>
     </Filter>
-    <Filter Include="classes\lua\view\layouts">
-      <UniqueIdentifier>{cd5cb23c-0a86-4f85-8c45-328636f80bb5}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="classes\lua\view\layouts\scene">
-      <UniqueIdentifier>{51b4b265-bd66-4489-91c5-7ddefb9ce6e3}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="classes\lua\view\layouts\scene\hall">
-      <UniqueIdentifier>{db2d269e-c004-4811-a8d3-4880fca043d0}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="classes\lua\view\layouts\scene\login">
-      <UniqueIdentifier>{d5a1141a-a302-4c89-a70f-d9941eab5aef}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="classes\lua\view\layouts\scene\room">
-      <UniqueIdentifier>{d14cbbba-705c-48c8-89fc-6b827e92572a}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="classes\lua\view\layouts\ui">
-      <UniqueIdentifier>{98dd128f-5c19-47f4-bcf1-b5c8964ef3c5}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="classes\lua\view\layouts\ui\login">
-      <UniqueIdentifier>{59a5a4d1-891f-467d-afd5-8dbe988f8354}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="classes\lua\view\layouts\ui\hall">
-      <UniqueIdentifier>{8a0eb3d5-34d0-49f5-ab08-c7733a155361}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="classes\lua\view\layouts\ui\room">
-      <UniqueIdentifier>{ed770fbe-5dde-4107-aa71-2fe52aa5461e}</UniqueIdentifier>
-    </Filter>
     <Filter Include="classes\lua\view\room">
       <UniqueIdentifier>{c1eaf557-8ed0-4a19-9d47-9447b859eb6c}</UniqueIdentifier>
     </Filter>
@@ -169,26 +133,8 @@
     <Filter Include="classes\lua\view\room\scene">
       <UniqueIdentifier>{08179b87-8893-4389-838e-92b36aaa50f7}</UniqueIdentifier>
     </Filter>
-    <Filter Include="classes\lua\view\layouts\ui\room\mahjong">
-      <UniqueIdentifier>{d033e8eb-c849-42de-b8f6-1376a197100b}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="classes\lua\view\hall\popups">
-      <UniqueIdentifier>{abca24aa-60b1-4bbc-a0a5-04a2fd69f8e5}</UniqueIdentifier>
-    </Filter>
     <Filter Include="classes\lua\logic\util">
       <UniqueIdentifier>{64603fb6-ddce-410b-94f6-d1e8c4b544d8}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="classes\lua\view\animations">
-      <UniqueIdentifier>{4834526c-90c1-4bb4-a6ee-bfa266f875de}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="classes\lua\view\animations\login">
-      <UniqueIdentifier>{ce38a6f2-1d46-4e4a-994f-0e13118b5cbd}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="classes\lua\view\animations\hall">
-      <UniqueIdentifier>{93ef2130-7d67-4ae5-93db-3e6e844d2ba8}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="classes\lua\view\animations\room">
-      <UniqueIdentifier>{bebc3df2-d5fc-4c62-9ff3-afaba586b5f5}</UniqueIdentifier>
     </Filter>
     <Filter Include="classes\cpp\logic\log">
       <UniqueIdentifier>{2ebd71ac-1aad-4b63-b6d3-53bbb2ddfe4b}</UniqueIdentifier>
@@ -196,8 +142,74 @@
     <Filter Include="classes\lua\view\common">
       <UniqueIdentifier>{9bfff450-9496-4698-abb2-e68cc3ffe2fb}</UniqueIdentifier>
     </Filter>
-    <Filter Include="classes\lua\view\layouts\ui\common">
+    <Filter Include="classes\cpp\logic\lua_bind\lua_include">
+      <UniqueIdentifier>{978dc40b-5b0c-480c-8f12-34417f0c7947}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="classes\lua\view\animation">
+      <UniqueIdentifier>{4834526c-90c1-4bb4-a6ee-bfa266f875de}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="classes\lua\view\animation\login">
+      <UniqueIdentifier>{ce38a6f2-1d46-4e4a-994f-0e13118b5cbd}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="classes\lua\view\animation\hall">
+      <UniqueIdentifier>{93ef2130-7d67-4ae5-93db-3e6e844d2ba8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="classes\lua\view\animation\room">
+      <UniqueIdentifier>{bebc3df2-d5fc-4c62-9ff3-afaba586b5f5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="classes\lua\view\layout">
+      <UniqueIdentifier>{cd5cb23c-0a86-4f85-8c45-328636f80bb5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="classes\lua\view\layout\scene">
+      <UniqueIdentifier>{51b4b265-bd66-4489-91c5-7ddefb9ce6e3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="classes\lua\view\layout\scene\hall">
+      <UniqueIdentifier>{db2d269e-c004-4811-a8d3-4880fca043d0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="classes\lua\view\layout\scene\login">
+      <UniqueIdentifier>{d5a1141a-a302-4c89-a70f-d9941eab5aef}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="classes\lua\view\layout\scene\room">
+      <UniqueIdentifier>{d14cbbba-705c-48c8-89fc-6b827e92572a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="classes\lua\view\layout\ui">
+      <UniqueIdentifier>{98dd128f-5c19-47f4-bcf1-b5c8964ef3c5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="classes\lua\view\layout\ui\login">
+      <UniqueIdentifier>{59a5a4d1-891f-467d-afd5-8dbe988f8354}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="classes\lua\view\layout\ui\hall">
+      <UniqueIdentifier>{8a0eb3d5-34d0-49f5-ab08-c7733a155361}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="classes\lua\view\layout\ui\room">
+      <UniqueIdentifier>{ed770fbe-5dde-4107-aa71-2fe52aa5461e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="classes\lua\view\layout\ui\room\mahjong">
+      <UniqueIdentifier>{d033e8eb-c849-42de-b8f6-1376a197100b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="classes\lua\view\layout\ui\common">
       <UniqueIdentifier>{d0dff916-4742-41ae-8f2c-39f121dd0dda}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="classes\lua\logic\3rd_party">
+      <UniqueIdentifier>{410d1f0e-e101-4afa-8e4f-f78c0e8570ff}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="classes\lua\view\layout\ui\hall\store">
+      <UniqueIdentifier>{966ec957-e238-4c33-9944-0d2911f4f5fe}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="classes\lua\view\hall\store">
+      <UniqueIdentifier>{abca24aa-60b1-4bbc-a0a5-04a2fd69f8e5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="classes\lua\view\hall\room">
+      <UniqueIdentifier>{54230320-1596-4556-8639-30354a1a141d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="classes\lua\view\layout\ui\hall\room">
+      <UniqueIdentifier>{a5941ed7-96b8-426a-9176-ae711d72bb48}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="classes\lua\view\room\game_end">
+      <UniqueIdentifier>{fe485452-4d18-4abd-aa13-e9436de5bfcb}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="classes\lua\view\layout\ui\room\game_end">
+      <UniqueIdentifier>{07982770-0578-4d16-ac06-f68cc12b0862}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -225,196 +237,22 @@
       <Filter>classes\cpp\logic\constant</Filter>
     </ClInclude>
     <ClInclude Include="..\..\..\..\customer\src\cpp\logic\lua_include\lauxlib.h">
-      <Filter>classes\cpp\logic\lua_include</Filter>
+      <Filter>classes\cpp\logic\lua_bind\lua_include</Filter>
     </ClInclude>
     <ClInclude Include="..\..\..\..\customer\src\cpp\logic\lua_include\lua.h">
-      <Filter>classes\cpp\logic\lua_include</Filter>
+      <Filter>classes\cpp\logic\lua_bind\lua_include</Filter>
     </ClInclude>
     <ClInclude Include="..\..\..\..\customer\src\cpp\logic\lua_include\luaconf.h">
-      <Filter>classes\cpp\logic\lua_include</Filter>
+      <Filter>classes\cpp\logic\lua_bind\lua_include</Filter>
     </ClInclude>
     <ClInclude Include="..\..\..\..\customer\src\cpp\logic\lua_include\lualib.h">
-      <Filter>classes\cpp\logic\lua_include</Filter>
+      <Filter>classes\cpp\logic\lua_bind\lua_include</Filter>
     </ClInclude>
     <ClInclude Include="..\..\..\..\customer\src\cpp\logic\provider\id_provider.h">
       <Filter>classes\cpp\logic\provider</Filter>
     </ClInclude>
     <ClInclude Include="..\..\..\..\customer\src\cpp\network\network_manager.h">
       <Filter>classes\cpp\network</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\..\customer\src\cpp\network\libevent\src\compat\sys\queue.h">
-      <Filter>classes\cpp\network\libevent\compat</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\..\customer\src\cpp\network\libevent\src\bufferevent-internal.h">
-      <Filter>classes\cpp\network\libevent</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\..\customer\src\cpp\network\libevent\src\changelist-internal.h">
-      <Filter>classes\cpp\network\libevent</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\..\customer\src\cpp\network\libevent\src\defer-internal.h">
-      <Filter>classes\cpp\network\libevent</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\..\customer\src\cpp\network\libevent\src\epolltable-internal.h">
-      <Filter>classes\cpp\network\libevent</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\..\customer\src\cpp\network\libevent\src\evbuffer-internal.h">
-      <Filter>classes\cpp\network\libevent</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\..\customer\src\cpp\network\libevent\src\evconfig-private.h">
-      <Filter>classes\cpp\network\libevent</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\..\customer\src\cpp\network\libevent\src\event-internal.h">
-      <Filter>classes\cpp\network\libevent</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\..\customer\src\cpp\network\libevent\src\evmap-internal.h">
-      <Filter>classes\cpp\network\libevent</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\..\customer\src\cpp\network\libevent\src\evrpc-internal.h">
-      <Filter>classes\cpp\network\libevent</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\..\customer\src\cpp\network\libevent\src\evsignal-internal.h">
-      <Filter>classes\cpp\network\libevent</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\..\customer\src\cpp\network\libevent\src\evthread-internal.h">
-      <Filter>classes\cpp\network\libevent</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\..\customer\src\cpp\network\libevent\src\ht-internal.h">
-      <Filter>classes\cpp\network\libevent</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\..\customer\src\cpp\network\libevent\src\http-internal.h">
-      <Filter>classes\cpp\network\libevent</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\..\customer\src\cpp\network\libevent\src\iocp-internal.h">
-      <Filter>classes\cpp\network\libevent</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\..\customer\src\cpp\network\libevent\src\ipv6-internal.h">
-      <Filter>classes\cpp\network\libevent</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\..\customer\src\cpp\network\libevent\src\kqueue-internal.h">
-      <Filter>classes\cpp\network\libevent</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\..\customer\src\cpp\network\libevent\src\log-internal.h">
-      <Filter>classes\cpp\network\libevent</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\..\customer\src\cpp\network\libevent\src\minheap-internal.h">
-      <Filter>classes\cpp\network\libevent</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\..\customer\src\cpp\network\libevent\src\mm-internal.h">
-      <Filter>classes\cpp\network\libevent</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\..\customer\src\cpp\network\libevent\src\openssl-compat.h">
-      <Filter>classes\cpp\network\libevent</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\..\customer\src\cpp\network\libevent\src\ratelim-internal.h">
-      <Filter>classes\cpp\network\libevent</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\..\customer\src\cpp\network\libevent\src\strlcpy-internal.h">
-      <Filter>classes\cpp\network\libevent</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\..\customer\src\cpp\network\libevent\src\time-internal.h">
-      <Filter>classes\cpp\network\libevent</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\..\customer\src\cpp\network\libevent\src\util-internal.h">
-      <Filter>classes\cpp\network\libevent</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\..\customer\src\cpp\network\libevent\src\include\evrpc.h">
-      <Filter>classes\cpp\network\libevent\include</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\..\customer\src\cpp\network\libevent\src\include\evutil.h">
-      <Filter>classes\cpp\network\libevent\include</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\..\customer\src\cpp\network\libevent\src\include\evdns.h">
-      <Filter>classes\cpp\network\libevent\include</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\..\customer\src\cpp\network\libevent\src\include\event.h">
-      <Filter>classes\cpp\network\libevent\include</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\..\customer\src\cpp\network\libevent\src\include\evhttp.h">
-      <Filter>classes\cpp\network\libevent\include</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\..\customer\src\cpp\network\libevent\src\include\event2\buffer.h">
-      <Filter>classes\cpp\network\libevent\include\event2</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\..\customer\src\cpp\network\libevent\src\include\event2\bufferevent.h">
-      <Filter>classes\cpp\network\libevent\include\event2</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\..\customer\src\cpp\network\libevent\src\include\event2\bufferevent_compat.h">
-      <Filter>classes\cpp\network\libevent\include\event2</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\..\customer\src\cpp\network\libevent\src\include\event2\bufferevent_ssl.h">
-      <Filter>classes\cpp\network\libevent\include\event2</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\..\customer\src\cpp\network\libevent\src\include\event2\bufferevent_struct.h">
-      <Filter>classes\cpp\network\libevent\include\event2</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\..\customer\src\cpp\network\libevent\src\include\event2\buffer_compat.h">
-      <Filter>classes\cpp\network\libevent\include\event2</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\..\customer\src\cpp\network\libevent\src\include\event2\dns.h">
-      <Filter>classes\cpp\network\libevent\include\event2</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\..\customer\src\cpp\network\libevent\src\include\event2\dns_compat.h">
-      <Filter>classes\cpp\network\libevent\include\event2</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\..\customer\src\cpp\network\libevent\src\include\event2\dns_struct.h">
-      <Filter>classes\cpp\network\libevent\include\event2</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\..\customer\src\cpp\network\libevent\src\include\event2\event.h">
-      <Filter>classes\cpp\network\libevent\include\event2</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\..\customer\src\cpp\network\libevent\src\include\event2\event_compat.h">
-      <Filter>classes\cpp\network\libevent\include\event2</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\..\customer\src\cpp\network\libevent\src\include\event2\event_struct.h">
-      <Filter>classes\cpp\network\libevent\include\event2</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\..\customer\src\cpp\network\libevent\src\include\event2\http.h">
-      <Filter>classes\cpp\network\libevent\include\event2</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\..\customer\src\cpp\network\libevent\src\include\event2\http_compat.h">
-      <Filter>classes\cpp\network\libevent\include\event2</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\..\customer\src\cpp\network\libevent\src\include\event2\http_struct.h">
-      <Filter>classes\cpp\network\libevent\include\event2</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\..\customer\src\cpp\network\libevent\src\include\event2\keyvalq_struct.h">
-      <Filter>classes\cpp\network\libevent\include\event2</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\..\customer\src\cpp\network\libevent\src\include\event2\listener.h">
-      <Filter>classes\cpp\network\libevent\include\event2</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\..\customer\src\cpp\network\libevent\src\include\event2\rpc.h">
-      <Filter>classes\cpp\network\libevent\include\event2</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\..\customer\src\cpp\network\libevent\src\include\event2\rpc_compat.h">
-      <Filter>classes\cpp\network\libevent\include\event2</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\..\customer\src\cpp\network\libevent\src\include\event2\rpc_struct.h">
-      <Filter>classes\cpp\network\libevent\include\event2</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\..\customer\src\cpp\network\libevent\src\include\event2\tag.h">
-      <Filter>classes\cpp\network\libevent\include\event2</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\..\customer\src\cpp\network\libevent\src\include\event2\tag_compat.h">
-      <Filter>classes\cpp\network\libevent\include\event2</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\..\customer\src\cpp\network\libevent\src\include\event2\thread.h">
-      <Filter>classes\cpp\network\libevent\include\event2</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\..\customer\src\cpp\network\libevent\src\include\event2\util.h">
-      <Filter>classes\cpp\network\libevent\include\event2</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\..\customer\src\cpp\network\libevent\src\include\event2\visibility.h">
-      <Filter>classes\cpp\network\libevent\include\event2</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\..\customer\src\cpp\network\libevent\src\WIN32-Code\tree.h">
-      <Filter>classes\cpp\network\libevent\win32</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\..\customer\src\cpp\network\libevent\src\WIN32-Code\nmake\evconfig-private.h">
-      <Filter>classes\cpp\network\libevent\win32</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\..\customer\src\cpp\network\libevent\src\WIN32-Code\nmake\event2\event-config.h">
-      <Filter>classes\cpp\network\libevent\win32</Filter>
     </ClInclude>
     <ClInclude Include="..\..\..\..\customer\src\cpp\logic\base\common.h">
       <Filter>classes\cpp\logic\base</Filter>
@@ -902,6 +740,99 @@
     <ClInclude Include="..\..\..\..\customer\src\cpp\logic\msg\protocol\game_end_msg_protocol.pb.h">
       <Filter>classes\cpp\logic\msg\protocol</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\..\..\customer\src\cpp\network\libevent\win32\include\event2\buffer.h">
+      <Filter>classes\cpp\network\libevent\include\event2</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\customer\src\cpp\network\libevent\win32\include\event2\bufferevent.h">
+      <Filter>classes\cpp\network\libevent\include\event2</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\customer\src\cpp\network\libevent\win32\include\event2\bufferevent_compat.h">
+      <Filter>classes\cpp\network\libevent\include\event2</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\customer\src\cpp\network\libevent\win32\include\event2\bufferevent_ssl.h">
+      <Filter>classes\cpp\network\libevent\include\event2</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\customer\src\cpp\network\libevent\win32\include\event2\bufferevent_struct.h">
+      <Filter>classes\cpp\network\libevent\include\event2</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\customer\src\cpp\network\libevent\win32\include\event2\buffer_compat.h">
+      <Filter>classes\cpp\network\libevent\include\event2</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\customer\src\cpp\network\libevent\win32\include\event2\dns.h">
+      <Filter>classes\cpp\network\libevent\include\event2</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\customer\src\cpp\network\libevent\win32\include\event2\dns_compat.h">
+      <Filter>classes\cpp\network\libevent\include\event2</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\customer\src\cpp\network\libevent\win32\include\event2\dns_struct.h">
+      <Filter>classes\cpp\network\libevent\include\event2</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\customer\src\cpp\network\libevent\win32\include\event2\event-config.h">
+      <Filter>classes\cpp\network\libevent\include\event2</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\customer\src\cpp\network\libevent\win32\include\event2\event.h">
+      <Filter>classes\cpp\network\libevent\include\event2</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\customer\src\cpp\network\libevent\win32\include\event2\event_compat.h">
+      <Filter>classes\cpp\network\libevent\include\event2</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\customer\src\cpp\network\libevent\win32\include\event2\event_struct.h">
+      <Filter>classes\cpp\network\libevent\include\event2</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\customer\src\cpp\network\libevent\win32\include\event2\http.h">
+      <Filter>classes\cpp\network\libevent\include\event2</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\customer\src\cpp\network\libevent\win32\include\event2\http_compat.h">
+      <Filter>classes\cpp\network\libevent\include\event2</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\customer\src\cpp\network\libevent\win32\include\event2\http_struct.h">
+      <Filter>classes\cpp\network\libevent\include\event2</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\customer\src\cpp\network\libevent\win32\include\event2\keyvalq_struct.h">
+      <Filter>classes\cpp\network\libevent\include\event2</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\customer\src\cpp\network\libevent\win32\include\event2\listener.h">
+      <Filter>classes\cpp\network\libevent\include\event2</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\customer\src\cpp\network\libevent\win32\include\event2\rpc.h">
+      <Filter>classes\cpp\network\libevent\include\event2</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\customer\src\cpp\network\libevent\win32\include\event2\rpc_compat.h">
+      <Filter>classes\cpp\network\libevent\include\event2</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\customer\src\cpp\network\libevent\win32\include\event2\rpc_struct.h">
+      <Filter>classes\cpp\network\libevent\include\event2</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\customer\src\cpp\network\libevent\win32\include\event2\tag.h">
+      <Filter>classes\cpp\network\libevent\include\event2</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\customer\src\cpp\network\libevent\win32\include\event2\tag_compat.h">
+      <Filter>classes\cpp\network\libevent\include\event2</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\customer\src\cpp\network\libevent\win32\include\event2\thread.h">
+      <Filter>classes\cpp\network\libevent\include\event2</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\customer\src\cpp\network\libevent\win32\include\event2\util.h">
+      <Filter>classes\cpp\network\libevent\include\event2</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\customer\src\cpp\network\libevent\win32\include\event2\visibility.h">
+      <Filter>classes\cpp\network\libevent\include\event2</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\customer\src\cpp\network\libevent\win32\include\evdns.h">
+      <Filter>classes\cpp\network\libevent\include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\customer\src\cpp\network\libevent\win32\include\event.h">
+      <Filter>classes\cpp\network\libevent\include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\customer\src\cpp\network\libevent\win32\include\evhttp.h">
+      <Filter>classes\cpp\network\libevent\include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\customer\src\cpp\network\libevent\win32\include\evrpc.h">
+      <Filter>classes\cpp\network\libevent\include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\customer\src\cpp\network\libevent\win32\include\evutil.h">
+      <Filter>classes\cpp\network\libevent\include</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\Classes\AppDelegate.cpp">
@@ -919,102 +850,6 @@
     </ClCompile>
     <ClCompile Include="..\..\..\..\customer\src\cpp\network\network_manager.cc">
       <Filter>classes\cpp\network</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\..\..\customer\src\cpp\network\libevent\src\buffer.c">
-      <Filter>classes\cpp\network\libevent</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\..\..\customer\src\cpp\network\libevent\src\buffer_iocp.c">
-      <Filter>classes\cpp\network\libevent</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\..\..\customer\src\cpp\network\libevent\src\bufferevent.c">
-      <Filter>classes\cpp\network\libevent</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\..\..\customer\src\cpp\network\libevent\src\bufferevent_async.c">
-      <Filter>classes\cpp\network\libevent</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\..\..\customer\src\cpp\network\libevent\src\bufferevent_filter.c">
-      <Filter>classes\cpp\network\libevent</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\..\..\customer\src\cpp\network\libevent\src\bufferevent_openssl.c">
-      <Filter>classes\cpp\network\libevent</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\..\..\customer\src\cpp\network\libevent\src\bufferevent_pair.c">
-      <Filter>classes\cpp\network\libevent</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\..\..\customer\src\cpp\network\libevent\src\bufferevent_ratelim.c">
-      <Filter>classes\cpp\network\libevent</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\..\..\customer\src\cpp\network\libevent\src\bufferevent_sock.c">
-      <Filter>classes\cpp\network\libevent</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\..\..\customer\src\cpp\network\libevent\src\devpoll.c">
-      <Filter>classes\cpp\network\libevent</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\..\..\customer\src\cpp\network\libevent\src\epoll.c">
-      <Filter>classes\cpp\network\libevent</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\..\..\customer\src\cpp\network\libevent\src\evdns.c">
-      <Filter>classes\cpp\network\libevent</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\..\..\customer\src\cpp\network\libevent\src\event.c">
-      <Filter>classes\cpp\network\libevent</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\..\..\customer\src\cpp\network\libevent\src\event_iocp.c">
-      <Filter>classes\cpp\network\libevent</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\..\..\customer\src\cpp\network\libevent\src\event_tagging.c">
-      <Filter>classes\cpp\network\libevent</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\..\..\customer\src\cpp\network\libevent\src\evmap.c">
-      <Filter>classes\cpp\network\libevent</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\..\..\customer\src\cpp\network\libevent\src\evport.c">
-      <Filter>classes\cpp\network\libevent</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\..\..\customer\src\cpp\network\libevent\src\evrpc.c">
-      <Filter>classes\cpp\network\libevent</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\..\..\customer\src\cpp\network\libevent\src\evthread.c">
-      <Filter>classes\cpp\network\libevent</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\..\..\customer\src\cpp\network\libevent\src\evthread_win32.c">
-      <Filter>classes\cpp\network\libevent</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\..\..\customer\src\cpp\network\libevent\src\evutil.c">
-      <Filter>classes\cpp\network\libevent</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\..\..\customer\src\cpp\network\libevent\src\evutil_rand.c">
-      <Filter>classes\cpp\network\libevent</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\..\..\customer\src\cpp\network\libevent\src\evutil_time.c">
-      <Filter>classes\cpp\network\libevent</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\..\..\customer\src\cpp\network\libevent\src\http.c">
-      <Filter>classes\cpp\network\libevent</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\..\..\customer\src\cpp\network\libevent\src\kqueue.c">
-      <Filter>classes\cpp\network\libevent</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\..\..\customer\src\cpp\network\libevent\src\listener.c">
-      <Filter>classes\cpp\network\libevent</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\..\..\customer\src\cpp\network\libevent\src\log.c">
-      <Filter>classes\cpp\network\libevent</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\..\..\customer\src\cpp\network\libevent\src\poll.c">
-      <Filter>classes\cpp\network\libevent</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\..\..\customer\src\cpp\network\libevent\src\select.c">
-      <Filter>classes\cpp\network\libevent</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\..\..\customer\src\cpp\network\libevent\src\signal.c">
-      <Filter>classes\cpp\network\libevent</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\..\..\customer\src\cpp\network\libevent\src\strlcpy.c">
-      <Filter>classes\cpp\network\libevent</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\..\..\customer\src\cpp\network\libevent\src\win32select.c">
-      <Filter>classes\cpp\network\libevent</Filter>
     </ClCompile>
     <ClCompile Include="..\..\..\..\customer\src\cpp\logic\base\command.cc">
       <Filter>classes\cpp\logic\base</Filter>
@@ -1263,9 +1098,6 @@
     <None Include="..\..\..\..\customer\src\lua\view\init_view.lua">
       <Filter>classes\lua\view</Filter>
     </None>
-    <None Include="..\..\..\src\main.lua">
-      <Filter>classes\lua\logic</Filter>
-    </None>
     <None Include="..\..\..\..\customer\src\lua\logic\init_modules.lua">
       <Filter>classes\lua\logic</Filter>
     </None>
@@ -1279,10 +1111,10 @@
       <Filter>classes\lua\view\hall</Filter>
     </None>
     <None Include="..\..\..\..\customer\src\lua\view\layouts\scene\login\login_scene_layout.lua">
-      <Filter>classes\lua\view\layouts\scene\login</Filter>
+      <Filter>classes\lua\view\layout\scene\login</Filter>
     </None>
     <None Include="..\..\..\..\customer\src\lua\view\layouts\scene\hall\hall_scene_layout.lua">
-      <Filter>classes\lua\view\layouts\scene\hall</Filter>
+      <Filter>classes\lua\view\layout\scene\hall</Filter>
     </None>
     <None Include="..\..\..\..\customer\src\lua\logic\constant\msg_id.lua">
       <Filter>classes\lua\logic\constant</Filter>
@@ -1294,7 +1126,7 @@
       <Filter>classes\lua\logic\constant</Filter>
     </None>
     <None Include="..\..\..\..\customer\src\lua\view\layouts\scene\room\normal_room_scene_layout.lua">
-      <Filter>classes\lua\view\layouts\scene\room</Filter>
+      <Filter>classes\lua\view\layout\scene\room</Filter>
     </None>
     <None Include="..\..\..\..\customer\src\lua\data\data_constants.lua">
       <Filter>classes\lua\data</Filter>
@@ -1309,91 +1141,91 @@
       <Filter>classes\lua\view\constant</Filter>
     </None>
     <None Include="..\..\..\..\customer\src\lua\view\layouts\ui\room\mahjong\left_invisible_2_mj_node_layout.lua">
-      <Filter>classes\lua\view\layouts\ui\room\mahjong</Filter>
+      <Filter>classes\lua\view\layout\ui\room\mahjong</Filter>
     </None>
     <None Include="..\..\..\..\customer\src\lua\view\layouts\ui\room\mahjong\left_invisible_3_mj_node_layout.lua">
-      <Filter>classes\lua\view\layouts\ui\room\mahjong</Filter>
+      <Filter>classes\lua\view\layout\ui\room\mahjong</Filter>
     </None>
     <None Include="..\..\..\..\customer\src\lua\view\layouts\ui\room\mahjong\left_invisible_mj_node_layout.lua">
-      <Filter>classes\lua\view\layouts\ui\room\mahjong</Filter>
+      <Filter>classes\lua\view\layout\ui\room\mahjong</Filter>
     </None>
     <None Include="..\..\..\..\customer\src\lua\view\layouts\ui\room\mahjong\left_visible_1_mj_node_layout.lua">
-      <Filter>classes\lua\view\layouts\ui\room\mahjong</Filter>
+      <Filter>classes\lua\view\layout\ui\room\mahjong</Filter>
     </None>
     <None Include="..\..\..\..\customer\src\lua\view\layouts\ui\room\mahjong\left_visible_2_mj_node_layout.lua">
-      <Filter>classes\lua\view\layouts\ui\room\mahjong</Filter>
+      <Filter>classes\lua\view\layout\ui\room\mahjong</Filter>
     </None>
     <None Include="..\..\..\..\customer\src\lua\view\layouts\ui\room\mahjong\left_visible_3_mj_node_layout.lua">
-      <Filter>classes\lua\view\layouts\ui\room\mahjong</Filter>
+      <Filter>classes\lua\view\layout\ui\room\mahjong</Filter>
     </None>
     <None Include="..\..\..\..\customer\src\lua\view\layouts\ui\room\mahjong\my_invisible_1_mj_node_layout.lua">
-      <Filter>classes\lua\view\layouts\ui\room\mahjong</Filter>
+      <Filter>classes\lua\view\layout\ui\room\mahjong</Filter>
     </None>
     <None Include="..\..\..\..\customer\src\lua\view\layouts\ui\room\mahjong\my_invisible_2_mj_node_layout.lua">
-      <Filter>classes\lua\view\layouts\ui\room\mahjong</Filter>
+      <Filter>classes\lua\view\layout\ui\room\mahjong</Filter>
     </None>
     <None Include="..\..\..\..\customer\src\lua\view\layouts\ui\room\mahjong\my_invisible_3_mj_node_layout.lua">
-      <Filter>classes\lua\view\layouts\ui\room\mahjong</Filter>
+      <Filter>classes\lua\view\layout\ui\room\mahjong</Filter>
     </None>
     <None Include="..\..\..\..\customer\src\lua\view\layouts\ui\room\mahjong\my_invisible_mj_node_layout.lua">
-      <Filter>classes\lua\view\layouts\ui\room\mahjong</Filter>
+      <Filter>classes\lua\view\layout\ui\room\mahjong</Filter>
     </None>
     <None Include="..\..\..\..\customer\src\lua\view\layouts\ui\room\mahjong\my_visible_1_mj_node_layout.lua">
-      <Filter>classes\lua\view\layouts\ui\room\mahjong</Filter>
+      <Filter>classes\lua\view\layout\ui\room\mahjong</Filter>
     </None>
     <None Include="..\..\..\..\customer\src\lua\view\layouts\ui\room\mahjong\my_visible_2_mj_node_layout.lua">
-      <Filter>classes\lua\view\layouts\ui\room\mahjong</Filter>
+      <Filter>classes\lua\view\layout\ui\room\mahjong</Filter>
     </None>
     <None Include="..\..\..\..\customer\src\lua\view\layouts\ui\room\mahjong\my_visible_3_mj_node_layout.lua">
-      <Filter>classes\lua\view\layouts\ui\room\mahjong</Filter>
+      <Filter>classes\lua\view\layout\ui\room\mahjong</Filter>
     </None>
     <None Include="..\..\..\..\customer\src\lua\view\layouts\ui\room\mahjong\opposite_invisible_1_mj_node_layout.lua">
-      <Filter>classes\lua\view\layouts\ui\room\mahjong</Filter>
+      <Filter>classes\lua\view\layout\ui\room\mahjong</Filter>
     </None>
     <None Include="..\..\..\..\customer\src\lua\view\layouts\ui\room\mahjong\opposite_invisible_2_mj_node_layout.lua">
-      <Filter>classes\lua\view\layouts\ui\room\mahjong</Filter>
+      <Filter>classes\lua\view\layout\ui\room\mahjong</Filter>
     </None>
     <None Include="..\..\..\..\customer\src\lua\view\layouts\ui\room\mahjong\opposite_invisible_mj_node_layout.lua">
-      <Filter>classes\lua\view\layouts\ui\room\mahjong</Filter>
+      <Filter>classes\lua\view\layout\ui\room\mahjong</Filter>
     </None>
     <None Include="..\..\..\..\customer\src\lua\view\layouts\ui\room\mahjong\opposite_visible_1_mj_node_layout.lua">
-      <Filter>classes\lua\view\layouts\ui\room\mahjong</Filter>
+      <Filter>classes\lua\view\layout\ui\room\mahjong</Filter>
     </None>
     <None Include="..\..\..\..\customer\src\lua\view\layouts\ui\room\mahjong\opposite_visible_2_mj_node_layout.lua">
-      <Filter>classes\lua\view\layouts\ui\room\mahjong</Filter>
+      <Filter>classes\lua\view\layout\ui\room\mahjong</Filter>
     </None>
     <None Include="..\..\..\..\customer\src\lua\view\layouts\ui\room\mahjong\right_invisible_1_mj_node_layout.lua">
-      <Filter>classes\lua\view\layouts\ui\room\mahjong</Filter>
+      <Filter>classes\lua\view\layout\ui\room\mahjong</Filter>
     </None>
     <None Include="..\..\..\..\customer\src\lua\view\layouts\ui\room\mahjong\right_invisible_2_mj_node_layout.lua">
-      <Filter>classes\lua\view\layouts\ui\room\mahjong</Filter>
+      <Filter>classes\lua\view\layout\ui\room\mahjong</Filter>
     </None>
     <None Include="..\..\..\..\customer\src\lua\view\layouts\ui\room\mahjong\right_invisible_mj_node_layout.lua">
-      <Filter>classes\lua\view\layouts\ui\room\mahjong</Filter>
+      <Filter>classes\lua\view\layout\ui\room\mahjong</Filter>
     </None>
     <None Include="..\..\..\..\customer\src\lua\view\layouts\ui\room\mahjong\right_visible_1_mj_node_layout.lua">
-      <Filter>classes\lua\view\layouts\ui\room\mahjong</Filter>
+      <Filter>classes\lua\view\layout\ui\room\mahjong</Filter>
     </None>
     <None Include="..\..\..\..\customer\src\lua\view\layouts\ui\room\mahjong\right_visible_2_mj_node_layout.lua">
-      <Filter>classes\lua\view\layouts\ui\room\mahjong</Filter>
+      <Filter>classes\lua\view\layout\ui\room\mahjong</Filter>
     </None>
     <None Include="..\..\..\..\customer\src\lua\view\layouts\ui\room\mahjong\left_invisible_1_mj_node_layout.lua">
-      <Filter>classes\lua\view\layouts\ui\room\mahjong</Filter>
+      <Filter>classes\lua\view\layout\ui\room\mahjong</Filter>
     </None>
     <None Include="..\..\..\..\customer\src\lua\view\layouts\ui\room\mahjong\right_invisible_3_mj_node_layout.lua">
-      <Filter>classes\lua\view\layouts\ui\room\mahjong</Filter>
+      <Filter>classes\lua\view\layout\ui\room\mahjong</Filter>
     </None>
     <None Include="..\..\..\..\customer\src\lua\view\layouts\ui\room\mahjong\right_visible_3_mj_node_layout.lua">
-      <Filter>classes\lua\view\layouts\ui\room\mahjong</Filter>
+      <Filter>classes\lua\view\layout\ui\room\mahjong</Filter>
     </None>
     <None Include="..\..\..\..\customer\src\lua\view\layouts\ui\room\mahjong\opposite_visible_3_mj_node_layout.lua">
-      <Filter>classes\lua\view\layouts\ui\room\mahjong</Filter>
+      <Filter>classes\lua\view\layout\ui\room\mahjong</Filter>
     </None>
     <None Include="..\..\..\..\customer\src\lua\view\layouts\ui\room\mahjong\opposite_invisible_3_mj_node_layout.lua">
-      <Filter>classes\lua\view\layouts\ui\room\mahjong</Filter>
+      <Filter>classes\lua\view\layout\ui\room\mahjong</Filter>
     </None>
     <None Include="..\..\..\..\customer\src\lua\view\layouts\ui\room\mahjong\my_discard_mj_node_layout.lua">
-      <Filter>classes\lua\view\layouts\ui\room\mahjong</Filter>
+      <Filter>classes\lua\view\layout\ui\room\mahjong</Filter>
     </None>
     <None Include="..\..\..\..\customer\src\lua\logic\manager\popup_manager.lua">
       <Filter>classes\lua\logic\manager</Filter>
@@ -1404,12 +1236,6 @@
     <None Include="..\..\..\..\customer\src\lua\view\base\popup_base.lua">
       <Filter>classes\lua\view\base</Filter>
     </None>
-    <None Include="..\..\..\..\customer\src\lua\view\hall\popups\create_room_popup.lua">
-      <Filter>classes\lua\view\hall\popups</Filter>
-    </None>
-    <None Include="..\..\..\..\customer\src\lua\view\hall\popups\join_room_popup.lua">
-      <Filter>classes\lua\view\hall\popups</Filter>
-    </None>
     <None Include="..\..\..\..\customer\src\lua\logic\util\play_card_helper.lua">
       <Filter>classes\lua\logic\util</Filter>
     </None>
@@ -1417,40 +1243,40 @@
       <Filter>classes\lua\logic\constant</Filter>
     </None>
     <None Include="..\..\..\..\customer\src\lua\view\animations\room\node_operation_anim2.lua">
-      <Filter>classes\lua\view\animations\room</Filter>
+      <Filter>classes\lua\view\animation\room</Filter>
     </None>
     <None Include="..\..\..\..\customer\src\lua\view\common\player_head_creator.lua">
       <Filter>classes\lua\view\common</Filter>
     </None>
     <None Include="..\..\..\..\customer\src\lua\view\layouts\ui\room\room_player_head_node_layout.lua">
-      <Filter>classes\lua\view\layouts\ui\room</Filter>
+      <Filter>classes\lua\view\layout\ui\room</Filter>
     </None>
     <None Include="..\..\..\..\customer\src\lua\view\layouts\ui\room\room_player_head_layer_layout.lua">
-      <Filter>classes\lua\view\layouts\ui\room</Filter>
+      <Filter>classes\lua\view\layout\ui\room</Filter>
     </None>
     <None Include="..\..\..\..\customer\src\lua\view\layouts\ui\room\room_menu_layer_layout.lua">
-      <Filter>classes\lua\view\layouts\ui\room</Filter>
+      <Filter>classes\lua\view\layout\ui\room</Filter>
     </None>
     <None Include="..\..\..\..\customer\src\lua\logic\constant\player_constants.lua">
       <Filter>classes\lua\logic\constant</Filter>
     </None>
     <None Include="..\..\..\..\customer\src\lua\view\animations\room\node_zimo_anim.lua">
-      <Filter>classes\lua\view\animations\room</Filter>
+      <Filter>classes\lua\view\animation\room</Filter>
     </None>
     <None Include="..\..\..\..\customer\src\lua\view\animations\room\node_buhua_anim.lua">
-      <Filter>classes\lua\view\animations\room</Filter>
+      <Filter>classes\lua\view\animation\room</Filter>
     </None>
     <None Include="..\..\..\..\customer\src\lua\view\animations\room\node_chi_anim.lua">
-      <Filter>classes\lua\view\animations\room</Filter>
+      <Filter>classes\lua\view\animation\room</Filter>
     </None>
     <None Include="..\..\..\..\customer\src\lua\view\animations\room\node_gang_anim.lua">
-      <Filter>classes\lua\view\animations\room</Filter>
+      <Filter>classes\lua\view\animation\room</Filter>
     </None>
     <None Include="..\..\..\..\customer\src\lua\view\animations\room\node_hu_anim.lua">
-      <Filter>classes\lua\view\animations\room</Filter>
+      <Filter>classes\lua\view\animation\room</Filter>
     </None>
     <None Include="..\..\..\..\customer\src\lua\view\animations\room\node_peng_anim.lua">
-      <Filter>classes\lua\view\animations\room</Filter>
+      <Filter>classes\lua\view\animation\room</Filter>
     </None>
     <None Include="..\..\..\..\customer\src\lua\view\common\animation_creator.lua">
       <Filter>classes\lua\view\common</Filter>
@@ -1459,34 +1285,61 @@
       <Filter>classes\lua\view\common</Filter>
     </None>
     <None Include="..\..\..\..\customer\src\lua\view\animations\room\node_operation_anim1.lua">
-      <Filter>classes\lua\view\animations\room</Filter>
+      <Filter>classes\lua\view\animation\room</Filter>
     </None>
     <None Include="..\..\..\..\customer\src\lua\view\animations\room\node_operation_anim3.lua">
-      <Filter>classes\lua\view\animations\room</Filter>
+      <Filter>classes\lua\view\animation\room</Filter>
     </None>
     <None Include="..\..\..\..\customer\src\lua\view\animations\room\node_ting_anim.lua">
-      <Filter>classes\lua\view\animations\room</Filter>
+      <Filter>classes\lua\view\animation\room</Filter>
     </None>
     <None Include="..\..\..\..\customer\src\lua\view\layouts\ui\hall\hall_player_head_node_layout.lua">
-      <Filter>classes\lua\view\layouts\ui\hall</Filter>
+      <Filter>classes\lua\view\layout\ui\hall</Filter>
     </None>
     <None Include="..\..\..\..\customer\src\lua\view\layouts\ui\hall\hall_top_node_layout.lua">
-      <Filter>classes\lua\view\layouts\ui\hall</Filter>
-    </None>
-    <None Include="..\..\..\..\customer\src\lua\view\layouts\ui\hall\join_room_layer_layout.lua">
-      <Filter>classes\lua\view\layouts\ui\hall</Filter>
-    </None>
-    <None Include="..\..\..\..\customer\src\lua\view\layouts\ui\hall\create_room_layer_layout.lua">
-      <Filter>classes\lua\view\layouts\ui\hall</Filter>
+      <Filter>classes\lua\view\layout\ui\hall</Filter>
     </None>
     <None Include="..\..\..\..\customer\src\lua\view\layouts\ui\hall\hall_bottom_node_layout.lua">
-      <Filter>classes\lua\view\layouts\ui\hall</Filter>
+      <Filter>classes\lua\view\layout\ui\hall</Filter>
     </None>
     <None Include="..\..\..\..\customer\src\lua\view\layouts\ui\hall\hall_middle_node_layout.lua">
-      <Filter>classes\lua\view\layouts\ui\hall</Filter>
+      <Filter>classes\lua\view\layout\ui\hall</Filter>
     </None>
     <None Include="..\..\..\..\customer\src\lua\network\msg_helper.lua">
       <Filter>classes\lua\network</Filter>
+    </None>
+    <None Include="..\..\..\..\customer\src\lua\logic\3rd_party\wx_api_manager.lua">
+      <Filter>classes\lua\logic\3rd_party</Filter>
+    </None>
+    <None Include="..\..\..\..\customer\src\lua\view\layouts\ui\hall\store\store_item_node_layout.lua">
+      <Filter>classes\lua\view\layout\ui\hall\store</Filter>
+    </None>
+    <None Include="..\..\..\..\customer\src\lua\view\layouts\ui\hall\store\store_layer_layout.lua">
+      <Filter>classes\lua\view\layout\ui\hall\store</Filter>
+    </None>
+    <None Include="..\..\..\..\customer\src\lua\view\hall\room\create_room_popup.lua">
+      <Filter>classes\lua\view\hall\room</Filter>
+    </None>
+    <None Include="..\..\..\..\customer\src\lua\view\hall\room\join_room_popup.lua">
+      <Filter>classes\lua\view\hall\room</Filter>
+    </None>
+    <None Include="..\..\..\..\customer\src\lua\view\hall\store\store_popup.lua">
+      <Filter>classes\lua\view\hall\store</Filter>
+    </None>
+    <None Include="..\..\..\..\customer\src\lua\view\layouts\ui\hall\room\create_room_layer_layout.lua">
+      <Filter>classes\lua\view\layout\ui\hall\room</Filter>
+    </None>
+    <None Include="..\..\..\..\customer\src\lua\view\layouts\ui\hall\room\join_room_layer_layout.lua">
+      <Filter>classes\lua\view\layout\ui\hall\room</Filter>
+    </None>
+    <None Include="..\..\..\src\main.lua">
+      <Filter>classes\lua</Filter>
+    </None>
+    <None Include="..\..\..\..\customer\src\lua\view\room\game_end\game_end_popup.lua">
+      <Filter>classes\lua\view\room\game_end</Filter>
+    </None>
+    <None Include="..\..\..\..\customer\src\lua\view\layouts\ui\room\game_end\game_end_layer_layout.lua">
+      <Filter>classes\lua\view\layout\ui\room\game_end</Filter>
     </None>
   </ItemGroup>
 </Project>

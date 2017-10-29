@@ -2,7 +2,7 @@
 // source: create_room_msg_protocol.proto
 
 #define INTERNAL_SUPPRESS_PROTOBUF_FIELD_DEPRECATION
-#include "create_room_msg_protocol.pb.h"
+#include "msg/protocol/create_room_msg_protocol.pb.h"
 
 #include <algorithm>
 

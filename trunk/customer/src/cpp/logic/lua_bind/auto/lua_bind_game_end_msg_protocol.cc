@@ -1,6 +1,6 @@
 /*
 ** Lua binding: game_end_msg_protocol
-** Generated automatically by tolua++-1.0.92 on 09/20/17 13:41:52.
+** Generated automatically by tolua++-1.0.92 on 10/29/17 13:07:46.
 */
 
 #ifndef __cplusplus
@@ -13,7 +13,7 @@
 /* Exported function */
 TOLUA_API int  tolua_game_end_msg_protocol_open (lua_State* tolua_S);
 
-#include "game_end_msg_protocol.pb.h"
+#include "msg/protocol/game_end_msg_protocol.pb.h"
 #include <string>
 #include <google/protobuf/stubs/common.h>
 #include <google/protobuf/generated_message_util.h>
@@ -127,9 +127,9 @@ static int tolua_game_end_msg_protocol_gamer_protocol_GameEndDataMsgProtocol_nic
 }
 #endif //#ifndef TOLUA_DISABLE
 
-/* method: score of class  gamer::protocol::GameEndDataMsgProtocol */
-#ifndef TOLUA_DISABLE_tolua_game_end_msg_protocol_gamer_protocol_GameEndDataMsgProtocol_score00
-static int tolua_game_end_msg_protocol_gamer_protocol_GameEndDataMsgProtocol_score00(lua_State* tolua_S)
+/* method: score_gold of class  gamer::protocol::GameEndDataMsgProtocol */
+#ifndef TOLUA_DISABLE_tolua_game_end_msg_protocol_gamer_protocol_GameEndDataMsgProtocol_score_gold00
+static int tolua_game_end_msg_protocol_gamer_protocol_GameEndDataMsgProtocol_score_gold00(lua_State* tolua_S)
 {
 #ifndef TOLUA_RELEASE
  tolua_Error tolua_err;
@@ -143,25 +143,25 @@ static int tolua_game_end_msg_protocol_gamer_protocol_GameEndDataMsgProtocol_sco
  {
   const gamer::protocol::GameEndDataMsgProtocol* self = (const gamer::protocol::GameEndDataMsgProtocol*)  tolua_tousertype(tolua_S,1,0);
 #ifndef TOLUA_RELEASE
-  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'score'", NULL);
+  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'score_gold'", NULL);
 #endif
   {
-   int tolua_ret = (int)  self->score();
+   int tolua_ret = (int)  self->score_gold();
    tolua_pushnumber(tolua_S,(lua_Number)tolua_ret);
   }
  }
  return 1;
 #ifndef TOLUA_RELEASE
  tolua_lerror:
- tolua_error(tolua_S,"#ferror in function 'score'.",&tolua_err);
+ tolua_error(tolua_S,"#ferror in function 'score_gold'.",&tolua_err);
  return 0;
 #endif
 }
 #endif //#ifndef TOLUA_DISABLE
 
-/* method: total_score of class  gamer::protocol::GameEndDataMsgProtocol */
-#ifndef TOLUA_DISABLE_tolua_game_end_msg_protocol_gamer_protocol_GameEndDataMsgProtocol_total_score00
-static int tolua_game_end_msg_protocol_gamer_protocol_GameEndDataMsgProtocol_total_score00(lua_State* tolua_S)
+/* method: score_diamond of class  gamer::protocol::GameEndDataMsgProtocol */
+#ifndef TOLUA_DISABLE_tolua_game_end_msg_protocol_gamer_protocol_GameEndDataMsgProtocol_score_diamond00
+static int tolua_game_end_msg_protocol_gamer_protocol_GameEndDataMsgProtocol_score_diamond00(lua_State* tolua_S)
 {
 #ifndef TOLUA_RELEASE
  tolua_Error tolua_err;
@@ -175,17 +175,177 @@ static int tolua_game_end_msg_protocol_gamer_protocol_GameEndDataMsgProtocol_tot
  {
   const gamer::protocol::GameEndDataMsgProtocol* self = (const gamer::protocol::GameEndDataMsgProtocol*)  tolua_tousertype(tolua_S,1,0);
 #ifndef TOLUA_RELEASE
-  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'total_score'", NULL);
+  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'score_diamond'", NULL);
 #endif
   {
-   int tolua_ret = (int)  self->total_score();
+   int tolua_ret = (int)  self->score_diamond();
    tolua_pushnumber(tolua_S,(lua_Number)tolua_ret);
   }
  }
  return 1;
 #ifndef TOLUA_RELEASE
  tolua_lerror:
- tolua_error(tolua_S,"#ferror in function 'total_score'.",&tolua_err);
+ tolua_error(tolua_S,"#ferror in function 'score_diamond'.",&tolua_err);
+ return 0;
+#endif
+}
+#endif //#ifndef TOLUA_DISABLE
+
+/* method: total_score_gold of class  gamer::protocol::GameEndDataMsgProtocol */
+#ifndef TOLUA_DISABLE_tolua_game_end_msg_protocol_gamer_protocol_GameEndDataMsgProtocol_total_score_gold00
+static int tolua_game_end_msg_protocol_gamer_protocol_GameEndDataMsgProtocol_total_score_gold00(lua_State* tolua_S)
+{
+#ifndef TOLUA_RELEASE
+ tolua_Error tolua_err;
+ if (
+     !tolua_isusertype(tolua_S,1,"const gamer::protocol::GameEndDataMsgProtocol",0,&tolua_err) ||
+     !tolua_isnoobj(tolua_S,2,&tolua_err)
+ )
+  goto tolua_lerror;
+ else
+#endif
+ {
+  const gamer::protocol::GameEndDataMsgProtocol* self = (const gamer::protocol::GameEndDataMsgProtocol*)  tolua_tousertype(tolua_S,1,0);
+#ifndef TOLUA_RELEASE
+  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'total_score_gold'", NULL);
+#endif
+  {
+   int tolua_ret = (int)  self->total_score_gold();
+   tolua_pushnumber(tolua_S,(lua_Number)tolua_ret);
+  }
+ }
+ return 1;
+#ifndef TOLUA_RELEASE
+ tolua_lerror:
+ tolua_error(tolua_S,"#ferror in function 'total_score_gold'.",&tolua_err);
+ return 0;
+#endif
+}
+#endif //#ifndef TOLUA_DISABLE
+
+/* method: total_score_diamond of class  gamer::protocol::GameEndDataMsgProtocol */
+#ifndef TOLUA_DISABLE_tolua_game_end_msg_protocol_gamer_protocol_GameEndDataMsgProtocol_total_score_diamond00
+static int tolua_game_end_msg_protocol_gamer_protocol_GameEndDataMsgProtocol_total_score_diamond00(lua_State* tolua_S)
+{
+#ifndef TOLUA_RELEASE
+ tolua_Error tolua_err;
+ if (
+     !tolua_isusertype(tolua_S,1,"const gamer::protocol::GameEndDataMsgProtocol",0,&tolua_err) ||
+     !tolua_isnoobj(tolua_S,2,&tolua_err)
+ )
+  goto tolua_lerror;
+ else
+#endif
+ {
+  const gamer::protocol::GameEndDataMsgProtocol* self = (const gamer::protocol::GameEndDataMsgProtocol*)  tolua_tousertype(tolua_S,1,0);
+#ifndef TOLUA_RELEASE
+  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'total_score_diamond'", NULL);
+#endif
+  {
+   int tolua_ret = (int)  self->total_score_diamond();
+   tolua_pushnumber(tolua_S,(lua_Number)tolua_ret);
+  }
+ }
+ return 1;
+#ifndef TOLUA_RELEASE
+ tolua_lerror:
+ tolua_error(tolua_S,"#ferror in function 'total_score_diamond'.",&tolua_err);
+ return 0;
+#endif
+}
+#endif //#ifndef TOLUA_DISABLE
+
+/* method: rate_winning of class  gamer::protocol::GameEndDataMsgProtocol */
+#ifndef TOLUA_DISABLE_tolua_game_end_msg_protocol_gamer_protocol_GameEndDataMsgProtocol_rate_winning00
+static int tolua_game_end_msg_protocol_gamer_protocol_GameEndDataMsgProtocol_rate_winning00(lua_State* tolua_S)
+{
+#ifndef TOLUA_RELEASE
+ tolua_Error tolua_err;
+ if (
+     !tolua_isusertype(tolua_S,1,"const gamer::protocol::GameEndDataMsgProtocol",0,&tolua_err) ||
+     !tolua_isnoobj(tolua_S,2,&tolua_err)
+ )
+  goto tolua_lerror;
+ else
+#endif
+ {
+  const gamer::protocol::GameEndDataMsgProtocol* self = (const gamer::protocol::GameEndDataMsgProtocol*)  tolua_tousertype(tolua_S,1,0);
+#ifndef TOLUA_RELEASE
+  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'rate_winning'", NULL);
+#endif
+  {
+   int tolua_ret = (int)  self->rate_winning();
+   tolua_pushnumber(tolua_S,(lua_Number)tolua_ret);
+  }
+ }
+ return 1;
+#ifndef TOLUA_RELEASE
+ tolua_lerror:
+ tolua_error(tolua_S,"#ferror in function 'rate_winning'.",&tolua_err);
+ return 0;
+#endif
+}
+#endif //#ifndef TOLUA_DISABLE
+
+/* method: num_ming_gang of class  gamer::protocol::GameEndDataMsgProtocol */
+#ifndef TOLUA_DISABLE_tolua_game_end_msg_protocol_gamer_protocol_GameEndDataMsgProtocol_num_ming_gang00
+static int tolua_game_end_msg_protocol_gamer_protocol_GameEndDataMsgProtocol_num_ming_gang00(lua_State* tolua_S)
+{
+#ifndef TOLUA_RELEASE
+ tolua_Error tolua_err;
+ if (
+     !tolua_isusertype(tolua_S,1,"const gamer::protocol::GameEndDataMsgProtocol",0,&tolua_err) ||
+     !tolua_isnoobj(tolua_S,2,&tolua_err)
+ )
+  goto tolua_lerror;
+ else
+#endif
+ {
+  const gamer::protocol::GameEndDataMsgProtocol* self = (const gamer::protocol::GameEndDataMsgProtocol*)  tolua_tousertype(tolua_S,1,0);
+#ifndef TOLUA_RELEASE
+  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'num_ming_gang'", NULL);
+#endif
+  {
+   int tolua_ret = (int)  self->num_ming_gang();
+   tolua_pushnumber(tolua_S,(lua_Number)tolua_ret);
+  }
+ }
+ return 1;
+#ifndef TOLUA_RELEASE
+ tolua_lerror:
+ tolua_error(tolua_S,"#ferror in function 'num_ming_gang'.",&tolua_err);
+ return 0;
+#endif
+}
+#endif //#ifndef TOLUA_DISABLE
+
+/* method: num_an_gang of class  gamer::protocol::GameEndDataMsgProtocol */
+#ifndef TOLUA_DISABLE_tolua_game_end_msg_protocol_gamer_protocol_GameEndDataMsgProtocol_num_an_gang00
+static int tolua_game_end_msg_protocol_gamer_protocol_GameEndDataMsgProtocol_num_an_gang00(lua_State* tolua_S)
+{
+#ifndef TOLUA_RELEASE
+ tolua_Error tolua_err;
+ if (
+     !tolua_isusertype(tolua_S,1,"const gamer::protocol::GameEndDataMsgProtocol",0,&tolua_err) ||
+     !tolua_isnoobj(tolua_S,2,&tolua_err)
+ )
+  goto tolua_lerror;
+ else
+#endif
+ {
+  const gamer::protocol::GameEndDataMsgProtocol* self = (const gamer::protocol::GameEndDataMsgProtocol*)  tolua_tousertype(tolua_S,1,0);
+#ifndef TOLUA_RELEASE
+  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'num_an_gang'", NULL);
+#endif
+  {
+   int tolua_ret = (int)  self->num_an_gang();
+   tolua_pushnumber(tolua_S,(lua_Number)tolua_ret);
+  }
+ }
+ return 1;
+#ifndef TOLUA_RELEASE
+ tolua_lerror:
+ tolua_error(tolua_S,"#ferror in function 'num_an_gang'.",&tolua_err);
  return 0;
 #endif
 }
@@ -499,8 +659,13 @@ TOLUA_API int tolua_game_end_msg_protocol_open (lua_State* tolua_S)
      tolua_function(tolua_S,"ByteSize",tolua_game_end_msg_protocol_gamer_protocol_GameEndDataMsgProtocol_ByteSize00);
      tolua_function(tolua_S,"player_id",tolua_game_end_msg_protocol_gamer_protocol_GameEndDataMsgProtocol_player_id00);
      tolua_function(tolua_S,"nick_name",tolua_game_end_msg_protocol_gamer_protocol_GameEndDataMsgProtocol_nick_name00);
-     tolua_function(tolua_S,"score",tolua_game_end_msg_protocol_gamer_protocol_GameEndDataMsgProtocol_score00);
-     tolua_function(tolua_S,"total_score",tolua_game_end_msg_protocol_gamer_protocol_GameEndDataMsgProtocol_total_score00);
+     tolua_function(tolua_S,"score_gold",tolua_game_end_msg_protocol_gamer_protocol_GameEndDataMsgProtocol_score_gold00);
+     tolua_function(tolua_S,"score_diamond",tolua_game_end_msg_protocol_gamer_protocol_GameEndDataMsgProtocol_score_diamond00);
+     tolua_function(tolua_S,"total_score_gold",tolua_game_end_msg_protocol_gamer_protocol_GameEndDataMsgProtocol_total_score_gold00);
+     tolua_function(tolua_S,"total_score_diamond",tolua_game_end_msg_protocol_gamer_protocol_GameEndDataMsgProtocol_total_score_diamond00);
+     tolua_function(tolua_S,"rate_winning",tolua_game_end_msg_protocol_gamer_protocol_GameEndDataMsgProtocol_rate_winning00);
+     tolua_function(tolua_S,"num_ming_gang",tolua_game_end_msg_protocol_gamer_protocol_GameEndDataMsgProtocol_num_ming_gang00);
+     tolua_function(tolua_S,"num_an_gang",tolua_game_end_msg_protocol_gamer_protocol_GameEndDataMsgProtocol_num_an_gang00);
      tolua_function(tolua_S,"player_cards",tolua_game_end_msg_protocol_gamer_protocol_GameEndDataMsgProtocol_player_cards00);
     tolua_endmodule(tolua_S);
     tolua_cclass(tolua_S,"GameEndMsgProtocol","gamer::protocol::GameEndMsgProtocol","google::protobuf::Message",NULL);

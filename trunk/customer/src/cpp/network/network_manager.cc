@@ -80,7 +80,7 @@ void NetworkManager::connect()
 	WSADATA wsa_data;
 	WSAStartup(0x0201, &wsa_data);
 
-    evthread_use_windows_threads();
+    //evthread_use_windows_threads();
 #else
     //evthread_use_pthreads();
 #endif
@@ -126,7 +126,7 @@ void NetworkManager::connect()
 
 	if (-1 == bufferevent_socket_connect(bev_, (struct sockaddr*)&sin, sizeof(sin)))
 	{
-		perror("bufferevent_socket_connect failed!");
+		printf("bufferevent_socket_connect failed!");
 		return;
 		// TODO : dispatch bufferevent_socket_connect failed event
 	}
@@ -177,6 +177,8 @@ bool NetworkManager::send(void* ctx, size_t ctxlen)
 void NetworkManager::initIPAndPort()
 {
     ip_ = "127.0.0.1";
+    //ip_ = "14.28.136.33";
+    //ip_ = "192.168.1.101";
     port_ = 4994;
 }
 

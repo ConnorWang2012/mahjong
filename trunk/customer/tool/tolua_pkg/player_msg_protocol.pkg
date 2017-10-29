@@ -28,6 +28,14 @@ public:
 	inline int level() const;
 
 	inline const std::string& level_name() const;
+
+	inline int score_gold() const;
+
+	inline int score_diamond() const;
+
+	inline int num_played_games() const;
+	
+	inline int num_win_games() const;
 };
 
 } // namespace protocol

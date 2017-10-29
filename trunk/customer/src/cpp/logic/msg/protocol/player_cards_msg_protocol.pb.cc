@@ -2,7 +2,7 @@
 // source: player_cards_msg_protocol.proto
 
 #define INTERNAL_SUPPRESS_PROTOBUF_FIELD_DEPRECATION
-#include "player_cards_msg_protocol.pb.h"
+#include "msg/protocol/player_cards_msg_protocol.pb.h"
 
 #include <algorithm>
 

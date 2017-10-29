@@ -24,7 +24,7 @@
 #include <google/protobuf/repeated_field.h>
 #include <google/protobuf/extension_set.h>
 #include <google/protobuf/unknown_field_set.h>
-#include "ting_card_msg_protocol.pb.h"
+#include "msg/protocol/ting_card_msg_protocol.pb.h"
 // @@protoc_insertion_point(includes)
 
 namespace gamer {
