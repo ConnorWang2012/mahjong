@@ -1,6 +1,6 @@
 /*
 ** Lua binding: player_msg_protocol
-** Generated automatically by tolua++-1.0.92 on 10/29/17 13:08:03.
+** Generated automatically by tolua++-1.0.92 on 11/02/17 16:56:24.
 */
 
 #ifndef __cplusplus
@@ -25,6 +25,13 @@ TOLUA_API int  tolua_player_msg_protocol_open (lua_State* tolua_S);
 /* function to release collected object via destructor */
 #ifdef __cplusplus
 
+static int tolua_collect___google__protobuf__uint32 (lua_State* tolua_S)
+{
+ ::google::protobuf::uint32* self = (::google::protobuf::uint32*) tolua_tousertype(tolua_S,1,0);
+	Mtolua_delete(self);
+	return 0;
+}
+
 static int tolua_collect_gamer__protocol__PlayerMsgProtocol (lua_State* tolua_S)
 {
  gamer::protocol::PlayerMsgProtocol* self = (gamer::protocol::PlayerMsgProtocol*) tolua_tousertype(tolua_S,1,0);
@@ -37,8 +44,9 @@ static int tolua_collect_gamer__protocol__PlayerMsgProtocol (lua_State* tolua_S)
 /* function to register type */
 static void tolua_reg_types (lua_State* tolua_S)
 {
- tolua_usertype(tolua_S,"google::protobuf::Message");
+ tolua_usertype(tolua_S,"::google::protobuf::uint32");
  tolua_usertype(tolua_S,"gamer::protocol::PlayerMsgProtocol");
+ tolua_usertype(tolua_S,"google::protobuf::Message");
 }
 
 /* method: new of class  gamer::protocol::PlayerMsgProtocol */
@@ -149,8 +157,18 @@ static int tolua_player_msg_protocol_gamer_protocol_PlayerMsgProtocol_player_id0
   if (!self) tolua_error(tolua_S,"invalid 'self' in function 'player_id'", NULL);
 #endif
   {
-   int tolua_ret = (int)  self->player_id();
-   tolua_pushnumber(tolua_S,(lua_Number)tolua_ret);
+  ::google::protobuf::uint32 tolua_ret = (::google::protobuf::uint32)  self->player_id();
+   {
+#ifdef __cplusplus
+    void* tolua_obj = Mtolua_new((::google::protobuf::uint32)(tolua_ret));
+     tolua_pushusertype(tolua_S,tolua_obj,"::google::protobuf::uint32");
+    tolua_register_gc(tolua_S,lua_gettop(tolua_S));
+#else
+    void* tolua_obj = tolua_copy(tolua_S,(void*)&tolua_ret,sizeof(::google::protobuf::uint32));
+     tolua_pushusertype(tolua_S,tolua_obj,"::google::protobuf::uint32");
+    tolua_register_gc(tolua_S,lua_gettop(tolua_S));
+#endif
+   }
   }
  }
  return 1;
@@ -194,38 +212,6 @@ static int tolua_player_msg_protocol_gamer_protocol_PlayerMsgProtocol_nick_name0
 }
 #endif //#ifndef TOLUA_DISABLE
 
-/* method: game_currency of class  gamer::protocol::PlayerMsgProtocol */
-#ifndef TOLUA_DISABLE_tolua_player_msg_protocol_gamer_protocol_PlayerMsgProtocol_game_currency00
-static int tolua_player_msg_protocol_gamer_protocol_PlayerMsgProtocol_game_currency00(lua_State* tolua_S)
-{
-#ifndef TOLUA_RELEASE
- tolua_Error tolua_err;
- if (
-     !tolua_isusertype(tolua_S,1,"const gamer::protocol::PlayerMsgProtocol",0,&tolua_err) ||
-     !tolua_isnoobj(tolua_S,2,&tolua_err)
- )
-  goto tolua_lerror;
- else
-#endif
- {
-  const gamer::protocol::PlayerMsgProtocol* self = (const gamer::protocol::PlayerMsgProtocol*)  tolua_tousertype(tolua_S,1,0);
-#ifndef TOLUA_RELEASE
-  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'game_currency'", NULL);
-#endif
-  {
-   int tolua_ret = (int)  self->game_currency();
-   tolua_pushnumber(tolua_S,(lua_Number)tolua_ret);
-  }
- }
- return 1;
-#ifndef TOLUA_RELEASE
- tolua_lerror:
- tolua_error(tolua_S,"#ferror in function 'game_currency'.",&tolua_err);
- return 0;
-#endif
-}
-#endif //#ifndef TOLUA_DISABLE
-
 /* method: level of class  gamer::protocol::PlayerMsgProtocol */
 #ifndef TOLUA_DISABLE_tolua_player_msg_protocol_gamer_protocol_PlayerMsgProtocol_level00
 static int tolua_player_msg_protocol_gamer_protocol_PlayerMsgProtocol_level00(lua_State* tolua_S)
@@ -245,8 +231,18 @@ static int tolua_player_msg_protocol_gamer_protocol_PlayerMsgProtocol_level00(lu
   if (!self) tolua_error(tolua_S,"invalid 'self' in function 'level'", NULL);
 #endif
   {
-   int tolua_ret = (int)  self->level();
-   tolua_pushnumber(tolua_S,(lua_Number)tolua_ret);
+  ::google::protobuf::uint32 tolua_ret = (::google::protobuf::uint32)  self->level();
+   {
+#ifdef __cplusplus
+    void* tolua_obj = Mtolua_new((::google::protobuf::uint32)(tolua_ret));
+     tolua_pushusertype(tolua_S,tolua_obj,"::google::protobuf::uint32");
+    tolua_register_gc(tolua_S,lua_gettop(tolua_S));
+#else
+    void* tolua_obj = tolua_copy(tolua_S,(void*)&tolua_ret,sizeof(::google::protobuf::uint32));
+     tolua_pushusertype(tolua_S,tolua_obj,"::google::protobuf::uint32");
+    tolua_register_gc(tolua_S,lua_gettop(tolua_S));
+#endif
+   }
   }
  }
  return 1;
@@ -309,8 +305,18 @@ static int tolua_player_msg_protocol_gamer_protocol_PlayerMsgProtocol_score_gold
   if (!self) tolua_error(tolua_S,"invalid 'self' in function 'score_gold'", NULL);
 #endif
   {
-   int tolua_ret = (int)  self->score_gold();
-   tolua_pushnumber(tolua_S,(lua_Number)tolua_ret);
+  ::google::protobuf::uint32 tolua_ret = (::google::protobuf::uint32)  self->score_gold();
+   {
+#ifdef __cplusplus
+    void* tolua_obj = Mtolua_new((::google::protobuf::uint32)(tolua_ret));
+     tolua_pushusertype(tolua_S,tolua_obj,"::google::protobuf::uint32");
+    tolua_register_gc(tolua_S,lua_gettop(tolua_S));
+#else
+    void* tolua_obj = tolua_copy(tolua_S,(void*)&tolua_ret,sizeof(::google::protobuf::uint32));
+     tolua_pushusertype(tolua_S,tolua_obj,"::google::protobuf::uint32");
+    tolua_register_gc(tolua_S,lua_gettop(tolua_S));
+#endif
+   }
   }
  }
  return 1;
@@ -341,14 +347,66 @@ static int tolua_player_msg_protocol_gamer_protocol_PlayerMsgProtocol_score_diam
   if (!self) tolua_error(tolua_S,"invalid 'self' in function 'score_diamond'", NULL);
 #endif
   {
-   int tolua_ret = (int)  self->score_diamond();
-   tolua_pushnumber(tolua_S,(lua_Number)tolua_ret);
+  ::google::protobuf::uint32 tolua_ret = (::google::protobuf::uint32)  self->score_diamond();
+   {
+#ifdef __cplusplus
+    void* tolua_obj = Mtolua_new((::google::protobuf::uint32)(tolua_ret));
+     tolua_pushusertype(tolua_S,tolua_obj,"::google::protobuf::uint32");
+    tolua_register_gc(tolua_S,lua_gettop(tolua_S));
+#else
+    void* tolua_obj = tolua_copy(tolua_S,(void*)&tolua_ret,sizeof(::google::protobuf::uint32));
+     tolua_pushusertype(tolua_S,tolua_obj,"::google::protobuf::uint32");
+    tolua_register_gc(tolua_S,lua_gettop(tolua_S));
+#endif
+   }
   }
  }
  return 1;
 #ifndef TOLUA_RELEASE
  tolua_lerror:
  tolua_error(tolua_S,"#ferror in function 'score_diamond'.",&tolua_err);
+ return 0;
+#endif
+}
+#endif //#ifndef TOLUA_DISABLE
+
+/* method: num_room_cards of class  gamer::protocol::PlayerMsgProtocol */
+#ifndef TOLUA_DISABLE_tolua_player_msg_protocol_gamer_protocol_PlayerMsgProtocol_num_room_cards00
+static int tolua_player_msg_protocol_gamer_protocol_PlayerMsgProtocol_num_room_cards00(lua_State* tolua_S)
+{
+#ifndef TOLUA_RELEASE
+ tolua_Error tolua_err;
+ if (
+     !tolua_isusertype(tolua_S,1,"const gamer::protocol::PlayerMsgProtocol",0,&tolua_err) ||
+     !tolua_isnoobj(tolua_S,2,&tolua_err)
+ )
+  goto tolua_lerror;
+ else
+#endif
+ {
+  const gamer::protocol::PlayerMsgProtocol* self = (const gamer::protocol::PlayerMsgProtocol*)  tolua_tousertype(tolua_S,1,0);
+#ifndef TOLUA_RELEASE
+  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'num_room_cards'", NULL);
+#endif
+  {
+  ::google::protobuf::uint32 tolua_ret = (::google::protobuf::uint32)  self->num_room_cards();
+   {
+#ifdef __cplusplus
+    void* tolua_obj = Mtolua_new((::google::protobuf::uint32)(tolua_ret));
+     tolua_pushusertype(tolua_S,tolua_obj,"::google::protobuf::uint32");
+    tolua_register_gc(tolua_S,lua_gettop(tolua_S));
+#else
+    void* tolua_obj = tolua_copy(tolua_S,(void*)&tolua_ret,sizeof(::google::protobuf::uint32));
+     tolua_pushusertype(tolua_S,tolua_obj,"::google::protobuf::uint32");
+    tolua_register_gc(tolua_S,lua_gettop(tolua_S));
+#endif
+   }
+  }
+ }
+ return 1;
+#ifndef TOLUA_RELEASE
+ tolua_lerror:
+ tolua_error(tolua_S,"#ferror in function 'num_room_cards'.",&tolua_err);
  return 0;
 #endif
 }
@@ -373,8 +431,18 @@ static int tolua_player_msg_protocol_gamer_protocol_PlayerMsgProtocol_num_played
   if (!self) tolua_error(tolua_S,"invalid 'self' in function 'num_played_games'", NULL);
 #endif
   {
-   int tolua_ret = (int)  self->num_played_games();
-   tolua_pushnumber(tolua_S,(lua_Number)tolua_ret);
+  ::google::protobuf::uint32 tolua_ret = (::google::protobuf::uint32)  self->num_played_games();
+   {
+#ifdef __cplusplus
+    void* tolua_obj = Mtolua_new((::google::protobuf::uint32)(tolua_ret));
+     tolua_pushusertype(tolua_S,tolua_obj,"::google::protobuf::uint32");
+    tolua_register_gc(tolua_S,lua_gettop(tolua_S));
+#else
+    void* tolua_obj = tolua_copy(tolua_S,(void*)&tolua_ret,sizeof(::google::protobuf::uint32));
+     tolua_pushusertype(tolua_S,tolua_obj,"::google::protobuf::uint32");
+    tolua_register_gc(tolua_S,lua_gettop(tolua_S));
+#endif
+   }
   }
  }
  return 1;
@@ -405,8 +473,18 @@ static int tolua_player_msg_protocol_gamer_protocol_PlayerMsgProtocol_num_win_ga
   if (!self) tolua_error(tolua_S,"invalid 'self' in function 'num_win_games'", NULL);
 #endif
   {
-   int tolua_ret = (int)  self->num_win_games();
-   tolua_pushnumber(tolua_S,(lua_Number)tolua_ret);
+  ::google::protobuf::uint32 tolua_ret = (::google::protobuf::uint32)  self->num_win_games();
+   {
+#ifdef __cplusplus
+    void* tolua_obj = Mtolua_new((::google::protobuf::uint32)(tolua_ret));
+     tolua_pushusertype(tolua_S,tolua_obj,"::google::protobuf::uint32");
+    tolua_register_gc(tolua_S,lua_gettop(tolua_S));
+#else
+    void* tolua_obj = tolua_copy(tolua_S,(void*)&tolua_ret,sizeof(::google::protobuf::uint32));
+     tolua_pushusertype(tolua_S,tolua_obj,"::google::protobuf::uint32");
+    tolua_register_gc(tolua_S,lua_gettop(tolua_S));
+#endif
+   }
   }
  }
  return 1;
@@ -441,11 +519,11 @@ TOLUA_API int tolua_player_msg_protocol_open (lua_State* tolua_S)
      tolua_function(tolua_S,"ByteSize",tolua_player_msg_protocol_gamer_protocol_PlayerMsgProtocol_ByteSize00);
      tolua_function(tolua_S,"player_id",tolua_player_msg_protocol_gamer_protocol_PlayerMsgProtocol_player_id00);
      tolua_function(tolua_S,"nick_name",tolua_player_msg_protocol_gamer_protocol_PlayerMsgProtocol_nick_name00);
-     tolua_function(tolua_S,"game_currency",tolua_player_msg_protocol_gamer_protocol_PlayerMsgProtocol_game_currency00);
      tolua_function(tolua_S,"level",tolua_player_msg_protocol_gamer_protocol_PlayerMsgProtocol_level00);
      tolua_function(tolua_S,"level_name",tolua_player_msg_protocol_gamer_protocol_PlayerMsgProtocol_level_name00);
      tolua_function(tolua_S,"score_gold",tolua_player_msg_protocol_gamer_protocol_PlayerMsgProtocol_score_gold00);
      tolua_function(tolua_S,"score_diamond",tolua_player_msg_protocol_gamer_protocol_PlayerMsgProtocol_score_diamond00);
+     tolua_function(tolua_S,"num_room_cards",tolua_player_msg_protocol_gamer_protocol_PlayerMsgProtocol_num_room_cards00);
      tolua_function(tolua_S,"num_played_games",tolua_player_msg_protocol_gamer_protocol_PlayerMsgProtocol_num_played_games00);
      tolua_function(tolua_S,"num_win_games",tolua_player_msg_protocol_gamer_protocol_PlayerMsgProtocol_num_win_games00);
     tolua_endmodule(tolua_S);

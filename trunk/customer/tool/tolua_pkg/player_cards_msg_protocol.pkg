@@ -19,9 +19,9 @@ public:
 
 	int ByteSize() const;
 
-	inline int player_id() const;
+	inline ::google::protobuf::uint32 player_id() const;
 
-	inline int invisible_hand_cards_num() const;
+	inline ::google::protobuf::uint32 invisible_hand_cards_num() const;
 
 	inline int invisible_hand_cards_size() const;
 	inline int invisible_hand_cards(int index) const;

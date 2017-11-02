@@ -21,30 +21,30 @@ public:
 	int ByteSize() const;
 
 	// room common
-	inline void set_room_id(int value);
-	inline int room_id() const;
+	inline void set_room_id(::google::protobuf::uint32 value);
+	inline ::google::protobuf::uint32 room_id() const;
 
-	inline void set_room_owner_id(int value);
-	inline int room_owner_id() const;
+	inline void set_room_owner_id(::google::protobuf::uint32 value);
+	inline ::google::protobuf::uint32 room_owner_id() const;
 
-	inline int players_num() const;
+	inline ::google::protobuf::uint32 players_num() const;
 
-	inline int cur_round() const;
+	inline ::google::protobuf::uint32 cur_round() const;
 
-	inline int total_round() const;
+	inline ::google::protobuf::uint32 total_round() const;
 
-	inline int remain_cards_num() const;
+	inline ::google::protobuf::uint32 remain_cards_num() const;
 
-    inline int operating_player_id() const;
+    inline ::google::protobuf::uint32 operating_player_id() const;
 
-    inline int operation_id() const;
+    inline ::google::protobuf::uint32 operation_id() const;
 
-	inline int banker_id() const;
+	inline ::google::protobuf::uint32 banker_id() const;
 
-	inline int banker_is_same_time() const;
+	inline ::google::protobuf::uint32 banker_is_same_time() const;
 
 	// room player
-	inline int player_cards_size() const;
+	inline ::google::protobuf::uint32 player_cards_size() const;
 
 	inline const gamer::protocol::PlayerCardsMsgProtocol& player_cards(int index) const;
 };

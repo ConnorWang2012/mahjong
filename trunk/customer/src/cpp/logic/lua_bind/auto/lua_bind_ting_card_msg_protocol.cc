@@ -1,6 +1,6 @@
 /*
 ** Lua binding: ting_card_msg_protocol
-** Generated automatically by tolua++-1.0.92 on 09/14/17 03:49:54.
+** Generated automatically by tolua++-1.0.92 on 11/02/17 16:55:42.
 */
 
 #ifndef __cplusplus
@@ -13,7 +13,7 @@
 /* Exported function */
 TOLUA_API int  tolua_ting_card_msg_protocol_open (lua_State* tolua_S);
 
-#include "ting_card_msg_protocol.pb.h"
+#include "msg/protocol/ting_card_msg_protocol.pb.h"
 #include <string>
 #include <google/protobuf/stubs/common.h>
 #include <google/protobuf/generated_message_util.h>

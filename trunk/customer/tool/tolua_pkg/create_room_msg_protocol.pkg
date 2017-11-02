@@ -19,25 +19,25 @@ public:
 
 	int ByteSize() const;
 
-	inline void set_room_owner_id(int value);
-    inline int room_owner_id() const;
+	inline void set_room_owner_id(::google::protobuf::uint32 value);
+    inline ::google::protobuf::uint32 room_owner_id() const;
 
-	inline void set_rounds_num(int value);
-    inline int rounds_num() const;
+	inline void set_rounds_num(::google::protobuf::uint32 value);
+    inline ::google::protobuf::uint32 rounds_num() const;
 
-	inline void set_players_num(int value);
-    inline int players_num() const;
+	inline void set_players_num(::google::protobuf::uint32 value);
+    inline ::google::protobuf::uint32 players_num() const;
 
-    inline void set_score_gold(int score);
-    inline int score_gold() const;
+    inline void set_score_gold(::google::protobuf::uint32 score);
+    inline ::google::protobuf::uint32 score_gold() const;
 
-    inline void set_score_diamond(int score);
-    inline int score_diamond() const;
+    inline void set_score_diamond(::google::protobuf::uint32 score);
+    inline ::google::protobuf::uint32 score_diamond() const;
 
-    inline void set_room_cards_num(int value);
-    inline int room_cards_num() const;
+    inline void set_room_cards_num(::google::protobuf::uint32 value);
+    inline ::google::protobuf::uint32 room_cards_num() const;
 
-    inline int room_id() const;
+    inline ::google::protobuf::uint32 room_id() const;
 };
 
 } // namespace protocol

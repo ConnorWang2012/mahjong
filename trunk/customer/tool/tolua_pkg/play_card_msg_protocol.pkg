@@ -20,17 +20,17 @@ public:
 
 	int ByteSize() const;
 
-	inline void set_player_id(int value);
-	inline int player_id() const;
+	inline void set_player_id(::google::protobuf::uint32 value);
+	inline ::google::protobuf::uint32 player_id() const;
 
-	inline void set_room_id(int value);
-	inline int room_id() const;
+	inline void set_room_id(::google::protobuf::uint32 value);
+	inline ::google::protobuf::uint32 room_id() const;
 
-	inline void set_cur_round(int value);
-	inline int cur_round() const;
+	inline void set_cur_round(::google::protobuf::uint32 value);
+	inline ::google::protobuf::uint32 cur_round() const;
 
-	inline void set_operation_id(int value);
-	inline int operation_id() const;
+	inline void set_operation_id(::google::protobuf::uint32 value);
+	inline ::google::protobuf::uint32 operation_id() const;
 
 	inline void set_discard(int value);
 	inline int discard() const;
@@ -38,12 +38,12 @@ public:
 	inline void set_new_card(int value);
 	inline int new_card() const;
 
-	inline int next_operate_player_id() const;
-	inline void set_next_operate_player_id(int value);
+	inline ::google::protobuf::uint32 next_operate_player_id() const;
+	inline void set_next_operate_player_id(::google::protobuf::uint32 value);
 
 	inline bool has_next_operate_player_new_card() const;
 
-	inline int my_available_operation_id() const;
+	inline ::google::protobuf::uint32 my_available_operation_id() const;
 
 	inline int operating_cards_size() const;
 	inline int operating_cards(int index) const;

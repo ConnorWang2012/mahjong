@@ -178,7 +178,7 @@ void DataManager::updateCardForNewCardOfPlayerSelf(int new_card)
     }
 }
 
-void DataManager::updateCardForNewCardOfOtherPlayer(int player_id)
+void DataManager::updateCardForNewCardOfOtherPlayer(id_t player_id)
 {
     auto proto = this->getPlayerCardsMsgProtocol(player_id);
     if (proto)
@@ -191,7 +191,7 @@ void DataManager::updateCardForNewCardOfOtherPlayer(int player_id)
     }
 }
 
-void DataManager::updateCardForDiscard(int player_id, int discard)
+void DataManager::updateCardForDiscard(id_t player_id, int discard)
 {
     if (player_id == this->self_player_id())
     {
@@ -203,7 +203,7 @@ void DataManager::updateCardForDiscard(int player_id, int discard)
     }
 }
 
-void DataManager::updateCardForChi(int player_id, 
+void DataManager::updateCardForChi(id_t player_id, 
                                    int card_of_chi, 
                                    int card_match_chi_1, 
                                    int card_match_chi_2)
@@ -252,7 +252,7 @@ void DataManager::updateCardForChi(int player_id,
     }
 }
 
-void DataManager::updateCardForPeng(int player_id, int card_of_peng)
+void DataManager::updateCardForPeng(id_t player_id, int card_of_peng)
 {
     auto proto = this->getPlayerCardsMsgProtocol(player_id);
     if (nullptr != proto)
@@ -277,7 +277,7 @@ void DataManager::updateCardForPeng(int player_id, int card_of_peng)
     }
 }
 
-void DataManager::updateCardForPengAndGang(int player_id, int card_of_peng_gang)
+void DataManager::updateCardForPengAndGang(id_t player_id, int card_of_peng_gang)
 {
     auto proto = this->getPlayerCardsMsgProtocol(player_id);
     if (nullptr != proto)
@@ -303,7 +303,7 @@ void DataManager::updateCardForPengAndGang(int player_id, int card_of_peng_gang)
     }
 }
 
-void DataManager::updateCardForMingGang(int player_id, int card_of_ming_gang)
+void DataManager::updateCardForMingGang(id_t player_id, int card_of_ming_gang)
 {
     // for player self:
     // 1.remove 4 cards(value equal card_of_ming_gang) from invisible hand cards 
@@ -368,7 +368,7 @@ void DataManager::updateCardForMingGang(int player_id, int card_of_ming_gang)
     }
 }
 
-void DataManager::updateCardForAnGang(int player_id, int card_of_an_gang)
+void DataManager::updateCardForAnGang(id_t player_id, int card_of_an_gang)
 {
     auto proto = this->getPlayerCardsMsgProtocol(player_id);
     if (nullptr != proto)
@@ -392,7 +392,7 @@ void DataManager::updateCardForAnGang(int player_id, int card_of_an_gang)
     }
 }
 
-void DataManager::updateCardForBuhua(int player_id)
+void DataManager::updateCardForBuhua(id_t player_id)
 {
     auto proto = this->getPlayerCardsMsgProtocol(player_id);
     if (nullptr != proto)
@@ -449,7 +449,7 @@ void DataManager::updateCardForBuhua(int player_id)
     }
 }
 
-void DataManager::updateCardForHu(int player_id)
+void DataManager::updateCardForHu(id_t player_id)
 {
     auto proto = this->play_card_msg_protocol();
     if (nullptr != proto)
@@ -462,7 +462,7 @@ void DataManager::updateCardForHu(int player_id)
     }
 }
 
-DataManager::PlayerCardsMsgProtocol* DataManager::getPlayerCardsMsgProtocol(int player_id)
+DataManager::PlayerCardsMsgProtocol* DataManager::getPlayerCardsMsgProtocol(id_t player_id)
 {
     if (player_id == this->self_player_id())
     {
@@ -483,7 +483,7 @@ DataManager::PlayerCardsMsgProtocol* DataManager::getPlayerCardsMsgProtocol(int 
     return nullptr;
 }
 
-void DataManager::updateCardForDiscardOfOtherPlayer(int player_id, int discard)
+void DataManager::updateCardForDiscardOfOtherPlayer(id_t player_id, int discard)
 {
     if (discard == CardConstants::INVALID_CARD_VALUE)
         return;

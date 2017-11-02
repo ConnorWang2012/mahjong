@@ -17,6 +17,7 @@ modification:
 
 #include <unordered_map>
 
+#include "macros.h"
 #include "basic_manager.h"
 #include "card_constants.h"
 #include "my_login_msg_protocol.pb.h"
@@ -79,35 +80,35 @@ public:
 
     void updateCardForDiscardOfPlayerSelf(int discard);
 
-    void updateCardForDiscard(int player_id, int discard);
+    void updateCardForDiscard(id_t player_id, int discard);
 
-    void updateCardForChi(int player_id,
+    void updateCardForChi(id_t player_id,
                           int card_of_chi,
                           int card_match_chi_1,
                           int card_match_chi_2);
 
-    void updateCardForPeng(int player_id, int card_of_peng);
+    void updateCardForPeng(id_t player_id, int card_of_peng);
 
-    void updateCardForPengAndGang(int player_id, int card_of_peng_gang);
+    void updateCardForPengAndGang(id_t player_id, int card_of_peng_gang);
 
-    void updateCardForMingGang(int player_id, int card_of_ming_gang);
+    void updateCardForMingGang(id_t player_id, int card_of_ming_gang);
 
-    void updateCardForAnGang(int player_id, int card_of_an_gang);
+    void updateCardForAnGang(id_t player_id, int card_of_an_gang);
 
-    void updateCardForBuhua(int player_id);
+    void updateCardForBuhua(id_t player_id);
 
-    void updateCardForHu(int player_id);
+    void updateCardForHu(id_t player_id);
 
 private:
     typedef google::protobuf::RepeatedField<google::protobuf::int32> RepeatedField;
 
-    PlayerCardsMsgProtocol* getPlayerCardsMsgProtocol(int player_id);
+    PlayerCardsMsgProtocol* getPlayerCardsMsgProtocol(id_t player_id);
 
     void updateCardForNewCardOfPlayerSelf(int new_card);
 
-    void updateCardForNewCardOfOtherPlayer(int player_id);
+    void updateCardForNewCardOfOtherPlayer(id_t player_id);
 
-    void updateCardForDiscardOfOtherPlayer(int player_id, int discard);
+    void updateCardForDiscardOfOtherPlayer(id_t player_id, int discard);
 
     int countInvisibleCard(PlayerCardsMsgProtocol* proto, int card) const;
 
