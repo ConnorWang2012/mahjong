@@ -17,15 +17,15 @@ class GameEndDataMsgProtocol : public google::protobuf::Message {
 public:
 	int ByteSize() const;
 
-	inline ::google::protobuf::uint32 player_id() const;
+	inline unsigned int player_id() const;
 	inline std::string nick_name() const;
 	inline int diff_score_gold() const;
 	inline int diff_score_diamond() const;
-	inline ::google::protobuf::uint32 total_score_gold() const;
-	inline ::google::protobuf::uint32 total_score_diamond() const;
+	inline unsigned int total_score_gold() const;
+	inline unsigned int total_score_diamond() const;
 	inline float rate_winning() const;
-	inline ::google::protobuf::uint32 num_ming_gang() const;
-	inline ::google::protobuf::uint32 num_an_gang() const;
+	inline unsigned int num_ming_gang() const;
+	inline unsigned int num_an_gang() const;
 	
 	inline const gamer::protocol::PlayerCardsMsgProtocol& player_cards(int index) const;
 };
@@ -34,12 +34,12 @@ class GameEndMsgProtocol : public google::protobuf::Message {
 public:
 	int ByteSize() const;
 
-	inline ::google::protobuf::uint32 room_id() const;
-	inline ::google::protobuf::uint32 room_owner_id() const;
-	inline ::google::protobuf::uint32 players_num() const;
-	inline ::google::protobuf::uint32 cur_round() const;
-	inline ::google::protobuf::uint32 total_round() const;
-	inline ::google::protobuf::uint32 banker_id() const;
+	inline unsigned int room_id() const;
+	inline unsigned int room_owner_id() const;
+	inline unsigned int players_num() const;
+	inline unsigned int cur_round() const;
+	inline unsigned int total_round() const;
+	inline unsigned int banker_id() const;
 
 	inline const gamer::protocol::GameEndDataMsgProtocol& game_end_data(int index) const;
 };

@@ -1,6 +1,6 @@
 /*
 ** Lua binding: data_manager
-** Generated automatically by tolua++-1.0.92 on 09/18/17 21:12:55.
+** Generated automatically by tolua++-1.0.92 on 11/05/17 13:15:00.
 */
 
 #ifndef __cplusplus
@@ -15,7 +15,7 @@ TOLUA_API int  tolua_data_manager_open (lua_State* tolua_S);
 
 #include "data_manager.h"
 #include <unordered_map>
-#include "basic_manager.h"
+#include "base/basic_manager.h"
 
 /* function to register type */
 static void tolua_reg_types (lua_State* tolua_S)
@@ -332,7 +332,7 @@ static int tolua_data_manager_gamer_DataManager_self_player_id00(lua_State* tolu
   if (!self) tolua_error(tolua_S,"invalid 'self' in function 'self_player_id'", NULL);
 #endif
   {
-   const int tolua_ret = (const int)  self->self_player_id();
+   unsigned int tolua_ret = (unsigned int)  self->self_player_id();
    tolua_pushnumber(tolua_S,(lua_Number)tolua_ret);
   }
  }
@@ -364,7 +364,7 @@ static int tolua_data_manager_gamer_DataManager_left_player_id00(lua_State* tolu
   if (!self) tolua_error(tolua_S,"invalid 'self' in function 'left_player_id'", NULL);
 #endif
   {
-   const int tolua_ret = (const int)  self->left_player_id();
+   unsigned int tolua_ret = (unsigned int)  self->left_player_id();
    tolua_pushnumber(tolua_S,(lua_Number)tolua_ret);
   }
  }
@@ -396,7 +396,7 @@ static int tolua_data_manager_gamer_DataManager_opposite_player_id00(lua_State* 
   if (!self) tolua_error(tolua_S,"invalid 'self' in function 'opposite_player_id'", NULL);
 #endif
   {
-   const int tolua_ret = (const int)  self->opposite_player_id();
+   unsigned int tolua_ret = (unsigned int)  self->opposite_player_id();
    tolua_pushnumber(tolua_S,(lua_Number)tolua_ret);
   }
  }
@@ -428,7 +428,7 @@ static int tolua_data_manager_gamer_DataManager_right_player_id00(lua_State* tol
   if (!self) tolua_error(tolua_S,"invalid 'self' in function 'right_player_id'", NULL);
 #endif
   {
-   const int tolua_ret = (const int)  self->right_player_id();
+   unsigned int tolua_ret = (unsigned int)  self->right_player_id();
    tolua_pushnumber(tolua_S,(lua_Number)tolua_ret);
   }
  }
@@ -457,7 +457,7 @@ static int tolua_data_manager_gamer_DataManager_updateCardForDiscardOfPlayerSelf
 #endif
  {
   gamer::DataManager* self = (gamer::DataManager*)  tolua_tousertype(tolua_S,1,0);
-  int discard = ((int)  tolua_tonumber(tolua_S,2,0));
+  unsigned int discard = ((unsigned int)  tolua_tonumber(tolua_S,2,0));
 #ifndef TOLUA_RELEASE
   if (!self) tolua_error(tolua_S,"invalid 'self' in function 'updateCardForDiscardOfPlayerSelf'", NULL);
 #endif
@@ -493,10 +493,10 @@ static int tolua_data_manager_gamer_DataManager_updateCardForChi00(lua_State* to
 #endif
  {
   gamer::DataManager* self = (gamer::DataManager*)  tolua_tousertype(tolua_S,1,0);
-  int player_id = ((int)  tolua_tonumber(tolua_S,2,0));
-  int card_of_chi = ((int)  tolua_tonumber(tolua_S,3,0));
-  int card_match_chi_1 = ((int)  tolua_tonumber(tolua_S,4,0));
-  int card_match_chi_2 = ((int)  tolua_tonumber(tolua_S,5,0));
+  unsigned int player_id = ((unsigned int)  tolua_tonumber(tolua_S,2,0));
+  unsigned int card_of_chi = ((unsigned int)  tolua_tonumber(tolua_S,3,0));
+  unsigned int card_match_chi_1 = ((unsigned int)  tolua_tonumber(tolua_S,4,0));
+  unsigned int card_match_chi_2 = ((unsigned int)  tolua_tonumber(tolua_S,5,0));
 #ifndef TOLUA_RELEASE
   if (!self) tolua_error(tolua_S,"invalid 'self' in function 'updateCardForChi'", NULL);
 #endif
@@ -530,8 +530,8 @@ static int tolua_data_manager_gamer_DataManager_updateCardForPeng00(lua_State* t
 #endif
  {
   gamer::DataManager* self = (gamer::DataManager*)  tolua_tousertype(tolua_S,1,0);
-  int player_id = ((int)  tolua_tonumber(tolua_S,2,0));
-  int card_of_peng = ((int)  tolua_tonumber(tolua_S,3,0));
+  unsigned int player_id = ((unsigned int)  tolua_tonumber(tolua_S,2,0));
+  unsigned int card_of_peng = ((unsigned int)  tolua_tonumber(tolua_S,3,0));
 #ifndef TOLUA_RELEASE
   if (!self) tolua_error(tolua_S,"invalid 'self' in function 'updateCardForPeng'", NULL);
 #endif
@@ -565,8 +565,8 @@ static int tolua_data_manager_gamer_DataManager_updateCardForPengAndGang00(lua_S
 #endif
  {
   gamer::DataManager* self = (gamer::DataManager*)  tolua_tousertype(tolua_S,1,0);
-  int player_id = ((int)  tolua_tonumber(tolua_S,2,0));
-  int card_of_peng_gang = ((int)  tolua_tonumber(tolua_S,3,0));
+  unsigned int player_id = ((unsigned int)  tolua_tonumber(tolua_S,2,0));
+  unsigned int card_of_peng_gang = ((unsigned int)  tolua_tonumber(tolua_S,3,0));
 #ifndef TOLUA_RELEASE
   if (!self) tolua_error(tolua_S,"invalid 'self' in function 'updateCardForPengAndGang'", NULL);
 #endif
@@ -600,8 +600,8 @@ static int tolua_data_manager_gamer_DataManager_updateCardForMingGang00(lua_Stat
 #endif
  {
   gamer::DataManager* self = (gamer::DataManager*)  tolua_tousertype(tolua_S,1,0);
-  int player_id = ((int)  tolua_tonumber(tolua_S,2,0));
-  int card_of_ming_gang = ((int)  tolua_tonumber(tolua_S,3,0));
+  unsigned int player_id = ((unsigned int)  tolua_tonumber(tolua_S,2,0));
+  unsigned int card_of_ming_gang = ((unsigned int)  tolua_tonumber(tolua_S,3,0));
 #ifndef TOLUA_RELEASE
   if (!self) tolua_error(tolua_S,"invalid 'self' in function 'updateCardForMingGang'", NULL);
 #endif
@@ -635,8 +635,8 @@ static int tolua_data_manager_gamer_DataManager_updateCardForAnGang00(lua_State*
 #endif
  {
   gamer::DataManager* self = (gamer::DataManager*)  tolua_tousertype(tolua_S,1,0);
-  int player_id = ((int)  tolua_tonumber(tolua_S,2,0));
-  int card_of_an_gang = ((int)  tolua_tonumber(tolua_S,3,0));
+  unsigned int player_id = ((unsigned int)  tolua_tonumber(tolua_S,2,0));
+  unsigned int card_of_an_gang = ((unsigned int)  tolua_tonumber(tolua_S,3,0));
 #ifndef TOLUA_RELEASE
   if (!self) tolua_error(tolua_S,"invalid 'self' in function 'updateCardForAnGang'", NULL);
 #endif
@@ -669,7 +669,7 @@ static int tolua_data_manager_gamer_DataManager_updateCardForBuhua00(lua_State* 
 #endif
  {
   gamer::DataManager* self = (gamer::DataManager*)  tolua_tousertype(tolua_S,1,0);
-  int player_id = ((int)  tolua_tonumber(tolua_S,2,0));
+  unsigned int player_id = ((unsigned int)  tolua_tonumber(tolua_S,2,0));
 #ifndef TOLUA_RELEASE
   if (!self) tolua_error(tolua_S,"invalid 'self' in function 'updateCardForBuhua'", NULL);
 #endif

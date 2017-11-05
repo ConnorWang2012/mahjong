@@ -20,37 +20,37 @@ public:
 
 	int ByteSize() const;
 
-	inline void set_player_id(::google::protobuf::uint32 value);
-	inline ::google::protobuf::uint32 player_id() const;
+	inline void set_player_id(unsigned int value);
+	inline unsigned int player_id() const;
 
-	inline void set_room_id(::google::protobuf::uint32 value);
-	inline ::google::protobuf::uint32 room_id() const;
+	inline void set_room_id(unsigned int value);
+	inline unsigned int room_id() const;
 
-	inline void set_cur_round(::google::protobuf::uint32 value);
-	inline ::google::protobuf::uint32 cur_round() const;
+	inline void set_cur_round(unsigned int value);
+	inline unsigned int cur_round() const;
 
-	inline void set_operation_id(::google::protobuf::uint32 value);
-	inline ::google::protobuf::uint32 operation_id() const;
+	inline void set_operation_id(unsigned int value);
+	inline unsigned int operation_id() const;
 
-	inline void set_discard(int value);
-	inline int discard() const;
+	inline void set_discard(unsigned int value);
+	inline unsigned int discard() const;
 
-	inline void set_new_card(int value);
-	inline int new_card() const;
+	inline void set_new_card(unsigned int value);
+	inline unsigned int new_card() const;
 
-	inline ::google::protobuf::uint32 next_operate_player_id() const;
-	inline void set_next_operate_player_id(::google::protobuf::uint32 value);
+	inline unsigned int next_operate_player_id() const;
+	inline void set_next_operate_player_id(unsigned int value);
 
 	inline bool has_next_operate_player_new_card() const;
 
-	inline ::google::protobuf::uint32 my_available_operation_id() const;
+	inline unsigned int my_available_operation_id() const;
 
 	inline int operating_cards_size() const;
-	inline int operating_cards(int index) const;
-	inline void add_operating_cards(int value);
+	inline unsigned int operating_cards(int index) const;
+	inline void add_operating_cards(unsigned int value);
 
 	inline int invisible_hand_cards_size() const;
-	inline int invisible_hand_cards(int index) const;
+	inline unsigned int invisible_hand_cards(int index) const;
 
 	inline int ting_cards_size() const;
 	inline const gamer::protocol::TingCardMsgProtocol& ting_cards(int index) const;

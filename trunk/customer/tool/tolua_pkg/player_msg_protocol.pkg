@@ -19,23 +19,23 @@ public:
 
 	int ByteSize() const;
 
-	inline ::google::protobuf::uint32 player_id() const;
+	inline unsigned int player_id() const;
 
 	inline const std::string& nick_name() const;
 
-	inline ::google::protobuf::uint32 level() const;
+	inline unsigned int level() const;
 
 	inline const std::string& level_name() const;
 
-	inline ::google::protobuf::uint32 score_gold() const;
+	inline unsigned int score_gold() const;
 
-	inline ::google::protobuf::uint32 score_diamond() const;
+	inline unsigned int score_diamond() const;
 
-	inline ::google::protobuf::uint32 num_room_cards() const;
+	inline unsigned int num_room_cards() const;
 
-	inline ::google::protobuf::uint32 num_played_games() const;
+	inline unsigned int num_played_games() const;
 	
-	inline ::google::protobuf::uint32 num_win_games() const;
+	inline unsigned int num_win_games() const;
 };
 
 } // namespace protocol

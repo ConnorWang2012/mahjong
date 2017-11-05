@@ -1,6 +1,6 @@
 /*
 ** Lua binding: room_msg_protocol
-** Generated automatically by tolua++-1.0.92 on 11/02/17 16:55:52.
+** Generated automatically by tolua++-1.0.92 on 11/05/17 13:15:18.
 */
 
 #ifndef __cplusplus
@@ -26,13 +26,6 @@ TOLUA_API int  tolua_room_msg_protocol_open (lua_State* tolua_S);
 /* function to release collected object via destructor */
 #ifdef __cplusplus
 
-static int tolua_collect___google__protobuf__uint32 (lua_State* tolua_S)
-{
- ::google::protobuf::uint32* self = (::google::protobuf::uint32*) tolua_tousertype(tolua_S,1,0);
-	Mtolua_delete(self);
-	return 0;
-}
-
 static int tolua_collect_gamer__protocol__RoomMsgProtocol (lua_State* tolua_S)
 {
  gamer::protocol::RoomMsgProtocol* self = (gamer::protocol::RoomMsgProtocol*) tolua_tousertype(tolua_S,1,0);
@@ -45,7 +38,6 @@ static int tolua_collect_gamer__protocol__RoomMsgProtocol (lua_State* tolua_S)
 /* function to register type */
 static void tolua_reg_types (lua_State* tolua_S)
 {
- tolua_usertype(tolua_S,"::google::protobuf::uint32");
  tolua_usertype(tolua_S,"gamer::protocol::PlayerCardsMsgProtocol");
  tolua_usertype(tolua_S,"google::protobuf::Message");
  tolua_usertype(tolua_S,"gamer::protocol::RoomMsgProtocol");
@@ -148,7 +140,7 @@ static int tolua_room_msg_protocol_gamer_protocol_RoomMsgProtocol_set_room_id00(
  tolua_Error tolua_err;
  if (
      !tolua_isusertype(tolua_S,1,"gamer::protocol::RoomMsgProtocol",0,&tolua_err) ||
-     (tolua_isvaluenil(tolua_S,2,&tolua_err) || !tolua_isusertype(tolua_S,2,"::google::protobuf::uint32",0,&tolua_err)) ||
+     !tolua_isnumber(tolua_S,2,0,&tolua_err) ||
      !tolua_isnoobj(tolua_S,3,&tolua_err)
  )
   goto tolua_lerror;
@@ -156,7 +148,7 @@ static int tolua_room_msg_protocol_gamer_protocol_RoomMsgProtocol_set_room_id00(
 #endif
  {
   gamer::protocol::RoomMsgProtocol* self = (gamer::protocol::RoomMsgProtocol*)  tolua_tousertype(tolua_S,1,0);
- ::google::protobuf::uint32 value = *((::google::protobuf::uint32*)  tolua_tousertype(tolua_S,2,0));
+  unsigned int value = ((unsigned int)  tolua_tonumber(tolua_S,2,0));
 #ifndef TOLUA_RELEASE
   if (!self) tolua_error(tolua_S,"invalid 'self' in function 'set_room_id'", NULL);
 #endif
@@ -192,18 +184,8 @@ static int tolua_room_msg_protocol_gamer_protocol_RoomMsgProtocol_room_id00(lua_
   if (!self) tolua_error(tolua_S,"invalid 'self' in function 'room_id'", NULL);
 #endif
   {
-  ::google::protobuf::uint32 tolua_ret = (::google::protobuf::uint32)  self->room_id();
-   {
-#ifdef __cplusplus
-    void* tolua_obj = Mtolua_new((::google::protobuf::uint32)(tolua_ret));
-     tolua_pushusertype(tolua_S,tolua_obj,"::google::protobuf::uint32");
-    tolua_register_gc(tolua_S,lua_gettop(tolua_S));
-#else
-    void* tolua_obj = tolua_copy(tolua_S,(void*)&tolua_ret,sizeof(::google::protobuf::uint32));
-     tolua_pushusertype(tolua_S,tolua_obj,"::google::protobuf::uint32");
-    tolua_register_gc(tolua_S,lua_gettop(tolua_S));
-#endif
-   }
+   unsigned int tolua_ret = (unsigned int)  self->room_id();
+   tolua_pushnumber(tolua_S,(lua_Number)tolua_ret);
   }
  }
  return 1;
@@ -223,7 +205,7 @@ static int tolua_room_msg_protocol_gamer_protocol_RoomMsgProtocol_set_room_owner
  tolua_Error tolua_err;
  if (
      !tolua_isusertype(tolua_S,1,"gamer::protocol::RoomMsgProtocol",0,&tolua_err) ||
-     (tolua_isvaluenil(tolua_S,2,&tolua_err) || !tolua_isusertype(tolua_S,2,"::google::protobuf::uint32",0,&tolua_err)) ||
+     !tolua_isnumber(tolua_S,2,0,&tolua_err) ||
      !tolua_isnoobj(tolua_S,3,&tolua_err)
  )
   goto tolua_lerror;
@@ -231,7 +213,7 @@ static int tolua_room_msg_protocol_gamer_protocol_RoomMsgProtocol_set_room_owner
 #endif
  {
   gamer::protocol::RoomMsgProtocol* self = (gamer::protocol::RoomMsgProtocol*)  tolua_tousertype(tolua_S,1,0);
- ::google::protobuf::uint32 value = *((::google::protobuf::uint32*)  tolua_tousertype(tolua_S,2,0));
+  unsigned int value = ((unsigned int)  tolua_tonumber(tolua_S,2,0));
 #ifndef TOLUA_RELEASE
   if (!self) tolua_error(tolua_S,"invalid 'self' in function 'set_room_owner_id'", NULL);
 #endif
@@ -267,18 +249,8 @@ static int tolua_room_msg_protocol_gamer_protocol_RoomMsgProtocol_room_owner_id0
   if (!self) tolua_error(tolua_S,"invalid 'self' in function 'room_owner_id'", NULL);
 #endif
   {
-  ::google::protobuf::uint32 tolua_ret = (::google::protobuf::uint32)  self->room_owner_id();
-   {
-#ifdef __cplusplus
-    void* tolua_obj = Mtolua_new((::google::protobuf::uint32)(tolua_ret));
-     tolua_pushusertype(tolua_S,tolua_obj,"::google::protobuf::uint32");
-    tolua_register_gc(tolua_S,lua_gettop(tolua_S));
-#else
-    void* tolua_obj = tolua_copy(tolua_S,(void*)&tolua_ret,sizeof(::google::protobuf::uint32));
-     tolua_pushusertype(tolua_S,tolua_obj,"::google::protobuf::uint32");
-    tolua_register_gc(tolua_S,lua_gettop(tolua_S));
-#endif
-   }
+   unsigned int tolua_ret = (unsigned int)  self->room_owner_id();
+   tolua_pushnumber(tolua_S,(lua_Number)tolua_ret);
   }
  }
  return 1;
@@ -309,18 +281,8 @@ static int tolua_room_msg_protocol_gamer_protocol_RoomMsgProtocol_players_num00(
   if (!self) tolua_error(tolua_S,"invalid 'self' in function 'players_num'", NULL);
 #endif
   {
-  ::google::protobuf::uint32 tolua_ret = (::google::protobuf::uint32)  self->players_num();
-   {
-#ifdef __cplusplus
-    void* tolua_obj = Mtolua_new((::google::protobuf::uint32)(tolua_ret));
-     tolua_pushusertype(tolua_S,tolua_obj,"::google::protobuf::uint32");
-    tolua_register_gc(tolua_S,lua_gettop(tolua_S));
-#else
-    void* tolua_obj = tolua_copy(tolua_S,(void*)&tolua_ret,sizeof(::google::protobuf::uint32));
-     tolua_pushusertype(tolua_S,tolua_obj,"::google::protobuf::uint32");
-    tolua_register_gc(tolua_S,lua_gettop(tolua_S));
-#endif
-   }
+   unsigned int tolua_ret = (unsigned int)  self->players_num();
+   tolua_pushnumber(tolua_S,(lua_Number)tolua_ret);
   }
  }
  return 1;
@@ -351,18 +313,8 @@ static int tolua_room_msg_protocol_gamer_protocol_RoomMsgProtocol_cur_round00(lu
   if (!self) tolua_error(tolua_S,"invalid 'self' in function 'cur_round'", NULL);
 #endif
   {
-  ::google::protobuf::uint32 tolua_ret = (::google::protobuf::uint32)  self->cur_round();
-   {
-#ifdef __cplusplus
-    void* tolua_obj = Mtolua_new((::google::protobuf::uint32)(tolua_ret));
-     tolua_pushusertype(tolua_S,tolua_obj,"::google::protobuf::uint32");
-    tolua_register_gc(tolua_S,lua_gettop(tolua_S));
-#else
-    void* tolua_obj = tolua_copy(tolua_S,(void*)&tolua_ret,sizeof(::google::protobuf::uint32));
-     tolua_pushusertype(tolua_S,tolua_obj,"::google::protobuf::uint32");
-    tolua_register_gc(tolua_S,lua_gettop(tolua_S));
-#endif
-   }
+   unsigned int tolua_ret = (unsigned int)  self->cur_round();
+   tolua_pushnumber(tolua_S,(lua_Number)tolua_ret);
   }
  }
  return 1;
@@ -393,18 +345,8 @@ static int tolua_room_msg_protocol_gamer_protocol_RoomMsgProtocol_total_round00(
   if (!self) tolua_error(tolua_S,"invalid 'self' in function 'total_round'", NULL);
 #endif
   {
-  ::google::protobuf::uint32 tolua_ret = (::google::protobuf::uint32)  self->total_round();
-   {
-#ifdef __cplusplus
-    void* tolua_obj = Mtolua_new((::google::protobuf::uint32)(tolua_ret));
-     tolua_pushusertype(tolua_S,tolua_obj,"::google::protobuf::uint32");
-    tolua_register_gc(tolua_S,lua_gettop(tolua_S));
-#else
-    void* tolua_obj = tolua_copy(tolua_S,(void*)&tolua_ret,sizeof(::google::protobuf::uint32));
-     tolua_pushusertype(tolua_S,tolua_obj,"::google::protobuf::uint32");
-    tolua_register_gc(tolua_S,lua_gettop(tolua_S));
-#endif
-   }
+   unsigned int tolua_ret = (unsigned int)  self->total_round();
+   tolua_pushnumber(tolua_S,(lua_Number)tolua_ret);
   }
  }
  return 1;
@@ -435,18 +377,8 @@ static int tolua_room_msg_protocol_gamer_protocol_RoomMsgProtocol_remain_cards_n
   if (!self) tolua_error(tolua_S,"invalid 'self' in function 'remain_cards_num'", NULL);
 #endif
   {
-  ::google::protobuf::uint32 tolua_ret = (::google::protobuf::uint32)  self->remain_cards_num();
-   {
-#ifdef __cplusplus
-    void* tolua_obj = Mtolua_new((::google::protobuf::uint32)(tolua_ret));
-     tolua_pushusertype(tolua_S,tolua_obj,"::google::protobuf::uint32");
-    tolua_register_gc(tolua_S,lua_gettop(tolua_S));
-#else
-    void* tolua_obj = tolua_copy(tolua_S,(void*)&tolua_ret,sizeof(::google::protobuf::uint32));
-     tolua_pushusertype(tolua_S,tolua_obj,"::google::protobuf::uint32");
-    tolua_register_gc(tolua_S,lua_gettop(tolua_S));
-#endif
-   }
+   unsigned int tolua_ret = (unsigned int)  self->remain_cards_num();
+   tolua_pushnumber(tolua_S,(lua_Number)tolua_ret);
   }
  }
  return 1;
@@ -477,18 +409,8 @@ static int tolua_room_msg_protocol_gamer_protocol_RoomMsgProtocol_operating_play
   if (!self) tolua_error(tolua_S,"invalid 'self' in function 'operating_player_id'", NULL);
 #endif
   {
-  ::google::protobuf::uint32 tolua_ret = (::google::protobuf::uint32)  self->operating_player_id();
-   {
-#ifdef __cplusplus
-    void* tolua_obj = Mtolua_new((::google::protobuf::uint32)(tolua_ret));
-     tolua_pushusertype(tolua_S,tolua_obj,"::google::protobuf::uint32");
-    tolua_register_gc(tolua_S,lua_gettop(tolua_S));
-#else
-    void* tolua_obj = tolua_copy(tolua_S,(void*)&tolua_ret,sizeof(::google::protobuf::uint32));
-     tolua_pushusertype(tolua_S,tolua_obj,"::google::protobuf::uint32");
-    tolua_register_gc(tolua_S,lua_gettop(tolua_S));
-#endif
-   }
+   unsigned int tolua_ret = (unsigned int)  self->operating_player_id();
+   tolua_pushnumber(tolua_S,(lua_Number)tolua_ret);
   }
  }
  return 1;
@@ -519,18 +441,8 @@ static int tolua_room_msg_protocol_gamer_protocol_RoomMsgProtocol_operation_id00
   if (!self) tolua_error(tolua_S,"invalid 'self' in function 'operation_id'", NULL);
 #endif
   {
-  ::google::protobuf::uint32 tolua_ret = (::google::protobuf::uint32)  self->operation_id();
-   {
-#ifdef __cplusplus
-    void* tolua_obj = Mtolua_new((::google::protobuf::uint32)(tolua_ret));
-     tolua_pushusertype(tolua_S,tolua_obj,"::google::protobuf::uint32");
-    tolua_register_gc(tolua_S,lua_gettop(tolua_S));
-#else
-    void* tolua_obj = tolua_copy(tolua_S,(void*)&tolua_ret,sizeof(::google::protobuf::uint32));
-     tolua_pushusertype(tolua_S,tolua_obj,"::google::protobuf::uint32");
-    tolua_register_gc(tolua_S,lua_gettop(tolua_S));
-#endif
-   }
+   unsigned int tolua_ret = (unsigned int)  self->operation_id();
+   tolua_pushnumber(tolua_S,(lua_Number)tolua_ret);
   }
  }
  return 1;
@@ -561,18 +473,8 @@ static int tolua_room_msg_protocol_gamer_protocol_RoomMsgProtocol_banker_id00(lu
   if (!self) tolua_error(tolua_S,"invalid 'self' in function 'banker_id'", NULL);
 #endif
   {
-  ::google::protobuf::uint32 tolua_ret = (::google::protobuf::uint32)  self->banker_id();
-   {
-#ifdef __cplusplus
-    void* tolua_obj = Mtolua_new((::google::protobuf::uint32)(tolua_ret));
-     tolua_pushusertype(tolua_S,tolua_obj,"::google::protobuf::uint32");
-    tolua_register_gc(tolua_S,lua_gettop(tolua_S));
-#else
-    void* tolua_obj = tolua_copy(tolua_S,(void*)&tolua_ret,sizeof(::google::protobuf::uint32));
-     tolua_pushusertype(tolua_S,tolua_obj,"::google::protobuf::uint32");
-    tolua_register_gc(tolua_S,lua_gettop(tolua_S));
-#endif
-   }
+   unsigned int tolua_ret = (unsigned int)  self->banker_id();
+   tolua_pushnumber(tolua_S,(lua_Number)tolua_ret);
   }
  }
  return 1;
@@ -603,18 +505,8 @@ static int tolua_room_msg_protocol_gamer_protocol_RoomMsgProtocol_banker_is_same
   if (!self) tolua_error(tolua_S,"invalid 'self' in function 'banker_is_same_time'", NULL);
 #endif
   {
-  ::google::protobuf::uint32 tolua_ret = (::google::protobuf::uint32)  self->banker_is_same_time();
-   {
-#ifdef __cplusplus
-    void* tolua_obj = Mtolua_new((::google::protobuf::uint32)(tolua_ret));
-     tolua_pushusertype(tolua_S,tolua_obj,"::google::protobuf::uint32");
-    tolua_register_gc(tolua_S,lua_gettop(tolua_S));
-#else
-    void* tolua_obj = tolua_copy(tolua_S,(void*)&tolua_ret,sizeof(::google::protobuf::uint32));
-     tolua_pushusertype(tolua_S,tolua_obj,"::google::protobuf::uint32");
-    tolua_register_gc(tolua_S,lua_gettop(tolua_S));
-#endif
-   }
+   unsigned int tolua_ret = (unsigned int)  self->banker_is_same_time();
+   tolua_pushnumber(tolua_S,(lua_Number)tolua_ret);
   }
  }
  return 1;
@@ -645,18 +537,8 @@ static int tolua_room_msg_protocol_gamer_protocol_RoomMsgProtocol_player_cards_s
   if (!self) tolua_error(tolua_S,"invalid 'self' in function 'player_cards_size'", NULL);
 #endif
   {
-  ::google::protobuf::uint32 tolua_ret = (::google::protobuf::uint32)  self->player_cards_size();
-   {
-#ifdef __cplusplus
-    void* tolua_obj = Mtolua_new((::google::protobuf::uint32)(tolua_ret));
-     tolua_pushusertype(tolua_S,tolua_obj,"::google::protobuf::uint32");
-    tolua_register_gc(tolua_S,lua_gettop(tolua_S));
-#else
-    void* tolua_obj = tolua_copy(tolua_S,(void*)&tolua_ret,sizeof(::google::protobuf::uint32));
-     tolua_pushusertype(tolua_S,tolua_obj,"::google::protobuf::uint32");
-    tolua_register_gc(tolua_S,lua_gettop(tolua_S));
-#endif
-   }
+   unsigned int tolua_ret = (unsigned int)  self->player_cards_size();
+   tolua_pushnumber(tolua_S,(lua_Number)tolua_ret);
   }
  }
  return 1;

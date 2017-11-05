@@ -39,7 +39,7 @@ enum CardConstants
     CARD_VALUE_SEASON_OR_FLOWER_8 = 58, 
 
     // card index
-    INVALID_CARD_VALUE  = -1,
+    INVALID_CARD_VALUE  = 42,
     BAMBOO_1            = 0,
     BAMBOO_2            = 1,
     BAMBOO_3            = 2,

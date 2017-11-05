@@ -17,7 +17,6 @@ modification:
 
 #include <unordered_map>
 
-#include "macros.h"
 #include "basic_manager.h"
 #include "card_constants.h"
 #include "my_login_msg_protocol.pb.h"
@@ -39,6 +38,8 @@ public:
     typedef gamer::protocol::PlayerCardsMsgProtocol PlayerCardsMsgProtocol;
     typedef gamer::protocol::PlayCardMsgProtocol    PlayCardMsgProtocol;
     typedef gamer::protocol::GameEndMsgProtocol     GameEndMsgProtocol;
+    typedef google::protobuf::uint32                player_id_t;
+    typedef google::protobuf::uint32                card_t;
 
     DataManager();
 
@@ -68,61 +69,61 @@ public:
 
     inline void set_right_player_cards_index(int index);
 
-    inline int self_player_id() const;
+    inline player_id_t self_player_id() const;
 
-    inline int left_player_id() const;
+    inline player_id_t left_player_id() const;
 
-    inline int opposite_player_id() const;
+    inline player_id_t opposite_player_id() const;
 
-    inline int right_player_id() const;
+    inline player_id_t right_player_id() const;
 
     void updateCardAfterOperation(PlayCardMsgProtocol* proto);
 
-    void updateCardForDiscardOfPlayerSelf(int discard);
+    void updateCardForDiscardOfPlayerSelf(card_t discard);
 
-    void updateCardForDiscard(id_t player_id, int discard);
+    void updateCardForDiscard(player_id_t player_id, card_t discard);
 
-    void updateCardForChi(id_t player_id,
+    void updateCardForChi(player_id_t player_id,
                           int card_of_chi,
                           int card_match_chi_1,
                           int card_match_chi_2);
 
-    void updateCardForPeng(id_t player_id, int card_of_peng);
+    void updateCardForPeng(player_id_t player_id, card_t card_of_peng);
 
-    void updateCardForPengAndGang(id_t player_id, int card_of_peng_gang);
+    void updateCardForPengAndGang(player_id_t player_id, card_t card_of_peng_gang);
 
-    void updateCardForMingGang(id_t player_id, int card_of_ming_gang);
+    void updateCardForMingGang(player_id_t player_id, card_t card_of_ming_gang);
 
-    void updateCardForAnGang(id_t player_id, int card_of_an_gang);
+    void updateCardForAnGang(player_id_t player_id, card_t card_of_an_gang);
 
-    void updateCardForBuhua(id_t player_id);
+    void updateCardForBuhua(player_id_t player_id);
 
-    void updateCardForHu(id_t player_id);
+    void updateCardForHu(player_id_t player_id);
 
 private:
-    typedef google::protobuf::RepeatedField<google::protobuf::int32> RepeatedField;
+    typedef google::protobuf::RepeatedField<card_t> RepeatedField;
 
-    PlayerCardsMsgProtocol* getPlayerCardsMsgProtocol(id_t player_id);
+    PlayerCardsMsgProtocol* getPlayerCardsMsgProtocol(player_id_t player_id);
 
-    void updateCardForNewCardOfPlayerSelf(int new_card);
+    void updateCardForNewCardOfPlayerSelf(card_t new_card);
 
-    void updateCardForNewCardOfOtherPlayer(id_t player_id);
+    void updateCardForNewCardOfOtherPlayer(player_id_t player_id);
 
-    void updateCardForDiscardOfOtherPlayer(id_t player_id, int discard);
+    void updateCardForDiscardOfOtherPlayer(player_id_t player_id, card_t discard);
 
-    int countInvisibleCard(PlayerCardsMsgProtocol* proto, int card) const;
+    int countInvisibleCard(PlayerCardsMsgProtocol* proto, card_t card) const;
 
-    int countCard(RepeatedField* repeated_field, int card) const;
+    int countCard(RepeatedField* repeated_field, card_t card) const;
 
-    void removeInvisibleCards(PlayerCardsMsgProtocol* proto, int card, int num);
+    void removeInvisibleCards(PlayerCardsMsgProtocol* proto, card_t card, int num);
 
-    void removeCards(RepeatedField* repeated_field, int card, int num);
+    void removeCards(RepeatedField* repeated_field, card_t card, int num);
 
-    inline bool is_season_or_flower(int card) const;
+    inline bool is_season_or_flower(card_t card) const;
 
-    inline bool is_season(int card) const;
+    inline bool is_season(card_t card) const;
 
-    inline bool is_flower(int card) const;
+    inline bool is_flower(card_t card) const;
 
     // keep the ownership
     MyLoginMsgProtocol*     my_login_msg_protocol_;
@@ -243,7 +244,7 @@ inline void DataManager::set_right_player_cards_index(int index)
     right_player_cards_index_ = index;
 }
 
-inline int DataManager::self_player_id() const
+inline google::protobuf::uint32 DataManager::self_player_id() const
 {
     if (my_login_msg_protocol_)
     {
@@ -252,7 +253,7 @@ inline int DataManager::self_player_id() const
     return 0;
 }
 
-inline int DataManager::left_player_id() const
+inline google::protobuf::uint32 DataManager::left_player_id() const
 {
     if (nullptr != room_msg_protocol_)
     {
@@ -261,7 +262,7 @@ inline int DataManager::left_player_id() const
     return 0;
 }
 
-inline int DataManager::opposite_player_id() const
+inline google::protobuf::uint32 DataManager::opposite_player_id() const
 {
     if (nullptr != room_msg_protocol_)
     {
@@ -270,7 +271,7 @@ inline int DataManager::opposite_player_id() const
     return 0;
 }
 
-inline int DataManager::right_player_id() const
+inline google::protobuf::uint32 DataManager::right_player_id() const
 {
     if (nullptr != room_msg_protocol_)
     {
@@ -279,21 +280,21 @@ inline int DataManager::right_player_id() const
     return 0;
 }
 
-inline bool DataManager::is_season_or_flower(int card) const {
+inline bool DataManager::is_season_or_flower(card_t card) const {
     if (card >= CardConstants::SEASON_SPRING && card <= CardConstants::FLOWER_BAMBOO) {
         return true;
     }
     return false;
 }
 
-inline bool DataManager::is_season(int card) const {
+inline bool DataManager::is_season(card_t card) const {
     if (card >= CardConstants::SEASON_SPRING && card <= CardConstants::SEASON_WINTER) {
         return true;
     }
     return false;
 }
 
-inline bool DataManager::is_flower(int card) const {
+inline bool DataManager::is_flower(card_t card) const {
     if (card >= CardConstants::FLOWER_PLUM && card <= CardConstants::FLOWER_BAMBOO) {
         return true;
     }

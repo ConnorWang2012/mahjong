@@ -1,6 +1,6 @@
 /*
 ** Lua binding: my_login_msg_protocol
-** Generated automatically by tolua++-1.0.92 on 11/02/17 16:56:34.
+** Generated automatically by tolua++-1.0.92 on 11/05/17 13:15:08.
 */
 
 #ifndef __cplusplus

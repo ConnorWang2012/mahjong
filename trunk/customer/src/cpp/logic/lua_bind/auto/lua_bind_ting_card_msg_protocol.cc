@@ -1,6 +1,6 @@
 /*
 ** Lua binding: ting_card_msg_protocol
-** Generated automatically by tolua++-1.0.92 on 11/02/17 16:55:42.
+** Generated automatically by tolua++-1.0.92 on 11/05/17 13:15:24.
 */
 
 #ifndef __cplusplus
@@ -183,7 +183,7 @@ static int tolua_ting_card_msg_protocol_gamer_protocol_TingCardMsgProtocol_cards
   if (!self) tolua_error(tolua_S,"invalid 'self' in function 'cards_of_ting'", NULL);
 #endif
   {
-   int tolua_ret = (int)  self->cards_of_ting(index);
+   unsigned int tolua_ret = (unsigned int)  self->cards_of_ting(index);
    tolua_pushnumber(tolua_S,(lua_Number)tolua_ret);
   }
  }
@@ -215,7 +215,7 @@ static int tolua_ting_card_msg_protocol_gamer_protocol_TingCardMsgProtocol_disca
   if (!self) tolua_error(tolua_S,"invalid 'self' in function 'discard'", NULL);
 #endif
   {
-   int tolua_ret = (int)  self->discard();
+   unsigned int tolua_ret = (unsigned int)  self->discard();
    tolua_pushnumber(tolua_S,(lua_Number)tolua_ret);
   }
  }

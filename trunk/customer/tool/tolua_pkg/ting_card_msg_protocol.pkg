@@ -20,9 +20,9 @@ public:
 	int ByteSize() const;
 
 	inline int cards_of_ting_size() const;
-	inline int cards_of_ting(int index) const;
+	inline unsigned int cards_of_ting(int index) const;
 
-	inline int discard() const;
+	inline unsigned int discard() const;
 };
 
 } // namespace protocol

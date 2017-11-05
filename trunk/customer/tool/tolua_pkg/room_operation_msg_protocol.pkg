@@ -20,14 +20,14 @@ public:
 
 	int ByteSize() const;
 
-	inline void set_player_id(::google::protobuf::uint32 value);
-	inline ::google::protobuf::uint32 player_id() const;
+	inline void set_player_id(unsigned int value);
+	inline unsigned int player_id() const;
 
-	inline void set_room_id(::google::protobuf::uint32 value);
-	inline ::google::protobuf::uint32 room_id() const;
+	inline void set_room_id(unsigned int value);
+	inline unsigned int room_id() const;
 
-	inline void set_operation_id(::google::protobuf::uint32 value);
-	inline ::google::protobuf::uint32 operation_id() const;
+	inline void set_operation_id(unsigned int value);
+	inline unsigned int operation_id() const;
 };
 
 } // namespace protocol

@@ -19,33 +19,33 @@ public:
 
 	int ByteSize() const;
 
-	inline ::google::protobuf::uint32 player_id() const;
+	inline unsigned int player_id() const;
 
-	inline ::google::protobuf::uint32 invisible_hand_cards_num() const;
+	inline unsigned int invisible_hand_cards_num() const;
 
 	inline int invisible_hand_cards_size() const;
-	inline int invisible_hand_cards(int index) const;
+	inline unsigned int invisible_hand_cards(int index) const;
 
 	inline int flower_cards_size() const;
-	inline int flower_cards(int index) const;
+	inline unsigned int flower_cards(int index) const;
 
 	inline int season_cards_size() const;
-	inline int season_cards(int index) const;
+	inline unsigned int season_cards(int index) const;
 
 	inline int peng_cards_size() const;
-	inline int peng_cards(int index) const;
+	inline unsigned int peng_cards(int index) const;
 
 	inline int chi_cards_size() const;
-	inline int chi_cards(int index) const;
+	inline unsigned int chi_cards(int index) const;
 
 	inline int ming_gang_cards_size() const;
-	inline int ming_gang_cards(int index) const;
+	inline unsigned int ming_gang_cards(int index) const;
 
 	inline int an_gang_cards_size() const;
-	inline int an_gang_cards(int index) const;
+	inline unsigned int an_gang_cards(int index) const;
 
 	inline int ting_cards_size() const;
-	inline int ting_cards(int index) const;
+	inline unsigned int ting_cards(int index) const;
 };
 
 } // namespace protocol
