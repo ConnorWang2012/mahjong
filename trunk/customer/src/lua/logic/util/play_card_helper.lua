@@ -12,30 +12,30 @@ author:
 modification:
 --]]
 
-local PlayCardHelper = {}
-local MahjongConst   = require "view.constant.mahjong_constants.lua"
-local CardConst      = require "logic.constant.card_constants.lua"
-PlayCardHelper.directions_ = {}
+local M = {}
+local MahjongConst = require "view.constant.mahjong_constants.lua"
+local CardConst    = require "logic.constant.card_constants.lua"
+M.directions_ = {}
 
-function PlayCardHelper.setPlayerDirection(player_id, direction)
-	PlayCardHelper.directions_[player_id] = direction
+function M.setPlayerDirection(player_id, direction)
+	M.directions_[player_id] = direction
 end
 
-function PlayCardHelper.getPlayerDirection(player_id)
-	return PlayCardHelper.directions_[player_id]
+function M.getPlayerDirection(player_id)
+	return M.directions_[player_id]
 end
 
-function PlayCardHelper.setHasSpecialOperation(has)
-	PlayCardHelper.has_special_speration_ = has
+function M.setHasSpecialOperation(has)
+	M.has_special_speration_ = has
 end
 
 -- has operation but discard
-function PlayCardHelper.hasSpecialOperation()
-	return PlayCardHelper.has_special_speration_
+function M.hasSpecialOperation()
+	return M.has_special_speration_
 end
 
-function PlayCardHelper.iCanDiscard()
-	if PlayCardHelper.hasSpecialOperation() then
+function M.iCanDiscard()
+	if M.hasSpecialOperation() then
 		print("[PlayCardHelper.iCanDiscard] has special operation")
 		return false
 	end
@@ -48,7 +48,7 @@ function PlayCardHelper.iCanDiscard()
 	return false
 end
 
-function PlayCardHelper.isMahongValueValid(mahjong_value)
+function M.isMahongValueValid(mahjong_value)
 	if not mahjong_value then
 		return false
 	end
@@ -61,7 +61,7 @@ function PlayCardHelper.isMahongValueValid(mahjong_value)
 	return false
 end
 
-function PlayCardHelper.isFlowerOrSeasonCard(mahjong_value)
+function M.isFlowerOrSeasonCard(mahjong_value)
 	if mahjong_value >= CardConst.CardValues.SEASON_SPRING and
 	   mahjong_value <= CardConst.CardValues.FLOWER_BAMBOO then
 		return true
@@ -69,9 +69,9 @@ function PlayCardHelper.isFlowerOrSeasonCard(mahjong_value)
 	return false
 end
 
-function PlayCardHelper.getImageNameOfDirectionForOperatingPlayer()
+function M.getImageNameOfDirectionForOperatingPlayer()
 	local player_id = gamer.data_mgr_:play_card_msg_protocol():next_operate_player_id()
-	local direction = PlayCardHelper.getPlayerDirection(player_id)
+	local direction = M.getPlayerDirection(player_id)
 
 	if direction == MahjongConst.Directions.SELF then
 		return "img_direction_cur1"
@@ -85,7 +85,7 @@ function PlayCardHelper.getImageNameOfDirectionForOperatingPlayer()
 	return "img_direction_cur2"
 end
 
-function PlayCardHelper.getImageNameOfDirectionAfterPlayerSelf()
+function M.getImageNameOfDirectionAfterPlayerSelf()
 	local players_num = gamer.data_mgr_:room_msg_protocol():players_num()
 	if 2 == players_num then
 		return "img_direction_cur3"
@@ -95,4 +95,4 @@ function PlayCardHelper.getImageNameOfDirectionAfterPlayerSelf()
 	return "img_direction_cur2"
 end
 
-return PlayCardHelper
+return M

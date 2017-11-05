@@ -12,16 +12,16 @@ author:
 modification:
 --]]
 
-local PlayerHeadCreator = {}
-PlayerHeadCreator.hasLoadedHeadImages_ = false
+local M = {}
+M.hasLoadedHeadImages_ = false
 
-if not PlayerHeadCreator.hasLoadedHeadImages_ then
+if not M.hasLoadedHeadImages_ then
 	cc.SpriteFrameCache:getInstance():addSpriteFrames("assets/common/plist/head.plist")
-	PlayerHeadCreator.hasLoadedHeadImages_ = true
+	M.hasLoadedHeadImages_ = true
 end
 
 -- @ param img_stencil : local type image, img_chipping : plist type image
-function PlayerHeadCreator.create(img_stencil, img_chipping)
+function M.create(img_stencil, img_chipping)
 	local node_stencil = cc.Node:create()
 	local image_stencil = ccui.ImageView:create()
 	image_stencil:loadTexture(img_stencil, ccui.TextureResType.localType)
@@ -37,8 +37,8 @@ function PlayerHeadCreator.create(img_stencil, img_chipping)
 	return clipping_node
 end
 
-function PlayerHeadCreator.createWithDefaultStencil(img_chipping)
-	return PlayerHeadCreator.create("assets/common/head_stencil.png", img_chipping)
+function M.createWithDefaultStencil(img_chipping)
+	return M.create("assets/common/head_stencil.png", img_chipping)
 end
 
-return PlayerHeadCreator
+return M

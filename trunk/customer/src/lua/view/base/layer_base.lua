@@ -30,25 +30,25 @@ function LayerBase:ctor(view_file)
 end
 
 function LayerBase:addViewNodeFromLua(view_file)
-	if self.root_view_node_ then
-        self.root_view_node_:removeSelf()
-        self.root_view_node_ = nil
+	if self.root_node_ then
+        self.root_node_:removeSelf()
+        self.root_node_ = nil
     end
-    self.root_view_node_ = require(view_file):create().root
-    assert(self.root_view_node_, string.format("[LayerBase:addViewNode] add view node from file \"%s\" failed", view_file))
-    self.root_view_node_:setLocalZOrder(0)
-    self:addChild(self.root_view_node_)
+    self.root_node_ = require(view_file):create().root
+    assert(self.root_node_, string.format("[LayerBase:addViewNode] add view node from file \"%s\" failed", view_file))
+    self.root_node_:setLocalZOrder(0)
+    self:addChild(self.root_node_)
 end
 
 function LayerBase:addViewNodeFromCsb(view_file)
-	if self.root_view_node_ then
-        self.root_view_node_:removeSelf()
-        self.root_view_node_ = nil
+	if self.root_node_ then
+        self.root_node_:removeSelf()
+        self.root_node_ = nil
     end
-    self.root_view_node_ = cc.CSLoader:createNode(view_file)
-    assert(self.root_view_node_, string.format("[LayerBase:addViewNode] add view node from file \"%s\" failed", view_file))
-    self.root_view_node_:setLocalZOrder(0)
-    self:addChild(self.root_view_node_)
+    self.root_node_ = cc.CSLoader:createNode(view_file)
+    assert(self.root_node_, string.format("[LayerBase:addViewNode] add view node from file \"%s\" failed", view_file))
+    self.root_node_:setLocalZOrder(0)
+    self:addChild(self.root_node_)
 end
 
 function LayerBase:id()

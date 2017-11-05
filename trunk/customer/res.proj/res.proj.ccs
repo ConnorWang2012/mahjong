@@ -102,9 +102,14 @@
             <Image Name="btn_shop.png" />
             <Image Name="head_stencil.png" />
             <Image Name="i_chat.png" />
+            <Image Name="i_half_opacity.png" />
             <Image Name="i_head_circle.png" />
+            <Image Name="i_store_diamond.png" />
+            <Image Name="i_store_gold.png" />
+            <Image Name="item_bg.png" />
             <Image Name="numbers_blue.png" />
             <Image Name="numbers_orange.png" />
+            <Image Name="popup_bg1.png" />
           </Folder>
           <Folder Name="font">
             <TTF Name="FZZhengHeiS-B-GB.ttf" />
@@ -162,7 +167,6 @@
             </Folder>
             <Image Name="hall_bg.jpg" />
             <Image Name="hall_bottom_bg.png" />
-            <Image Name="popup_bg1.png" />
           </Folder>
           <Folder Name="login">
             <Image Name="login_bg.jpg" />
@@ -225,6 +229,21 @@
                 <PlistImageFile Name="wind_or_dragon_6.png" Key="wind_or_dragon_6.png" />
                 <PlistImageFile Name="wind_or_dragon_7.png" Key="wind_or_dragon_7.png" />
               </PlistImageFolder>
+              <PlistImageFolder Image="game_end.png" PListFile="game_end.plist" Name=".game_end_PList.Dir">
+                <PlistImageFile Name="btn_go_back_hall.png" Key="btn_go_back_hall.png" />
+                <PlistImageFile Name="btn_play_again.png" Key="btn_play_again.png" />
+                <PlistImageFile Name="btn_share.png" Key="btn_share.png" />
+                <PlistImageFile Name="i_cloud1.png" Key="i_cloud1.png" />
+                <PlistImageFile Name="i_cloud2.png" Key="i_cloud2.png" />
+                <PlistImageFile Name="i_flower1.png" Key="i_flower1.png" />
+                <PlistImageFile Name="i_flower2.png" Key="i_flower2.png" />
+                <PlistImageFile Name="i_game_end_title.png" Key="i_game_end_title.png" />
+                <PlistImageFile Name="i_left.png" Key="i_left.png" />
+                <PlistImageFile Name="i_right.png" Key="i_right.png" />
+                <PlistImageFile Name="i_tab_bg.png" Key="i_tab_bg.png" />
+                <PlistImageFile Name="i_win.png" Key="i_win.png" />
+                <PlistImageFile Name="list_bg.png" Key="list_bg.png" />
+              </PlistImageFolder>
               <PlistImageFolder Image="menu.png" PListFile="menu.plist" Name=".menu_PList.Dir">
                 <PlistImageFile Name="i_menu_item_dissolve.png" Key="i_menu_item_dissolve.png" />
                 <PlistImageFile Name="i_menu_item_exit.png" Key="i_menu_item_exit.png" />
@@ -285,6 +304,10 @@
           <Folder Name="ui">
             <Folder Name="common" />
             <Folder Name="hall">
+              <Folder Name="store">
+                <Project Name="store_item_node_layout.csd" Type="Node" />
+                <Project Name="store_layer_layout.csd" Type="Layer" />
+              </Folder>
               <Project Name="create_room_layer_layout.csd" Type="Layer" />
               <Project Name="hall_bottom_node_layout.csd" Type="Node" />
               <Project Name="hall_middle_node_layout.csd" Type="Node" />
@@ -294,6 +317,9 @@
             </Folder>
             <Folder Name="login" />
             <Folder Name="room">
+              <Folder Name="game_end">
+                <Project Name="game_end_layer_layout.csd" Type="Layer" />
+              </Folder>
               <Folder Name="mahjong">
                 <Project Name="left_discard_mj_node_layout.csd" Type="Node" />
                 <Project Name="left_invisible_1_mj_node_layout.csd" Type="Node" />

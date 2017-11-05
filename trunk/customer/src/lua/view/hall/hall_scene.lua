@@ -57,6 +57,16 @@ function HallScene:initLayout()
     img = node:getChildByName("img_left")
     img:setTouchEnabled(true)
     img:addClickEventListener(handler(self, self.onImgLeftTouch))
+
+	-- store
+	local img_shop = self.hall_bottom_layout_:getChildByName("img_shop")
+	img_shop:setTouchEnabled(true)
+	img_shop:addClickEventListener(handler(self, self.onImgStoreTouch))
+end
+
+function HallScene:onImgStoreTouch(sender)
+    print("[HallScene:onImgStoreTouch]")
+	gamer.popup_mgr_.showPopup(gamer.PopupConstants.PopupIDs.POPUP_ID_STORE)
 end
 
 function HallScene:onImgRightTouch(sender)

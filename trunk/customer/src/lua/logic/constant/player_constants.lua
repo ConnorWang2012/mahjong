@@ -12,8 +12,8 @@ author:
 modification:
 --]]
 
-local PlayerConstants = {}
+local M = {}
 
-PlayerConstants.INVALID_PLAYER_ID = 0
+M.INVALID_PLAYER_ID = 0
 
-return PlayerConstants
+return M

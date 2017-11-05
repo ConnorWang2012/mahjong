@@ -435,7 +435,7 @@
             <CColor A="255" R="255" G="255" B="255" />
             <PrePosition X="0.5000" Y="0.5000" />
             <PreSize X="0.5495" Y="0.9870" />
-            <FileData Type="Normal" Path="assets/hall/popup_bg1.png" Plist="" />
+            <FileData Type="Normal" Path="assets/common/popup_bg1.png" Plist="" />
           </AbstractNodeData>
         </Children>
       </ObjectData>

@@ -23,9 +23,9 @@ local TingAnimation    = require "view.animations.room.node_ting_anim.lua"
 local HuAnimation      = require "view.animations.room.node_hu_anim.lua"
 local ZimoAnimation    = require "view.animations.room.node_zimo_anim.lua"
 local MahjongConst     = require "view.constant.mahjong_constants.lua"
-local AnimationCreator = {}
+local M = {}
 
-function AnimationCreator.create(animation_id)
+function M.create(animation_id)
 	local anim_node = nil
 
 	if animation_id == MahjongConst.AnimationIDs.ANIMATION_OPERATION1 then     -- operation1
@@ -53,4 +53,4 @@ function AnimationCreator.create(animation_id)
 	return anim_node
 end
 
-return AnimationCreator
+return M

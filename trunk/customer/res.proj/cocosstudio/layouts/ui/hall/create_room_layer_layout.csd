@@ -9,10 +9,10 @@
           <AbstractNodeData Name="img_bg" ActionTag="823163131" Tag="15" IconVisible="False" HorizontalEdge="BothEdge" VerticalEdge="BothEdge" LeftMargin="432.5000" RightMargin="432.5000" TopMargin="7.0000" BottomMargin="7.0000" LeftEage="348" RightEage="348" TopEage="351" BottomEage="351" Scale9OriginX="348" Scale9OriginY="351" Scale9Width="359" Scale9Height="364" ctype="ImageViewObjectData">
             <Size X="1055.0000" Y="1066.0000" />
             <Children>
-              <AbstractNodeData Name="img_bg2" ActionTag="961032863" Tag="33" IconVisible="False" HorizontalEdge="BothEdge" VerticalEdge="BothEdge" LeftMargin="18.0000" RightMargin="17.0000" TopMargin="131.9722" BottomMargin="14.0279" Scale9Enable="True" LeftEage="80" RightEage="80" TopEage="80" BottomEage="80" Scale9OriginX="80" Scale9OriginY="80" Scale9Width="64" Scale9Height="68" ctype="ImageViewObjectData">
+              <AbstractNodeData Name="img_bg2" ActionTag="961032863" Tag="33" IconVisible="False" HorizontalEdge="BothEdge" VerticalEdge="BothEdge" LeftMargin="18.0275" RightMargin="16.9724" TopMargin="131.9498" BottomMargin="14.0502" Scale9Enable="True" LeftEage="80" RightEage="80" TopEage="80" BottomEage="80" Scale9OriginX="80" Scale9OriginY="80" Scale9Width="64" Scale9Height="68" ctype="ImageViewObjectData">
                 <Size X="1020.0000" Y="920.0000" />
                 <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
-                <Position X="528.0000" Y="474.0279" />
+                <Position X="528.0275" Y="474.0502" />
                 <Scale ScaleX="1.0000" ScaleY="1.0000" />
                 <CColor A="255" R="255" G="255" B="255" />
                 <PrePosition X="0.5005" Y="0.4447" />
@@ -332,7 +332,7 @@
             <CColor A="255" R="255" G="255" B="255" />
             <PrePosition X="0.5000" Y="0.5000" />
             <PreSize X="0.5495" Y="0.9870" />
-            <FileData Type="Normal" Path="assets/hall/popup_bg1.png" Plist="" />
+            <FileData Type="Normal" Path="assets/common/popup_bg1.png" Plist="" />
           </AbstractNodeData>
         </Children>
       </ObjectData>

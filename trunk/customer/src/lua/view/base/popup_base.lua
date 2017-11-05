@@ -52,4 +52,28 @@ function PopupBase:onTouchEnd(touch, event)
     print("[PopupBase:onTouchEnd]")
 end
 
+function PopupBase:popupBaseBackgroundTouch(sender)
+	print("[PopupBase:popupBaseBackgroundTouch]")
+	self:removeFromParent(true)
+end
+
+function PopupBase:closeWhenTouchBackground(yes)
+	if yes then
+		if self.popup_base_bg_layer_ then
+			self.popup_base_bg_layer_:setTouchEnabled(true)
+		else
+			self.popup_base_bg_layer_ = ccui.Layout:create()
+			self:addChild(self.popup_base_bg_layer_, -1)
+			self.popup_base_bg_layer_:setLocalZOrder(-1)
+			self.popup_base_bg_layer_:setContentSize(display.width, display.height)
+			self.popup_base_bg_layer_:setTouchEnabled(true)
+			self.popup_base_bg_layer_:addClickEventListener(handler(self, self.popupBaseBackgroundTouch))
+		end
+	else
+		if self.popup_base_bg_layer_ then
+			self.popup_base_bg_layer_:setTouchEnabled(false)
+		end
+	end
+end
+
 return PopupBase

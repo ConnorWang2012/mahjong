@@ -12,7 +12,7 @@ author:
 modification:
 --]]
 
-local MahjongCreator = {}
+local M = {}
 local MahjongConst	     = require "view.constant.mahjong_constants.lua"
 
 local MyInvisibleMJLayout  = require "view.layouts.ui.room.mahjong.my_invisible_mj_node_layout.lua"
@@ -50,10 +50,10 @@ local RightVisibleMJLayout2   = require "view.layouts.ui.room.mahjong.right_visi
 local RightVisibleMJLayout3   = require "view.layouts.ui.room.mahjong.right_visible_3_mj_node_layout.lua"
 local RightDiscardMJLayout    = require "view.layouts.ui.room.mahjong.right_discard_mj_node_layout.lua"
 
-MahjongCreator.opposite_discard_zorder_ = 1000
-MahjongCreator.right_discard_zorder_    = 1100
+M.opposite_discard_zorder_ = 1000
+M.right_discard_zorder_    = 1100
 
-function MahjongCreator.create(direction, type, value)
+function M.create(direction, type, value)
 	if nil == direction or nil == type then
 		local str = string.format("direction : %s, type : %s", tostring(direction), tostring(type))
 		print("[MahjongCreator.create] param error : ", str)
@@ -62,13 +62,13 @@ function MahjongCreator.create(direction, type, value)
 
 	local mj_node = nil
 	if direction == MahjongConst.Directions.SELF then -- self
-		mj_node = MahjongCreator.initPlayerSelfCardLayout(type, value)
+		mj_node = M.initPlayerSelfCardLayout(type, value)
 	elseif direction == MahjongConst.Directions.LEFT then
-		mj_node = MahjongCreator.initLeftPlayerCardLayout(type, value)
+		mj_node = M.initLeftPlayerCardLayout(type, value)
 	elseif direction == MahjongConst.Directions.OPPOSITE then
-		mj_node = MahjongCreator.initOppositePlayerCardLayout(type, value)
+		mj_node = M.initOppositePlayerCardLayout(type, value)
 	elseif direction == MahjongConst.Directions.RIGHT then 
-		mj_node = MahjongCreator.initRightPlayerCardLayout(type, value)
+		mj_node = M.initRightPlayerCardLayout(type, value)
 	end
 
 	if mj_node and value then
@@ -78,10 +78,10 @@ function MahjongCreator.create(direction, type, value)
 	return mj_node
 end
 
-function MahjongCreator.initPlayerSelfCardLayout(type, value)
+function M.initPlayerSelfCardLayout(type, value)
 	local mj_layout = nil
 	if type == MahjongConst.Types.INVISIBLE then
-		local png = MahjongCreator.getCardPng(value)		
+		local png = M.getCardPng(value)		
 		if png then
 			mj_layout = MyInvisibleMJLayout:create().root
 			mj_layout:setLocalZOrder(MahjongConst.ZOrders.INVISIBLE_HAND_CARD_PLAYER_SELF)
@@ -100,7 +100,7 @@ function MahjongCreator.initPlayerSelfCardLayout(type, value)
 		mj_layout:setLocalZOrder(MahjongConst.ZOrders.INVISIBLE_AN_GANG_CARD_PLAYER_SELF)
 
 	elseif type == MahjongConst.Types.VISIBLE then
-		local png = MahjongCreator.getCardPng(value)		
+		local png = M.getCardPng(value)		
 		if png then
 			mj_layout = MyVisibleMJLayout1:create().root
 			mj_layout:setLocalZOrder(MahjongConst.ZOrders.VISIBLE_HAND_CARD_PLAYER_SELF)
@@ -109,7 +109,7 @@ function MahjongCreator.initPlayerSelfCardLayout(type, value)
 		end
 
 	elseif type == MahjongConst.Types.VISIBLE_MING_GANG then
-		local png = MahjongCreator.getCardPng(value)
+		local png = M.getCardPng(value)
 		if png then
 			mj_layout = MyVisibleMJLayout3:create().root
 			mj_layout:setLocalZOrder(MahjongConst.ZOrders.VISIBLE_HAND_CARD_PLAYER_SELF)
@@ -122,7 +122,7 @@ function MahjongCreator.initPlayerSelfCardLayout(type, value)
 		end
 
 	elseif type == MahjongConst.Types.VISIBLE_DISCARD then
-		local png = MahjongCreator.getCardPng(value)		
+		local png = M.getCardPng(value)		
 		if png then
 			mj_layout = MyDiscardMJLayout:create().root
 			local img_fg = mj_layout:getChildByName("img_fg")
@@ -140,7 +140,7 @@ function MahjongCreator.initPlayerSelfCardLayout(type, value)
 	return mj_layout
 end
 
-function MahjongCreator.initLeftPlayerCardLayout(type, value)
+function M.initLeftPlayerCardLayout(type, value)
 	local mj_layout = nil
 	if type == MahjongConst.Types.INVISIBLE then
 		mj_layout = LeftInvisibleMJLayout:create().root
@@ -151,14 +151,14 @@ function MahjongCreator.initLeftPlayerCardLayout(type, value)
 	elseif type == MahjongConst.Types.INVISIBLE_3 then
 		mj_layout = LeftInvisibleMJLayout3:create().root
 	elseif type == MahjongConst.Types.VISIBLE then
-		local png = MahjongCreator.getCardPng(value)
+		local png = M.getCardPng(value)
 		if png then
 			mj_layout = LeftVisibleMJLayout1:create().root
 			local img_fg = mj_layout:getChildByName("img_fg") or mj_layout:getChildByName("img_top_fg")
 			img_fg:loadTexture(png, ccui.TextureResType.plistType)
 		end
 	elseif type == MahjongConst.Types.VISIBLE_MING_GANG then
-		local png = MahjongCreator.getCardPng(value)
+		local png = M.getCardPng(value)
 		if png then
 			mj_layout = LeftVisibleMJLayout3:create().root
 			local img_fg1 = mj_layout:getChildByName("img_top_fg1") 
@@ -170,7 +170,7 @@ function MahjongCreator.initLeftPlayerCardLayout(type, value)
 		end
 
 	elseif type == MahjongConst.Types.VISIBLE_DISCARD then
-		local png = MahjongCreator.getCardPng(value)		
+		local png = M.getCardPng(value)		
 		if png then
 			mj_layout = LeftDiscardMJLayout:create().root
 			local img_fg = mj_layout:getChildByName("img_fg")
@@ -187,7 +187,7 @@ function MahjongCreator.initLeftPlayerCardLayout(type, value)
 	return mj_layout
 end
 
-function MahjongCreator.initOppositePlayerCardLayout(type, value)
+function M.initOppositePlayerCardLayout(type, value)
 	local mj_layout = nil
 	local need_show_card_value = false
 	if type == MahjongConst.Types.INVISIBLE then
@@ -199,14 +199,14 @@ function MahjongCreator.initOppositePlayerCardLayout(type, value)
 	elseif type == MahjongConst.Types.INVISIBLE_3 then
 		mj_layout = OppositeInvisibleMJLayout3:create().root
 	elseif type == MahjongConst.Types.VISIBLE then	
-		local png = MahjongCreator.getCardPng(value)
+		local png = M.getCardPng(value)
 		if png then
 			mj_layout = OppositeVisibleMJLayout1:create().root
 			local img_fg = mj_layout:getChildByName("img_fg") or mj_layout:getChildByName("img_top_fg")
 			img_fg:loadTexture(png, ccui.TextureResType.plistType)
 		end
 	elseif type == MahjongConst.Types.VISIBLE_MING_GANG then
-		local png = MahjongCreator.getCardPng(value)
+		local png = M.getCardPng(value)
 		if png then
 			mj_layout = OppositeVisibleMJLayout3:create().root
 			local img_fg1 = mj_layout:getChildByName("img_top_fg1") 
@@ -218,15 +218,15 @@ function MahjongCreator.initOppositePlayerCardLayout(type, value)
 		end
 
 	elseif type == MahjongConst.Types.VISIBLE_DISCARD then
-		local png = MahjongCreator.getCardPng(value)		
+		local png = M.getCardPng(value)		
 		if png then
 			mj_layout = OppositeVisibleMJLayout1:create().root
 			local img_fg = mj_layout:getChildByName("img_fg")
 			img_fg:loadTexture(png, ccui.TextureResType.plistType)
 
 			-- for opposite player discard(visble mahjong), modify it's local z order as lower
-			mj_layout:setLocalZOrder(MahjongCreator.opposite_discard_zorder_)
-			MahjongCreator.opposite_discard_zorder_ = MahjongCreator.opposite_discard_zorder_ - 1
+			mj_layout:setLocalZOrder(M.opposite_discard_zorder_)
+			M.opposite_discard_zorder_ = M.opposite_discard_zorder_ - 1
 		end
 
 	end
@@ -239,7 +239,7 @@ function MahjongCreator.initOppositePlayerCardLayout(type, value)
 	return mj_layout
 end
 
-function MahjongCreator.initRightPlayerCardLayout(type, value)
+function M.initRightPlayerCardLayout(type, value)
 	local mj_layout = nil
 	if type == MahjongConst.Types.INVISIBLE then
 		mj_layout = RightInvisibleMJLayout:create().root
@@ -250,14 +250,14 @@ function MahjongCreator.initRightPlayerCardLayout(type, value)
 	elseif type == MahjongConst.Types.INVISIBLE_3 then
 		mj_layout = RightInvisibleMJLayout3:create().root
 	elseif type == MahjongConst.Types.VISIBLE then
-		local png = MahjongCreator.getCardPng(value)
+		local png = M.getCardPng(value)
 		if png then
 			mj_layout = RightVisibleMJLayout1:create().root
 			local img_fg = mj_layout:getChildByName("img_fg") or mj_layout:getChildByName("img_top_fg")
 			img_fg:loadTexture(png, ccui.TextureResType.plistType)
 		end
 	elseif type == MahjongConst.Types.VISIBLE_MING_GANG then
-		local png = MahjongCreator.getCardPng(value)
+		local png = M.getCardPng(value)
 		if png then
 			mj_layout = RightVisibleMJLayout3:create().root
 			local img_fg1 = mj_layout:getChildByName("img_top_fg1") 
@@ -269,15 +269,15 @@ function MahjongCreator.initRightPlayerCardLayout(type, value)
 		end
 
 	elseif type == MahjongConst.Types.VISIBLE_DISCARD then
-		local png = MahjongCreator.getCardPng(value)		
+		local png = M.getCardPng(value)		
 		if png then
 			mj_layout = RightDiscardMJLayout:create().root
 			local img_fg = mj_layout:getChildByName("img_fg")
 			img_fg:loadTexture(png, ccui.TextureResType.plistType)
 
 			-- for right player discard(visble mahjong), modify it's local z order as lower
-			mj_layout:setLocalZOrder(MahjongCreator.right_discard_zorder_)
-			MahjongCreator.right_discard_zorder_ = MahjongCreator.right_discard_zorder_ - 1
+			mj_layout:setLocalZOrder(M.right_discard_zorder_)
+			M.right_discard_zorder_ = M.right_discard_zorder_ - 1
 		end
 
 	end
@@ -290,7 +290,7 @@ function MahjongCreator.initRightPlayerCardLayout(type, value)
 	return mj_layout
 end
 
-function MahjongCreator.getCardPng(value)
+function M.getCardPng(value)
 	if value <= 8 then
 		return MahjongConst.CardPngs[1][value + 1]
 	elseif value <= 17 then
@@ -305,4 +305,4 @@ function MahjongCreator.getCardPng(value)
 	return nil
 end
 
-return MahjongCreator
+return M

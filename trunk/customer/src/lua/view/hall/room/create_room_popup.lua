@@ -22,10 +22,12 @@ function CreateRoomPopup:ctor(view_file)
 end
 
 function CreateRoomPopup:initLayout()
-	local img_bg = self.root_view_node_:getChildByName("img_bg")
+	local img_bg = self.root_node_:getChildByName("img_bg")
 	local img_create = img_bg:getChildByName("img_create")
 	img_create:setTouchEnabled(true)
     img_create:addClickEventListener(handler(self, self.onImgCreateRoomTouch))
+
+	self:closeWhenTouchBackground(true)
 end
 
 function CreateRoomPopup:onImgCreateRoomTouch(sender)
@@ -36,6 +38,7 @@ function CreateRoomPopup:onImgCreateRoomTouch(sender)
     proto:set_rounds_num(10)
     proto:set_players_num(2)
     proto:set_room_cards_num(1)
+	proto:set_score_gold(3000)
 
     gamer.msg_mgr_:sendMsg(gamer.MsgTypes.C2S_MSG_TYPE_ROOM, gamer.MsgIDs.MSG_ID_ROOM_CREATE, proto)
 end
@@ -45,7 +48,7 @@ function CreateRoomPopup:onEnter()
 end
 
 function CreateRoomPopup:onExit()
-    print("[CreateRoomPopup:onEnter]")
+    print("[CreateRoomPopup:onExit]")
 end
 
 return CreateRoomPopup

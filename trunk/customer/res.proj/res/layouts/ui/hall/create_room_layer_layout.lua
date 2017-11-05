@@ -42,7 +42,7 @@ layout:setSize({width = 1920.0000, height = 1080.0000})
 --Create img_bg
 local img_bg = ccui.ImageView:create()
 img_bg:ignoreContentAdaptWithSize(false)
-img_bg:loadTexture("assets/hall/popup_bg1.png",0)
+img_bg:loadTexture("assets/common/popup_bg1.png",0)
 img_bg:setLayoutComponentEnabled(true)
 img_bg:setName("img_bg")
 img_bg:setTag(15)

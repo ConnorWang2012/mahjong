@@ -12,13 +12,13 @@ author:
 modification:
 --]]
 
-local MahjongConstants = {}
+local M = {}
 
-MahjongConstants.Directions = { SELF = 1, LEFT = 2, OPPOSITE = 3, RIGHT = 4 }
-MahjongConstants.Types	    = { INVISIBLE = 1, INVISIBLE_1 = 2, INVISIBLE_2 = 3, INVISIBLE_3 = 4,
-								VISIBLE = 5, VISIBLE_MING_GANG = 6, VISIBLE_DISCARD = 7 }
+M.Directions = { SELF = 1, LEFT = 2, OPPOSITE = 3, RIGHT = 4 }
+M.Types	     = { INVISIBLE = 1, INVISIBLE_1 = 2, INVISIBLE_2 = 3, INVISIBLE_3 = 4,
+				 VISIBLE = 5, VISIBLE_MING_GANG = 6, VISIBLE_DISCARD = 7 }
 
-MahjongConstants.CardPngs = {
+M.CardPngs = {
 	{ "bamboo_1.png", "bamboo_2.png", "bamboo_3.png", "bamboo_4.png", "bamboo_5.png", 
 	  "bamboo_6.png", "bamboo_7.png", "bamboo_8.png", "bamboo_9.png" },
 	{ "character_1.png", "character_2.png", "character_3.png", "character_4.png", 
@@ -34,7 +34,7 @@ MahjongConstants.CardPngs = {
 	  "season_or_flower_7.png", "season_or_flower_8.png" }
 }
 
-MahjongConstants.Sizes = {
+M.Sizes = {
 	-- mahjong position
 	OFFSET_X1		= 110, -- position offset x of player self for first card
 	OFFSET_X2		= 180, -- position offset x of player self visible card(ming gang)
@@ -140,7 +140,7 @@ MahjongConstants.Sizes = {
 	RIGHT_PLAYER_OPERATION_ANIM_X = display.right - 200,
 }
 
-MahjongConstants.ZOrders = {
+M.ZOrders = {
 	DISCARD_LINE_1 = 1300, -- left or right player discard zorder for line 1
 	DISCARD_LINE_2 = 1200,
 	DISCARD_LINE_3 = 1100,
@@ -152,7 +152,7 @@ MahjongConstants.ZOrders = {
 	INVISIBLE_HAND_CARD_PLAYER_SELF	    = 2002
 }
 
-MahjongConstants.AnimationIDs = {
+M.AnimationIDs = {
 	ANIMATION_OPERATION1	= 1,
 	ANIMATION_OPERATION2	= 2,
 	ANIMATION_OPERATION3	= 3,
@@ -165,4 +165,4 @@ MahjongConstants.AnimationIDs = {
 	ANIMATION_ZIMO			= 10
 }
 
-return MahjongConstants
+return M

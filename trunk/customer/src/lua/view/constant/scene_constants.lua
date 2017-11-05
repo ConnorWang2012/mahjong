@@ -12,49 +12,49 @@ author:
 modification:
 --]]
 
-local SceneConstants = {}
+local M = {}
 
-SceneConstants.SceneIDs =
+M.SceneIDs =
 {
     LOGIN_SCENE                 = 1,
     HALL_SCENE                  = 2,
     NORMAL_ROOM_SCENE           = 3
 }
 
-SceneConstants.SceneFiles =
+M.SceneFiles =
 {
 	LOGIN_SCENE_FILE		    = "view.login.login_scene.lua",
     HALL_SCENE_FILE		        = "view.hall.hall_scene.lua",
     NORMAL_ROOM_SCENE_FILE		= "view.room.scene.normal_room_scene.lua"
 }
 
-SceneConstants.SceneLayoutFiles =
+M.SceneLayoutFiles =
 {
 	LOGIN_SCENE_LAYOUT_FILE	        = "view.layouts.scene.login.login_scene_layout.lua",
     HALL_SCENE_LAYOUT_FILE	        = "view.layouts.scene.hall.hall_scene_layout.lua",
     NORMAL_ROOM_SCENE_LAYOUT_FILE	= "view.layouts.scene.room.normal_room_scene_layout.lua"
 }
 
-SceneConstants.ScenesCfg =
+M.ScenesCfg =
 {
-	[SceneConstants.SceneIDs.LOGIN_SCENE]		   = 
+	[M.SceneIDs.LOGIN_SCENE]		   = 
 		{ 
-			scene_file = SceneConstants.SceneFiles.LOGIN_SCENE_FILE,
-			view_file  = SceneConstants.SceneLayoutFiles.LOGIN_SCENE_LAYOUT_FILE
+			scene_file = M.SceneFiles.LOGIN_SCENE_FILE,
+			view_file  = M.SceneLayoutFiles.LOGIN_SCENE_LAYOUT_FILE
 		},
-	[SceneConstants.SceneIDs.HALL_SCENE]		   = 
+	[M.SceneIDs.HALL_SCENE]		   = 
 		{ 
-			scene_file = SceneConstants.SceneFiles.HALL_SCENE_FILE,
-			view_file  = SceneConstants.SceneLayoutFiles.HALL_SCENE_LAYOUT_FILE
+			scene_file = M.SceneFiles.HALL_SCENE_FILE,
+			view_file  = M.SceneLayoutFiles.HALL_SCENE_LAYOUT_FILE
 		},
-    [SceneConstants.SceneIDs.NORMAL_ROOM_SCENE]	    = 
+    [M.SceneIDs.NORMAL_ROOM_SCENE]	    = 
 		{ 
-			scene_file = SceneConstants.SceneFiles.NORMAL_ROOM_SCENE_FILE,
-			view_file  = SceneConstants.SceneLayoutFiles.NORMAL_ROOM_SCENE_LAYOUT_FILE
+			scene_file = M.SceneFiles.NORMAL_ROOM_SCENE_FILE,
+			view_file  = M.SceneLayoutFiles.NORMAL_ROOM_SCENE_LAYOUT_FILE
 		}
 }
 
-SceneConstants.LocalZOrders =
+M.LocalZOrders =
 {
     ROOM_MAHJONG_LAYER                 = 100,
     ROOM_PLAYER_HEAD_LAYER			   = 101,
@@ -63,4 +63,4 @@ SceneConstants.LocalZOrders =
 	ROOM_NOTIFICATION_LAYER			   = 104
 }
 
-return SceneConstants
+return M

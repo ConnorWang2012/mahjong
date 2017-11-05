@@ -22,7 +22,7 @@ function JoinRoomPopup:ctor(view_file)
 end
 
 function JoinRoomPopup:initLayout()
-	local img_bg = self.root_view_node_:getChildByName("img_bg")
+	local img_bg = self.root_node_:getChildByName("img_bg")
 
 	self.cur_num_txt_ = img_bg:getChildByName("txt_num_1")
 
@@ -42,7 +42,7 @@ function JoinRoomPopup:initLayout()
 end
 
 function JoinRoomPopup:getRoomID()
-	local img_bg = self.root_view_node_:getChildByName("img_bg")
+	local img_bg = self.root_node_:getChildByName("img_bg")
 	local str = "0"
 	for i = 1, 6 do
 		local txt = img_bg:getChildByName("txt_num_" .. i)
@@ -76,7 +76,7 @@ function JoinRoomPopup:onImgNumTouch(sender)
 	else
 		local i = tonumber(string.sub(name, string.len(name)))
 		if (i + 1) <= 6 then
-			local img_bg = self.root_view_node_:getChildByName("img_bg")
+			local img_bg = self.root_node_:getChildByName("img_bg")
 			self.cur_num_txt_ = img_bg:getChildByName("txt_num_" .. (i + 1))
 		end
 	end
@@ -85,7 +85,7 @@ end
 function JoinRoomPopup:onImgClearTouch(sender)
 	print("[JoinRoomPopup:onImgClearTouch]")
 
-	local img_bg = self.root_view_node_:getChildByName("img_bg")
+	local img_bg = self.root_node_:getChildByName("img_bg")
 	for i = 1, 6 do
 		local txt = img_bg:getChildByName("txt_num_" .. i)
 		txt:setString("_")
@@ -101,7 +101,7 @@ function JoinRoomPopup:onImgRemoveTouch(sender)
 	local name = self.cur_num_txt_:getName()
 	local i = tonumber(string.sub(name, string.len(name)))
 	if i > 1 then
-		local img_bg = self.root_view_node_:getChildByName("img_bg")
+		local img_bg = self.root_node_:getChildByName("img_bg")
 		self.cur_num_txt_ = img_bg:getChildByName("txt_num_" .. (i - 1))
 	end
 end

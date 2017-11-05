@@ -31,13 +31,10 @@
     <Item Key="TabsParamsKey">
       <Value ctype="TabsInfo">
         <OpenedDocuments>
-          <FilePathData Path="layouts/ui/room/room_player_head_layer_layout.csd" />
-          <FilePathData Path="layouts/ui/room/room_player_head_node_layout.csd" />
-          <FilePathData Path="layouts/ui/room/room_menu_layer_layout.csd" />
-          <FilePathData Path="layouts/scene/room/normal_room_scene_layout.csd" />
-          <FilePathData Path="layouts/ui/hall/hall_player_head_node_layout.csd" />
+          <FilePathData Path="layouts/ui/room/game_end/game_end_layer_layout.csd" />
+          <FilePathData Path="layouts/ui/hall/create_room_layer_layout.csd" />
         </OpenedDocuments>
-        <ActiveDocument Path="layouts/ui/room/room_player_head_node_layout.csd" />
+        <ActiveDocument Path="layouts/ui/hall/create_room_layer_layout.csd" />
       </Value>
     </Item>
   </Properties>

@@ -33,7 +33,7 @@ function NormalRoomScene:ctor(view_file)
 	self:initMenuLayer()		-- layer z order : 2
 end
 
-function NormalRoomScene:initBeforeGameStart()
+function NormalRoomScene:initForGameStart()
 	self.player_self_last_discard_		= nil
 	self.left_player_last_discard_		= nil
 	self.opposite_player_last_discard_	= nil
@@ -832,7 +832,7 @@ end
 -- TODO : use event listener
 function NormalRoomScene:updateRemainCardsNum(first_update)
 	if not self.txt_remain_cards_ then
-		local tmp = self.root_view_node_:getChildByName("img_remain_cards")
+		local tmp = self.root_node_:getChildByName("img_remain_cards")
 		self.txt_remain_cards_ = tmp:getChildByName("txt_remain_cards")
 	end
 
@@ -955,7 +955,7 @@ function NormalRoomScene:startPlayCardTimer()
 	self:stopPlayCardTimer()
 
 	if not self.node_play_card_timer_ then
-		self.node_play_card_timer_ = self.root_view_node_:getChildByName("node_play_card_timer")
+		self.node_play_card_timer_ = self.root_node_:getChildByName("node_play_card_timer")
 	end
 	
 	self.play_card_time_count_ = CardConst.OPERATION_TIMEOUT_MAX
@@ -1296,7 +1296,7 @@ function NormalRoomScene:showNextPlayCardDirection()
 	end
 	
 	local img_name = PlayCardHelper.getImageNameOfDirectionForOperatingPlayer()
-	self.img_player_direction_ = self.root_view_node_:getChildByName(img_name)
+	self.img_player_direction_ = self.root_node_:getChildByName(img_name)
 
 	if self.img_player_direction_ then
 		self.img_player_direction_:setVisible(true)
@@ -1309,7 +1309,7 @@ function NormalRoomScene:showNextPlayCardDirectionAfterPlayerSelf()
 	end
 	
 	local img_name = PlayCardHelper.getImageNameOfDirectionAfterPlayerSelf()
-	self.img_player_direction_ = self.root_view_node_:getChildByName(img_name)
+	self.img_player_direction_ = self.root_node_:getChildByName(img_name)
 
 	if self.img_player_direction_ then
 		self.img_player_direction_:setVisible(true)
@@ -2504,12 +2504,22 @@ end
 
 function NormalRoomScene:dealWithStartGameMsgReceived(code, msg)
 	print("[NormalRoomScene:dealWithStartGameMsgReceived]")
-	self:initBeforeGameStart()
+	self:initForGameStart()
 	self:initMahjongLayer()
 end
 
 function NormalRoomScene:dealWithGameEndMsgReceived(code, msg)
 	print("[NormalRoomScene:dealWithGameEndMsgReceived]")
+	do
+		local game_end_data = msg:game_end_data(0)
+		local score = game_end_data:diff_score_gold()
+		print("[NormalRoomScene:dealWithGameEndMsgReceived] score : ", score)
+		
+		gamer.popup_mgr_.showPopup(gamer.PopupConstants.PopupIDs.POPUP_ID_GAME_END, msg)
+		
+		return
+	end
+
 	local func = function()
 		gamer.msg_helper_.sendStartGameMsg()
 	end

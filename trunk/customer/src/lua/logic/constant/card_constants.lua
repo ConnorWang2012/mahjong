@@ -12,19 +12,19 @@ author:
 modification:
 --]]
 
-local CardConstants = {}
+local M = {}
 
-CardConstants.OPERATION_TIMEOUT_MAX = 18 -- s, current operating player is player self(i can discard and do other operation)
+M.OPERATION_TIMEOUT_MAX = 18 -- s, current operating player is player self(i can discard and do other operation)
 
-CardConstants.OPERATION_TIMEOUT_MAX2 = 5 -- s, current operating player is other player(i can't discard but do other operation)
+M.OPERATION_TIMEOUT_MAX2 = 5 -- s, current operating player is other player(i can't discard but do other operation)
 
-CardConstants.TOTAL_CARDS_NUM               = 144 -- total cards num
-CardConstants.ONE_PLAYER_CARD_NUM           = 13  -- one player card num
-CardConstants.ONE_PLAYER_CARD_NUM2          = 14  -- one player card num, including one new card
+M.TOTAL_CARDS_NUM               = 144 -- total cards num
+M.ONE_PLAYER_CARD_NUM           = 13  -- one player card num
+M.ONE_PLAYER_CARD_NUM2          = 14  -- one player card num, including one new card
 
-CardConstants.CardValues =
+M.CardValues =
 {
-	INVALID_CARD_VALUE  = -1,
+	INVALID_CARD_VALUE  = 42,
 	
 	BAMBOO_1            = 0,
     BAMBOO_2            = 1,
@@ -74,23 +74,23 @@ CardConstants.CardValues =
     FLOWER_BAMBOO        = 41
 }
 
-CardConstants.OperationIDs = 
+M.OperationIDs = 
 {
-	OPERATION_UNKNOW		= -1,
-    OPERATION_DISCARD		= 0,
-    OPERATION_NONE			= 1, -- just a new card, no operation(only server to client)
-    OPERATION_CHI			= 2, -- chi
-    OPERATION_PENG			= 3, -- peng
-	OPERATION_CHI_OR_PENG   = 4, -- chi or peng(only server to client)
-	OPERATION_CHI_OR_PENG_OR_GANG = 5,	-- chi or peng or gang(only server to client)
-    OPERATION_PENG_GANG		= 6, -- peng + gang
-    OPERATION_MING_GANG		= 7, -- ming gang
-    OPERATION_AN_GANG		= 8, -- an gang
-    OPERATION_BU_HUA		= 9, -- bu hua
-	OPERATION_TING          = 10, -- ting
-    OPERATION_HU			= 11, -- hu
-    OPERATION_ZI_MO			= 12, -- zi mo
-	OPERATION_GIVE_UP		= 13, -- give up
+	OPERATION_UNKNOW		= 0,
+    OPERATION_DISCARD		= 1,
+    OPERATION_NONE			= 2, -- just a new card, no operation(only server to client)
+    OPERATION_CHI			= 3, -- chi
+    OPERATION_PENG			= 4, -- peng
+	OPERATION_CHI_OR_PENG   = 5, -- chi or peng(only server to client)
+	OPERATION_CHI_OR_PENG_OR_GANG = 6,	-- chi or peng or gang(only server to client)
+    OPERATION_PENG_GANG		= 7, -- peng + gang
+    OPERATION_MING_GANG		= 8, -- ming gang
+    OPERATION_AN_GANG		= 9, -- an gang
+    OPERATION_BU_HUA		= 10, -- bu hua
+	OPERATION_TING          = 11, -- ting
+    OPERATION_HU			= 12, -- hu
+    OPERATION_ZI_MO			= 13, -- zi mo
+	OPERATION_GIVE_UP		= 14, -- give up
 }
 
-return CardConstants
+return M

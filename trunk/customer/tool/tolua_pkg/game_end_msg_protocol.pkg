@@ -18,7 +18,7 @@ public:
 	int ByteSize() const;
 
 	inline unsigned int player_id() const;
-	inline std::string nick_name() const;
+	inline const std::string& nick_name() const;
 	inline int diff_score_gold() const;
 	inline int diff_score_diamond() const;
 	inline unsigned int total_score_gold() const;
@@ -36,11 +36,13 @@ public:
 
 	inline unsigned int room_id() const;
 	inline unsigned int room_owner_id() const;
+	inline unsigned int winner_id() const;
 	inline unsigned int players_num() const;
 	inline unsigned int cur_round() const;
 	inline unsigned int total_round() const;
 	inline unsigned int banker_id() const;
 
+	inline unsigned int game_end_data_size() const;
 	inline const gamer::protocol::GameEndDataMsgProtocol& game_end_data(int index) const;
 };
 
