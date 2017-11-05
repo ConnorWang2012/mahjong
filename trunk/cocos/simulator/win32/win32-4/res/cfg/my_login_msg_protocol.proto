@@ -1,5 +1,0 @@
-package gamer.protocol;
-
-message MyLoginMsgProtocol {
-  required string user_id                = 1;
-}

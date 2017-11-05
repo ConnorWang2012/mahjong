@@ -1,5 +1,0 @@
-package gamer.protocol;
-
-message ThirdPartyLoginMsgProtocol {
-  required int32 third_party_id        = 1;
-}

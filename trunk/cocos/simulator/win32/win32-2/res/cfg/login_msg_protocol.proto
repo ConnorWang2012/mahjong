@@ -1,6 +1,0 @@
-package gamer.protocol;
-
-message Msg {
-  required int32 msg_type                = 1;
-  required int32 msg_id                  = 2;
-}
