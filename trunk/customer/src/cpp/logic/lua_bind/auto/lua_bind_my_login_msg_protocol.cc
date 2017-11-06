@@ -1,6 +1,6 @@
 /*
 ** Lua binding: my_login_msg_protocol
-** Generated automatically by tolua++-1.0.92 on 11/05/17 13:15:08.
+** Generated automatically by tolua++-1.0.92 on 11/06/17 14:37:42.
 */
 
 #ifndef __cplusplus
@@ -261,6 +261,71 @@ static int tolua_my_login_msg_protocol_gamer_protocol_MyLoginMsgProtocol_passwor
 }
 #endif //#ifndef TOLUA_DISABLE
 
+/* method: set_player_id of class  gamer::protocol::MyLoginMsgProtocol */
+#ifndef TOLUA_DISABLE_tolua_my_login_msg_protocol_gamer_protocol_MyLoginMsgProtocol_set_player_id00
+static int tolua_my_login_msg_protocol_gamer_protocol_MyLoginMsgProtocol_set_player_id00(lua_State* tolua_S)
+{
+#ifndef TOLUA_RELEASE
+ tolua_Error tolua_err;
+ if (
+     !tolua_isusertype(tolua_S,1,"gamer::protocol::MyLoginMsgProtocol",0,&tolua_err) ||
+     !tolua_isnumber(tolua_S,2,0,&tolua_err) ||
+     !tolua_isnoobj(tolua_S,3,&tolua_err)
+ )
+  goto tolua_lerror;
+ else
+#endif
+ {
+  gamer::protocol::MyLoginMsgProtocol* self = (gamer::protocol::MyLoginMsgProtocol*)  tolua_tousertype(tolua_S,1,0);
+  unsigned int value = ((unsigned int)  tolua_tonumber(tolua_S,2,0));
+#ifndef TOLUA_RELEASE
+  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'set_player_id'", NULL);
+#endif
+  {
+   self->set_player_id(value);
+  }
+ }
+ return 0;
+#ifndef TOLUA_RELEASE
+ tolua_lerror:
+ tolua_error(tolua_S,"#ferror in function 'set_player_id'.",&tolua_err);
+ return 0;
+#endif
+}
+#endif //#ifndef TOLUA_DISABLE
+
+/* method: player_id of class  gamer::protocol::MyLoginMsgProtocol */
+#ifndef TOLUA_DISABLE_tolua_my_login_msg_protocol_gamer_protocol_MyLoginMsgProtocol_player_id00
+static int tolua_my_login_msg_protocol_gamer_protocol_MyLoginMsgProtocol_player_id00(lua_State* tolua_S)
+{
+#ifndef TOLUA_RELEASE
+ tolua_Error tolua_err;
+ if (
+     !tolua_isusertype(tolua_S,1,"const gamer::protocol::MyLoginMsgProtocol",0,&tolua_err) ||
+     !tolua_isnoobj(tolua_S,2,&tolua_err)
+ )
+  goto tolua_lerror;
+ else
+#endif
+ {
+  const gamer::protocol::MyLoginMsgProtocol* self = (const gamer::protocol::MyLoginMsgProtocol*)  tolua_tousertype(tolua_S,1,0);
+#ifndef TOLUA_RELEASE
+  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'player_id'", NULL);
+#endif
+  {
+   unsigned int tolua_ret = (unsigned int)  self->player_id();
+   tolua_pushnumber(tolua_S,(lua_Number)tolua_ret);
+  }
+ }
+ return 1;
+#ifndef TOLUA_RELEASE
+ tolua_lerror:
+ tolua_error(tolua_S,"#ferror in function 'player_id'.",&tolua_err);
+ return 0;
+#endif
+}
+#endif //#ifndef TOLUA_DISABLE
+
 /* method: player of class  gamer::protocol::MyLoginMsgProtocol */
 #ifndef TOLUA_DISABLE_tolua_my_login_msg_protocol_gamer_protocol_MyLoginMsgProtocol_player00
 static int tolua_my_login_msg_protocol_gamer_protocol_MyLoginMsgProtocol_player00(lua_State* tolua_S)
@@ -318,6 +383,8 @@ TOLUA_API int tolua_my_login_msg_protocol_open (lua_State* tolua_S)
      tolua_function(tolua_S,"account",tolua_my_login_msg_protocol_gamer_protocol_MyLoginMsgProtocol_account00);
      tolua_function(tolua_S,"set_password",tolua_my_login_msg_protocol_gamer_protocol_MyLoginMsgProtocol_set_password00);
      tolua_function(tolua_S,"password",tolua_my_login_msg_protocol_gamer_protocol_MyLoginMsgProtocol_password00);
+     tolua_function(tolua_S,"set_player_id",tolua_my_login_msg_protocol_gamer_protocol_MyLoginMsgProtocol_set_player_id00);
+     tolua_function(tolua_S,"player_id",tolua_my_login_msg_protocol_gamer_protocol_MyLoginMsgProtocol_player_id00);
      tolua_function(tolua_S,"player",tolua_my_login_msg_protocol_gamer_protocol_MyLoginMsgProtocol_player00);
     tolua_endmodule(tolua_S);
    tolua_endmodule(tolua_S);

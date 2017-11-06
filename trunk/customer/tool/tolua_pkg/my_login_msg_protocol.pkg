@@ -25,6 +25,9 @@ public:
 	inline void set_password(const char* value);    
     inline const std::string& password() const;
 
+    inline void set_player_id(unsigned int value);
+    inline unsigned int player_id() const;
+
     inline const gamer::protocol::PlayerMsgProtocol& player() const;
 };
 
