@@ -1341,5 +1341,8 @@
     <None Include="..\..\..\..\customer\src\lua\view\layouts\ui\room\game_end\game_end_layer_layout.lua">
       <Filter>classes\lua\view\layout\ui\room\game_end</Filter>
     </None>
+    <None Include="..\..\..\..\customer\src\lua\logic\manager\event_manager.lua">
+      <Filter>classes\lua\logic\manager</Filter>
+    </None>
   </ItemGroup>
 </Project>

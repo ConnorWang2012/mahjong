@@ -522,6 +522,7 @@ xcopy /Y /Q "$(LocalDebuggerWorkingDirectory)\*.exe" "$(LocalDebuggerWorkingDire
     <None Include="..\..\..\..\customer\src\lua\logic\constant\player_constants.lua" />
     <None Include="..\..\..\..\customer\src\lua\logic\init_logic.lua" />
     <None Include="..\..\..\..\customer\src\lua\logic\init_modules.lua" />
+    <None Include="..\..\..\..\customer\src\lua\logic\manager\event_manager.lua" />
     <None Include="..\..\..\..\customer\src\lua\logic\manager\popup_manager.lua" />
     <None Include="..\..\..\..\customer\src\lua\logic\manager\scene_manager.lua" />
     <None Include="..\..\..\..\customer\src\lua\logic\test\test_lua_bind_event_listener.lua" />
