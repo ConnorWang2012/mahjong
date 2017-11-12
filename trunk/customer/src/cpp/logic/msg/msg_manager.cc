@@ -30,7 +30,7 @@ modification:
 #include "msg_code.h"
 #include "room_operation_msg_protocol.pb.h"
 #include "network_manager.h"
-
+#include "blur_sprite.h"
 namespace gamer
 {
 
@@ -427,6 +427,34 @@ void MsgManager::dispatchMsg(int msg_code,
 
 void MsgManager::dealWithLoginMsg(const ServerMsg& msg)
 {
+    //auto sp = gamer::BlurSprite::create("grossini.png");
+    //auto scene = cocos2d::Director::getInstance()->getRunningScene();
+    //if (scene)
+    //{
+    //    sp->setPosition(400, 300);
+    //    scene->addChild(sp);
+    //}
+
+    //auto callback = [&](bool succeed, const std::string& outputFile) {
+    //    if (succeed)
+    //    {
+    //        /*        auto sp = Sprite::create(outputFile);
+    //                addChild(sp, 0, childTag);
+    //                Size s = Director::getInstance()->getWinSize();
+    //                sp->setPosition(s.width / 2, s.height / 2);
+    //                sp->setScale(0.25);
+    //                _filename = outputFile;*/
+    //    }
+    //    else
+    //    {
+    //        cocos2d::log("Capture screen failed.");
+    //    }
+    //};
+    //auto _filename = "CaptureScreenTest.png";
+    //cocos2d::utils::captureScreen(callback, _filename);
+
+    //return;
+
     printf("[MsgManager::DealWithLoginMsg] msg_type : %d, msg_id : %d", msg.type, msg.id);
     auto itr = msg_handlers_.find((int)msg.id);
     if (itr != msg_handlers_.end())

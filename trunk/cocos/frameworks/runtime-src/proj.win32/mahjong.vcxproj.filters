@@ -833,6 +833,9 @@
     <ClInclude Include="..\..\..\..\customer\src\cpp\network\libevent\win32\include\evutil.h">
       <Filter>classes\cpp\network\libevent\include</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\..\..\customer\src\cpp\view\blur_sprite.h">
+      <Filter>classes\cpp\view</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\Classes\AppDelegate.cpp">
@@ -1063,6 +1066,9 @@
     </ClCompile>
     <ClCompile Include="..\..\..\..\customer\src\cpp\logic\lua_bind\auto\lua_bind_game_end_msg_protocol.cc">
       <Filter>classes\cpp\logic\lua_bind\auto</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\customer\src\cpp\view\blur_sprite.cc">
+      <Filter>classes\cpp\view</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

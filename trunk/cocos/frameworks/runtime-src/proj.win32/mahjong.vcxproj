@@ -407,6 +407,7 @@ xcopy /Y /Q "$(LocalDebuggerWorkingDirectory)\*.exe" "$(LocalDebuggerWorkingDire
     <ClInclude Include="..\..\..\..\customer\src\cpp\network\libevent\win32\include\evrpc.h" />
     <ClInclude Include="..\..\..\..\customer\src\cpp\network\libevent\win32\include\evutil.h" />
     <ClInclude Include="..\..\..\..\customer\src\cpp\network\network_manager.h" />
+    <ClInclude Include="..\..\..\..\customer\src\cpp\view\blur_sprite.h" />
     <ClInclude Include="..\Classes\AppDelegate.h" />
     <ClInclude Include="main.h" />
     <ClInclude Include="resource.h" />
@@ -488,6 +489,7 @@ xcopy /Y /Q "$(LocalDebuggerWorkingDirectory)\*.exe" "$(LocalDebuggerWorkingDire
     <ClCompile Include="..\..\..\..\customer\src\cpp\network\google\protobuf\wire_format.cc" />
     <ClCompile Include="..\..\..\..\customer\src\cpp\network\google\protobuf\wire_format_lite.cc" />
     <ClCompile Include="..\..\..\..\customer\src\cpp\network\network_manager.cc" />
+    <ClCompile Include="..\..\..\..\customer\src\cpp\view\blur_sprite.cc" />
     <ClCompile Include="..\Classes\AppDelegate.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="SimulatorWin.cpp" />
