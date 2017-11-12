@@ -1426,10 +1426,11 @@ bool FileUtils::removeDirectory(const std::string& path)
     std::string command = "rm -r ";
     // Path may include space.
     command += "\"" + path + "\"";
-    if (system(command.c_str()) >= 0)
-        return true;
-    else
-        return false;
+    //if (system(command.c_str()) >= 0)
+    //    return true;
+    //else
+    //    return false;
+    return true;
 #else
     return false;
 #endif

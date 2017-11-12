@@ -24,15 +24,15 @@ M.PopupIDs = {
 M.POPUP_ROOT_ZORDER = 8888
 
 M.PopupFiles = {
-	[M.PopupIDs.POPUP_ID_ROOM_CREATE]	= "view.hall.room.create_room_popup.lua",
-	[M.PopupIDs.POPUP_ID_ROOM_JOIN]		= "view.hall.room.join_room_popup.lua",
+	[M.PopupIDs.POPUP_ID_ROOM_CREATE]	= "view.hall.popups.create_room_popup.lua",
+	[M.PopupIDs.POPUP_ID_ROOM_JOIN]		= "view.hall.popups.join_room_popup.lua",
 	[M.PopupIDs.POPUP_ID_STORE]		    = "view.hall.store.store_popup.lua",
 	[M.PopupIDs.POPUP_ID_GAME_END]		= "view.room.game_end.game_end_popup.lua"
 }
 
 M.PopupLayoutFiles = {
-	[M.PopupIDs.POPUP_ID_ROOM_CREATE]	= "view.layouts.ui.hall.room.create_room_layer_layout.lua",
-	[M.PopupIDs.POPUP_ID_ROOM_JOIN]		= "view.layouts.ui.hall.room.join_room_layer_layout.lua",
+	[M.PopupIDs.POPUP_ID_ROOM_CREATE]	= "view.layouts.ui.hall.create_room_layer_layout.lua",
+	[M.PopupIDs.POPUP_ID_ROOM_JOIN]		= "view.layouts.ui.hall.join_room_layer_layout.lua",
 	[M.PopupIDs.POPUP_ID_STORE]		    = "view.layouts.ui.hall.store.store_layer_layout.lua",
 	[M.PopupIDs.POPUP_ID_GAME_END]		= "view.layouts.ui.room.game_end.game_end_layer_layout.lua"
 }
