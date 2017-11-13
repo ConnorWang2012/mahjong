@@ -129,7 +129,7 @@ end
 
 function HallScene:dealWithStartGameMsgReceived(code, msg)
 	print("[HallScene:dealWithStartGameMsgReceived]")
-	gamer.scene_msg_.runScene(gamer.SceneConstants.SceneIDs.NORMAL_ROOM_SCENE)
+	gamer.scene_mgr_.runScene(gamer.SceneConstants.SceneIDs.NORMAL_ROOM_SCENE)
 end
 
 function HallScene:addMsgListeners()

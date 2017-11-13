@@ -50,7 +50,7 @@ function M.init()
 	if not M.popup_root_ then
 		M.popup_root_ = cc.Layer:create()
 		M.popup_root_:setLocalZOrder(gamer.PopupConstants.POPUP_ROOT_ZORDER)
-		local scene = gamer.scene_msg_:getRunningScene()
+		local scene = gamer.scene_mgr_:getRunningScene()
 		if scene then
 			scene:addChild(M.popup_root_)
 		end

@@ -73,7 +73,7 @@ function LoginScene:onBtnLoginTouch(sender)
 end
 
 function LoginScene:dealWithMyLoginMsgReceived(code, msg)
-	gamer.scene_msg_.runScene(gamer.SceneConstants.SceneIDs.HALL_SCENE)
+	gamer.scene_mgr_.runScene(gamer.SceneConstants.SceneIDs.HALL_SCENE)
 end
 
 function LoginScene:addMsgListeners()

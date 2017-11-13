@@ -89,10 +89,14 @@ function M.dispatch(event_id, ...)
 		return
 	end
 
-	for k, v in pairs(listeners) do
+	for k, v in pairs(event.listeners) do
         if v and v.listener then
             if false == event.stopped then
-                v.listener(v.obj, event_id, ...)
+				if v.obj then
+					v.listener(v.obj, event_id, ...)
+				else
+					v.listener(event_id, ...)
+				end
             else
                 event.stopped = false
                 break
