@@ -17,9 +17,8 @@ local M = {}
 M.Priorities =
 {
     SENIOR = 1, 
-    MIDDLE = 2,
-    JUNIOR = 3,
-    NORMAL = 4
+    JUNIOR = 2,
+    NORMAL = 3
 }
 
 function M.addEventListener(event_id, listener, obj, priority)
