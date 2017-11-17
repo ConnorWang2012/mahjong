@@ -215,9 +215,9 @@ xcopy /Y /Q "$(LocalDebuggerWorkingDirectory)\*.exe" "$(LocalDebuggerWorkingDire
     <ClInclude Include="..\..\..\..\customer\src\cpp\logic\base\common.h" />
     <ClInclude Include="..\..\..\..\customer\src\cpp\logic\base\event_headers.h" />
     <ClInclude Include="..\..\..\..\customer\src\cpp\logic\base\event_listener.h" />
-    <ClInclude Include="..\..\..\..\customer\src\cpp\logic\base\listener.h" />
     <ClInclude Include="..\..\..\..\customer\src\cpp\logic\base\myevent.h" />
     <ClInclude Include="..\..\..\..\customer\src\cpp\logic\base\macros.h" />
+    <ClInclude Include="..\..\..\..\customer\src\cpp\logic\base\mylistener.h" />
     <ClInclude Include="..\..\..\..\customer\src\cpp\logic\constant\card_constants.h" />
     <ClInclude Include="..\..\..\..\customer\src\cpp\logic\constant\command_constants.h" />
     <ClInclude Include="..\..\..\..\customer\src\cpp\logic\constant\event_constants.h" />
@@ -432,6 +432,7 @@ xcopy /Y /Q "$(LocalDebuggerWorkingDirectory)\*.exe" "$(LocalDebuggerWorkingDire
     <ClCompile Include="..\..\..\..\customer\src\cpp\logic\lua_bind\auto\lua_bind_game_end_msg_protocol.cc" />
     <ClCompile Include="..\..\..\..\customer\src\cpp\logic\lua_bind\auto\lua_bind_msg.cc" />
     <ClCompile Include="..\..\..\..\customer\src\cpp\logic\lua_bind\auto\lua_bind_msg_manager.cc" />
+    <ClCompile Include="..\..\..\..\customer\src\cpp\logic\lua_bind\auto\lua_bind_myevent.cc" />
     <ClCompile Include="..\..\..\..\customer\src\cpp\logic\lua_bind\auto\lua_bind_mylog.cc" />
     <ClCompile Include="..\..\..\..\customer\src\cpp\logic\lua_bind\auto\lua_bind_my_login_msg_protocol.cc" />
     <ClCompile Include="..\..\..\..\customer\src\cpp\logic\lua_bind\auto\lua_bind_network_manager.cc" />

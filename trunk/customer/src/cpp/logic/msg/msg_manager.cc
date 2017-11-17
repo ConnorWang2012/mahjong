@@ -112,11 +112,11 @@ void MsgManager::removeMsgListener(msg_header_t msg_type, gamer::LuaFunction lis
 
 void MsgManager::init()
 {
-    auto l = EventListener::create((int)EventIDs::EVENT_ID_SOCKET_CONNECTED,
+    auto listener = EventListener::create((id_t)EventIDs::EVENT_ID_SOCKET_CONNECTED,
         CALLBACK_SELECTOR_1(MsgManager::onSocketConnected, this),
         "MsgManager::onSocketConnected",
-        (int)Listener::ListenerPriorities::SENIOR);
-    EventManager::getInstance()->addEventListener(l);
+        (int)Listener::Priorities::SENIOR);
+    EventManager::getInstance()->addEventListener(listener);
 
     this->addMsgDispatchHandlers();
     this->addMsgHandlers();
@@ -717,7 +717,7 @@ void MsgManager::onMsgDispatch(float dt)
     }
 }
 
-void MsgManager::onSocketConnected(gamer::Event* event)
+void MsgManager::onSocketConnected(const gamer::Event& event)
 {
 }
 

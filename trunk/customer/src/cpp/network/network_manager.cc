@@ -228,7 +228,7 @@ void NetworkManager::onBufferEventReceived(struct bufferevent* bev, short event,
         NetworkManager::getInstance()->set_connected(true);
 
         MsgManager::getInstance(); // TODO : init this in some other place
-        EventManager::getInstance()->dispatchEvent((int)EventIDs::EVENT_ID_SOCKET_CONNECTED);
+        EventManager::getInstance()->dispatch((id_t)EventIDs::EVENT_ID_SOCKET_CONNECTED);
 	} 
 	else if (event & BEV_EVENT_TIMEOUT) 
 	{

@@ -18,19 +18,19 @@ namespace gamer
 {
 
 Event::Event()           
-    :event_id_(0)
-    ,event_name_("")
-    ,is_stopped_(false)
-    ,user_data_(nullptr)
+    : event_id_(0),
+	  event_name_(""),
+	  is_stopped_(false),
+	  user_data_(nullptr)
 {
 
 }
 
-Event::Event(int event_id)           
-    :event_id_(event_id)
-    ,event_name_("")
-    ,is_stopped_(false)
-    ,user_data_(nullptr)
+Event::Event(id_t event_id)           
+    : event_id_(event_id),
+	  event_name_(""),
+	  is_stopped_(false),
+	  user_data_(nullptr)
 {
 
 }

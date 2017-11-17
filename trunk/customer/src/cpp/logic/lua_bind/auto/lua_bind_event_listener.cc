@@ -1,6 +1,6 @@
 /*
 ** Lua binding: event_listener
-** Generated automatically by tolua++-1.0.92 on 05/20/17 23:58:37.
+** Generated automatically by tolua++-1.0.92 on 11/17/17 11:39:41.
 */
 
 #ifndef __cplusplus
@@ -16,7 +16,8 @@ TOLUA_API int  tolua_event_listener_open (lua_State* tolua_S);
 #include "event_listener.h"
 #include <functional>
 #include <string>
-#include "mylistener.h"
+#include "base/macros.h"
+#include "listener.h"
 
 /* function to release collected object via destructor */
 #ifdef __cplusplus
@@ -40,7 +41,8 @@ static int tolua_collect_gamer__EventListener (lua_State* tolua_S)
 /* function to register type */
 static void tolua_reg_types (lua_State* tolua_S)
 {
- tolua_usertype(tolua_S,"std::function<void(gamer::Event*)>");
+ tolua_usertype(tolua_S,"std::function<void(const gamer::Event&)>");
+ tolua_usertype(tolua_S,"id_t");
  tolua_usertype(tolua_S,"gamer::Event");
  tolua_usertype(tolua_S,"gamer::Listener");
  tolua_usertype(tolua_S,"gamer::EventListener");
@@ -535,9 +537,8 @@ static int tolua_event_listener_gamer_EventListener_create00(lua_State* tolua_S)
  tolua_Error tolua_err;
  if (
      !tolua_isusertable(tolua_S,1,"gamer::EventListener",0,&tolua_err) ||
-     !tolua_isnumber(tolua_S,2,0,&tolua_err) ||
-     //!tolua_isnumber(tolua_S,3,0,&tolua_err) ||
-     !lua_isfunction(tolua_S, 3) ||
+     (tolua_isvaluenil(tolua_S,2,&tolua_err) || !tolua_isusertype(tolua_S,2,"id_t",0,&tolua_err)) ||
+     !tolua_isnumber(tolua_S,3,0,&tolua_err) ||
      !tolua_iscppstring(tolua_S,4,0,&tolua_err) ||
      !tolua_isnumber(tolua_S,5,0,&tolua_err) ||
      !tolua_isnoobj(tolua_S,6,&tolua_err)
@@ -546,7 +547,7 @@ static int tolua_event_listener_gamer_EventListener_create00(lua_State* tolua_S)
  else
 #endif
  {
-  int event_id = ((int)  tolua_tonumber(tolua_S,2,0));
+  id_t event_id = *((id_t*)  tolua_tousertype(tolua_S,2,0));
    int event_callback = ((  int)  tolua_tonumber(tolua_S,3,0));
   const std::string listener_name = ((const std::string)  tolua_tocppstring(tolua_S,4,0));
   int priority = ((int)  tolua_tonumber(tolua_S,5,0));
@@ -573,7 +574,7 @@ static int tolua_event_listener_gamer_EventListener_executeCallback00(lua_State*
  tolua_Error tolua_err;
  if (
      !tolua_isusertype(tolua_S,1,"gamer::EventListener",0,&tolua_err) ||
-     !tolua_isusertype(tolua_S,2,"gamer::Event",0,&tolua_err) ||
+     (tolua_isvaluenil(tolua_S,2,&tolua_err) || !tolua_isusertype(tolua_S,2,"const gamer::Event",0,&tolua_err)) ||
      !tolua_isnoobj(tolua_S,3,&tolua_err)
  )
   goto tolua_lerror;
@@ -581,12 +582,12 @@ static int tolua_event_listener_gamer_EventListener_executeCallback00(lua_State*
 #endif
  {
   gamer::EventListener* self = (gamer::EventListener*)  tolua_tousertype(tolua_S,1,0);
-  gamer::Event* event = ((gamer::Event*)  tolua_tousertype(tolua_S,2,0));
+  const gamer::Event* event = ((const gamer::Event*)  tolua_tousertype(tolua_S,2,0));
 #ifndef TOLUA_RELEASE
   if (!self) tolua_error(tolua_S,"invalid 'self' in function 'executeCallback'", NULL);
 #endif
   {
-   self->executeCallback(event);
+   self->executeCallback(*event);
   }
  }
  return 0;
@@ -670,7 +671,7 @@ static int tolua_event_listener_gamer_EventListener_set_event_callback00(lua_Sta
  tolua_Error tolua_err;
  if (
      !tolua_isusertype(tolua_S,1,"gamer::EventListener",0,&tolua_err) ||
-     (tolua_isvaluenil(tolua_S,2,&tolua_err) || !tolua_isusertype(tolua_S,2,"const std::function<void(gamer::Event*)>",0,&tolua_err)) ||
+     (tolua_isvaluenil(tolua_S,2,&tolua_err) || !tolua_isusertype(tolua_S,2,"const std::function<void(const gamer::Event&)>",0,&tolua_err)) ||
      !tolua_isnoobj(tolua_S,3,&tolua_err)
  )
   goto tolua_lerror;
@@ -678,7 +679,7 @@ static int tolua_event_listener_gamer_EventListener_set_event_callback00(lua_Sta
 #endif
  {
   gamer::EventListener* self = (gamer::EventListener*)  tolua_tousertype(tolua_S,1,0);
-  const std::function<void(gamer::Event*)>* event_callback = ((const std::function<void(gamer::Event*)>*)  tolua_tousertype(tolua_S,2,0));
+  const std::function<void(const gamer::Event&)>* event_callback = ((const std::function<void(const gamer::Event&)>*)  tolua_tousertype(tolua_S,2,0));
 #ifndef TOLUA_RELEASE
   if (!self) tolua_error(tolua_S,"invalid 'self' in function 'set_event_callback'", NULL);
 #endif
@@ -714,8 +715,8 @@ static int tolua_event_listener_gamer_EventListener_event_callback00(lua_State* 
   if (!self) tolua_error(tolua_S,"invalid 'self' in function 'event_callback'", NULL);
 #endif
   {
-    const std::function<void(gamer::Event*)>& tolua_ret = (  const std::function<void(gamer::Event*)>&)  self->event_callback();
-    tolua_pushusertype(tolua_S,(void*)&tolua_ret,"const std::function<void(gamer::Event*)>");
+    const std::function<void(const gamer::Event&)>& tolua_ret = (  const std::function<void(const gamer::Event&)>&)  self->event_callback();
+    tolua_pushusertype(tolua_S,(void*)&tolua_ret,"const std::function<void(const gamer::Event&)>");
   }
  }
  return 1;

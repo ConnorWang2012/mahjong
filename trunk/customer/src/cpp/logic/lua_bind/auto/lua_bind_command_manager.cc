@@ -1,6 +1,6 @@
 /*
 ** Lua binding: command_manager
-** Generated automatically by tolua++-1.0.92 on 05/20/17 23:55:55.
+** Generated automatically by tolua++-1.0.92 on 11/17/17 11:39:35.
 */
 
 #ifndef __cplusplus
@@ -13,10 +13,11 @@
 /* Exported function */
 TOLUA_API int  tolua_command_manager_open (lua_State* tolua_S);
 
-#include "command_manager.h"
-#include "command_listener.h"
 #include <vector>
 #include <string>
+#include "command_manager.h"
+#include "command_listener.h"
+#include "base/macros.h"
 
 /* function to release collected object via destructor */
 #ifdef __cplusplus
@@ -35,6 +36,7 @@ static void tolua_reg_types (lua_State* tolua_S)
 {
  tolua_usertype(tolua_S,"gamer::CommandManager");
  tolua_usertype(tolua_S,"gamer::CommandListener");
+ tolua_usertype(tolua_S,"id_t");
 }
 
 /* method: delete of class  gamer::CommandManager */
@@ -290,7 +292,7 @@ static int tolua_command_manager_gamer_CommandManager_sendCmd00(lua_State* tolua
  tolua_Error tolua_err;
  if (
      !tolua_isusertype(tolua_S,1,"gamer::CommandManager",0,&tolua_err) ||
-     !tolua_isnumber(tolua_S,2,0,&tolua_err) ||
+     (tolua_isvaluenil(tolua_S,2,&tolua_err) || !tolua_isusertype(tolua_S,2,"id_t",0,&tolua_err)) ||
      !tolua_isnoobj(tolua_S,3,&tolua_err)
  )
   goto tolua_lerror;
@@ -298,7 +300,7 @@ static int tolua_command_manager_gamer_CommandManager_sendCmd00(lua_State* tolua
 #endif
  {
   gamer::CommandManager* self = (gamer::CommandManager*)  tolua_tousertype(tolua_S,1,0);
-  int command_id = ((int)  tolua_tonumber(tolua_S,2,0));
+  id_t command_id = *((id_t*)  tolua_tousertype(tolua_S,2,0));
 #ifndef TOLUA_RELEASE
   if (!self) tolua_error(tolua_S,"invalid 'self' in function 'sendCmd'", NULL);
 #endif

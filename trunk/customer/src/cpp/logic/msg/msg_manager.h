@@ -175,7 +175,7 @@ private:
     // callback for dispatching msg, use for dispatching multi-msg
     void onMsgDispatch(float dt);
 
-    void onSocketConnected(gamer::Event* event);
+    void onSocketConnected(const gamer::Event& event);
 
     void onMsgReceived(const ServerMsg& msg);
 

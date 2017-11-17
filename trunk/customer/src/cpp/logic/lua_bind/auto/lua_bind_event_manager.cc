@@ -1,6 +1,6 @@
 /*
 ** Lua binding: event_manager
-** Generated automatically by tolua++-1.0.92 on 05/20/17 23:42:49.
+** Generated automatically by tolua++-1.0.92 on 11/17/17 11:39:44.
 */
 
 #ifndef __cplusplus
@@ -14,6 +14,7 @@
 TOLUA_API int  tolua_event_manager_open (lua_State* tolua_S);
 
 #include "event_manager.h"
+#include "base/macros.h"
 #include <map>
 #include <vector>
 
@@ -32,6 +33,7 @@ static int tolua_collect_gamer__EventManager (lua_State* tolua_S)
 /* function to register type */
 static void tolua_reg_types (lua_State* tolua_S)
 {
+ tolua_usertype(tolua_S,"id_t");
  tolua_usertype(tolua_S,"gamer::Event");
  tolua_usertype(tolua_S,"gamer::EventListener");
  tolua_usertype(tolua_S,"gamer::EventManager");
@@ -340,15 +342,15 @@ static int tolua_event_manager_gamer_EventManager_removeAllEventListenersWithCle
 }
 #endif //#ifndef TOLUA_DISABLE
 
-/* method: dispatchEvent of class  gamer::EventManager */
-#ifndef TOLUA_DISABLE_tolua_event_manager_gamer_EventManager_dispatchEvent00
-static int tolua_event_manager_gamer_EventManager_dispatchEvent00(lua_State* tolua_S)
+/* method: dispatch of class  gamer::EventManager */
+#ifndef TOLUA_DISABLE_tolua_event_manager_gamer_EventManager_dispatch00
+static int tolua_event_manager_gamer_EventManager_dispatch00(lua_State* tolua_S)
 {
 #ifndef TOLUA_RELEASE
  tolua_Error tolua_err;
  if (
      !tolua_isusertype(tolua_S,1,"gamer::EventManager",0,&tolua_err) ||
-     !tolua_isusertype(tolua_S,2,"gamer::Event",0,&tolua_err) ||
+     (tolua_isvaluenil(tolua_S,2,&tolua_err) || !tolua_isusertype(tolua_S,2,"const gamer::Event",0,&tolua_err)) ||
      !tolua_isnoobj(tolua_S,3,&tolua_err)
  )
   goto tolua_lerror;
@@ -356,31 +358,31 @@ static int tolua_event_manager_gamer_EventManager_dispatchEvent00(lua_State* tol
 #endif
  {
   gamer::EventManager* self = (gamer::EventManager*)  tolua_tousertype(tolua_S,1,0);
-  gamer::Event* event = ((gamer::Event*)  tolua_tousertype(tolua_S,2,0));
+  const gamer::Event* event = ((const gamer::Event*)  tolua_tousertype(tolua_S,2,0));
 #ifndef TOLUA_RELEASE
-  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'dispatchEvent'", NULL);
+  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'dispatch'", NULL);
 #endif
   {
-   self->dispatchEvent(event);
+   self->dispatch(*event);
   }
  }
  return 0;
 #ifndef TOLUA_RELEASE
  tolua_lerror:
- tolua_error(tolua_S,"#ferror in function 'dispatchEvent'.",&tolua_err);
+ tolua_error(tolua_S,"#ferror in function 'dispatch'.",&tolua_err);
  return 0;
 #endif
 }
 #endif //#ifndef TOLUA_DISABLE
 
-/* method: dispatchEvent of class  gamer::EventManager */
-#ifndef TOLUA_DISABLE_tolua_event_manager_gamer_EventManager_dispatchEvent01
-static int tolua_event_manager_gamer_EventManager_dispatchEvent01(lua_State* tolua_S)
+/* method: dispatch of class  gamer::EventManager */
+#ifndef TOLUA_DISABLE_tolua_event_manager_gamer_EventManager_dispatch01
+static int tolua_event_manager_gamer_EventManager_dispatch01(lua_State* tolua_S)
 {
  tolua_Error tolua_err;
  if (
      !tolua_isusertype(tolua_S,1,"gamer::EventManager",0,&tolua_err) ||
-     !tolua_isnumber(tolua_S,2,0,&tolua_err) ||
+     (tolua_isvaluenil(tolua_S,2,&tolua_err) || !tolua_isusertype(tolua_S,2,"id_t",0,&tolua_err)) ||
      !tolua_isuserdata(tolua_S,3,1,&tolua_err) ||
      !tolua_isnoobj(tolua_S,4,&tolua_err)
  )
@@ -388,18 +390,18 @@ static int tolua_event_manager_gamer_EventManager_dispatchEvent01(lua_State* tol
  else
  {
   gamer::EventManager* self = (gamer::EventManager*)  tolua_tousertype(tolua_S,1,0);
-  int event_id = ((int)  tolua_tonumber(tolua_S,2,0));
+  id_t event_id = *((id_t*)  tolua_tousertype(tolua_S,2,0));
   void* optional_user_data = ((void*)  tolua_touserdata(tolua_S,3,nullptr));
 #ifndef TOLUA_RELEASE
-  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'dispatchEvent'", NULL);
+  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'dispatch'", NULL);
 #endif
   {
-   self->dispatchEvent(event_id,optional_user_data);
+   self->dispatch(event_id,optional_user_data);
   }
  }
  return 0;
 tolua_lerror:
- return tolua_event_manager_gamer_EventManager_dispatchEvent00(tolua_S);
+ return tolua_event_manager_gamer_EventManager_dispatch00(tolua_S);
 }
 #endif //#ifndef TOLUA_DISABLE
 
@@ -528,8 +530,8 @@ TOLUA_API int tolua_event_manager_open (lua_State* tolua_S)
     tolua_function(tolua_S,"removeEventListenerWithCleanup",tolua_event_manager_gamer_EventManager_removeEventListenerWithCleanup01);
     tolua_function(tolua_S,"removeAllEventListeners",tolua_event_manager_gamer_EventManager_removeAllEventListeners00);
     tolua_function(tolua_S,"removeAllEventListenersWithCleanup",tolua_event_manager_gamer_EventManager_removeAllEventListenersWithCleanup00);
-    tolua_function(tolua_S,"dispatchEvent",tolua_event_manager_gamer_EventManager_dispatchEvent00);
-    tolua_function(tolua_S,"dispatchEvent",tolua_event_manager_gamer_EventManager_dispatchEvent01);
+    tolua_function(tolua_S,"dispatch",tolua_event_manager_gamer_EventManager_dispatch00);
+    tolua_function(tolua_S,"dispatch",tolua_event_manager_gamer_EventManager_dispatch01);
     tolua_function(tolua_S,"setPriority",tolua_event_manager_gamer_EventManager_setPriority00);
     tolua_function(tolua_S,"set_enabled",tolua_event_manager_gamer_EventManager_set_enabled00);
     tolua_function(tolua_S,"is_enabled",tolua_event_manager_gamer_EventManager_is_enabled00);

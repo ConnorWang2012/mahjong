@@ -14,7 +14,6 @@
 
 #include "command_listener.h"
 #include "command.h"
-#include "macros.h"
 
 namespace gamer {
 
@@ -28,11 +27,10 @@ CommandListener::~CommandListener()
 
 }
 
-CommandListener* CommandListener::create(
-    int cmd_id, 
-    const CommandCallback& cmd_callback, 
-    const std::string& listener_name, 
-    int priority)
+CommandListener* CommandListener::create(id_t cmd_id, 
+                                         const CommandCallback& cmd_callback, 
+                                         const std::string& listener_name, 
+                                         int priority)
 {
     CommandListener* listener = new CommandListener();
     if (listener && listener->init(cmd_id, 
@@ -46,11 +44,10 @@ CommandListener* CommandListener::create(
     return nullptr;
 }
 
-CommandListener* CommandListener::create(
-    int cmd_id, 
-    Listener::LuaFunction cmd_callback, 
-    const std::string& listener_name,
-    int priority)
+CommandListener* CommandListener::create(id_t cmd_id, 
+                                         Listener::LuaFunction cmd_callback, 
+                                         const std::string& listener_name,
+                                         int priority)
 {
     CommandListener* listener = new CommandListener();
     if (listener && listener->init(cmd_id, 
@@ -64,7 +61,7 @@ CommandListener* CommandListener::create(
     return nullptr;
 }
 
-bool CommandListener::init(int cmd_id, 
+bool CommandListener::init(id_t cmd_id, 
                            const CommandCallback& cmd_callback, 
                            const std::string& listener_name, 
                            int priority)
@@ -76,7 +73,7 @@ bool CommandListener::init(int cmd_id,
     return true;
 }
 
-bool CommandListener::init(int cmd_id, 
+bool CommandListener::init(id_t cmd_id, 
                            Listener::LuaFunction cmd_callback, 
                            const std::string& listener_name,
                            int priority)

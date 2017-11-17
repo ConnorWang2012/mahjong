@@ -1,6 +1,6 @@
 /*
 ** Lua binding: command_listener
-** Generated automatically by tolua++-1.0.92 on 05/20/17 23:59:46.
+** Generated automatically by tolua++-1.0.92 on 11/17/17 11:39:31.
 */
 
 #ifndef __cplusplus
@@ -16,14 +16,15 @@ TOLUA_API int  tolua_command_listener_open (lua_State* tolua_S);
 #include "command_listener.h"
 #include <functional>
 #include <string>
+#include "base/macros.h"
 #include "event_listener.h"
 
 /* function to release collected object via destructor */
 #ifdef __cplusplus
 
-static int tolua_collect_gamer__CommandListener (lua_State* tolua_S)
+static int tolua_collect_id_t (lua_State* tolua_S)
 {
- gamer::CommandListener* self = (gamer::CommandListener*) tolua_tousertype(tolua_S,1,0);
+ id_t* self = (id_t*) tolua_tousertype(tolua_S,1,0);
 	Mtolua_delete(self);
 	return 0;
 }
@@ -34,14 +35,22 @@ static int tolua_collect_gamer__Listener__LuaFunction (lua_State* tolua_S)
 	Mtolua_delete(self);
 	return 0;
 }
+
+static int tolua_collect_gamer__CommandListener (lua_State* tolua_S)
+{
+ gamer::CommandListener* self = (gamer::CommandListener*) tolua_tousertype(tolua_S,1,0);
+	Mtolua_delete(self);
+	return 0;
+}
 #endif
 
 
 /* function to register type */
 static void tolua_reg_types (lua_State* tolua_S)
 {
- tolua_usertype(tolua_S,"gamer::Listener::LuaFunction");
+ tolua_usertype(tolua_S,"id_t");
  tolua_usertype(tolua_S,"gamer::CommandListener");
+ tolua_usertype(tolua_S,"gamer::Listener::LuaFunction");
 }
 
 /* method: delete of class  gamer::CommandListener */
@@ -81,7 +90,7 @@ static int tolua_command_listener_gamer_CommandListener_create00(lua_State* tolu
  tolua_Error tolua_err;
  if (
      !tolua_isusertable(tolua_S,1,"gamer::CommandListener",0,&tolua_err) ||
-     !tolua_isnumber(tolua_S,2,0,&tolua_err) ||
+     (tolua_isvaluenil(tolua_S,2,&tolua_err) || !tolua_isusertype(tolua_S,2,"id_t",0,&tolua_err)) ||
      (tolua_isvaluenil(tolua_S,3,&tolua_err) || !tolua_isusertype(tolua_S,3,"gamer::Listener::LuaFunction",0,&tolua_err)) ||
      !tolua_iscppstring(tolua_S,4,0,&tolua_err) ||
      !tolua_isnumber(tolua_S,5,0,&tolua_err) ||
@@ -91,12 +100,12 @@ static int tolua_command_listener_gamer_CommandListener_create00(lua_State* tolu
  else
 #endif
  {
-  int command_id = ((int)  tolua_tonumber(tolua_S,2,0));
+  id_t cmd_id = *((id_t*)  tolua_tousertype(tolua_S,2,0));
   gamer::Listener::LuaFunction command_callback = *((gamer::Listener::LuaFunction*)  tolua_tousertype(tolua_S,3,0));
   const std::string listener_name = ((const std::string)  tolua_tocppstring(tolua_S,4,0));
   int priority = ((int)  tolua_tonumber(tolua_S,5,0));
   {
-   gamer::CommandListener* tolua_ret = (gamer::CommandListener*)  gamer::CommandListener::create(command_id,command_callback,listener_name,priority);
+   gamer::CommandListener* tolua_ret = (gamer::CommandListener*)  gamer::CommandListener::create(cmd_id,command_callback,listener_name,priority);
     tolua_pushusertype(tolua_S,(void*)tolua_ret,"gamer::CommandListener");
    tolua_pushcppstring(tolua_S,(const char*)listener_name);
   }
@@ -129,8 +138,18 @@ static int tolua_command_listener_gamer_CommandListener_command_id00(lua_State* 
   if (!self) tolua_error(tolua_S,"invalid 'self' in function 'command_id'", NULL);
 #endif
   {
-   int tolua_ret = (int)  self->command_id();
-   tolua_pushnumber(tolua_S,(lua_Number)tolua_ret);
+   id_t tolua_ret = (id_t)  self->command_id();
+   {
+#ifdef __cplusplus
+    void* tolua_obj = Mtolua_new((id_t)(tolua_ret));
+     tolua_pushusertype(tolua_S,tolua_obj,"id_t");
+    tolua_register_gc(tolua_S,lua_gettop(tolua_S));
+#else
+    void* tolua_obj = tolua_copy(tolua_S,(void*)&tolua_ret,sizeof(id_t));
+     tolua_pushusertype(tolua_S,tolua_obj,"id_t");
+    tolua_register_gc(tolua_S,lua_gettop(tolua_S));
+#endif
+   }
   }
  }
  return 1;

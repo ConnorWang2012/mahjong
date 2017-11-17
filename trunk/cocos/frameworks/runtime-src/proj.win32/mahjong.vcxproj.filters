@@ -272,9 +272,6 @@
     <ClInclude Include="..\..\..\..\customer\src\cpp\logic\base\event_listener.h">
       <Filter>classes\cpp\logic\base</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\..\customer\src\cpp\logic\base\listener.h">
-      <Filter>classes\cpp\logic\base</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\..\..\customer\src\cpp\logic\base\command_headers.h">
       <Filter>classes\cpp\logic\base</Filter>
     </ClInclude>
@@ -836,6 +833,9 @@
     <ClInclude Include="..\..\..\..\customer\src\cpp\view\blur_sprite.h">
       <Filter>classes\cpp\view</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\..\..\customer\src\cpp\logic\base\mylistener.h">
+      <Filter>classes\cpp\logic\base</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\Classes\AppDelegate.cpp">
@@ -1069,6 +1069,9 @@
     </ClCompile>
     <ClCompile Include="..\..\..\..\customer\src\cpp\view\blur_sprite.cc">
       <Filter>classes\cpp\view</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\customer\src\cpp\logic\lua_bind\auto\lua_bind_myevent.cc">
+      <Filter>classes\cpp\logic\lua_bind\auto</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

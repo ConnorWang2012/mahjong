@@ -33,7 +33,7 @@ EventListener::~EventListener()
 }
 
 EventListener* EventListener::create(
-    int event_id, 
+    id_t event_id, 
     const EventCallback& event_callback, 
     const std::string& listener_name, 
     int priority)
@@ -50,7 +50,7 @@ EventListener* EventListener::create(
 	return nullptr;
 }
 
-EventListener* EventListener::create(int event_id, 
+EventListener* EventListener::create(id_t event_id, 
                                      LuaFunction event_callback,
                                      const std::string& listener_name,
                                      int priority)
@@ -65,7 +65,7 @@ EventListener* EventListener::create(int event_id,
     return nullptr;
 }
 
-void EventListener::executeCallback(Event* event)
+void EventListener::executeCallback(const Event& event)
 {
     if (nullptr != event_callback_)
     {
@@ -75,7 +75,7 @@ void EventListener::executeCallback(Event* event)
 
 bool EventListener::checkValidity() const
 {
-    int event_id = this->event_id();
+    id_t event_id = this->event_id();
     if (this->is_lua_function()) 
     {
         return 0 < event_id && 0 <= this->lua_function();
@@ -83,7 +83,7 @@ bool EventListener::checkValidity() const
     return 0 < event_id && (nullptr != event_callback_ || nullptr != cmd_callback_); 
 }
 
-EventListener* EventListener::createCmdListener(int event_id,
+EventListener* EventListener::createCmdListener(id_t event_id,
                                      const CommandCallback& cmd_callback, 
                                      const std::string& listener_name, 
                                      int priority )
@@ -110,7 +110,7 @@ void EventListener::init()
     is_registered_    = false;
 }
 
-bool EventListener::init(int event_id, 
+bool EventListener::init(id_t event_id, 
                          const EventCallback& event_callback, 
                          const std::string& listener_name, 
                          int priority)
@@ -125,7 +125,7 @@ bool EventListener::init(int event_id,
 	return true;
 }
 
-bool EventListener::init(int event_id, 
+bool EventListener::init(id_t event_id, 
                          LuaFunction event_callback, 
                          const std::string& listener_name, 
                          int priority)
@@ -142,7 +142,7 @@ bool EventListener::init(int event_id,
     return true;
 }
 
-bool EventListener::init(int event_id, 
+bool EventListener::init(id_t event_id, 
                          const CommandCallback& cmd_callback, 
                          const std::string& listener_name, 
                          int priority)

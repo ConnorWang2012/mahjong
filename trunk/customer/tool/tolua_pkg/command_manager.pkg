@@ -1,7 +1,8 @@
-$#include "command_manager.h"
-$#include "command_listener.h"
 $#include <vector>
 $#include <string>
+$#include "command_manager.h"
+$#include "command_listener.h"
+$#include "base/macros.h"
 
 namespace gamer {
 
@@ -32,7 +33,7 @@ class CommandManager {
 
     //void removeCmdListener(const std::string& listener_name);
 
-    void sendCmd(int command_id);
+    void sendCmd(id_t command_id);
 
     //void sendCmd(const std::string& command_id);
 };

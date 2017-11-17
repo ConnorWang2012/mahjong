@@ -20,6 +20,8 @@
 #include <string>
 #include <vector>
 
+#include "base/macros.h"
+
 namespace gamer 
 {
 
@@ -38,9 +40,9 @@ class EventManager
 
 	void addEventListener(EventListener* listener);
 
-    void dispatchEvent(Event* event);
+    void dispatch(const Event& event);
 
-    void dispatchEvent(int event_id, void* optional_user_data = nullptr);
+    void dispatch(id_t event_id, void* optional_user_data = nullptr);
 
     // remove the event listener from the instance of event manager but do not delete it.
 	void removeEventListener(EventListener* listener);
@@ -67,7 +69,7 @@ class EventManager
     inline bool is_enabled() const { return is_enabled_; }
 
 private:
-    typedef std::map<int, std::vector<EventListener*>>	EventIDListenerMap;
+    typedef std::map<id_t, std::vector<EventListener*>>	EventIDListenerMap;
 
     enum class DirtyFlag
     {
@@ -93,15 +95,15 @@ private:
 
 	void sortEventListeners(std::vector<EventListener*>* listeners);
 
-	void sortEventListeners(int event_id);
+	void sortEventListeners(id_t event_id);
 
-	void dispatchEvent(std::vector<EventListener*> listeners, Event* event);
+	void dispatchEvent(std::vector<EventListener*> listeners, const Event& event);
 
     // use for command manager.
     void dispatchComand(Command* cmd);
 
     // use for command manager.
-    void dispatchComand(int cmd_id, void* optional_user_data = nullptr);
+    void dispatchComand(id_t cmd_id, void* optional_user_data = nullptr);
 
     // use for command manager.
     void dispatchCommandImpl(std::vector<EventListener*> listeners, Command* cmd);
@@ -116,7 +118,7 @@ private:
 
 	inline void set_dirty_flag(DirtyFlag flag) { dirty_flag_ = flag; }
 
-	inline void set_dirty_flag(DirtyFlag flag, int event_id) 
+	inline void set_dirty_flag(DirtyFlag flag, id_t event_id) 
     {
         set_dirty_flag(flag);
         dirty_event_id_ = event_id;
@@ -132,12 +134,12 @@ private:
 
 	std::vector<EventListener*> listeners_to_add_;
 
-	// Whether the event manager is dispatching event(0 mean not) 
+	// whether the event manager is dispatching event(0 mean not) 
 	int dispatch_count_;
 
 	bool is_enabled_;
 	DirtyFlag dirty_flag_;
-	int dirty_event_id_;
+	id_t dirty_event_id_;
 	std::string dirty_event_name_;
 
     friend class CommandManager;

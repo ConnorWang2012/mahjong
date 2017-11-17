@@ -72,15 +72,15 @@ void LoginHelper::onLoginResponse(int code)
 {
 	if (code == (int)LoginHelper::LoginResponseCodes::CODE_SUCCESS)
 	{
-		EventManager::getInstance()->dispatchEvent((int)EventIDs::EVENT_ID_LOGIN_SUCCESS);
+		EventManager::getInstance()->dispatch((id_t)EventIDs::EVENT_ID_LOGIN_SUCCESS);
 	}
 	else if (code == (int)LoginHelper::LoginResponseCodes::CODE_FAILED)
 	{
-		EventManager::getInstance()->dispatchEvent((int)EventIDs::EVENT_ID_LOGIN_FAILED);
+		EventManager::getInstance()->dispatch((id_t)EventIDs::EVENT_ID_LOGIN_FAILED);
 	}
 	else
 	{
-		EventManager::getInstance()->dispatchEvent((int)EventIDs::EVENT_ID_LOGIN_FAILED);
+		EventManager::getInstance()->dispatch((id_t)EventIDs::EVENT_ID_LOGIN_FAILED);
 	}
 }
 

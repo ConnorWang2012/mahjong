@@ -23,7 +23,7 @@ namespace gamer
 class Listener 
 {
 public:
-    enum class ListenerPriorities
+    enum class Priorities
     {
         SENIOR,
         JUNIOR,
@@ -39,11 +39,6 @@ public:
     //virtual void execute_callback() = 0;
 
     virtual bool checkValidity() const = 0 ;
-
-    //// the target id may be a event id, a command id, or other id that the listener listen.
-    //inline int target_id() const { 
-    //    return target_id_; 
-    //};
 
     inline void set_listener_name(const std::string& listener_name) 
     { 

@@ -1,23 +1,25 @@
 $#include "command_listener.h"
 $#include <functional>
 $#include <string>
+
+$#include "base/macros.h"
 $#include "event_listener.h"
 
 namespace gamer {
 
 class CommandListener {
   public:
-    typedef std::function<void(Event*)> CommandCallback;
+    typedef std::function<void(const Event&)> CommandCallback;
 
     virtual ~CommandListener();
 
     // use for lua only.
-    static CommandListener* create(int command_id, 
+    static CommandListener* create(id_t cmd_id, 
                                    gamer::Listener::LuaFunction command_callback, 
                                    const std::string& listener_name,
                                    int priority);
 
-    inline int command_id() const { 
+    inline id_t command_id() const { 
         return event_listener_->event_id(); 
     };
 

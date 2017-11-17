@@ -18,6 +18,8 @@
 
 #include <functional>
 #include <string>
+
+#include "base/macros.h"
 #include "event_listener.h"
 
 namespace gamer 
@@ -34,13 +36,13 @@ public:
     virtual ~CommandListener();
 
     // use for c++ only.
-    static CommandListener* create(int cmd_id, 
+    static CommandListener* create(id_t cmd_id, 
                                    const CommandCallback& cmd_callback, 
                                    const std::string& listener_name, 
                                    int priority);
 
     // use for lua only.
-    static CommandListener* create(int cmd_id, 
+    static CommandListener* create(id_t cmd_id, 
                                    Listener::LuaFunction cmd_callback, 
                                    const std::string& listener_name,
                                    int priority);
@@ -79,12 +81,12 @@ public:
 private:
     CommandListener();
     
-    bool init(int cmd_id, 
+    bool init(id_t cmd_id, 
               const CommandCallback& command_callback, 
               const std::string& listener_name, 
               int priority);
 
-    bool init(int cmd_id, 
+    bool init(id_t cmd_id, 
               Listener::LuaFunction command_callback, 
               const std::string& listener_name,
               int priority);

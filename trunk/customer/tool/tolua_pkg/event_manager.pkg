@@ -1,4 +1,5 @@
 $#include "event_manager.h"
+$#include "base/macros.h"
 
 $#include <map>
 $#include <vector>
@@ -36,9 +37,9 @@ class EventManager {
     // remove all event listeners from the instance of event manager and delete all.
     void removeAllEventListenersWithCleanup();
 
-	void dispatchEvent(gamer::Event* event);
+	void dispatch(const gamer::Event& event);
 
-	void dispatchEvent(int event_id, void* optional_user_data = nullptr);
+	void dispatch(id_t event_id, void* optional_user_data = nullptr);
 
 	void setPriority(gamer::EventListener* listener, int priority);
 
