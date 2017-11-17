@@ -27,7 +27,7 @@ namespace gamer
 	typedef unsigned __int16        uint16;
 	typedef unsigned __int32        uint32;
 	typedef unsigned __int64        uint64;
-#else
+#elif defined(__APPLE__) || defined(__ANDROID__)
 	typedef int8_t                  int8;
 	typedef int16_t                 int16;
 	typedef int32_t                 int32;
