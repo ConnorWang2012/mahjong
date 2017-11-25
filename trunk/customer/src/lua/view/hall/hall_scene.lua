@@ -34,11 +34,11 @@ function HallScene:initLayout()
 	self.hall_top_layout_:getChildByName("node_head"):addChild(self.player_head_layout_)
 	local head_node = PlayerHeadCreator.createWithDefaultStencil("woman_4.png")
 	self.player_head_layout_:addChild(head_node)
-
+	
     self.hall_middle_layout_ = HallMiddleLayout:create().root    
     self:addChild(self.hall_middle_layout_)
     self.hall_middle_layout_:setPosition(display.center)
-
+	
     self.hall_bottom_layout_ = HallBottomLayout:create().root    
     self:addChild(self.hall_bottom_layout_)
     self.hall_bottom_layout_:setPosition(display.top_bottom)
@@ -57,7 +57,7 @@ function HallScene:initLayout()
     img = node:getChildByName("img_left")
     img:setTouchEnabled(true)
     img:addClickEventListener(handler(self, self.onImgLeftTouch))
-
+	
 	-- store
 	local img_shop = self.hall_bottom_layout_:getChildByName("img_shop")
 	img_shop:setTouchEnabled(true)

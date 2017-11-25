@@ -13,7 +13,7 @@
   <PropertyGroup Label="Globals">
     <ProjectGuid>{4E6A7A0E-DDD8-4BAA-8B22-C964069364ED}</ProjectGuid>
     <ProjectName>mahjong</ProjectName>
-    <WindowsTargetPlatformVersion>8.1</WindowsTargetPlatformVersion>
+    <WindowsTargetPlatformVersion>10.0.16299.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
@@ -551,20 +551,20 @@ xcopy /Y /Q "$(LocalDebuggerWorkingDirectory)\*.exe" "$(LocalDebuggerWorkingDire
     <None Include="..\..\..\..\customer\src\lua\view\constant\mahjong_constants.lua" />
     <None Include="..\..\..\..\customer\src\lua\view\constant\popup_constants.lua" />
     <None Include="..\..\..\..\customer\src\lua\view\constant\scene_constants.lua" />
+    <None Include="..\..\..\..\customer\src\lua\view\hall\create_room\create_room_popup.lua" />
     <None Include="..\..\..\..\customer\src\lua\view\hall\hall_scene.lua" />
-    <None Include="..\..\..\..\customer\src\lua\view\hall\room\create_room_popup.lua" />
-    <None Include="..\..\..\..\customer\src\lua\view\hall\room\join_room_popup.lua" />
+    <None Include="..\..\..\..\customer\src\lua\view\hall\join_room\join_room_popup.lua" />
     <None Include="..\..\..\..\customer\src\lua\view\hall\store\store_popup.lua" />
     <None Include="..\..\..\..\customer\src\lua\view\init_view.lua" />
     <None Include="..\..\..\..\customer\src\lua\view\layouts\scene\hall\hall_scene_layout.lua" />
     <None Include="..\..\..\..\customer\src\lua\view\layouts\scene\login\login_scene_layout.lua" />
     <None Include="..\..\..\..\customer\src\lua\view\layouts\scene\room\normal_room_scene_layout.lua" />
+    <None Include="..\..\..\..\customer\src\lua\view\layouts\ui\hall\create_room\create_room_layer_layout.lua" />
     <None Include="..\..\..\..\customer\src\lua\view\layouts\ui\hall\hall_bottom_node_layout.lua" />
     <None Include="..\..\..\..\customer\src\lua\view\layouts\ui\hall\hall_middle_node_layout.lua" />
     <None Include="..\..\..\..\customer\src\lua\view\layouts\ui\hall\hall_player_head_node_layout.lua" />
     <None Include="..\..\..\..\customer\src\lua\view\layouts\ui\hall\hall_top_node_layout.lua" />
-    <None Include="..\..\..\..\customer\src\lua\view\layouts\ui\hall\room\create_room_layer_layout.lua" />
-    <None Include="..\..\..\..\customer\src\lua\view\layouts\ui\hall\room\join_room_layer_layout.lua" />
+    <None Include="..\..\..\..\customer\src\lua\view\layouts\ui\hall\join_room\join_room_layer_layout.lua" />
     <None Include="..\..\..\..\customer\src\lua\view\layouts\ui\hall\store\store_item_node_layout.lua" />
     <None Include="..\..\..\..\customer\src\lua\view\layouts\ui\hall\store\store_layer_layout.lua" />
     <None Include="..\..\..\..\customer\src\lua\view\layouts\ui\room\game_end\game_end_layer_layout.lua" />

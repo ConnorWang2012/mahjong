@@ -199,17 +199,23 @@
     <Filter Include="classes\lua\view\hall\store">
       <UniqueIdentifier>{abca24aa-60b1-4bbc-a0a5-04a2fd69f8e5}</UniqueIdentifier>
     </Filter>
-    <Filter Include="classes\lua\view\hall\room">
-      <UniqueIdentifier>{54230320-1596-4556-8639-30354a1a141d}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="classes\lua\view\layout\ui\hall\room">
-      <UniqueIdentifier>{a5941ed7-96b8-426a-9176-ae711d72bb48}</UniqueIdentifier>
-    </Filter>
     <Filter Include="classes\lua\view\room\game_end">
       <UniqueIdentifier>{fe485452-4d18-4abd-aa13-e9436de5bfcb}</UniqueIdentifier>
     </Filter>
     <Filter Include="classes\lua\view\layout\ui\room\game_end">
       <UniqueIdentifier>{07982770-0578-4d16-ac06-f68cc12b0862}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="classes\lua\view\hall\join_room">
+      <UniqueIdentifier>{9977f213-fc61-44cc-b739-a9888f335730}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="classes\lua\view\hall\create_room">
+      <UniqueIdentifier>{46b3ff96-5b79-41eb-aa1f-32c1d3729400}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="classes\lua\view\layout\ui\hall\join_room">
+      <UniqueIdentifier>{ed6a902c-5522-4f5d-b8ff-d8605a069258}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="classes\lua\view\layout\ui\hall\create_room">
+      <UniqueIdentifier>{bcfddc9a-b195-498d-a805-ae88bcf23959}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -1326,20 +1332,8 @@
     <None Include="..\..\..\..\customer\src\lua\view\layouts\ui\hall\store\store_layer_layout.lua">
       <Filter>classes\lua\view\layout\ui\hall\store</Filter>
     </None>
-    <None Include="..\..\..\..\customer\src\lua\view\hall\room\create_room_popup.lua">
-      <Filter>classes\lua\view\hall\room</Filter>
-    </None>
-    <None Include="..\..\..\..\customer\src\lua\view\hall\room\join_room_popup.lua">
-      <Filter>classes\lua\view\hall\room</Filter>
-    </None>
     <None Include="..\..\..\..\customer\src\lua\view\hall\store\store_popup.lua">
       <Filter>classes\lua\view\hall\store</Filter>
-    </None>
-    <None Include="..\..\..\..\customer\src\lua\view\layouts\ui\hall\room\create_room_layer_layout.lua">
-      <Filter>classes\lua\view\layout\ui\hall\room</Filter>
-    </None>
-    <None Include="..\..\..\..\customer\src\lua\view\layouts\ui\hall\room\join_room_layer_layout.lua">
-      <Filter>classes\lua\view\layout\ui\hall\room</Filter>
     </None>
     <None Include="..\..\..\src\main.lua">
       <Filter>classes\lua</Filter>
@@ -1352,6 +1346,18 @@
     </None>
     <None Include="..\..\..\..\customer\src\lua\logic\manager\event_manager.lua">
       <Filter>classes\lua\logic\manager</Filter>
+    </None>
+    <None Include="..\..\..\..\customer\src\lua\view\hall\create_room\create_room_popup.lua">
+      <Filter>classes\lua\view\hall\create_room</Filter>
+    </None>
+    <None Include="..\..\..\..\customer\src\lua\view\hall\join_room\join_room_popup.lua">
+      <Filter>classes\lua\view\hall\join_room</Filter>
+    </None>
+    <None Include="..\..\..\..\customer\src\lua\view\layouts\ui\hall\create_room\create_room_layer_layout.lua">
+      <Filter>classes\lua\view\layout\ui\hall\create_room</Filter>
+    </None>
+    <None Include="..\..\..\..\customer\src\lua\view\layouts\ui\hall\join_room\join_room_layer_layout.lua">
+      <Filter>classes\lua\view\layout\ui\hall\join_room</Filter>
     </None>
   </ItemGroup>
 </Project>
