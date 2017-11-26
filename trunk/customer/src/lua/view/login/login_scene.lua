@@ -35,7 +35,7 @@ function LoginScene:onBtnLoginTouch(sender)
     proto:set_password("2030")
 	proto:set_player_id(0)
 
-    gamer.MsgManager:getInstance():sendMsg(gamer.MsgTypes.C2S_MSG_TYPE_LOGIN, 
+    gamer.msg_mgr_:sendMsg(gamer.MsgTypes.C2S_MSG_TYPE_LOGIN, 
         gamer.MsgIDs.MSG_ID_LOGIN_MY, 
         proto)
 

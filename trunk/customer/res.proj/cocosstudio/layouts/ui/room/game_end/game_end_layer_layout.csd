@@ -76,36 +76,6 @@
             <PreSize X="0.0979" Y="0.7111" />
             <FileData Type="PlistSubImage" Path="i_right.png" Plist="assets/room/plist/game_end.plist" />
           </AbstractNodeData>
-          <AbstractNodeData Name="img_go_back_hall" ActionTag="-1885564663" Tag="73" IconVisible="False" LeftMargin="317.0000" RightMargin="1261.0000" TopMargin="910.0000" BottomMargin="44.0000" LeftEage="112" RightEage="112" TopEage="41" BottomEage="41" Scale9OriginX="112" Scale9OriginY="41" Scale9Width="118" Scale9Height="44" ctype="ImageViewObjectData">
-            <Size X="342.0000" Y="126.0000" />
-            <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
-            <Position X="488.0000" Y="107.0000" />
-            <Scale ScaleX="1.0000" ScaleY="1.0000" />
-            <CColor A="255" R="255" G="255" B="255" />
-            <PrePosition X="0.2542" Y="0.0991" />
-            <PreSize X="0.1781" Y="0.1167" />
-            <FileData Type="PlistSubImage" Path="btn_go_back_hall.png" Plist="assets/room/plist/game_end.plist" />
-          </AbstractNodeData>
-          <AbstractNodeData Name="img_share" ActionTag="1912280449" Tag="74" IconVisible="False" PositionPercentXEnabled="True" LeftMargin="789.0000" RightMargin="789.0000" TopMargin="910.5000" BottomMargin="44.5000" LeftEage="112" RightEage="112" TopEage="41" BottomEage="41" Scale9OriginX="112" Scale9OriginY="41" Scale9Width="118" Scale9Height="43" ctype="ImageViewObjectData">
-            <Size X="342.0000" Y="125.0000" />
-            <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
-            <Position X="960.0000" Y="107.0000" />
-            <Scale ScaleX="1.0000" ScaleY="1.0000" />
-            <CColor A="255" R="255" G="255" B="255" />
-            <PrePosition X="0.5000" Y="0.0991" />
-            <PreSize X="0.1781" Y="0.1157" />
-            <FileData Type="PlistSubImage" Path="btn_share.png" Plist="assets/room/plist/game_end.plist" />
-          </AbstractNodeData>
-          <AbstractNodeData Name="img_play_again" ActionTag="-200906577" Tag="75" IconVisible="False" LeftMargin="1249.5000" RightMargin="329.5000" TopMargin="910.5000" BottomMargin="44.5000" LeftEage="112" RightEage="112" TopEage="41" BottomEage="41" Scale9OriginX="112" Scale9OriginY="41" Scale9Width="117" Scale9Height="43" ctype="ImageViewObjectData">
-            <Size X="341.0000" Y="125.0000" />
-            <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
-            <Position X="1420.0000" Y="107.0000" />
-            <Scale ScaleX="1.0000" ScaleY="1.0000" />
-            <CColor A="255" R="255" G="255" B="255" />
-            <PrePosition X="0.7396" Y="0.0991" />
-            <PreSize X="0.1776" Y="0.1157" />
-            <FileData Type="PlistSubImage" Path="btn_play_again.png" Plist="assets/room/plist/game_end.plist" />
-          </AbstractNodeData>
           <AbstractNodeData Name="node_item1" ActionTag="1520810696" Tag="76" IconVisible="True" PositionPercentXEnabled="True" LeftMargin="960.0000" RightMargin="960.0000" TopMargin="440.0000" BottomMargin="640.0000" ctype="SingleNodeObjectData">
             <Size X="0.0000" Y="0.0000" />
             <Children>
@@ -158,7 +128,7 @@
               <AbstractNodeData Name="txt_ming_gang_num" ActionTag="1356969676" Tag="81" IconVisible="False" LeftMargin="164.5000" RightMargin="-195.5000" TopMargin="-25.5000" BottomMargin="-25.5000" FontSize="42" LabelText="3" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="TextObjectData">
                 <Size X="31.0000" Y="51.0000" />
                 <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
-                <Position X="180.0000" Y="0.0000" />
+                <Position X="180.0000" />
                 <Scale ScaleX="1.0000" ScaleY="1.0000" />
                 <CColor A="255" R="255" G="255" B="255" />
                 <PrePosition />
@@ -251,7 +221,7 @@
               <AbstractNodeData Name="txt_ming_gang_num" ActionTag="-761057103" Tag="89" IconVisible="False" LeftMargin="164.5000" RightMargin="-195.5000" TopMargin="-25.5000" BottomMargin="-25.5000" FontSize="42" LabelText="3" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="TextObjectData">
                 <Size X="31.0000" Y="51.0000" />
                 <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
-                <Position X="180.0000" Y="0.0000" />
+                <Position X="180.0000" />
                 <Scale ScaleX="1.0000" ScaleY="1.0000" />
                 <CColor A="255" R="255" G="255" B="255" />
                 <PrePosition />
@@ -344,7 +314,7 @@
               <AbstractNodeData Name="txt_ming_gang_num" ActionTag="-1034578812" Tag="97" IconVisible="False" LeftMargin="164.5000" RightMargin="-195.5000" TopMargin="-25.5000" BottomMargin="-25.5000" FontSize="42" LabelText="3" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="TextObjectData">
                 <Size X="31.0000" Y="51.0000" />
                 <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
-                <Position X="180.0000" Y="0.0000" />
+                <Position X="180.0000" />
                 <Scale ScaleX="1.0000" ScaleY="1.0000" />
                 <CColor A="255" R="255" G="255" B="255" />
                 <PrePosition />
@@ -437,7 +407,7 @@
               <AbstractNodeData Name="txt_ming_gang_num" ActionTag="1866372114" Tag="105" IconVisible="False" LeftMargin="164.5000" RightMargin="-195.5000" TopMargin="-25.5000" BottomMargin="-25.5000" FontSize="42" LabelText="3" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="TextObjectData">
                 <Size X="31.0000" Y="51.0000" />
                 <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
-                <Position X="180.0000" Y="0.0000" />
+                <Position X="180.0000" />
                 <Scale ScaleX="1.0000" ScaleY="1.0000" />
                 <CColor A="255" R="255" G="255" B="255" />
                 <PrePosition />
@@ -477,6 +447,36 @@
             <CColor A="255" R="255" G="255" B="255" />
             <PrePosition X="0.5000" Y="0.2731" />
             <PreSize X="0.0000" Y="0.0000" />
+          </AbstractNodeData>
+          <AbstractNodeData Name="img_go_back_hall" ActionTag="-1885564663" Tag="73" IconVisible="False" LeftMargin="317.0000" RightMargin="1261.0000" TopMargin="910.0000" BottomMargin="44.0000" LeftEage="112" RightEage="112" TopEage="41" BottomEage="41" Scale9OriginX="112" Scale9OriginY="41" Scale9Width="118" Scale9Height="44" ctype="ImageViewObjectData">
+            <Size X="342.0000" Y="126.0000" />
+            <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
+            <Position X="488.0000" Y="107.0000" />
+            <Scale ScaleX="1.0000" ScaleY="1.0000" />
+            <CColor A="255" R="255" G="255" B="255" />
+            <PrePosition X="0.2542" Y="0.0991" />
+            <PreSize X="0.1781" Y="0.1167" />
+            <FileData Type="PlistSubImage" Path="btn_go_back_hall.png" Plist="assets/room/plist/game_end.plist" />
+          </AbstractNodeData>
+          <AbstractNodeData Name="img_share" ActionTag="1912280449" Tag="74" IconVisible="False" PositionPercentXEnabled="True" LeftMargin="789.0000" RightMargin="789.0000" TopMargin="910.5000" BottomMargin="44.5000" LeftEage="112" RightEage="112" TopEage="41" BottomEage="41" Scale9OriginX="112" Scale9OriginY="41" Scale9Width="118" Scale9Height="43" ctype="ImageViewObjectData">
+            <Size X="342.0000" Y="125.0000" />
+            <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
+            <Position X="960.0000" Y="107.0000" />
+            <Scale ScaleX="1.0000" ScaleY="1.0000" />
+            <CColor A="255" R="255" G="255" B="255" />
+            <PrePosition X="0.5000" Y="0.0991" />
+            <PreSize X="0.1781" Y="0.1157" />
+            <FileData Type="PlistSubImage" Path="btn_share.png" Plist="assets/room/plist/game_end.plist" />
+          </AbstractNodeData>
+          <AbstractNodeData Name="img_play_again" ActionTag="-200906577" Tag="75" IconVisible="False" LeftMargin="1249.5000" RightMargin="329.5000" TopMargin="910.5000" BottomMargin="44.5000" LeftEage="112" RightEage="112" TopEage="41" BottomEage="41" Scale9OriginX="112" Scale9OriginY="41" Scale9Width="117" Scale9Height="43" ctype="ImageViewObjectData">
+            <Size X="341.0000" Y="125.0000" />
+            <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
+            <Position X="1420.0000" Y="107.0000" />
+            <Scale ScaleX="1.0000" ScaleY="1.0000" />
+            <CColor A="255" R="255" G="255" B="255" />
+            <PrePosition X="0.7396" Y="0.0991" />
+            <PreSize X="0.1776" Y="0.1157" />
+            <FileData Type="PlistSubImage" Path="btn_play_again.png" Plist="assets/room/plist/game_end.plist" />
           </AbstractNodeData>
         </Children>
       </ObjectData>

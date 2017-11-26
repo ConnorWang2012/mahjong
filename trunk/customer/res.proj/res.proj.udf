@@ -33,8 +33,9 @@
         <OpenedDocuments>
           <FilePathData Path="layouts/ui/room/game_end/game_end_layer_layout.csd" />
           <FilePathData Path="layouts/ui/hall/create_room_layer_layout.csd" />
+          <FilePathData Path="layouts/ui/hall/join_room_layer_layout.csd" />
         </OpenedDocuments>
-        <ActiveDocument Path="layouts/ui/hall/create_room_layer_layout.csd" />
+        <ActiveDocument Path="layouts/ui/room/game_end/game_end_layer_layout.csd" />
       </Value>
     </Item>
   </Properties>

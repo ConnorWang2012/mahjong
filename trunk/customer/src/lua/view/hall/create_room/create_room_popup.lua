@@ -19,6 +19,7 @@ function CreateRoomPopup:ctor(view_file)
     self.super.ctor(self, view_file)
 
 	self:initLayout()
+	self:closeWhenTouchBackground(true)
 end
 
 function CreateRoomPopup:initLayout()

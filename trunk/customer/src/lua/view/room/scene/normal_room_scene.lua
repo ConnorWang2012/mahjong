@@ -40,6 +40,8 @@ function NormalRoomScene:initForGameStart()
 	self.right_player_last_discard_		= nil
 
 	self.player_self_flower_offset_x_	= nil
+
+	gamer.popup_mgr_.removePopup(gamer.PopupConstants.PopupIDs.POPUP_ID_GAME_END)
 end
 
 function NormalRoomScene:initAnimationLayer()

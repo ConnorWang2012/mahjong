@@ -18,16 +18,17 @@ M.popups_ = {}
 function M.showPopup(popup_id, ...)
 	if not popup_id then
 		print("[PopupManager.showPopup] show popup failed, popup id is nil")
-		return
+		return nil
 	end
 
 	local popup = M.addPopup(popup_id, ...)
 	if not popup then
 		print("[PopupManager.showPopup] show popup failed, add popup failed")
-		return
+		return nil
 	end
 
 	popup:setVisible(true)
+	return popup
 end
 
 function M.hidePopup(popup_id)
@@ -35,6 +36,14 @@ function M.hidePopup(popup_id)
 	if popup then
 		popup:setVisible(false)
 	end
+	return popup
+end
+
+function M.getPopup(popup_id)
+	if M.popup_root_ then
+		return M.popup_root_:getChildByTag(popup_id)
+	end
+	return nil
 end
 
 function M.removePopup(popup_id)
@@ -76,13 +85,6 @@ function M.createPopup(popup_id, ...)
 	end
 
 	return require(popup_file):create(popup_layout, ...)
-end
-
-function M.getPopup(popup_id)
-	if M.popup_root_ then
-		return M.popup_root_:getChildByTag(popup_id)
-	end
-	return nil
 end
 
 function M.addPopup(popup_id, ...)
