@@ -94,7 +94,7 @@ function LoginScene:dealWithMyLoginMsgReceived(code, msg)
 		cc.UserDefault:getInstance():setIntegerForKey("player_id", msg:player_id())
 	end
 
-	gamer.scene_mgr_.runScene(gamer.SceneConstants.SceneIDs.HALL_SCENE)
+	gamer.scene_mgr_.runScene(gamer.SceneIDs.HALL_SCENE)
 end
 
 function LoginScene:addMsgListeners()

@@ -554,6 +554,7 @@ xcopy /Y /Q "$(LocalDebuggerWorkingDirectory)\*.exe" "$(LocalDebuggerWorkingDire
     <None Include="..\..\..\..\customer\src\lua\view\hall\create_room\create_room_popup.lua" />
     <None Include="..\..\..\..\customer\src\lua\view\hall\hall_scene.lua" />
     <None Include="..\..\..\..\customer\src\lua\view\hall\join_room\join_room_popup.lua" />
+    <None Include="..\..\..\..\customer\src\lua\view\hall\player_info\hall_player_info_popup.lua" />
     <None Include="..\..\..\..\customer\src\lua\view\hall\store\store_popup.lua" />
     <None Include="..\..\..\..\customer\src\lua\view\init_view.lua" />
     <None Include="..\..\..\..\customer\src\lua\view\layouts\scene\hall\hall_scene_layout.lua" />
@@ -564,7 +565,9 @@ xcopy /Y /Q "$(LocalDebuggerWorkingDirectory)\*.exe" "$(LocalDebuggerWorkingDire
     <None Include="..\..\..\..\customer\src\lua\view\layouts\ui\hall\hall_middle_node_layout.lua" />
     <None Include="..\..\..\..\customer\src\lua\view\layouts\ui\hall\hall_player_head_node_layout.lua" />
     <None Include="..\..\..\..\customer\src\lua\view\layouts\ui\hall\hall_top_node_layout.lua" />
+    <None Include="..\..\..\..\customer\src\lua\view\layouts\ui\hall\head_node_layout.lua" />
     <None Include="..\..\..\..\customer\src\lua\view\layouts\ui\hall\join_room\join_room_layer_layout.lua" />
+    <None Include="..\..\..\..\customer\src\lua\view\layouts\ui\hall\player_info\hall_player_info_layer_layout.lua" />
     <None Include="..\..\..\..\customer\src\lua\view\layouts\ui\hall\store\store_item_node_layout.lua" />
     <None Include="..\..\..\..\customer\src\lua\view\layouts\ui\hall\store\store_layer_layout.lua" />
     <None Include="..\..\..\..\customer\src\lua\view\layouts\ui\room\game_end\game_end_layer_layout.lua" />

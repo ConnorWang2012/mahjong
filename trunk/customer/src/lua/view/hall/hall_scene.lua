@@ -35,6 +35,13 @@ function HallScene:initLayout()
 	local head_node = PlayerHeadCreator.createWithDefaultStencil("woman_4.png")
 	self.player_head_layout_:addChild(head_node)
 	
+	-- head touch event
+	local image_head = head_node:getChildByName("image_clipping")
+	if image_head then
+		image_head:setTouchEnabled(true)
+		image_head:addClickEventListener(handler(self, self.onImgPlayerHeadTouch))
+	end
+
     self.hall_middle_layout_ = HallMiddleLayout:create().root    
     self:addChild(self.hall_middle_layout_)
     self.hall_middle_layout_:setPosition(display.center)
@@ -64,14 +71,19 @@ function HallScene:initLayout()
 	img_shop:addClickEventListener(handler(self, self.onImgStoreTouch))
 end
 
+function HallScene:onImgPlayerHeadTouch(sender)
+	print("[HallScene:onImgPlayerHeadTouch]")
+	gamer.popup_mgr_.showPopup(gamer.PopupIDs.POPUP_ID_HALL_PLAYER_INFO)
+end
+
 function HallScene:onImgStoreTouch(sender)
     print("[HallScene:onImgStoreTouch]")
-	gamer.popup_mgr_.showPopup(gamer.PopupConstants.PopupIDs.POPUP_ID_STORE)
+	gamer.popup_mgr_.showPopup(gamer.PopupIDs.POPUP_ID_STORE)
 end
 
 function HallScene:onImgRightTouch(sender)
     print("[HallScene:onImgRightTouch]")
-	gamer.popup_mgr_.showPopup(gamer.PopupConstants.PopupIDs.POPUP_ID_ROOM_JOIN)
+	gamer.popup_mgr_.showPopup(gamer.PopupIDs.POPUP_ID_ROOM_JOIN)
 end
 
 function HallScene:onImgLeftTouch(sender)
@@ -89,19 +101,19 @@ end
 
 function HallScene:onImgNormalRoomTouch(sender)
     print("[HallScene:onImgNormalRoomTouch]")
-	gamer.popup_mgr_.showPopup(gamer.PopupConstants.PopupIDs.POPUP_ID_ROOM_CREATE)
+	gamer.popup_mgr_.showPopup(gamer.PopupIDs.POPUP_ID_ROOM_CREATE)
 end
 
 function HallScene:dealWithCreateRoomMsgReceived(code, msg)
 	print("[HallScene:dealWithCreateRoomMsgReceived]")
 	print("[HallScene:dealWithCreateRoomMsgReceived] room_id : ", msg:room_id())
-	gamer.popup_mgr_.removePopup(gamer.PopupConstants.PopupIDs.POPUP_ID_ROOM_CREATE)
+	gamer.popup_mgr_.removePopup(gamer.PopupIDs.POPUP_ID_ROOM_CREATE)
 end
 
 function HallScene:dealWithJoinRoomMsgReceived(code, msg)
     print("[HallScene:dealWithJoinRoomMsgReceived] code : ", code)
 	if code == gamer.MsgCodes.SUCCEED then
-		gamer.popup_mgr_.removePopup(gamer.PopupConstants.PopupIDs.POPUP_ID_ROOM_JOIN)
+		gamer.popup_mgr_.removePopup(gamer.PopupIDs.POPUP_ID_ROOM_JOIN)
 		--[[
 		if not self.test_ then
 			self.test_ = true
@@ -129,7 +141,7 @@ end
 
 function HallScene:dealWithStartGameMsgReceived(code, msg)
 	print("[HallScene:dealWithStartGameMsgReceived]")
-	gamer.scene_mgr_.runScene(gamer.SceneConstants.SceneIDs.NORMAL_ROOM_SCENE)
+	gamer.scene_mgr_.runScene(gamer.SceneIDs.NORMAL_ROOM_SCENE)
 end
 
 function HallScene:addMsgListeners()

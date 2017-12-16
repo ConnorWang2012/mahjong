@@ -13,11 +13,11 @@ modification:
 --]]
 
 local M = {}
-M.hasLoadedHeadImages_ = false
+M.has_loaded_head_images_ = false
 
-if not M.hasLoadedHeadImages_ then
+if not M.has_loaded_head_images_ then
 	cc.SpriteFrameCache:getInstance():addSpriteFrames("assets/common/plist/head.plist")
-	M.hasLoadedHeadImages_ = true
+	M.has_loaded_head_images_ = true
 end
 
 -- @ param img_stencil : local type image, img_chipping : plist type image
@@ -30,6 +30,7 @@ function M.create(img_stencil, img_chipping)
 	local clipping_node = cc.ClippingNode:create(node_stencil)
 	local image_clipping = ccui.ImageView:create()
 	image_clipping:loadTexture(img_chipping, ccui.TextureResType.plistType)
+	image_clipping:setName("image_clipping")
 	clipping_node:addChild(image_clipping)
 	--clipping_node:setInverted(true)
 	clipping_node:setAlphaThreshold(0.5)

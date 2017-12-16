@@ -41,14 +41,14 @@ function NormalRoomScene:initForGameStart()
 
 	self.player_self_flower_offset_x_	= nil
 
-	gamer.popup_mgr_.removePopup(gamer.PopupConstants.PopupIDs.POPUP_ID_GAME_END)
+	gamer.popup_mgr_.removePopup(gamer.PopupIDs.POPUP_ID_GAME_END)
 end
 
 function NormalRoomScene:initAnimationLayer()
 	if not self.animation_layer_ then
 		self.animation_layer_ = cc.Layer:create()
 		self:addChild(self.animation_layer_)
-		self.animation_layer_:setLocalZOrder(gamer.SceneConstants.LocalZOrders.ROOM_ANIMATION_LAYER)
+		self.animation_layer_:setLocalZOrder(gamer.LocalZOrders.ROOM_ANIMATION_LAYER)
 	end
 end
 
@@ -63,7 +63,7 @@ function NormalRoomScene:initPlayerHeadLayer()
 	end
 
 	self.player_head_layer_ = HeadLayerLayout:create().root
-	self.player_head_layer_:setLocalZOrder(gamer.SceneConstants.LocalZOrders.ROOM_PLAYER_HEAD_LAYER)
+	self.player_head_layer_:setLocalZOrder(gamer.LocalZOrders.ROOM_PLAYER_HEAD_LAYER)
 	self:addChild(self.player_head_layer_)
 
 	local init_player_self_head = function()
@@ -126,7 +126,7 @@ end
 function NormalRoomScene:initMenuLayer()
 	if not self.menu_layer_ then
 		self.menu_layer_ = MenuLayerLayout:create().root
-		self.menu_layer_:setLocalZOrder(gamer.SceneConstants.LocalZOrders.ROOM_MENU_LAYER)
+		self.menu_layer_:setLocalZOrder(gamer.LocalZOrders.ROOM_MENU_LAYER)
 		self:addChild(self.menu_layer_)
 	end
 end
@@ -134,7 +134,7 @@ end
 function NormalRoomScene:initMahjongs()
 	if not self.mahjong_layer_ then
 		self.mahjong_layer_ = cc.Layer:create()
-		self.mahjong_layer_:setLocalZOrder(gamer.SceneConstants.LocalZOrders.ROOM_MAHJONG_LAYER)
+		self.mahjong_layer_:setLocalZOrder(gamer.LocalZOrders.ROOM_MAHJONG_LAYER)
 		self:addChild(self.mahjong_layer_)
 	else
 		self.mahjong_layer_:removeAllChildren()
@@ -2517,7 +2517,7 @@ function NormalRoomScene:dealWithGameEndMsgReceived(code, msg)
 		local score = game_end_data:diff_score_gold()
 		print("[NormalRoomScene:dealWithGameEndMsgReceived] score : ", score)
 		
-		gamer.popup_mgr_.showPopup(gamer.PopupConstants.PopupIDs.POPUP_ID_GAME_END, msg)
+		gamer.popup_mgr_.showPopup(gamer.PopupIDs.POPUP_ID_GAME_END, msg)
 		
 		return
 	end

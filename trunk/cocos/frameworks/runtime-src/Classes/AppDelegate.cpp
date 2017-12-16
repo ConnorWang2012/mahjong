@@ -91,6 +91,7 @@ bool AppDelegate::applicationDidFinishLaunching()
     FileUtils::getInstance()->addSearchPath("res");
 
     engine->addSearchPath("src/customer/src/lua");
+	engine->addSearchPath("src/customer/src/lua/view");
     engine->addSearchPath("src/customer/src/lua/view/layouts");
 
     gamer::initlog();

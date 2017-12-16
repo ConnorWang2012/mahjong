@@ -14,3 +14,7 @@ modification:
 
 gamer.PopupConstants = require "view.constant.popup_constants.lua"
 gamer.SceneConstants = require "view.constant.scene_constants.lua"
+
+gamer.PopupIDs		= gamer.PopupConstants.PopupIDs
+gamer.SceneIDs		= gamer.SceneConstants.SceneIDs
+gamer.LocalZOrders	= gamer.SceneConstants.LocalZOrders

@@ -59,7 +59,7 @@ function GameEndPopup:initItem(item, item_data, data)
 end
 
 function GameEndPopup:onImgGobackHallTouch()
-	gamer.scene_mgr_.runScene(gamer.SceneConstants.SceneIDs.HALL_SCENE)
+	gamer.scene_mgr_.runScene(gamer.SceneIDs.HALL_SCENE)
 end
 
 function GameEndPopup:onImgPlayAgainTouch()

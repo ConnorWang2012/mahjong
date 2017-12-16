@@ -217,6 +217,12 @@
     <Filter Include="classes\lua\view\layout\ui\hall\create_room">
       <UniqueIdentifier>{bcfddc9a-b195-498d-a805-ae88bcf23959}</UniqueIdentifier>
     </Filter>
+    <Filter Include="classes\lua\view\layout\ui\hall\player_info">
+      <UniqueIdentifier>{c360aaa5-dc27-4eec-a934-864cc2bb1c4b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="classes\lua\view\hall\player_info">
+      <UniqueIdentifier>{d41ed585-d800-4c64-896b-e5b6bcf8b92e}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\Classes\AppDelegate.h">
@@ -1358,6 +1364,15 @@
     </None>
     <None Include="..\..\..\..\customer\src\lua\view\layouts\ui\hall\join_room\join_room_layer_layout.lua">
       <Filter>classes\lua\view\layout\ui\hall\join_room</Filter>
+    </None>
+    <None Include="..\..\..\..\customer\src\lua\view\layouts\ui\hall\head_node_layout.lua">
+      <Filter>classes\lua\view\layout\ui\hall</Filter>
+    </None>
+    <None Include="..\..\..\..\customer\src\lua\view\layouts\ui\hall\player_info\hall_player_info_layer_layout.lua">
+      <Filter>classes\lua\view\layout\ui\hall\player_info</Filter>
+    </None>
+    <None Include="..\..\..\..\customer\src\lua\view\hall\player_info\hall_player_info_popup.lua">
+      <Filter>classes\lua\view\hall\player_info</Filter>
     </None>
   </ItemGroup>
 </Project>
