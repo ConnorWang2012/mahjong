@@ -1,6 +1,6 @@
 /*
 ** Lua binding: room_msg_protocol
-** Generated automatically by tolua++-1.0.92 on 11/05/17 13:15:18.
+** Generated automatically by tolua++-1.0.92 on 12/03/17 11:44:42.
 */
 
 #ifndef __cplusplus
@@ -15,6 +15,7 @@ TOLUA_API int  tolua_room_msg_protocol_open (lua_State* tolua_S);
 
 #include "msg/protocol/room_msg_protocol.pb.h"
 #include "msg/protocol/player_cards_msg_protocol.pb.h"
+#include "msg/protocol/player_msg_protocol.pb.h"
 #include <string>
 #include <google/protobuf/stubs/common.h>
 #include <google/protobuf/generated_message_util.h>
@@ -38,6 +39,7 @@ static int tolua_collect_gamer__protocol__RoomMsgProtocol (lua_State* tolua_S)
 /* function to register type */
 static void tolua_reg_types (lua_State* tolua_S)
 {
+ tolua_usertype(tolua_S,"gamer::protocol::PlayerMsgProtocol");
  tolua_usertype(tolua_S,"gamer::protocol::PlayerCardsMsgProtocol");
  tolua_usertype(tolua_S,"google::protobuf::Message");
  tolua_usertype(tolua_S,"gamer::protocol::RoomMsgProtocol");
@@ -584,6 +586,72 @@ static int tolua_room_msg_protocol_gamer_protocol_RoomMsgProtocol_player_cards00
 }
 #endif //#ifndef TOLUA_DISABLE
 
+/* method: players_size of class  gamer::protocol::RoomMsgProtocol */
+#ifndef TOLUA_DISABLE_tolua_room_msg_protocol_gamer_protocol_RoomMsgProtocol_players_size00
+static int tolua_room_msg_protocol_gamer_protocol_RoomMsgProtocol_players_size00(lua_State* tolua_S)
+{
+#ifndef TOLUA_RELEASE
+ tolua_Error tolua_err;
+ if (
+     !tolua_isusertype(tolua_S,1,"const gamer::protocol::RoomMsgProtocol",0,&tolua_err) ||
+     !tolua_isnoobj(tolua_S,2,&tolua_err)
+ )
+  goto tolua_lerror;
+ else
+#endif
+ {
+  const gamer::protocol::RoomMsgProtocol* self = (const gamer::protocol::RoomMsgProtocol*)  tolua_tousertype(tolua_S,1,0);
+#ifndef TOLUA_RELEASE
+  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'players_size'", NULL);
+#endif
+  {
+   unsigned int tolua_ret = (unsigned int)  self->players_size();
+   tolua_pushnumber(tolua_S,(lua_Number)tolua_ret);
+  }
+ }
+ return 1;
+#ifndef TOLUA_RELEASE
+ tolua_lerror:
+ tolua_error(tolua_S,"#ferror in function 'players_size'.",&tolua_err);
+ return 0;
+#endif
+}
+#endif //#ifndef TOLUA_DISABLE
+
+/* method: players of class  gamer::protocol::RoomMsgProtocol */
+#ifndef TOLUA_DISABLE_tolua_room_msg_protocol_gamer_protocol_RoomMsgProtocol_players00
+static int tolua_room_msg_protocol_gamer_protocol_RoomMsgProtocol_players00(lua_State* tolua_S)
+{
+#ifndef TOLUA_RELEASE
+ tolua_Error tolua_err;
+ if (
+     !tolua_isusertype(tolua_S,1,"const gamer::protocol::RoomMsgProtocol",0,&tolua_err) ||
+     !tolua_isnumber(tolua_S,2,0,&tolua_err) ||
+     !tolua_isnoobj(tolua_S,3,&tolua_err)
+ )
+  goto tolua_lerror;
+ else
+#endif
+ {
+  const gamer::protocol::RoomMsgProtocol* self = (const gamer::protocol::RoomMsgProtocol*)  tolua_tousertype(tolua_S,1,0);
+  int index = ((int)  tolua_tonumber(tolua_S,2,0));
+#ifndef TOLUA_RELEASE
+  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'players'", NULL);
+#endif
+  {
+   const gamer::protocol::PlayerMsgProtocol& tolua_ret = (const gamer::protocol::PlayerMsgProtocol&)  self->players(index);
+    tolua_pushusertype(tolua_S,(void*)&tolua_ret,"const gamer::protocol::PlayerMsgProtocol");
+  }
+ }
+ return 1;
+#ifndef TOLUA_RELEASE
+ tolua_lerror:
+ tolua_error(tolua_S,"#ferror in function 'players'.",&tolua_err);
+ return 0;
+#endif
+}
+#endif //#ifndef TOLUA_DISABLE
+
 /* Open function */
 TOLUA_API int tolua_room_msg_protocol_open (lua_State* tolua_S)
 {
@@ -619,6 +687,8 @@ TOLUA_API int tolua_room_msg_protocol_open (lua_State* tolua_S)
      tolua_function(tolua_S,"banker_is_same_time",tolua_room_msg_protocol_gamer_protocol_RoomMsgProtocol_banker_is_same_time00);
      tolua_function(tolua_S,"player_cards_size",tolua_room_msg_protocol_gamer_protocol_RoomMsgProtocol_player_cards_size00);
      tolua_function(tolua_S,"player_cards",tolua_room_msg_protocol_gamer_protocol_RoomMsgProtocol_player_cards00);
+     tolua_function(tolua_S,"players_size",tolua_room_msg_protocol_gamer_protocol_RoomMsgProtocol_players_size00);
+     tolua_function(tolua_S,"players",tolua_room_msg_protocol_gamer_protocol_RoomMsgProtocol_players00);
     tolua_endmodule(tolua_S);
    tolua_endmodule(tolua_S);
   tolua_endmodule(tolua_S);

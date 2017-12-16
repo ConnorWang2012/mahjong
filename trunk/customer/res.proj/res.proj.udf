@@ -28,15 +28,5 @@
         <EnableHTML5Advanced Value="False" />
       </Value>
     </Item>
-    <Item Key="TabsParamsKey">
-      <Value ctype="TabsInfo">
-        <OpenedDocuments>
-          <FilePathData Path="layouts/ui/room/game_end/game_end_layer_layout.csd" />
-          <FilePathData Path="layouts/ui/hall/create_room_layer_layout.csd" />
-          <FilePathData Path="layouts/ui/hall/join_room_layer_layout.csd" />
-        </OpenedDocuments>
-        <ActiveDocument Path="layouts/ui/room/game_end/game_end_layer_layout.csd" />
-      </Value>
-    </Item>
   </Properties>
 </UserData>

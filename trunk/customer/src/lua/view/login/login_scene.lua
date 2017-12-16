@@ -23,17 +23,27 @@ end
 function LoginScene:onBtnLoginTouch(sender)
     print("[LoginScene:onBtnLoginTouch]")
 
+	local account	= cc.UserDefault:getInstance():getStringForKey("account", "null")
+	local password	= cc.UserDefault:getInstance():getStringForKey("password", "null")
+	local player_id = cc.UserDefault:getInstance():getIntegerForKey("player_id", 0)
+	local proto		= gamer.protocol.MyLoginMsgProtocol()
+	proto:set_account(account)
+	proto:set_password(password)
+	proto:set_player_id(player_id)
+
+	if 0 == player_id then
+		self.is_first_login_ = true
+	end
+
+	print("[LoginScene:onBtnLoginTouch] account : ", account)
+	print("[LoginScene:onBtnLoginTouch] password : ", password)
+	print("[LoginScene:onBtnLoginTouch] player_id : ", player_id)
+
     local connected = gamer.NetworkManager:getInstance():is_connected()
     print("[LoginScene:onBtnLoginTouch] connected : ", tostring(connected))
 
-	math.randomseed(tostring(os.time()):reverse():sub(1, 7))
-	local account = math.random(1, 1000)
-	print("[LoginScene:onBtnLoginTouch] account : ", account)
-
-    local proto = gamer.protocol.MyLoginMsgProtocol()
-    proto:set_account(tostring(account))
-    proto:set_password("2030")
-	proto:set_player_id(0)
+	--math.randomseed(tostring(os.time()):reverse():sub(1, 7))
+	--local account = math.random(1, 1000)
 
     gamer.msg_mgr_:sendMsg(gamer.MsgTypes.C2S_MSG_TYPE_LOGIN, 
         gamer.MsgIDs.MSG_ID_LOGIN_MY, 
@@ -74,6 +84,16 @@ function LoginScene:onBtnLoginTouch(sender)
 end
 
 function LoginScene:dealWithMyLoginMsgReceived(code, msg)
+	-- first login, save account, password, player_id
+	if self.is_first_login_ then
+		print("[LoginScene:dealWithMyLoginMsgReceived] account : ", msg:account())
+		print("[LoginScene:dealWithMyLoginMsgReceived] password : ", msg:password())
+		print("[LoginScene:dealWithMyLoginMsgReceived] player_id : ", msg:player_id())
+		cc.UserDefault:getInstance():setStringForKey("account", msg:account())
+		cc.UserDefault:getInstance():setStringForKey("password", msg:password())
+		cc.UserDefault:getInstance():setIntegerForKey("player_id", msg:player_id())
+	end
+
 	gamer.scene_mgr_.runScene(gamer.SceneConstants.SceneIDs.HALL_SCENE)
 end
 
@@ -89,6 +109,7 @@ function LoginScene:onServerMsgReceived(code, msg_type, msg_id, msg)
     print("[LoginScene:onServerMsgReceived] code, msg_type, msg_id : ", code, msg_type, msg_id)
 	if code ~= gamer.MsgCodes.SUCCEED then
 		print("[LoginScene:onServerMsgReceived] error")
+		return
 	end
 
 	if msg_type == gamer.MsgTypes.S2C_MSG_TYPE_LOGIN then
