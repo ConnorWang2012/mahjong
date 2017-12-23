@@ -32,6 +32,8 @@ TOLUA_API int tolua_network_manager_open(lua_State*);
 TOLUA_API int tolua_my_login_msg_protocol_open(lua_State*);
 TOLUA_API int tolua_create_room_msg_protocol_open(lua_State*);
 TOLUA_API int tolua_room_operation_msg_protocol_open(lua_State*);
+TOLUA_API int tolua_set_property_msg_protocol_open(lua_State*);
+TOLUA_API int tolua_property_changed_msg_protocol_open(lua_State*);
 TOLUA_API int tolua_room_msg_protocol_open(lua_State*);
 TOLUA_API int tolua_play_card_msg_protocol_open(lua_State*);
 TOLUA_API int tolua_ting_card_msg_protocol_open(lua_State*);

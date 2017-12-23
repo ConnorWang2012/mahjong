@@ -158,9 +158,13 @@ private:
 
     void dealWithLoginMsg(const ServerMsg& msg);
 
+	void dealWithPropertyMsg(const ServerMsg& msg);
+
+	void dealWithRoomMsg(const ServerMsg& msg);
+
     void dealWithMgLoginMsg(const ServerMsg& msg);
 
-    void dealWithRoomMsg(const ServerMsg& msg);
+	void dealWithGetPlayerInfoMsg(const ServerMsg& msg);
 
     void dealWithCreateRoomMsg(const ServerMsg& msg);
 

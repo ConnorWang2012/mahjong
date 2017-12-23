@@ -59,14 +59,24 @@ function LayerBase:set_id(id)
     self.id_ = id
 end
 
+function LayerBase:addEventListeners()
+	 print("[LayerBase:addEventListeners]")
+end
+
+function LayerBase:removeEventListeners()
+	print("[LayerBase:removeEventListeners]")
+end
+
 function LayerBase:onEnter()
     print("[LayerBase:onEnter]")
 	-- TODO : dispatch layer enter event to all listeners
+	self:addEventListeners()
 end
 
 function LayerBase:onExit()
     print("[LayerBase:onExit]")
 	-- TODO : dispatch layer exit event to all listeners
+	self:removeEventListeners()
 end
 
 return LayerBase

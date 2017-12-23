@@ -133,9 +133,6 @@
     <Filter Include="classes\lua\view\room\scene">
       <UniqueIdentifier>{08179b87-8893-4389-838e-92b36aaa50f7}</UniqueIdentifier>
     </Filter>
-    <Filter Include="classes\lua\logic\util">
-      <UniqueIdentifier>{64603fb6-ddce-410b-94f6-d1e8c4b544d8}</UniqueIdentifier>
-    </Filter>
     <Filter Include="classes\cpp\logic\log">
       <UniqueIdentifier>{2ebd71ac-1aad-4b63-b6d3-53bbb2ddfe4b}</UniqueIdentifier>
     </Filter>
@@ -222,6 +219,9 @@
     </Filter>
     <Filter Include="classes\lua\view\hall\player_info">
       <UniqueIdentifier>{d41ed585-d800-4c64-896b-e5b6bcf8b92e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="classes\lua\logic\helper">
+      <UniqueIdentifier>{64603fb6-ddce-410b-94f6-d1e8c4b544d8}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -848,6 +848,15 @@
     <ClInclude Include="..\..\..\..\customer\src\cpp\logic\base\mylistener.h">
       <Filter>classes\cpp\logic\base</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\..\..\customer\src\cpp\logic\msg\protocol\property_changed_msg_protocol.pb.h">
+      <Filter>classes\cpp\logic\msg\protocol</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\customer\src\cpp\logic\msg\protocol\set_property_msg_protocol.pb.h">
+      <Filter>classes\cpp\logic\msg\protocol</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\customer\src\cpp\logic\msg\property_id.h">
+      <Filter>classes\cpp\logic\msg</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\Classes\AppDelegate.cpp">
@@ -1085,6 +1094,18 @@
     <ClCompile Include="..\..\..\..\customer\src\cpp\logic\lua_bind\auto\lua_bind_myevent.cc">
       <Filter>classes\cpp\logic\lua_bind\auto</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\..\..\customer\src\cpp\logic\lua_bind\auto\lua_bind_set_property_msg_protocol.cc">
+      <Filter>classes\cpp\logic\lua_bind\auto</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\customer\src\cpp\logic\msg\protocol\property_changed_msg_protocol.pb.cc">
+      <Filter>classes\cpp\logic\msg\protocol</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\customer\src\cpp\logic\lua_bind\auto\lua_bind_property_changed_msg_protocol.cc">
+      <Filter>classes\cpp\logic\lua_bind\auto</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\customer\src\cpp\logic\msg\protocol\set_property_msg_protocol.pb.cc">
+      <Filter>classes\cpp\logic\msg\protocol</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="game.rc">
@@ -1257,9 +1278,6 @@
     <None Include="..\..\..\..\customer\src\lua\view\base\popup_base.lua">
       <Filter>classes\lua\view\base</Filter>
     </None>
-    <None Include="..\..\..\..\customer\src\lua\logic\util\play_card_helper.lua">
-      <Filter>classes\lua\logic\util</Filter>
-    </None>
     <None Include="..\..\..\..\customer\src\lua\logic\constant\card_constants.lua">
       <Filter>classes\lua\logic\constant</Filter>
     </None>
@@ -1373,6 +1391,12 @@
     </None>
     <None Include="..\..\..\..\customer\src\lua\view\hall\player_info\hall_player_info_popup.lua">
       <Filter>classes\lua\view\hall\player_info</Filter>
+    </None>
+    <None Include="..\..\..\..\customer\src\lua\logic\constant\property_id.lua">
+      <Filter>classes\lua\logic\constant</Filter>
+    </None>
+    <None Include="..\..\..\..\customer\src\lua\logic\helper\play_card_helper.lua">
+      <Filter>classes\lua\logic\helper</Filter>
     </None>
   </ItemGroup>
 </Project>

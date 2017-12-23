@@ -15,6 +15,15 @@ modification:
 local CardConst = require "logic.constant.card_constants.lua"
 local MsgHelper = {}
 
+function MsgHelper.sendGetPlayerInfoMsg()
+	print("[MsgHelper.sendGetPlayerInfoMsg]")
+	local proto = gamer.protocol.PlayerMsgProtocol()
+	proto:set_player_id(gamer.data_mgr_:self_player_id())
+
+	gamer.msg_mgr_:sendMsg(gamer.MsgTypes.C2S_MSG_TYPE_PROPERTY, 
+		gamer.MsgIDs.MSG_ID_PROPERTY_GET_PLAYER_INFO, proto)
+end
+
 function MsgHelper.sendStartGameMsg()
 	print("[MsgHelper.sendStartGameMsg]")
 	local proto_room = gamer.data_mgr_:create_room_msg_protocol()

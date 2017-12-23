@@ -127,9 +127,12 @@ void MsgManager::addMsgDispatchHandlers()
     // login
     msg_dispatchers_.insert(std::make_pair((int)MsgTypes::S2C_MSG_TYPE_LOGIN, 
         CALLBACK_SELECTOR_1(MsgManager::dealWithLoginMsg, this)));
-    
+	// property
+	msg_dispatchers_.insert(std::make_pair((int)MsgTypes::S2C_MSG_TYPE_PROPERTY,
+		CALLBACK_SELECTOR_1(MsgManager::dealWithPropertyMsg, this)));
+
     // room
-    msg_dispatchers_.insert(std::make_pair((int)MsgTypes::C2S_MSG_TYPE_ROOM,
+    msg_dispatchers_.insert(std::make_pair((int)MsgTypes::S2C_MSG_TYPE_ROOM,
         CALLBACK_SELECTOR_1(MsgManager::dealWithRoomMsg, this)));
 }
 
@@ -138,6 +141,10 @@ void MsgManager::addMsgHandlers()
     // login
     msg_handlers_.insert(std::make_pair((int)MsgIDs::MSG_ID_LOGIN_MY,
         CALLBACK_SELECTOR_1(MsgManager::dealWithMgLoginMsg, this)));
+
+	// property
+	msg_handlers_.insert(std::make_pair((int)MsgIDs::MSG_ID_PROPERTY_GET_PLAYER_INFO,
+		CALLBACK_SELECTOR_1(MsgManager::dealWithGetPlayerInfoMsg, this)));
 
     // room
     // create room
@@ -211,7 +218,7 @@ bool MsgManager::parseMsg(const ServerMsg& server_msg, google::protobuf::Message
     if (nullptr == msg)
         return false; // TODO : log
 
-    if (MsgCodes::MSG_RESPONSE_CODE_SUCCESS == (MsgCodes)server_msg.code &&
+    if (MsgCodes::MSG_CODE_SUCCESS == (MsgCodes)server_msg.code &&
         nullptr != server_msg.context)
     {
         char buf[MsgManager::MAX_MSG_LEN] = { 0 };
@@ -463,6 +470,24 @@ void MsgManager::dealWithLoginMsg(const ServerMsg& msg)
     }
 }
 
+void MsgManager::dealWithPropertyMsg(const ServerMsg& msg)
+{
+	auto itr = msg_handlers_.find((int)msg.id);
+	if (itr != msg_handlers_.end())
+	{
+		itr->second(msg);
+	}
+}
+
+void MsgManager::dealWithRoomMsg(const ServerMsg& msg)
+{
+	auto itr = msg_handlers_.find((int)msg.id);
+	if (itr != msg_handlers_.end())
+	{
+		itr->second(msg);
+	}
+}
+
 void MsgManager::dealWithMgLoginMsg(const ServerMsg& msg)
 {
 	auto proto = DataManager::getInstance()->my_login_msg_protocol();
@@ -479,13 +504,18 @@ void MsgManager::dealWithMgLoginMsg(const ServerMsg& msg)
     
 }
 
-void MsgManager::dealWithRoomMsg(const ServerMsg& msg)
+void MsgManager::dealWithGetPlayerInfoMsg(const ServerMsg& msg)
 {
-    auto itr = msg_handlers_.find((int)msg.id);
-    if (itr != msg_handlers_.end())
-    {
-        itr->second(msg);
-    }
+	gamer::protocol::PlayerMsgProtocol proto;
+	if (this->parseMsg(msg, &proto))
+	{
+		this->dispatchMsg(msg.code, msg.type, msg.id, &proto,
+			"gamer::protocol::PlayerMsgProtocol");
+	}
+	else
+	{
+		this->dispatchMsg(msg.code, msg.type, msg.id, nullptr, "");
+	}
 }
 
 void MsgManager::dealWithCreateRoomMsg(const ServerMsg& msg)

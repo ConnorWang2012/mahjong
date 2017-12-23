@@ -19,9 +19,12 @@ public:
 
 	int ByteSize() const;
 
+	inline void set_player_id(unsigned int value);
 	inline unsigned int player_id() const;
 
 	inline const std::string& nick_name() const;
+
+	inline unsigned int sex() const;
 
 	inline unsigned int level() const;
 
@@ -36,6 +39,10 @@ public:
 	inline unsigned int num_played_games() const;
 	
 	inline unsigned int num_win_games() const;
+
+	inline unsigned int num_loss_games() const;
+
+	inline unsigned int vip_level() const;
 };
 
 } // namespace protocol

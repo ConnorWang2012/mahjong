@@ -107,6 +107,7 @@
             <Image Name="i_half_opacity.png" />
             <Image Name="i_head_circle.png" />
             <Image Name="i_male.png" />
+            <Image Name="i_no_data.png" />
             <Image Name="i_selected_bg1.png" />
             <Image Name="i_selected1.png" />
             <Image Name="i_store_diamond.png" />
@@ -308,6 +309,15 @@
           </Folder>
           <Folder Name="ui">
             <Folder Name="hall">
+              <Folder Name="create_room">
+                <Project Name="create_room_layer_layout.csd" Type="Layer" />
+              </Folder>
+              <Folder Name="join_room">
+                <Project Name="join_room_layer_layout.csd" Type="Layer" />
+              </Folder>
+              <Folder Name="player_info">
+                <Project Name="hall_player_info_layer_layout.csd" Type="Layer" />
+              </Folder>
               <Folder Name="store">
                 <Project Name="store_item_node_layout.csd" Type="Node" />
                 <Project Name="store_layer_layout.csd" Type="Layer" />
@@ -316,16 +326,7 @@
               <Project Name="hall_middle_node_layout.csd" Type="Node" />
               <Project Name="hall_player_head_node_layout.csd" Type="Node" />
               <Project Name="hall_top_node_layout.csd" Type="Node" />
-              <Folder Name="player_info">
-                <Project Name="hall_player_info_layer_layout.csd" Type="Layer" />
-              </Folder>
               <Project Name="head_node_layout.csd" Type="Node" />
-              <Folder Name="create_room">
-                <Project Name="create_room_layer_layout.csd" Type="Layer" />
-              </Folder>
-              <Folder Name="join_room">
-                <Project Name="join_room_layer_layout.csd" Type="Layer" />
-              </Folder>
             </Folder>
             <Folder Name="room">
               <Folder Name="game_end">

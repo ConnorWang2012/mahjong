@@ -15,5 +15,6 @@ modification:
 local M = {}
 
 M.INVALID_PLAYER_ID = 0
+M.Sex = { MALE = 1, FEMALE = 2 }
 
 return M

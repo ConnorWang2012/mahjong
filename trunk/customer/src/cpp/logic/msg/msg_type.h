@@ -20,15 +20,15 @@ namespace gamer
 
 enum class MsgTypes
 {
-    // client to server
-    C2S_MSG_TYPE_LOGIN                      = 1,
-    C2S_MSG_TYPE_USER_INFO                  = 2,
-    C2S_MSG_TYPE_ROOM                       = 100,
+	// client to server
+	C2S_MSG_TYPE_LOGIN				= 1,
+	C2S_MSG_TYPE_PROPERTY			= 2,
+	C2S_MSG_TYPE_ROOM				= 3,
 
-    // server to client
-    S2C_MSG_TYPE_LOGIN                      = 1,
-    S2C_MSG_TYPE_USER_INFO                  = 2,
-    S2C_MSG_TYPE_ROOM                       = 100,
+	// server to client
+	S2C_MSG_TYPE_LOGIN				= 1,
+	S2C_MSG_TYPE_PROPERTY			= 2,
+	S2C_MSG_TYPE_ROOM				= 3
 };
 
 }

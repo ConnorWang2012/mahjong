@@ -21,7 +21,7 @@ local PlayerHeadCreator = require "view.common.player_head_creator.lua"
 local MahjongConst      = require "view.constant.mahjong_constants.lua"
 local CardConst         = require "logic.constant.card_constants.lua"
 local PlayerConst       = require "logic.constant.player_constants.lua"
-local PlayCardHelper    = require "logic.util.play_card_helper.lua"
+local PlayCardHelper    = require "logic.helper.play_card_helper.lua"
 
 function NormalRoomScene:ctor(view_file)
 	print("[NormalRoomScene:ctor]")
@@ -2522,6 +2522,7 @@ function NormalRoomScene:dealWithGameEndMsgReceived(code, msg)
 		return
 	end
 
+	--[[
 	local func = function()
 		gamer.msg_helper_.sendStartGameMsg()
 	end
@@ -2529,6 +2530,7 @@ function NormalRoomScene:dealWithGameEndMsgReceived(code, msg)
 	local call_action = cc.CallFunc:create(func)
 	local sequence_action = cc.Sequence:create(delay_action, call_action)
 	self:runAction(sequence_action)
+	]]
 end
 
 function NormalRoomScene:addMsgListeners()

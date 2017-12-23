@@ -27,6 +27,65 @@ function PopupBase:ctor(view_file)
     cc.Director:getInstance():getEventDispatcher():addEventListenerWithSceneGraphPriority(self.touch_listener_, self)
 end
 
+function PopupBase:showLoadingView()
+	self:setVisibleOfLoadingView(true)
+	self:hideEmptyView()
+	self:hideDataView()
+end
+
+function PopupBase:showEmptyView()
+	self:setVisibleOfEmptyView(true)
+	self:hideLoadingView()
+	self:hideDataView()
+end
+
+function PopupBase:showDataView()
+	self:setVisibleOfDataView(true)
+	self:hideLoadingView()
+	self:hideEmptyView()
+end
+
+function PopupBase:hideLoadingView()
+	self:setVisibleOfLoadingView(false)
+end
+
+function PopupBase:hideEmptyView()
+	self:setVisibleOfEmptyView(false)
+end
+
+function PopupBase:hideDataView()
+	self:setVisibleOfDataView(false)
+end
+
+function PopupBase:setVisibleOfLoadingView(visible)
+	if self.root_node_ then
+		local txt_loading = self.root_node_:getChildByName("txt_loading")
+		if txt_loading then
+			txt_loading:setVisible(visible)
+		end
+	end
+end
+
+function PopupBase:setVisibleOfEmptyView(visible)
+	if self.root_node_ then
+		local panel_empty = self.root_node_:getChildByName("panel_empty")
+		if panel_empty then
+			panel_empty:setVisible(visible)
+		end
+	end
+end
+
+function PopupBase:setVisibleOfDataView(visible)
+	if self.root_node_ then
+		local panel_data = self.root_node_:getChildByName("panel_data")
+		if panel_data then
+			panel_data:setVisible(visible)
+		end
+	end
+end
+
+-- close when touch background except visual view.
+-- it assumes popup has a root image named img_bg.
 function PopupBase:closeWhenTouchBackground(yes)
 	if yes then
 		self:addColorLayerBg()
@@ -90,6 +149,11 @@ function PopupBase:onExit()
 	end
 end
 
+function PopupBase:onPopupBaseBackgroundTouch(sender)
+	print("[PopupBase:onPopupBaseBackgroundTouch]")
+	self:removeFromParent(true)
+end
+
 function PopupBase:onTouchBegin(touch, event)
     print("[PopupBase:onTouchBegin]")
 	if event:getEventCode() == cc.EventCode.BEGAN then
@@ -99,11 +163,6 @@ end
 
 function PopupBase:onTouchEnd(touch, event)
     print("[PopupBase:onTouchEnd]")
-end
-
-function PopupBase:onPopupBaseBackgroundTouch(sender)
-	print("[PopupBase:onPopupBaseBackgroundTouch]")
-	self:removeFromParent(true)
 end
 
 --------------------------------- end private -----------------------------------

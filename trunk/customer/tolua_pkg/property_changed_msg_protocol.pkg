@@ -1,0 +1,38 @@
+$#include "msg/protocol/property_changed_msg_protocol.pb.h"
+
+$#include <string>
+$#include <google/protobuf/stubs/common.h>
+
+$#include <google/protobuf/generated_message_util.h>
+$#include <google/protobuf/message.h>
+$#include <google/protobuf/repeated_field.h>
+$#include <google/protobuf/extension_set.h>
+$#include <google/protobuf/unknown_field_set.h>
+
+namespace gamer {
+
+namespace protocol {
+
+class PropertyChangedMsgProtocol : public google::protobuf::Message {
+public:
+	PropertyChangedMsgProtocol();
+
+	int ByteSize() const;
+
+	inline void set_player_id(unsigned int value);
+	inline unsigned int player_id() const;
+
+	inline int property_ids_size() const;
+	inline unsigned int property_ids(int index) const;
+	inline void set_property_ids(int index, unsigned int value);
+    inline void add_property_ids(unsigned int value);
+
+    inline int new_properties_size() const;
+    inline const std::string& new_properties(int index) const;
+    inline void set_new_properties(int index, const std::string& value);
+    inline void add_new_properties(const std::string& value);
+};
+
+} // namespace protocol
+
+} // namespace gamer
