@@ -53,6 +53,9 @@ function HallPlayerInfoPopup:initLayout(player_info_msg)
 	img_head:setTouchEnabled(true)
 	img_head:addClickEventListener(handler(self, self.onImgHeadPortraitTouch))
 
+	self:initHeadPortrait(player_info_msg:head_portrait_type(), 
+		player_info_msg:head_portrait_id(), player_info_msg:head_portrait())
+
 	-- score gold
 	local txt_gold = self.panel_data_:getChildByName("txt_gold")
 	txt_gold:setString(player_info_msg:score_gold())
@@ -94,6 +97,15 @@ function HallPlayerInfoPopup:initNickname(nickname)
 	end
 end
 
+function HallPlayerInfoPopup:initHeadPortrait(portrait_type, portrait_id, buffer)
+	print("[HallPlayerInfoPopup:initHeadPortrait] portrait_type, portrait_id :", portrait_type, portrait_id)
+	if portrait_type == PlayerConst.PortraitTypes.LOCAL then
+		self:initLocalHeadPortrait(portrait_id)
+	else
+		self:initPersonalHeadPortrait(buffer)
+	end
+end
+
 function HallPlayerInfoPopup:initSex(sex)
 	print("[HallPlayerInfoPopup:initSex] sex :", sex)
 	if sex then
@@ -111,10 +123,24 @@ end
 
 function HallPlayerInfoPopup:initPersonalHeadPortrait(buffer)
 	print("[HallPlayerInfoPopup:initPersonalHeadPortrait]")
+	if not buffer then
+		print("[HallPlayerInfoPopup:initPersonalHeadPortrait] buffer is nil, return")
+		return
+	end
 end
 
-function HallPlayerInfoPopup:initLocalHeadPortrait(head_id)
+function HallPlayerInfoPopup:initLocalHeadPortrait(portrait_id)
 	print("[HallPlayerInfoPopup:initLocalHeadPortrait]")
+	if not portrait_id or portrait_id > PlayerConst.MAX_HEAD_PORTRAIT_NUM then
+		print("[HallPlayerInfoPopup:initLocalHeadPortrait] portrait_id invalid, return")
+		return
+	end
+
+	cc.SpriteFrameCache:getInstance():addSpriteFrames("assets/common/plist/head.plist")
+
+	local node_head = self.panel_data_:getChildByName("node_head")
+	local img_head = node_head:getChildByName("img_head")
+	img_head:loadTexture("head_" .. portrait_id .. ".png", ccui.TextureResType.plistType)
 end
 
 function HallPlayerInfoPopup:setProperty(set_property_msg)
