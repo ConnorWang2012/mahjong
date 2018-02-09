@@ -71,38 +71,47 @@ function HallScene:initLayout()
 	img_shop:addClickEventListener(handler(self, self.onImgStoreTouch))
 end
 
-function HallScene:onImgPlayerHeadTouch(sender)
-	print("[HallScene:onImgPlayerHeadTouch]")
-	gamer.widget_helper_.playDefaultTouchActionForImage(sender)
-	gamer.popup_mgr_.showPopup(gamer.PopupIDs.POPUP_ID_HALL_PLAYER_INFO)
+function HallScene:initNickname(nickname)
+	print("[HallScene:initNickname] nickname :", nickname)
+	if nickname then
+		--local txt_nickname = self.panel_data_:getChildByName("txt_nickname")
+		--txt_nickname:setString(nickname)
+	end
 end
 
-function HallScene:onImgStoreTouch(sender)
-    print("[HallScene:onImgStoreTouch]")
-	gamer.popup_mgr_.showPopup(gamer.PopupIDs.POPUP_ID_STORE)
+function HallScene:initSex(sex)
+	print("[HallScene:initSex] sex :", sex)
+	if sex then
+
+	end
 end
 
-function HallScene:onImgRightTouch(sender)
-    print("[HallScene:onImgRightTouch]")
-	gamer.popup_mgr_.showPopup(gamer.PopupIDs.POPUP_ID_ROOM_JOIN)
+function HallScene:initPersonalHeadPortrait(buffer)
+	print("[HallScene:initPersonalHeadPortrait]")
 end
 
-function HallScene:onImgLeftTouch(sender)
-    print("[HallScene:onImgLeftTouch]")
-
-	local proto_room = gamer.data_mgr_:create_room_msg_protocol()	
-	print("[HallScene:onImgLeftTouch] room_owner_id, room_id : ", proto_room:room_owner_id(), proto_room:room_id())
-
-	local proto = gamer.protocol.RoomMsgProtocol()
-    proto:set_room_id(proto_room:room_id())
-    proto:set_room_owner_id(proto_room:room_owner_id())
-
-    gamer.msg_mgr_:sendMsg(gamer.MsgTypes.C2S_MSG_TYPE_ROOM, gamer.MsgIDs.MSG_ID_ROOM_START_GAME, proto)
+function HallScene:initLocalHeadPortrait(head_id)
+	print("[HallScene:initLocalHeadPortrait]")
 end
 
-function HallScene:onImgNormalRoomTouch(sender)
-    print("[HallScene:onImgNormalRoomTouch]")
-	gamer.popup_mgr_.showPopup(gamer.PopupIDs.POPUP_ID_ROOM_CREATE)
+function HallScene:setProperty(set_property_msg)
+	print("[HallScene:setProperty]")
+
+	if set_property_msg then
+		for i = 0, set_property_msg:property_ids_size() - 1 do
+			local prop_id = set_property_msg:property_ids(i)
+			print("[HallScene:setProperty] property_id :", prop_id)
+			if prop_id == gamer.PropertyIDs.PROP_ID_NICKNAME then
+				self:initNickname(set_property_msg:new_properties(i))
+			elseif prop_id == gamer.PropertyIDs.PROP_ID_SEX then
+				self:initSex(set_property_msg:new_properties(i))
+			elseif prop_id == gamer.PropertyIDs.PROP_ID_HEAD_PORTRAIT_LOCAL then
+				self:initLocalHeadPortrait(set_property_msg:new_properties(i))
+			elseif prop_id == gamer.PropertyIDs.PROP_ID_HEAD_PORTRAIT_PERSONAL then
+				self:initPersonalHeadPortrait(set_property_msg:new_properties(i))
+			end
+		end
+	end
 end
 
 function HallScene:dealWithCreateRoomMsgReceived(code, msg)
@@ -145,12 +154,74 @@ function HallScene:dealWithStartGameMsgReceived(code, msg)
 	gamer.scene_mgr_.runScene(gamer.SceneIDs.NORMAL_ROOM_SCENE)
 end
 
+function HallScene:dealWithSetPropertyMsgReceived(code, msg)
+	print("[HallScene:dealWithSetPropertyMsgReceived] code :", code)
+	if tolua.isnull(self) then
+		print("[HallScene:dealWithSetPropertyMsgReceived] tolua.isnull(self), return")
+		return
+	end
+
+	if code == gamer.MsgCodes.SUCCEED then
+		self:setProperty(msg)
+	end
+end
+
+function HallScene:dealWithPropertyChangedMsgReceived(code, msg)
+	print("[HallScene:dealWithPropertyChangedMsgReceived] code :", code)
+	if tolua.isnull(self) then
+		print("[HallScene:dealWithPropertyChangedMsgReceived] tolua.isnull(self), return")
+		return
+	end
+
+	if code == gamer.MsgCodes.SUCCEED then
+		self:setProperty(msg)
+	end
+end
+
 function HallScene:addMsgListeners()
+	print("[HallScene:addEventListeners]")
 	gamer.msg_mgr_:addMsgListener(gamer.MsgTypes.S2C_MSG_TYPE_ROOM, handler(self, self.onServerMsgReceived))
+	gamer.msg_mgr_:addMsgListener(gamer.MsgTypes.S2C_MSG_TYPE_PROPERTY, handler(self, self.onServerMsgReceived))
 end
 
 function HallScene:removeMsgListeners()
+	print("[HallScene:removeEventListeners]")
 	gamer.msg_mgr_:removeMsgListener(gamer.MsgTypes.S2C_MSG_TYPE_ROOM, handler(self, self.onServerMsgReceived))
+	gamer.msg_mgr_:removeMsgListener(gamer.MsgTypes.S2C_MSG_TYPE_PROPERTY, handler(self, self.onServerMsgReceived))
+end
+
+function HallScene:onImgPlayerHeadTouch(sender)
+	print("[HallScene:onImgPlayerHeadTouch]")
+	gamer.widget_helper_.playDefaultTouchActionForImage(sender)
+	gamer.popup_mgr_.showPopup(gamer.PopupIDs.POPUP_ID_HALL_PLAYER_INFO)
+end
+
+function HallScene:onImgStoreTouch(sender)
+    print("[HallScene:onImgStoreTouch]")
+	gamer.popup_mgr_.showPopup(gamer.PopupIDs.POPUP_ID_STORE)
+end
+
+function HallScene:onImgRightTouch(sender)
+    print("[HallScene:onImgRightTouch]")
+	gamer.popup_mgr_.showPopup(gamer.PopupIDs.POPUP_ID_ROOM_JOIN)
+end
+
+function HallScene:onImgLeftTouch(sender)
+    print("[HallScene:onImgLeftTouch]")
+
+	local proto_room = gamer.data_mgr_:create_room_msg_protocol()	
+	print("[HallScene:onImgLeftTouch] room_owner_id, room_id : ", proto_room:room_owner_id(), proto_room:room_id())
+
+	local proto = gamer.protocol.RoomMsgProtocol()
+    proto:set_room_id(proto_room:room_id())
+    proto:set_room_owner_id(proto_room:room_owner_id())
+
+    gamer.msg_mgr_:sendMsg(gamer.MsgTypes.C2S_MSG_TYPE_ROOM, gamer.MsgIDs.MSG_ID_ROOM_START_GAME, proto)
+end
+
+function HallScene:onImgNormalRoomTouch(sender)
+    print("[HallScene:onImgNormalRoomTouch]")
+	gamer.popup_mgr_.showPopup(gamer.PopupIDs.POPUP_ID_ROOM_CREATE)
 end
 
 function HallScene:onServerMsgReceived(code, msg_type, msg_id, msg)
@@ -166,6 +237,10 @@ function HallScene:onServerMsgReceived(code, msg_type, msg_id, msg)
 			self:dealWithJoinRoomMsgReceived(code, msg)
 		elseif msg_id == gamer.MsgIDs.MSG_ID_ROOM_START_GAME then
 			self:dealWithStartGameMsgReceived(code, msg)
+		elseif msg_id == gamer.MsgIDs.MSG_ID_PROPERTY_SET then
+			self:dealWithSetPropertyMsgReceived(code, msg)
+		elseif msg_id == gamer.MsgIDs.MSG_ID_PROPERTY_CHANGED then
+			self:dealWithPropertyChangedMsgReceived(code, msg)
 		end
 	end
 end

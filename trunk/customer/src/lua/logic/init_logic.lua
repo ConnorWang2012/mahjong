@@ -17,8 +17,9 @@ require "logic.constant.msg_type.lua"
 require "logic.constant.msg_code.lua"
 require "logic.constant.property_id.lua"
 
-gamer.scene_mgr_ = require "logic.manager.scene_manager.lua"
-gamer.popup_mgr_ = require "logic.manager.popup_manager.lua"
-gamer.wx_mgr_    = require("logic.3rd_party.wx_api_manager.lua"):create()
-gamer.event_mgr_ = gamer.EventManager:getInstance()
-gamer.cmd_mgr_   = gamer.CommandManager:getInstance()
+gamer.scene_mgr_     = require "logic.manager.scene_manager.lua"
+gamer.popup_mgr_     = require "logic.manager.popup_manager.lua"
+gamer.wx_mgr_        = require("logic.3rd_party.wx_api_manager.lua"):create()
+gamer.lua_event_mgr_ = require "logic.manager.event_manager.lua"
+gamer.event_mgr_     = gamer.EventManager:getInstance()
+gamer.cmd_mgr_       = gamer.CommandManager:getInstance()

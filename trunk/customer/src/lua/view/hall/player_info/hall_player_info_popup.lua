@@ -109,27 +109,29 @@ function HallPlayerInfoPopup:initSex(sex)
 	end
 end
 
-function HallPlayerInfoPopup:initHeadPortraitByBuffer(buffer)
-	print("[HallPlayerInfoPopup:initHeadPortraitByBuffer]")
+function HallPlayerInfoPopup:initPersonalHeadPortrait(buffer)
+	print("[HallPlayerInfoPopup:initPersonalHeadPortrait]")
+end
+
+function HallPlayerInfoPopup:initLocalHeadPortrait(head_id)
+	print("[HallPlayerInfoPopup:initLocalHeadPortrait]")
 end
 
 function HallPlayerInfoPopup:setProperty(set_property_msg)
 	print("[HallPlayerInfoPopup:setProperty]")
-	if tolua.isnull(self) then
-		print("[HallPlayerInfoPopup:setProperty] tolua.isnull(self), return")
-		return
-	end
 
 	if set_property_msg then
 		for i = 0, set_property_msg:property_ids_size() - 1 do
-			local property_id = set_property_msg:property_ids(i)
-			print("[HallPlayerInfoPopup:setProperty] property_id :", property_id)
-			if property_id == gamer.PropertyIDs.PROP_ID_NICKNAME then
+			local prop_id = set_property_msg:property_ids(i)
+			print("[HallPlayerInfoPopup:setProperty] property_id :", prop_id)
+			if prop_id == gamer.PropertyIDs.PROP_ID_NICKNAME then
 				self:initNickname(set_property_msg:new_properties(i))
-			elseif property_id == gamer.PropertyIDs.PROP_ID_SEX then
+			elseif prop_id == gamer.PropertyIDs.PROP_ID_SEX then
 				self:initSex(set_property_msg:new_properties(i))
-			elseif property_id == gamer.PropertyIDs.PROP_ID_HEAD_PORTRAIT then
-				self:initHeadPortraitByBuffer(set_property_msg:new_properties(i))
+			elseif prop_id == gamer.PropertyIDs.PROP_ID_HEAD_PORTRAIT_LOCAL then
+				self:initLocalHeadPortrait(set_property_msg:new_properties(i))
+			elseif prop_id == gamer.PropertyIDs.PROP_ID_HEAD_PORTRAIT_PERSONAL then
+				self:initPersonalHeadPortrait(set_property_msg:new_properties(i))
 			end
 		end
 	end
@@ -189,6 +191,7 @@ end
 
 function HallPlayerInfoPopup:removeEventListeners()
 	print("[HallPlayerInfoPopup:removeEventListeners]")
+	gamer.msg_mgr_:removeMsgListener(gamer.MsgTypes.S2C_MSG_TYPE_PROPERTY, handler(self, self.onServerMsgReceived))
 end
 
 function HallPlayerInfoPopup:onImgModifyNicknameTouch(sender)
