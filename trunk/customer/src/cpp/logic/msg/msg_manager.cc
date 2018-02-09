@@ -127,6 +127,8 @@ void MsgManager::addMsgDispatchHandlers()
     // login
     msg_dispatchers_.insert(std::make_pair((int)MsgTypes::S2C_MSG_TYPE_LOGIN, 
         CALLBACK_SELECTOR_1(MsgManager::dealWithLoginMsg, this)));
+	
+	// hall
 	// property
 	msg_dispatchers_.insert(std::make_pair((int)MsgTypes::S2C_MSG_TYPE_PROPERTY,
 		CALLBACK_SELECTOR_1(MsgManager::dealWithPropertyMsg, this)));
@@ -142,9 +144,13 @@ void MsgManager::addMsgHandlers()
     msg_handlers_.insert(std::make_pair((int)MsgIDs::MSG_ID_LOGIN_MY,
         CALLBACK_SELECTOR_1(MsgManager::dealWithMgLoginMsg, this)));
 
+	// hall
 	// property
 	msg_handlers_.insert(std::make_pair((int)MsgIDs::MSG_ID_PROPERTY_GET_PLAYER_INFO,
 		CALLBACK_SELECTOR_1(MsgManager::dealWithGetPlayerInfoMsg, this)));
+
+	msg_handlers_.insert(std::make_pair((int)MsgIDs::MSG_ID_PROPERTY_SET,
+		CALLBACK_SELECTOR_1(MsgManager::dealWithSetPropertyMsg, this)));
 
     // room
     // create room
@@ -506,11 +512,25 @@ void MsgManager::dealWithMgLoginMsg(const ServerMsg& msg)
 
 void MsgManager::dealWithGetPlayerInfoMsg(const ServerMsg& msg)
 {
-	gamer::protocol::PlayerMsgProtocol proto;
-	if (this->parseMsg(msg, &proto))
+	auto proto = DataManager::getInstance()->player_msg_protocol();
+	if (this->parseMsg(msg, proto))
 	{
-		this->dispatchMsg(msg.code, msg.type, msg.id, &proto,
+		this->dispatchMsg(msg.code, msg.type, msg.id, proto,
 			"gamer::protocol::PlayerMsgProtocol");
+	}
+	else
+	{
+		this->dispatchMsg(msg.code, msg.type, msg.id, nullptr, "");
+	}
+}
+
+void MsgManager::dealWithSetPropertyMsg(const ServerMsg& msg)
+{
+	auto proto = DataManager::getInstance()->set_property_msg_protocol();
+	if (this->parseMsg(msg, proto))
+	{
+		this->dispatchMsg(msg.code, msg.type, msg.id, proto,
+			"gamer::protocol::SetPropertyMsgProtocol");
 	}
 	else
 	{

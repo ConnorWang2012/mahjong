@@ -1,6 +1,6 @@
 /*
 ** Lua binding: player_msg_protocol
-** Generated automatically by tolua++-1.0.92 on 12/24/17 03:14:09.
+** Generated automatically by tolua++-1.0.92 on 01/28/18 23:27:48.
 */
 
 #ifndef __cplusplus
@@ -222,6 +222,38 @@ static int tolua_player_msg_protocol_gamer_protocol_PlayerMsgProtocol_nick_name0
 #ifndef TOLUA_RELEASE
  tolua_lerror:
  tolua_error(tolua_S,"#ferror in function 'nick_name'.",&tolua_err);
+ return 0;
+#endif
+}
+#endif //#ifndef TOLUA_DISABLE
+
+/* method: head_portrait of class  gamer::protocol::PlayerMsgProtocol */
+#ifndef TOLUA_DISABLE_tolua_player_msg_protocol_gamer_protocol_PlayerMsgProtocol_head_portrait00
+static int tolua_player_msg_protocol_gamer_protocol_PlayerMsgProtocol_head_portrait00(lua_State* tolua_S)
+{
+#ifndef TOLUA_RELEASE
+ tolua_Error tolua_err;
+ if (
+     !tolua_isusertype(tolua_S,1,"const gamer::protocol::PlayerMsgProtocol",0,&tolua_err) ||
+     !tolua_isnoobj(tolua_S,2,&tolua_err)
+ )
+  goto tolua_lerror;
+ else
+#endif
+ {
+  const gamer::protocol::PlayerMsgProtocol* self = (const gamer::protocol::PlayerMsgProtocol*)  tolua_tousertype(tolua_S,1,0);
+#ifndef TOLUA_RELEASE
+  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'head_portrait'", NULL);
+#endif
+  {
+   const std::string tolua_ret = (const std::string)  self->head_portrait();
+   tolua_pushcppstring(tolua_S,(const char*)tolua_ret);
+  }
+ }
+ return 1;
+#ifndef TOLUA_RELEASE
+ tolua_lerror:
+ tolua_error(tolua_S,"#ferror in function 'head_portrait'.",&tolua_err);
  return 0;
 #endif
 }
@@ -571,6 +603,7 @@ TOLUA_API int tolua_player_msg_protocol_open (lua_State* tolua_S)
      tolua_function(tolua_S,"set_player_id",tolua_player_msg_protocol_gamer_protocol_PlayerMsgProtocol_set_player_id00);
      tolua_function(tolua_S,"player_id",tolua_player_msg_protocol_gamer_protocol_PlayerMsgProtocol_player_id00);
      tolua_function(tolua_S,"nick_name",tolua_player_msg_protocol_gamer_protocol_PlayerMsgProtocol_nick_name00);
+     tolua_function(tolua_S,"head_portrait",tolua_player_msg_protocol_gamer_protocol_PlayerMsgProtocol_head_portrait00);
      tolua_function(tolua_S,"sex",tolua_player_msg_protocol_gamer_protocol_PlayerMsgProtocol_sex00);
      tolua_function(tolua_S,"level",tolua_player_msg_protocol_gamer_protocol_PlayerMsgProtocol_level00);
      tolua_function(tolua_S,"level_name",tolua_player_msg_protocol_gamer_protocol_PlayerMsgProtocol_level_name00);

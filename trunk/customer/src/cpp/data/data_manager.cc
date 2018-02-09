@@ -21,14 +21,16 @@ namespace gamer
 {
 
 DataManager::DataManager()
-    :my_login_msg_protocol_(nullptr)
-    ,create_room_msg_protocol_(nullptr)
-    ,room_msg_protocol_(nullptr)
-    ,play_card_msg_protocol_(nullptr)
-    ,player_self_cards_index_(0)
-    ,left_player_cards_index_(0)
-    ,opposite_player_cards_index_(0)
-    ,right_player_cards_index_(0)
+    : my_login_msg_protocol_(nullptr),
+	  player_msg_protocol_(nullptr),
+	  set_property_msg_protocol_(nullptr),
+	  create_room_msg_protocol_(nullptr),
+	  room_msg_protocol_(nullptr),
+	  play_card_msg_protocol_(nullptr),
+	  player_self_cards_index_(0),
+	  left_player_cards_index_(0),
+	  opposite_player_cards_index_(0),
+	  right_player_cards_index_(0)
 {
 
 }

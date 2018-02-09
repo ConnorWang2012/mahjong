@@ -166,6 +166,8 @@ private:
 
 	void dealWithGetPlayerInfoMsg(const ServerMsg& msg);
 
+	void dealWithSetPropertyMsg(const ServerMsg& msg);
+
     void dealWithCreateRoomMsg(const ServerMsg& msg);
 
     void dealWithPlayerJoinRoomMsg(const ServerMsg& msg);

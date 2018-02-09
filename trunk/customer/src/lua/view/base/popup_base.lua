@@ -1,4 +1,4 @@
---[[
+﻿--[[
 @ copyright(C), 2015-2020, ConnorAndHisFriendsCompany.Inc
 @ filename:	   popup_base.lua
 @ author:	   Connor
@@ -109,6 +109,26 @@ function PopupBase:setBackGroundColorOpacity(opacity)
 	end
 end
 
+function PopupBase:setPopupID(popup_id)
+	if popup_id then
+		self.popup_id_ = popup_id
+	end
+end
+
+function PopupBase:getPopupID()
+	return self.popup_id_
+end
+
+function PopupBase:removeSelf()
+	if self.popup_id_ then
+		gamer.popup_mgr_.removePopup(self.popup_id_)
+	end
+end
+
+function PopupBase:showAsTop()
+	self:setLocalZOrder(gamer.PopupConstants.POPUP_ZORDER_TOP)
+end
+
 ------------------------------------ private ------------------------------------
 
 function PopupBase:addColorLayerBg()
@@ -151,7 +171,7 @@ end
 
 function PopupBase:onPopupBaseBackgroundTouch(sender)
 	print("[PopupBase:onPopupBaseBackgroundTouch]")
-	self:removeFromParent(true)
+	self:removeSelf()
 end
 
 function PopupBase:onTouchBegin(touch, event)

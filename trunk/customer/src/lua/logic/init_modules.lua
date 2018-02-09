@@ -1,4 +1,4 @@
---[[
+﻿--[[
 @ copyright(C), 2015-2020, ConnorAndHisFriendsCompany.Inc
 @ filename:	   init_modules.lua
 @ author:	   Connor

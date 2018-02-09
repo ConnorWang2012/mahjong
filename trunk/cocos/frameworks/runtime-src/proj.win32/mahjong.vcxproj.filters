@@ -1170,9 +1170,6 @@
     <None Include="..\..\..\..\customer\src\lua\view\layouts\scene\room\normal_room_scene_layout.lua">
       <Filter>classes\lua\view\layout\scene\room</Filter>
     </None>
-    <None Include="..\..\..\..\customer\src\lua\data\data_constants.lua">
-      <Filter>classes\lua\data</Filter>
-    </None>
     <None Include="..\..\..\..\customer\src\lua\view\room\scene\normal_room_scene.lua">
       <Filter>classes\lua\view\room\scene</Filter>
     </None>
@@ -1397,6 +1394,30 @@
     </None>
     <None Include="..\..\..\..\customer\src\lua\logic\helper\play_card_helper.lua">
       <Filter>classes\lua\logic\helper</Filter>
+    </None>
+    <None Include="..\..\..\..\customer\src\lua\data\string_cn.lua">
+      <Filter>classes\lua\data</Filter>
+    </None>
+    <None Include="..\..\..\..\customer\res.proj\res\layouts\ui\common\input_popup_layer_layout.lua">
+      <Filter>classes\lua\view\layout\ui\common</Filter>
+    </None>
+    <None Include="..\..\..\..\customer\src\lua\view\common\input_popup.lua">
+      <Filter>classes\lua\view\common</Filter>
+    </None>
+    <None Include="..\..\..\..\customer\src\lua\view\common\widget_helper.lua">
+      <Filter>classes\lua\view\common</Filter>
+    </None>
+    <None Include="..\..\..\..\customer\src\lua\view\layouts\ui\common\center_tip_node_layout.lua">
+      <Filter>classes\lua\view\layout\ui\common</Filter>
+    </None>
+    <None Include="..\..\..\..\customer\src\lua\view\common\center_tip_popup.lua">
+      <Filter>classes\lua\view\common</Filter>
+    </None>
+    <None Include="..\..\..\..\customer\src\lua\view\hall\player_info\head_portrait_select_popup.lua">
+      <Filter>classes\lua\view\hall\player_info</Filter>
+    </None>
+    <None Include="..\..\..\..\customer\src\lua\view\layouts\ui\hall\player_info\head_portrait_select_layer_layout.lua">
+      <Filter>classes\lua\view\layout\ui\hall\player_info</Filter>
     </None>
   </ItemGroup>
 </Project>

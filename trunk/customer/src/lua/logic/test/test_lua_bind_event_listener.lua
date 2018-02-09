@@ -1,4 +1,4 @@
-print( "[test lua_bind_event_listener]" )
+﻿print( "[test lua_bind_event_listener]" )
 
 local function event_callback( event )
 

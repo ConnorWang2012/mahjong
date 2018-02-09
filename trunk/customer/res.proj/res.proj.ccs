@@ -112,10 +112,13 @@
             <Image Name="i_selected1.png" />
             <Image Name="i_store_diamond.png" />
             <Image Name="i_store_gold.png" />
+            <Image Name="input_bg.png" />
             <Image Name="item_bg.png" />
             <Image Name="numbers_blue.png" />
             <Image Name="numbers_orange.png" />
+            <Image Name="pop_close1.png" />
             <Image Name="popup_bg1.png" />
+            <Image Name="title_bg1.png" />
           </Folder>
           <Folder Name="font">
             <TTF Name="FZZhengHeiS-B-GB.ttf" />
@@ -308,6 +311,10 @@
             </Folder>
           </Folder>
           <Folder Name="ui">
+            <Folder Name="common">
+              <Project Name="center_tip_node_layout.csd" Type="Node" />
+              <Project Name="input_popup_layer_layout.csd" Type="Layer" />
+            </Folder>
             <Folder Name="hall">
               <Folder Name="create_room">
                 <Project Name="create_room_layer_layout.csd" Type="Layer" />
@@ -317,6 +324,7 @@
               </Folder>
               <Folder Name="player_info">
                 <Project Name="hall_player_info_layer_layout.csd" Type="Layer" />
+                <Project Name="head_portrait_select_layer_layout.csd" Type="Layer" />
               </Folder>
               <Folder Name="store">
                 <Project Name="store_item_node_layout.csd" Type="Node" />

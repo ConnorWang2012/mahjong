@@ -13,9 +13,9 @@ modification:
 --]]
 
 local CardConst = require "logic.constant.card_constants.lua"
-local MsgHelper = {}
+local M = {}
 
-function MsgHelper.sendGetPlayerInfoMsg()
+function M.sendGetPlayerInfoMsg()
 	print("[MsgHelper.sendGetPlayerInfoMsg]")
 	local proto = gamer.protocol.PlayerMsgProtocol()
 	proto:set_player_id(gamer.data_mgr_:self_player_id())
@@ -24,7 +24,7 @@ function MsgHelper.sendGetPlayerInfoMsg()
 		gamer.MsgIDs.MSG_ID_PROPERTY_GET_PLAYER_INFO, proto)
 end
 
-function MsgHelper.sendStartGameMsg()
+function M.sendStartGameMsg()
 	print("[MsgHelper.sendStartGameMsg]")
 	local proto_room = gamer.data_mgr_:create_room_msg_protocol()
 	if not proto_room then
@@ -44,7 +44,7 @@ function MsgHelper.sendStartGameMsg()
 	end
 end
 
-function MsgHelper.sendPlayCardMsg(operation_id, card)
+function M.sendPlayCardMsg(operation_id, card)
 	print("[MsgHelper.sendPlayCardMsg]")
 	local proto = gamer.protocol.PlayCardMsgProtocol()
 	proto:set_player_id(gamer.data_mgr_:self_player_id())
@@ -69,4 +69,28 @@ function MsgHelper.sendPlayCardMsg(operation_id, card)
 		gamer.MsgIDs.MSG_ID_ROOM_PLAY_CARD, proto)
 end
 
-return MsgHelper
+function M.sendModifyNicknameMsg(nickname)
+	if nickname then
+		local proto = gamer.protocol.SetPropertyMsgProtocol()
+		proto:set_player_id(gamer.data_mgr_:self_player_id())
+		proto:add_property_ids(gamer.PropertyIDs.PROP_ID_NICKNAME)
+		proto:add_new_properties(nickname)
+
+		gamer.msg_mgr_:sendMsg(gamer.MsgTypes.C2S_MSG_TYPE_PROPERTY, 
+			gamer.MsgIDs.MSG_ID_PROPERTY_SET, proto)
+	end
+end
+
+function M.sendModifySexMsg(sex)
+	if sex then
+		local proto = gamer.protocol.SetPropertyMsgProtocol()
+		proto:set_player_id(gamer.data_mgr_:self_player_id())
+		proto:add_property_ids(gamer.PropertyIDs.PROP_ID_SEX)
+		proto:add_new_properties(sex)
+
+		gamer.msg_mgr_:sendMsg(gamer.MsgTypes.C2S_MSG_TYPE_PROPERTY, 
+			gamer.MsgIDs.MSG_ID_PROPERTY_SET, proto)
+	end
+end
+
+return M

@@ -24,6 +24,8 @@ public:
 
 	inline const std::string& nick_name() const;
 
+	inline const std::string& head_portrait() const;
+	
 	inline unsigned int sex() const;
 
 	inline unsigned int level() const;

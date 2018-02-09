@@ -1,4 +1,4 @@
---[[
+﻿--[[
 @ copyright(C), 2015-2020, ConnorAndHisFriendsCompany.Inc
 @ filename:	   hall_scene.lua
 @ author:	   Connor
@@ -73,6 +73,7 @@ end
 
 function HallScene:onImgPlayerHeadTouch(sender)
 	print("[HallScene:onImgPlayerHeadTouch]")
+	gamer.widget_helper_.playDefaultTouchActionForImage(sender)
 	gamer.popup_mgr_.showPopup(gamer.PopupIDs.POPUP_ID_HALL_PLAYER_INFO)
 end
 

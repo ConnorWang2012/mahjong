@@ -1,4 +1,4 @@
---[[
+﻿--[[
 @ copyright(C), 2015-2020, ConnorAndHisFriendsCompany.Inc
 @ filename:	   init_view.lua
 @ author:	   Connor
@@ -11,6 +11,8 @@
 author:
 modification:
 --]]
+
+gamer.widget_helper_ = require "view.common.widget_helper.lua"
 
 gamer.PopupConstants = require "view.constant.popup_constants.lua"
 gamer.SceneConstants = require "view.constant.scene_constants.lua"

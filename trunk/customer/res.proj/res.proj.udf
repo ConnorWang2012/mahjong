@@ -28,5 +28,16 @@
         <EnableHTML5Advanced Value="False" />
       </Value>
     </Item>
+    <Item Key="TabsParamsKey">
+      <Value ctype="TabsInfo">
+        <OpenedDocuments>
+          <FilePathData Path="layouts/ui/hall/player_info/head_portrait_select_layer_layout.csd" />
+          <FilePathData Path="layouts/ui/hall/player_info/hall_player_info_layer_layout.csd" />
+          <FilePathData Path="layouts/ui/hall/head_node_layout.csd" />
+          <FilePathData Path="layouts/ui/hall/create_room/create_room_layer_layout.csd" />
+        </OpenedDocuments>
+        <ActiveDocument Path="layouts/ui/hall/player_info/head_portrait_select_layer_layout.csd" />
+      </Value>
+    </Item>
   </Properties>
 </UserData>

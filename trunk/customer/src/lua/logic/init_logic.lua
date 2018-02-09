@@ -1,4 +1,4 @@
---[[
+﻿--[[
 @ copyright(C), 2015-2020, ConnorAndHisFriendsCompany.Inc
 @ filename:	   init_logic.lua
 @ author:	   Connor
@@ -15,6 +15,7 @@ modification:
 require "logic.constant.msg_id.lua"
 require "logic.constant.msg_type.lua"
 require "logic.constant.msg_code.lua"
+require "logic.constant.property_id.lua"
 
 gamer.scene_mgr_ = require "logic.manager.scene_manager.lua"
 gamer.popup_mgr_ = require "logic.manager.popup_manager.lua"

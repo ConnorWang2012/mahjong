@@ -1,4 +1,4 @@
---[[
+﻿--[[
 @ copyright(C), 2015-2020, ConnorAndHisFriendsCompany.Inc
 @ filename:	   popup_manager.lua
 @ author:	   Connor
@@ -31,6 +31,10 @@ function M.showPopup(popup_id, ...)
 	return popup
 end
 
+function M.showTipPopup(popup_id, ...)
+	return M.showPopup(popup_id, ...)
+end
+
 function M.hidePopup(popup_id)
 	local popup = M.getPopup(popup_id)
 	if popup then
@@ -58,7 +62,7 @@ end
 function M.init()
 	if not M.popup_root_ then
 		M.popup_root_ = cc.Layer:create()
-		M.popup_root_:setLocalZOrder(gamer.PopupConstants.POPUP_ROOT_ZORDER)
+		M.popup_root_:setLocalZOrder(gamer.PopupConstants.POPUP_ZORDER_ROOT)
 		local scene = gamer.scene_mgr_:getRunningScene()
 		if scene then
 			scene:addChild(M.popup_root_)
@@ -97,7 +101,8 @@ function M.addPopup(popup_id, ...)
 
 	popup = M.createPopup(popup_id, ...)
 	if popup then
-		popup:setTag(popup_id)
+		popup:setPopupID(popup_id)
+		popup:setTag(popup_id) -- use tag to remove from parent
 		M.popup_root_:addChild(popup)
 	end
 

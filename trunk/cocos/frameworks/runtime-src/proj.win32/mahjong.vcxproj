@@ -522,8 +522,9 @@ xcopy /Y /Q "$(LocalDebuggerWorkingDirectory)\*.exe" "$(LocalDebuggerWorkingDire
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <None Include="..\..\..\..\customer\src\lua\data\data_constants.lua" />
+    <None Include="..\..\..\..\customer\res.proj\res\layouts\ui\common\input_popup_layer_layout.lua" />
     <None Include="..\..\..\..\customer\src\lua\data\init_data.lua" />
+    <None Include="..\..\..\..\customer\src\lua\data\string_cn.lua" />
     <None Include="..\..\..\..\customer\src\lua\logic\3rd_party\wx_api_manager.lua" />
     <None Include="..\..\..\..\customer\src\lua\logic\constant\card_constants.lua" />
     <None Include="..\..\..\..\customer\src\lua\logic\constant\msg_id.lua" />
@@ -554,8 +555,11 @@ xcopy /Y /Q "$(LocalDebuggerWorkingDirectory)\*.exe" "$(LocalDebuggerWorkingDire
     <None Include="..\..\..\..\customer\src\lua\view\base\node_base.lua" />
     <None Include="..\..\..\..\customer\src\lua\view\base\popup_base.lua" />
     <None Include="..\..\..\..\customer\src\lua\view\common\animation_creator.lua" />
+    <None Include="..\..\..\..\customer\src\lua\view\common\center_tip_popup.lua" />
+    <None Include="..\..\..\..\customer\src\lua\view\common\input_popup.lua" />
     <None Include="..\..\..\..\customer\src\lua\view\common\mahjong_creator.lua" />
     <None Include="..\..\..\..\customer\src\lua\view\common\player_head_creator.lua" />
+    <None Include="..\..\..\..\customer\src\lua\view\common\widget_helper.lua" />
     <None Include="..\..\..\..\customer\src\lua\view\constant\mahjong_constants.lua" />
     <None Include="..\..\..\..\customer\src\lua\view\constant\popup_constants.lua" />
     <None Include="..\..\..\..\customer\src\lua\view\constant\scene_constants.lua" />
@@ -563,11 +567,13 @@ xcopy /Y /Q "$(LocalDebuggerWorkingDirectory)\*.exe" "$(LocalDebuggerWorkingDire
     <None Include="..\..\..\..\customer\src\lua\view\hall\hall_scene.lua" />
     <None Include="..\..\..\..\customer\src\lua\view\hall\join_room\join_room_popup.lua" />
     <None Include="..\..\..\..\customer\src\lua\view\hall\player_info\hall_player_info_popup.lua" />
+    <None Include="..\..\..\..\customer\src\lua\view\hall\player_info\head_portrait_select_popup.lua" />
     <None Include="..\..\..\..\customer\src\lua\view\hall\store\store_popup.lua" />
     <None Include="..\..\..\..\customer\src\lua\view\init_view.lua" />
     <None Include="..\..\..\..\customer\src\lua\view\layouts\scene\hall\hall_scene_layout.lua" />
     <None Include="..\..\..\..\customer\src\lua\view\layouts\scene\login\login_scene_layout.lua" />
     <None Include="..\..\..\..\customer\src\lua\view\layouts\scene\room\normal_room_scene_layout.lua" />
+    <None Include="..\..\..\..\customer\src\lua\view\layouts\ui\common\center_tip_node_layout.lua" />
     <None Include="..\..\..\..\customer\src\lua\view\layouts\ui\hall\create_room\create_room_layer_layout.lua" />
     <None Include="..\..\..\..\customer\src\lua\view\layouts\ui\hall\hall_bottom_node_layout.lua" />
     <None Include="..\..\..\..\customer\src\lua\view\layouts\ui\hall\hall_middle_node_layout.lua" />
@@ -576,6 +582,7 @@ xcopy /Y /Q "$(LocalDebuggerWorkingDirectory)\*.exe" "$(LocalDebuggerWorkingDire
     <None Include="..\..\..\..\customer\src\lua\view\layouts\ui\hall\head_node_layout.lua" />
     <None Include="..\..\..\..\customer\src\lua\view\layouts\ui\hall\join_room\join_room_layer_layout.lua" />
     <None Include="..\..\..\..\customer\src\lua\view\layouts\ui\hall\player_info\hall_player_info_layer_layout.lua" />
+    <None Include="..\..\..\..\customer\src\lua\view\layouts\ui\hall\player_info\head_portrait_select_layer_layout.lua" />
     <None Include="..\..\..\..\customer\src\lua\view\layouts\ui\hall\store\store_item_node_layout.lua" />
     <None Include="..\..\..\..\customer\src\lua\view\layouts\ui\hall\store\store_layer_layout.lua" />
     <None Include="..\..\..\..\customer\src\lua\view\layouts\ui\room\game_end\game_end_layer_layout.lua" />

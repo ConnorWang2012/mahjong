@@ -20,8 +20,10 @@ modification:
 #include "basic_manager.h"
 #include "card_constants.h"
 #include "my_login_msg_protocol.pb.h"
+#include "set_property_msg_protocol.pb.h"
 #include "create_room_msg_protocol.pb.h"
 #include "room_msg_protocol.pb.h"
+#include "player_msg_protocol.pb.h"
 #include "player_cards_msg_protocol.pb.h"
 #include "play_card_msg_protocol.pb.h"
 #include "game_end_msg_protocol.pb.h"
@@ -33,8 +35,10 @@ class DataManager : public BasicManager<DataManager>
 {
 public:
     typedef gamer::protocol::MyLoginMsgProtocol     MyLoginMsgProtocol;
+	typedef gamer::protocol::SetPropertyMsgProtocol SetPropertyMsgProtocol;
     typedef gamer::protocol::CreateRoomMsgProtocol  CreateRoomMsgProtocol;
     typedef gamer::protocol::RoomMsgProtocol        RoomMsgProtocol;
+	typedef gamer::protocol::PlayerMsgProtocol		PlayerMsgProtocol;
     typedef gamer::protocol::PlayerCardsMsgProtocol PlayerCardsMsgProtocol;
     typedef gamer::protocol::PlayCardMsgProtocol    PlayCardMsgProtocol;
     typedef gamer::protocol::GameEndMsgProtocol     GameEndMsgProtocol;
@@ -44,6 +48,10 @@ public:
     DataManager();
 
     inline MyLoginMsgProtocol* my_login_msg_protocol();
+
+	inline PlayerMsgProtocol* player_msg_protocol();
+
+	inline SetPropertyMsgProtocol* set_property_msg_protocol();
 
     inline CreateRoomMsgProtocol* create_room_msg_protocol();
 
@@ -127,6 +135,8 @@ private:
 
     // keep the ownership
     MyLoginMsgProtocol*     my_login_msg_protocol_;
+	PlayerMsgProtocol*		player_msg_protocol_;
+	SetPropertyMsgProtocol* set_property_msg_protocol_;
     CreateRoomMsgProtocol*  create_room_msg_protocol_;
     RoomMsgProtocol*        room_msg_protocol_;
     PlayCardMsgProtocol*    play_card_msg_protocol_;
@@ -145,6 +155,24 @@ inline DataManager::MyLoginMsgProtocol* DataManager::my_login_msg_protocol()
         my_login_msg_protocol_ = new MyLoginMsgProtocol;
     }
     return my_login_msg_protocol_;
+}
+
+inline DataManager::PlayerMsgProtocol* DataManager::player_msg_protocol()
+{
+	if (nullptr == player_msg_protocol_)
+	{
+		player_msg_protocol_ = new PlayerMsgProtocol;
+	}
+	return player_msg_protocol_;
+}
+
+inline DataManager::SetPropertyMsgProtocol* DataManager::set_property_msg_protocol()
+{
+	if (nullptr == set_property_msg_protocol_)
+	{
+		set_property_msg_protocol_ = new SetPropertyMsgProtocol;
+	}
+	return set_property_msg_protocol_;
 }
 
 inline DataManager::CreateRoomMsgProtocol* DataManager::create_room_msg_protocol()

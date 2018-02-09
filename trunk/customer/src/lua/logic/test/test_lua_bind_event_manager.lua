@@ -1,4 +1,4 @@
-print( "[test lua_bind_event_manager]" )
+﻿print( "[test lua_bind_event_manager]" )
 
 local event_manager = gamer.EventManager:getInstance()
 print( "enabled : " .. tostring(event_manager:is_enabled()) )

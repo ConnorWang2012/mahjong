@@ -1,4 +1,4 @@
---[[
+﻿--[[
 @ copyright(C), 2015-2020, ConnorAndHisFriendsCompany.Inc
 @ filename:	   msg_id.lua
 @ author:	   Connor
@@ -16,5 +16,6 @@ gamer.PropertyIDs =
 {
 	PROP_ID_UNKNOW					= 0,
 	PROP_ID_NICKNAME				= 1,
-	PROP_ID_SEX						= 2
+	PROP_ID_SEX						= 2,
+	PROP_ID_HEAD_PORTRAIT			= 3
 }

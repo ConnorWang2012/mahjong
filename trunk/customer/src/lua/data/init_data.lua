@@ -1,4 +1,4 @@
---[[
+﻿--[[
 @ copyright(C), 2015-2020, ConnorAndHisFriendsCompany.Inc
 @ filename:	   init_data.lua
 @ author:	   Connor
@@ -12,4 +12,5 @@ author:
 modification:
 --]]
 
+require "data.string_cn.lua"
 gamer.data_mgr_  = gamer.DataManager:getInstance()
