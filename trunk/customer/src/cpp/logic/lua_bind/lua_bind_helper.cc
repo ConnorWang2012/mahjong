@@ -56,6 +56,23 @@ void LuaBindHelper::storeLuaFunction(int idx)
     lua_rawset(lua_state_, LUA_REGISTRYINDEX);
 }
 
+void LuaBindHelper::storeLuaFunction(const std::string& funtion_id, int idx)
+{
+	if (!lua_isfunction(lua_state_, idx))
+	{
+		printf("[LuaBindHelper::storeLuaFunction] not a function\n");
+		return;
+	}
+
+	char buf[64] = { 0 };
+	snprintf(buf, sizeof(buf), "%s", funtion_id.c_str());
+
+	lua_pushstring(lua_state_, buf);
+	//lua_pushstring(lua_state_, "tolua_function");
+	lua_pushvalue(lua_state_, idx);
+	lua_rawset(lua_state_, LUA_REGISTRYINDEX);
+}
+
 void LuaBindHelper::callLuaFunction(LuaFunction lua_func, void* userdata)
 {
     auto itr = lua_functions_.find(lua_func);
@@ -104,6 +121,41 @@ void LuaBindHelper::dispatchMsg(LuaFunction lua_func,
     tolua_pushnumber(lua_state_, code);
     tolua_pushnumber(lua_state_, msg_type);
     tolua_pushnumber(lua_state_, msg_id);
+	if (nullptr != msg && msg_class.length() > 0)
+	{
+		tolua_pushusertype(lua_state_, (void*)msg, msg_class.c_str());
+		lua_pcall(lua_state_, 4, 0, 0);
+	}
+	else
+	{
+		lua_pcall(lua_state_, 3, 0, 0);
+	}
+}
+
+void LuaBindHelper::dispatchMsg(const std::string& funtion_id, 
+	                            int code, 
+	                            msg_header_t msg_type, 
+	                            msg_header_t msg_id, 
+	                            const google::protobuf::Message* msg, 
+	                            const std::string & msg_class)
+{
+	//auto itr = lua_functions_.find(lua_func);
+	//if (itr == lua_functions_.end())
+	//{
+	//	printf("[LuaBindHelper::callLuaFunction] lua function : %d  not found.\n", lua_func);
+	//	return;
+	//}
+
+	char buf[64] = { 0 };
+	snprintf(buf, sizeof(buf), "%s", funtion_id.c_str());
+	tolua_pushstring(lua_state_, buf);
+	//tolua_pushstring(lua_state_, "tolua_function");
+
+	lua_rawget(lua_state_, LUA_REGISTRYINDEX);
+
+	tolua_pushnumber(lua_state_, code);
+	tolua_pushnumber(lua_state_, msg_type);
+	tolua_pushnumber(lua_state_, msg_id);
 	if (nullptr != msg && msg_class.length() > 0)
 	{
 		tolua_pushusertype(lua_state_, (void*)msg, msg_class.c_str());

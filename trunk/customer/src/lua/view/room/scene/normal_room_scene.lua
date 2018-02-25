@@ -2534,8 +2534,7 @@ function NormalRoomScene:dealWithGameEndMsgReceived(code, msg)
 end
 
 function NormalRoomScene:addMsgListeners()
-	gamer.msg_mgr_:addMsgListener(gamer.MsgTypes.S2C_MSG_TYPE_ROOM, 
-		handler(self, self.onServerMsgReceived))
+	gamer.msg_mgr_:addMsgListener(gamer.MsgTypes.S2C_MSG_TYPE_ROOM, handler(self, self.onServerMsgReceived))
 end
 
 function NormalRoomScene:removeMsgListeners()

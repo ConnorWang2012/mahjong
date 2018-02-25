@@ -51,8 +51,8 @@ function HeadPortraitSelectPopup:initScrollView()
 
 	for i = 1, 11 do
 		local img_head = ccui.ImageView:create()
-		img_head:setName("woman_" .. i)
-		img_head:loadTexture("woman_" .. i .. ".png", ccui.TextureResType.plistType)
+		img_head:setName("head_" .. i)
+		img_head:loadTexture("head_" .. i .. ".png", ccui.TextureResType.plistType)
 		img_head:setPosition(size.width * i - size.width / 2 + interval * (i - 1), size.height / 2)
 		sv_head_portrait:addChild(img_head)
 
@@ -60,8 +60,8 @@ function HeadPortraitSelectPopup:initScrollView()
 		img_head:addClickEventListener(handler(self, self.onImgHeadTouch))
 
 		img_head = ccui.ImageView:create()
-		img_head:setName("man_" .. i)
-		img_head:loadTexture("man_" .. i .. ".png", ccui.TextureResType.plistType)
+		img_head:setName("head_" .. i)
+		img_head:loadTexture("head_" .. i .. ".png", ccui.TextureResType.plistType)
 		img_head:setPosition(size.width * i - size.width / 2 + interval * (i - 1), size.height * 1.5 + interval)
 		sv_head_portrait:addChild(img_head)
 

@@ -15,6 +15,8 @@
 #ifndef CONNOR_GAME_SRC_BASE_MACROS_H_
 #define CONNOR_GAME_SRC_BASE_MACROS_H_
 
+#include <string>
+
 namespace gamer 
 {
 #if defined(_WIN32)
@@ -74,6 +76,7 @@ namespace gamer
 #define id_t						unsigned int
 
 typedef int							LuaFunction;
+typedef std::string			        LuaFunctionID;
 } // namespace gamer
 
 #endif // CONNOR_GAME_SRC_BASE_MACROS_H_

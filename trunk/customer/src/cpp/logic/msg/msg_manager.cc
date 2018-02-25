@@ -35,7 +35,7 @@ namespace gamer
 {
 
 MsgManager::MsgManager() 
-    : msg_dispatch_index_(0), 
+    : msg_dispatch_index_(0),
       is_multi_msg_(false)
 {
     this->init();
@@ -74,16 +74,16 @@ void MsgManager::addMsgListener(msg_header_t msg_type, const MsgResponseCallback
 
 void MsgManager::addMsgListener(msg_header_t msg_type, 
                                 msg_header_t msg_id, 
-                                gamer::LuaFunction listener)
+	                            const gamer::LuaFunctionID& funtion_id)
 {
-    LuaBindHelper::getInstance()->storeLuaFunction(4);
-    this->addMsgListenerForLua(msg_type, msg_id, listener);
+	this->addMsgListenerForLua(msg_type, msg_id, funtion_id);
+	LuaBindHelper::getInstance()->storeLuaFunction(funtion_id, 4);
 }
 
-void MsgManager::addMsgListener(msg_header_t msg_type, gamer::LuaFunction listener)
+void MsgManager::addMsgListener(msg_header_t msg_type, const gamer::LuaFunctionID& funtion_id)
 {
-    LuaBindHelper::getInstance()->storeLuaFunction(3);
-    this->addMsgListenerForLua(msg_type, (msg_header_t)MsgIDs::MSG_ID_UNKNOW, listener);
+	this->addMsgListenerForLua(msg_type, funtion_id);
+	LuaBindHelper::getInstance()->storeLuaFunction(funtion_id, 3);
 }
 
 void MsgManager::removeMsgListener(msg_header_t msg_type, 
@@ -100,14 +100,14 @@ void MsgManager::removeMsgListener(msg_header_t msg_type, const MsgResponseCallb
 
 void MsgManager::removeMsgListener(msg_header_t msg_type, 
                                    msg_header_t msg_id, 
-                                   gamer::LuaFunction listener)
+	                               const gamer::LuaFunctionID& function_id)
 {
-    this->removeMsgListenerForLua(msg_type, msg_id, listener);
+    this->removeMsgListenerForLua(msg_type, msg_id, function_id);
 }
 
-void MsgManager::removeMsgListener(msg_header_t msg_type, gamer::LuaFunction listener)
+void MsgManager::removeMsgListener(msg_header_t msg_type, const gamer::LuaFunctionID& function_id)
 {
-    this->removeMsgListenerForLua(msg_type, (msg_header_t)MsgIDs::MSG_ID_UNKNOW, listener);
+    this->removeMsgListenerForLua(msg_type, function_id);
 }
 
 void MsgManager::init()
@@ -250,9 +250,9 @@ bool MsgManager::doSendMsg(msg_header_t msg_type,
     return false;
 }
 
-std::string MsgManager::getMsgCallbackKey(msg_header_t msg_type, msg_header_t msg_id)
+std::string MsgManager::getKeyForStoreLuaCallback(msg_header_t msg_type, msg_header_t msg_id)
 {
-    char buf[gamer::client_msg_header_len()];
+    char buf[16];
     snprintf(buf, sizeof(buf), "%d%d", msg_type, msg_id);
     return buf;
 }
@@ -270,27 +270,48 @@ std::string MsgManager::getMsgDispatchKey()
 }
 
 void MsgManager::addMsgListenerForLua(msg_header_t msg_type, 
-                                      msg_header_t msg_id, 
-                                      gamer::LuaFunction lua_cb)
+                                      msg_header_t msg_id,
+	                                  const std::string& function_id)
 {
-    auto key = this->getMsgCallbackKey(msg_type, msg_id);
-    auto itr = msg_response_lua_callbacks_.find(key);
-    if (itr != msg_response_lua_callbacks_.end())
-    {
-        itr->second.insert(lua_cb);
-    }
-    else
-    {
-        std::unordered_set<gamer::LuaFunction> myset = { lua_cb };
-        msg_response_lua_callbacks_.insert(std::make_pair(key, myset));
-    }
+    auto key = this->getKeyForStoreLuaCallback(msg_type, msg_id);
+   
+	auto itr = lua_callbacks1_.find(key);
+	if (itr != lua_callbacks1_.end())
+	{
+		if (itr->second.find(function_id) == itr->second.end())
+		{
+			itr->second.insert(function_id);
+		}
+	}
+	else
+	{
+		std::unordered_set<std::string> set = { function_id };
+		lua_callbacks1_.insert(std::make_pair(key, set));
+	}
+}
+
+void MsgManager::addMsgListenerForLua(msg_header_t msg_type, const std::string& function_id)
+{
+	auto itr = lua_callbacks2_.find(msg_type);
+	if (itr != lua_callbacks2_.end())
+	{
+		if (itr->second.find(function_id) == itr->second.end())
+		{
+			itr->second.insert(function_id);
+		}
+	}
+	else
+	{
+		std::unordered_set<std::string> set = { function_id };
+		lua_callbacks2_.insert(std::make_pair(msg_type, set));
+	}
 }
 
 void MsgManager::addMsgListenerForCpp(msg_header_t msg_type, 
                                       msg_header_t msg_id, 
                                       const MsgResponseCallback& cpp_cb)
 {
-    auto key = this->getMsgCallbackKey(msg_type, msg_id);
+    auto key = this->getKeyForStoreLuaCallback(msg_type, msg_id);
     auto itr = msg_response_cpp_callbacks_.find(key);
     if (itr != msg_response_cpp_callbacks_.end())
     {
@@ -305,21 +326,39 @@ void MsgManager::addMsgListenerForCpp(msg_header_t msg_type,
 
 void MsgManager::removeMsgListenerForLua(msg_header_t msg_type, 
                                          msg_header_t msg_id, 
-                                         gamer::LuaFunction listener)
+	                                     const gamer::LuaFunctionID& function_id)
 {
-    auto key = this->getMsgCallbackKey(msg_type, msg_id);
-    auto itr = msg_response_lua_callbacks_.find(key);
-    if (itr != msg_response_lua_callbacks_.end())
+    auto key = this->getKeyForStoreLuaCallback(msg_type, msg_id);
+    auto itr = lua_callbacks1_.find(key);
+    if (itr != lua_callbacks1_.end())
     {
-        itr->second.erase(listener);
+        auto it = itr->second.find(function_id);
+		if (it != itr->second.end())
+		{
+			itr->second.erase(it);
+		}
     }
+}
+
+void MsgManager::removeMsgListenerForLua(msg_header_t msg_type, 
+	                                     const gamer::LuaFunctionID& function_id)
+{
+	auto itr = lua_callbacks2_.find(msg_type);
+	if (itr != lua_callbacks2_.end())
+	{
+		auto it = itr->second.find(function_id);
+		if (it != itr->second.end())
+		{
+			itr->second.erase(it);
+		}
+	}
 }
 
 void MsgManager::removeMsgListenerForCpp(msg_header_t msg_type, 
                                          msg_header_t msg_id,
                                          const MsgResponseCallback& listener)
 {
-    auto key = this->getMsgCallbackKey(msg_type, msg_id);
+    auto key = this->getKeyForStoreLuaCallback(msg_type, msg_id);
     auto itr = msg_response_cpp_callbacks_.find(key);
     if (itr != msg_response_cpp_callbacks_.end())
     {
@@ -366,7 +405,7 @@ void MsgManager::dispatchMsg(int msg_code,
         if (1 == msg_queue_.size())
         {
             cocos2d::Director::getInstance()->getScheduler()->schedule(
-                CALLBACK_SELECTOR_1(MsgManager::onMsgDispatch, this),
+                CALLBACK_SELECTOR_1(MsgManager::onMultiMsgDispatch, this),
                 this, 0, false, msg_protocol->dispatch_key);
         }
     }
@@ -380,18 +419,17 @@ void MsgManager::dispatchMsg(int msg_code,
             auto msgtmp     = msg;
             auto classname  = class_name;
 
-            auto key = this->getMsgCallbackKey(msgtype, msgid); // for specific msg type
-            auto key2 = this->getMsgCallbackKey(msgtype, (int)MsgIDs::MSG_ID_UNKNOW); // for unspecific msg type
-
             cocos2d::Director::getInstance()->getScheduler()->unschedule("s_dispatch", this);
 
+			// deal with special msg
             if (msgid == (msg_header_t)MsgIDs::MSG_ID_ROOM_PLAY_CARD)
             {
                 DataManager::getInstance()->updateCardAfterOperation(
                     dynamic_cast<gamer::protocol::PlayCardMsgProtocol*>(msgtmp));
             }
 
-            // C++ callback
+            // c++ callbacks
+			auto key = this->getKeyForStoreLuaCallback(msgtype, msgid);
             auto itr1 = msg_response_cpp_callbacks_.find(key);
             if (itr1 != msg_response_cpp_callbacks_.end())
             {
@@ -401,35 +439,30 @@ void MsgManager::dispatchMsg(int msg_code,
                 }
             }
 
-            itr1 = msg_response_cpp_callbacks_.find(key2);
-            if (itr1 != msg_response_cpp_callbacks_.end())
-            {
-                for (const MsgResponseCallback& cpp_cb : itr1->second)
-                {
-                    cpp_cb(msgcode, msgtype, msgid, msgtmp);
-                }
-            }
+            // TODO : call callbacks added by msg type
 
-            // Lua callback
-            auto itr2 = msg_response_lua_callbacks_.find(key);
-            if (itr2 != msg_response_lua_callbacks_.end())
+            // lua callbacks
+			// callbacks added by msg type and msg id
+            auto itr2 = lua_callbacks1_.find(key);
+            if (itr2 != lua_callbacks1_.end())
             {
-                for (gamer::LuaFunction lua_cb : itr2->second)
+                for (std::string function_id : itr2->second)
                 {
-                    LuaBindHelper::getInstance()->dispatchMsg(lua_cb,
+                    LuaBindHelper::getInstance()->dispatchMsg(function_id,
                         msgcode, msgtype, msgid, msgtmp, classname);
                 }
             }
 
-            itr2 = msg_response_lua_callbacks_.find(key2);
-            if (itr2 != msg_response_lua_callbacks_.end())
-            {
-                for (gamer::LuaFunction lua_cb : itr2->second)
-                {
-                    LuaBindHelper::getInstance()->dispatchMsg(lua_cb,
-                        msgcode, msgtype, msgid, msgtmp, classname);
-                }
-            }
+			// callbacks added by msg type
+			auto itr3 = lua_callbacks2_.find(msg_type);
+			if (itr3 != lua_callbacks2_.end())
+			{
+				for (std::string function_id : itr3->second)
+				{
+					LuaBindHelper::getInstance()->dispatchMsg(function_id,
+						msgcode, msgtype, msgid, msgtmp, classname);
+				}
+			}
         };
 
         // dispatch msg by UI thread(main thread)
@@ -440,34 +473,6 @@ void MsgManager::dispatchMsg(int msg_code,
 
 void MsgManager::dealWithLoginMsg(const ServerMsg& msg)
 {
-    //auto sp = gamer::BlurSprite::create("grossini.png");
-    //auto scene = cocos2d::Director::getInstance()->getRunningScene();
-    //if (scene)
-    //{
-    //    sp->setPosition(400, 300);
-    //    scene->addChild(sp);
-    //}
-
-    //auto callback = [&](bool succeed, const std::string& outputFile) {
-    //    if (succeed)
-    //    {
-    //        /*        auto sp = Sprite::create(outputFile);
-    //                addChild(sp, 0, childTag);
-    //                Size s = Director::getInstance()->getWinSize();
-    //                sp->setPosition(s.width / 2, s.height / 2);
-    //                sp->setScale(0.25);
-    //                _filename = outputFile;*/
-    //    }
-    //    else
-    //    {
-    //        cocos2d::log("Capture screen failed.");
-    //    }
-    //};
-    //auto _filename = "CaptureScreenTest.png";
-    //cocos2d::utils::captureScreen(callback, _filename);
-
-    //return;
-
     printf("[MsgManager::DealWithLoginMsg] msg_type : %d, msg_id : %d", msg.type, msg.id);
     auto itr = msg_handlers_.find((int)msg.id);
     if (itr != msg_handlers_.end())
@@ -681,7 +686,7 @@ void MsgManager::dealWithPlayCardMsg(const ServerMsg& msg)
     }
 }
 
-void MsgManager::onMsgDispatch(float dt)
+void MsgManager::onMultiMsgDispatch(float dt)
 {
     if (0 == msg_queue_.size())
     {
@@ -697,13 +702,12 @@ void MsgManager::onMsgDispatch(float dt)
             dynamic_cast<gamer::protocol::PlayCardMsgProtocol*>(msg_protocol->msg));
     }
 
-    auto key = this->getMsgCallbackKey(msg_protocol->type, msg_protocol->id); // for specific msg type
-    auto key2 = this->getMsgCallbackKey(msg_protocol->type, (int)MsgIDs::MSG_ID_UNKNOW); // for unspecific msg type
-
     cocos2d::Director::getInstance()->getScheduler()->unschedule(
         msg_protocol->dispatch_key, this);
 
-    // C++ callback
+    // c++ callbacks
+	// callbacks added by msg type and msg id
+	auto key = this->getKeyForStoreLuaCallback(msg_protocol->type, msg_protocol->id);
     auto itr1 = msg_response_cpp_callbacks_.find(key);
     if (itr1 != msg_response_cpp_callbacks_.end())
     {
@@ -714,23 +718,16 @@ void MsgManager::onMsgDispatch(float dt)
         }
     }
 
-    itr1 = msg_response_cpp_callbacks_.find(key2);
-    if (itr1 != msg_response_cpp_callbacks_.end())
-    {
-        for (const MsgResponseCallback& cpp_cb : itr1->second)
-        {
-            cpp_cb(msg_protocol->code, msg_protocol->type, msg_protocol->id,
-                msg_protocol->msg);
-        }
-    }
+	// TODO : call callbacks added by msg type
 
-    // Lua callback
-    auto itr2 = msg_response_lua_callbacks_.find(key);
-    if (itr2 != msg_response_lua_callbacks_.end())
+    // lua callbacks
+	// callbacks added by msg type and msg id
+    auto itr2 = lua_callbacks1_.find(key);
+    if (itr2 != lua_callbacks1_.end())
     {
-        for (gamer::LuaFunction lua_cb : itr2->second)
+        for (std::string function_id : itr2->second)
         {
-            LuaBindHelper::getInstance()->dispatchMsg(lua_cb,
+            LuaBindHelper::getInstance()->dispatchMsg(function_id,
                 msg_protocol->code,
                 msg_protocol->type,
                 msg_protocol->id,
@@ -739,12 +736,13 @@ void MsgManager::onMsgDispatch(float dt)
         }
     }
 
-    itr2 = msg_response_lua_callbacks_.find(key2);
-    if (itr2 != msg_response_lua_callbacks_.end())
+	// callbacks added by msg type
+    auto itr3 = lua_callbacks2_.find(msg_protocol->type);
+    if (itr3 != lua_callbacks2_.end())
     {
-        for (gamer::LuaFunction lua_cb : itr2->second)
+        for (std::string function_id : itr2->second)
         {
-            LuaBindHelper::getInstance()->dispatchMsg(lua_cb,
+            LuaBindHelper::getInstance()->dispatchMsg(function_id,
                 msg_protocol->code,
                 msg_protocol->type,
                 msg_protocol->id,
@@ -762,7 +760,7 @@ void MsgManager::onMsgDispatch(float dt)
     if (msg_queue_.size() > 0)
     {
         cocos2d::Director::getInstance()->getScheduler()->schedule(
-            CALLBACK_SELECTOR_1(MsgManager::onMsgDispatch, this), this, 0, false, 
+            CALLBACK_SELECTOR_1(MsgManager::onMultiMsgDispatch, this), this, 0, false, 
             msg_queue_.front()->dispatch_key);
     }
 }

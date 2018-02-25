@@ -32,7 +32,7 @@ function HallScene:initLayout()
 
 	self.player_head_layout_ = PlayerHeadLayout:create().root
 	self.hall_top_layout_:getChildByName("node_head"):addChild(self.player_head_layout_)
-	local head_node = PlayerHeadCreator.createWithDefaultStencil("woman_4.png")
+	local head_node = PlayerHeadCreator.createWithDefaultStencil("head_4.png")
 	self.player_head_layout_:addChild(head_node)
 	
 	-- head touch event
@@ -74,8 +74,8 @@ end
 function HallScene:initNickname(nickname)
 	print("[HallScene:initNickname] nickname :", nickname)
 	if nickname then
-		--local txt_nickname = self.panel_data_:getChildByName("txt_nickname")
-		--txt_nickname:setString(nickname)
+		local txt_nickname = self.player_head_layout_:getChildByName("txt_name")
+		txt_nickname:setString(nickname)
 	end
 end
 
@@ -237,7 +237,9 @@ function HallScene:onServerMsgReceived(code, msg_type, msg_id, msg)
 			self:dealWithJoinRoomMsgReceived(code, msg)
 		elseif msg_id == gamer.MsgIDs.MSG_ID_ROOM_START_GAME then
 			self:dealWithStartGameMsgReceived(code, msg)
-		elseif msg_id == gamer.MsgIDs.MSG_ID_PROPERTY_SET then
+		end
+	elseif msg_type == gamer.MsgTypes.S2C_MSG_TYPE_PROPERTY then
+		if msg_id == gamer.MsgIDs.MSG_ID_PROPERTY_SET then
 			self:dealWithSetPropertyMsgReceived(code, msg)
 		elseif msg_id == gamer.MsgIDs.MSG_ID_PROPERTY_CHANGED then
 			self:dealWithPropertyChangedMsgReceived(code, msg)

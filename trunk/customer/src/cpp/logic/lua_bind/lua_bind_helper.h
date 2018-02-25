@@ -52,6 +52,8 @@ class LuaBindHelper
 
     void storeLuaFunction(int idx);
 
+	void storeLuaFunction(const std::string& funtion_id, int idx);
+
     void callLuaFunction(LuaFunction lua_func, void* userdata);
 
     void dispatchMsg(LuaFunction lua_func, 
@@ -60,6 +62,13 @@ class LuaBindHelper
                      msg_header_t msg_id, 
                      const google::protobuf::Message* msg,
                      const std::string& msg_class);
+
+	void dispatchMsg(const std::string& funtion_id,
+		             int code,
+		             msg_header_t msg_type,
+		             msg_header_t msg_id,
+		             const google::protobuf::Message* msg,
+		             const std::string& msg_class);
 
     void set_lua_state(lua_State* L) { lua_state_ = L; }
 
@@ -79,6 +88,7 @@ class LuaBindHelper
     lua_State* lua_state_;
 
     std::unordered_set<LuaFunction> lua_functions_;
+	//std::unordered_set<LuaFunction> lua_functions2_;
 };
 
 } // namespace gamer

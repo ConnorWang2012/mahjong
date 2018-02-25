@@ -55,6 +55,10 @@ function HallPlayerInfoPopup:initLayout(player_info_msg)
 
 	self:initHeadPortrait(player_info_msg:head_portrait_type(), 
 		player_info_msg:head_portrait_id(), player_info_msg:head_portrait())
+	
+	-- player id
+	local txt_player_id = self.panel_data_:getChildByName("txt_id")
+	txt_player_id:setString(player_info_msg:player_id())
 
 	-- score gold
 	local txt_gold = self.panel_data_:getChildByName("txt_gold")
@@ -62,7 +66,10 @@ function HallPlayerInfoPopup:initLayout(player_info_msg)
 
 	-- level
 	local txt_lv = self.panel_data_:getChildByName("txt_lv")
-	txt_lv:setString("Lv." .. player_info_msg:level())
+	--local lvname = player_info_msg:level_name()
+	--print("xxxxxxxxx", lvname)
+	--txt_lv:setString(player_info_msg:level() .. "(" .. player_info_msg:level_name() .. ")")
+	txt_lv:setString(player_info_msg:level())
 
 	-- win loss games num
 	local txt_win_loss = self.panel_data_:getChildByName("txt_win_loss")
@@ -94,6 +101,10 @@ function HallPlayerInfoPopup:initNickname(nickname)
 	if nickname then
 		local txt_nickname = self.panel_data_:getChildByName("txt_nickname")
 		txt_nickname:setString(nickname)
+
+		local node_head = self.panel_data_:getChildByName("node_head")
+		txt_nickname = node_head:getChildByName("txt_name")
+		txt_nickname:setString(nickname)
 	end
 end
 
@@ -101,8 +112,10 @@ function HallPlayerInfoPopup:initHeadPortrait(portrait_type, portrait_id, buffer
 	print("[HallPlayerInfoPopup:initHeadPortrait] portrait_type, portrait_id :", portrait_type, portrait_id)
 	if portrait_type == PlayerConst.PortraitTypes.LOCAL then
 		self:initLocalHeadPortrait(portrait_id)
-	else
+	elseif portrait_type == PlayerConst.PortraitTypes.PERSONNAL then
 		self:initPersonalHeadPortrait(buffer)
+	else
+		print("[HallPlayerInfoPopup:initHeadPortrait] portrait_type invalid")
 	end
 end
 

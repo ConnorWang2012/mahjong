@@ -72,10 +72,10 @@ public:
     // use for lua only
     void addMsgListener(msg_header_t msg_type, 
                         msg_header_t msg_id, 
-                        gamer::LuaFunction listener);
+		                const gamer::LuaFunctionID& function_id);
 
     // use for lua only
-    void addMsgListener(msg_header_t msg_type, gamer::LuaFunction listener);
+    void addMsgListener(msg_header_t msg_type, const gamer::LuaFunctionID& function_id);
 
     // use for c++ only
     void removeMsgListener(msg_header_t msg_type,
@@ -88,10 +88,10 @@ public:
     // use for lua only
     void removeMsgListener(msg_header_t msg_type, 
                            msg_header_t msg_id, 
-                           gamer::LuaFunction listener);
+		                   const gamer::LuaFunctionID& function_id);
 
     // use for lua only
-    void removeMsgListener(msg_header_t msg_type, gamer::LuaFunction listener);
+    void removeMsgListener(msg_header_t msg_type, const gamer::LuaFunctionID& function_id);
 
 private:
     struct MsgProtocol
@@ -128,13 +128,16 @@ private:
                    msg_header_t msg_id,
                    const google::protobuf::Message& msg);
 
-    std::string getMsgCallbackKey(msg_header_t msg_type, msg_header_t msg_id);
+    std::string getKeyForStoreLuaCallback(msg_header_t msg_type, msg_header_t msg_id);
 
     std::string getMsgDispatchKey();
 
     void addMsgListenerForLua(msg_header_t msg_type, 
                               msg_header_t msg_id, 
-                              gamer::LuaFunction listener);
+		                      const std::string& function_id);
+
+	void addMsgListenerForLua(msg_header_t msg_type,
+		                      const std::string& function_id);
 
     void addMsgListenerForCpp(msg_header_t msg_type, 
                               msg_header_t msg_id, 
@@ -142,7 +145,9 @@ private:
 
     void removeMsgListenerForLua(msg_header_t msg_type, 
                                  msg_header_t msg_id,
-                                 gamer::LuaFunction listener);
+		                         const gamer::LuaFunctionID& function_id);
+
+	void removeMsgListenerForLua(msg_header_t msg_type, const gamer::LuaFunctionID& function_id);
 
     void removeMsgListenerForCpp(msg_header_t msg_type,
                                  msg_header_t msg_id,
@@ -178,8 +183,8 @@ private:
 
     void dealWithPlayCardMsg(const ServerMsg& msg);
 
-    // callback for dispatching msg, use for dispatching multi-msg
-    void onMsgDispatch(float dt);
+    // callback for dispatching multi-msg
+    void onMultiMsgDispatch(float dt);
 
     void onSocketConnected(const gamer::Event& event);
 
@@ -192,7 +197,8 @@ private:
     friend class NetworkManager;
 
     std::unordered_map<std::string, std::vector<MsgResponseCallback>> msg_response_cpp_callbacks_;
-    std::unordered_map<std::string, std::unordered_set<gamer::LuaFunction>> msg_response_lua_callbacks_;
+    std::unordered_map<std::string, std::unordered_set<std::string>> lua_callbacks1_;  // key is msg id + msg type
+	std::unordered_map<msg_header_t, std::unordered_set<std::string>> lua_callbacks2_; // key is msg type
 
     std::unordered_map<int, MsgHandler> msg_handlers_;    // key is MsgIDs
     std::unordered_map<int, MsgHandler> msg_dispatchers_; // key is MsgTypes

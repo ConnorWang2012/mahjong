@@ -27,16 +27,17 @@ public:
 
     void addMsgListener(msg_header_t msg_type, 
                         msg_header_t msg_id, 
-                        gamer::LuaFunction listener);
+                        const std::string& function_id);
 
     void addMsgListener(msg_header_t msg_type,
-                        gamer::LuaFunction listener);
+                        const std::string& function_id);
 
     void removeMsgListener(msg_header_t msg_type, 
                            msg_header_t msg_id, 
-                           gamer::LuaFunction listener);
+                           const std::string& function_id);
 
-    void removeMsgListener(msg_header_t msg_type, gamer::LuaFunction listener);
+    void removeMsgListener(msg_header_t msg_type, 
+                           const std::string& function_id);
 };
 
 } // namespace gamer

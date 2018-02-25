@@ -39,6 +39,7 @@ TOLUA_API int tolua_play_card_msg_protocol_open(lua_State*);
 TOLUA_API int tolua_ting_card_msg_protocol_open(lua_State*);
 TOLUA_API int tolua_player_cards_msg_protocol_open(lua_State*);
 TOLUA_API int tolua_player_msg_protocol_open(lua_State*);
+TOLUA_API int tolua_personal_head_portrait_msg_protocol_open(lua_State*);
 TOLUA_API int tolua_game_end_msg_protocol_open(lua_State*);
 
 namespace gamer

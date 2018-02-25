@@ -15,8 +15,8 @@ modification:
 local M = {}
 
 M.INVALID_PLAYER_ID = 0
-M.Sex = { MALE = 1, FEMALE = 2 }
+M.Sex = { MALE = 0, FEMALE = 1 }
 M.PortraitTypes = { LOCAL = 0, PERSONNAL = 1 }
-M.MAX_HEAD_PORTRAIT_NUM = 22
+M.MAX_HEAD_PORTRAIT_NUM = 75
 
 return M

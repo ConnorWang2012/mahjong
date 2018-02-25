@@ -1,6 +1,6 @@
 /*
 ** Lua binding: msg_manager
-** Generated automatically by tolua++-1.0.92 on 07/29/17 19:11:52.
+** Generated automatically by tolua++-1.0.92 on 02/10/18 19:16:40.
 */
 
 #ifndef __cplusplus
@@ -13,12 +13,12 @@
 /* Exported function */
 TOLUA_API int  tolua_msg_manager_open (lua_State* tolua_S);
 
-#include "msg_manager.h"
+#include "msg/msg_manager.h"
 #include <string>
 #include <unordered_map>
 #include "myevent.h"
 #include "macros.h"
-#include "msg.h"
+#include "msg/msg.h"
 
 /* function to register type */
 static void tolua_reg_types (lua_State* tolua_S)
@@ -105,8 +105,8 @@ static int tolua_msg_manager_gamer_MsgManager_addMsgListener00(lua_State* tolua_
      !tolua_isnumber(tolua_S,2,0,&tolua_err) ||
      !tolua_isnumber(tolua_S,3,0,&tolua_err) ||
      //(tolua_isvaluenil(tolua_S,4,&tolua_err) || !tolua_isusertype(tolua_S,4,"gamer::LuaFunction",0,&tolua_err)) ||
-     !lua_isfunction(tolua_S, 4) ||
-     !tolua_isnoobj(tolua_S,5,&tolua_err)
+	 tolua_isvaluenil(tolua_S, 4, &tolua_err) || !lua_isfunction(tolua_S, 4) ||
+	 !tolua_isnoobj(tolua_S,5,&tolua_err)
  )
   goto tolua_lerror;
  else
@@ -115,13 +115,13 @@ static int tolua_msg_manager_gamer_MsgManager_addMsgListener00(lua_State* tolua_
   gamer::MsgManager* self = (gamer::MsgManager*)  tolua_tousertype(tolua_S,1,0);
   unsigned int msg_type = (( unsigned int)  tolua_tonumber(tolua_S,2,0));
   unsigned int msg_id = (( unsigned int)  tolua_tonumber(tolua_S,3,0));
-  //gamer::LuaFunction listener = *((gamer::LuaFunction*)  tolua_tousertype(tolua_S,4,0));
-  gamer::LuaFunction listener = tolua_tonumber(tolua_S, 4, 0);
+  auto var = lua_topointer(tolua_S, 4);
+  auto listener_id = std::to_string((unsigned)var);
 #ifndef TOLUA_RELEASE
   if (!self) tolua_error(tolua_S,"invalid 'self' in function 'addMsgListener'", NULL);
 #endif
   {
-   self->addMsgListener(msg_type,msg_id,listener);
+   self->addMsgListener(msg_type, msg_id, listener_id);
   }
  }
  return 0;
@@ -137,26 +137,27 @@ static int tolua_msg_manager_gamer_MsgManager_addMsgListener00(lua_State* tolua_
 #ifndef TOLUA_DISABLE_tolua_msg_manager_gamer_MsgManager_addMsgListener01
 static int tolua_msg_manager_gamer_MsgManager_addMsgListener01(lua_State* tolua_S)
 {
-    tolua_Error tolua_err;
-    if (
-        !tolua_isusertype(tolua_S, 1, "gamer::MsgManager", 0, &tolua_err) ||
-        !tolua_isnumber(tolua_S, 2, 0, &tolua_err) ||
-        //(tolua_isvaluenil(tolua_S,3,&tolua_err) || !tolua_isusertype(tolua_S,3,"gamer::LuaFunction",0,&tolua_err)) ||
-        !lua_isfunction(tolua_S, 3) ||
-        !tolua_isnoobj(tolua_S,4,&tolua_err)
+ tolua_Error tolua_err;
+ if (
+     !tolua_isusertype(tolua_S,1,"gamer::MsgManager",0,&tolua_err) ||
+     !tolua_isnumber(tolua_S,2,0,&tolua_err) ||
+     //(tolua_isvaluenil(tolua_S,3,&tolua_err) || !tolua_isusertype(tolua_S,3,"gamer::LuaFunction",0,&tolua_err)) ||
+	 tolua_isvaluenil(tolua_S, 3, &tolua_err) || !lua_isfunction(tolua_S, 3) ||
+     !tolua_isnoobj(tolua_S,4,&tolua_err)
  )
   goto tolua_lerror;
  else
  {
   gamer::MsgManager* self = (gamer::MsgManager*)  tolua_tousertype(tolua_S,1,0);
   unsigned int msg_type = (( unsigned int)  tolua_tonumber(tolua_S,2,0));
-  //gamer::LuaFunction listener = *((gamer::LuaFunction*)  tolua_tousertype(tolua_S,3,0));
-  gamer::LuaFunction listener = tolua_tonumber(tolua_S, 3, 0);
+  auto var = lua_topointer(tolua_S, 3);
+  auto listener_id = std::to_string((unsigned)var);
+
 #ifndef TOLUA_RELEASE
   if (!self) tolua_error(tolua_S,"invalid 'self' in function 'addMsgListener'", NULL);
 #endif
   {
-   self->addMsgListener(msg_type,listener);
+   self->addMsgListener(msg_type, listener_id);
   }
  }
  return 0;
@@ -176,8 +177,8 @@ static int tolua_msg_manager_gamer_MsgManager_removeMsgListener00(lua_State* tol
      !tolua_isnumber(tolua_S,2,0,&tolua_err) ||
      !tolua_isnumber(tolua_S,3,0,&tolua_err) ||
      //(tolua_isvaluenil(tolua_S,4,&tolua_err) || !tolua_isusertype(tolua_S,4,"gamer::LuaFunction",0,&tolua_err)) ||
-     !lua_isfunction(tolua_S, 4) ||
-     !tolua_isnoobj(tolua_S,5,&tolua_err)
+	 tolua_isvaluenil(tolua_S, 4, &tolua_err) || !lua_isfunction(tolua_S, 4) ||
+	 !tolua_isnoobj(tolua_S,5,&tolua_err)
  )
   goto tolua_lerror;
  else
@@ -186,13 +187,13 @@ static int tolua_msg_manager_gamer_MsgManager_removeMsgListener00(lua_State* tol
   gamer::MsgManager* self = (gamer::MsgManager*)  tolua_tousertype(tolua_S,1,0);
   unsigned int msg_type = (( unsigned int)  tolua_tonumber(tolua_S,2,0));
   unsigned int msg_id = (( unsigned int)  tolua_tonumber(tolua_S,3,0));
-  //gamer::LuaFunction listener = *((gamer::LuaFunction*)  tolua_tousertype(tolua_S,4,0));
-  gamer::LuaFunction listener = tolua_tonumber(tolua_S, 4, 0);
+  auto var = lua_topointer(tolua_S, 4);
+  auto listener_id = std::to_string((unsigned)var);
 #ifndef TOLUA_RELEASE
   if (!self) tolua_error(tolua_S,"invalid 'self' in function 'removeMsgListener'", NULL);
 #endif
   {
-   self->removeMsgListener(msg_type,msg_id,listener);
+   self->removeMsgListener(msg_type, msg_id, listener_id);
   }
  }
  return 0;
@@ -213,21 +214,21 @@ static int tolua_msg_manager_gamer_MsgManager_removeMsgListener01(lua_State* tol
      !tolua_isusertype(tolua_S,1,"gamer::MsgManager",0,&tolua_err) ||
      !tolua_isnumber(tolua_S,2,0,&tolua_err) ||
      //(tolua_isvaluenil(tolua_S,3,&tolua_err) || !tolua_isusertype(tolua_S,3,"gamer::LuaFunction",0,&tolua_err)) ||
-     !lua_isfunction(tolua_S, 3) ||
-     !tolua_isnoobj(tolua_S,4,&tolua_err)
+	 tolua_isvaluenil(tolua_S, 3, &tolua_err) || !lua_isfunction(tolua_S, 3) ||
+	 !tolua_isnoobj(tolua_S,4,&tolua_err)
  )
   goto tolua_lerror;
  else
  {
   gamer::MsgManager* self = (gamer::MsgManager*)  tolua_tousertype(tolua_S,1,0);
   unsigned int msg_type = (( unsigned int)  tolua_tonumber(tolua_S,2,0));
-  //gamer::LuaFunction listener = *((gamer::LuaFunction*)  tolua_tousertype(tolua_S,3,0));
-  gamer::LuaFunction listener = tolua_tonumber(tolua_S, 3, 0);
+  auto var = lua_topointer(tolua_S, 3);
+  auto listener_id = std::to_string((unsigned)var);
 #ifndef TOLUA_RELEASE
   if (!self) tolua_error(tolua_S,"invalid 'self' in function 'removeMsgListener'", NULL);
 #endif
   {
-   self->removeMsgListener(msg_type,listener);
+   self->removeMsgListener(msg_type,listener_id);
   }
  }
  return 0;
