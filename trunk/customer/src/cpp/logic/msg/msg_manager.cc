@@ -674,8 +674,6 @@ void MsgManager::dealWithPlayCardMsg(const ServerMsg& msg)
     auto proto = DataManager::getInstance()->play_card_msg_protocol();
     if (this->parseMsg(msg, proto))
     {
-        //DataManager::getInstance()->updateCardAfterOperation(proto);
-        //gamer::writelog("[MsgManager::dealWithPlayCardMsg] operation id : %d", proto->operation_id());
         this->dispatchMsg(msg.code, msg.type, msg.id, proto, 
             "gamer::protocol::PlayCardMsgProtocol");
     }

@@ -1,6 +1,6 @@
 /*
 ** Lua binding: player_msg_protocol
-** Generated automatically by tolua++-1.0.92 on 02/09/18 15:46:44.
+** Generated automatically by tolua++-1.0.92 on 02/26/18 22:23:41.
 */
 
 #ifndef __cplusplus
