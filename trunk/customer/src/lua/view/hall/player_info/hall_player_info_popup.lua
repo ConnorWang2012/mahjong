@@ -24,11 +24,11 @@ function HallPlayerInfoPopup:ctor(view_file)
 	self:showLoadingView()
 end
 
-function HallPlayerInfoPopup:initLayout(player_info_msg)
+function HallPlayerInfoPopup:initLayout(player_proto)
 	-- nick name
 	self.panel_data_ = self.root_node_:getChildByName("panel_data")
 
-	self:initNickname(player_info_msg:nick_name())
+	self:initNickname(player_proto:nick_name())
 
 	local img_modify_nickname = self.panel_data_:getChildByName("img_modify_nickname")
 	img_modify_nickname:setTouchEnabled(true)
@@ -45,7 +45,7 @@ function HallPlayerInfoPopup:initLayout(player_info_msg)
 	img_sex:setTouchEnabled(true)
 	img_sex:addClickEventListener(handler(self, self.onImgModifySexTouch))
 
-	self:initSex(player_info_msg:sex())
+	self:initSex(player_proto:sex())
 
 	-- head portrait
 	local node_head = self.panel_data_:getChildByName("node_head")
@@ -53,29 +53,26 @@ function HallPlayerInfoPopup:initLayout(player_info_msg)
 	img_head:setTouchEnabled(true)
 	img_head:addClickEventListener(handler(self, self.onImgHeadPortraitTouch))
 
-	self:initHeadPortrait(player_info_msg:head_portrait_type(), 
-		player_info_msg:head_portrait_id(), player_info_msg:head_portrait())
+	self:initHeadPortrait(player_proto:head_portrait_type(), 
+		player_proto:head_portrait_id(), player_proto:head_portrait())
 	
 	-- player id
 	local txt_player_id = self.panel_data_:getChildByName("txt_id")
-	txt_player_id:setString(player_info_msg:player_id())
+	txt_player_id:setString(player_proto:player_id())
 
 	-- score gold
 	local txt_gold = self.panel_data_:getChildByName("txt_gold")
-	txt_gold:setString(player_info_msg:score_gold())
+	txt_gold:setString(player_proto:score_gold())
 
 	-- level
 	local txt_lv = self.panel_data_:getChildByName("txt_lv")
-	--local lvname = player_info_msg:level_name()
-	--print("xxxxxxxxx", lvname)
-	--txt_lv:setString(player_info_msg:level() .. "(" .. player_info_msg:level_name() .. ")")
-	txt_lv:setString(player_info_msg:level())
+	txt_lv:setString(player_proto:level() .. "（" .. player_proto:level_name() .. "）")
 
 	-- win loss games num
 	local txt_win_loss = self.panel_data_:getChildByName("txt_win_loss")
-	local total        = player_info_msg:num_played_games()
-	local win          = player_info_msg:num_win_games()
-	local loss         = player_info_msg:num_loss_games()
+	local total        = player_proto:num_played_games()
+	local win          = player_proto:num_win_games()
+	local loss         = player_proto:num_loss_games()
 	local draw         = total - win - loss
 	txt_win_loss:setString(string.format(gamer.strings_["str_win_draw_loss"], win, draw, loss))
 
@@ -89,10 +86,10 @@ function HallPlayerInfoPopup:initLayout(player_info_msg)
 
 	-- vip level
 	local txt_vip_tip = self.panel_data_:getChildByName("txt_vip_tip")
-	if player_info_msg:vip_level() <= 0 then
+	if player_proto:vip_level() <= 0 then
 		txt_vip_tip:setString(gamer.strings_["str_not_vip_tip"])
 	else
-		txt_vip_tip:setString(gamer.strings_["str_vip_lv"], player_info_msg:vip_level())
+		txt_vip_tip:setString(gamer.strings_["str_vip_lv"], player_proto:vip_level())
 	end
 end
 

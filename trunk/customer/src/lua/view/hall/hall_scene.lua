@@ -18,6 +18,7 @@ local HallMiddleLayout  = require "view.layouts.ui.hall.hall_middle_node_layout.
 local HallBottomLayout  = require "view.layouts.ui.hall.hall_bottom_node_layout.lua"
 local PlayerHeadLayout  = require "view.layouts.ui.hall.hall_player_head_node_layout.lua"
 local PlayerHeadCreator = require "view.common.player_head_creator.lua"
+local PlayerConst       = require "logic.constant.player_constants.lua"
 
 function HallScene:ctor(view_file)
     self.super.ctor(self, view_file)
@@ -30,18 +31,26 @@ function HallScene:initLayout()
     self:addChild(self.hall_top_layout_)
     self.hall_top_layout_:setPosition(display.top_center)
 
+	-- head portrail
 	self.player_head_layout_ = PlayerHeadLayout:create().root
 	self.hall_top_layout_:getChildByName("node_head"):addChild(self.player_head_layout_)
-	local head_node = PlayerHeadCreator.createWithDefaultStencil("head_4.png")
+	local head_node = PlayerHeadCreator.createPlayerSelfHeadPortrait()
 	self.player_head_layout_:addChild(head_node)
-	
-	-- head touch event
+
 	local image_head = head_node:getChildByName("image_clipping")
 	if image_head then
 		image_head:setTouchEnabled(true)
 		image_head:addClickEventListener(handler(self, self.onImgPlayerHeadTouch))
 	end
 
+	-- nick name
+	local player_proto   = gamer.data_mgr_:my_login_msg_protocol():player()
+	self:initNickname(player_proto:nick_name())
+
+	self:initVipLevel(player_proto:vip_level())
+
+	self:initLevelName(player_proto:level(), player_proto:level_name())
+	
     self.hall_middle_layout_ = HallMiddleLayout:create().root    
     self:addChild(self.hall_middle_layout_)
     self.hall_middle_layout_:setPosition(display.center)
@@ -71,11 +80,39 @@ function HallScene:initLayout()
 	img_shop:addClickEventListener(handler(self, self.onImgStoreTouch))
 end
 
+function HallScene:initHeadPortrait(portrait_type, portrait_id, buffer)
+	print("[HallScene:initHeadPortrait]")
+	if portrait_type == PlayerConst.PortraitTypes.LOCAL then
+		self:initLocalHeadPortrait(portrait_id)
+	elseif portrait_type == PlayerConst.PortraitTypes.PERSONNAL then
+		self:initPersonalHeadPortrait(buffer)
+	else
+		print("[HallScene:initHeadPortrait] portrait_type invalid")
+	end
+end
+
 function HallScene:initNickname(nickname)
 	print("[HallScene:initNickname] nickname :", nickname)
 	if nickname then
 		local txt_nickname = self.player_head_layout_:getChildByName("txt_name")
 		txt_nickname:setString(nickname)
+	end
+end
+
+function HallScene:initVipLevel(vip)
+	print("[HallScene:initVipLevel] vip :", vip)
+	if vip then
+		local txt_vip_level = self.player_head_layout_:getChildByName("txt_vip_level")
+		txt_vip_level:setString("VIP : " .. vip)
+	end
+end
+
+function HallScene:initLevelName(level, levelname)
+	print("[HallScene:initLevelName] level :", level)
+	print("[HallScene:initLevelName] levelname :", levelname)
+	if level and levelname then
+		local txt_level_name = self.player_head_layout_:getChildByName("txt_level_name")
+		txt_level_name:setString(level .. "（" .. levelname .. "）")
 	end
 end
 
@@ -88,10 +125,6 @@ end
 
 function HallScene:initPersonalHeadPortrait(buffer)
 	print("[HallScene:initPersonalHeadPortrait]")
-end
-
-function HallScene:initLocalHeadPortrait(head_id)
-	print("[HallScene:initLocalHeadPortrait]")
 end
 
 function HallScene:setProperty(set_property_msg)
