@@ -13,6 +13,7 @@ modification:
 --]]
 
 local HeadPortraitSelectPopup = class("HeadPortraitSelectPopup", require "view.base.popup_base")
+local PlayerConst             = require "logic.constant.player_constants.lua"
 
 function HeadPortraitSelectPopup:ctor(view_file)
 	print("[HeadPortraitSelectPopup:ctor]")
@@ -44,14 +45,15 @@ function HeadPortraitSelectPopup:initScrollView()
 	
 	cc.SpriteFrameCache:getInstance():addSpriteFrames("assets/common/plist/head.plist")
 
+	local num_one_line = 37
 	local interval = 8
 	local size = { width = 230, height = 230 }
-	sv_head_portrait:setInnerContainerSize({ width = (size.width + interval) * 11 , 
+	sv_head_portrait:setInnerContainerSize({ width = (size.width + interval) * num_one_line, 
 		height = size.height * 2 + interval })
 
-	for i = 1, 11 do
+	for i = 1, num_one_line do
 		local img_head = ccui.ImageView:create()
-		img_head:setName("head_" .. i)
+		img_head:setTag(i)
 		img_head:loadTexture("head_" .. i .. ".png", ccui.TextureResType.plistType)
 		img_head:setPosition(size.width * i - size.width / 2 + interval * (i - 1), size.height / 2)
 		sv_head_portrait:addChild(img_head)
@@ -60,8 +62,8 @@ function HeadPortraitSelectPopup:initScrollView()
 		img_head:addClickEventListener(handler(self, self.onImgHeadTouch))
 
 		img_head = ccui.ImageView:create()
-		img_head:setName("head_" .. i)
-		img_head:loadTexture("head_" .. i .. ".png", ccui.TextureResType.plistType)
+		img_head:setTag(i + num_one_line)
+		img_head:loadTexture("head_" .. (i + num_one_line) .. ".png", ccui.TextureResType.plistType)
 		img_head:setPosition(size.width * i - size.width / 2 + interval * (i - 1), size.height * 1.5 + interval)
 		sv_head_portrait:addChild(img_head)
 
@@ -73,15 +75,30 @@ end
 function HeadPortraitSelectPopup:onImgOKTouch(sender)
     print("[HeadPortraitSelectPopup:onImgOKTouch]")
 	gamer.widget_helper_.playDefaultTouchActionForImage(sender)
+	gamer.audio_mgr_.playCommonTouchEffectMusic()
+
+	if not self.last_selected_image_ then
+		gamer.popup_mgr_.showCenterTipPopup(gamer.strings_["str_select_one_head_portrait"])
+		return
+	end
+
+	gamer.popup_mgr_.showCenterTipPopup(gamer.strings_["str_modifying"])
+
+	gamer.msg_helper_.sendModifyLocalHeadPortraitMsg(self.last_selected_image_:getTag())
 end
 
 function HeadPortraitSelectPopup:onImgCancelTouch(sender)
     print("[HeadPortraitSelectPopup:onImgCancelTouch]")
 	gamer.widget_helper_.playDefaultTouchActionForImage(sender)
+	gamer.audio_mgr_.playCommonTouchEffectMusic()
+
+	self:removeSelf()
 end
 
 function HeadPortraitSelectPopup:onImgHeadTouch(sender)
     print("[HeadPortraitSelectPopup:onImgHeadTouch]")
+	gamer.audio_mgr_.playCommonTouchEffectMusic()
+
 	if sender ~= self.last_selected_image_ then
 		if self.last_selected_image_ then
 			self.last_selected_image_:setLocalZOrder(1)

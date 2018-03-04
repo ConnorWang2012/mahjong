@@ -271,13 +271,23 @@ void NetworkManager::onBufferRead(struct bufferevent* bev, void* ctx)
         if (buf_len > msg.total_len)
         {
             MsgManager::getInstance()->set_is_multi_msg(true);
+			MsgManager::getInstance()->set_is_dispatch_ready(false);
         }
+		else
+		{
+			MsgManager::getInstance()->set_is_multi_msg(false);
+			MsgManager::getInstance()->set_is_dispatch_ready(true);
+		}
 
         MsgManager::getInstance()->onMsgReceived(msg);
         parsed_buf_len += msg.total_len;
-    }
 
-    MsgManager::getInstance()->set_is_multi_msg(false);
+		if (MsgManager::getInstance()->is_multi_msg() && parsed_buf_len >= buf_len)
+		{
+			MsgManager::getInstance()->set_is_dispatch_ready(true);
+			MsgManager::getInstance()->onMsgReceived(msg);
+		}
+    }
 }
 
 void NetworkManager::onBufferWrite(struct bufferevent* bev, void* ctx) 

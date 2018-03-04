@@ -176,6 +176,12 @@
             </Folder>
             <Image Name="hall_bg.jpg" />
             <Image Name="hall_bottom_bg.png" />
+            <Folder Name="setting">
+              <Image Name="i_bgm_off.png" />
+              <Image Name="i_bgm_on.png" />
+              <Image Name="i_effect_music_off.png" />
+              <Image Name="i_effect_music_on.png" />
+            </Folder>
           </Folder>
           <Folder Name="login">
             <Image Name="login_bg.jpg" />
@@ -335,6 +341,9 @@
               <Project Name="hall_player_head_node_layout.csd" Type="Node" />
               <Project Name="hall_top_node_layout.csd" Type="Node" />
               <Project Name="head_node_layout.csd" Type="Node" />
+              <Folder Name="setting">
+                <Project Name="setting_layer_layout.csd" Type="Layer" />
+              </Folder>
             </Folder>
             <Folder Name="room">
               <Folder Name="game_end">

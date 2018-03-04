@@ -68,7 +68,7 @@ function NormalRoomScene:initPlayerHeadLayer()
 
 	local init_player_self_head = function()
 		self.player_self_head_layout_ = self.player_head_layer_:getChildByName("file_node_player_self_head")
-		local head_node = PlayerHeadCreator.createWithDefaultStencil("woman_4.png")
+		local head_node = PlayerHeadCreator.createPlayerSelfHeadPortrait()
 		self.player_self_head_layout_:getChildByName("node_head"):addChild(head_node)
 		self.player_self_head_layout_:getChildByName("img_ting"):setVisible(true)
 		self.player_self_head_layout_:getChildByName("txt_gold"):setString("8000")
@@ -78,7 +78,7 @@ function NormalRoomScene:initPlayerHeadLayer()
 
 	local init_left_player_head = function()
 		self.left_player_head_layout_ = self.player_head_layer_:getChildByName("file_node_left_player_head")
-		local head_node = PlayerHeadCreator.createWithDefaultStencil("woman_6.png")
+		local head_node = PlayerHeadCreator.createWithDefaultStencil("head_6.png")
 		self.left_player_head_layout_:getChildByName("node_head"):addChild(head_node)
 		self.left_player_head_layout_:getChildByName("txt_name"):setString("上浅玲心")
 		self.left_player_head_layout_:getChildByName("txt_gold"):setString("3500")
@@ -88,7 +88,7 @@ function NormalRoomScene:initPlayerHeadLayer()
 
 	local init_opposite_player_head = function()
 		self.opposite_player_head_layout_ = self.player_head_layer_:getChildByName("file_node_opposite_player_head")
-		local head_node = PlayerHeadCreator.createWithDefaultStencil("woman_2.png")
+		local head_node = PlayerHeadCreator.createWithDefaultStencil("head_2.png")
 		self.opposite_player_head_layout_:getChildByName("node_head"):addChild(head_node)
 		self.opposite_player_head_layout_:getChildByName("txt_name"):setString("大美人鱼儿")
 		self.opposite_player_head_layout_:getChildByName("txt_gold"):setString("6000")
@@ -98,7 +98,7 @@ function NormalRoomScene:initPlayerHeadLayer()
 
 	local init_right_player_head = function()
 		self.right_player_head_layout_ = self.player_head_layer_:getChildByName("file_node_right_player_head")
-		local head_node = PlayerHeadCreator.createWithDefaultStencil("woman_5.png")
+		local head_node = PlayerHeadCreator.createWithDefaultStencil("head_5.png")
 		self.right_player_head_layout_:getChildByName("node_head"):addChild(head_node)
 		self.right_player_head_layout_:getChildByName("txt_name"):setString("梦回唐朝")
 		self.right_player_head_layout_:getChildByName("txt_gold"):setString("9000")
@@ -2136,6 +2136,9 @@ end
 
 function NormalRoomScene:dealWithOtherPlayerOperationDiscard(play_card_msg)
 	print("[NormalRoomScene:dealWithOtherPlayerOperationDiscard]")
+	-- play play card effect music
+	gamer.audio_mgr_.playEffectMusicForPlayCard(play_card_msg:discard())
+
 	self:modifyMahjongsOfOtherPlayerAfterDiscard(play_card_msg)
 	self:showAvailableOperationsForPlayerSelf(play_card_msg)
 	self:showFlagForOperatingPlayer()
@@ -2289,6 +2292,9 @@ function NormalRoomScene:doPlayerSelfOperationDiscard(mahjong_value)
 		print("[NormalRoomScene:doPlayerSelfOperationDiscard] mahjong_value invalid!")
 		return
 	end
+
+	-- play play card effect music
+	gamer.audio_mgr_.playEffectMusicForPlayCard(mahjong_value)
 
 	-- modify mahjongs
 	self:modifyMahjongsOfPlayerSelfAfterDiscard(mahjong_value)

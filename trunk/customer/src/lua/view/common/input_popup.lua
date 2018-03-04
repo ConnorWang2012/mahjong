@@ -99,7 +99,6 @@ end
 
 function InputPopup:onImgCloseTouch(sender)
     print("[InputPopup:onImgCloseTouch]")
-	gamer.widget_helper_.playDefaultTouchActionForImage(sender)
 	self:removeSelf()
 end
 

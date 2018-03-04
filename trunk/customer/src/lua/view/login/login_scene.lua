@@ -27,10 +27,11 @@ function LoginScene:onBtnLoginTouch(sender)
 	local password	= cc.UserDefault:getInstance():getStringForKey("password", "null")
 	local player_id = cc.UserDefault:getInstance():getIntegerForKey("player_id", 0)
 	local proto		= gamer.protocol.MyLoginMsgProtocol()
+	player_id = 0
 	proto:set_account(account)
 	proto:set_password(password)
 	proto:set_player_id(player_id)
-
+	
 	if 0 == player_id then
 		self.is_first_login_ = true
 	end

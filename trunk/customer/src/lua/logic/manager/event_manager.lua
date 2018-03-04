@@ -4,7 +4,7 @@
 @ author:	   Connor
 @ version:	   1.0.0
 @ date:		   2017-05-01
-@ description: listen event, dispatch event, support swallow event. only use for lua event.
+@ description: listen event, dispatch event, support swallow event.only use in lua.
 @ others:
 @ history:
 1.date:

@@ -14,11 +14,12 @@ modification:
 
 local CenterTipPopup = class("CenterTipPopup", require "view.base.popup_base")
 
-function CenterTipPopup:ctor(view_file, show_time)
+function CenterTipPopup:ctor(view_file, txt_tip, show_time)
 	print("[CenterTipPopup:ctor]")
     self.super.ctor(self, view_file)
 
 	self:initLayout(show_time)
+	self:setTip(txt_tip)
 	self:showAsTop()
 end
 

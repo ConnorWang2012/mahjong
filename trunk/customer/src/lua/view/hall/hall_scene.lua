@@ -27,6 +27,7 @@ function HallScene:ctor(view_file)
 end
 
 function HallScene:initLayout()
+	-- 1.init top
     self.hall_top_layout_ = HallTopLayout:create().root    
     self:addChild(self.hall_top_layout_)
     self.hall_top_layout_:setPosition(display.top_center)
@@ -51,6 +52,12 @@ function HallScene:initLayout()
 
 	self:initLevelName(player_proto:level(), player_proto:level_name())
 	
+	-- setting
+	local img_setting = self.hall_top_layout_:getChildByName("img_setting")
+	img_setting:setTouchEnabled(true)
+    img_setting:addClickEventListener(handler(self, self.onImgSettingTouch))
+
+	-- 2.init mid
     self.hall_middle_layout_ = HallMiddleLayout:create().root    
     self:addChild(self.hall_middle_layout_)
     self.hall_middle_layout_:setPosition(display.center)
@@ -74,6 +81,7 @@ function HallScene:initLayout()
     img:setTouchEnabled(true)
     img:addClickEventListener(handler(self, self.onImgLeftTouch))
 	
+	-- 3.init bottom
 	-- store
 	local img_shop = self.hall_bottom_layout_:getChildByName("img_shop")
 	img_shop:setTouchEnabled(true)
@@ -112,14 +120,27 @@ function HallScene:initLevelName(level, levelname)
 	print("[HallScene:initLevelName] levelname :", levelname)
 	if level and levelname then
 		local txt_level_name = self.player_head_layout_:getChildByName("txt_level_name")
-		txt_level_name:setString(level .. "（" .. levelname .. "）")
+		txt_level_name:setString(gamer.strings_["str_level"] .. " : " .. level .. "（" .. levelname .. "）")
 	end
 end
 
 function HallScene:initSex(sex)
 	print("[HallScene:initSex] sex :", sex)
-	if sex then
+end
 
+function HallScene:initLocalHeadPortrait(portrait_id)
+	print("[HallScene:initLocalHeadPortrait] portrait_id :", portrait_id)
+	if not portrait_id or tonumber(portrait_id) > PlayerConst.MAX_HEAD_PORTRAIT_NUM then
+		print("[HallScene:initLocalHeadPortrait] portrait_id invalid, return")
+		return
+	end
+
+	local head_node = self.player_head_layout_:getChildByName("node_clipping")
+	if head_node then
+		local img_head = head_node:getChildByName("image_clipping")
+		if img_head then
+			img_head:loadTexture("head_" .. portrait_id .. ".png", ccui.TextureResType.plistType)
+		end
 	end
 end
 
@@ -226,7 +247,15 @@ end
 function HallScene:onImgPlayerHeadTouch(sender)
 	print("[HallScene:onImgPlayerHeadTouch]")
 	gamer.widget_helper_.playDefaultTouchActionForImage(sender)
+	gamer.audio_mgr_.playCommonTouchEffectMusic()
 	gamer.popup_mgr_.showPopup(gamer.PopupIDs.POPUP_ID_HALL_PLAYER_INFO)
+end
+
+function HallScene:onImgSettingTouch(sender)
+	print("[HallScene:onImgSettingTouch]")
+	gamer.widget_helper_.playDefaultTouchActionForImage(sender)
+	gamer.audio_mgr_.playCommonTouchEffectMusic()
+	gamer.popup_mgr_.showPopup(gamer.PopupIDs.POPUP_ID_SETTING)
 end
 
 function HallScene:onImgStoreTouch(sender)
@@ -284,12 +313,18 @@ function HallScene:onEnter()
 	-- TODO : dispatch layer enter event to all listeners
     print("[HallScene:onEnter]")
     self:addMsgListeners()
+
+	local opened = cc.UserDefault:getInstance():getIntegerForKey("hall_bgm_opened", 1)
+	if 1 == opened then
+		gamer.audio_mgr_.playHallBGM()
+	end
 end
 
 function HallScene:onExit()
 	-- TODO : dispatch layer exit event to all listeners
     print("[HallScene:onExit]")
 	self:removeMsgListeners()
+	gamer.audio_mgr_.stopHallBGM()
 end
 
 return HallScene

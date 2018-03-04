@@ -15,13 +15,23 @@ modification:
 local CardConst = require "logic.constant.card_constants.lua"
 local M = {}
 
-function M.sendGetPlayerInfoMsg()
+function M.sendGetPlayerInfoMsg(player_id)
 	print("[MsgHelper.sendGetPlayerInfoMsg]")
+	if not player_id then
+		print("[MsgHelper.sendGetPlayerInfoMsg] player_id nil, return")
+		return
+	end
+
 	local proto = gamer.protocol.PlayerMsgProtocol()
-	proto:set_player_id(gamer.data_mgr_:self_player_id())
+	proto:set_player_id(player_id)
 
 	gamer.msg_mgr_:sendMsg(gamer.MsgTypes.C2S_MSG_TYPE_PROPERTY, 
 		gamer.MsgIDs.MSG_ID_PROPERTY_GET_PLAYER_INFO, proto)
+end
+
+function M.sendGetSelfPlayerInfoMsg()
+	print("[MsgHelper.sendGetSelfPlayerInfoMsg]")
+	M.sendGetPlayerInfoMsg(gamer.data_mgr_:self_player_id())
 end
 
 function M.sendStartGameMsg()
@@ -87,6 +97,18 @@ function M.sendModifySexMsg(sex)
 		proto:set_player_id(gamer.data_mgr_:self_player_id())
 		proto:add_property_ids(gamer.PropertyIDs.PROP_ID_SEX)
 		proto:add_new_properties(sex)
+
+		gamer.msg_mgr_:sendMsg(gamer.MsgTypes.C2S_MSG_TYPE_PROPERTY, 
+			gamer.MsgIDs.MSG_ID_PROPERTY_SET, proto)
+	end
+end
+
+function M.sendModifyLocalHeadPortraitMsg(head_portrait_id)
+	if head_portrait_id then
+		local proto = gamer.protocol.SetPropertyMsgProtocol()
+		proto:set_player_id(gamer.data_mgr_:self_player_id())
+		proto:add_property_ids(gamer.PropertyIDs.PROP_ID_HEAD_PORTRAIT_LOCAL)
+		proto:add_new_properties(head_portrait_id)
 
 		gamer.msg_mgr_:sendMsg(gamer.MsgTypes.C2S_MSG_TYPE_PROPERTY, 
 			gamer.MsgIDs.MSG_ID_PROPERTY_SET, proto)

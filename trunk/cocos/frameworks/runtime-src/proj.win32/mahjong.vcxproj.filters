@@ -223,6 +223,12 @@
     <Filter Include="classes\lua\logic\helper">
       <UniqueIdentifier>{64603fb6-ddce-410b-94f6-d1e8c4b544d8}</UniqueIdentifier>
     </Filter>
+    <Filter Include="classes\lua\view\layout\ui\hall\setting">
+      <UniqueIdentifier>{347c8e99-94ae-4547-87fb-d5de653b1a26}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="classes\lua\view\hall\setting">
+      <UniqueIdentifier>{07e2e38f-726f-400e-a2cb-bdb8112f425d}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\Classes\AppDelegate.h">
@@ -860,6 +866,9 @@
     <ClInclude Include="..\..\..\..\customer\src\cpp\logic\msg\protocol\personal_head_portrait_msg_protocol.pb.h">
       <Filter>classes\cpp\logic\msg\protocol</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\..\..\customer\src\cpp\logic\constant\player_constants.h">
+      <Filter>classes\cpp\logic\constant</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\Classes\AppDelegate.cpp">
@@ -1427,6 +1436,15 @@
     </None>
     <None Include="..\..\..\..\customer\src\lua\view\layouts\ui\hall\player_info\head_portrait_select_layer_layout.lua">
       <Filter>classes\lua\view\layout\ui\hall\player_info</Filter>
+    </None>
+    <None Include="..\..\..\..\customer\src\lua\view\layouts\ui\hall\setting\setting_layer_layout.lua">
+      <Filter>classes\lua\view\layout\ui\hall\setting</Filter>
+    </None>
+    <None Include="..\..\..\..\customer\src\lua\view\hall\setting\setting_popup.lua">
+      <Filter>classes\lua\view\hall\setting</Filter>
+    </None>
+    <None Include="..\..\..\..\customer\src\lua\logic\manager\audio_manager.lua">
+      <Filter>classes\lua\logic\manager</Filter>
     </None>
   </ItemGroup>
 </Project>

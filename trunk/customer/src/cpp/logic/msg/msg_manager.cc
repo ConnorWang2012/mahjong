@@ -21,6 +21,7 @@ modification:
 
 #include "macros.h"
 #include "data_constants.h"
+#include "player_constants.h"
 #include "data_manager.h"
 #include "event_headers.h"
 #include "lua_bind_helper.h"
@@ -28,15 +29,17 @@ modification:
 #include "msg_type.h"
 #include "msg_id.h"
 #include "msg_code.h"
+#include "property_id.h"
 #include "room_operation_msg_protocol.pb.h"
 #include "network_manager.h"
-#include "blur_sprite.h"
+
 namespace gamer
 {
 
 MsgManager::MsgManager() 
     : msg_dispatch_index_(0),
-      is_multi_msg_(false)
+      is_multi_msg_(false),
+	  is_dispatch_ready_(false)
 {
     this->init();
 }
@@ -402,11 +405,11 @@ void MsgManager::dispatchMsg(int msg_code,
         msg_protocol->dispatch_key  = this->getMsgDispatchKey();
 
         // dispatch msg by UI thread(main thread)
-        if (1 == msg_queue_.size())
+        if (this->is_dispatch_ready())
         {
             cocos2d::Director::getInstance()->getScheduler()->schedule(
                 CALLBACK_SELECTOR_1(MsgManager::onMultiMsgDispatch, this),
-                this, 0, false, msg_protocol->dispatch_key);
+                this, 0, false, msg_queue_.front()->dispatch_key);
         }
     }
     else
@@ -534,6 +537,26 @@ void MsgManager::dealWithSetPropertyMsg(const ServerMsg& msg)
 	auto proto = DataManager::getInstance()->set_property_msg_protocol();
 	if (this->parseMsg(msg, proto))
 	{
+		// modify player msg proto in my_login_msg_protocol
+		auto player_proto = DataManager::getInstance()->my_login_msg_protocol()->player();
+		for (auto i = 0; i < proto->property_ids_size(); i++)
+		{
+			auto prop_id = proto->property_ids(i);
+			if (prop_id == (unsigned)gamer::PropertyIDs::PROP_ID_NICKNAME)
+			{
+				player_proto.set_nick_name(proto->new_properties(i));
+			}
+			else if (prop_id == (unsigned)gamer::PropertyIDs::PROP_ID_SEX)
+			{				
+				//player_proto.set_sex(proto->new_properties(i)); // TODO : string to int
+			}
+			else if (prop_id == (unsigned)gamer::PropertyIDs::PROP_ID_HEAD_PORTRAIT_LOCAL)
+			{
+				player_proto.set_head_portrait_type((unsigned)gamer::HeadPortraitTypes::LOCAL);
+				//player_proto.set_head_portrait_id(proto->new_properties(i)); // TODO : string to int
+			}
+		}
+
 		this->dispatchMsg(msg.code, msg.type, msg.id, proto,
 			"gamer::protocol::SetPropertyMsgProtocol");
 	}
@@ -738,7 +761,7 @@ void MsgManager::onMultiMsgDispatch(float dt)
     auto itr3 = lua_callbacks2_.find(msg_protocol->type);
     if (itr3 != lua_callbacks2_.end())
     {
-        for (std::string function_id : itr2->second)
+        for (std::string function_id : itr3->second)
         {
             LuaBindHelper::getInstance()->dispatchMsg(function_id,
                 msg_protocol->code,

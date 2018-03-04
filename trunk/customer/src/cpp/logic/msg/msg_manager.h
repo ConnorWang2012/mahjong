@@ -194,6 +194,10 @@ private:
 
     inline bool is_multi_msg() const;
 
+	inline void set_is_dispatch_ready(bool ready);
+
+	inline bool is_dispatch_ready() const;
+
     friend class NetworkManager;
 
     std::unordered_map<std::string, std::vector<MsgResponseCallback>> msg_response_cpp_callbacks_;
@@ -209,6 +213,7 @@ private:
     static const int MAX_MSG_LEN = 4096;
 
     bool is_multi_msg_;
+	bool is_dispatch_ready_;
 };
 
 
@@ -220,6 +225,16 @@ inline void MsgManager::set_is_multi_msg(bool is_multi_msg)
 inline bool MsgManager::is_multi_msg() const
 {
     return is_multi_msg_;
+}
+
+inline void MsgManager::set_is_dispatch_ready(bool ready)
+{
+	is_dispatch_ready_ = ready;
+}
+
+inline bool MsgManager::is_dispatch_ready() const
+{
+	return is_dispatch_ready_;
 }
 
 } // namespace gamer

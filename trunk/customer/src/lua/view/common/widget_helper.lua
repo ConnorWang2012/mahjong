@@ -24,9 +24,7 @@ end
 
 function M.showTipIfTouchTooMuch(time_last, time_now, time_interval)
 	if time_last and (time_now - time_last < time_interval) then
-		local tip_pop = gamer.popup_mgr_.showTipPopup(gamer.PopupIDs.POPUP_ID_CENTER_TIP, 3)
-		tip_pop:setTip(gamer.strings_["str_touch_too_much"])
-
+		gamer.popup_mgr_.showCenterTipPopup(gamer.strings_["str_touch_too_much"], 3)
 		return true
 	end
 	return false

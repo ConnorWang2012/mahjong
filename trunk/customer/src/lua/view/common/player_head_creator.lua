@@ -58,6 +58,7 @@ function M.create(img_stencil, img_chipping, img_type1, img_type2)
 	image_clipping:setName("image_clipping")
 	clipping_node:addChild(image_clipping)
 	--clipping_node:setInverted(true)
+	clipping_node:setName("node_clipping")
 	clipping_node:setAlphaThreshold(0.5)
 
 	return clipping_node

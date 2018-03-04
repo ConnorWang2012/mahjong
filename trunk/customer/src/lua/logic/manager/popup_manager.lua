@@ -31,8 +31,8 @@ function M.showPopup(popup_id, ...)
 	return popup
 end
 
-function M.showTipPopup(popup_id, ...)
-	return M.showPopup(popup_id, ...)
+function M.showCenterTipPopup(...)
+	return M.showPopup(gamer.PopupIDs.POPUP_ID_CENTER_TIP, ...)
 end
 
 function M.hidePopup(popup_id)

@@ -140,8 +140,8 @@ function HallPlayerInfoPopup:initPersonalHeadPortrait(buffer)
 end
 
 function HallPlayerInfoPopup:initLocalHeadPortrait(portrait_id)
-	print("[HallPlayerInfoPopup:initLocalHeadPortrait]")
-	if not portrait_id or portrait_id > PlayerConst.MAX_HEAD_PORTRAIT_NUM then
+	print("[HallPlayerInfoPopup:initLocalHeadPortrait] portrait_id :", portrait_id)
+	if not portrait_id or tonumber(portrait_id) > PlayerConst.MAX_HEAD_PORTRAIT_NUM then
 		print("[HallPlayerInfoPopup:initLocalHeadPortrait] portrait_id invalid, return")
 		return
 	end
@@ -198,13 +198,11 @@ function HallPlayerInfoPopup:dealWithSetPropertyMsgReceived(code, msg)
 	if code == gamer.MsgCodes.SUCCEED then
 		self:setProperty(msg)
 
-		local tip_pop = gamer.popup_mgr_.showTipPopup(gamer.PopupIDs.POPUP_ID_CENTER_TIP)
-		tip_pop:setTip(gamer.strings_["str_modify_success"])
+		gamer.popup_mgr_.showCenterTipPopup(gamer.strings_["str_modify_success"])
 
 		gamer.popup_mgr_.removePopup(gamer.PopupIDs.POPUP_ID_INPUT)
 	else
-		local tip_pop = gamer.popup_mgr_.showTipPopup(gamer.PopupIDs.POPUP_ID_CENTER_TIP)
-		tip_pop:setTip(gamer.strings_["str_modify_failed"])
+		gamer.popup_mgr_.showCenterTipPopup(gamer.strings_["str_modify_failed"])
 	end
 end
 
@@ -233,6 +231,7 @@ end
 function HallPlayerInfoPopup:onImgModifyNicknameTouch(sender)
     print("[HallPlayerInfoPopup:onImgModifyNicknameTouch]")
 	gamer.widget_helper_.playDefaultTouchActionForImage(sender)
+	gamer.audio_mgr_.playCommonTouchEffectMusic()
 
 	local input_popup = gamer.popup_mgr_.showPopup(gamer.PopupIDs.POPUP_ID_INPUT)
 	input_popup:setTitle(gamer.strings_["str_modify_nickname"])
@@ -249,6 +248,8 @@ end
 
 function HallPlayerInfoPopup:onImgModifySexTouch(sender)
 	print("[HallPlayerInfoPopup:onImgModifySexTouch]")
+	gamer.audio_mgr_.playCommonTouchEffectMusic()
+
 	local time_now = os.time()
 	if gamer.widget_helper_.showTipIfTouchTooMuch(self.time_last_touch_, time_now, 10) then
 		print("[HallPlayerInfoPopup:onImgModifySexTouch] touch too much, return")
@@ -264,6 +265,7 @@ end
 function HallPlayerInfoPopup:onImgHeadPortraitTouch(sender)
 	print("[HallPlayerInfoPopup:onImgHeadPortraitTouch]")
 	gamer.widget_helper_.playDefaultTouchActionForImage(sender)
+	gamer.audio_mgr_.playCommonTouchEffectMusic()
 
 	gamer.popup_mgr_.showPopup(gamer.PopupIDs.POPUP_ID_HEAD_PORTRAIT_SELECT)
 end
@@ -288,7 +290,7 @@ end
 function HallPlayerInfoPopup:onEnter()
     print("[HallPlayerInfoPopup:onEnter]")
 	self:addEventListeners()
-	gamer.msg_helper_.sendGetPlayerInfoMsg()
+	gamer.msg_helper_.sendGetSelfPlayerInfoMsg()
 end
 
 function HallPlayerInfoPopup:onExit()

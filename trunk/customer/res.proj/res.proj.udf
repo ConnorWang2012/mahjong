@@ -32,10 +32,9 @@
       <Value ctype="TabsInfo">
         <OpenedDocuments>
           <FilePathData Path="layouts/ui/hall/hall_top_node_layout.csd" />
-          <FilePathData Path="layouts/ui/hall/hall_player_head_node_layout.csd" />
-          <FilePathData Path="layouts/ui/hall/player_info/hall_player_info_layer_layout.csd" />
+          <FilePathData Path="layouts/ui/hall/setting/setting_layer_layout.csd" />
         </OpenedDocuments>
-        <ActiveDocument Path="layouts/ui/hall/hall_player_head_node_layout.csd" />
+        <ActiveDocument Path="layouts/ui/hall/setting/setting_layer_layout.csd" />
       </Value>
     </Item>
   </Properties>

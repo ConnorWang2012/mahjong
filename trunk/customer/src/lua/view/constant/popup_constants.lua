@@ -26,9 +26,10 @@ M.PopupIDs =
 	POPUP_ID_STORE				    = 5,
 	POPUP_ID_HALL_PLAYER_INFO	    = 6,
 	POPUP_ID_HEAD_PORTRAIT_SELECT	= 7,
+	POPUP_ID_SETTING	            = 8,
 
 	-- room
-	POPUP_ID_GAME_END			    = 8
+	POPUP_ID_GAME_END			    = 9
 }
 
 M.PopupFiles = 
@@ -40,6 +41,7 @@ M.PopupFiles =
 	[M.PopupIDs.POPUP_ID_STORE]					= "view.hall.store.store_popup.lua",
 	[M.PopupIDs.POPUP_ID_HALL_PLAYER_INFO]		= "view.hall.player_info.hall_player_info_popup.lua",
 	[M.PopupIDs.POPUP_ID_HEAD_PORTRAIT_SELECT]	= "view.hall.player_info.head_portrait_select_popup.lua",
+	[M.PopupIDs.POPUP_ID_SETTING]	            = "view.hall.setting.setting_popup.lua",
 	[M.PopupIDs.POPUP_ID_GAME_END]				= "view.room.game_end.game_end_popup.lua"
 }
 
@@ -52,6 +54,7 @@ M.PopupLayoutFiles =
 	[M.PopupIDs.POPUP_ID_STORE]					= "view.layouts.ui.hall.store.store_layer_layout.lua",
 	[M.PopupIDs.POPUP_ID_HALL_PLAYER_INFO]		= "view.layouts.ui.hall.player_info.hall_player_info_layer_layout.lua",
 	[M.PopupIDs.POPUP_ID_HEAD_PORTRAIT_SELECT]	= "view.layouts.ui.hall.player_info.head_portrait_select_layer_layout.lua",
+	[M.PopupIDs.POPUP_ID_SETTING]	            = "view.layouts.ui.hall.setting.setting_layer_layout.lua",
 	[M.PopupIDs.POPUP_ID_GAME_END]				= "view.layouts.ui.room.game_end.game_end_layer_layout.lua"
 }
 
