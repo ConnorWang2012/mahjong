@@ -19,7 +19,8 @@ M.EffectMusicFiles = {
 	{ "wan1.mp3", "wan2.mp3", "wan3.mp3", "wan4.mp3", "wan5.mp3", "wan6.mp3", "wan7.mp3", "wan8.mp3", "wan9.mp3" },
 	{ "tong1.mp3", "tong2.mp3", "tong3.mp3", "tong4.mp3", "tong5.mp3", "tong6.mp3", "tong7.mp3", "tong8.mp3", "tong9.mp3" },
 	{ "dongfeng.mp3", "nanfeng.mp3", "xifeng.mp3", "beifeng.mp3", "facai.mp3", "hongzhong.mp3", "baiban.mp3" },
-	{ "buhua.mp3" }
+	{ "buhua.mp3" },
+	{ "chi.mp3", "peng.mp3", "gang.mp3", "ting.mp3", "hu.mp3", "zimo.mp3", "guo.mp3" }
 }
 
 M.CommonTouchEffectMusicFile = "audio/effect/common/btn_click.mp3"
@@ -30,6 +31,18 @@ M.PlayCardEffectMusicTypes =
 {
 	WOMEN = 0,
 	MAN   = 1
+}
+
+M.Operations = 
+{
+    BUHUA = 41,
+	CHI   = 42,
+	PENG  = 43,
+	GANG  = 44,
+	TING  = 45,
+	HU    = 46,
+	ZIMO  = 47,
+	GUO   = 48
 }
 
 function M.playHallBGM()
@@ -123,6 +136,8 @@ function M.getEffectMusicFile(card_value)
 		return M.EffectMusicFiles[4][card_value - 26]
 	elseif card_value <= 41 then
 		return M.EffectMusicFiles[5][1]
+	elseif card_value <= 48 then
+		return M.EffectMusicFiles[6][card_value - 41]
 	end
 	return nil
 end

@@ -294,7 +294,11 @@ function NormalRoomScene:initVisibleFlowerMahjongsOfPlayerSelf()
 	local flower_offset_x = MahjongConst.Sizes.OFFSET_X5
 	local flower_offset_y = MahjongConst.Sizes.OFFSET_Y5
 
+	--print("[NormalRoomScene:initVisibleFlowerMahjongsOfPlayerSelf] flower_cards_size :", flower_cards_size)
+	--print("[NormalRoomScene:initVisibleFlowerMahjongsOfPlayerSelf] season_cards_size :", season_cards_size)
+
 	for i = 0, flower_cards_size - 1 do
+		print("[NormalRoomScene:initVisibleFlowerMahjongsOfPlayerSelf] flower_card :", player_cards:flower_cards(i))
 		local mj_node = MahjongCreator.create(MahjongConst.Directions.SELF, 
 												MahjongConst.Types.VISIBLE, 
 												player_cards:flower_cards(i))
@@ -307,6 +311,7 @@ function NormalRoomScene:initVisibleFlowerMahjongsOfPlayerSelf()
 	end
 
 	for i = 0, season_cards_size - 1 do
+		--print("[NormalRoomScene:initVisibleFlowerMahjongsOfPlayerSelf] season_card :", player_cards:season_cards(i))
 		local mj_node = MahjongCreator.create(MahjongConst.Directions.SELF, 
 												MahjongConst.Types.VISIBLE, 
 												player_cards:season_cards(i))
@@ -324,7 +329,9 @@ function NormalRoomScene:initInvisibleMahjongsOfPlayerSelf()
 	local myInsert = table.insert
 	local player_cards = gamer.data_mgr_:cards_msg_protocol_of_player_self()
 
+	--print("[NormalRoomScene:initInvisibleMahjongsOfPlayerSelf] cards size :", player_cards:invisible_hand_cards_size())
 	for i = 0, player_cards:invisible_hand_cards_size() - 1 do
+		--print("[NormalRoomScene:initInvisibleMahjongsOfPlayerSelf] card :", player_cards:invisible_hand_cards(i))
 		local mj_node = MahjongCreator.create(MahjongConst.Directions.SELF, 
 											  MahjongConst.Types.INVISIBLE, 
 											  player_cards:invisible_hand_cards(i))
@@ -2434,31 +2441,41 @@ function NormalRoomScene:dealWithPlayCardMsgOfOtherPlayer(msg)
 		gamer.writelog("[NormalRoomScene:dealWithPlayCardMsgOfOtherPlayer] OPERATION_DISCARD")
 		self:dealWithOtherPlayerOperationDiscard(msg)	
 	elseif operation_id == CardConst.OperationIDs.OPERATION_CHI then       -- chi
+		gamer.audio_mgr_.playEffectMusicForPlayCard(gamer.audio_mgr_.Operations.CHI)
 		self:dealWithOtherPlayerOperationChi(msg)
 	elseif operation_id == CardConst.OperationIDs.OPERATION_PENG then      -- peng
+		gamer.audio_mgr_.playEffectMusicForPlayCard(gamer.audio_mgr_.Operations.PENG)
 		self:dealWithOtherPlayerOperationPeng(msg)
 	elseif operation_id == CardConst.OperationIDs.OPERATION_PENG_GANG then -- peng gang
+		gamer.audio_mgr_.playEffectMusicForPlayCard(gamer.audio_mgr_.Operations.GANG)
 		self:dealWithOtherPlayerOperationPengGang(msg)
 	elseif operation_id == CardConst.OperationIDs.OPERATION_MING_GANG then -- ming gang
+		gamer.audio_mgr_.playEffectMusicForPlayCard(gamer.audio_mgr_.Operations.GANG)
 		self:dealWithOtherPlayerOperationMingGang(msg)
 	elseif operation_id == CardConst.OperationIDs.OPERATION_AN_GANG then   -- an gang
+		gamer.audio_mgr_.playEffectMusicForPlayCard(gamer.audio_mgr_.Operations.GANG)
 		self:dealWithOtherPlayerOperationAnGang(msg)
 	elseif operation_id == CardConst.OperationIDs.OPERATION_BU_HUA then    -- bu hua
 		-- after bu hua, player have a new card
 		if msg:has_next_operate_player_new_card() then
+			gamer.audio_mgr_.playEffectMusicForPlayCard(gamer.audio_mgr_.Operations.BUHUA)
 			self:dealWithOtherPlayerOperationBuhua(msg)
 		end
 	elseif operation_id == CardConst.OperationIDs.OPERATION_TING then      -- ting
 		gamer.writelog("[NormalRoomScene:dealWithPlayCardMsgOfOtherPlayer] OPERATION_TING")
+		gamer.audio_mgr_.playEffectMusicForPlayCard(gamer.audio_mgr_.Operations.TING)
 		self:dealWithOtherPlayerOperationTing(msg)
 	elseif operation_id == CardConst.OperationIDs.OPERATION_HU then        -- hu
+		gamer.audio_mgr_.playEffectMusicForPlayCard(gamer.audio_mgr_.Operations.HU)
 		self:dealWithOtherPlayerOperationHu(msg)
 	elseif operation_id == CardConst.OperationIDs.OPERATION_ZI_MO then     -- zi mo
+		gamer.audio_mgr_.playEffectMusicForPlayCard(gamer.audio_mgr_.Operations.ZIMO)
 		self:dealWithOtherPlayerOperationZimo(msg)
 	elseif operation_id == CardConst.OperationIDs.OPERATION_GIVE_UP then   -- guo
 		print("[NormalRoomScene:dealWithPlayCardMsgOfOtherPlayer] next_operate_player_id : ", msg:next_operate_player_id())
 		print("[NormalRoomScene:dealWithPlayCardMsgOfOtherPlayer] self_player_id : ", gamer.data_mgr_:self_player_id())
 		print("[NormalRoomScene:dealWithPlayCardMsgOfOtherPlayer] has_next_operate_player_new_card : ", tostring(msg:has_next_operate_player_new_card()))
+		--gamer.audio_mgr_.playEffectMusicForPlayCard(gamer.audio_mgr_.Operations.GUO)
 		self:dealWithOtherPlayerOperationGiveup(msg)
 	end
 end
@@ -2554,30 +2571,40 @@ function NormalRoomScene:onBtnOperatoinTouch(sender)
 	print("[NormalRoomScene:onBtnOperatoinTouch] operation_id : ", operation_id)
 
 	if operation_id == CardConst.OperationIDs.OPERATION_CHI then           -- chi
+		gamer.audio_mgr_.playEffectMusicForPlayCard(gamer.audio_mgr_.Operations.CHI)
 		self:doPlayerSelfOperationChi(sender)
 		self:showFlagForOperatingPlayer()
 	elseif operation_id == CardConst.OperationIDs.OPERATION_PENG then      -- peng
+		gamer.audio_mgr_.playEffectMusicForPlayCard(gamer.audio_mgr_.Operations.PENG)
 		self:doPlayerSelfOperationPeng()
 		self:showFlagForOperatingPlayer()
 	elseif operation_id == CardConst.OperationIDs.OPERATION_PENG_GANG then -- peng gang
+		gamer.audio_mgr_.playEffectMusicForPlayCard(gamer.audio_mgr_.Operations.GANG)
 		self:doPlayerSelfOperationPengGang()
 		self:showFlagForOperatingPlayer()
 	elseif operation_id == CardConst.OperationIDs.OPERATION_MING_GANG then -- ming gang
+		gamer.audio_mgr_.playEffectMusicForPlayCard(gamer.audio_mgr_.Operations.GANG)
 		self:doPlayerSelfOperationMingGang()
 		self:startPlayCardTimer()
 	elseif operation_id == CardConst.OperationIDs.OPERATION_AN_GANG then   -- an gang
+		gamer.audio_mgr_.playEffectMusicForPlayCard(gamer.audio_mgr_.Operations.GANG)
 		self:doPlayerSelfOperationAnGang()
 		self:startPlayCardTimer()
 	elseif operation_id == CardConst.OperationIDs.OPERATION_BU_HUA then    -- bu hua
+		gamer.audio_mgr_.playEffectMusicForPlayCard(gamer.audio_mgr_.Operations.BUHUA)
 		self:doPlayerSelfOperationBuhua()
 		self:startPlayCardTimer()
 	elseif operation_id == CardConst.OperationIDs.OPERATION_TING then      -- ting
+		gamer.audio_mgr_.playEffectMusicForPlayCard(gamer.audio_mgr_.Operations.TING)
 		self:doPlayerSelfOperationTing()
 	elseif operation_id == CardConst.OperationIDs.OPERATION_HU then        -- hu
+		gamer.audio_mgr_.playEffectMusicForPlayCard(gamer.audio_mgr_.Operations.HU)
 		self:doPlayerSelfOperationHu()
 	elseif operation_id == CardConst.OperationIDs.OPERATION_ZI_MO then     -- zi mo
+		gamer.audio_mgr_.playEffectMusicForPlayCard(gamer.audio_mgr_.Operations.ZIMO)
 		self:doPlayerSelfOperationZimo()
 	elseif operation_id == CardConst.OperationIDs.OPERATION_GIVE_UP then   -- guo
+		gamer.audio_mgr_.playEffectMusicForPlayCard(gamer.audio_mgr_.Operations.GUO)
 		self:doPlayerSelfOperationGiveup()
 		self:showFlagForOperatingPlayer()
 	end
