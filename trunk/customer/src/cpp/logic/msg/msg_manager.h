@@ -161,6 +161,12 @@ private:
                      google::protobuf::Message* msg,
                      const std::string& class_name);
 
+	void callMsgCallbacks(int msg_code,
+		                  msg_header_t msg_type,
+		                  msg_header_t msg_id,
+		                  google::protobuf::Message* msg,
+		                  const std::string& class_name);
+
     void dealWithLoginMsg(const ServerMsg& msg);
 
 	void dealWithPropertyMsg(const ServerMsg& msg);
@@ -183,20 +189,17 @@ private:
 
     void dealWithPlayCardMsg(const ServerMsg& msg);
 
-    // callback for dispatching multi-msg
-    void onMultiMsgDispatch(float dt);
+    void dealWithMultiMsgDispatch(float dt);
 
-    void onSocketConnected(const gamer::Event& event);
+    void onOneMsgReceived(const ServerMsg& msg);
 
-    void onMsgReceived(const ServerMsg& msg);
+	void onMultiMsgReceived(const ServerMsg& msg);
+
+	void onSocketConnected(const gamer::Event& event);
 
     inline void set_is_multi_msg(bool is_multi_msg);
 
     inline bool is_multi_msg() const;
-
-	inline void set_is_dispatch_ready(bool ready);
-
-	inline bool is_dispatch_ready() const;
 
     friend class NetworkManager;
 
@@ -213,7 +216,6 @@ private:
     static const int MAX_MSG_LEN = 4096;
 
     bool is_multi_msg_;
-	bool is_dispatch_ready_;
 };
 
 
@@ -225,16 +227,6 @@ inline void MsgManager::set_is_multi_msg(bool is_multi_msg)
 inline bool MsgManager::is_multi_msg() const
 {
     return is_multi_msg_;
-}
-
-inline void MsgManager::set_is_dispatch_ready(bool ready)
-{
-	is_dispatch_ready_ = ready;
-}
-
-inline bool MsgManager::is_dispatch_ready() const
-{
-	return is_dispatch_ready_;
 }
 
 } // namespace gamer

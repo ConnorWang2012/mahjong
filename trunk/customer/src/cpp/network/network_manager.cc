@@ -263,6 +263,7 @@ void NetworkManager::onBufferRead(struct bufferevent* bev, void* ctx)
     }
 
     unsigned parsed_buf_len = 0;
+	auto msg_mgr = MsgManager::getInstance();
     while (parsed_buf_len < buf_len)
     {
         gamer::ServerMsg msg = { 0, 0, 0, 0, nullptr };
@@ -270,22 +271,19 @@ void NetworkManager::onBufferRead(struct bufferevent* bev, void* ctx)
 
         if (buf_len > msg.total_len)
         {
-            MsgManager::getInstance()->set_is_multi_msg(true);
-			MsgManager::getInstance()->set_is_dispatch_ready(false);
+			msg_mgr->set_is_multi_msg(true);
         }
 		else
 		{
-			MsgManager::getInstance()->set_is_multi_msg(false);
-			MsgManager::getInstance()->set_is_dispatch_ready(true);
+			msg_mgr->set_is_multi_msg(false);
 		}
 
-        MsgManager::getInstance()->onMsgReceived(msg);
+		msg_mgr->onOneMsgReceived(msg);
         parsed_buf_len += msg.total_len;
 
-		if (MsgManager::getInstance()->is_multi_msg() && parsed_buf_len >= buf_len)
+		if (msg_mgr->is_multi_msg() && parsed_buf_len >= buf_len)
 		{
-			MsgManager::getInstance()->set_is_dispatch_ready(true);
-			MsgManager::getInstance()->onMsgReceived(msg);
+			msg_mgr->onMultiMsgReceived(msg);
 		}
     }
 }
