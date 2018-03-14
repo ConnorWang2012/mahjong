@@ -50,6 +50,14 @@
 		5200BECA1A53D9A500AC45E4 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5200BEC91A53D9A500AC45E4 /* Security.framework */; };
 		521A8E7019F0C3D200D177D7 /* Default-667h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 521A8E6E19F0C3D200D177D7 /* Default-667h@2x.png */; };
 		521A8E7119F0C3D200D177D7 /* Default-736h@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 521A8E6F19F0C3D200D177D7 /* Default-736h@3x.png */; };
+		9C1C1ABE2058C6FD008ED6B6 /* property_changed_msg_protocol.pb.cc in Sources */ = {isa = PBXBuildFile; fileRef = 9C1C1AB62058C6FC008ED6B6 /* property_changed_msg_protocol.pb.cc */; };
+		9C1C1ABF2058C6FD008ED6B6 /* set_property_msg_protocol.pb.cc in Sources */ = {isa = PBXBuildFile; fileRef = 9C1C1ABA2058C6FD008ED6B6 /* set_property_msg_protocol.pb.cc */; };
+		9C1C1AC02058C6FD008ED6B6 /* personal_head_portrait_msg_protocol.pb.cc in Sources */ = {isa = PBXBuildFile; fileRef = 9C1C1ABC2058C6FD008ED6B6 /* personal_head_portrait_msg_protocol.pb.cc */; };
+		9C1C1AC42058C74C008ED6B6 /* lua_bind_property_changed_msg_protocol.cc in Sources */ = {isa = PBXBuildFile; fileRef = 9C1C1AC12058C74B008ED6B6 /* lua_bind_property_changed_msg_protocol.cc */; };
+		9C1C1AC52058C74C008ED6B6 /* lua_bind_set_property_msg_protocol.cc in Sources */ = {isa = PBXBuildFile; fileRef = 9C1C1AC22058C74B008ED6B6 /* lua_bind_set_property_msg_protocol.cc */; };
+		9C1C1AC62058C74C008ED6B6 /* lua_bind_personal_head_portrait_msg_protocol.cc in Sources */ = {isa = PBXBuildFile; fileRef = 9C1C1AC32058C74B008ED6B6 /* lua_bind_personal_head_portrait_msg_protocol.cc */; };
+		9C1C1AC92058C82C008ED6B6 /* play_card_helper.lua in Resources */ = {isa = PBXBuildFile; fileRef = 9C1C1AC82058C82C008ED6B6 /* play_card_helper.lua */; };
+		9C1C1ACE2058C889008ED6B6 /* wx_api_manager.lua in Resources */ = {isa = PBXBuildFile; fileRef = 9C1C1ACD2058C889008ED6B6 /* wx_api_manager.lua */; };
 		9FA3AE4E1BE9BCC900FC9645 /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9FA3AE4D1BE9BCC900FC9645 /* CFNetwork.framework */; };
 		9FF504841A5E87B100AFDA55 /* ConsoleWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9FF504811A5E87B100AFDA55 /* ConsoleWindow.xib */; };
 		9FF504851A5E87B100AFDA55 /* ConsoleWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9FF504831A5E87B100AFDA55 /* ConsoleWindowController.m */; };
@@ -228,8 +236,6 @@
 		B373E9591F77B04100159E0C /* test_lua_bind_event_listener.lua in Resources */ = {isa = PBXBuildFile; fileRef = B373E8E21F77B04000159E0C /* test_lua_bind_event_listener.lua */; };
 		B373E95A1F77B04100159E0C /* test_lua_bind_event_manager.lua in Resources */ = {isa = PBXBuildFile; fileRef = B373E8E31F77B04000159E0C /* test_lua_bind_event_manager.lua */; };
 		B373E95B1F77B04100159E0C /* test_lua_bind_event_manager.lua in Resources */ = {isa = PBXBuildFile; fileRef = B373E8E31F77B04000159E0C /* test_lua_bind_event_manager.lua */; };
-		B373E95C1F77B04100159E0C /* play_card_helper.lua in Resources */ = {isa = PBXBuildFile; fileRef = B373E8E51F77B04000159E0C /* play_card_helper.lua */; };
-		B373E95D1F77B04100159E0C /* play_card_helper.lua in Resources */ = {isa = PBXBuildFile; fileRef = B373E8E51F77B04000159E0C /* play_card_helper.lua */; };
 		B373E95E1F77B04100159E0C /* init_network.lua in Resources */ = {isa = PBXBuildFile; fileRef = B373E8E71F77B04000159E0C /* init_network.lua */; };
 		B373E95F1F77B04100159E0C /* init_network.lua in Resources */ = {isa = PBXBuildFile; fileRef = B373E8E71F77B04000159E0C /* init_network.lua */; };
 		B373E9601F77B04100159E0C /* msg_helper.lua in Resources */ = {isa = PBXBuildFile; fileRef = B373E8E81F77B04000159E0C /* msg_helper.lua */; };
@@ -557,6 +563,17 @@
 		5200BEC91A53D9A500AC45E4 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS8.1.sdk/System/Library/Frameworks/Security.framework; sourceTree = DEVELOPER_DIR; };
 		521A8E6E19F0C3D200D177D7 /* Default-667h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-667h@2x.png"; sourceTree = "<group>"; };
 		521A8E6F19F0C3D200D177D7 /* Default-736h@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-736h@3x.png"; sourceTree = "<group>"; };
+		9C1C1AB62058C6FC008ED6B6 /* property_changed_msg_protocol.pb.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = property_changed_msg_protocol.pb.cc; path = ../../../../customer/src/cpp/logic/msg/protocol/property_changed_msg_protocol.pb.cc; sourceTree = "<group>"; };
+		9C1C1AB92058C6FC008ED6B6 /* personal_head_portrait_msg_protocol.pb.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = personal_head_portrait_msg_protocol.pb.h; path = ../../../../customer/src/cpp/logic/msg/protocol/personal_head_portrait_msg_protocol.pb.h; sourceTree = "<group>"; };
+		9C1C1ABA2058C6FD008ED6B6 /* set_property_msg_protocol.pb.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = set_property_msg_protocol.pb.cc; path = ../../../../customer/src/cpp/logic/msg/protocol/set_property_msg_protocol.pb.cc; sourceTree = "<group>"; };
+		9C1C1ABB2058C6FD008ED6B6 /* set_property_msg_protocol.pb.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = set_property_msg_protocol.pb.h; path = ../../../../customer/src/cpp/logic/msg/protocol/set_property_msg_protocol.pb.h; sourceTree = "<group>"; };
+		9C1C1ABC2058C6FD008ED6B6 /* personal_head_portrait_msg_protocol.pb.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = personal_head_portrait_msg_protocol.pb.cc; path = ../../../../customer/src/cpp/logic/msg/protocol/personal_head_portrait_msg_protocol.pb.cc; sourceTree = "<group>"; };
+		9C1C1ABD2058C6FD008ED6B6 /* property_changed_msg_protocol.pb.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = property_changed_msg_protocol.pb.h; path = ../../../../customer/src/cpp/logic/msg/protocol/property_changed_msg_protocol.pb.h; sourceTree = "<group>"; };
+		9C1C1AC12058C74B008ED6B6 /* lua_bind_property_changed_msg_protocol.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = lua_bind_property_changed_msg_protocol.cc; path = ../../../../customer/src/cpp/logic/lua_bind/auto/lua_bind_property_changed_msg_protocol.cc; sourceTree = "<group>"; };
+		9C1C1AC22058C74B008ED6B6 /* lua_bind_set_property_msg_protocol.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = lua_bind_set_property_msg_protocol.cc; path = ../../../../customer/src/cpp/logic/lua_bind/auto/lua_bind_set_property_msg_protocol.cc; sourceTree = "<group>"; };
+		9C1C1AC32058C74B008ED6B6 /* lua_bind_personal_head_portrait_msg_protocol.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = lua_bind_personal_head_portrait_msg_protocol.cc; path = ../../../../customer/src/cpp/logic/lua_bind/auto/lua_bind_personal_head_portrait_msg_protocol.cc; sourceTree = "<group>"; };
+		9C1C1AC82058C82C008ED6B6 /* play_card_helper.lua */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = play_card_helper.lua; path = ../helper/play_card_helper.lua; sourceTree = "<group>"; };
+		9C1C1ACD2058C889008ED6B6 /* wx_api_manager.lua */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = wx_api_manager.lua; path = ../3rd_party/wx_api_manager.lua; sourceTree = "<group>"; };
 		9FA3AE4D1BE9BCC900FC9645 /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS8.0.sdk/System/Library/Frameworks/CFNetwork.framework; sourceTree = DEVELOPER_DIR; };
 		9FF504781A5E86D600AFDA55 /* libsimulator.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = libsimulator.xcodeproj; path = "../../cocos2d-x/tools/simulator/libsimulator/proj.ios_mac/libsimulator.xcodeproj"; sourceTree = "<group>"; };
 		9FF504811A5E87B100AFDA55 /* ConsoleWindow.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ConsoleWindow.xib; sourceTree = "<group>"; };
@@ -777,7 +794,6 @@
 		B373E8E01F77B04000159E0C /* scene_manager.lua */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = scene_manager.lua; sourceTree = "<group>"; };
 		B373E8E21F77B04000159E0C /* test_lua_bind_event_listener.lua */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = test_lua_bind_event_listener.lua; sourceTree = "<group>"; };
 		B373E8E31F77B04000159E0C /* test_lua_bind_event_manager.lua */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = test_lua_bind_event_manager.lua; sourceTree = "<group>"; };
-		B373E8E51F77B04000159E0C /* play_card_helper.lua */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = play_card_helper.lua; sourceTree = "<group>"; };
 		B373E8E71F77B04000159E0C /* init_network.lua */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = init_network.lua; sourceTree = "<group>"; };
 		B373E8E81F77B04000159E0C /* msg_helper.lua */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = msg_helper.lua; sourceTree = "<group>"; };
 		B373E8EC1F77B04000159E0C /* node_buhua_anim.lua */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = node_buhua_anim.lua; sourceTree = "<group>"; };
@@ -856,7 +872,6 @@
 		B39C96231F8E6A7600BFF732 /* libsqlite3.0.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.0.tbd; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS11.0.sdk/usr/lib/libsqlite3.0.tbd; sourceTree = DEVELOPER_DIR; };
 		B39C96251F8E6CC400BFF732 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS11.0.sdk/System/Library/Frameworks/SystemConfiguration.framework; sourceTree = DEVELOPER_DIR; };
 		B39C96271F8E6D4100BFF732 /* CoreTelephony.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreTelephony.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS11.0.sdk/System/Library/Frameworks/CoreTelephony.framework; sourceTree = DEVELOPER_DIR; };
-		B39C962A1F8FC37D00BFF732 /* wx_api_manager.lua */ = {isa = PBXFileReference; lastKnownFileType = text; name = wx_api_manager.lua; path = ../3rd_party/wx_api_manager.lua; sourceTree = "<group>"; };
 		B39C962B1F8FC42B00BFF732 /* WXApiManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WXApiManager.h; sourceTree = "<group>"; };
 		B39C962C1F8FC70A00BFF732 /* WXApiManager.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = WXApiManager.mm; sourceTree = "<group>"; };
 		B39C962F1F91159800BFF732 /* GameController.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GameController.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS11.0.sdk/System/Library/Frameworks/GameController.framework; sourceTree = DEVELOPER_DIR; };
@@ -1023,6 +1038,23 @@
 			name = Icons;
 			sourceTree = "<group>";
 		};
+		9C1C1AC72058C7F6008ED6B6 /* helper */ = {
+			isa = PBXGroup;
+			children = (
+				9C1C1AC82058C82C008ED6B6 /* play_card_helper.lua */,
+			);
+			name = helper;
+			path = "New Group";
+			sourceTree = "<group>";
+		};
+		9C1C1ACC2058C86B008ED6B6 /* third_party */ = {
+			isa = PBXGroup;
+			children = (
+				9C1C1ACD2058C889008ED6B6 /* wx_api_manager.lua */,
+			);
+			path = third_party;
+			sourceTree = "<group>";
+		};
 		9FF504791A5E86D600AFDA55 /* Products */ = {
 			isa = PBXGroup;
 			children = (
@@ -1155,6 +1187,9 @@
 		B31F53FB1F72E4070030B361 /* auto */ = {
 			isa = PBXGroup;
 			children = (
+				9C1C1AC32058C74B008ED6B6 /* lua_bind_personal_head_portrait_msg_protocol.cc */,
+				9C1C1AC12058C74B008ED6B6 /* lua_bind_property_changed_msg_protocol.cc */,
+				9C1C1AC22058C74B008ED6B6 /* lua_bind_set_property_msg_protocol.cc */,
 				B31F54391F72E8850030B361 /* lua_bind_command_listener.cc */,
 				B31F543A1F72E8850030B361 /* lua_bind_command_manager.cc */,
 				B31F543B1F72E8850030B361 /* lua_bind_create_room_msg_protocol.cc */,
@@ -1299,6 +1334,12 @@
 		B31F54831F72E9820030B361 /* protocol */ = {
 			isa = PBXGroup;
 			children = (
+				9C1C1ABC2058C6FD008ED6B6 /* personal_head_portrait_msg_protocol.pb.cc */,
+				9C1C1AB92058C6FC008ED6B6 /* personal_head_portrait_msg_protocol.pb.h */,
+				9C1C1AB62058C6FC008ED6B6 /* property_changed_msg_protocol.pb.cc */,
+				9C1C1ABD2058C6FD008ED6B6 /* property_changed_msg_protocol.pb.h */,
+				9C1C1ABA2058C6FD008ED6B6 /* set_property_msg_protocol.pb.cc */,
+				9C1C1ABB2058C6FD008ED6B6 /* set_property_msg_protocol.pb.h */,
 				B31F54841F72E9A40030B361 /* create_room_msg_protocol.pb.cc */,
 				B31F54851F72E9A40030B361 /* create_room_msg_protocol.pb.h */,
 				B31F54861F72E9A40030B361 /* game_end_msg_protocol.pb.cc */,
@@ -1473,13 +1514,13 @@
 		B373E8D51F77B04000159E0C /* logic */ = {
 			isa = PBXGroup;
 			children = (
-				B39C96291F8FC31A00BFF732 /* 3rd_party */,
+				9C1C1ACC2058C86B008ED6B6 /* third_party */,
+				9C1C1AC72058C7F6008ED6B6 /* helper */,
 				B373E8D61F77B04000159E0C /* constant */,
 				B373E8DC1F77B04000159E0C /* init_logic.lua */,
 				B373E8DD1F77B04000159E0C /* init_modules.lua */,
 				B373E8DE1F77B04000159E0C /* manager */,
 				B373E8E11F77B04000159E0C /* test */,
-				B373E8E41F77B04000159E0C /* util */,
 			);
 			path = logic;
 			sourceTree = "<group>";
@@ -1512,14 +1553,6 @@
 				B373E8E31F77B04000159E0C /* test_lua_bind_event_manager.lua */,
 			);
 			path = test;
-			sourceTree = "<group>";
-		};
-		B373E8E41F77B04000159E0C /* util */ = {
-			isa = PBXGroup;
-			children = (
-				B373E8E51F77B04000159E0C /* play_card_helper.lua */,
-			);
-			path = util;
 			sourceTree = "<group>";
 		};
 		B373E8E61F77B04000159E0C /* network */ = {
@@ -1773,15 +1806,6 @@
 				B39C961F1F8E5D5700BFF732 /* WXApiObject.h */,
 			);
 			path = wechat_sdk_1.8.0_no_pay;
-			sourceTree = "<group>";
-		};
-		B39C96291F8FC31A00BFF732 /* 3rd_party */ = {
-			isa = PBXGroup;
-			children = (
-				B39C962A1F8FC37D00BFF732 /* wx_api_manager.lua */,
-			);
-			name = 3rd_party;
-			path = "New Group";
 			sourceTree = "<group>";
 		};
 		B3FFF5EC1FB8409600797E26 /* popups */ = {
@@ -2078,7 +2102,6 @@
 				B373E9B51F77B04100159E0C /* left_visible_3_mj_node_layout.lua in Resources */,
 				B373E9A71F77B04100159E0C /* left_discard_mj_node_layout.lua in Resources */,
 				B373E9731F77B04100159E0C /* node_peng_anim.lua in Resources */,
-				B373E95D1F77B04100159E0C /* play_card_helper.lua in Resources */,
 				9FF504841A5E87B100AFDA55 /* ConsoleWindow.xib in Resources */,
 				B373E9931F77B04100159E0C /* LuaExtend.lua in Resources */,
 				5023817617EBBE3400990C9B /* Icon.icns in Resources */,
@@ -2165,7 +2188,6 @@
 				5023811D17EBBCAC00990C9B /* Icon-120.png in Resources */,
 				B373E9D61F77B04200159E0C /* right_invisible_1_mj_node_layout.lua in Resources */,
 				B373E94C1F77B04100159E0C /* msg_type.lua in Resources */,
-				B373E95C1F77B04100159E0C /* play_card_helper.lua in Resources */,
 				B3FFF5FB1FB8415900797E26 /* create_room_layer_layout.lua in Resources */,
 				B373E9EE1F77B04200159E0C /* room_scene.lua in Resources */,
 				B373E9E01F77B04200159E0C /* right_visible_2_mj_node_layout.lua in Resources */,
@@ -2174,6 +2196,7 @@
 				B373E9901F77B04100159E0C /* init_view.lua in Resources */,
 				5023811B17EBBCAC00990C9B /* Default@2x.png in Resources */,
 				B373E9581F77B04100159E0C /* test_lua_bind_event_listener.lua in Resources */,
+				9C1C1ACE2058C889008ED6B6 /* wx_api_manager.lua in Resources */,
 				5091733617ECE17A00D62437 /* Icon-29.png in Resources */,
 				B373E9D21F77B04200159E0C /* opposite_visible_3_mj_node_layout.lua in Resources */,
 				5023811917EBBCAC00990C9B /* Default-568h@2x.png in Resources */,
@@ -2217,6 +2240,7 @@
 				B373E94A1F77B04100159E0C /* msg_id.lua in Resources */,
 				5091733A17ECE17A00D62437 /* Icon-80.png in Resources */,
 				B373E9F11F77B0C400159E0C /* main.lua in Resources */,
+				9C1C1AC92058C82C008ED6B6 /* play_card_helper.lua in Resources */,
 				B373E9921F77B04100159E0C /* LuaExtend.lua in Resources */,
 				B373E9AA1F77B04100159E0C /* left_invisible_2_mj_node_layout.lua in Resources */,
 				B373E9A01F77B04100159E0C /* hall_player_head_node_layout.lua in Resources */,
@@ -2381,11 +2405,13 @@
 				B31F55DE1F72ECAA0030B361 /* message_lite.cc in Sources */,
 				B31F544D1F72E8850030B361 /* lua_bind_command_manager.cc in Sources */,
 				B31F545D1F72E8850030B361 /* lua_bind_my_login_msg_protocol.cc in Sources */,
+				9C1C1AC02058C6FD008ED6B6 /* personal_head_portrait_msg_protocol.pb.cc in Sources */,
 				B31F546D1F72E8850030B361 /* lua_bind_ting_card_msg_protocol.cc in Sources */,
 				B31F54691F72E8850030B361 /* lua_bind_room_msg_protocol.cc in Sources */,
 				B31F55A11F72EC700030B361 /* stringprintf.cc in Sources */,
 				B31F549A1F72E9A40030B361 /* my_login_msg_protocol.pb.cc in Sources */,
 				B31F542A1F72E7FF0030B361 /* command_listener.cc in Sources */,
+				9C1C1AC42058C74C008ED6B6 /* lua_bind_property_changed_msg_protocol.cc in Sources */,
 				B31F54531F72E8850030B361 /* lua_bind_event_listener.cc in Sources */,
 				B31F556E1F72EC320030B361 /* strtod.cc in Sources */,
 				B3FFF5EA1FB83E0300797E26 /* blur_sprite.cc in Sources */,
@@ -2402,11 +2428,13 @@
 				B31F54571F72E8850030B361 /* lua_bind_game_end_msg_protocol.cc in Sources */,
 				B31F541A1F72E7600030B361 /* login_helper.cc in Sources */,
 				F293BB9C15EB831F00256477 /* AppDelegate.cpp in Sources */,
+				9C1C1AC62058C74C008ED6B6 /* lua_bind_personal_head_portrait_msg_protocol.cc in Sources */,
 				B31F54301F72E7FF0030B361 /* myevent.cc in Sources */,
 				B31F556C1F72EC320030B361 /* printer.cc in Sources */,
 				B31F55E61F72ECAA0030B361 /* service.cc in Sources */,
 				B31F54511F72E8850030B361 /* lua_bind_data_manager.cc in Sources */,
 				B31F54671F72E8850030B361 /* lua_bind_player_msg_protocol.cc in Sources */,
+				9C1C1AC52058C74C008ED6B6 /* lua_bind_set_property_msg_protocol.cc in Sources */,
 				B31F54AE1F72E9C70030B361 /* msg_manager.cc in Sources */,
 				B31F54A61F72E9A40030B361 /* ting_card_msg_protocol.pb.cc in Sources */,
 				B31F54611F72E8850030B361 /* lua_bind_network_manager.cc in Sources */,
@@ -2427,6 +2455,7 @@
 				B31F53F31F72E3150030B361 /* data_manager.cc in Sources */,
 				B31F55EC1F72ECAA0030B361 /* wire_format_lite.cc in Sources */,
 				B31F54981F72E9A40030B361 /* game_end_msg_protocol.pb.cc in Sources */,
+				9C1C1ABF2058C6FD008ED6B6 /* set_property_msg_protocol.pb.cc in Sources */,
 				B31F55A51F72EC700030B361 /* strutil.cc in Sources */,
 				B31F54551F72E8850030B361 /* lua_bind_event_manager.cc in Sources */,
 				B31F55A31F72EC700030B361 /* structurally_valid.cc in Sources */,
@@ -2436,6 +2465,7 @@
 				B31F54961F72E9A40030B361 /* create_room_msg_protocol.pb.cc in Sources */,
 				B31F559B1F72EC700030B361 /* atomicops_internals_x86_msvc.cc in Sources */,
 				B31F54A01F72E9A40030B361 /* player_msg_protocol.pb.cc in Sources */,
+				9C1C1ABE2058C6FD008ED6B6 /* property_changed_msg_protocol.pb.cc in Sources */,
 				B31F55E01F72ECAA0030B361 /* message.cc in Sources */,
 				B31F55E81F72ECAA0030B361 /* text_format.cc in Sources */,
 				B31F542E1F72E7FF0030B361 /* event_listener.cc in Sources */,
