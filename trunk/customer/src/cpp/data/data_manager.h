@@ -220,7 +220,8 @@ inline DataManager::PlayerCardsMsgProtocol* DataManager::cards_msg_protocol_of_p
 {
     if (nullptr != room_msg_protocol_)
     {
-        return room_msg_protocol_->mutable_player_cards(player_self_cards_index_);
+		auto table = room_msg_protocol_->table_list(0);
+		return table.mutable_player_cards(player_self_cards_index_);
     }
     return nullptr;
 }
@@ -229,7 +230,8 @@ inline DataManager::PlayerCardsMsgProtocol* DataManager::cards_msg_protocol_of_l
 {
     if (nullptr != room_msg_protocol_)
     {
-        return room_msg_protocol_->mutable_player_cards(left_player_cards_index_);
+		auto table = room_msg_protocol_->table_list(0);
+        return table.mutable_player_cards(left_player_cards_index_);
     }
     return nullptr;
 }
@@ -238,7 +240,8 @@ inline DataManager::PlayerCardsMsgProtocol* DataManager::cards_msg_protocol_of_o
 {
     if (nullptr != room_msg_protocol_)
     {
-        return room_msg_protocol_->mutable_player_cards(opposite_player_cards_index_);
+		auto table = room_msg_protocol_->table_list(0);
+        return table.mutable_player_cards(opposite_player_cards_index_);
     }
     return nullptr;
 }
@@ -247,7 +250,8 @@ inline DataManager::PlayerCardsMsgProtocol* DataManager::cards_msg_protocol_of_r
 {
     if (nullptr != room_msg_protocol_)
     {
-        return room_msg_protocol_->mutable_player_cards(right_player_cards_index_);
+		auto table = room_msg_protocol_->table_list(0);
+		return table.mutable_player_cards(right_player_cards_index_);
     }
     return nullptr;
 }
@@ -285,7 +289,7 @@ inline google::protobuf::uint32 DataManager::left_player_id() const
 {
     if (nullptr != room_msg_protocol_)
     {
-        return room_msg_protocol_->player_cards(left_player_cards_index_).player_id();
+        return room_msg_protocol_->table_list(0).player_cards(left_player_cards_index_).player_id();
     }
     return 0;
 }
@@ -294,7 +298,7 @@ inline google::protobuf::uint32 DataManager::opposite_player_id() const
 {
     if (nullptr != room_msg_protocol_)
     {
-        return room_msg_protocol_->player_cards(opposite_player_cards_index_).player_id();
+        return room_msg_protocol_->table_list(0).player_cards(opposite_player_cards_index_).player_id();
     }
     return 0;
 }
@@ -303,7 +307,7 @@ inline google::protobuf::uint32 DataManager::right_player_id() const
 {
     if (nullptr != room_msg_protocol_)
     {
-        return room_msg_protocol_->player_cards(right_player_cards_index_).player_id();
+        return room_msg_protocol_->table_list(0).player_cards(right_player_cards_index_).player_id();
     }
     return 0;
 }

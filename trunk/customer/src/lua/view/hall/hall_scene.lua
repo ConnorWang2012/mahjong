@@ -192,7 +192,7 @@ function HallScene:dealWithJoinRoomMsgReceived(code, msg)
 		local proto_room = gamer.data_mgr_:create_room_msg_protocol()	
 		print("[HallScene:dealWithJoinRoomMsgReceived] room_owner_id, room_id : ", proto_room:room_owner_id(), proto_room:room_id())
 
-		gamer.msg_helper_.sendStartGameMsg()
+		gamer.msg_helper_.sendPersonalRoomStartGameMsg()
 		--[[
 		local proto = gamer.protocol.RoomMsgProtocol()
 		proto:set_room_id(proto_room:room_id())
@@ -270,7 +270,7 @@ end
 
 function HallScene:onImgLeftTouch(sender)
     print("[HallScene:onImgLeftTouch]")
-
+	--[[
 	local proto_room = gamer.data_mgr_:create_room_msg_protocol()	
 	print("[HallScene:onImgLeftTouch] room_owner_id, room_id : ", proto_room:room_owner_id(), proto_room:room_id())
 
@@ -279,6 +279,8 @@ function HallScene:onImgLeftTouch(sender)
     proto:set_room_owner_id(proto_room:room_owner_id())
 
     gamer.msg_mgr_:sendMsg(gamer.MsgTypes.C2S_MSG_TYPE_ROOM, gamer.MsgIDs.MSG_ID_ROOM_START_GAME, proto)
+	]]
+	gamer.popup_mgr_.showPopup(gamer.PopupIDs.POPUP_ID_ROOM_LIST)
 end
 
 function HallScene:onImgNormalRoomTouch(sender)

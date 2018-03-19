@@ -1,0 +1,49 @@
+$#include "msg/protocol/table_msg_protocol.pb.h"
+$#include "msg/protocol/player_cards_msg_protocol.pb.h"
+$#include "msg/protocol/player_msg_protocol.pb.h"
+
+$#include <string>
+$#include <google/protobuf/stubs/common.h>
+
+$#include <google/protobuf/generated_message_util.h>
+$#include <google/protobuf/message.h>
+$#include <google/protobuf/repeated_field.h>
+$#include <google/protobuf/extension_set.h>
+$#include <google/protobuf/unknown_field_set.h>
+
+namespace gamer {
+
+namespace protocol {
+
+class TableMsgProtocol : public google::protobuf::Message {
+public:
+	TableMsgProtocol();
+
+	int ByteSize() const;
+
+	inline unsigned int table_id() const;
+
+	inline unsigned int cur_round() const;
+
+	inline unsigned int total_round() const;
+
+	inline unsigned int remain_cards_num() const;
+
+    inline unsigned int operating_player_id() const;
+
+    inline unsigned int operation_id() const;
+
+	inline unsigned int banker_id() const;
+
+	inline unsigned int banker_is_same_time() const;
+
+	inline unsigned int player_cards_size() const;
+	inline const gamer::protocol::PlayerCardsMsgProtocol& player_cards(int index) const;
+
+	inline unsigned int players_size() const;
+	inline const gamer::protocol::PlayerMsgProtocol& players(int index) const;
+};
+
+} // namespace protocol
+
+} // namespace gamer

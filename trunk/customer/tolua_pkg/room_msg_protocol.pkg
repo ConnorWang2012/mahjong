@@ -1,6 +1,5 @@
 $#include "msg/protocol/room_msg_protocol.pb.h"
-$#include "msg/protocol/player_cards_msg_protocol.pb.h"
-$#include "msg/protocol/player_msg_protocol.pb.h"
+$#include "msg/protocol/table_msg_protocol.pb.h"
 
 $#include <string>
 $#include <google/protobuf/stubs/common.h>
@@ -28,28 +27,13 @@ public:
 	inline void set_room_owner_id(unsigned int value);
 	inline unsigned int room_owner_id() const;
 
+	inline void set_room_type(unsigned int value);
+	inline unsigned int room_type() const;
+
 	inline unsigned int players_num() const;
 
-	inline unsigned int cur_round() const;
-
-	inline unsigned int total_round() const;
-
-	inline unsigned int remain_cards_num() const;
-
-    inline unsigned int operating_player_id() const;
-
-    inline unsigned int operation_id() const;
-
-	inline unsigned int banker_id() const;
-
-	inline unsigned int banker_is_same_time() const;
-
-	// room player
-	inline unsigned int player_cards_size() const;
-	inline const gamer::protocol::PlayerCardsMsgProtocol& player_cards(int index) const;
-
-	inline unsigned int players_size() const;
-	inline const gamer::protocol::PlayerMsgProtocol& players(int index) const;
+	inline unsigned int table_list_size() const;
+	inline const gamer::protocol::TableMsgProtocol& table_list(int index) const;
 };
 
 } // namespace protocol

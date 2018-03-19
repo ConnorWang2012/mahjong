@@ -33,6 +33,7 @@ int lua_bind_register(lua_State* L)
 	tolua_set_property_msg_protocol_open(L);
 	tolua_property_changed_msg_protocol_open(L);
     tolua_room_msg_protocol_open(L);
+	tolua_table_msg_protocol_open(L);
     tolua_play_card_msg_protocol_open(L);
     tolua_ting_card_msg_protocol_open(L);
     tolua_player_cards_msg_protocol_open(L);

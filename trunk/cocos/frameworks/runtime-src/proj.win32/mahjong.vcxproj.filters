@@ -229,6 +229,12 @@
     <Filter Include="classes\lua\view\hall\setting">
       <UniqueIdentifier>{07e2e38f-726f-400e-a2cb-bdb8112f425d}</UniqueIdentifier>
     </Filter>
+    <Filter Include="classes\lua\view\hall\room_list">
+      <UniqueIdentifier>{6d061158-fe28-419a-b1b1-5c4c31009421}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="classes\lua\view\layout\ui\hall\room_list">
+      <UniqueIdentifier>{a1b8a61d-6602-4829-ad8a-711f26eedb7e}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\Classes\AppDelegate.h">
@@ -869,6 +875,12 @@
     <ClInclude Include="..\..\..\..\customer\src\cpp\logic\constant\player_constants.h">
       <Filter>classes\cpp\logic\constant</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\..\..\customer\src\cpp\logic\msg\protocol\table_msg_protocol.pb.h">
+      <Filter>classes\cpp\logic\msg\protocol</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\customer\src\cpp\logic\constant\room_constants.h">
+      <Filter>classes\cpp\logic\constant</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\Classes\AppDelegate.cpp">
@@ -1122,6 +1134,12 @@
       <Filter>classes\cpp\logic\msg\protocol</Filter>
     </ClCompile>
     <ClCompile Include="..\..\..\..\customer\src\cpp\logic\lua_bind\auto\lua_bind_personal_head_portrait_msg_protocol.cc">
+      <Filter>classes\cpp\logic\lua_bind\auto</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\customer\src\cpp\logic\msg\protocol\table_msg_protocol.pb.cc">
+      <Filter>classes\cpp\logic\msg\protocol</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\customer\src\cpp\logic\lua_bind\auto\lua_bind_table_msg_protocol.cc">
       <Filter>classes\cpp\logic\lua_bind\auto</Filter>
     </ClCompile>
   </ItemGroup>
@@ -1445,6 +1463,18 @@
     </None>
     <None Include="..\..\..\..\customer\src\lua\logic\manager\audio_manager.lua">
       <Filter>classes\lua\logic\manager</Filter>
+    </None>
+    <None Include="..\..\..\..\customer\src\lua\view\layouts\ui\hall\room_list\room_item_node_layout.lua">
+      <Filter>classes\lua\view\layout\ui\hall\room_list</Filter>
+    </None>
+    <None Include="..\..\..\..\customer\src\lua\view\layouts\ui\hall\room_list\room_list_layer_layout.lua">
+      <Filter>classes\lua\view\layout\ui\hall\room_list</Filter>
+    </None>
+    <None Include="..\..\..\..\customer\src\lua\view\hall\room_list\room_list_popup.lua">
+      <Filter>classes\lua\view\hall\room_list</Filter>
+    </None>
+    <None Include="..\..\..\..\customer\src\lua\logic\constant\room_constants.lua">
+      <Filter>classes\lua\logic\constant</Filter>
     </None>
   </ItemGroup>
 </Project>

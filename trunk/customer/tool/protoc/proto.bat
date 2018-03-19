@@ -1,2 +1,2 @@
-protoc -I=./ --cpp_out=./ ./player_msg_protocol.proto
+protoc -I=./ --cpp_out=./ ./room_msg_protocol.proto
 pause

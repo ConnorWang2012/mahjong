@@ -84,14 +84,14 @@
             <PreSize X="0.8333" Y="0.7407" />
             <FileData Type="Normal" Path="assets/common/popup_bg1.png" Plist="" />
           </AbstractNodeData>
-          <AbstractNodeData Name="txt_loading" ActionTag="-1952094019" VisibleForFrame="False" Tag="46" IconVisible="False" PositionPercentXEnabled="True" PositionPercentYEnabled="True" LeftMargin="785.0000" RightMargin="785.0000" TopMargin="566.5000" BottomMargin="458.5000" FontSize="45" LabelText="正在努力加载中..." ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="TextObjectData">
-            <Size X="350.0000" Y="55.0000" />
+          <AbstractNodeData Name="txt_loading" ActionTag="-1952094019" VisibleForFrame="False" Tag="46" IconVisible="False" PositionPercentXEnabled="True" PositionPercentYEnabled="True" LeftMargin="727.0000" RightMargin="727.0000" TopMargin="557.5000" BottomMargin="449.5000" FontSize="60" LabelText="正在努力加载中..." ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="TextObjectData">
+            <Size X="466.0000" Y="73.0000" />
             <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
             <Position X="960.0000" Y="486.0000" />
             <Scale ScaleX="1.0000" ScaleY="1.0000" />
             <CColor A="255" R="255" G="255" B="255" />
             <PrePosition X="0.5000" Y="0.4500" />
-            <PreSize X="0.1823" Y="0.0509" />
+            <PreSize X="0.2427" Y="0.0676" />
             <FontResource Type="Normal" Path="assets/font/FZZhengHeiS-B-GB.ttf" Plist="" />
             <OutlineColor A="255" R="255" G="0" B="0" />
             <ShadowColor A="255" R="110" G="110" B="110" />

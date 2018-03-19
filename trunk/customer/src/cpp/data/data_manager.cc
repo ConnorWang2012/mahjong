@@ -99,10 +99,11 @@ void DataManager::updateCardAfterOperation(PlayCardMsgProtocol* proto)
         if (proto->new_card() != CardConstants::INVALID_CARD_VALUE)
         {
             this->updateCardForNewCardOfPlayerSelf(proto->new_card());
-            auto num = room_msg_protocol_->remain_cards_num() - 1;
+			auto table = room_msg_protocol_->table_list(0);
+            auto num = table.remain_cards_num() - 1;
             if (num >= 0)
             {
-                room_msg_protocol_->set_remain_cards_num(num);
+				table.set_remain_cards_num(num);
             }
         }
 
@@ -121,10 +122,11 @@ void DataManager::updateCardAfterOperation(PlayCardMsgProtocol* proto)
         if (proto->has_next_operate_player_new_card())
         {
             this->updateCardForNewCardOfOtherPlayer(proto->next_operate_player_id());
-            auto num = room_msg_protocol_->remain_cards_num() - 1;
+			auto table = room_msg_protocol_->table_list(0);
+			auto num = table.remain_cards_num() - 1;
             if (num >= 0)
             {
-                room_msg_protocol_->set_remain_cards_num(num);
+				table.set_remain_cards_num(num);
             }
         }
     }

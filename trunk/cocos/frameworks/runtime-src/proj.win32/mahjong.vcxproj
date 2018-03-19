@@ -222,6 +222,7 @@ xcopy /Y /Q "$(LocalDebuggerWorkingDirectory)\*.exe" "$(LocalDebuggerWorkingDire
     <ClInclude Include="..\..\..\..\customer\src\cpp\logic\constant\command_constants.h" />
     <ClInclude Include="..\..\..\..\customer\src\cpp\logic\constant\event_constants.h" />
     <ClInclude Include="..\..\..\..\customer\src\cpp\logic\constant\player_constants.h" />
+    <ClInclude Include="..\..\..\..\customer\src\cpp\logic\constant\room_constants.h" />
     <ClInclude Include="..\..\..\..\customer\src\cpp\logic\log\mylog.h" />
     <ClInclude Include="..\..\..\..\customer\src\cpp\logic\lua_bind\lua_bind_helper.h" />
     <ClInclude Include="..\..\..\..\customer\src\cpp\logic\lua_bind\lua_bind_register.h" />
@@ -248,6 +249,7 @@ xcopy /Y /Q "$(LocalDebuggerWorkingDirectory)\*.exe" "$(LocalDebuggerWorkingDire
     <ClInclude Include="..\..\..\..\customer\src\cpp\logic\msg\protocol\room_msg_protocol.pb.h" />
     <ClInclude Include="..\..\..\..\customer\src\cpp\logic\msg\protocol\room_operation_msg_protocol.pb.h" />
     <ClInclude Include="..\..\..\..\customer\src\cpp\logic\msg\protocol\set_property_msg_protocol.pb.h" />
+    <ClInclude Include="..\..\..\..\customer\src\cpp\logic\msg\protocol\table_msg_protocol.pb.h" />
     <ClInclude Include="..\..\..\..\customer\src\cpp\logic\msg\protocol\ting_card_msg_protocol.pb.h" />
     <ClInclude Include="..\..\..\..\customer\src\cpp\logic\provider\id_provider.h" />
     <ClInclude Include="..\..\..\..\customer\src\cpp\network\google\protobuf\config.h" />
@@ -449,6 +451,7 @@ xcopy /Y /Q "$(LocalDebuggerWorkingDirectory)\*.exe" "$(LocalDebuggerWorkingDire
     <ClCompile Include="..\..\..\..\customer\src\cpp\logic\lua_bind\auto\lua_bind_room_msg_protocol.cc" />
     <ClCompile Include="..\..\..\..\customer\src\cpp\logic\lua_bind\auto\lua_bind_room_operation_msg_protocol.cc" />
     <ClCompile Include="..\..\..\..\customer\src\cpp\logic\lua_bind\auto\lua_bind_set_property_msg_protocol.cc" />
+    <ClCompile Include="..\..\..\..\customer\src\cpp\logic\lua_bind\auto\lua_bind_table_msg_protocol.cc" />
     <ClCompile Include="..\..\..\..\customer\src\cpp\logic\lua_bind\auto\lua_bind_ting_card_msg_protocol.cc" />
     <ClCompile Include="..\..\..\..\customer\src\cpp\logic\lua_bind\lua_bind_helper.cc" />
     <ClCompile Include="..\..\..\..\customer\src\cpp\logic\lua_bind\lua_bind_register.cc" />
@@ -466,6 +469,7 @@ xcopy /Y /Q "$(LocalDebuggerWorkingDirectory)\*.exe" "$(LocalDebuggerWorkingDire
     <ClCompile Include="..\..\..\..\customer\src\cpp\logic\msg\protocol\room_msg_protocol.pb.cc" />
     <ClCompile Include="..\..\..\..\customer\src\cpp\logic\msg\protocol\room_operation_msg_protocol.pb.cc" />
     <ClCompile Include="..\..\..\..\customer\src\cpp\logic\msg\protocol\set_property_msg_protocol.pb.cc" />
+    <ClCompile Include="..\..\..\..\customer\src\cpp\logic\msg\protocol\table_msg_protocol.pb.cc" />
     <ClCompile Include="..\..\..\..\customer\src\cpp\logic\msg\protocol\ting_card_msg_protocol.pb.cc" />
     <ClCompile Include="..\..\..\..\customer\src\cpp\network\google\protobuf\descriptor.cc" />
     <ClCompile Include="..\..\..\..\customer\src\cpp\network\google\protobuf\descriptor.pb.cc" />
@@ -536,6 +540,7 @@ xcopy /Y /Q "$(LocalDebuggerWorkingDirectory)\*.exe" "$(LocalDebuggerWorkingDire
     <None Include="..\..\..\..\customer\src\lua\logic\constant\msg_type.lua" />
     <None Include="..\..\..\..\customer\src\lua\logic\constant\player_constants.lua" />
     <None Include="..\..\..\..\customer\src\lua\logic\constant\property_id.lua" />
+    <None Include="..\..\..\..\customer\src\lua\logic\constant\room_constants.lua" />
     <None Include="..\..\..\..\customer\src\lua\logic\helper\play_card_helper.lua" />
     <None Include="..\..\..\..\customer\src\lua\logic\init_logic.lua" />
     <None Include="..\..\..\..\customer\src\lua\logic\init_modules.lua" />
@@ -573,6 +578,7 @@ xcopy /Y /Q "$(LocalDebuggerWorkingDirectory)\*.exe" "$(LocalDebuggerWorkingDire
     <None Include="..\..\..\..\customer\src\lua\view\hall\join_room\join_room_popup.lua" />
     <None Include="..\..\..\..\customer\src\lua\view\hall\player_info\hall_player_info_popup.lua" />
     <None Include="..\..\..\..\customer\src\lua\view\hall\player_info\head_portrait_select_popup.lua" />
+    <None Include="..\..\..\..\customer\src\lua\view\hall\room_list\room_list_popup.lua" />
     <None Include="..\..\..\..\customer\src\lua\view\hall\setting\setting_popup.lua" />
     <None Include="..\..\..\..\customer\src\lua\view\hall\store\store_popup.lua" />
     <None Include="..\..\..\..\customer\src\lua\view\init_view.lua" />
@@ -589,6 +595,8 @@ xcopy /Y /Q "$(LocalDebuggerWorkingDirectory)\*.exe" "$(LocalDebuggerWorkingDire
     <None Include="..\..\..\..\customer\src\lua\view\layouts\ui\hall\join_room\join_room_layer_layout.lua" />
     <None Include="..\..\..\..\customer\src\lua\view\layouts\ui\hall\player_info\hall_player_info_layer_layout.lua" />
     <None Include="..\..\..\..\customer\src\lua\view\layouts\ui\hall\player_info\head_portrait_select_layer_layout.lua" />
+    <None Include="..\..\..\..\customer\src\lua\view\layouts\ui\hall\room_list\room_item_node_layout.lua" />
+    <None Include="..\..\..\..\customer\src\lua\view\layouts\ui\hall\room_list\room_list_layer_layout.lua" />
     <None Include="..\..\..\..\customer\src\lua\view\layouts\ui\hall\setting\setting_layer_layout.lua" />
     <None Include="..\..\..\..\customer\src\lua\view\layouts\ui\hall\store\store_item_node_layout.lua" />
     <None Include="..\..\..\..\customer\src\lua\view\layouts\ui\hall\store\store_layer_layout.lua" />

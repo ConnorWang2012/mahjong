@@ -31,10 +31,10 @@
     <Item Key="TabsParamsKey">
       <Value ctype="TabsInfo">
         <OpenedDocuments>
-          <FilePathData Path="layouts/ui/hall/hall_top_node_layout.csd" />
-          <FilePathData Path="layouts/ui/hall/setting/setting_layer_layout.csd" />
+          <FilePathData Path="layouts/ui/hall/room_list/room_list_layer_layout.csd" />
+          <FilePathData Path="layouts/ui/hall/room_list/room_item_node_layout.csd" />
         </OpenedDocuments>
-        <ActiveDocument Path="layouts/ui/hall/setting/setting_layer_layout.csd" />
+        <ActiveDocument Path="layouts/ui/hall/room_list/room_list_layer_layout.csd" />
       </Value>
     </Item>
   </Properties>

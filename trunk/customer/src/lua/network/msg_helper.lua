@@ -13,6 +13,7 @@ modification:
 --]]
 
 local CardConst = require "logic.constant.card_constants.lua"
+local RoomConst = require "logic.constant.room_constants.lua"
 local M = {}
 
 function M.sendGetPlayerInfoMsg(player_id)
@@ -34,23 +35,24 @@ function M.sendGetSelfPlayerInfoMsg()
 	M.sendGetPlayerInfoMsg(gamer.data_mgr_:self_player_id())
 end
 
-function M.sendStartGameMsg()
-	print("[MsgHelper.sendStartGameMsg]")
+function M.sendPersonalRoomStartGameMsg()
+	print("[MsgHelper.sendPersonalRoomStartGameMsg]")
 	local proto_room = gamer.data_mgr_:create_room_msg_protocol()
 	if not proto_room then
-		print("[MsgHelper.sendStartGameMsg] create_room_msg_protocol nil!")
+		print("[MsgHelper.sendPersonalRoomStartGameMsg] create_room_msg_protocol nil!")
 	end
 
 	if gamer.data_mgr_:self_player_id() == proto_room:room_owner_id() then
-		print("[MsgHelper.sendStartGameMsg] send start game msg")
+		print("[MsgHelper.sendPersonalRoomStartGameMsg] send start game msg")
 		local proto = gamer.protocol.RoomMsgProtocol()
 		proto:set_room_id(proto_room:room_id())
 		proto:set_room_owner_id(proto_room:room_owner_id())
+		proto:set_room_type(RoomConst.RoomTypes.PERSONAL_ROOM)
 
 		gamer.msg_mgr_:sendMsg(gamer.MsgTypes.C2S_MSG_TYPE_ROOM, 
 			gamer.MsgIDs.MSG_ID_ROOM_START_GAME, proto)
 	else
-		print("[MsgHelper.sendStartGameMsg] not room owner")
+		print("[MsgHelper.sendPersonalRoomStartGameMsg] not room owner")
 	end
 end
 
@@ -58,7 +60,7 @@ function M.sendPlayCardMsg(operation_id, card)
 	print("[MsgHelper.sendPlayCardMsg]")
 	local proto = gamer.protocol.PlayCardMsgProtocol()
 	proto:set_player_id(gamer.data_mgr_:self_player_id())
-	proto:set_room_id(gamer.data_mgr_:room_msg_protocol():room_id())
+	proto:set_room_id(gamer.data_mgr_:room_msg_protocol():table_list(0):room_id())
 	proto:set_cur_round(1) -- TODO : cur round
 	proto:set_operation_id(operation_id)
 	if operation_id == CardConst.OperationIDs.OPERATION_CHI then

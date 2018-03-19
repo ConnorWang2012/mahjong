@@ -119,6 +119,12 @@
             <Image Name="pop_close1.png" />
             <Image Name="popup_bg1.png" />
             <Image Name="title_bg1.png" />
+            <Folder Name="bg">
+              <Image Name="bg1.jpg" />
+            </Folder>
+            <Folder Name="girl">
+              <Image Name="girl1.png" />
+            </Folder>
           </Folder>
           <Folder Name="font">
             <TTF Name="FZZhengHeiS-B-GB.ttf" />
@@ -174,14 +180,14 @@
                 <PlistImageFile Name="hall_title_name.png" Key="hall_title_name.png" />
               </PlistImageFolder>
             </Folder>
-            <Image Name="hall_bg.jpg" />
-            <Image Name="hall_bottom_bg.png" />
             <Folder Name="setting">
               <Image Name="i_bgm_off.png" />
               <Image Name="i_bgm_on.png" />
               <Image Name="i_effect_music_off.png" />
               <Image Name="i_effect_music_on.png" />
             </Folder>
+            <Image Name="hall_bg.jpg" />
+            <Image Name="hall_bottom_bg.png" />
           </Folder>
           <Folder Name="login">
             <Image Name="login_bg.jpg" />
@@ -332,6 +338,9 @@
                 <Project Name="hall_player_info_layer_layout.csd" Type="Layer" />
                 <Project Name="head_portrait_select_layer_layout.csd" Type="Layer" />
               </Folder>
+              <Folder Name="setting">
+                <Project Name="setting_layer_layout.csd" Type="Layer" />
+              </Folder>
               <Folder Name="store">
                 <Project Name="store_item_node_layout.csd" Type="Node" />
                 <Project Name="store_layer_layout.csd" Type="Layer" />
@@ -341,8 +350,9 @@
               <Project Name="hall_player_head_node_layout.csd" Type="Node" />
               <Project Name="hall_top_node_layout.csd" Type="Node" />
               <Project Name="head_node_layout.csd" Type="Node" />
-              <Folder Name="setting">
-                <Project Name="setting_layer_layout.csd" Type="Layer" />
+              <Folder Name="room_list">
+                <Project Name="room_item_node_layout.csd" Type="Node" />
+                <Project Name="room_list_layer_layout.csd" Type="Layer" />
               </Folder>
             </Folder>
             <Folder Name="room">

@@ -63,7 +63,7 @@ function GameEndPopup:onImgGobackHallTouch()
 end
 
 function GameEndPopup:onImgPlayAgainTouch()
-	gamer.msg_helper_.sendStartGameMsg()
+	gamer.msg_helper_.sendPersonalRoomStartGameMsg()
 	self:removeFromParent(true)
 end
 
