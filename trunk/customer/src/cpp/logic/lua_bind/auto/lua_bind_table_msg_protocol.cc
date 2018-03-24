@@ -1,6 +1,6 @@
 /*
 ** Lua binding: table_msg_protocol
-** Generated automatically by tolua++-1.0.92 on 03/19/18 22:39:58.
+** Generated automatically by tolua++-1.0.92 on 03/22/18 20:21:03.
 */
 
 #ifndef __cplusplus

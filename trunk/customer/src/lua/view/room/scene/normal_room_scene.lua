@@ -34,6 +34,7 @@ function NormalRoomScene:ctor(view_file)
 end
 
 function NormalRoomScene:initForGameStart()
+	print("[NormalRoomScene:initForGameStart]")
 	self.player_self_last_discard_		= nil
 	self.left_player_last_discard_		= nil
 	self.opposite_player_last_discard_	= nil
@@ -53,11 +54,13 @@ function NormalRoomScene:initAnimationLayer()
 end
 
 function NormalRoomScene:initMahjongLayer()
+	print("[NormalRoomScene:initMahjongLayer]")
 	self:initMahjongs()
 	self:initPlayCardTimerAndDirection()
 end
 
 function NormalRoomScene:initPlayerHeadLayer()
+	print("[NormalRoomScene:initPlayerHeadLayer]")
 	if self.player_head_layer_ then
 		return
 	end
@@ -132,6 +135,7 @@ function NormalRoomScene:initMenuLayer()
 end
 
 function NormalRoomScene:initMahjongs()
+	print("[NormalRoomScene:initMahjongs]")
 	if not self.mahjong_layer_ then
 		self.mahjong_layer_ = cc.Layer:create()
 		self.mahjong_layer_:setLocalZOrder(gamer.LocalZOrders.ROOM_MAHJONG_LAYER)
@@ -157,12 +161,14 @@ function NormalRoomScene:initMahjongs()
 end
 
 function NormalRoomScene:initPlayCardTimerAndDirection()
+	print("[NormalRoomScene:initPlayCardTimerAndDirection]")
 	-- show timer and direction
 	PlayCardHelper.setPlayerDirection(gamer.data_mgr_:self_player_id(), MahjongConst.Directions.SELF)	
 	self:showFlagForOperatingPlayer()
 end
 
 function NormalRoomScene:initMahjongsOfPlayerSelf()
+	print("[NormalRoomScene:initMahjongsOfPlayerSelf]")
 	-- visible hand cards(not including flower cards)
 	self:initVisibleMahjongsOfPlayerSelf()
 
@@ -182,6 +188,8 @@ function NormalRoomScene:initMahjongsOfLeftPlayer()
 end
 
 function NormalRoomScene:initMahjongsOfOppositePlayer()
+	print("[NormalRoomScene:initMahjongsOfOppositePlayer]")
+
 	self:initMahjongsForOppositePlayer()
 
 	-- direction
@@ -198,6 +206,7 @@ function NormalRoomScene:initMahjongsOfRightPlayer()
 end
 
 function NormalRoomScene:initVisibleMahjongsOfPlayerSelf()
+	print("[NormalRoomScene:initVisibleMahjongsOfPlayerSelf]")
 	local player_cards         = gamer.data_mgr_:cards_msg_protocol_of_player_self()
 	local ming_gang_cards_size = player_cards:ming_gang_cards_size()
 	local an_gang_cards_size   = player_cards:an_gang_cards_size()
@@ -287,6 +296,7 @@ function NormalRoomScene:initVisibleMahjongsOfPlayerSelf()
 end
 
 function NormalRoomScene:initVisibleFlowerMahjongsOfPlayerSelf()
+	print("[NormalRoomScene:initVisibleFlowerMahjongsOfPlayerSelf]")
 	-- flower and season
 	local player_cards      = gamer.data_mgr_:cards_msg_protocol_of_player_self()
 	local flower_cards_size = player_cards:flower_cards_size()
@@ -325,6 +335,7 @@ function NormalRoomScene:initVisibleFlowerMahjongsOfPlayerSelf()
 end
 
 function NormalRoomScene:initInvisibleMahjongsOfPlayerSelf()
+	print("[NormalRoomScene:initInvisibleMahjongsOfPlayerSelf]")
 	self.invisible_mj_nodes_player_self_ = {}
 	local myInsert = table.insert
 	local player_cards = gamer.data_mgr_:cards_msg_protocol_of_player_self()
@@ -501,6 +512,7 @@ function NormalRoomScene:initMahjongsForLeftPlayer()
 end
 
 function NormalRoomScene:initMahjongsForOppositePlayer()
+	print("[NormalRoomScene:initMahjongsForOppositePlayer]")
 	-- 1.visible mahjong nodes
 	local player_cards         = gamer.data_mgr_:cards_msg_protocol_of_opposite_player()
 	local ming_gang_cards_size = player_cards:ming_gang_cards_size()
@@ -840,13 +852,14 @@ end
 
 -- TODO : use event listener
 function NormalRoomScene:updateRemainCardsNum(first_update)
+	print("[NormalRoomScene:updateRemainCardsNum]")
 	if not self.txt_remain_cards_ then
 		local tmp = self.root_node_:getChildByName("img_remain_cards")
 		self.txt_remain_cards_ = tmp:getChildByName("txt_remain_cards")
 	end
 
 	if first_update then
-		local num = gamer.data_mgr_:room_msg_protocol():remain_cards_num()
+		local num = gamer.data_mgr_:room_msg_protocol():table_list(0):remain_cards_num()
 		if num >= 0 then
 			self.txt_remain_cards_:setString(tostring(num))
 		end

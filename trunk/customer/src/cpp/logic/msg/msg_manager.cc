@@ -598,7 +598,6 @@ void MsgManager::dealWithStartGameMsg(const ServerMsg& msg)
 {
     auto data_mgr = DataManager::getInstance();
     auto proto = data_mgr->room_msg_protocol();
-	auto table = proto->table_list(0);
     if ( !this->parseMsg(msg, proto) )
     {
         // TODO : log
@@ -609,8 +608,10 @@ void MsgManager::dealWithStartGameMsg(const ServerMsg& msg)
     // set cards for all players
     // player self
     auto self_player_id = data_mgr->self_player_id();
-    auto n = table.player_cards_size();
-    auto index = 0;
+	auto table          = proto->table_list(0);
+    auto n              = table.player_cards_size();
+    auto index          = 0;
+
     for (auto i = 0; i < n; i++)
     {
         if (self_player_id == table.player_cards(i).player_id())

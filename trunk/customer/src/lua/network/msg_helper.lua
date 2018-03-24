@@ -59,10 +59,11 @@ end
 function M.sendPlayCardMsg(operation_id, card)
 	print("[MsgHelper.sendPlayCardMsg]")
 	local proto = gamer.protocol.PlayCardMsgProtocol()
+	proto:set_room_id(gamer.data_mgr_:room_msg_protocol():room_id())
+	proto:set_table_id(gamer.data_mgr_:room_msg_protocol():table_list(0):table_id())
 	proto:set_player_id(gamer.data_mgr_:self_player_id())
-	proto:set_room_id(gamer.data_mgr_:room_msg_protocol():table_list(0):room_id())
-	proto:set_cur_round(1) -- TODO : cur round
 	proto:set_operation_id(operation_id)
+	proto:set_cur_round(1) -- TODO : cur round
 	if operation_id == CardConst.OperationIDs.OPERATION_CHI then
 		local discard = gamer.data_mgr_:play_card_msg_protocol():discard()
 		proto:set_discard(discard)

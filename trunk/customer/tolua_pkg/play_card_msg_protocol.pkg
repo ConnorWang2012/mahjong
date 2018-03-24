@@ -26,6 +26,9 @@ public:
 	inline void set_room_id(unsigned int value);
 	inline unsigned int room_id() const;
 
+	inline void set_table_id(unsigned int value);
+	inline unsigned int table_id() const;
+
 	inline void set_cur_round(unsigned int value);
 	inline unsigned int cur_round() const;
 

@@ -20,7 +20,6 @@ public:
 
 	int ByteSize() const;
 
-	// room common
 	inline void set_room_id(unsigned int value);
 	inline unsigned int room_id() const;
 
