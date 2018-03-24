@@ -1,6 +1,6 @@
-/*******************************************************************************
+ï»¿/*******************************************************************************
   @ copyright(C), 2015-2020, ConnorAndHisFriendsCompany.Inc
-  @ filename:	  myevent.h£¨for libevent, can not name event.h£©
+  @ filename:	  myevent.hï¿½ï¿½for libevent, can not name event.hï¿½ï¿½
   @ author:		  Connor
   @ version:	  1.0.0
   @ date:		  2015-01-18

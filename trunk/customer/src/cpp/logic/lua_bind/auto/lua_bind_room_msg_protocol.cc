@@ -1,4 +1,4 @@
-/*
+﻿/*
 ** Lua binding: room_msg_protocol
 ** Generated automatically by tolua++-1.0.92 on 03/22/18 20:21:07.
 */

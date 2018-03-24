@@ -1,4 +1,4 @@
-/*
+﻿/*
 ** Lua binding: mylog
 ** Generated automatically by tolua++-1.0.92 on 09/04/17 18:43:04.
 */

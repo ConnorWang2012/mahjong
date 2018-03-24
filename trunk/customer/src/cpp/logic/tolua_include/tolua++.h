@@ -1,4 +1,4 @@
-/* tolua
+﻿/* tolua
 ** Support code for Lua bindings.
 ** Written by Waldemar Celes
 ** TeCGraf/PUC-Rio

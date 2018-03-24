@@ -1,4 +1,4 @@
-/*******************************************************************************
+ï»¿/*******************************************************************************
 @ copyright(C), 2015-2020, ConnorAndHisFriendsCompany.Inc
 @ filename:	    msg_manager.h
 @ author:	    Connor
@@ -153,8 +153,8 @@ private:
                                  msg_header_t msg_id,
                                  const MsgResponseCallback& listener);
 
-    // use main thread£¨UI thread£©to dispatch msg£¨can not dispatch msg in network thread, 
-    // because in network thread use UI will be crash, and usually, customer use UI in msg callback£©.
+    // use main threadï¿½ï¿½UI threadï¿½ï¿½to dispatch msgï¿½ï¿½can not dispatch msg in network thread, 
+    // because in network thread use UI will be crash, and usually, customer use UI in msg callbackï¿½ï¿½.
     void dispatchMsg(int msg_code, 
                      msg_header_t msg_type, 
                      msg_header_t msg_id, 

@@ -1,4 +1,4 @@
-/*
+﻿/*
 ** Lua binding: msg_manager
 ** Generated automatically by tolua++-1.0.92 on 02/10/18 19:16:40.
 */

@@ -1,4 +1,4 @@
-/*
+﻿/*
 ** Lua binding: command_manager
 ** Generated automatically by tolua++-1.0.92 on 11/17/17 11:39:35.
 */

@@ -1,4 +1,4 @@
-/*
+﻿/*
 ** Lua binding: msg
 ** Generated automatically by tolua++-1.0.92 on 06/10/17 01:12:26.
 */

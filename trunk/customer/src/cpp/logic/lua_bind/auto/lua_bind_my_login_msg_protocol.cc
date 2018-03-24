@@ -1,4 +1,4 @@
-/*
+﻿/*
 ** Lua binding: my_login_msg_protocol
 ** Generated automatically by tolua++-1.0.92 on 11/06/17 14:37:42.
 */

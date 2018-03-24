@@ -1,4 +1,4 @@
-/*
+﻿/*
 ** Lua binding: personal_head_portrait_msg_protocol
 ** Generated automatically by tolua++-1.0.92 on 02/10/18 17:01:08.
 */

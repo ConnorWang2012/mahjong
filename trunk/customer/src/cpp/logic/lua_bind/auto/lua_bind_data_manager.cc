@@ -1,4 +1,4 @@
-/*
+﻿/*
 ** Lua binding: data_manager
 ** Generated automatically by tolua++-1.0.92 on 11/05/17 13:15:00.
 */

@@ -1,4 +1,4 @@
-/*
+﻿/*
 ** Lua binding: game_end_msg_protocol
 ** Generated automatically by tolua++-1.0.92 on 11/05/17 18:41:49.
 */

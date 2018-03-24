@@ -1,4 +1,4 @@
-/*
+﻿/*
 ** Lua binding: network_manager
 ** Generated automatically by tolua++-1.0.92 on 05/22/17 23:01:24.
 */

@@ -1,4 +1,4 @@
-/*
+﻿/*
 ** Lua binding: property_changed_msg_protocol
 ** Generated automatically by tolua++-1.0.92 on 12/17/17 15:55:59.
 */
