@@ -18,12 +18,12 @@ function CenterTipPopup:ctor(view_file, txt_tip, show_time)
 	print("[CenterTipPopup:ctor]")
     self.super.ctor(self, view_file)
 
-	self:initLayout(show_time)
+	self:initView(show_time)
 	self:setTip(txt_tip)
 	self:showAsTop()
 end
 
-function CenterTipPopup:initLayout(show_time)
+function CenterTipPopup:initView(show_time)
 	self:setAnchorPoint(cc.p(0.5, 0.5))
 	self:setPosition(display.center)
 

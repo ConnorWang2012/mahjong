@@ -122,9 +122,10 @@ static int tolua_msg_manager_gamer_MsgManager_addMsgListener00(lua_State* tolua_
 #endif
   {
    self->addMsgListener(msg_type, msg_id, listener_id);
+   tolua_pushcppstring(tolua_S, (const char*)listener_id);
   }
  }
- return 0;
+ return 1;
 #ifndef TOLUA_RELEASE
  tolua_lerror:
  tolua_error(tolua_S,"#ferror in function 'addMsgListener'.",&tolua_err);
@@ -158,9 +159,10 @@ static int tolua_msg_manager_gamer_MsgManager_addMsgListener01(lua_State* tolua_
 #endif
   {
    self->addMsgListener(msg_type, listener_id);
+   tolua_pushcppstring(tolua_S, (const char*)listener_id);
   }
  }
- return 0;
+ return 1;
 tolua_lerror:
  return tolua_msg_manager_gamer_MsgManager_addMsgListener00(tolua_S);
 }
@@ -237,6 +239,34 @@ tolua_lerror:
 }
 #endif //#ifndef TOLUA_DISABLE
 
+/* method: removeMsgListener of class  gamer::MsgManager */
+#ifndef TOLUA_DISABLE_tolua_msg_manager_gamer_MsgManager_removeMsgListener02
+static int tolua_msg_manager_gamer_MsgManager_removeMsgListener02(lua_State* tolua_S)
+{
+	tolua_Error tolua_err;
+	if (
+		!tolua_isusertype(tolua_S, 1, "gamer::MsgManager", 0, &tolua_err) ||
+		!tolua_isstring(tolua_S, 2, 0, &tolua_err) ||
+		!tolua_isnoobj(tolua_S, 3, &tolua_err)
+		)
+		goto tolua_lerror;
+	else
+	{
+		gamer::MsgManager* self = (gamer::MsgManager*)tolua_tousertype(tolua_S, 1, 0);
+		const char* listener_id = ((const char*)tolua_tostring(tolua_S, 2, 0));
+#ifndef TOLUA_RELEASE
+		if (!self) tolua_error(tolua_S, "invalid 'self' in function 'removeMsgListener'", NULL);
+#endif
+		{
+			self->removeMsgListener(listener_id);
+		}
+	}
+	return 0;
+tolua_lerror:
+	return tolua_msg_manager_gamer_MsgManager_removeMsgListener00(tolua_S);
+}
+#endif //#ifndef TOLUA_DISABLE
+
 /* Open function */
 TOLUA_API int tolua_msg_manager_open (lua_State* tolua_S)
 {
@@ -254,6 +284,7 @@ TOLUA_API int tolua_msg_manager_open (lua_State* tolua_S)
     tolua_function(tolua_S,"addMsgListener",tolua_msg_manager_gamer_MsgManager_addMsgListener01);
     tolua_function(tolua_S,"removeMsgListener",tolua_msg_manager_gamer_MsgManager_removeMsgListener00);
     tolua_function(tolua_S,"removeMsgListener",tolua_msg_manager_gamer_MsgManager_removeMsgListener01);
+	tolua_function(tolua_S,"removeMsgListener",tolua_msg_manager_gamer_MsgManager_removeMsgListener02);
    tolua_endmodule(tolua_S);
   tolua_endmodule(tolua_S);
  tolua_endmodule(tolua_S);

@@ -39,7 +39,7 @@
                 <PreSize X="0.3650" Y="0.1700" />
                 <FileData Type="PlistSubImage" Path="hall_title_bg.png" Plist="assets/hall/plist/hall_top.plist" />
               </AbstractNodeData>
-              <AbstractNodeData Name="txt_tab1" ActionTag="940520362" Tag="97" IconVisible="False" PositionPercentXEnabled="True" PositionPercentYEnabled="True" LeftMargin="299.5600" RightMargin="1150.4399" TopMargin="-77.2200" BottomMargin="816.2200" FontSize="50" LabelText="挑战场" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="TextObjectData">
+              <AbstractNodeData Name="txt_room_name1" ActionTag="940520362" Tag="97" IconVisible="False" PositionPercentXEnabled="True" PositionPercentYEnabled="True" LeftMargin="299.5600" RightMargin="1150.4399" TopMargin="-77.2200" BottomMargin="816.2200" FontSize="50" LabelText="挑战场" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="TextObjectData">
                 <Size X="150.0000" Y="61.0000" />
                 <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
                 <Position X="374.5600" Y="846.7200" />
@@ -51,7 +51,7 @@
                 <OutlineColor A="255" R="255" G="0" B="0" />
                 <ShadowColor A="255" R="110" G="110" B="110" />
               </AbstractNodeData>
-              <AbstractNodeData Name="txt_tab2" ActionTag="1959400809" Tag="98" IconVisible="False" PositionPercentXEnabled="True" PositionPercentYEnabled="True" LeftMargin="725.0000" RightMargin="725.0000" TopMargin="-77.2200" BottomMargin="816.2200" FontSize="50" LabelText="财富场" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="TextObjectData">
+              <AbstractNodeData Name="txt_room_name2" ActionTag="1959400809" Tag="98" IconVisible="False" PositionPercentXEnabled="True" PositionPercentYEnabled="True" LeftMargin="725.0000" RightMargin="725.0000" TopMargin="-77.2200" BottomMargin="816.2200" FontSize="50" LabelText="财富场" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="TextObjectData">
                 <Size X="150.0000" Y="61.0000" />
                 <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
                 <Position X="800.0000" Y="846.7200" />
@@ -63,7 +63,7 @@
                 <OutlineColor A="255" R="255" G="0" B="0" />
                 <ShadowColor A="255" R="110" G="110" B="110" />
               </AbstractNodeData>
-              <AbstractNodeData Name="txt_tab3" ActionTag="1647025430" Tag="99" IconVisible="False" PositionPercentXEnabled="True" PositionPercentYEnabled="True" LeftMargin="1140.0400" RightMargin="309.9600" TopMargin="-77.2200" BottomMargin="816.2200" FontSize="50" LabelText="巅峰场" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="TextObjectData">
+              <AbstractNodeData Name="txt_room_name3" ActionTag="1647025430" Tag="99" IconVisible="False" PositionPercentXEnabled="True" PositionPercentYEnabled="True" LeftMargin="1140.0400" RightMargin="309.9600" TopMargin="-77.2200" BottomMargin="816.2200" FontSize="50" LabelText="巅峰场" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="TextObjectData">
                 <Size X="150.0000" Y="61.0000" />
                 <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
                 <Position X="1215.0400" Y="846.7200" />
@@ -136,7 +136,7 @@
           <AbstractNodeData Name="panel_data" ActionTag="1032474549" Tag="139" IconVisible="False" PositionPercentXEnabled="True" PositionPercentYEnabled="True" LeftMargin="160.0000" RightMargin="160.0000" TopMargin="194.0000" BottomMargin="86.0000" TouchEnable="True" ClipAble="False" BackColorAlpha="102" ColorAngle="90.0000" Scale9Width="1" Scale9Height="1" ctype="PanelObjectData">
             <Size X="1600.0000" Y="800.0000" />
             <Children>
-              <AbstractNodeData Name="lv_rooms" ActionTag="152072460" Tag="128" IconVisible="False" PositionPercentXEnabled="True" PositionPercentYEnabled="True" LeftMargin="50.0000" RightMargin="50.0000" TopMargin="71.5000" BottomMargin="71.5000" TouchEnable="True" ClipAble="True" BackColorAlpha="102" ColorAngle="90.0000" IsBounceEnabled="True" ScrollDirectionType="0" VerticalType="Align_VerticalCenter" ctype="ListViewObjectData">
+              <AbstractNodeData Name="lv_rooms" ActionTag="152072460" Tag="128" IconVisible="False" PositionPercentXEnabled="True" PositionPercentYEnabled="True" LeftMargin="50.0000" RightMargin="50.0000" TopMargin="71.5000" BottomMargin="71.5000" TouchEnable="True" ClipAble="True" BackColorAlpha="102" ColorAngle="90.0000" Scale9Width="1" Scale9Height="1" IsBounceEnabled="True" ScrollDirectionType="0" VerticalType="Align_VerticalCenter" ctype="ListViewObjectData">
                 <Size X="1500.0000" Y="657.0000" />
                 <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
                 <Position X="800.0000" Y="400.0000" />

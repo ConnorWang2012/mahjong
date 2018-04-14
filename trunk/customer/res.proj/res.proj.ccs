@@ -21,6 +21,12 @@
         </Folder>
         <Folder Name="assets">
           <Folder Name="common">
+            <Folder Name="bg">
+              <Image Name="bg1.jpg" />
+            </Folder>
+            <Folder Name="girl">
+              <Image Name="girl1.png" />
+            </Folder>
             <Folder Name="plist">
               <PlistImageFolder Image="head.png" PListFile="head.plist" Name=".head_PList.Dir">
                 <PlistImageFile Name="default_head.jpg" Key="default_head.jpg" />
@@ -119,12 +125,6 @@
             <Image Name="pop_close1.png" />
             <Image Name="popup_bg1.png" />
             <Image Name="title_bg1.png" />
-            <Folder Name="bg">
-              <Image Name="bg1.jpg" />
-            </Folder>
-            <Folder Name="girl">
-              <Image Name="girl1.png" />
-            </Folder>
           </Folder>
           <Folder Name="font">
             <TTF Name="FZZhengHeiS-B-GB.ttf" />
@@ -338,6 +338,10 @@
                 <Project Name="hall_player_info_layer_layout.csd" Type="Layer" />
                 <Project Name="head_portrait_select_layer_layout.csd" Type="Layer" />
               </Folder>
+              <Folder Name="room_list">
+                <Project Name="room_item_node_layout.csd" Type="Node" />
+                <Project Name="room_list_layer_layout.csd" Type="Layer" />
+              </Folder>
               <Folder Name="setting">
                 <Project Name="setting_layer_layout.csd" Type="Layer" />
               </Folder>
@@ -350,10 +354,6 @@
               <Project Name="hall_player_head_node_layout.csd" Type="Node" />
               <Project Name="hall_top_node_layout.csd" Type="Node" />
               <Project Name="head_node_layout.csd" Type="Node" />
-              <Folder Name="room_list">
-                <Project Name="room_item_node_layout.csd" Type="Node" />
-                <Project Name="room_list_layer_layout.csd" Type="Layer" />
-              </Folder>
             </Folder>
             <Folder Name="room">
               <Folder Name="game_end">

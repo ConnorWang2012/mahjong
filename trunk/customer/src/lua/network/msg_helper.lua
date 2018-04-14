@@ -12,9 +12,41 @@ author:
 modification:
 --]]
 
+local M = {}
 local CardConst = require "logic.constant.card_constants.lua"
 local RoomConst = require "logic.constant.room_constants.lua"
-local M = {}
+
+function M.sendCreatePersonalRoomMsg(rounds_num, players_num, room_cards_num, score_gold)
+	print("[MsgHelper.sendCreatePersonalRoomMsg]")
+	local proto = gamer.protocol.CreateRoomMsgProtocol()
+    proto:set_room_owner_id(gamer.data_mgr_:self_player_id())
+    proto:set_rounds_num(rounds_num)
+    proto:set_players_num(players_num)
+    proto:set_room_cards_num(room_cards_num)
+	proto:set_score_gold(score_gold)
+
+    gamer.msg_mgr_:sendMsg(gamer.MsgTypes.C2S_MSG_TYPE_ROOM, 
+		gamer.MsgIDs.MSG_ID_ROOM_CREATE, proto)
+end
+
+function M.sendJoinPersonalRoomMsg(room_id)
+	print("[MsgHelper.sendJoinPersonalRoomMsg]")
+	local proto = gamer.protocol.RoomOperationMsgProtocol()
+	proto:set_room_id(room_id) 
+	proto:set_player_id(gamer.data_mgr_:self_player_id())
+	proto:set_operation_id(gamer.MsgIDs.MSG_ID_ROOM_PLAYER_JOIN)
+
+	gamer.msg_mgr_:sendMsg(gamer.MsgTypes.C2S_MSG_TYPE_ROOM, 
+		gamer.MsgIDs.MSG_ID_ROOM_PLAYER_JOIN, proto)
+end
+
+function M.sendGetRoomListMsg()
+	print("[MsgHelper.sendGetRoomListMsg]")
+	local proto = gamer.protocol.RoomListMsgProtocol()
+	proto:set_player_id(gamer.data_mgr_:self_player_id())
+	gamer.msg_mgr_:sendMsg(gamer.MsgTypes.C2S_MSG_TYPE_ROOM, 
+		gamer.MsgIDs.MSG_ID_ROOM_GET_ROOM_LIST, proto)
+end
 
 function M.sendGetPlayerInfoMsg(player_id)
 	print("[MsgHelper.sendGetPlayerInfoMsg]")

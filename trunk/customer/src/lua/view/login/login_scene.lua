@@ -99,11 +99,16 @@ function LoginScene:dealWithMyLoginMsgReceived(code, msg)
 end
 
 function LoginScene:addMsgListeners()
-	gamer.msg_mgr_:addMsgListener(gamer.MsgTypes.S2C_MSG_TYPE_LOGIN, handler(self, self.onServerMsgReceived))
-end
+	print("[LoginScene:addMsgListeners]")
+	self.listener_ids_ = {}
 
-function LoginScene:removeMsgListeners()
-	gamer.msg_mgr_:removeMsgListener(gamer.MsgTypes.S2C_MSG_TYPE_LOGIN, handler(self, self.onServerMsgReceived))
+	local id = gamer.msg_mgr_:addMsgListener(gamer.MsgTypes.S2C_MSG_TYPE_LOGIN, 
+		handler(self, self.onServerMsgReceived))
+	
+	print("[LoginScene:addMsgListeners] listener id :", id)
+	if id then
+		table.insert(self.listener_ids_, id)
+	end
 end
 
 function LoginScene:onServerMsgReceived(code, msg_type, msg_id, msg)

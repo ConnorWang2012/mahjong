@@ -30,6 +30,7 @@ int lua_bind_register(lua_State* L)
     tolua_my_login_msg_protocol_open(L);
     tolua_create_room_msg_protocol_open(L);
     tolua_room_operation_msg_protocol_open(L);
+	tolua_room_list_msg_protocol_open(L);
 	tolua_set_property_msg_protocol_open(L);
 	tolua_property_changed_msg_protocol_open(L);
     tolua_room_msg_protocol_open(L);

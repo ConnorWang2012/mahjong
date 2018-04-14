@@ -24,7 +24,7 @@ function HallPlayerInfoPopup:ctor(view_file)
 	self:showLoadingView()
 end
 
-function HallPlayerInfoPopup:initLayout(player_proto)
+function HallPlayerInfoPopup:initView(player_proto)
 	-- nick name
 	self.panel_data_ = self.root_node_:getChildByName("panel_data")
 
@@ -181,7 +181,7 @@ function HallPlayerInfoPopup:dealWithGetPlayerInfoMsgReceived(code, msg)
 	end
 
 	if code == gamer.MsgCodes.SUCCEED then
-		self:initLayout(msg)
+		self:initView(msg)
 		self:showDataView()
 	else
 		self:showEmptyView()
@@ -218,13 +218,13 @@ function HallPlayerInfoPopup:dealWithPropertyChangedMsgReceived(code, msg)
 	end
 end
 
-function HallPlayerInfoPopup:addEventListeners()
-	print("[HallPlayerInfoPopup:addEventListeners]")
+function HallPlayerInfoPopup:addMsgListeners()
+	print("[HallPlayerInfoPopup:addMsgListeners]")
 	gamer.msg_mgr_:addMsgListener(gamer.MsgTypes.S2C_MSG_TYPE_PROPERTY, handler(self, self.onServerMsgReceived))
 end
 
-function HallPlayerInfoPopup:removeEventListeners()
-	print("[HallPlayerInfoPopup:removeEventListeners]")
+function HallPlayerInfoPopup:removeMsgListeners()
+	print("[HallPlayerInfoPopup:removeMsgListeners]")
 	gamer.msg_mgr_:removeMsgListener(gamer.MsgTypes.S2C_MSG_TYPE_PROPERTY, handler(self, self.onServerMsgReceived))
 end
 
@@ -289,13 +289,13 @@ end
 
 function HallPlayerInfoPopup:onEnter()
     print("[HallPlayerInfoPopup:onEnter]")
-	self:addEventListeners()
+	self:addMsgListeners()
 	gamer.msg_helper_.sendGetSelfPlayerInfoMsg()
 end
 
 function HallPlayerInfoPopup:onExit()
     print("[HallPlayerInfoPopup:onExit]")
-	self:removeEventListeners()
+	self:removeMsgListeners()
 end
 
 return HallPlayerInfoPopup

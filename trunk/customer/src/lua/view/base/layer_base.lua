@@ -59,6 +59,7 @@ function LayerBase:set_id(id)
     self.id_ = id
 end
 
+--[[
 function LayerBase:addEventListeners()
 	 print("[LayerBase:addEventListeners]")
 end
@@ -66,17 +67,27 @@ end
 function LayerBase:removeEventListeners()
 	print("[LayerBase:removeEventListeners]")
 end
+]]
+
+function LayerBase:removeMsgListeners()
+	print("[LayerBase:removeMsgListeners]")
+	if self.listener_ids_ then
+		for _, v in pairs(self.listener_ids_) do
+			print("[LayerBase:removeMsgListeners] listener id :", v)
+			gamer.msg_mgr_:removeMsgListener(v)
+		end
+	end
+end
 
 function LayerBase:onEnter()
     print("[LayerBase:onEnter]")
 	-- TODO : dispatch layer enter event to all listeners
-	self:addEventListeners()
 end
 
 function LayerBase:onExit()
     print("[LayerBase:onExit]")
 	-- TODO : dispatch layer exit event to all listeners
-	self:removeEventListeners()
+	self:removeMsgListeners()
 end
 
 return LayerBase

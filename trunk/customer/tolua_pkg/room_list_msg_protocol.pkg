@@ -1,0 +1,62 @@
+$#include "msg/protocol/room_list_msg_protocol.pb.h"
+
+$#include <string>
+$#include <google/protobuf/stubs/common.h>
+
+$#include <google/protobuf/generated_message_util.h>
+$#include <google/protobuf/message.h>
+$#include <google/protobuf/repeated_field.h>
+$#include <google/protobuf/extension_set.h>
+$#include <google/protobuf/unknown_field_set.h>
+
+namespace gamer {
+
+namespace protocol {
+
+class RoomItemMsgProtocol : public google::protobuf::Message {
+public:
+	RoomItemMsgProtocol();
+
+	int ByteSize() const;
+
+	inline void set_room_id(unsigned int value);
+	inline unsigned int room_id() const;
+
+	inline void set_room_type(unsigned int value);
+	inline unsigned int room_type() const;
+
+	inline void set_sub_room_type(unsigned int value);
+	inline unsigned int sub_room_type() const;
+
+	inline void set_score_type(unsigned int value);
+	inline unsigned int score_type() const;
+
+	inline void set_cost_score(unsigned int value);
+	inline unsigned int cost_score() const;
+
+	inline void set_min_score(unsigned int value);
+	inline unsigned int min_score() const;
+
+	inline void set_base_score(unsigned int value);
+	inline unsigned int base_score() const;
+
+	inline void set_cur_players_num(unsigned int value);
+	inline unsigned int cur_players_num() const;
+};
+
+class RoomListMsgProtocol : public google::protobuf::Message {
+public:
+	RoomListMsgProtocol();
+
+	int ByteSize() const;
+
+	inline void set_player_id(unsigned int value);
+	inline unsigned int player_id() const;
+
+	inline unsigned int room_items_size() const;
+	inline const gamer::protocol::RoomItemMsgProtocol& room_items(int index) const;
+};
+
+} // namespace protocol
+
+} // namespace gamer

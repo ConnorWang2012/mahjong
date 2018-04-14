@@ -246,6 +246,7 @@ xcopy /Y /Q "$(LocalDebuggerWorkingDirectory)\*.exe" "$(LocalDebuggerWorkingDire
     <ClInclude Include="..\..\..\..\customer\src\cpp\logic\msg\protocol\player_msg_protocol.pb.h" />
     <ClInclude Include="..\..\..\..\customer\src\cpp\logic\msg\protocol\play_card_msg_protocol.pb.h" />
     <ClInclude Include="..\..\..\..\customer\src\cpp\logic\msg\protocol\property_changed_msg_protocol.pb.h" />
+    <ClInclude Include="..\..\..\..\customer\src\cpp\logic\msg\protocol\room_list_msg_protocol.pb.h" />
     <ClInclude Include="..\..\..\..\customer\src\cpp\logic\msg\protocol\room_msg_protocol.pb.h" />
     <ClInclude Include="..\..\..\..\customer\src\cpp\logic\msg\protocol\room_operation_msg_protocol.pb.h" />
     <ClInclude Include="..\..\..\..\customer\src\cpp\logic\msg\protocol\set_property_msg_protocol.pb.h" />
@@ -448,6 +449,7 @@ xcopy /Y /Q "$(LocalDebuggerWorkingDirectory)\*.exe" "$(LocalDebuggerWorkingDire
     <ClCompile Include="..\..\..\..\customer\src\cpp\logic\lua_bind\auto\lua_bind_player_msg_protocol.cc" />
     <ClCompile Include="..\..\..\..\customer\src\cpp\logic\lua_bind\auto\lua_bind_play_card_msg_protocol.cc" />
     <ClCompile Include="..\..\..\..\customer\src\cpp\logic\lua_bind\auto\lua_bind_property_changed_msg_protocol.cc" />
+    <ClCompile Include="..\..\..\..\customer\src\cpp\logic\lua_bind\auto\lua_bind_room_list_msg_protocol.cc" />
     <ClCompile Include="..\..\..\..\customer\src\cpp\logic\lua_bind\auto\lua_bind_room_msg_protocol.cc" />
     <ClCompile Include="..\..\..\..\customer\src\cpp\logic\lua_bind\auto\lua_bind_room_operation_msg_protocol.cc" />
     <ClCompile Include="..\..\..\..\customer\src\cpp\logic\lua_bind\auto\lua_bind_set_property_msg_protocol.cc" />
@@ -466,6 +468,7 @@ xcopy /Y /Q "$(LocalDebuggerWorkingDirectory)\*.exe" "$(LocalDebuggerWorkingDire
     <ClCompile Include="..\..\..\..\customer\src\cpp\logic\msg\protocol\player_msg_protocol.pb.cc" />
     <ClCompile Include="..\..\..\..\customer\src\cpp\logic\msg\protocol\play_card_msg_protocol.pb.cc" />
     <ClCompile Include="..\..\..\..\customer\src\cpp\logic\msg\protocol\property_changed_msg_protocol.pb.cc" />
+    <ClCompile Include="..\..\..\..\customer\src\cpp\logic\msg\protocol\room_list_msg_protocol.pb.cc" />
     <ClCompile Include="..\..\..\..\customer\src\cpp\logic\msg\protocol\room_msg_protocol.pb.cc" />
     <ClCompile Include="..\..\..\..\customer\src\cpp\logic\msg\protocol\room_operation_msg_protocol.pb.cc" />
     <ClCompile Include="..\..\..\..\customer\src\cpp\logic\msg\protocol\set_property_msg_protocol.pb.cc" />

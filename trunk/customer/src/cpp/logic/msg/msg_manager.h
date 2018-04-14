@@ -70,12 +70,13 @@ public:
     void addMsgListener(msg_header_t msg_type, const MsgResponseCallback& listener);
 
     // use for lua only
-    void addMsgListener(msg_header_t msg_type, 
-                        msg_header_t msg_id, 
-		                const gamer::LuaFunctionID& function_id);
+	gamer::LuaFunctionID addMsgListener(msg_header_t msg_type,
+                                        msg_header_t msg_id, 
+		                                const gamer::LuaFunctionID& function_id); // ugly
 
     // use for lua only
-    void addMsgListener(msg_header_t msg_type, const gamer::LuaFunctionID& function_id);
+	gamer::LuaFunctionID addMsgListener(msg_header_t msg_type, 
+		                                const gamer::LuaFunctionID& function_id); // ugly
 
     // use for c++ only
     void removeMsgListener(msg_header_t msg_type,
@@ -92,6 +93,9 @@ public:
 
     // use for lua only
     void removeMsgListener(msg_header_t msg_type, const gamer::LuaFunctionID& function_id);
+
+	// use for lua only
+	void removeMsgListener(const gamer::LuaFunctionID& function_id);
 
 private:
     struct MsgProtocol
@@ -149,6 +153,8 @@ private:
 
 	void removeMsgListenerForLua(msg_header_t msg_type, const gamer::LuaFunctionID& function_id);
 
+	void removeMsgListenerForLua(const gamer::LuaFunctionID& function_id);
+
     void removeMsgListenerForCpp(msg_header_t msg_type,
                                  msg_header_t msg_id,
                                  const MsgResponseCallback& listener);
@@ -182,6 +188,8 @@ private:
     void dealWithCreateRoomMsg(const ServerMsg& msg);
 
     void dealWithPlayerJoinRoomMsg(const ServerMsg& msg);
+
+	void dealWithGetRoomListMsg(const ServerMsg& msg);
 
     void dealWithStartGameMsg(const ServerMsg& msg);
 

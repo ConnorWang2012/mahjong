@@ -74,18 +74,21 @@ void MsgManager::addMsgListener(msg_header_t msg_type, const MsgResponseCallback
     this->addMsgListenerForCpp(msg_type, (msg_header_t)MsgIDs::MSG_ID_UNKNOW, listener);
 }
 
-void MsgManager::addMsgListener(msg_header_t msg_type, 
-                                msg_header_t msg_id, 
-	                            const gamer::LuaFunctionID& funtion_id)
+gamer::LuaFunctionID MsgManager::addMsgListener(msg_header_t msg_type,
+                                                msg_header_t msg_id, 
+	                                            const gamer::LuaFunctionID& funtion_id)
 {
 	this->addMsgListenerForLua(msg_type, msg_id, funtion_id);
 	LuaBindHelper::getInstance()->storeLuaFunction(funtion_id, 4);
+	return funtion_id;
 }
 
-void MsgManager::addMsgListener(msg_header_t msg_type, const gamer::LuaFunctionID& funtion_id)
+gamer::LuaFunctionID MsgManager::addMsgListener(msg_header_t msg_type, 
+	                                            const gamer::LuaFunctionID& funtion_id)
 {
 	this->addMsgListenerForLua(msg_type, funtion_id);
 	LuaBindHelper::getInstance()->storeLuaFunction(funtion_id, 3);
+	return funtion_id;
 }
 
 void MsgManager::removeMsgListener(msg_header_t msg_type, 
@@ -110,6 +113,11 @@ void MsgManager::removeMsgListener(msg_header_t msg_type,
 void MsgManager::removeMsgListener(msg_header_t msg_type, const gamer::LuaFunctionID& function_id)
 {
     this->removeMsgListenerForLua(msg_type, function_id);
+}
+
+void MsgManager::removeMsgListener(const gamer::LuaFunctionID& function_id)
+{
+	this->removeMsgListenerForLua(function_id);
 }
 
 void MsgManager::init()
@@ -162,6 +170,10 @@ void MsgManager::addMsgHandlers()
     // join room
     msg_handlers_.insert(std::make_pair((int)MsgIDs::MSG_ID_ROOM_PLAYER_JOIN,
         CALLBACK_SELECTOR_1(MsgManager::dealWithPlayerJoinRoomMsg, this)));
+
+	// get room list
+	msg_handlers_.insert(std::make_pair((int)MsgIDs::MSG_ID_ROOM_GET_ROOM_LIST,
+		CALLBACK_SELECTOR_1(MsgManager::dealWithGetRoomListMsg, this)));
 
     // start game
     msg_handlers_.insert(std::make_pair((int)MsgIDs::MSG_ID_ROOM_START_GAME,
@@ -356,6 +368,27 @@ void MsgManager::removeMsgListenerForLua(msg_header_t msg_type,
 	}
 }
 
+void MsgManager::removeMsgListenerForLua(const gamer::LuaFunctionID& function_id)
+{
+	for (auto itr = lua_callbacks1_.begin(); itr != lua_callbacks1_.end(); itr++)
+	{
+		auto it = itr->second.find(function_id);
+		if (it != itr->second.end())
+		{
+			itr->second.erase(it);
+		}
+	}
+
+	for (auto itr = lua_callbacks2_.begin(); itr != lua_callbacks2_.end(); itr++)
+	{
+		auto it = itr->second.find(function_id);
+		if (it != itr->second.end())
+		{
+			itr->second.erase(it);
+		}
+	}
+}
+
 void MsgManager::removeMsgListenerForCpp(msg_header_t msg_type, 
                                          msg_header_t msg_id,
                                          const MsgResponseCallback& listener)
@@ -431,8 +464,11 @@ void MsgManager::dispatchMsg(int msg_code,
     }
 }
 
-void MsgManager::callMsgCallbacks(int msg_code, msg_header_t 
-	msg_type, msg_header_t msg_id, google::protobuf::Message* msg, const std::string& class_name)
+void MsgManager::callMsgCallbacks(int msg_code, 
+	                              msg_header_t msg_type,
+	                              msg_header_t msg_id,
+	                              google::protobuf::Message* msg,
+	                              const std::string& class_name)
 {
 	// c++ callbacks
 	// callbacks added by msg type and msg id
@@ -511,7 +547,6 @@ void MsgManager::dealWithMgLoginMsg(const ServerMsg& msg)
     else
     {
         this->dispatchMsg(msg.code, msg.type, msg.id, nullptr, "");
-        // TODO : log
     }
     
 }
@@ -575,13 +610,12 @@ void MsgManager::dealWithCreateRoomMsg(const ServerMsg& msg)
     else
     {
         this->dispatchMsg(msg.code, msg.type, msg.id, nullptr, "");
-        // TODO : log
     }
 }
 
 void MsgManager::dealWithPlayerJoinRoomMsg(const ServerMsg& msg)
 {
-    gamer::protocol::RoomOperationMsgProtocol proto;
+    gamer::protocol::RoomOperationMsgProtocol proto; // TODO : get from data manager
     if (this->parseMsg(msg, &proto))
     {
         this->dispatchMsg(msg.code, msg.type, msg.id, &proto,
@@ -590,8 +624,21 @@ void MsgManager::dealWithPlayerJoinRoomMsg(const ServerMsg& msg)
     else
     {
         this->dispatchMsg(msg.code, msg.type, msg.id, nullptr, "");
-        // TODO : log
     }
+}
+
+void MsgManager::dealWithGetRoomListMsg(const ServerMsg& msg)
+{
+	auto proto = DataManager::getInstance()->room_list_msg_protocol();
+	if (this->parseMsg(msg, proto))
+	{
+		this->dispatchMsg(msg.code, msg.type, msg.id, proto,
+			"gamer::protocol::RoomListMsgProtocol");
+	}
+	else
+	{
+		this->dispatchMsg(msg.code, msg.type, msg.id, nullptr, "");
+	}
 }
 
 void MsgManager::dealWithStartGameMsg(const ServerMsg& msg)
@@ -600,7 +647,6 @@ void MsgManager::dealWithStartGameMsg(const ServerMsg& msg)
     auto proto = data_mgr->room_msg_protocol();
     if ( !this->parseMsg(msg, proto) )
     {
-        // TODO : log
         this->dispatchMsg(msg.code, msg.type, msg.id, nullptr, "");
         return;
     }
@@ -687,7 +733,6 @@ void MsgManager::dealWithGameEndMsg(const ServerMsg& msg)
     else
     {
         this->dispatchMsg(msg.code, msg.type, msg.id, nullptr, "");
-        // TODO : log
     }
 }
 
@@ -702,7 +747,6 @@ void MsgManager::dealWithPlayCardMsg(const ServerMsg& msg)
     else
     {
         this->dispatchMsg(msg.code, msg.type, msg.id, nullptr, "");
-        // TODO : log
     }
 }
 

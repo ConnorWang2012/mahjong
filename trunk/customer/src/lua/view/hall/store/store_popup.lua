@@ -18,11 +18,11 @@ function StorePopup:ctor(view_file)
 	print("[StorePopup:ctor]")
     self.super.ctor(self, view_file)
 
-	self:initLayout()
+	self:initView()
 	self:closeWhenTouchBackground(true)
 end
 
-function StorePopup:initLayout()
+function StorePopup:initView()
 
 end
 

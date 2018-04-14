@@ -18,11 +18,11 @@ function JoinRoomPopup:ctor(view_file)
 	print("[JoinRoomPopup:ctor]")
     self.super.ctor(self, view_file)
 
-	self:initLayout()
+	self:initView()
 	self:closeWhenTouchBackground(true)
 end
 
-function JoinRoomPopup:initLayout()
+function JoinRoomPopup:initView()
 	local img_bg = self.root_node_:getChildByName("img_bg")
 
 	self.cur_num_txt_ = img_bg:getChildByName("txt_num_1")
@@ -65,6 +65,7 @@ function JoinRoomPopup:onImgNumTouch(sender)
 	if "txt_num_6" == name then
 		-- send join room msg
 		local room_id = self:getRoomID()
+		--[[
 		local player_id = gamer.data_mgr_:self_player_id()
 		local proto = gamer.protocol.RoomOperationMsgProtocol()
 		proto:set_room_id(room_id) 
@@ -74,6 +75,8 @@ function JoinRoomPopup:onImgNumTouch(sender)
 		print("[JoinRoomPopup:onImgNumTouch] room id, player id, op id : ", room_id, player_id, gamer.MsgIDs.MSG_ID_ROOM_PLAYER_JOIN)
 
 		gamer.msg_mgr_:sendMsg(gamer.MsgTypes.C2S_MSG_TYPE_ROOM, gamer.MsgIDs.MSG_ID_ROOM_PLAYER_JOIN, proto)
+		]]
+		gamer.msg_helper_.sendJoinPersonalRoomMsg(room_id)
 	else
 		local i = tonumber(string.sub(name, string.len(name)))
 		if (i + 1) <= 6 then

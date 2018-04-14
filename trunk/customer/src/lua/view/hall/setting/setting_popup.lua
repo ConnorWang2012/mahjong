@@ -18,11 +18,11 @@ function SettingPopup:ctor(view_file)
 	print("[SettingPopup:ctor]")
     self.super.ctor(self, view_file)
 
-	self:initLayout()
+	self:initView()
 	self:closeWhenTouchBackground(true)
 end
 
-function SettingPopup:initLayout()
+function SettingPopup:initView()
 	local img_bg    = self.root_node_:getChildByName("img_bg")
 	local img_close = img_bg:getChildByName("img_close")
 	img_close:setTouchEnabled(true)

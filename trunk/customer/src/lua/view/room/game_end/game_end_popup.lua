@@ -19,10 +19,10 @@ function GameEndPopup:ctor(view_file, ...)
     self.super.ctor(self, view_file)
 
 	local msg = ...
-	self:initLayout(msg)
+	self:initView(msg)
 end
 
-function GameEndPopup:initLayout(game_end_msg)
+function GameEndPopup:initView(game_end_msg)
 	-- items
 	for i = 1, game_end_msg:game_end_data_size() do
 		local item = self.root_node_:getChildByName("node_item" .. i)

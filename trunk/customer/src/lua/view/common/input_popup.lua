@@ -18,11 +18,11 @@ function InputPopup:ctor(view_file)
 	print("[InputPopup:ctor]")
     self.super.ctor(self, view_file)
 
-	self:initLayout()
+	self:initView()
 	self:closeWhenTouchBackground(true)
 end
 
-function InputPopup:initLayout()
+function InputPopup:initView()
 	local img_bg    = self.root_node_:getChildByName("img_bg")
 	self.txt_title_ = img_bg:getChildByName("txt_title")
 	local img_close = img_bg:getChildByName("img_close")

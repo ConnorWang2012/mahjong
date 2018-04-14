@@ -21,10 +21,10 @@ function HeadPortraitSelectPopup:ctor(view_file)
 
 	self:closeWhenTouchBackground(true)
 
-	self:initLayout()
+	self:initView()
 end
 
-function HeadPortraitSelectPopup:initLayout()
+function HeadPortraitSelectPopup:initView()
 	self:initScrollView()
 
 	local panel_data = self.root_node_:getChildByName("panel_data")

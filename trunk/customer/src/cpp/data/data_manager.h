@@ -22,6 +22,7 @@ modification:
 #include "my_login_msg_protocol.pb.h"
 #include "set_property_msg_protocol.pb.h"
 #include "create_room_msg_protocol.pb.h"
+#include "room_list_msg_protocol.pb.h"
 #include "room_msg_protocol.pb.h"
 #include "player_msg_protocol.pb.h"
 #include "player_cards_msg_protocol.pb.h"
@@ -37,6 +38,7 @@ public:
     typedef gamer::protocol::MyLoginMsgProtocol     MyLoginMsgProtocol;
 	typedef gamer::protocol::SetPropertyMsgProtocol SetPropertyMsgProtocol;
     typedef gamer::protocol::CreateRoomMsgProtocol  CreateRoomMsgProtocol;
+	typedef gamer::protocol::RoomListMsgProtocol    RoomListMsgProtocol;
     typedef gamer::protocol::RoomMsgProtocol        RoomMsgProtocol;
 	typedef gamer::protocol::PlayerMsgProtocol		PlayerMsgProtocol;
     typedef gamer::protocol::PlayerCardsMsgProtocol PlayerCardsMsgProtocol;
@@ -54,6 +56,8 @@ public:
 	inline SetPropertyMsgProtocol* set_property_msg_protocol();
 
     inline CreateRoomMsgProtocol* create_room_msg_protocol();
+
+	inline RoomListMsgProtocol* room_list_msg_protocol();
 
     inline RoomMsgProtocol* room_msg_protocol();
 
@@ -138,6 +142,7 @@ private:
 	PlayerMsgProtocol*		player_msg_protocol_;
 	SetPropertyMsgProtocol* set_property_msg_protocol_;
     CreateRoomMsgProtocol*  create_room_msg_protocol_;
+	RoomListMsgProtocol*    room_list_msg_protocol_;
     RoomMsgProtocol*        room_msg_protocol_;
     PlayCardMsgProtocol*    play_card_msg_protocol_;
     GameEndMsgProtocol*     game_end_msg_protocol_;
@@ -182,6 +187,15 @@ inline DataManager::CreateRoomMsgProtocol* DataManager::create_room_msg_protocol
         create_room_msg_protocol_ = new CreateRoomMsgProtocol;
     }
     return create_room_msg_protocol_;
+}
+
+inline DataManager::RoomListMsgProtocol* DataManager::room_list_msg_protocol()
+{
+	if (nullptr == room_list_msg_protocol_)
+	{
+		room_list_msg_protocol_ = new RoomListMsgProtocol;
+	}
+	return room_list_msg_protocol_;
 }
 
 inline DataManager::RoomMsgProtocol* DataManager::room_msg_protocol()

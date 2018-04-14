@@ -26,5 +26,12 @@ gamer.strings_  =
 	["str_modify_failed"]				= "修改失败",
 	["str_select_one_head_portrait"]	= "请先点击选择一张头像",
 	["str_touch_too_much"]				= "点击过于频繁，请稍候再试",
-	["str_level"]						= "等级"
-}
+	["str_level"]						= "等级",
+
+	["str_room_name1"]				    = "普通场",
+	["str_room_name2"]				    = "大神场",
+	["str_room_name3"]				    = "土豪场",
+	["str_sub_room_name1"]				= "欢乐房",
+	["str_sub_room_name2"]				= "高级房",
+	["str_sub_room_name3"]				= "财富房",
+} 

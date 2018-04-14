@@ -23,10 +23,10 @@ local PlayerConst       = require "logic.constant.player_constants.lua"
 function HallScene:ctor(view_file)
     self.super.ctor(self, view_file)
 
-    self:initLayout()
+    self:initView()
 end
 
-function HallScene:initLayout()
+function HallScene:initView()
 	-- 1.init top
     self.hall_top_layout_ = HallTopLayout:create().root    
     self:addChild(self.hall_top_layout_)
@@ -233,15 +233,24 @@ function HallScene:dealWithPropertyChangedMsgReceived(code, msg)
 end
 
 function HallScene:addMsgListeners()
-	print("[HallScene:addEventListeners]")
-	gamer.msg_mgr_:addMsgListener(gamer.MsgTypes.S2C_MSG_TYPE_ROOM, handler(self, self.onServerMsgReceived))
-	gamer.msg_mgr_:addMsgListener(gamer.MsgTypes.S2C_MSG_TYPE_PROPERTY, handler(self, self.onServerMsgReceived))
-end
+	print("[HallScene:addMsgListeners]")
+	self.listener_ids_ = {}
 
-function HallScene:removeMsgListeners()
-	print("[HallScene:removeEventListeners]")
-	gamer.msg_mgr_:removeMsgListener(gamer.MsgTypes.S2C_MSG_TYPE_ROOM, handler(self, self.onServerMsgReceived))
-	gamer.msg_mgr_:removeMsgListener(gamer.MsgTypes.S2C_MSG_TYPE_PROPERTY, handler(self, self.onServerMsgReceived))
+	local id1 = gamer.msg_mgr_:addMsgListener(gamer.MsgTypes.S2C_MSG_TYPE_ROOM, 
+		handler(self, self.onServerMsgReceived))
+	local id2 = gamer.msg_mgr_:addMsgListener(gamer.MsgTypes.S2C_MSG_TYPE_PROPERTY, 
+		handler(self, self.onServerMsgReceived))
+
+	print("[HallScene:addMsgListeners] listener id1 :", id1)
+	print("[HallScene:addMsgListeners] listener id2 :", id2)
+
+	if id1 then
+		table.insert(self.listener_ids_, id1)
+	end
+
+	if id2 then
+		table.insert(self.listener_ids_, id2)
+	end
 end
 
 function HallScene:onImgPlayerHeadTouch(sender)
